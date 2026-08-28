@@ -1,0 +1,20 @@
+{
+  "id": "generic-2d",
+  "name": "Generic 2D",
+  "dimension": "2d",
+  "description": "Neutral 2D starting point for projects without a specialized visual profile.",
+  "use_cases": ["prototype", "casual game", "custom 2D engine"],
+  "artistic_parameters": {
+    "style_keywords": ["clear", "readable", "cohesive"],
+    "palette": "project-defined with accessible contrast",
+    "shape_language": "simple silhouettes and consistent outlines",
+    "consistency_rules": ["keep scale and pivot conventions stable"]
+  },
+  "technical_parameters": {"formats": ["PNG", "SVG", "JSON"], "default_sprite_size": "project-defined", "color_space": "sRGB"},
+  "asset_structure": {"characters": "assets/characters", "environment": "assets/environment", "ui": "assets/ui", "effects": "assets/vfx"},
+  "budgets": {"max_texture_dimension": 2048, "max_atlas_dimension": 4096, "max_animation_frames": 32, "max_draw_calls_per_scene": 200},
+  "provider_guidance": ["local ComfyUI for controlled iteration", "Hugging Face for declared fallback", "remote RTX 5050 for heavier jobs"],
+  "naming": {"pattern": "<category>_<subject>_<variant>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "define clips and pivots before generation", "default_fps": 12, "loop_by_default": false},
+  "limitations": ["neutral defaults need art-direction review", "engine import settings are not inferred from this profile"]
+}

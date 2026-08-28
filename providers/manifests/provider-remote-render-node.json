@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.2",
+  "id": "provider-remote-render-node",
+  "kind": "remote-comfyui-render-node",
+  "priority": "secondary",
+  "endpoint": null,
+  "target_hardware": "NVIDIA RTX 5050",
+  "capabilities": ["2d", "3d-reference", "workflow-submit", "polling", "output-retrieval"],
+  "availability_contract": {"health_path": "/system_stats", "timeout_seconds": 3, "requires_private_network": true, "recommended_network": "Tailscale or equivalent private overlay"},
+  "credential_policy": "Endpoint and credentials are consumer-local configuration; never expose ComfyUI directly to the public internet.",
+  "fallbacks": ["provider-comfyui", "provider-huggingface"]
+}

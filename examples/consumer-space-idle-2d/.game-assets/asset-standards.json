@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.2",
+  "naming": {
+    "pattern": "space_<category>_<subject>_<faction>_<revision>",
+    "case": "snake_case",
+    "stable_id_required": true
+  },
+  "formats": [
+    "PNG",
+    "SVG",
+    "JSON"
+  ],
+  "source_of_truth": "asset-registry.json",
+  "raw_ids_allowed_in_registry": true
+}

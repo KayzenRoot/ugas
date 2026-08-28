@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/art-dna.json",
+  "title": "UGAS Art DNA",
+  "type": "object",
+  "required": ["schema_version", "source_profile", "style_keywords", "palette", "shape_language", "consistency_rules"],
+  "properties": {"schema_version": {"type": "string"}, "source_profile": {"type": "string"}, "style_keywords": {"type": "array", "items": {"type": "string"}}, "palette": {"type": "string"}, "shape_language": {"type": "string"}, "consistency_rules": {"type": "array", "items": {"type": "string"}}}
+}

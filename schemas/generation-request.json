@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/generation-request.json",
+  "title": "UGAS generation request",
+  "type": "object",
+  "required": ["schema_version", "request_id", "profile", "asset_types", "dimension", "provider_policy", "provenance_ref"],
+  "properties": {"schema_version": {"type": "string"}, "request_id": {"type": "string"}, "prompt": {"type": "string"}, "profile": {"type": "string"}, "asset_types": {"type": "array", "items": {"type": "string"}, "minItems": 1}, "dimension": {"enum": ["2d", "3d"]}, "engine": {"type": "string"}, "provider_policy": {"enum": ["free-first", "local-first", "remote-first", "paid-disabled"]}, "provider": {"type": ["string", "null"]}, "provenance_ref": {"type": "string"}}
+}

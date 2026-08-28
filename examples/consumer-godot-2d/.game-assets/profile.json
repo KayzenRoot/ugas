@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.2",
+  "id": "topdown-rpg-mmorpg-2d",
+  "name": "Top-down RPG MMORPG 2D",
+  "dimension": "2d",
+  "description": "Top-down multiplayer RPG profile for characters, modular environments, and combat readability.",
+  "use_cases": [
+    "MMORPG",
+    "top-down RPG",
+    "cooperative action RPG"
+  ],
+  "artistic_parameters": {
+    "style_keywords": [
+      "top-down",
+      "adventurous",
+      "readable combat",
+      "modular environment"
+    ],
+    "palette": "faction-aware palette with gameplay contrast",
+    "shape_language": "clear silhouettes and directional facing",
+    "consistency_rules": [
+      "share tile scale across characters and environment",
+      "reserve contrast for interactable/combat states"
+    ]
+  },
+  "technical_parameters": {
+    "formats": [
+      "PNG",
+      "JSON",
+      "GLB"
+    ],
+    "default_sprite_size": "64px character cell",
+    "color_space": "sRGB"
+  },
+  "asset_structure": {
+    "characters": "assets/characters",
+    "tilesets": "assets/world/tilesets",
+    "props": "assets/world/props",
+    "combat": "assets/combat",
+    "ui": "assets/ui"
+  },
+  "budgets": {
+    "max_texture_dimension": 2048,
+    "max_atlas_dimension": 4096,
+    "max_animation_frames": 48,
+    "max_draw_calls_per_scene": 250
+  },
+  "provider_guidance": [
+    "ComfyUI for concept and controlled 2D batches",
+    "remote RTX 5050 for larger approved jobs",
+    "Hugging Face only with license review"
+  ],
+  "naming": {
+    "pattern": "<faction>_<category>_<subject>_<state>_<revision>",
+    "case": "snake_case",
+    "stable_id_required": true
+  },
+  "animation": {
+    "recommendation": "idle, walk, attack, hit, defeat, and interact clips",
+    "default_fps": 12,
+    "loop_by_default": false
+  },
+  "limitations": [
+    "networked gameplay integration is outside UGAS",
+    "server or client authority is not changed by asset metadata"
+  ]
+}

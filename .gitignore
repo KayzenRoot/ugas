@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Local consumer state and generated assets
+.game-assets/
+!examples/**/.game-assets/
+!examples/**/.game-assets/**
+*.safetensors
+*.ckpt
+*.pth
+*.onnx
+*.blend1
+
+# Provider and machine-local files
+.env
+.env.*
+!.env.example
+*.log
+provider-cache/
+models/
+outputs/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Test/build output
+coverage.xml
+htmlcov/
+dist/
+build/
+tmp/

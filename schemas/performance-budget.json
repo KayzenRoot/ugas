@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/performance-budget.json",
+  "title": "UGAS performance budget",
+  "type": "object",
+  "required": ["schema_version", "profile"],
+  "properties": {"schema_version": {"type": "string"}, "profile": {"type": "string"}, "max_texture_dimension": {"type": "integer", "minimum": 1}, "max_atlas_dimension": {"type": "integer", "minimum": 1}, "max_animation_frames": {"type": "integer", "minimum": 1}, "max_draw_calls_per_scene": {"type": "integer", "minimum": 1}, "max_triangles_lod0": {"type": "integer", "minimum": 1}, "max_triangles_lod1": {"type": "integer", "minimum": 1}}
+}

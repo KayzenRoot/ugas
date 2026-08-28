@@ -1,0 +1,15 @@
+{
+  "id": "realistic-3d",
+  "name": "Realistic 3D",
+  "dimension": "3d",
+  "description": "Realistic 3D profile with explicit PBR, scale, reference, and performance review requirements.",
+  "use_cases": ["realistic game", "simulation", "cinematic game asset"],
+  "artistic_parameters": {"style_keywords": ["realistic", "physically based", "reference-driven"], "palette": "reference-derived and color-managed", "shape_language": "anatomically or mechanically plausible forms", "consistency_rules": ["record reference provenance", "keep camera and lighting assumptions explicit"]},
+  "technical_parameters": {"formats": ["GLB", "FBX", "PNG", "EXR", "JSON"], "default_sprite_size": "not applicable", "color_space": "linear/PBR with sRGB outputs"},
+  "asset_structure": {"models": "assets/3d/models", "materials": "assets/3d/materials", "references": "assets/3d/references", "animations": "assets/3d/animations", "lod": "assets/3d/lod"},
+  "budgets": {"max_texture_dimension": 4096, "max_triangles_lod0": 100000, "max_triangles_lod1": 50000, "max_draw_calls_per_scene": 180},
+  "provider_guidance": ["ComfyUI for ideation only unless workflow is approved", "remote RTX 5050 for controlled rendering", "license and provenance review is mandatory"],
+  "naming": {"pattern": "real_<category>_<subject>_<material_or_state>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "define physically plausible motion and retargeting assumptions", "default_fps": 30, "loop_by_default": false},
+  "limitations": ["realism requires reference and human review", "V0.2 does not validate anatomy, physics, or photogrammetry quality"]
+}

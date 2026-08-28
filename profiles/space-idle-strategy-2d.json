@@ -1,0 +1,15 @@
+{
+  "id": "space-idle-strategy-2d",
+  "name": "Space Idle Strategy 2D",
+  "dimension": "2d",
+  "description": "Space strategy profile for planets, ships, backgrounds, dashboards, and effects.",
+  "use_cases": ["idle space strategy", "OGame-like browser game", "fleet management UI"],
+  "artistic_parameters": {"style_keywords": ["space", "strategic", "clean silhouette", "data-rich UI"], "palette": "deep-space neutrals with faction accent colors", "shape_language": "recognizable ships and orbital forms", "consistency_rules": ["preserve scale labels in metadata", "keep UI contrast above background contrast"]},
+  "technical_parameters": {"formats": ["PNG", "SVG", "JSON"], "default_sprite_size": "project-defined with 2x UI scale", "color_space": "sRGB"},
+  "asset_structure": {"ships": "assets/space/ships", "planets": "assets/space/planets", "backgrounds": "assets/space/backgrounds", "ui": "assets/ui", "vfx": "assets/vfx"},
+  "budgets": {"max_texture_dimension": 4096, "max_atlas_dimension": 4096, "max_animation_frames": 24, "max_draw_calls_per_scene": 120},
+  "provider_guidance": ["ComfyUI for concept variants", "local-first for UI and sprites", "remote node for approved high-resolution backgrounds"],
+  "naming": {"pattern": "space_<category>_<subject>_<faction>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "subtle loops for orbit, thrusters, and UI feedback", "default_fps": 12, "loop_by_default": true},
+  "limitations": ["economy and fleet logic are consumer-game concerns", "large backgrounds need explicit memory budgets"]
+}

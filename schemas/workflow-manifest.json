@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/workflow-manifest.json",
+  "title": "UGAS workflow manifest",
+  "type": "object",
+  "required": ["schema_version", "id", "provider", "version", "inputs", "outputs"],
+  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "provider": {"type": "string"}, "version": {"type": "string"}, "inputs": {"type": "array", "items": {"type": "string"}}, "outputs": {"type": "array", "items": {"type": "string"}}, "model_requirements": {"type": "array", "items": {"type": "string"}}}
+}

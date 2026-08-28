@@ -1,0 +1,15 @@
+{
+  "id": "isometric-strategy-2d",
+  "name": "Isometric Strategy 2D",
+  "dimension": "2d",
+  "description": "Isometric strategy profile with consistent diamond grid, buildings, units, and overlays.",
+  "use_cases": ["isometric RTS", "city builder", "tactical strategy"],
+  "artistic_parameters": {"style_keywords": ["isometric", "modular", "strategic clarity"], "palette": "biome palette plus team-readable accents", "shape_language": "consistent isometric projection and contact shadows", "consistency_rules": ["lock camera projection", "align all footprints to the grid"]},
+  "technical_parameters": {"formats": ["PNG", "SVG", "JSON"], "default_sprite_size": "project-defined diamond grid", "color_space": "sRGB"},
+  "asset_structure": {"terrain": "assets/isometric/terrain", "buildings": "assets/isometric/buildings", "units": "assets/isometric/units", "overlays": "assets/isometric/overlays"},
+  "budgets": {"max_texture_dimension": 2048, "max_atlas_dimension": 4096, "max_animation_frames": 32, "max_draw_calls_per_scene": 220},
+  "provider_guidance": ["ComfyUI for concept boards", "local-first for modular tile variants", "remote node only after atlas budget review"],
+  "naming": {"pattern": "iso_<category>_<subject>_<footprint>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "keep unit facing and construction phases explicit", "default_fps": 12, "loop_by_default": false},
+  "limitations": ["projection alignment requires engine-specific review", "generated perspective drift is a known risk"]
+}

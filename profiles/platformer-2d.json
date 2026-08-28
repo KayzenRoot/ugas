@@ -1,0 +1,15 @@
+{
+  "id": "platformer-2d",
+  "name": "Platformer 2D",
+  "dimension": "2d",
+  "description": "Platformer profile for responsive silhouettes, readable hazards, and layered backgrounds.",
+  "use_cases": ["platformer", "action platformer", "metroidvania"],
+  "artistic_parameters": {"style_keywords": ["dynamic", "silhouette-first", "layered depth"], "palette": "foreground/background separation with hazard accent", "shape_language": "strong action silhouettes and clear collision edges", "consistency_rules": ["readability at gameplay camera distance", "reserve high contrast for hazards and player"]},
+  "technical_parameters": {"formats": ["PNG", "JSON"], "default_sprite_size": "project-defined character cell", "color_space": "sRGB"},
+  "asset_structure": {"characters": "assets/platformer/characters", "tilesets": "assets/platformer/tilesets", "hazards": "assets/platformer/hazards", "backgrounds": "assets/platformer/backgrounds"},
+  "budgets": {"max_texture_dimension": 2048, "max_atlas_dimension": 4096, "max_animation_frames": 48, "max_draw_calls_per_scene": 180},
+  "provider_guidance": ["ComfyUI for concept exploration", "local-first for modular assets", "validate silhouettes before variants"],
+  "naming": {"pattern": "platform_<category>_<subject>_<state>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "prioritize anticipation, contact, jump, fall, and hit clips", "default_fps": 12, "loop_by_default": false},
+  "limitations": ["feel and collision remain runtime concerns", "visual generation cannot validate controller timing"]
+}

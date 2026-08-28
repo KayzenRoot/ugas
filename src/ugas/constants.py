@@ -1,0 +1,83 @@
+"""V0.2 contracts shared by the installer, validator and tests."""
+
+SKILLS = [
+    "game-asset-installer",
+    "game-asset-orchestrator",
+    "game-context-resolver",
+    "game-asset-planner",
+    "game-asset-tool-router",
+    "game-generation-provider-router",
+    "game-art-director",
+    "game-art-dna",
+    "game-asset-registry",
+    "game-asset-reuse-engine",
+    "game-asset-budget-manager",
+    "game-style-consistency-auditor",
+    "game-license-auditor",
+    "game-asset-dependency-graph",
+    "game-provenance-manager",
+    "game-sprite-studio",
+    "game-tileset-studio",
+    "game-animation-studio",
+    "game-vfx-studio",
+    "game-ui-asset-studio",
+    "game-icon-studio",
+    "game-portrait-studio",
+    "game-atlas-packer",
+    "game-3d-model-studio",
+    "game-material-studio",
+    "game-rigging-studio",
+    "game-animation-3d-studio",
+    "game-lod-studio",
+    "game-engine-adapter",
+    "game-asset-validator",
+    "game-visual-regression",
+    "game-runtime-validator",
+    "provider-comfyui",
+    "provider-huggingface",
+    "provider-remote-render-node",
+    "provider-manifest-registry",
+    "provider-model-registry",
+    "provider-workflow-registry",
+]
+
+PROFILES = [
+    "generic-2d",
+    "pixel-rpg-2d",
+    "topdown-rpg-mmorpg-2d",
+    "space-idle-strategy-2d",
+    "isometric-strategy-2d",
+    "platformer-2d",
+    "card-idle-ui-heavy",
+    "stylized-3d",
+    "low-poly-3d",
+    "realistic-3d",
+]
+
+SCHEMAS = [
+    "profile",
+    "art-dna",
+    "toolchain",
+    "performance-budget",
+    "asset-registry",
+    "asset-manifest",
+    "provider-manifest",
+    "workflow-manifest",
+    "generation-request",
+    "generation-result",
+]
+
+CONSUMER_FILES = [
+    "studio.json",
+    "profile.json",
+    "art-dna.json",
+    "asset-standards.json",
+    "performance-budget.json",
+    "toolchain.json",
+    "asset-registry.json",
+    "asset-dependencies.json",
+    "provenance.jsonl",
+    "CHECKPOINT.md",
+]
+
+PROVIDERS = ["provider-comfyui", "provider-remote-render-node", "provider-huggingface"]

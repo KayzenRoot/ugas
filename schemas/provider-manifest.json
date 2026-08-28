@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/provider-manifest.json",
+  "title": "UGAS provider manifest",
+  "type": "object",
+  "required": ["schema_version", "id", "kind", "capabilities", "availability_contract", "credential_policy"],
+  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "kind": {"type": "string"}, "capabilities": {"type": "array", "items": {"type": "string"}}, "availability_contract": {"type": "object"}, "credential_policy": {"type": "string"}, "endpoint": {"type": ["string", "null"]}}
+}

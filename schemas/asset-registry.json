@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/asset-registry.json",
+  "title": "UGAS asset registry",
+  "type": "object",
+  "required": ["schema_version", "assets"],
+  "properties": {"schema_version": {"type": "string"}, "assets": {"type": "array", "items": {"type": "object", "required": ["id", "status"], "properties": {"id": {"type": "string"}, "status": {"enum": ["planned", "draft", "validated", "approved", "deprecated"]}, "manifest": {"type": "string"}, "provenance": {"type": "string"}}}}, "registry_policy": {"type": "object"}}
+}

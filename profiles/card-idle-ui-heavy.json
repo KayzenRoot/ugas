@@ -1,0 +1,15 @@
+{
+  "id": "card-idle-ui-heavy",
+  "name": "Card Idle UI Heavy",
+  "dimension": "2d",
+  "description": "UI-forward card and idle-game profile with strong typography, icon, and state coverage.",
+  "use_cases": ["card game", "idle progression", "collection UI"],
+  "artistic_parameters": {"style_keywords": ["card frame", "hierarchy", "high information density"], "palette": "rarity and faction tokens with accessible contrast", "shape_language": "modular frames, badges, and icon silhouettes", "consistency_rules": ["state changes must remain legible without color alone", "preserve text-safe areas"]},
+  "technical_parameters": {"formats": ["PNG", "SVG", "JSON"], "default_sprite_size": "2x target UI scale", "color_space": "sRGB"},
+  "asset_structure": {"cards": "assets/cards", "frames": "assets/ui/frames", "icons": "assets/ui/icons", "effects": "assets/ui/vfx"},
+  "budgets": {"max_texture_dimension": 4096, "max_atlas_dimension": 4096, "max_animation_frames": 24, "max_draw_calls_per_scene": 160},
+  "provider_guidance": ["ComfyUI for controlled illustrations", "local-first for frames and icons", "license-review all reference-driven card art"],
+  "naming": {"pattern": "card_<set>_<subject>_<rarity>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "short reveal, hover, reward, and upgrade loops", "default_fps": 12, "loop_by_default": false},
+  "limitations": ["text localization is not baked into generated art", "card balance and economy are outside the studio"]
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/toolchain.json",
+  "title": "UGAS toolchain",
+  "type": "object",
+  "required": ["schema_version", "engine", "language", "provider_policy", "providers"],
+  "properties": {"schema_version": {"type": "string"}, "engine": {"type": "string"}, "language": {"type": "string"}, "detected_files": {"type": "array", "items": {"type": "string"}}, "provider_policy": {"enum": ["free-first", "local-first", "remote-first", "paid-disabled"]}, "providers": {"type": "array", "items": {"type": "string"}}, "comfyui_endpoint": {"type": ["string", "null"]}, "render_node_endpoint": {"type": ["string", "null"]}}
+}

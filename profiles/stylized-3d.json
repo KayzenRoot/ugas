@@ -1,0 +1,15 @@
+{
+  "id": "stylized-3d",
+  "name": "Stylized 3D",
+  "dimension": "3d",
+  "description": "Stylized 3D profile for readable shapes, controlled materials, and game-ready LODs.",
+  "use_cases": ["stylized 3D game", "boss and character concepts", "cozy or cartoon worlds"],
+  "artistic_parameters": {"style_keywords": ["stylized", "clean planes", "readable proportions"], "palette": "limited material palette with accent colors", "shape_language": "exaggerated silhouettes and intentional bevels", "consistency_rules": ["use a common unit scale", "keep material roughness families consistent"]},
+  "technical_parameters": {"formats": ["GLB", "PNG", "JSON"], "default_sprite_size": "not applicable", "color_space": "sRGB/PBR"},
+  "asset_structure": {"models": "assets/3d/models", "materials": "assets/3d/materials", "animations": "assets/3d/animations", "lod": "assets/3d/lod"},
+  "budgets": {"max_texture_dimension": 2048, "max_triangles_lod0": 50000, "max_triangles_lod1": 25000, "max_draw_calls_per_scene": 150},
+  "provider_guidance": ["ComfyUI for references and concept boards", "remote RTX 5050 for declared 3D workflows", "Hugging Face only with model/license review"],
+  "naming": {"pattern": "<category>_<subject>_<material_or_state>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "author root, locomotion, action, and defeat contracts", "default_fps": 30, "loop_by_default": false},
+  "limitations": ["mesh topology and rig quality require DCC review", "no 3D generator is bundled in V0.2"]
+}

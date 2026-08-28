@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/asset-manifest.json",
+  "title": "UGAS asset manifest",
+  "type": "object",
+  "required": ["schema_version", "id", "asset_type", "dimension", "status", "provenance_ref"],
+  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "asset_type": {"type": "string"}, "dimension": {"enum": ["2d", "3d"]}, "status": {"enum": ["planned", "draft", "validated", "approved", "deprecated"]}, "source_path": {"type": ["string", "null"]}, "provenance_ref": {"type": "string"}, "license": {"type": "object"}, "technical": {"type": "object"}}
+}

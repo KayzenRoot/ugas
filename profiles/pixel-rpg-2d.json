@@ -1,0 +1,15 @@
+{
+  "id": "pixel-rpg-2d",
+  "name": "Pixel RPG 2D",
+  "dimension": "2d",
+  "description": "Pixel-art RPG profile with strict grid, palette, and nearest-neighbor guidance.",
+  "use_cases": ["pixel RPG", "retro adventure", "2D dungeon crawler"],
+  "artistic_parameters": {"style_keywords": ["pixel art", "limited palette", "high readability"], "palette": "8-32 colors per asset family", "shape_language": "chunky silhouettes on a fixed grid", "consistency_rules": ["use integer scaling", "avoid subpixel filtering"]},
+  "technical_parameters": {"formats": ["PNG", "JSON"], "default_sprite_size": "16x16 or 32x32 base grid", "color_space": "sRGB"},
+  "asset_structure": {"characters": "assets/pixel/characters", "tilesets": "assets/pixel/tilesets", "items": "assets/pixel/items", "ui": "assets/pixel/ui"},
+  "budgets": {"max_texture_dimension": 2048, "max_atlas_dimension": 4096, "max_animation_frames": 24, "max_draw_calls_per_scene": 150},
+  "provider_guidance": ["ComfyUI with a pixel-art workflow contract", "local-first iteration", "review all generated outputs for grid integrity"],
+  "naming": {"pattern": "px_<category>_<subject>_<state>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "short readable clips with held frames", "default_fps": 8, "loop_by_default": true},
+  "limitations": ["generic diffusion output may break pixel grid", "palette enforcement remains a review step"]
+}

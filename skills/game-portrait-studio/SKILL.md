@@ -1,0 +1,22 @@
+# game-portrait-studio
+
+## Description and trigger
+Use for character, faction, or NPC portrait asset planning.
+
+## When to use
+Define framing, expression variants, crop, and profile consistency.
+
+## When NOT to use
+Do not use for 3D character rigging or identity-sensitive real-person likenesses without review.
+
+## Conceptual dependencies
+Art director, Art DNA, license auditor, and registry.
+
+## Execution
+Record intended use, style constraints, and technical export targets.
+
+## Outputs
+Portrait brief and manifest candidate.
+
+## Limits and care
+Flag reference rights and likeness concerns for human review.

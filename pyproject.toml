@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-game-asset-studio"
+version = "0.2.0"
+description = "Provider-agnostic bootstrap infrastructure for game asset production."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "UGAS contributors" }]
+dependencies = []
+
+[project.scripts]
+ugas = "ugas.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

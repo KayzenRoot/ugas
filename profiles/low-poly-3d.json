@@ -1,0 +1,15 @@
+{
+  "id": "low-poly-3d",
+  "name": "Low-poly 3D",
+  "dimension": "3d",
+  "description": "Low-poly 3D profile emphasizing polygon discipline, flat or simple materials, and strong silhouettes.",
+  "use_cases": ["low-poly adventure", "mobile 3D", "stylized simulation"],
+  "artistic_parameters": {"style_keywords": ["low-poly", "faceted", "efficient", "graphic"], "palette": "small material palette with baked or simple lighting", "shape_language": "intentional facets and simplified forms", "consistency_rules": ["budget by LOD", "avoid accidental micro-detail"]},
+  "technical_parameters": {"formats": ["GLB", "PNG", "JSON"], "default_sprite_size": "not applicable", "color_space": "sRGB/PBR"},
+  "asset_structure": {"models": "assets/3d/models", "materials": "assets/3d/materials", "colliders": "assets/3d/colliders", "lod": "assets/3d/lod"},
+  "budgets": {"max_texture_dimension": 1024, "max_triangles_lod0": 20000, "max_triangles_lod1": 8000, "max_draw_calls_per_scene": 100},
+  "provider_guidance": ["local ComfyUI for references", "remote RTX 5050 for approved baking or generation workflows", "validate topology and silhouette manually"],
+  "naming": {"pattern": "lp_<category>_<subject>_<lod>_<revision>", "case": "snake_case", "stable_id_required": true},
+  "animation": {"recommendation": "favor readable key poses and limited deformation", "default_fps": 24, "loop_by_default": false},
+  "limitations": ["low-poly is a topology target, not merely a visual filter", "engine material setup must be reviewed"]
+}

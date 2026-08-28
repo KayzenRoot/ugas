@@ -1,0 +1,10 @@
+{
+  "schema_version": "0.2",
+  "id": "comfyui-bootstrap-readiness",
+  "provider": "provider-comfyui",
+  "version": "0.2.0",
+  "inputs": ["prompt", "profile", "asset_types", "seed"],
+  "outputs": ["image-or-model-reference", "metadata", "job-status"],
+  "model_requirements": ["declared by consumer; no model is bundled"],
+  "safety_constraints": ["no credentials in workflow", "record provenance", "validate output before registry approval"]
+}

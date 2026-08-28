@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/generation-result.json",
+  "title": "UGAS generation result",
+  "type": "object",
+  "required": ["schema_version", "request_id", "status", "provider", "outputs", "provenance_ref"],
+  "properties": {"schema_version": {"type": "string"}, "request_id": {"type": "string"}, "status": {"enum": ["planned", "submitted", "running", "completed", "failed", "cancelled"]}, "provider": {"type": "string"}, "outputs": {"type": "array", "items": {"type": "string"}}, "error": {"type": ["string", "null"]}, "provenance_ref": {"type": "string"}}
+}
