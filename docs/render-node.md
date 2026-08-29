@@ -1,18 +1,16 @@
-# RTX 5050 Render Node
+# Windows/NVIDIA Render Node
 
-The Render Node is a separate PC that hosts ComfyUI, typically with an NVIDIA RTX 5050. Cursor or Codex may run on another machine and route approved generation work to the node.
+The render-node helper is local-only by default and stores configuration/workspace below `%LOCALAPPDATA%\\UGAS`. It never installs arbitrary custom nodes and never binds a local server to `0.0.0.0`.
 
-## Recommended topology
+```powershell
+ugas render-node doctor
+ugas render-node setup
+ugas render-node start
+ugas render-node status
+ugas render-node probe
+ugas render-node stop
+```
 
-Use a private overlay such as Tailscale or an equivalent VPN. Bind ComfyUI to the private interface, restrict access to the consumer machine or service identity, and do not expose the ComfyUI port directly to the public internet. Keep the endpoint and credentials in consumer-local configuration.
+`doctor` reports OS, Python, `nvidia-smi`, GPU/driver/VRAM, disk, ComfyUI path, endpoint and health. `setup` is idempotent and first inspects `comfy --help` and `comfy install --help`; the actual official install is an explicit operator action. Start/stop/status use the configured workspace and an argument list rather than a shell string.
 
-## Readiness sequence
-
-1. Verify the private network path.
-2. Probe the node's ComfyUI `/system_stats` endpoint with `scripts/providers/remote_render_node_healthcheck.py`.
-3. Confirm the expected GPU and compatible CUDA/driver stack on the node.
-4. Resolve a versioned workflow and model manifest.
-5. Submit only after policy, budget, license, and human approval gates pass.
-6. Poll and retrieve outputs with request ID and provenance.
-
-If the node is unavailable, `local-first` tries local ComfyUI and then Hugging Face when the requested capabilities allow it; a route is not a generation result. The v0.2.1 dry-run reports the RTX 5050 as an expected remote target rather than asserting that this workstation has one. Local GPU detection and remote-node health are separate probes.
+The RTX 5050 is a target constraint, not proof of successful generation. OOM, missing models, missing native nodes or unavailable server remain recorded blockers. A remote node is a separate provider: it must be reachable on a private network and gets no local GPU inference.

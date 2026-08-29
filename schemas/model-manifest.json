@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/model-manifest.json",
+  "title": "UGAS model manifest",
+  "type": "object",
+  "required": ["schema_version", "id", "provider", "source", "exact_files", "sha256", "license", "commercial_use_status", "purpose", "required_vram_mb", "recommended_vram_mb", "model_folders", "required_nodes", "workflow_ids", "status", "qualification_evidence"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "id": {"type": "string"},
+    "provider": {"type": "string"},
+    "source": {"type": "string"},
+    "exact_files": {"type": "array", "items": {"type": "string"}},
+    "sha256": {"type": "object"},
+    "license": {"type": "string"},
+    "commercial_use_status": {"enum": ["approved", "review", "required", "rejected"]},
+    "purpose": {"type": "array", "items": {"type": "string"}},
+    "required_vram_mb": {"type": ["integer", "null"]},
+    "recommended_vram_mb": {"type": ["integer", "null"]},
+    "model_folders": {"type": "object"},
+    "required_nodes": {"type": "array", "items": {"type": "string"}},
+    "workflow_ids": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["candidate", "qualified", "rejected"]},
+    "qualification_evidence": {"type": "object"},
+    "download_files": {"type": "object"}
+  }
+}

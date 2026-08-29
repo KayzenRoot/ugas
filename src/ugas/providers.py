@@ -49,14 +49,18 @@ def detect_local_gpu_capability(dry_run: bool = False) -> dict:
         return {"provider": "local-gpu", "scope": "local", "status": "unavailable", "reason": "nvidia-smi unavailable"}
     try:
         result = subprocess.run(
-            [nvidia_smi, "--query-gpu=name", "--format=csv,noheader"],
+            [nvidia_smi, "--query-gpu=name,driver_version,memory.total,memory.used,memory.free", "--format=csv,noheader,nounits"],
             capture_output=True,
             text=True,
             timeout=3,
             check=False,
         )
-        names = [line.strip() for line in result.stdout.splitlines() if line.strip()]
-        return {"provider": "local-gpu", "scope": "local", "status": "available" if result.returncode == 0 else "error", "gpus": names}
+        devices = []
+        for line in result.stdout.splitlines():
+            values = [value.strip() for value in line.split(",")]
+            if len(values) >= 5:
+                devices.append({"name": values[0], "driver": values[1], "memory_total_mb": values[2], "memory_used_mb": values[3], "memory_free_mb": values[4]})
+        return {"provider": "local-gpu", "scope": "local", "status": "available" if result.returncode == 0 else "error", "gpus": devices}
     except (OSError, subprocess.SubprocessError) as exc:
         return {"provider": "local-gpu", "scope": "local", "status": "error", "error": str(exc)}
 

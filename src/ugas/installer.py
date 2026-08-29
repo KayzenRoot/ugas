@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import json
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
 from .constants import CONSUMER_FILES
 from .context import resolve_project_context
 from .profiles import resolve_profile
+from .constants import UGAS_VERSION
 
 
 PROVIDER_IDS = ["provider-comfyui", "provider-remote-render-node", "provider-huggingface"]
@@ -56,9 +58,9 @@ def install_consumer(
     profile_status = profile.get("selection_status", "selected")
 
     _write_or_update_json(target / "studio.json", {
-        "schema_version": "0.2.1",
+        "schema_version": UGAS_VERSION,
         "studio": "UGAS",
-        "installed_version": "0.2.1",
+        "installed_version": UGAS_VERSION,
         "installed_at": stamp,
         "consumer_root": ".",
         "engine": context.engine,
@@ -73,7 +75,7 @@ def install_consumer(
     }, preserved)
     _write_or_update_json(target / "profile.json", profile, preserved)
     _write_or_update_json(target / "art-dna.json", {
-        "schema_version": "0.2.1",
+        "schema_version": UGAS_VERSION,
         "source_profile": selected_profile_id,
         "style_keywords": profile["artistic_parameters"]["style_keywords"],
         "palette": profile["artistic_parameters"]["palette"],
@@ -81,24 +83,24 @@ def install_consumer(
         "consistency_rules": profile["artistic_parameters"]["consistency_rules"],
     }, preserved)
     _write_or_update_json(target / "asset-standards.json", {
-        "schema_version": "0.2.1",
+        "schema_version": UGAS_VERSION,
         "naming": profile["naming"],
         "formats": profile["technical_parameters"]["formats"],
         "source_of_truth": "asset-registry.json",
         "raw_ids_allowed_in_registry": True,
     }, preserved)
     _write_or_update_json(target / "asset-dependencies.json", {
-        "schema_version": "0.2.1",
+        "schema_version": UGAS_VERSION,
         "nodes": [],
         "edges": [],
     }, preserved)
     _write_or_update_json(target / "performance-budget.json", {
-        "schema_version": "0.2.1",
+        "schema_version": UGAS_VERSION,
         "profile": selected_profile_id,
         **profile["budgets"],
     }, preserved)
     _write_or_update_json(target / "toolchain.json", {
-        "schema_version": "0.2.1",
+        "schema_version": UGAS_VERSION,
         "engine": context.engine,
         "language": context.language,
         "detected_files": context.detected_files,
@@ -113,7 +115,7 @@ def install_consumer(
         "credentials": "environment or local secret manager only; never commit credentials",
     }, preserved)
     _write_or_update_json(target / "asset-registry.json", {
-        "schema_version": "0.2.1",
+        "schema_version": UGAS_VERSION,
         "assets": [],
         "registry_policy": {"reuse_before_generate": True, "provenance_required": True},
     }, preserved)
@@ -122,7 +124,7 @@ def install_consumer(
         "event": "bootstrap-refreshed" if provenance_path.exists() else "bootstrap-installed",
         "timestamp": stamp,
         "profile": selected_profile_id,
-        "installer": "game-asset-installer@0.2.1",
+        "installer": f"game-asset-installer@{UGAS_VERSION}",
     }, ensure_ascii=False)
     if provenance_path.exists():
         with provenance_path.open("a", encoding="utf-8") as stream:
@@ -155,6 +157,17 @@ def install_consumer(
             preserved.append(f"{directory_name}/")
         else:
             readme_path.write_text(readme, encoding="utf-8")
+    runtime_dir = target / "tools"
+    runtime_package = runtime_dir / "ugas"
+    if runtime_package.exists() and not force:
+        raise FileExistsError(".game-assets/tools/ugas already exists; pass --force to update the consumer runtime")
+    if runtime_package.exists():
+        shutil.rmtree(runtime_package)
+    runtime_package.mkdir(parents=True, exist_ok=True)
+    source_package = repo_root / "src" / "ugas"
+    for source in source_package.glob("*.py"):
+        shutil.copy2(source, runtime_package / source.name)
+    shutil.copy2(repo_root / "templates" / "ugas_runtime.py", runtime_dir / "ugas_runtime.py")
     review = target / "INSTALLATION-REVIEW.md"
     review.write_text(
         "# UGAS installation review\n\n"
@@ -166,7 +179,8 @@ def install_consumer(
         f"- Scan: {context.scan_summary['files_scanned']} files, {context.scan_summary['directories_scanned']} directories, bounded={not context.scan_summary['truncated']}\n"
         f"- Generated files: {', '.join(CONSUMER_FILES)}\n"
         f"- Preserved on refresh: {', '.join(sorted(set(preserved))) if preserved else 'none'}\n"
-        "- Provider state: contracts registered; live availability must be probed separately.\n",
+        "- Provider state: contracts registered; live availability must be probed separately.\n"
+        "- Runtime: self-contained copy under `.game-assets/tools`; no original checkout path is required.\n",
         encoding="utf-8",
     )
     return {
@@ -181,5 +195,5 @@ def install_consumer(
         "engine": context.engine,
         "dimension": profile["dimension"],
         "preserved": sorted(set(preserved)),
-        "files": CONSUMER_FILES + ["INSTALLATION-REVIEW.md"],
+        "files": CONSUMER_FILES + ["INSTALLATION-REVIEW.md", "tools/ugas_runtime.py", "tools/ugas/"],
     }

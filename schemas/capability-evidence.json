@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/capability-evidence.json",
+  "title": "UGAS capability evidence",
+  "type": "object",
+  "required": ["schema_version", "provider", "capability", "state", "endpoint", "server_version", "devices", "required_nodes", "required_models", "workflow", "model", "smoke_test", "failure_reason"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "provider": {"type": "string"},
+    "capability": {"type": "string"},
+    "state": {"enum": ["unknown", "unavailable", "declared", "ready", "verified"]},
+    "endpoint": {"type": ["string", "null"]},
+    "server_version": {"type": ["string", "null"]},
+    "devices": {"type": "array", "items": {"type": "object"}},
+    "required_nodes": {"type": "array", "items": {"type": "object"}},
+    "required_models": {"type": "array", "items": {"type": "object"}},
+    "workflow": {"type": "object"},
+    "model": {"type": "object"},
+    "smoke_test": {"type": "object"},
+    "failure_reason": {"type": ["string", "null"]},
+    "observed_at": {"type": "string"}
+  }
+}

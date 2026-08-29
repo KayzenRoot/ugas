@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.3.0",
+  "id": "sprite-pilot-e8d4e98c-6819-44e5-a51e-93540ffb50d6",
+  "provider": "provider-comfyui",
+  "model_id": "flux2-klein-4b-nvfp4",
+  "workflow_id": "flux2-klein-4b-text-to-image",
+  "job_id": "job-7ee864bb798b4a03a2d6568575ef4399",
+  "source": {
+    "master_path": "tmp/sprite-pilot/e8d4e98c-6819-44e5-a51e-93540ffb50d6.png",
+    "master_sha256": "e0a5914259efa17e57890e985b4f67e154bf915f4ff04ab2f39514fc4b864b9a",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA"
+  },
+  "sheet": {
+    "path": "tmp/sprite-pilot/e8d4e98c-6819-44e5-a51e-93540ffb50d6-sheet.png",
+    "sha256": "a9cc794a2f9480e138f5d4787e3eadd9500e4f75e1b7ead28d30fd43b59e73d6",
+    "format": "PNG",
+    "width": 256,
+    "height": 256,
+    "mode": "RGBA",
+    "columns": 1,
+    "rows": 1,
+    "frame_count": 1
+  },
+  "grid": {
+    "columns": 1,
+    "rows": 1,
+    "cell_width": 256,
+    "cell_height": 256
+  },
+  "frames": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "path": "tmp/sprite-pilot/e8d4e98c-6819-44e5-a51e-93540ffb50d6-frames/frame_000.png",
+      "sha256": "a9cc794a2f9480e138f5d4787e3eadd9500e4f75e1b7ead28d30fd43b59e73d6",
+      "width": 256,
+      "height": 256
+    }
+  ],
+  "qa": {
+    "technical_status": "TECHNICAL_VALID",
+    "visual_review": "required",
+    "production_ready": false
+  },
+  "provenance_ref": "job-7ee864bb798b4a03a2d6568575ef4399",
+  "observed_at": "2026-08-29"
+}

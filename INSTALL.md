@@ -1,12 +1,12 @@
-# Installing UGAS 0.2.1
+# Installing UGAS 0.3.0
 
-Python 3.10 or newer is required. The runtime uses only the Python standard library; no model, GPU toolkit, Docker image, or provider installation is required for the bootstrap.
+Python 3.10+ is required. Installation downloads the small Python runtime and Pillow only; model weights and ComfyUI stay outside the Git checkout.
 
 ## Clone and validate
 
 ```powershell
 git clone https://github.com/csn1985-ship-it/ugas.git
-cd universal-game-asset-studio
+Set-Location .\ugas
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e .
@@ -14,55 +14,55 @@ python scripts/tests/run_tests.py
 python scripts/validation/run_validation.py
 ```
 
-If editable installation is not desired, the scripts work directly from the checkout with `python scripts/...`.
+The clone directory is `ugas`; all commands are intentionally relative to the actual clone and do not depend on a different historical project name.
 
-## Agent Skills
-
-The tested repository-local route installs all 38 skills by default:
+## Render node
 
 ```powershell
-python scripts/bootstrap/install_skills.py C:\path\to\my-game
+ugas render-node doctor
+ugas render-node setup
+comfy --help
+comfy install --help
+comfy install
+ugas render-node start
+ugas render-node probe
 ```
 
-Use `--mode core` for the six bootstrap skills, or select a profile-oriented set:
+UGAS inspects the installed comfy-cli help before using version-sensitive options. Its default workspace is under the user local application data directory, not the repository. The default bind is `127.0.0.1`; remote use requires explicit private-network configuration.
+
+## Model and workflow qualification
+
+`providers/models/registry.json` records exact files, sources, SHA-256 values, license status, VRAM expectations and qualification evidence. A model is not qualified from its name or a `/models` filename alone. The native FLUX.2 Klein workflow is API-format and requires live `/object_info` validation plus a smoke test.
 
 ```powershell
-python scripts/bootstrap/install_skills.py C:\path\to\my-game --mode profile --profile topdown-rpg-mmorpg-2d
+ugas models list
+ugas models qualify flux2-klein-4b-nvfp4
+ugas workflows list
+ugas workflows validate flux2-klein-4b-text-to-image --url http://127.0.0.1:8188
+ugas capability --model flux2-klein-4b-nvfp4
 ```
 
-An explicit `--skills` list is also supported. Existing skill directories are never replaced without `--force`. The installed skills are self-contained copies from this checkout and do not depend on temporary extraction paths. No unverified `npx skills` command is required; if another Agent Skills CLI is used, verify its current repository syntax separately.
-
-## Consumer bootstrap
+## Consumer runtime
 
 ```powershell
-python scripts/bootstrap/inspect_consumer.py C:\path\to\my-game
 python scripts/bootstrap/install_consumer.py C:\path\to\my-game
 ```
 
-Inspection reports engine, dimension, scan bounds, `profile_recommendation`, `profile_confidence`, and `profile_evidence`. The installer chooses an evidence-backed profile when possible. For a project with unknown style or dimension it creates `profile-pending`; pass an explicit profile when the owner has decided.
+The installer copies a self-contained runtime to `C:\path\to\my-game\.game-assets\tools`. A fresh consumer can invoke that copied launcher from another working directory; it does not reference this checkout by absolute path. `--force` is required for refresh and user registry/provenance/reference history is preserved.
 
-The installer creates `.game-assets/` and records detected context, profile data, provider policy, bounded scan evidence, and bootstrap provenance. `--force` refreshes generated metadata but preserves `asset-registry.json`, `provenance.jsonl`, `CHECKPOINT.md`, existing `references/`, and existing `manifests/` contents. It does not change gameplay code.
-
-## Provider readiness
+## Real generation
 
 ```powershell
-python scripts/providers/comfyui_healthcheck.py --dry-run
-python scripts/providers/comfyui_healthcheck.py --url http://127.0.0.1:8188
-python scripts/providers/remote_render_node_healthcheck.py --dry-run
-python scripts/providers/remote_render_node_healthcheck.py --endpoint http://remote-render-node:8188
-python scripts/providers/capability_probe.py --dry-run
+ugas generate image "initial warrior sprite, centered, transparent background" --width 256 --height 256 --seed 7
+ugas generate sprite-pilot "initial warrior sprite sheet master" --width 256 --height 256 --seed 7
 ```
 
-The local ComfyUI healthcheck reads local `/system_stats`. The remote check reads the configured remote endpoint. Local GPU detection is a separate local-only probe; it never asserts the remote RTX 5050 state. Keep endpoints and credentials out of Git and use a private network for the Render Node.
-
-## Routing semantics
-
-`available`, `unavailable`, and `unknown` are distinct. Without a probe, providers are `unknown` and no provider is selected. Routing filters capabilities before fallback: final 3D models require `3d-model`, while concept/reference work can use `3d-reference`. `paid-disabled` excludes only `paid`; `self-hosted` remains eligible.
+Generation fails closed unless capability evidence is `ready` or `verified`. Output QA is technical only: `TECHNICAL_VALID` and `VISUAL_REVIEW_REQUIRED` are distinct from human approval and `PRODUCTION_READY`.
 
 ## Troubleshooting
 
-- `FileExistsError`: inspect `.game-assets/` and use `--force` only after reviewing consumer data.
-- `profile-pending`: provide an explicit profile or add authoritative project evidence; UGAS does not silently assume generic 2D.
-- `ComfyUI unavailable`: use the dry-run contract and do not mark a generation result complete.
-- no local GPU: the bootstrap does not require one; configure and probe a private remote endpoint separately.
-- GitHub publication blocked: verify authentication, then set the repository remote and push reviewed commits. Never store tokens in files.
+- `comfy` unavailable: install the official comfy-cli in the isolated user environment and rerun setup.
+- capability `unavailable`: inspect the recorded missing endpoint, native node, exact model, hash/license or workflow evidence.
+- GPU memory failure: record the OOM as evidence and use only the explicitly registered lower-VRAM candidate; do not silently switch models.
+- `reference-edit`: intentionally reports a capability gap until a qualified reference workflow exists.
+- GitHub publication: push only source/docs/tests/manifests; never weights, generated output, caches, secrets or private network settings.

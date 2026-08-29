@@ -19,6 +19,9 @@ from ugas.providers import comfyui_healthcheck, detect_local_gpu_capability, rem
 from ugas.router import route_request
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.skills import validate_skill_frontmatter
+from ugas.constants import UGAS_VERSION
+from ugas.model_registry import load_registry, load_model
+from ugas.workflow_registry import load_workflows, load_workflow, validate_api_workflow
 
 
 results: list[tuple[str, bool, str]] = []
@@ -34,7 +37,7 @@ def load_json(path: Path) -> dict:
 
 def main() -> int:
     required_paths = [
-        "README.md", "INSTALL.md", "REVIEW-v0.2.md", "REVIEW-v0.2.1.md", "LICENSE", "package.json", "pyproject.toml",
+        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.2.md", "REVIEW-v0.2.1.md", "LICENSE", "package.json", "pyproject.toml",
         "docs", "skills", "profiles", "templates", "schemas", "providers", "scripts", "examples", "tests",
     ]
     for path in required_paths:
@@ -96,11 +99,51 @@ def main() -> int:
         except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
             check(f"provider:{provider}", False, str(exc))
     for workflow in (ROOT / "providers" / "workflows").glob("*.json"):
+        if workflow.name in {"registry.json", "flux2-klein-4b-text-to-image.api.json"}:
+            continue
         try:
             validate_instance(load_json(workflow), schemas["workflow-manifest"])
             check(f"workflow:{workflow.name}", True, "workflow manifest validates")
         except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
             check(f"workflow:{workflow.name}", False, str(exc))
+    try:
+        model_registry = load_registry(ROOT)
+        validate_instance(model_registry, schemas["model-registry"])
+        check("registry:models", len(model_registry.get("models", [])) >= 2, "two explicit FLUX.2 Klein candidates with license/hash gates")
+        for model in model_registry["models"]:
+            validate_instance(model, schemas["model-manifest"])
+            qualified = model["status"] == "qualified" and model.get("qualification_evidence", {}).get("hashes_verified") is True
+            candidate = model["status"] == "candidate"
+            check(f"model:{model['id']}", model["commercial_use_status"] == "approved" and (qualified or candidate), "approved license; exact hashes/smoke gate recorded" if qualified else "approved license; qualification remains gated by exact hashes and smoke")
+    except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
+        check("registry:models", False, str(exc))
+    try:
+        workflow_registry = {"schema_version": "0.3.0", "workflows": load_workflows(ROOT)}
+        check("registry:workflows", len(workflow_registry["workflows"]) >= 1, "native API workflow registry present")
+        for item in workflow_registry["workflows"]:
+            record = load_workflow(ROOT, item["id"])
+            graph = validate_api_workflow(record["api"])
+            check(f"workflow-api:{item['id']}", graph["valid_graph"] and not item["custom_nodes_required"], "API graph is statically valid and custom-node-free")
+    except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
+        check("registry:workflows", False, str(exc))
+    evidence_path = ROOT / "docs" / "evidence" / "comfyui-smoke.json"
+    try:
+        evidence = load_json(evidence_path)
+        validate_instance(evidence, schemas["capability-evidence"])
+        check("evidence:comfyui-smoke", evidence["state"] == "verified" and evidence["smoke_test"]["status"] == "passed", "real local RTX 5050 smoke evidence is recorded")
+    except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
+        check("evidence:comfyui-smoke", False, str(exc))
+    sprite_evidence_path = ROOT / "docs" / "evidence" / "sprite-pilot.json"
+    try:
+        sprite_evidence = load_json(sprite_evidence_path)
+        validate_instance(sprite_evidence, schemas["sprite-sheet"])
+        qa = sprite_evidence["qa"]
+        check("evidence:sprite-pilot", qa["technical_status"] == "TECHNICAL_VALID" and qa["visual_review"] == "required" and qa["production_ready"] is False, "real sprite-pilot sheet evidence is recorded without production claim")
+    except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
+        check("evidence:sprite-pilot", False, str(exc))
+    declared_route = route_request("Criar sprite de inventário", capability_evidence={"provider-comfyui": {"state": "declared", "capability": "2d"}})
+    check("routing:declared-not-selected", declared_route["provider"] is None and declared_route["routing_status"] == "unknown", "declared capability is not treated as ready")
+    check("docs:clone-directory", "cd universal-game-asset-studio" not in (ROOT / "INSTALL.md").read_text(encoding="utf-8"), "installation docs use actual clone directory")
 
     with tempfile.TemporaryDirectory(prefix="ugas-validation-") as directory:
         temp_root = Path(directory)
@@ -138,6 +181,9 @@ def main() -> int:
         refreshed = install_consumer(ROOT, consumer, "pixel-rpg-2d", "local-first", force=True)
         refresh_ok = "preserve" in registry.read_text(encoding="utf-8") and "history-preserved" in provenance.read_text(encoding="utf-8") and reference.exists()
         check("installer:safe-refresh", refresh_ok and "asset-registry.json" in refreshed["preserved"], "registry/provenance/references survived --force refresh")
+        runtime = generated / "tools" / "ugas_runtime.py"
+        fresh = subprocess.run([sys.executable, str(runtime), "--version"], cwd=temp_root, capture_output=True, text=True, check=False)
+        check("installer:fresh-consumer-runtime", fresh.returncode == 0 and fresh.stdout.strip() == UGAS_VERSION, "copied runtime executes from a different cwd")
 
     for example in ["consumer-godot-2d", "consumer-space-idle-2d", "consumer-generic-3d"]:
         target = ROOT / "examples" / example / ".game-assets"

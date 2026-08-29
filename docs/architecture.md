@@ -1,27 +1,11 @@
-# UGAS architecture
-
-UGAS has a neutral metadata plane and optional provider adapters. The orchestrator receives an asset request, resolves consumer context, loads a profile and Art DNA, checks registry reuse, creates a plan, routes to a provider, validates outputs, and records provenance.
+# Architecture
 
 ```text
-request
-  -> context resolver + profile
-  -> orchestrator
-  -> reuse / registry / budget / license checks
-  -> asset tool router
-  -> generation provider router
-  -> ComfyUI | private RTX 5050 Render Node | Hugging Face fallback
-  -> manifests + validators + provenance
+request -> classifier/profile/Art DNA -> capability evidence -> provider router
+       -> qualified workflow/model -> ComfyUI /prompt -> history -> /view PNG
+       -> technical QA -> provenance -> consumer asset registry
 ```
 
-The V0.2.1 Python runtime implements bounded context inspection, evidence-backed profile resolution, consumer bootstrap, deterministic capability-aware request classification, provider ordering, and safe readiness probes. The Agent Skills carry the operational contracts for later agents. No provider is allowed to make the game runtime or server authoritative state implicit.
+The HTTP client, model/workflow registries, capability evidence, job state machine, image utilities, QA and provenance modules are dependency-light. Pillow is the only runtime image dependency. Job transitions are durable JSON with bounded retries. Technical validity never implies visual or production approval.
 
-## Boundaries
-
-- The repository owns contracts, profiles, metadata, and checks.
-- The consumer project owns gameplay, engine import behavior, final approval, and secret storage.
-- Providers own generation execution and service health.
-- Human reviewers own visual, license, and release decisions.
-
-## Policies
-
-`free-first` prefers Hugging Face, then local ComfyUI, then the Render Node. `local-first` prefers local ComfyUI, then the private Render Node, then Hugging Face. `remote-first` reverses the local order. `paid-disabled` filters only providers whose manifest cost class is `paid`; a `self-hosted` remote Render Node remains eligible. Availability is `available`, `unavailable`, or `unknown`, and no unprobed provider is selected.
+The consumer installer copies the runtime under `.game-assets/tools`; source checkout location is not persisted as a runtime dependency. Weight files and generated outputs remain outside Git.

@@ -1,93 +1,67 @@
 # Universal Game Asset Studio (UGAS)
 
-UGAS is a provider-agnostic bootstrap and control plane for game-asset work. Version 0.2.1 stabilizes the infrastructure: it does not generate final art, download model weights, run Blender, submit real ComfyUI jobs, or start Prompt 02.
+UGAS 0.3.0 is a provider-agnostic control plane for a real, local 2D MVP over ComfyUI. It adds an HTTP client, capability evidence, exact model/workflow registries, bounded durable jobs, PNG QA, provenance and a sprite-pilot foundation. A green static check or `/system_stats` response is not a generation proof.
 
-## What v0.2.1 provides
+## What is included
 
-- 38 Agent Skills with valid YAML frontmatter and folder-matching names;
-- complete, core, and profile-scoped skill installation into `.agents/skills`;
-- bounded project discovery for Godot, Unity, Unreal, Phaser, PixiJS, Three.js, Babylon.js, and custom projects;
-- ten schema-backed profiles plus an honest `profile-pending` state when evidence is insufficient;
-- a `.game-assets/` consumer contract with profile recommendation, confidence, evidence, provenance, registry, and checkpoint files;
-- capability- and availability-aware dry-run routing for 2D, 3D reference, and final 3D model requests;
-- explicit `available`, `unavailable`, and `unknown` provider states;
-- separate local ComfyUI/local-GPU probes and remote Render Node probes;
-- non-destructive refresh behavior that preserves registry, provenance history, references, and manifests.
+- 38 Agent Skills and the non-destructive consumer bootstrap from v0.2.1;
+- ComfyUI API client for `/system_stats`, `/features`, `/models`, `/object_info`, `/prompt`, `/history`, `/view` and `/upload/image`;
+- explicit capability states: `unknown`, `unavailable`, `declared`, `ready`, `verified`;
+- native-node FLUX.2 Klein workflow and Apache-2.0 model candidates, with exact-file/hash/license gates;
+- `doctor`, `setup`, `start`, `stop`, `status` and `probe` render-node commands;
+- `generate image`, a reference-edit capability gap, and sprite-pilot master-image processing;
+- technical PNG validation, provenance and duplicate-aware asset registry updates;
+- self-contained consumer runtime copied under `.game-assets/tools`, independent of the original checkout path.
 
 ## Quick start
 
-From a clone of this repository:
-
 ```powershell
+git clone https://github.com/csn1985-ship-it/ugas.git
+Set-Location .\ugas
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 python -m pip install -e .
-python scripts/bootstrap/install_skills.py C:\path\to\my-game
-python scripts/bootstrap/inspect_consumer.py C:\path\to\my-game
-python scripts/bootstrap/install_consumer.py C:\path\to\my-game
 python scripts/tests/run_tests.py
 python scripts/validation/run_validation.py
 ```
 
-The default skill installation copies all 38 skills. Use `--mode core` for the six bootstrap skills or `--mode profile --profile stylized-3d` for a profile-oriented set. `--force` is required to replace an existing skill directory. Consumer installation discovers the engine and recommends a profile from evidence; pass `--profile <id>` when the project owner has made that decision. Unknown style or dimension remains `profile-pending` instead of silently becoming generic 2D.
+The repository-local scripts work directly from the checkout. The package entry point is `ugas`; machine-readable commands return JSON and nonzero status on operational failure.
 
-## Agent installation block
+## Zero-to-render with Cursor/Codex
 
-Copy this block into an agent task:
-
-```text
-Repository: https://github.com/csn1985-ship-it/ugas.git
-Install the complete UGAS Agent Skills set into the consumer project with:
-python scripts/bootstrap/install_skills.py <consumer-root>
-Then inspect and bootstrap the consumer with:
-python scripts/bootstrap/inspect_consumer.py <consumer-root>
-python scripts/bootstrap/install_consumer.py <consumer-root>
-Do not generate real assets or start a later prompt unless separately authorized.
-```
-
-The repository-local installer is the tested installation route. A third-party Agent Skills CLI may have different syntax; verify that tool independently before relying on it.
-
-## Consumer contract
-
-```text
-.game-assets/
-  studio.json
-  profile.json
-  art-dna.json
-  asset-standards.json
-  performance-budget.json
-  toolchain.json
-  asset-registry.json
-  asset-dependencies.json
-  provenance.jsonl
-  CHECKPOINT.md
-  INSTALLATION-REVIEW.md
-  references/
-  manifests/
-```
-
-Refresh with `--force` only after reviewing the consumer. UGAS preserves `asset-registry.json`, `provenance.jsonl`, `CHECKPOINT.md`, existing files under `references/` and `manifests/`, and provenance history. It updates generated bootstrap metadata without deleting those records.
-
-## Routing and provider contracts
-
-Provider manifests declare capabilities and cost classes (`local`, `self-hosted`, `free-tier`, or `paid`). No probe means `unknown`; unknown is not treated as available. `paid-disabled` excludes only providers declared `paid`, so a self-hosted remote Render Node remains eligible.
+Run from the repository root:
 
 ```powershell
-python scripts/providers/route_provider.py --request "Criar vila humana 2D de MMORPG" --comfyui available --render-node available --huggingface available --dry-run
-python scripts/providers/route_provider.py --request "Criar boss 3D stylized" --huggingface available --dry-run
-python scripts/providers/comfyui_healthcheck.py --dry-run
-python scripts/providers/remote_render_node_healthcheck.py --dry-run
-python scripts/providers/capability_probe.py --dry-run
+ugas render-node doctor
+ugas render-node setup
+# Install ComfyUI with the official comfy-cli in the reported isolated workspace.
+ugas render-node start
+ugas capability --model flux2-klein-4b-nvfp4 --workflow flux2-klein-4b-text-to-image
+ugas generate image "initial warrior sprite, centered, transparent background" --width 256 --height 256 --seed 7
 ```
 
-A final 3D model requires `3d-model`; a 2D provider is never used as a silent fallback. A concept/reference request is a different capability. ComfyUI health and GPU detection are local probes. The Render Node healthcheck calls the configured remote endpoint and never runs local `nvidia-smi` on behalf of that node. All real generation, credentials, model downloads, and external service availability remain outside this bootstrap.
+The first real job is allowed only when evidence is `ready` or `verified`, which requires a reachable server, native nodes, exact model inventory, approved license and validated workflow. A successful job is `TECHNICAL_VALID` with `VISUAL_REVIEW_REQUIRED`; UGAS never silently marks visual output production-ready.
+
+## Consumer bootstrap
+
+```powershell
+python scripts/bootstrap/install_skills.py C:\path\to\my-game
+python scripts/bootstrap/inspect_consumer.py C:\path\to\my-game
+python scripts/bootstrap/install_consumer.py C:\path\to\my-game
+```
+
+The consumer contract is `.game-assets/` with profile, Art DNA, standards, budgets, toolchain, registry, provenance, checkpoint and a copied runtime. Refresh requires `--force` and preserves user registry/history/references/manifests.
+
+## Scope and safety
+
+The v0.3.0 slice stops at real 2D ComfyUI/render-node foundation and sprite-pilot processing. Full animation, 3D/Blender, audio, cloud inference, paid providers and reference-edit generation remain outside this slice. Weights, caches, outputs, credentials and private endpoint configuration are never committed. Remote endpoints must stay on a private network.
+
+Provider/model terms are independent of UGAS. Commercial use requires an explicit license decision in the model registry. Local readiness is not external approval or production approval.
 
 ## Repository map
 
-`skills/` contains the Agent Skills. `profiles/` contains the ten profiles. `schemas/` and `templates/` define machine-readable contracts. `providers/` contains provider and workflow manifests. `src/ugas/` contains the dependency-free runtime. `examples/` shows three consumer shapes. `docs/` contains operating guidance. `REVIEW-v0.2.1.md` records the correction evidence.
-
-## Security and limitations
-
-UGAS never requires a secret in tracked files. Provider endpoints and tokens are consumer-local. Remote rendering should use a private network and least-privilege access. Local checks prove file contracts, bounded discovery, installer behavior, routing decisions, and dry-run readiness; they do not prove provider uptime, model licensing, visual quality, engine runtime behavior, or external GitHub approval.
+`src/ugas/` contains the runtime; `providers/models/` and `providers/workflows/` contain registries and API templates; `schemas/` defines contracts; `docs/` contains operations; `REVIEW-v0.3.0.md` and `CHECKPOINT.md` contain current evidence; `REVIEW-v0.2.1.md` remains historical.
 
 ## License
 
-UGAS is released under the MIT License. Provider services, models, references, and generated assets may have separate terms and must be reviewed independently.
+UGAS is MIT licensed. Provider services, model weights, references and generated assets may have separate terms.

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/sprite-sheet.json",
+  "title": "UGAS sprite sheet metadata",
+  "type": "object",
+  "required": ["schema_version", "id", "source", "sheet", "grid", "frames", "qa", "provenance_ref"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "id": {"type": "string"},
+    "source": {"type": "object"},
+    "sheet": {"type": "object"},
+    "grid": {"type": "object"},
+    "frames": {"type": "array", "items": {"type": "object"}, "minItems": 1},
+    "qa": {"type": "object"},
+    "provenance_ref": {"type": "string"}
+  }
+}

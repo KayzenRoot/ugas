@@ -1,15 +1,17 @@
-# ComfyUI contract
+# ComfyUI integration
 
-UGAS treats ComfyUI as the priority visual provider without requiring a user to operate its UI manually. The contract anticipates installation, health, GPU and CUDA capability detection, model and workflow registries, HTTP/WebSocket clients, job submission, polling, output retrieval, logs, and Render Node integration.
+UGAS v0.3.0 uses the official ComfyUI HTTP API. `ComfyUIClient` has bounded timeouts, response-size limits, structured HTTP/protocol/execution errors and capped polling.
 
-V0.2.1 implements the safe foundation only:
+## Evidence contract
 
-- `providers/manifests/provider-comfyui.json` declares capabilities and credential policy;
-- `providers/workflows/comfyui-bootstrap.json` declares a versioned, minimal workflow contract;
-- `scripts/providers/comfyui_healthcheck.py --dry-run` proves the probe shape without network access;
-- `scripts/providers/comfyui_config.py --dry-run` renders an install/configuration plan without writing secrets;
-- the live probe reads `GET /system_stats` and reports `healthy` or `unavailable` without retry storms;
-- `scripts/providers/capability_probe.py` can inspect local `nvidia-smi` when explicitly run, but does not assert remote GPU state, install drivers, or download models;
-- `scripts/providers/remote_render_node_healthcheck.py` probes a configured remote `/system_stats` endpoint separately and never runs local GPU detection for it.
+`/system_stats` proves only that an endpoint answered. The capability probe additionally checks `/features`, `/models/{folder}`, `/object_info`, the selected exact model manifest, the API workflow and the approved license. States are `unknown`, `unavailable`, `declared`, `ready` and `verified`; only the last two may be selected for a real job, and only a passed smoke test makes `verified`.
 
-Future job submission must validate the workflow, bind a request ID, record a provider revision, poll with bounded retries, and store output paths plus provenance. Tokens belong in environment or a local secret manager, never in a workflow file.
+## Official workflow/model path
+
+The MVP uses native FLUX.2 Klein nodes with no arbitrary custom-node installation. The registry points to official Comfy-Org/BFL sources, records exact files and requires hashes after download. The FP8 candidate is preferred where VRAM permits; the NVFP4 candidate is an explicit lower-VRAM fallback, not an invisible substitution.
+
+## API flow
+
+`POST /prompt` -> bounded history polling -> output descriptors -> `GET /view` -> SHA-256 -> PNG QA -> provenance/registry. Reference upload is implemented at `/upload/image`, but reference-edit generation remains an explicit capability gap until its workflow is qualified.
+
+Never expose ComfyUI publicly and never put tokens or local private configuration in the repository.

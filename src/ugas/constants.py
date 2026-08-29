@@ -65,7 +65,14 @@ SCHEMAS = [
     "workflow-manifest",
     "generation-request",
     "generation-result",
+    "capability-evidence",
+    "model-manifest",
+    "model-registry",
+    "generation-job",
+    "sprite-sheet",
 ]
+
+UGAS_VERSION = "0.3.0"
 
 CONSUMER_FILES = [
     "studio.json",

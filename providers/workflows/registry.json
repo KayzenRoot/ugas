@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.3.0",
+  "workflows": [
+    {
+      "id": "flux2-klein-4b-text-to-image",
+      "purpose": "2d text-to-image and sprite master generation",
+      "capability": "2d",
+      "provider": "provider-comfyui",
+      "version": "0.3.0",
+      "source": "Comfy-Org native FLUX.2 Klein workflow adapted to API format",
+      "api_json": "providers/workflows/flux2-klein-4b-text-to-image.api.json",
+      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"],
+      "required_models": ["flux2-klein-4b-nvfp4"],
+      "inputs": ["prompt", "negative_prompt", "seed", "width", "height"],
+      "outputs": ["SaveImage"],
+      "custom_nodes_required": [],
+      "deterministic_seed": true,
+      "validation": {"status": "qualified", "live_node_validation": "docs/evidence/comfyui-smoke.json", "smoke_status": "passed"}
+    }
+  ]
+}

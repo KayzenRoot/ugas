@@ -58,6 +58,7 @@ DEFAULT_PROVIDER_CAPABILITIES = {
 }
 
 AVAILABILITY_STATES = {"available", "unavailable", "unknown"}
+EVIDENCE_STATES = {"unknown", "unavailable", "declared", "ready", "verified"}
 
 
 def _has(text: str, *terms: str) -> bool:
@@ -184,6 +185,7 @@ def route_request(
     providers: Mapping[str, object] | None = None,
     availability: Mapping[str, object] | None = None,
     capabilities: Mapping[str, object] | None = None,
+    capability_evidence: Mapping[str, Mapping[str, object]] | None = None,
     cost_classes: Mapping[str, str] | None = None,
     engine: str = "unknown",
 ) -> dict:
@@ -193,6 +195,12 @@ def route_request(
 
     raw_availability: dict[str, object] = dict(providers or {})
     raw_availability.update(availability or {})
+    if capability_evidence:
+        for provider_id, evidence in capability_evidence.items():
+            state = evidence.get("state") if isinstance(evidence, Mapping) else "unknown"
+            if state not in EVIDENCE_STATES:
+                state = "unknown"
+            raw_availability[provider_id] = "available" if state in {"ready", "verified"} else ("unavailable" if state == "unavailable" else "unknown")
     normalized_availability = {
         provider_id: _normalize_availability(raw_availability.get(provider_id, "unknown"))
         for provider_id in PROVIDER_IDS
@@ -203,6 +211,15 @@ def route_request(
     for provider_id, declared in (capabilities or {}).items():
         if provider_id in provider_capabilities:
             provider_capabilities[provider_id] = set(declared)
+    if capability_evidence:
+        for provider_id, evidence in capability_evidence.items():
+            if provider_id in provider_capabilities and isinstance(evidence, Mapping):
+                declared = evidence.get("capabilities")
+                if declared:
+                    provider_capabilities[provider_id] = set(declared)
+                elif evidence.get("capability"):
+                    capability = str(evidence["capability"])
+                    provider_capabilities[provider_id] = {capability} | ({"sprite-generation", "background-generation", "ui-generation", "vfx-generation"} if capability == "2d" else set())
     provider_cost = {**DEFAULT_PROVIDER_COST_CLASSES, **(cost_classes or {})}
 
     order = _provider_order(policy)

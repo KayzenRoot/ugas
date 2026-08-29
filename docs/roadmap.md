@@ -1,11 +1,9 @@
-# Roadmap
+# Roadmap and scope gate
 
-V0.2.1 establishes the contracts, bounded discovery, profile selection, capability-aware routing, safe refresh, and dry-run proof. Later work must be separately scoped and reviewed.
+## v0.3.0 (this slice)
 
-1. ComfyUI HTTP/WebSocket client with bounded job lifecycle and workflow validation.
-2. Provider model registry with revision, license, cache, and quota evidence.
-3. Godot, Unity, and Unreal adapter checks against real fixture projects.
-4. Visual regression captures and runtime import validators.
-5. Approved asset packaging and release automation.
+Real 2D ComfyUI/render-node foundation: API client, evidence states, native workflow/model registries, exact-license/hash gates, durable image jobs, PNG QA, provenance, sprite-pilot processing, consumer runtime and reproducible review evidence.
 
-The next phase must not be inferred from this bootstrap. It needs an explicit prompt, acceptance criteria, and a new review.
+## Explicitly not started
+
+Reference-edit qualification, full animation production, 3D/Blender, audio, cloud/paid inference, arbitrary custom nodes and later prompts. These require a new authorization and review gate.

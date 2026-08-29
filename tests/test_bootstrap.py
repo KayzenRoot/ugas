@@ -1,6 +1,9 @@
 import json
 import tempfile
 import unittest
+import threading
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from unittest.mock import patch
 from pathlib import Path
 
 from ugas.constants import CONSUMER_FILES, PROFILES, PROVIDERS, SCHEMAS, SKILLS
@@ -10,6 +13,11 @@ from ugas.providers import comfyui_healthcheck, detect_local_gpu_capability, rem
 from ugas.router import route_request
 from ugas.schema_validation import validate_instance, validate_schema_document
 from ugas.skills import validate_skill_frontmatter
+from ugas.comfyui_client import ComfyUIClient, ComfyUIExecutionError, ComfyUITimeoutError
+from ugas.capabilities import mark_verified, probe_comfy_capability
+from ugas.image_utils import compose_sheet, crop_grid, inspect_png
+from ugas.jobs import JobError, new_job, transition
+from ugas.qa import validate_output
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +79,8 @@ class RepositoryContractTests(unittest.TestCase):
                 validate_instance(manifest, schemas["provider-manifest"])
                 self.assertIn(manifest["cost_class"], {"local", "self-hosted", "free-tier", "paid"})
         for workflow in (ROOT / "providers" / "workflows").glob("*.json"):
+            if workflow.name in {"registry.json", "flux2-klein-4b-text-to-image.api.json"}:
+                continue
             with self.subTest(workflow=workflow.name):
                 validate_instance(load_json(workflow), schemas["workflow-manifest"])
 
@@ -199,6 +209,89 @@ class ProviderReadinessTests(unittest.TestCase):
         remote = remote_render_node_healthcheck(dry_run=True)
         self.assertEqual(("remote", "dry-run-ready"), (remote["scope"], remote["status"]))
         self.assertIn("no local nvidia-smi", remote["checks"])
+
+
+class ComfyAndPipelineTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from PIL import Image
+        cls.png_file = tempfile.NamedTemporaryFile(suffix=".png", delete=False)
+        cls.png_file.close()
+        Image.new("RGBA", (4, 4), (255, 0, 0, 255)).save(cls.png_file.name)
+
+        class Handler(BaseHTTPRequestHandler):
+            history_calls = 0
+            def log_message(self, *_args):
+                pass
+            def _send(self, value, status=200, content_type="application/json"):
+                data = value if isinstance(value, bytes) else json.dumps(value).encode()
+                self.send_response(status); self.send_header("Content-Type", content_type); self.send_header("Content-Length", str(len(data))); self.end_headers(); self.wfile.write(data)
+            def do_GET(self):
+                if self.path == "/system_stats": return self._send({"system": {"comfyui_version": "test"}, "devices": [{"name": "RTX 5050"}]})
+                if self.path == "/features": return self._send({"supports": ["api"]})
+                if self.path == "/models": return self._send(["diffusion_models", "text_encoders", "vae"])
+                if self.path == "/models/diffusion_models": return self._send(["flux-2-klein-base-4b-nvfp4.safetensors"])
+                if self.path == "/models/text_encoders": return self._send(["qwen_3_4b_fp4_flux2.safetensors"])
+                if self.path == "/models/vae": return self._send(["flux2-vae.safetensors"])
+                if self.path == "/object_info": return self._send({name: {} for name in ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"]})
+                if self.path.startswith("/history/"):
+                    Handler.history_calls += 1
+                    return self._send({"test-prompt": {"outputs": {"13": {"images": [{"filename": "test.png", "subfolder": "", "type": "output"}]}}}} if Handler.history_calls > 1 else {})
+                if self.path.startswith("/view?"): return self._send(Path(ComfyAndPipelineTests.png_file.name).read_bytes(), content_type="image/png")
+                return self._send({"error": "not found"}, 404)
+            def do_POST(self):
+                if self.path == "/prompt":
+                    length = int(self.headers.get("Content-Length", "0")); json.loads(self.rfile.read(length)); return self._send({"prompt_id": "test-prompt"})
+                return self._send({"error": "bad"}, 400)
+        cls.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True); cls.thread.start()
+        cls.endpoint = f"http://127.0.0.1:{cls.server.server_port}"
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.server.shutdown(); cls.server.server_close(); cls.thread.join(timeout=2)
+        Path(cls.png_file.name).unlink(missing_ok=True)
+
+    def test_client_api_flow_and_output_retrieval(self):
+        client = ComfyUIClient(self.endpoint, timeout=2)
+        self.assertEqual("test", client.health()["system"]["comfyui_version"])
+        prompt = client.submit_workflow({"1": {"class_type": "SaveImage", "inputs": {}}})
+        item = client.poll_history(prompt["prompt_id"], timeout=3, initial_interval=0.01)
+        outputs = client.fetch_history_outputs(item)
+        self.assertEqual(b"\x89PNG", outputs[0]["data"][:4])
+
+    def test_client_error_and_route_evidence(self):
+        client = ComfyUIClient(self.endpoint)
+        with patch.object(ComfyUIClient, "_json", return_value={"error": "node failed"}):
+            with self.assertRaises(ComfyUIExecutionError): client.submit_workflow({"1": {"class_type": "X", "inputs": {}}})
+        evidence = {"provider-comfyui": {"state": "declared", "capability": "2d"}}
+        result = route_request("Criar sprite de inventário", capability_evidence=evidence)
+        self.assertIsNone(result["provider"]); self.assertEqual("unknown", result["routing_status"])
+
+    def test_client_timeout_is_structured(self):
+        client = ComfyUIClient("http://127.0.0.1:1", timeout=0.01)
+        with patch("urllib.request.urlopen", side_effect=TimeoutError("timed out")):
+            with self.assertRaises(ComfyUITimeoutError): client.health()
+
+    def test_capability_state_and_image_pipeline(self):
+        client = ComfyUIClient(self.endpoint)
+        with patch("ugas.capabilities.load_model", return_value={"id": "m", "license": "Apache-2.0", "commercial_use_status": "approved", "status": "qualified", "qualification_evidence": {"hashes_verified": True}, "sha256": {}, "exact_files": ["diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors"], "model_folders": {"diffusion_models": "diffusion_models"}}), patch("ugas.capabilities.load_workflow", return_value={"version": "test", "sha256": "abc", "api": {"1": {"class_type": "SaveImage", "inputs": {}}}}):
+            evidence = probe_comfy_capability(ROOT, client, "m", "w")
+        self.assertEqual("ready", evidence["state"])
+        self.assertEqual("verified", mark_verified(evidence, {"status": "passed"})["state"])
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "sheet.png"; source.write_bytes(Path(self.png_file.name).read_bytes())
+            from PIL import Image
+            Image.new("RGBA", (8, 4), (0, 255, 0, 255)).save(source)
+            result = crop_grid(source, Path(directory) / "frame.png", 2, 1)
+            self.assertEqual(2, len(result["frames"]))
+            self.assertEqual("TECHNICAL_VALID", validate_output(source)["status"])
+
+    def test_job_transitions_are_bounded(self):
+        job = new_job(consumer_project_id=None, asset_request_id="r", profile="generic-2d", provider="provider-comfyui", capability="2d", workflow={}, models=[], prompts={}, seed=1, dimensions={"width": 4, "height": 4}, parameters={})
+        for state in ("validated", "queued", "running", "succeeded", "postprocessed", "validated_output", "registered"):
+            job = transition(job, state)
+        with self.assertRaises(JobError): transition(job, "failed")
 
 
 if __name__ == "__main__":

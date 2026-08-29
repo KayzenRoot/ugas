@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/model-registry.json",
+  "title": "UGAS model registry",
+  "type": "object",
+  "required": ["schema_version", "models"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "models": {"type": "array", "items": {"type": "object"}},
+    "registry_policy": {"type": "object"}
+  }
+}

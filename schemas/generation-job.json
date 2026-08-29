@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/generation-job.json",
+  "title": "UGAS generation job",
+  "type": "object",
+  "required": ["schema_version", "job_id", "state", "consumer_project_id", "asset_request_id", "profile", "provider", "capability", "workflow", "models", "prompts", "seed", "dimensions", "parameters", "timestamps", "retry_count", "input_hashes", "output_hashes", "validation", "provenance_event"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "job_id": {"type": "string"},
+    "state": {"enum": ["planned", "validated", "queued", "running", "succeeded", "failed", "postprocessed", "validated_output", "registered"]},
+    "consumer_project_id": {"type": ["string", "null"]},
+    "asset_request_id": {"type": "string"},
+    "profile": {"type": "string"},
+    "provider": {"type": "string"},
+    "capability": {"type": "string"},
+    "workflow": {"type": "object"},
+    "models": {"type": "array", "items": {"type": "object"}},
+    "prompts": {"type": "object"},
+    "seed": {"type": "integer"},
+    "dimensions": {"type": "object"},
+    "parameters": {"type": "object"},
+    "timestamps": {"type": "object"},
+    "retry_count": {"type": "integer", "minimum": 0},
+    "input_hashes": {"type": "object"},
+    "output_hashes": {"type": "object"},
+    "validation": {"type": "object"},
+    "provenance_event": {"type": "object"},
+    "history": {"type": "array", "items": {"type": "object"}},
+    "error": {"type": ["string", "null"]}
+  }
+}
