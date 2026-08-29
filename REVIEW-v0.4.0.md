@@ -52,10 +52,10 @@ The real edit requested preservation of identity/silhouette while changing armor
 `VISUAL_REVIEW_REQUIRED`; no human approval is inferred from technical QA, alpha QA, contact-sheet ranking or this report. Use `ugas visual approve <asset-id>` only after an actual human review of the packaged visuals.
 
 ## TESTS / VALIDATION / COMPILE
-Final results are recorded below after the last code/documentation changes. The suite includes unit tests, compileall, schema/registry checks, routing and capability-gap checks, no-Git snapshot regression, exact `git archive HEAD` install/test/validation and safe review-visual manifest checks.
+`python -m compileall -q src scripts tests` passed; unit suite passed `26/26`; repository validation passed `165/165`. This includes schema/registry checks, routing and capability-gap checks, fake `/upload/image` workflow injection, exact `git archive HEAD` install/test/validation, nested no-Git regression and safe review-visual manifest checks.
 
 ## TRACKED SNAPSHOT / GITHUB
-The final commit and `main` remote synchronization are recorded after validation. The repository remains free of model weights, caches, tokens and environment files.
+The validated v0.4.0 commit is published on `main` at [csn1985-ship-it/ugas](https://github.com/csn1985-ship-it/ugas). The repository remains free of model weights, caches, tokens and environment files.
 
 ## SECURITY / SECRETS CHECK
 The review generator excludes weights, caches, `.env`, credentials, private keys, generated `tmp`, `node_modules`, `.git` and itself. Visual evidence is injected only from the explicit safe manifest and the archive is integrity-validated.
@@ -73,4 +73,4 @@ Review the four packaged visuals. If accepted, explicitly approve the same curre
 All in-scope Prompt 03 v0.4.0 implementation, real capability smoke, evidence, tests, tracked publication and safe packaging requirements are satisfied without claiming human approval or production readiness.
 
 ## REVIEW ZIP PATH
-Final path is appended here only after the ZIP is generated as the last filesystem action.
+The exact absolute path is returned in the final handoff after the self-validating ZIP is generated.

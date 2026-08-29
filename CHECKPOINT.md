@@ -44,7 +44,7 @@ No in-scope native capability blocker remains. Candidate-1 has a disclosed edge-
 - Animation and `sprite-grid > 1` remain explicit capability gaps.
 
 ## TEST EVIDENCE
-Final counts are recorded in `REVIEW-v0.4.0.md`. The required checks include compile, unit tests, schemas, routing, fake `/upload/image`, workflow injection, model/workflow registry, real evidence presence, no-Git validation, exact tracked snapshot and controlled unavailable capability.
+`python -m compileall -q src scripts tests` passed; unit suite passed `26/26`; repository validation passed `165/165`, including the exact `git archive HEAD` install/test/validation and the nested no-Git regression. The checks include schemas, routing, fake `/upload/image`, workflow injection, model/workflow registry, real evidence presence and controlled unavailable capability.
 
 ## NEXT STEP
 Perform the human visual review from the final ZIP. If approved, use the explicit `ugas visual approve <asset-id>` command; otherwise create a new revision and repeat transparency QA.
@@ -53,4 +53,4 @@ Perform the human visual review from the final ZIP. If approved, use the explici
 Prompt 03 v0.4.0 is implemented and published with real qualified capabilities, safe review evidence and no production-ready claim without explicit same-revision visual approval. Prompt 04 and excluded slices were not started.
 
 ## REVIEW ZIP PATH
-Recorded in `REVIEW-v0.4.0.md` after the final ZIP is created.
+Recorded in `REVIEW-v0.4.0.md`; the exact absolute path is returned in the final handoff after ZIP validation.
