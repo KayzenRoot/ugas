@@ -1,12 +1,15 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.3.1",
   "id": "provider-huggingface",
   "kind": "remote-model-provider",
   "priority": "fallback",
   "cost_class": "free-tier",
   "endpoint": "https://huggingface.co",
-  "capabilities": ["2d", "sprite-generation", "background-generation", "ui-generation", "vfx-generation", "model-metadata", "remote-inference-when-enabled"],
+  "capabilities": ["model-metadata"],
+  "transport_capabilities": ["model-metadata"],
+  "asset_capabilities_declared": [],
+  "asset_capabilities_qualified": [],
   "availability_contract": {"requires_network": true, "requires_model_and_license_review": true, "quota_must_be_known": true},
   "credential_policy": "Tokens are supplied out of band by the consumer and are never committed.",
-  "limitations": ["Hosted inference is not enabled in the v0.3.0 slice"]
+  "limitations": ["Hosted inference is not enabled in the v0.3.1 slice"]
 }

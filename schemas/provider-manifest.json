@@ -4,5 +4,5 @@
   "title": "UGAS provider manifest",
   "type": "object",
   "required": ["schema_version", "id", "kind", "cost_class", "capabilities", "availability_contract", "credential_policy"],
-  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "kind": {"type": "string"}, "cost_class": {"enum": ["local", "self-hosted", "free-tier", "paid"]}, "capabilities": {"type": "array", "items": {"type": "string"}}, "availability_contract": {"type": "object"}, "credential_policy": {"type": "string"}, "endpoint": {"type": ["string", "null"]}}
+  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "kind": {"type": "string"}, "cost_class": {"enum": ["local", "self-hosted", "free-tier", "paid"]}, "capabilities": {"type": "array", "items": {"type": "string"}}, "transport_capabilities": {"type": "array", "items": {"type": "string"}}, "asset_capabilities_declared": {"type": "array", "items": {"type": "string"}}, "asset_capabilities_qualified": {"type": "array", "items": {"type": "string"}}, "qualification_evidence": {"type": "string"}, "availability_contract": {"type": "object"}, "credential_policy": {"type": "string"}, "endpoint": {"type": ["string", "null"]}}
 }

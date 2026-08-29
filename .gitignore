@@ -27,9 +27,11 @@ npm-debug.log*
 .env.*
 !.env.example
 *.log
-provider-cache/
-models/
-outputs/
+/provider-cache/
+/models/
+/outputs/
+!providers/models/
+!providers/models/registry.json
 
 # OS and editor
 .DS_Store

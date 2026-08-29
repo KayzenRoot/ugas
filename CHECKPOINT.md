@@ -1,52 +1,55 @@
 # UGAS Checkpoint
 
 ## STATUS
-READY_FOR_REVIEW — Prompt 02 v0.3.0 real 2D MVP locally validated. External approval and visual/production approval are not claimed.
+READY_FOR_EXTERNAL_REVIEW — Prompt 02-C v0.3.1 correction implemented; external approval, visual approval and production approval are not claimed.
 
 ## VERSION
-0.3.0
+0.3.1
 
 ## PHASE
-Real 2D ComfyUI / RTX 5050 MVP foundation
+Distributable registry, evidence-driven capabilities and 2D QA hardening
 
 ## OBJECTIVE
-Provide a testable, evidence-gated path from a structured 2D asset request to a retrieved PNG, technical QA, provenance and consumer registry entry.
+Make the v0.3.0 real 2D MVP reproducible from the public tracked snapshot without falsely qualifying 3D, full animation or transparency.
 
 ## SCOPE
-ComfyUI client, native workflow/model registries, capability evidence, Windows/NVIDIA render-node tooling, durable jobs, image/sprite utilities, consumer runtime, tests and review package.
+Correct model-registry tracking, tracked-snapshot validation, capability-based routing, alpha QA, master-only Sprite Pilot semantics, version consistency, visual review evidence and publication packaging.
 
 ## COMPLETED
-- v0.2.1 baseline retained: 38 skills, consumer bootstrap, profiles and routing.
-- v0.3 schemas, ComfyUI HTTP client, registries, evidence model, job state machine, PNG QA and provenance modules added.
-- CLI commands and isolated consumer runtime added.
-- Clone-directory documentation regression corrected.
-- Official ComfyUI `v0.34.0` installed outside the repo with `comfy-cli 1.19.0` and CUDA PyTorch.
-- RTX 5050 smoke passed using NVFP4 FLUX.2 Klein at 256x256; PNG retrieved, hashed and technically validated.
+- `providers/models/registry.json` is explicitly unignored and contains the previously verified NVFP4 hashes, license and qualification evidence; weights remain ignored.
+- Provider manifests separate transport from asset qualification; only qualified workflow/model evidence can select an asset provider.
+- ComfyUI 2D master capability remains qualified; 3D, material, LOD and full animation remain capability gaps.
+- `inspect_png()` preserves source mode and reports alpha/transparency statistics; `requires_transparency=True` fails opaque/RGB output.
+- Sprite Pilot accepts only `columns=1` and `rows=1`; grid > 1 fails closed with the documented error.
+- Project/runtime/package/docs version surfaces are aligned to `0.3.1`; unchanged schema contracts remain `0.3.0` and are documented.
+- Review packaging includes a small real Sprite Pilot preview and corresponding audit JSON without weights, caches or secrets.
 
 ## IN PROGRESS
-- Human visual review and external review handoff.
+- External audit and human visual review of the real 2D evidence.
 
 ## PENDING
-- Human visual review and production approval.
+- Human visual approval and production approval.
 - Optional FP8 qualification.
 
 ## BLOCKERS
-Historical setup attempt hit the comfy-cli path-with-spaces bug; the explicit official checkout plus no-space install invocation succeeded. The machine has an RTX 5050 and the real smoke passed.
+No known critical/high in-scope blocker remains after the registry tracking, routing, snapshot, version, alpha and Sprite Pilot corrections. The real sample is technically valid but visual approval remains a human gate.
 
 ## DECISIONS
-- No arbitrary custom nodes; native ComfyUI nodes only.
-- Apache-2.0 approved model candidates only; weights stay outside Git.
-- `ready` requires server, nodes, exact model inventory, workflow and license; `verified` additionally requires smoke success.
-- Reference-edit, full animation, 3D, audio, cloud and paid paths remain out of scope.
+- `providers/models/registry.json` is versioned metadata; local model weights are never versioned.
+- Transport health or manifest declarations never qualify an asset capability.
+- The current ComfyUI workflow qualifies only 2D text-to-image/master sprite output.
+- RGB, RGBA opaque and RGBA transparent states are reported separately; non-empty content is not used as a transparency proxy.
+- Grid/animation claims require a separately qualified workflow; none exists in v0.3.1.
+- Prompt 03, full animation, Blender, 3D, audio and paid providers are not started.
 
 ## TEST EVIDENCE
-Baseline before v0.3 work: 13/13 unit tests and 104/104 validation checks passed. Current: 18/18 unit tests and 120/120 validation checks passed; real smoke and Sprite Pilot evidence are recorded in `docs/evidence/`.
+`python -m compileall src scripts tests` passed; unit suite `23/23` passed; repository validation `143/143` passed, including the tracked `git archive HEAD` snapshot, isolated editable install, public CLI commands and controlled unavailable capability. The validation also covers version consistency, model/workflow registry loading, capability routing, 3D/animation gaps, RGB/RGBA alpha cases, 1x1 Sprite Pilot and grid rejection. Real ComfyUI evidence remains in `docs/evidence/comfyui-smoke.json`; visual audit evidence is generated under `__REVIEW__/visual-evidence/` in the final ZIP.
 
 ## NEXT STEP
-Finalize publication by committing/pushing source and evidence, then generate the fresh review ZIP as the final filesystem action.
+Complete the external/human review gate. No new product slice may start from this checkpoint without separate authorization.
 
 ## DEFINITION OF DONE
-All authorized source/docs/tests/manifests are implemented; fake-server and local validation are green; real hardware outcome is recorded honestly; no critical/high in-scope findings remain; GitHub is pushed if authenticated; a fresh safe review ZIP exists.
+Registry is tracked in GitHub and the review ZIP; the public tracked snapshot installs and validates; qualified routing is evidence-driven; alpha/transparency and Sprite Pilot semantics are honest; versions agree; all required tests pass; GitHub and the final self-validating review ZIP are published; no critical/high in-scope finding remains.
 
 ## BACKLOG
-Later prompt: qualified reference-edit, animation/3D/audio/cloud work only with separate authorization.
+Future authorized work only: qualified reference-edit, full animation/grid workflows, 3D/Blender, audio or additional providers.

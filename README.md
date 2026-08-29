@@ -1,6 +1,6 @@
 # Universal Game Asset Studio (UGAS)
 
-UGAS 0.3.0 is a provider-agnostic control plane for a real, local 2D MVP over ComfyUI. It adds an HTTP client, capability evidence, exact model/workflow registries, bounded durable jobs, PNG QA, provenance and a sprite-pilot foundation. A green static check or `/system_stats` response is not a generation proof.
+UGAS 0.3.1 is a provider-agnostic control plane for a real, local 2D MVP over ComfyUI. It hardens the distributable model registry, tracked-snapshot validation, capability evidence, alpha QA and the honest master-only Sprite Pilot. A green static check or `/system_stats` response is not a generation proof.
 
 ## What is included
 
@@ -9,7 +9,7 @@ UGAS 0.3.0 is a provider-agnostic control plane for a real, local 2D MVP over Co
 - explicit capability states: `unknown`, `unavailable`, `declared`, `ready`, `verified`;
 - native-node FLUX.2 Klein workflow and Apache-2.0 model candidates, with exact-file/hash/license gates;
 - `doctor`, `setup`, `start`, `stop`, `status` and `probe` render-node commands;
-- `generate image`, a reference-edit capability gap, and sprite-pilot master-image processing;
+- `generate image`, a reference-edit capability gap, and a master-only sprite-pilot (grid > 1 fails closed);
 - technical PNG validation, provenance and duplicate-aware asset registry updates;
 - self-contained consumer runtime copied under `.game-assets/tools`, independent of the original checkout path.
 
@@ -54,13 +54,13 @@ The consumer contract is `.game-assets/` with profile, Art DNA, standards, budge
 
 ## Scope and safety
 
-The v0.3.0 slice stops at real 2D ComfyUI/render-node foundation and sprite-pilot processing. Full animation, 3D/Blender, audio, cloud inference, paid providers and reference-edit generation remain outside this slice. Weights, caches, outputs, credentials and private endpoint configuration are never committed. Remote endpoints must stay on a private network.
+The v0.3.1 correction still stops at real 2D ComfyUI/render-node foundation and a 1x1 master-image pilot. Full animation, 3D/Blender, audio, cloud inference, paid providers and reference-edit generation remain outside this slice. Weights, caches, outputs, credentials and private endpoint configuration are never committed. Remote endpoints must stay on a private network.
 
 Provider/model terms are independent of UGAS. Commercial use requires an explicit license decision in the model registry. Local readiness is not external approval or production approval.
 
 ## Repository map
 
-`src/ugas/` contains the runtime; `providers/models/` and `providers/workflows/` contain registries and API templates; `schemas/` defines contracts; `docs/` contains operations; `REVIEW-v0.3.0.md` and `CHECKPOINT.md` contain current evidence; `REVIEW-v0.2.1.md` remains historical.
+`src/ugas/` contains the runtime; `providers/models/` and `providers/workflows/` contain tracked registries and API templates; `schemas/` defines contracts; `docs/` contains operations and evidence; `REVIEW-v0.3.1.md` and `CHECKPOINT.md` contain current evidence; earlier reviews remain historical.
 
 ## License
 

@@ -1,4 +1,4 @@
-"""V0.2.1 contracts shared by the installer, validator and tests."""
+"""UGAS contracts shared by the installer, validator and tests."""
 
 SKILLS = [
     "game-asset-installer",
@@ -72,7 +72,7 @@ SCHEMAS = [
     "sprite-sheet",
 ]
 
-UGAS_VERSION = "0.3.0"
+UGAS_VERSION = "0.3.1"
 
 CONSUMER_FILES = [
     "studio.json",

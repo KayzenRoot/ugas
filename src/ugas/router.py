@@ -1,8 +1,8 @@
 """Deterministic request classification and evidence-based provider routing.
 
-Routing deliberately treats an unprobed provider as ``unknown``. A provider is
-selected only when its availability is explicit and its declared capabilities
-cover the request.
+Transport availability is not an asset capability. A provider is selected only
+when a qualified capability set is supplied by workflow/model evidence (or by
+the explicit ``capabilities`` test seam, whose meaning is qualified assets).
 """
 
 from __future__ import annotations
@@ -23,38 +23,10 @@ DEFAULT_PROVIDER_COST_CLASSES = {
     "provider-huggingface": "free-tier",
 }
 
-DEFAULT_PROVIDER_CAPABILITIES = {
-    "provider-comfyui": frozenset(
-        {
-            "2d",
-            "sprite-generation",
-            "background-generation",
-            "ui-generation",
-            "vfx-generation",
-            "3d-reference",
-            "3d-model",
-            "material",
-            "animation",
-            "lod",
-        }
-    ),
-    "provider-remote-render-node": frozenset(
-        {
-            "2d",
-            "sprite-generation",
-            "background-generation",
-            "ui-generation",
-            "vfx-generation",
-            "3d-reference",
-            "3d-model",
-            "material",
-            "animation",
-            "lod",
-        }
-    ),
-    "provider-huggingface": frozenset(
-        {"2d", "sprite-generation", "background-generation", "ui-generation", "vfx-generation", "model-metadata"}
-    ),
+DEFAULT_TRANSPORT_CAPABILITIES = {
+    "provider-comfyui": frozenset({"workflow-submit", "polling", "output-retrieval", "system-stats"}),
+    "provider-remote-render-node": frozenset({"workflow-submit", "polling", "output-retrieval"}),
+    "provider-huggingface": frozenset({"model-metadata"}),
 }
 
 AVAILABILITY_STATES = {"available", "unavailable", "unknown"}
@@ -86,6 +58,14 @@ def classify_request(request: str) -> dict:
             "dimension": "3d",
             "asset_types": ["reference" if reference_only else "model", "material", "animation", "lod"],
             "profile_hint": "stylized-3d",
+        }
+    if _has(normalized, "animação", "animacao", "walk cycle", "walking cycle", "frames"):
+        return {
+            "asset_studio_relevant": True,
+            "reason": "2D animation asset request.",
+            "dimension": "2d",
+            "asset_types": ["animation"],
+            "profile_hint": "generic-2d",
         }
     if _has(normalized, "planetas", "naves", "space", "espacial", "idle strategy", "ogame"):
         return {
@@ -205,21 +185,26 @@ def route_request(
         provider_id: _normalize_availability(raw_availability.get(provider_id, "unknown"))
         for provider_id in PROVIDER_IDS
     }
-    provider_capabilities = {
-        provider_id: set(DEFAULT_PROVIDER_CAPABILITIES[provider_id]) for provider_id in PROVIDER_IDS
-    }
+    # Asset capability qualification starts empty. Static provider manifests
+    # describe transport and possible/declared surfaces only; they cannot
+    # authorize an asset job.
+    asset_capabilities_declared = {provider_id: set() for provider_id in PROVIDER_IDS}
+    asset_capabilities_qualified = {provider_id: set() for provider_id in PROVIDER_IDS}
     for provider_id, declared in (capabilities or {}).items():
-        if provider_id in provider_capabilities:
-            provider_capabilities[provider_id] = set(declared)
+        if provider_id in asset_capabilities_qualified:
+            asset_capabilities_declared[provider_id] = set(declared)
+            asset_capabilities_qualified[provider_id] = set(declared)
     if capability_evidence:
         for provider_id, evidence in capability_evidence.items():
-            if provider_id in provider_capabilities and isinstance(evidence, Mapping):
-                declared = evidence.get("capabilities")
-                if declared:
-                    provider_capabilities[provider_id] = set(declared)
-                elif evidence.get("capability"):
-                    capability = str(evidence["capability"])
-                    provider_capabilities[provider_id] = {capability} | ({"sprite-generation", "background-generation", "ui-generation", "vfx-generation"} if capability == "2d" else set())
+            if provider_id not in asset_capabilities_qualified or not isinstance(evidence, Mapping):
+                continue
+            declared = evidence.get("asset_capabilities_declared") or evidence.get("capabilities") or []
+            asset_capabilities_declared[provider_id] = set(declared)
+            if evidence.get("state") in {"ready", "verified"}:
+                qualified = evidence.get("asset_capabilities_qualified") or evidence.get("qualified_capabilities") or evidence.get("capabilities")
+                if not qualified and evidence.get("capability"):
+                    qualified = [str(evidence["capability"])]
+                asset_capabilities_qualified[provider_id] = set(qualified or [])
     provider_cost = {**DEFAULT_PROVIDER_COST_CLASSES, **(cost_classes or {})}
 
     order = _provider_order(policy)
@@ -229,21 +214,24 @@ def route_request(
     available = [provider_id for provider_id in order if normalized_availability[provider_id] == "available"]
     unknown = [provider_id for provider_id in order if normalized_availability[provider_id] == "unknown"]
     gaps = {
-        provider_id: sorted(required - provider_capabilities[provider_id])
+        provider_id: sorted(required - asset_capabilities_qualified[provider_id])
         for provider_id in order
-        if required - provider_capabilities[provider_id]
+        if required - asset_capabilities_qualified[provider_id]
     }
     capable_available = [
-        provider_id for provider_id in available if not (required - provider_capabilities[provider_id])
+        provider_id for provider_id in available if not (required - asset_capabilities_qualified[provider_id])
     ]
     capable_unknown = [
-        provider_id for provider_id in unknown if not (required - provider_capabilities[provider_id])
+        provider_id for provider_id in unknown if not (required - asset_capabilities_qualified[provider_id])
     ]
     provider = capable_available[0] if capable_available else None
     if provider:
         status = "resolved"
         fallbacks = capable_available[1:]
     elif capable_unknown:
+        status = "unknown"
+        fallbacks = []
+    elif unknown and not available:
         status = "unknown"
         fallbacks = []
     elif gaps:
@@ -264,6 +252,10 @@ def route_request(
         "unknown_providers": unknown,
         "required_capabilities": sorted(required),
         "capability_gaps": gaps,
+        "asset_capability_coverage": {provider_id: sorted(required & asset_capabilities_qualified[provider_id]) for provider_id in order if required & asset_capabilities_qualified[provider_id]},
+        "transport_capabilities": {provider_id: sorted(DEFAULT_TRANSPORT_CAPABILITIES[provider_id]) for provider_id in order},
+        "asset_capabilities_declared": {provider_id: sorted(asset_capabilities_declared[provider_id]) for provider_id in order},
+        "asset_capabilities_qualified": {provider_id: sorted(asset_capabilities_qualified[provider_id]) for provider_id in order},
         "routing_status": status,
     }
 

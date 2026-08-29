@@ -2,6 +2,7 @@ import json
 import tempfile
 import unittest
 import threading
+import tomllib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from unittest.mock import patch
 from pathlib import Path
@@ -18,6 +19,7 @@ from ugas.capabilities import mark_verified, probe_comfy_capability
 from ugas.image_utils import compose_sheet, crop_grid, inspect_png
 from ugas.jobs import JobError, new_job, transition
 from ugas.qa import validate_output
+from ugas.generation import GenerationError, sprite_pilot
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,7 +31,7 @@ def load_json(path: Path) -> dict:
 
 class RepositoryContractTests(unittest.TestCase):
     def test_expected_directories_and_documents_exist(self):
-        expected = ["docs", "skills", "profiles", "templates", "schemas", "providers", "scripts", "examples", "tests", "README.md", "INSTALL.md"]
+        expected = ["docs", "skills", "profiles", "templates", "schemas", "providers", "scripts", "examples", "tests", "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.3.1.md", "providers/models/registry.json", "providers/workflows/registry.json"]
         for item in expected:
             with self.subTest(item=item):
                 self.assertTrue((ROOT / item).exists())
@@ -78,6 +80,8 @@ class RepositoryContractTests(unittest.TestCase):
                 manifest = load_json(ROOT / "providers" / "manifests" / f"{provider}.json")
                 validate_instance(manifest, schemas["provider-manifest"])
                 self.assertIn(manifest["cost_class"], {"local", "self-hosted", "free-tier", "paid"})
+                self.assertNotIn("3d-model", manifest["capabilities"])
+                self.assertNotIn("animation", manifest["capabilities"])
         for workflow in (ROOT / "providers" / "workflows").glob("*.json"):
             if workflow.name in {"registry.json", "flux2-klein-4b-text-to-image.api.json"}:
                 continue
@@ -170,7 +174,9 @@ class RoutingTests(unittest.TestCase):
         )
         self.assertTrue(result["asset_studio_relevant"])
         self.assertEqual(["sprite", "tileset", "animation"], result["asset_types"])
-        self.assertEqual("provider-comfyui", result["provider"])
+        self.assertIsNone(result["provider"])
+        self.assertEqual("capability_gap", result["routing_status"])
+        self.assertIn("animation", result["capability_gaps"]["provider-comfyui"])
         irrelevant = route_request("Ajustar matchmaking do jogo")
         self.assertFalse(irrelevant["asset_studio_relevant"])
         self.assertIsNone(irrelevant["provider"])
@@ -188,7 +194,37 @@ class RoutingTests(unittest.TestCase):
             policy="paid-disabled",
             availability={"provider-comfyui": "unavailable", "provider-remote-render-node": "available", "provider-huggingface": "available"},
         )
-        self.assertEqual("provider-remote-render-node", result["provider"])
+        self.assertIsNone(result["provider"])
+        self.assertEqual("capability_gap", result["routing_status"])
+
+    def test_qualified_2d_evidence_selects_comfyui_for_master_sprite(self):
+        result = route_request(
+            "Criar um master sprite 2D do guerreiro",
+            capability_evidence={
+                "provider-comfyui": {
+                    "state": "verified",
+                    "asset_capabilities_declared": ["2d", "sprite-master", "sprite-generation"],
+                    "asset_capabilities_qualified": ["2d", "sprite-master", "sprite-generation"],
+                }
+            },
+        )
+        self.assertEqual("provider-comfyui", result["provider"])
+        self.assertEqual("resolved", result["routing_status"])
+
+    def test_partial_mmorpg_plan_exposes_animation_gap(self):
+        result = route_request(
+            "Criar vila humana 2D de MMORPG",
+            capability_evidence={
+                "provider-comfyui": {
+                    "state": "verified",
+                    "asset_capabilities_qualified": ["2d", "sprite-master", "sprite-generation"],
+                }
+            },
+        )
+        self.assertIsNone(result["provider"])
+        self.assertEqual("capability_gap", result["routing_status"])
+        self.assertIn("animation", result["capability_gaps"]["provider-comfyui"])
+        self.assertIn("sprite-generation", result["asset_capability_coverage"]["provider-comfyui"])
 
     def test_capability_gap_skips_preferred_provider_and_uses_capable_fallback(self):
         result = route_request(
@@ -209,6 +245,52 @@ class ProviderReadinessTests(unittest.TestCase):
         remote = remote_render_node_healthcheck(dry_run=True)
         self.assertEqual(("remote", "dry-run-ready"), (remote["scope"], remote["status"]))
         self.assertIn("no local nvidia-smi", remote["checks"])
+
+
+class VersionAndImageQATests(unittest.TestCase):
+    def test_version_surfaces_are_consistent(self):
+        import ugas
+        from ugas.constants import UGAS_VERSION
+
+        package = load_json(ROOT / "package.json")
+        with (ROOT / "pyproject.toml").open("rb") as stream:
+            pyproject = tomllib.load(stream)
+        self.assertEqual("0.3.1", UGAS_VERSION)
+        self.assertEqual(UGAS_VERSION, ugas.__version__)
+        self.assertEqual(UGAS_VERSION, package["version"])
+        self.assertEqual(UGAS_VERSION, pyproject["project"]["version"])
+        for filename in ("README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.3.1.md"):
+            self.assertIn(UGAS_VERSION, (ROOT / filename).read_text(encoding="utf-8"))
+
+    def test_alpha_and_transparency_stats_distinguish_rgb_and_rgba(self):
+        from PIL import Image
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            rgb = root / "rgb.png"
+            opaque = root / "opaque.png"
+            transparent = root / "transparent.png"
+            Image.new("RGB", (2, 2), (255, 0, 0)).save(rgb)
+            Image.new("RGBA", (2, 2), (255, 0, 0, 255)).save(opaque)
+            alpha = Image.new("RGBA", (2, 2), (255, 0, 0, 255)); alpha.putpixel((0, 0), (255, 0, 0, 0)); alpha.save(transparent)
+
+            rgb_info = inspect_png(rgb)
+            opaque_info = inspect_png(opaque)
+            transparent_info = inspect_png(transparent)
+            self.assertEqual("RGB", rgb_info["source_mode"])
+            self.assertFalse(rgb_info["has_alpha_channel"])
+            self.assertFalse(rgb_info["has_transparent_pixels"])
+            self.assertIsNone(rgb_info["alpha_min"])
+            self.assertTrue(opaque_info["has_alpha_channel"])
+            self.assertFalse(opaque_info["has_transparent_pixels"])
+            self.assertEqual(255, opaque_info["alpha_min"])
+            self.assertTrue(transparent_info["has_alpha_channel"])
+            self.assertTrue(transparent_info["has_transparent_pixels"])
+            self.assertEqual(0, transparent_info["alpha_min"])
+            self.assertEqual("TECHNICAL_VALID", validate_output(rgb)["status"])
+            self.assertEqual("failed", validate_output(rgb, requires_transparency=True)["status"])
+            self.assertEqual("failed", validate_output(opaque, requires_transparency=True)["status"])
+            self.assertEqual("TECHNICAL_VALID", validate_output(transparent, requires_transparency=True)["status"])
 
 
 class ComfyAndPipelineTests(unittest.TestCase):
@@ -292,6 +374,20 @@ class ComfyAndPipelineTests(unittest.TestCase):
         for state in ("validated", "queued", "running", "succeeded", "postprocessed", "validated_output", "registered"):
             job = transition(job, state)
         with self.assertRaises(JobError): transition(job, "failed")
+
+    def test_sprite_pilot_allows_only_qualified_1x1_master(self):
+        from PIL import Image
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "master.png"
+            Image.new("RGB", (4, 4), (255, 0, 0)).save(source)
+            output_dir = root / "output"
+            with patch("ugas.generation.generate_image", return_value={"output": str(source), "job": {"job_id": "job-test"}}):
+                result = sprite_pilot(ROOT, endpoint=self.endpoint, prompt="master", output_dir=output_dir, columns=1, rows=1)
+            self.assertTrue(Path(result["sprite_sheet"]).exists())
+            with self.assertRaisesRegex(GenerationError, "sprite-grid workflow not qualified in v0.3.1"):
+                sprite_pilot(ROOT, endpoint=self.endpoint, prompt="grid", output_dir=output_dir, columns=2, rows=1)
 
 
 if __name__ == "__main__":

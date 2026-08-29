@@ -21,7 +21,7 @@ class GenerationError(RuntimeError):
     pass
 
 
-def generate_image(repo_root: Path, *, endpoint: str, prompt: str, profile: str = "generic-2d", model_id: str = "flux2-klein-4b-nvfp4", workflow_id: str = "flux2-klein-4b-text-to-image", output_dir: Path | None = None, seed: int = 1, width: int = 256, height: int = 256, consumer_project_id: str | None = None, timeout: float = 30.0) -> dict:
+def generate_image(repo_root: Path, *, endpoint: str, prompt: str, profile: str = "generic-2d", model_id: str = "flux2-klein-4b-nvfp4", workflow_id: str = "flux2-klein-4b-text-to-image", output_dir: Path | None = None, seed: int = 1, width: int = 256, height: int = 256, consumer_project_id: str | None = None, timeout: float = 30.0, requires_transparency: bool = False) -> dict:
     client = ComfyUIClient(endpoint, timeout=timeout)
     evidence = probe_comfy_capability(repo_root, client, model_id, workflow_id)
     if evidence["state"] not in {"ready", "verified"}:
@@ -30,7 +30,7 @@ def generate_image(repo_root: Path, *, endpoint: str, prompt: str, profile: str 
     model_record = load_model(repo_root, model_id)
     names = {"__MODEL__": next((Path(item).name for item in model_record["exact_files"] if item.startswith("diffusion_models/")), ""), "__CLIP__": next((Path(item).name for item in model_record["exact_files"] if item.startswith("text_encoders/")), ""), "__VAE__": next((Path(item).name for item in model_record["exact_files"] if item.startswith("vae/")), "")}
     workflow = bind_workflow(workflow_record["api"], prompt=prompt, seed=seed, width=width, height=height, model_names=names)
-    job = new_job(consumer_project_id=consumer_project_id, asset_request_id=f"request-{uuid.uuid4().hex}", profile=profile, provider="provider-comfyui", capability="2d", workflow={"id": workflow_id, "sha256": workflow_record["sha256"]}, models=[{"id": model_id}], prompts={"positive": prompt, "negative": ""}, seed=seed, dimensions={"width": width, "height": height}, parameters={"endpoint": endpoint})
+    job = new_job(consumer_project_id=consumer_project_id, asset_request_id=f"request-{uuid.uuid4().hex}", profile=profile, provider="provider-comfyui", capability="2d", workflow={"id": workflow_id, "sha256": workflow_record["sha256"]}, models=[{"id": model_id}], prompts={"positive": prompt, "negative": ""}, seed=seed, dimensions={"width": width, "height": height}, parameters={"endpoint": endpoint, "requires_transparency": requires_transparency})
     jobs_dir = output_dir or (repo_root / "tmp" / "jobs")
     persist(transition(job, "validated"), jobs_dir)
     try:
@@ -46,7 +46,7 @@ def generate_image(repo_root: Path, *, endpoint: str, prompt: str, profile: str 
         output_dir.mkdir(parents=True, exist_ok=True)
         target = output_dir / f"{submitted['prompt_id']}.png"
         target.write_bytes(output[0]["data"])
-        qa = validate_output(target, width=width, height=height)
+        qa = validate_output(target, width=width, height=height, requires_transparency=requires_transparency)
         job = transition(job, "succeeded")
         job = transition(job, "postprocessed")
         job["output_hashes"] = {str(target): qa.get("technical", {}).get("sha256")}
@@ -73,12 +73,14 @@ def generate_image(repo_root: Path, *, endpoint: str, prompt: str, profile: str 
 
 
 def reference_edit(*args, **kwargs):
-    raise GenerationError("reference-edit is not qualified in the v0.3.0 MVP")
+    raise GenerationError("reference-edit is not qualified in the v0.3.1 MVP")
 
 
 def sprite_pilot(repo_root: Path, **kwargs) -> dict:
-    """Generate a master and deterministically materialize a sprite sheet."""
+    """Generate only a 1x1 master pilot until a grid workflow is qualified."""
     columns = int(kwargs.pop("columns", 1)); rows = int(kwargs.pop("rows", 1))
+    if columns != 1 or rows != 1:
+        raise GenerationError("sprite-grid workflow not qualified in v0.3.1")
     result = generate_image(repo_root, **kwargs)
     output = Path(result["output"]); destination = Path(kwargs.get("output_dir") or output.parent)
     frame_dir = destination / f"{output.stem}-frames"

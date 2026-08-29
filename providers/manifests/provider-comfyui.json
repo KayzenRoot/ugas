@@ -1,11 +1,15 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.3.1",
   "id": "provider-comfyui",
   "kind": "local-comfyui",
   "priority": "primary",
   "cost_class": "local",
   "endpoint": "http://127.0.0.1:8188",
-  "capabilities": ["2d", "sprite-generation", "background-generation", "ui-generation", "vfx-generation", "3d-reference", "3d-model", "material", "animation", "lod", "workflow-submit", "polling", "output-retrieval", "system-stats"],
+  "capabilities": ["workflow-submit", "polling", "output-retrieval", "system-stats"],
+  "transport_capabilities": ["workflow-submit", "polling", "output-retrieval", "system-stats"],
+  "asset_capabilities_declared": ["2d", "sprite-master", "sprite-generation"],
+  "asset_capabilities_qualified": [],
+  "qualification_evidence": "docs/evidence/comfyui-smoke.json",
   "availability_contract": {"health_path": "/system_stats", "timeout_seconds": 2, "requires_private_network": false},
   "credential_policy": "No credential belongs in the repository; use environment or local secret manager.",
   "operations": ["install-plan", "configure", "healthcheck", "capability-probe", "submit", "poll", "retrieve"]

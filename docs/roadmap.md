@@ -1,8 +1,8 @@
 # Roadmap and scope gate
 
-## v0.3.0 (this slice)
+## v0.3.1 (current correction slice)
 
-Real 2D ComfyUI/render-node foundation: API client, evidence states, native workflow/model registries, exact-license/hash gates, durable image jobs, PNG QA, provenance, sprite-pilot processing, consumer runtime and reproducible review evidence.
+Distributable real 2D ComfyUI/render-node foundation: tracked model metadata, public-snapshot validation, evidence-driven routing, exact-license/hash gates, durable image jobs, truthful alpha QA, master-only Sprite Pilot, consumer runtime and reproducible review evidence.
 
 ## Explicitly not started
 

@@ -5,6 +5,7 @@
       "id": "flux2-klein-4b-text-to-image",
       "purpose": "2d text-to-image and sprite master generation",
       "capability": "2d",
+      "qualified_capabilities": ["2d", "sprite-master", "sprite-generation"],
       "provider": "provider-comfyui",
       "version": "0.3.0",
       "source": "Comfy-Org native FLUX.2 Klein workflow adapted to API format",

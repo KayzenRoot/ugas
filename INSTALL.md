@@ -1,4 +1,4 @@
-# Installing UGAS 0.3.0
+# Installing UGAS 0.3.1
 
 Python 3.10+ is required. Installation downloads the small Python runtime and Pillow only; model weights and ComfyUI stay outside the Git checkout.
 
@@ -32,7 +32,7 @@ UGAS inspects the installed comfy-cli help before using version-sensitive option
 
 ## Model and workflow qualification
 
-`providers/models/registry.json` records exact files, sources, SHA-256 values, license status, VRAM expectations and qualification evidence. A model is not qualified from its name or a `/models` filename alone. The native FLUX.2 Klein workflow is API-format and requires live `/object_info` validation plus a smoke test.
+`providers/models/registry.json` is versioned provider metadata (weights remain ignored). It records exact files, sources, SHA-256 values, license status, VRAM expectations and qualification evidence. A model is not qualified from its name or a `/models` filename alone. The native FLUX.2 Klein workflow is API-format and requires live `/object_info` validation plus a smoke test. Schema instances remain `0.3.0` where their contract did not change; the project/runtime version is `0.3.1`.
 
 ```powershell
 ugas models list
@@ -57,7 +57,7 @@ ugas generate image "initial warrior sprite, centered, transparent background" -
 ugas generate sprite-pilot "initial warrior sprite sheet master" --width 256 --height 256 --seed 7
 ```
 
-Generation fails closed unless capability evidence is `ready` or `verified`. Output QA is technical only: `TECHNICAL_VALID` and `VISUAL_REVIEW_REQUIRED` are distinct from human approval and `PRODUCTION_READY`.
+Generation fails closed unless capability evidence is `ready` or `verified`. The v0.3.1 Sprite Pilot is master-image only: `--columns 1 --rows 1` is accepted; grid > 1 returns `sprite-grid workflow not qualified in v0.3.1`. Output QA is technical only: `TECHNICAL_VALID`, alpha/transparency requirements and `VISUAL_REVIEW_REQUIRED` are distinct from human approval and `PRODUCTION_READY`.
 
 ## Troubleshooting
 

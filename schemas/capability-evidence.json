@@ -16,6 +16,9 @@
     "required_models": {"type": "array", "items": {"type": "object"}},
     "workflow": {"type": "object"},
     "model": {"type": "object"},
+    "transport_capabilities": {"type": "array", "items": {"type": "string"}},
+    "asset_capabilities_declared": {"type": "array", "items": {"type": "string"}},
+    "asset_capabilities_qualified": {"type": "array", "items": {"type": "string"}},
     "smoke_test": {"type": "object"},
     "failure_reason": {"type": ["string", "null"]},
     "observed_at": {"type": "string"}

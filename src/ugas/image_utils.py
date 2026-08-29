@@ -22,13 +22,51 @@ def _image(path: Path):
         raise ImagePipelineError(f"invalid image: {path}") from exc
 
 
+def _open(path: Path):
+    try:
+        from PIL import Image
+    except ImportError as exc:
+        raise ImagePipelineError("Pillow is required for image QA and sprite processing") from exc
+    try:
+        return Image.open(path)
+    except Exception as exc:
+        raise ImagePipelineError(f"invalid image: {path}") from exc
+
+
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def inspect_png(path: Path) -> dict:
-    image = _image(path)
-    return {"path": str(path), "format": "PNG", "width": image.width, "height": image.height, "mode": image.mode, "bytes": path.stat().st_size, "sha256": sha256(path), "has_alpha": image.getchannel("A").getbbox() is not None}
+    with _open(path) as image:
+        source_mode = image.mode
+        bands = image.getbands()
+        has_alpha_channel = "A" in bands or (source_mode == "P" and "transparency" in image.info)
+        rgba = image.convert("RGBA")
+        alpha = rgba.getchannel("A")
+        alpha_min, alpha_max = alpha.getextrema()
+        total_pixels = image.width * image.height
+        transparent_pixels = sum(1 for value in alpha.getdata() if value < 255)
+        opaque_pixels = total_pixels - transparent_pixels
+        content_bbox = alpha.getbbox() if has_alpha_channel else image.convert("RGB").getbbox()
+        return {
+            "path": str(path),
+            "format": "PNG",
+            "width": image.width,
+            "height": image.height,
+            "mode": source_mode,
+            "source_mode": source_mode,
+            "bytes": path.stat().st_size,
+            "sha256": sha256(path),
+            "has_alpha": has_alpha_channel,
+            "has_alpha_channel": has_alpha_channel,
+            "has_transparent_pixels": bool(has_alpha_channel and transparent_pixels > 0),
+            "alpha_min": alpha_min if has_alpha_channel else None,
+            "alpha_max": alpha_max if has_alpha_channel else None,
+            "opaque_fraction": opaque_pixels / total_pixels if total_pixels else 0.0,
+            "transparent_fraction": transparent_pixels / total_pixels if total_pixels else 0.0,
+            "non_empty_content": content_bbox is not None,
+        }
 
 
 def crop_grid(source: Path, destination: Path, columns: int, rows: int, *, trim: bool = False, pad: int = 0, anchor: str = "center") -> dict:

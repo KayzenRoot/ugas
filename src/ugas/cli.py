@@ -1,4 +1,4 @@
-"""UGAS v0.3 machine-readable CLI."""
+"""UGAS v0.3.1 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ def _json(value: object) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.3.0")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.3.1")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     sub = parser.add_subparsers(dest="command", required=True)
     install = sub.add_parser("install"); install.add_argument("consumer_root", type=Path); install.add_argument("--profile"); install.add_argument("--policy", default="local-first", choices=["free-first", "local-first", "remote-first", "paid-disabled"]); install.add_argument("--force", action="store_true")
@@ -47,7 +47,7 @@ def build_parser() -> argparse.ArgumentParser:
     workflows = sub.add_parser("workflows"); workflows_sub = workflows.add_subparsers(dest="workflow_action", required=True); workflows_sub.add_parser("list"); validate = workflows_sub.add_parser("validate"); validate.add_argument("workflow_id"); validate.add_argument("--url", default=None)
     generate = sub.add_parser("generate"); generate_sub = generate.add_subparsers(dest="generation_action", required=True)
     for name in ("image", "reference-edit", "sprite-pilot"):
-        command = generate_sub.add_parser(name); command.add_argument("prompt"); command.add_argument("--url", default="http://127.0.0.1:8188"); command.add_argument("--profile", default="generic-2d"); command.add_argument("--model", default="flux2-klein-4b-nvfp4"); command.add_argument("--workflow", default="flux2-klein-4b-text-to-image"); command.add_argument("--output-dir", type=Path); command.add_argument("--seed", type=int, default=1); command.add_argument("--width", type=int, default=256); command.add_argument("--height", type=int, default=256); command.add_argument("--columns", type=int, default=1); command.add_argument("--rows", type=int, default=1)
+        command = generate_sub.add_parser(name); command.add_argument("prompt"); command.add_argument("--url", default="http://127.0.0.1:8188"); command.add_argument("--profile", default="generic-2d"); command.add_argument("--model", default="flux2-klein-4b-nvfp4"); command.add_argument("--workflow", default="flux2-klein-4b-text-to-image"); command.add_argument("--output-dir", type=Path); command.add_argument("--seed", type=int, default=1); command.add_argument("--width", type=int, default=256); command.add_argument("--height", type=int, default=256); command.add_argument("--columns", type=int, default=1); command.add_argument("--rows", type=int, default=1); command.add_argument("--requires-transparency", action="store_true")
     return parser
 
 
@@ -75,7 +75,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.url: result["live"] = probe_comfy_capability(root, ComfyUIClient(args.url), record["required_models"][0], args.workflow_id)
             _json(result); return 0 if result["valid_graph"] else 2
         if args.command == "generate":
-            kwargs = {"endpoint": args.url, "prompt": args.prompt, "profile": args.profile, "model_id": args.model, "workflow_id": args.workflow, "output_dir": args.output_dir, "seed": args.seed, "width": args.width, "height": args.height, "columns": args.columns, "rows": args.rows}
+            kwargs = {"endpoint": args.url, "prompt": args.prompt, "profile": args.profile, "model_id": args.model, "workflow_id": args.workflow, "output_dir": args.output_dir, "seed": args.seed, "width": args.width, "height": args.height, "columns": args.columns, "rows": args.rows, "requires_transparency": args.requires_transparency}
             if args.generation_action != "sprite-pilot":
                 kwargs.pop("columns"); kwargs.pop("rows")
             result = reference_edit(root, **kwargs) if args.generation_action == "reference-edit" else sprite_pilot(root, **kwargs) if args.generation_action == "sprite-pilot" else generate_image(root, **kwargs)

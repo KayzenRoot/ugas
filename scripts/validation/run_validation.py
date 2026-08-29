@@ -1,12 +1,17 @@
-"""Objective v0.2.1 repository validation with human-readable evidence."""
+"""Objective v0.3.1 repository validation with public-snapshot evidence."""
 
 from __future__ import annotations
 
 import json
+import io
+import os
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
+import tomllib
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -22,6 +27,9 @@ from ugas.skills import validate_skill_frontmatter
 from ugas.constants import UGAS_VERSION
 from ugas.model_registry import load_registry, load_model
 from ugas.workflow_registry import load_workflows, load_workflow, validate_api_workflow
+from ugas.image_utils import inspect_png
+from ugas.qa import validate_output
+from ugas.generation import GenerationError, sprite_pilot
 
 
 results: list[tuple[str, bool, str]] = []
@@ -35,10 +43,64 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def git_tracked(relative: str) -> bool:
+    if os.environ.get("UGAS_TRACKED_SNAPSHOT") == "1":
+        return True
+    result = subprocess.run(["git", "ls-files", "--error-unmatch", "--", relative], cwd=ROOT, capture_output=True, text=True, check=False)
+    return result.returncode == 0 and bool(result.stdout.strip())
+
+
+def run_snapshot_check() -> None:
+    """Run the required install/CLI/tests from an exact ``git archive HEAD``."""
+    if os.environ.get("UGAS_SKIP_TRACKED_SNAPSHOT") == "1":
+        check("snapshot:tracked", True, "nested validation skipped inside the isolated archive")
+        return
+    with tempfile.TemporaryDirectory(prefix="ugas-tracked-snapshot-") as directory:
+        snapshot = Path(directory) / "snapshot"
+        snapshot.mkdir()
+        archive = subprocess.run(["git", "archive", "HEAD"], cwd=ROOT, capture_output=True, check=False)
+        if archive.returncode != 0:
+            check("snapshot:git-archive", False, archive.stderr.decode(errors="replace")[:300])
+            return
+        with tarfile.open(fileobj=io.BytesIO(archive.stdout), mode="r:") as tar:
+            tar.extractall(snapshot)
+        venv = snapshot / ".venv"
+        create_venv = subprocess.run([sys.executable, "-m", "venv", str(venv)], cwd=snapshot, capture_output=True, text=True, check=False)
+        check("snapshot:venv", create_venv.returncode == 0, create_venv.stderr[-300:])
+        if create_venv.returncode != 0:
+            return
+        python_exe = venv / "Scripts" / "python.exe"
+        ugas_exe = venv / "Scripts" / "ugas.exe"
+        env = os.environ.copy()
+        env.pop("PYTHONPATH", None)
+        env["UGAS_SKIP_TRACKED_SNAPSHOT"] = "1"
+        env["UGAS_TRACKED_SNAPSHOT"] = "1"
+        env["PYTHONUTF8"] = "1"
+        commands = [
+            ("snapshot:pip-install", [str(python_exe), "-m", "pip", "install", "-e", "."]),
+            ("snapshot:ugas-version", [str(ugas_exe), "--version"]),
+            ("snapshot:models-list", [str(ugas_exe), "models", "list"]),
+            ("snapshot:workflows-list", [str(ugas_exe), "workflows", "list"]),
+            ("snapshot:unit-tests", [str(python_exe), "scripts/tests/run_tests.py"]),
+            ("snapshot:validation", [str(python_exe), "scripts/validation/run_validation.py"]),
+            ("snapshot:capability-controlled-gap", [str(ugas_exe), "capability", "--url", "http://127.0.0.1:1"]),
+        ]
+        for name, command in commands:
+            result = subprocess.run(command, cwd=snapshot, env=env, capture_output=True, text=True, check=False)
+            expected = result.returncode == 0
+            if name == "snapshot:capability-controlled-gap":
+                expected = result.returncode == 0 and '"state": "unavailable"' in result.stdout
+            detail = (result.stdout + result.stderr).strip().replace("\n", " ")[-400:]
+            check(name, expected, detail or f"exit={result.returncode}")
+            if not expected and name == "snapshot:pip-install":
+                break
+
+
 def main() -> int:
     required_paths = [
-        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.2.md", "REVIEW-v0.2.1.md", "LICENSE", "package.json", "pyproject.toml",
+        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.2.md", "REVIEW-v0.2.1.md", "REVIEW-v0.3.1.md", "LICENSE", "package.json", "pyproject.toml",
         "docs", "skills", "profiles", "templates", "schemas", "providers", "scripts", "examples", "tests",
+        "providers/models/registry.json", "providers/workflows/registry.json",
     ]
     for path in required_paths:
         check(f"path:{path}", (ROOT / path).exists(), "present" if (ROOT / path).exists() else "missing")
@@ -95,7 +157,9 @@ def main() -> int:
         try:
             manifest = load_json(ROOT / "providers" / "manifests" / f"{provider}.json")
             validate_instance(manifest, schemas["provider-manifest"])
-            check(f"provider:{provider}", manifest["id"] == provider and manifest["cost_class"] in {"local", "self-hosted", "free-tier", "paid"}, "manifest validates with cost class")
+            safe = not {"3d-model", "animation", "material", "lod"}.intersection(manifest.get("capabilities", []))
+            source_ok = not manifest.get("asset_capabilities_qualified", [])
+            check(f"provider:{provider}", manifest["id"] == provider and manifest["cost_class"] in {"local", "self-hosted", "free-tier", "paid"} and safe and source_ok, "manifest validates; asset readiness is evidence-derived, not static")
         except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
             check(f"provider:{provider}", False, str(exc))
     for workflow in (ROOT / "providers" / "workflows").glob("*.json"):
@@ -117,6 +181,7 @@ def main() -> int:
             check(f"model:{model['id']}", model["commercial_use_status"] == "approved" and (qualified or candidate), "approved license; exact hashes/smoke gate recorded" if qualified else "approved license; qualification remains gated by exact hashes and smoke")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
         check("registry:models", False, str(exc))
+    check("tracked:providers/models/registry.json", (ROOT / "providers" / "models" / "registry.json").is_file() and git_tracked("providers/models/registry.json"), "public model registry is tracked")
     try:
         workflow_registry = {"schema_version": "0.3.0", "workflows": load_workflows(ROOT)}
         check("registry:workflows", len(workflow_registry["workflows"]) >= 1, "native API workflow registry present")
@@ -126,11 +191,13 @@ def main() -> int:
             check(f"workflow-api:{item['id']}", graph["valid_graph"] and not item["custom_nodes_required"], "API graph is statically valid and custom-node-free")
     except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
         check("registry:workflows", False, str(exc))
+    check("tracked:providers/workflows/registry.json", (ROOT / "providers" / "workflows" / "registry.json").is_file() and git_tracked("providers/workflows/registry.json"), "public workflow registry is tracked")
+    check("tracked:workflow-api-json", any(git_tracked(path.relative_to(ROOT).as_posix()) for path in (ROOT / "providers" / "workflows").glob("*.api.json")), "native API workflow JSON is tracked")
     evidence_path = ROOT / "docs" / "evidence" / "comfyui-smoke.json"
     try:
         evidence = load_json(evidence_path)
         validate_instance(evidence, schemas["capability-evidence"])
-        check("evidence:comfyui-smoke", evidence["state"] == "verified" and evidence["smoke_test"]["status"] == "passed", "real local RTX 5050 smoke evidence is recorded")
+        check("evidence:comfyui-smoke", evidence["state"] == "verified" and evidence["smoke_test"]["status"] == "passed" and evidence.get("asset_capabilities_qualified") == ["2d", "sprite-master", "sprite-generation"], "real local RTX 5050 smoke evidence is recorded as the qualification source")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
         check("evidence:comfyui-smoke", False, str(exc))
     sprite_evidence_path = ROOT / "docs" / "evidence" / "sprite-pilot.json"
@@ -144,6 +211,17 @@ def main() -> int:
     declared_route = route_request("Criar sprite de inventário", capability_evidence={"provider-comfyui": {"state": "declared", "capability": "2d"}})
     check("routing:declared-not-selected", declared_route["provider"] is None and declared_route["routing_status"] == "unknown", "declared capability is not treated as ready")
     check("docs:clone-directory", "cd universal-game-asset-studio" not in (ROOT / "INSTALL.md").read_text(encoding="utf-8"), "installation docs use actual clone directory")
+
+    try:
+        package_version = load_json(ROOT / "package.json")["version"]
+        with (ROOT / "pyproject.toml").open("rb") as stream:
+            pyproject_version = tomllib.load(stream)["project"]["version"]
+        init_version = __import__("ugas").__version__
+        version_ok = UGAS_VERSION == package_version == pyproject_version == init_version == "0.3.1"
+        docs_ok = all("0.3.1" in (ROOT / name).read_text(encoding="utf-8") for name in ("README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.3.1.md"))
+        check("version:consistency", version_ok and docs_ok, f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}, docs={docs_ok}")
+    except (OSError, json.JSONDecodeError, KeyError, tomllib.TOMLDecodeError) as exc:
+        check("version:consistency", False, str(exc))
 
     with tempfile.TemporaryDirectory(prefix="ugas-validation-") as directory:
         temp_root = Path(directory)
@@ -191,17 +269,49 @@ def main() -> int:
 
     available_all = {provider: "available" for provider in ("provider-comfyui", "provider-remote-render-node", "provider-huggingface")}
     two_d = route_request("Criar vila humana 2D de MMORPG", availability=available_all)
-    check("routing:2d-capability", two_d["provider"] == "provider-comfyui" and "2d" in two_d["required_capabilities"], json.dumps(two_d, ensure_ascii=False))
+    check("routing:2d-unqualified-gap", two_d["provider"] is None and two_d["routing_status"] == "capability_gap" and "2d" in two_d["capability_gaps"]["provider-comfyui"], json.dumps(two_d, ensure_ascii=False))
+    qualified_2d = route_request("Criar um master sprite 2D do guerreiro", capability_evidence={"provider-comfyui": {"state": "verified", "asset_capabilities_qualified": ["2d", "sprite-master", "sprite-generation"]}})
+    check("routing:2d-qualified-evidence", qualified_2d["provider"] == "provider-comfyui" and qualified_2d["routing_status"] == "resolved", json.dumps(qualified_2d, ensure_ascii=False))
     three_d = route_request("Criar boss 3D stylized", availability=available_all)
-    check("routing:3d-capability", three_d["provider"] == "provider-comfyui" and "3d-model" in three_d["required_capabilities"], json.dumps(three_d, ensure_ascii=False))
+    check("routing:3d-capability-gap", three_d["provider"] is None and three_d["routing_status"] == "capability_gap" and "3d-model" in three_d["required_capabilities"], json.dumps(three_d, ensure_ascii=False))
+    animation = route_request("Criar animação completa de caminhada 8 frames", availability=available_all)
+    check("routing:animation-capability-gap", animation["provider"] is None and animation["routing_status"] == "capability_gap" and "animation" in animation["capability_gaps"]["provider-comfyui"], json.dumps(animation, ensure_ascii=False))
     gap = route_request("Criar boss 3D stylized", availability={"provider-comfyui": "unavailable", "provider-remote-render-node": "unavailable", "provider-huggingface": "available"})
     check("routing:3d-no-2d-fallback", gap["provider"] is None and gap["routing_status"] == "capability_gap", json.dumps(gap, ensure_ascii=False))
     remote = route_request("Criar boss 3D stylized", policy="paid-disabled", availability={"provider-comfyui": "unavailable", "provider-remote-render-node": "available", "provider-huggingface": "available"})
-    check("routing:self-hosted-not-paid", remote["provider"] == "provider-remote-render-node", json.dumps(remote, ensure_ascii=False))
+    check("routing:self-hosted-needs-qualified-evidence", remote["provider"] is None and remote["routing_status"] == "capability_gap", json.dumps(remote, ensure_ascii=False))
     unknown = route_request("Criar sprite de inventário")
     check("routing:unknown-without-probe", unknown["provider"] is None and unknown["routing_status"] == "unknown", json.dumps(unknown, ensure_ascii=False))
     irrelevant = route_request("Ajustar matchmaking do jogo")
     check("routing:non-asset", not irrelevant["asset_studio_relevant"] and irrelevant["provider"] is None, json.dumps(irrelevant, ensure_ascii=False))
+
+    try:
+        from PIL import Image
+        with tempfile.TemporaryDirectory(prefix="ugas-alpha-") as directory:
+            alpha_root = Path(directory)
+            rgb_path = alpha_root / "rgb.png"
+            opaque_path = alpha_root / "opaque.png"
+            transparent_path = alpha_root / "transparent.png"
+            Image.new("RGB", (2, 2), (255, 0, 0)).save(rgb_path)
+            Image.new("RGBA", (2, 2), (255, 0, 0, 255)).save(opaque_path)
+            transparent = Image.new("RGBA", (2, 2), (255, 0, 0, 255)); transparent.putpixel((0, 0), (255, 0, 0, 0)); transparent.save(transparent_path)
+            rgb_info, opaque_info, transparent_info = (inspect_png(path) for path in (rgb_path, opaque_path, transparent_path))
+            check("qa:alpha-rgb", rgb_info["source_mode"] == "RGB" and not rgb_info["has_alpha_channel"] and not rgb_info["has_transparent_pixels"], json.dumps(rgb_info))
+            check("qa:alpha-rgba-opaque", opaque_info["has_alpha_channel"] and not opaque_info["has_transparent_pixels"] and opaque_info["alpha_min"] == 255, json.dumps(opaque_info))
+            check("qa:alpha-rgba-transparent", transparent_info["has_alpha_channel"] and transparent_info["has_transparent_pixels"] and transparent_info["alpha_min"] == 0, json.dumps(transparent_info))
+            check("qa:transparency-requirement", validate_output(rgb_path, requires_transparency=True)["status"] == "failed" and validate_output(transparent_path, requires_transparency=True)["status"] == "TECHNICAL_VALID", "transparency is a separate requirement from non-empty content")
+            with patch("ugas.generation.generate_image", return_value={"output": str(rgb_path), "job": {"job_id": "validation-job"}}):
+                pilot = sprite_pilot(ROOT, endpoint="http://127.0.0.1:1", prompt="master", output_dir=alpha_root / "pilot", columns=1, rows=1)
+            check("sprite-pilot:1x1", Path(pilot["sprite_sheet"]).is_file(), "master-only pilot materializes a 1x1 sheet")
+            try:
+                sprite_pilot(ROOT, endpoint="http://127.0.0.1:1", prompt="grid", output_dir=alpha_root / "pilot", columns=2, rows=1)
+                grid_error = False
+            except GenerationError as exc:
+                grid_error = str(exc) == "sprite-grid workflow not qualified in v0.3.1"
+            check("sprite-pilot:grid-rejected", grid_error, "grid > 1 fails closed until a qualified sprite-grid workflow exists")
+    except (ImportError, OSError, ValueError, KeyError) as exc:
+        for name in ("qa:alpha-rgb", "qa:alpha-rgba-opaque", "qa:alpha-rgba-transparent", "qa:transparency-requirement", "sprite-pilot:1x1", "sprite-pilot:grid-rejected"):
+            check(name, False, str(exc))
 
     comfy = comfyui_healthcheck(dry_run=True)
     node = remote_render_node_healthcheck(dry_run=True)
@@ -209,6 +319,8 @@ def main() -> int:
     check("probe:comfyui-local", comfy["scope"] == "local" and comfy["status"] == "dry-run-ready", json.dumps(comfy, ensure_ascii=False))
     check("probe:render-node-remote", node["scope"] == "remote" and node["status"] == "dry-run-ready" and "no local nvidia-smi" in node["checks"], json.dumps(node, ensure_ascii=False))
     check("probe:gpu-local", local_gpu["scope"] == "local" and local_gpu["status"] == "dry-run-ready", json.dumps(local_gpu, ensure_ascii=False))
+
+    run_snapshot_check()
 
     skills_ref = shutil.which("skills-ref")
     print(f"INFO skills-ref={'available' if skills_ref else 'unavailable'}; internal frontmatter validator is authoritative for this dependency-free checkout")
