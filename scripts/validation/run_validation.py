@@ -39,7 +39,12 @@ def load_json(path: Path) -> dict:
 
 
 def digest(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    data = path.read_bytes()
+    # Keep tracked text evidence stable across Windows CRLF and Git archive
+    # extraction; image and other binary hashes stay byte-for-byte exact.
+    if path.suffix.casefold() in {".json", ".md", ".txt"}:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def tracked(path: str) -> bool:

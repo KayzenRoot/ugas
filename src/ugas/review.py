@@ -37,9 +37,12 @@ REQUIRED_V042_VISUAL_EVIDENCE = REQUIRED_V043_REVIEW_EVIDENCE
 
 def _digest(path: Path) -> str:
     digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(chunk)
+    data = path.read_bytes()
+    # Git may materialize tracked text as CRLF on Windows. Evidence hashes
+    # describe canonical LF content; binary visual assets remain byte-exact.
+    if path.suffix.casefold() in {".json", ".md", ".txt"}:
+        data = data.replace(b"\r\n", b"\n")
+    digest.update(data)
     return digest.hexdigest()
 
 
