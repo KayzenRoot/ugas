@@ -5,7 +5,7 @@ Python 3.10 or newer is required. The runtime uses only the Python standard libr
 ## Clone and validate
 
 ```powershell
-git clone <PUBLIC_UGAS_URL>
+git clone https://github.com/csn1985-ship-it/ugas.git
 cd universal-game-asset-studio
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1

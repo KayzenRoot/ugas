@@ -2,7 +2,7 @@
 
 ## STATUS
 
-`IN_PROGRESS` — implementation and local validation are complete; final Git commit and publication verification remain open.
+`READY_FOR_REVIEW` — v0.2.1 correction is implemented, validated, committed, and published locally to the configured GitHub remote. This is not external approval.
 
 ## VERSAO
 
@@ -73,11 +73,11 @@ Local ComfyUI uses local `/system_stats`; local GPU detection is a separate loca
 
 ## GIT STATUS
 
-Final status and commit hash must be recorded after the last tracked-file change. The separate review-zip tool's local `create_review_zip.py` and `review/` outputs are ignored; no generated archive is part of the source commit.
+`git status --short --branch` — exit `0` after the final tracked-file commit; `main` tracks `origin/main`. `git log -1 --oneline --decorate` records the final commit. The separate review-zip tool's local `create_review_zip.py` and `review/` outputs are ignored; no generated archive is part of the source commit.
 
 ## GITHUB/PUBLICACAO
 
-Target supplied by the user: `https://github.com/csn1985-ship-it/ugas.git`. Publication is only marked complete after remote verification and a successful push. If authentication or network access blocks that operation, the exact state is `BLOQUEADO_PUBLICACAO` with the commands required to finish it.
+`PUBLICADO` — target `https://github.com/csn1985-ship-it/ugas.git`; `git ls-remote --heads origin` exit `0`; `git push -u origin main` exit `0`; remote branch `main` was created successfully.
 
 ## PENDENCIAS
 
@@ -85,7 +85,7 @@ External provider uptime, model/license approval, visual quality, engine runtime
 
 ## BLOQUEIOS
 
-No local implementation blocker is known. GitHub publication remains conditional on remote authentication and network access at final verification.
+No implementation or publication blocker is known. External review and provider/runtime evidence remain outside this prompt.
 
 ## RISCOS
 
@@ -93,7 +93,7 @@ Profile recommendation is evidence-based but not human approval. Provider manife
 
 ## PROXIMO PASSO
 
-Review the final tracked diff, commit the v0.2.1 correction, verify `origin`, and push `main` if authenticated. Stop here before any later prompt or real asset generation.
+Review the published v0.2.1 diff and stop here before any later prompt or real asset generation.
 
 ## DEFINITION OF DONE
 

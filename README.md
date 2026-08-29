@@ -31,10 +31,10 @@ The default skill installation copies all 38 skills. Use `--mode core` for the s
 
 ## Agent installation block
 
-Copy this block into an agent task after the repository is publicly available:
+Copy this block into an agent task:
 
 ```text
-Repository: <PUBLIC_REPO_URL>
+Repository: https://github.com/csn1985-ship-it/ugas.git
 Install the complete UGAS Agent Skills set into the consumer project with:
 python scripts/bootstrap/install_skills.py <consumer-root>
 Then inspect and bootstrap the consumer with:
