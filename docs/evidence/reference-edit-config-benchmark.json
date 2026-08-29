@@ -1,0 +1,2099 @@
+{
+  "schema_version": "0.4.3",
+  "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+  "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+  "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+  "workflow_qualification": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\reference-edit-workflow-qualification.json",
+  "configurations": [
+    {
+      "configuration": {
+        "id": "official-base-20x5",
+        "steps": 20,
+        "guidance": 5.0,
+        "sampler": "euler",
+        "scheduler": "Flux2Scheduler",
+        "qualification": "official-qualified"
+      },
+      "seeds": [
+        10001,
+        10002
+      ],
+      "candidates": [
+        {
+          "candidate_id": "benchmark-official-base-20x5-1",
+          "stage": "official-base-20x5",
+          "route": "generative-reference-edit",
+          "seed": 10001,
+          "steps": 20,
+          "guidance": 5.0,
+          "sampler": "euler",
+          "scheduler": "Flux2Scheduler",
+          "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+          "workflow_sha256": "86a601f38f09d41e16a840918babc57fc031955e00f32806af594f3a4e90bff1",
+          "model_id": "flux2-klein-4b-base-nvfp4",
+          "rgb_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\reference-edit-rgb.png",
+          "rgb_sha256": "fda17850de839435f5c408e239809a65a990483bc0ab544b92fca01b7b35e763",
+          "transparent_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\transparency\\job-f0f1bf7ecdf94f7896fdb4e891a3f3c7\\output.png",
+          "transparent_sha256": "daa3525008456e9c854d740fc05ac8263c7779fa83cf82407f2d32ec42ee1dea",
+          "checkerboard_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\transparency\\job-f0f1bf7ecdf94f7896fdb4e891a3f3c7\\checkerboard.png",
+          "execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-7fdbb9c250f64dfd94dc813d984a04c2",
+            "prompt_id": "c3d26ec9-a1ae-40f5-a0dc-3b417e404985",
+            "submitted_at": "2026-08-29T20:53:39+00:00",
+            "first_poll_at": "2026-08-29T20:53:39+00:00",
+            "completed_at": "2026-08-29T20:54:29+00:00",
+            "runtime_ms": 50226.201,
+            "history_record_key": "c3d26ec9-a1ae-40f5-a0dc-3b417e404985",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+              "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427"
+            },
+            "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427",
+            "edit_contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "workflow_sha256": "86a601f38f09d41e16a840918babc57fc031955e00f32806af594f3a4e90bff1",
+            "model_ids": [
+              "flux2-klein-4b-base-nvfp4"
+            ],
+            "model_file_sha256": {
+              "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+              "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+              "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+            },
+            "seed": 10001,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\reference-edit-rgb.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "c3d26ec9-a1ae-40f5-a0dc-3b417e404985",
+                      "timestamp": 1788036819464
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "c3d26ec9-a1ae-40f5-a0dc-3b417e404985",
+                      "timestamp": 1788036819476
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "c3d26ec9-a1ae-40f5-a0dc-3b417e404985",
+                      "timestamp": 1788036869310
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "capability": "reference-edit",
+              "variant": "base",
+              "steps": 20,
+              "guidance": 5.0,
+              "sampler": "euler",
+              "scheduler": "Flux2Scheduler"
+            },
+            "outputs": [
+              {
+                "filename": "ugas-reference-edit_00012_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "18",
+                "data_sha256": "fda17850de839435f5c408e239809a65a990483bc0ab544b92fca01b7b35e763"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\reference-edit-rgb.png",
+                "sha256": "fda17850de839435f5c408e239809a65a990483bc0ab544b92fca01b7b35e763",
+                "filename": "ugas-reference-edit_00012_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "background_execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-8c735badcb494242b9c06baac2f7d12e",
+            "prompt_id": "01d4962d-16f3-44e0-b7eb-700edd148815",
+            "submitted_at": "2026-08-29T20:54:30+00:00",
+            "first_poll_at": "2026-08-29T20:54:30+00:00",
+            "completed_at": "2026-08-29T20:54:36+00:00",
+            "runtime_ms": 5454.364,
+            "history_record_key": "01d4962d-16f3-44e0-b7eb-700edd148815",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "fda17850de839435f5c408e239809a65a990483bc0ab544b92fca01b7b35e763"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\transparency\\job-f0f1bf7ecdf94f7896fdb4e891a3f3c7\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "01d4962d-16f3-44e0-b7eb-700edd148815",
+                      "timestamp": 1788036870891
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "01d4962d-16f3-44e0-b7eb-700edd148815",
+                      "timestamp": 1788036870902
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "01d4962d-16f3-44e0-b7eb-700edd148815",
+                      "timestamp": 1788036875254
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00018_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "3c6e7e24f11958afdccccef0d98696e09dc40f3dcab1138a53908192ff755290"
+              },
+              {
+                "filename": "ugas-master-transparent_00018_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "3cb1a8a4ca1806216e095b36e421d84139591ac69ac0fd38f2b7310eca0a9a71"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\transparency\\job-f0f1bf7ecdf94f7896fdb4e891a3f3c7\\birefnet-output.png",
+                "sha256": "3c6e7e24f11958afdccccef0d98696e09dc40f3dcab1138a53908192ff755290",
+                "filename": "ugas-foreground-mask_00018_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\transparency\\job-f0f1bf7ecdf94f7896fdb4e891a3f3c7\\birefnet-output-1.png",
+                "sha256": "3cb1a8a4ca1806216e095b36e421d84139591ac69ac0fd38f2b7310eca0a9a71",
+                "filename": "ugas-master-transparent_00018_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "rgb_qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "status": "not-run"
+              }
+            },
+            "requirements": {
+              "requires_transparency": false,
+              "transparency_profile": null
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\reference-edit-rgb.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGB",
+              "source_mode": "RGB",
+              "bytes": 156260,
+              "sha256": "fda17850de839435f5c408e239809a65a990483bc0ab544b92fca01b7b35e763",
+              "has_alpha": false,
+              "has_alpha_channel": false,
+              "has_transparent_pixels": false,
+              "alpha_min": null,
+              "alpha_max": null,
+              "opaque_fraction": 1.0,
+              "transparent_fraction": 0.0,
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "status": "not-run"
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "fidelity": {
+            "schema_version": "0.4.3",
+            "candidate_id": "benchmark-official-base-20x5-1",
+            "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+            "source_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output.png",
+            "candidate_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-623c2da8cf99460da355dffd510c1b87\\transparency\\job-f0f1bf7ecdf94f7896fdb4e891a3f3c7\\output.png",
+            "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+            "candidate_sha256": "daa3525008456e9c854d740fc05ac8263c7779fa83cf82407f2d32ec42ee1dea",
+            "contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "thresholds": {
+              "silhouette_iou_min": 0.9,
+              "centroid_drift_max": 0.025,
+              "bbox_scale_delta_max": 0.05,
+              "foreground_luma_ratio_min": 0.88,
+              "foreground_luma_ratio_max": 1.12,
+              "foreground_luma_mae_max": 18.0,
+              "head_luma_ratio_min": 0.9,
+              "head_luma_ratio_max": 1.1,
+              "head_luma_mae_max": 12.0,
+              "head_changed_fraction_max": 0.12,
+              "protected_rgb_mae_max": 10.0,
+              "protected_changed_fraction_max": 0.18,
+              "max_global_change_fraction": 0.2,
+              "target_changed_fraction_min": 0.1,
+              "target_hue_distance_max": 0.4,
+              "runtime_plausibility_ratio_min": 0.25
+            },
+            "status": "REFERENCE_EDIT_FIDELITY_FAILED",
+            "failure_reasons": [
+              "foreground_luma_ratio",
+              "foreground_luma_mae",
+              "head_luma_mae",
+              "head_changed_fraction",
+              "protected_rgb_mae",
+              "protected_changed_fraction",
+              "target_hue_direction"
+            ],
+            "checks": {
+              "silhouette_iou": true,
+              "centroid_drift": true,
+              "bbox_scale_delta": true,
+              "not_pixel_identical": true,
+              "foreground_luma_ratio": false,
+              "foreground_luma_mae": false,
+              "head_luma_ratio": true,
+              "head_luma_mae": false,
+              "head_changed_fraction": false,
+              "protected_rgb_mae": false,
+              "protected_changed_fraction": false,
+              "global_change_fraction": true,
+              "target_changed": true,
+              "target_hue_direction": false,
+              "target_hue_destination": true
+            },
+            "structural": {
+              "source": {
+                "bbox": [
+                  159,
+                  40,
+                  360,
+                  486
+                ],
+                "centroid": [
+                  0.5116447834291408,
+                  0.5095780800087635
+                ],
+                "area": 47926
+              },
+              "candidate": {
+                "bbox": [
+                  158,
+                  35,
+                  360,
+                  485
+                ],
+                "centroid": [
+                  0.5089351783159849,
+                  0.5035152207739835
+                ],
+                "area": 49284
+              },
+              "silhouette_iou": 0.910649,
+              "centroid_drift": 0.006063,
+              "bbox_scale_delta": 0.013988
+            },
+            "appearance": {
+              "foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 27.379893,
+                "luma_ratio": 0.571126,
+                "luma_mae": 41.57593,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 2.2206,
+                  "p50": 6.2808,
+                  "p75": 12.2998,
+                  "p95": 185.7674
+                },
+                "rgb_mae": 41.28914,
+                "changed_fraction": 0.92695
+              },
+              "source_foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 47.940172,
+                "luma_ratio": 1.0,
+                "luma_mae": 0.0,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "rgb_mae": 0.0,
+                "changed_fraction": 0.0
+              },
+              "head": {
+                "pixels": 6371,
+                "source_luma_mean": 50.839982,
+                "candidate_luma_mean": 52.368628,
+                "luma_ratio": 1.030068,
+                "luma_mae": 40.109161,
+                "source_luma_percentiles": {
+                  "p05": 0.9278,
+                  "p25": 8.2834,
+                  "p50": 24.593,
+                  "p75": 88.976,
+                  "p95": 165.9996
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.4252,
+                  "p50": 4.353,
+                  "p75": 89.0316,
+                  "p95": 212.4776
+                },
+                "rgb_mae": 39.331921,
+                "changed_fraction": 0.851044
+              },
+              "protected_outside_target": {
+                "pixels": 25579,
+                "source_luma_mean": 42.462213,
+                "candidate_luma_mean": 38.452636,
+                "luma_ratio": 0.905573,
+                "luma_mae": 32.216267,
+                "source_luma_percentiles": {
+                  "p05": 1.21208,
+                  "p25": 9.7874,
+                  "p50": 23.173,
+                  "p75": 60.6403,
+                  "p95": 152.32258
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 1.2126,
+                  "p50": 6.0682,
+                  "p75": 61.1572,
+                  "p95": 199.12868
+                },
+                "rgb_mae": 32.228195,
+                "changed_fraction": 0.881231
+              },
+              "target": {
+                "pixels": 22347,
+                "source_luma_mean": 54.210397,
+                "candidate_luma_mean": 14.705724,
+                "luma_ratio": 0.271271,
+                "luma_mae": 52.289261,
+                "source_luma_percentiles": {
+                  "p05": 4.43356,
+                  "p25": 29.5937,
+                  "p50": 52.0912,
+                  "p75": 75.0016,
+                  "p95": 115.175
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 3.353,
+                  "p50": 6.5202,
+                  "p75": 9.9666,
+                  "p95": 49.50668
+                },
+                "rgb_mae": 51.660551,
+                "changed_fraction": 0.979281
+              },
+              "target_candidate_mean_hue": 0.5667,
+              "target_hue_distance_to_220": 0.044411,
+              "target_direction_score": -59.59216,
+              "global_changed_fraction": 0.0
+            },
+            "target_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-target-mask.png",
+              "sha256": "8bd9edb800144b0b9ee16c7b116144b94d756b6bbf9a6c11c799152319ddc9cf",
+              "pixels": 22347
+            },
+            "protected_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-protected-mask.png",
+              "sha256": "113af2fef3bf5031cfcb0af720c872900cacc9525903c334478654dc86cd0be9",
+              "pixels": 6371
+            },
+            "human_review": "required",
+            "production_ready": false
+          },
+          "eligible": false,
+          "failure_reasons": [
+            "foreground_luma_ratio",
+            "foreground_luma_mae",
+            "head_luma_mae",
+            "head_changed_fraction",
+            "protected_rgb_mae",
+            "protected_changed_fraction",
+            "target_hue_direction"
+          ],
+          "runtime_plausibility": {
+            "runtime_ms": 50226.201,
+            "benchmark_runtimes_ms": [
+              50226.201,
+              49560.544
+            ],
+            "benchmark_median_ms": 49893.372,
+            "ratio_to_median": 1.006671,
+            "minimum_ratio": 0.25,
+            "status": "RUNTIME_PLAUSIBLE",
+            "cache_explanation_required": false
+          }
+        },
+        {
+          "candidate_id": "benchmark-official-base-20x5-2",
+          "stage": "official-base-20x5",
+          "route": "generative-reference-edit",
+          "seed": 10002,
+          "steps": 20,
+          "guidance": 5.0,
+          "sampler": "euler",
+          "scheduler": "Flux2Scheduler",
+          "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+          "workflow_sha256": "e17d4ed1ae87cdfc4f8aa28e043640cbd5318d01c0ba8549be1edd22c6c50772",
+          "model_id": "flux2-klein-4b-base-nvfp4",
+          "rgb_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\reference-edit-rgb.png",
+          "rgb_sha256": "5be7894f0e9e5e6a1bcea784f246a04db3b62897d4614a88ea1eb4830a808b14",
+          "transparent_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\transparency\\job-1e35f630217e49dcac5153241f41490d\\output.png",
+          "transparent_sha256": "7b3db1c2e9e3d71c812023f4e3771830109d594e6c2d0388e907bc50029cd259",
+          "checkerboard_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\transparency\\job-1e35f630217e49dcac5153241f41490d\\checkerboard.png",
+          "execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-57c8740206f54c2c99f9e3cc19e9732f",
+            "prompt_id": "2bcf913a-f16e-4834-ac59-0b21485b9574",
+            "submitted_at": "2026-08-29T20:54:41+00:00",
+            "first_poll_at": "2026-08-29T20:54:41+00:00",
+            "completed_at": "2026-08-29T20:55:30+00:00",
+            "runtime_ms": 49560.544,
+            "history_record_key": "2bcf913a-f16e-4834-ac59-0b21485b9574",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+              "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427"
+            },
+            "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427",
+            "edit_contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "workflow_sha256": "e17d4ed1ae87cdfc4f8aa28e043640cbd5318d01c0ba8549be1edd22c6c50772",
+            "model_ids": [
+              "flux2-klein-4b-base-nvfp4"
+            ],
+            "model_file_sha256": {
+              "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+              "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+              "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+            },
+            "seed": 10002,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\reference-edit-rgb.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "2bcf913a-f16e-4834-ac59-0b21485b9574",
+                      "timestamp": 1788036881086
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "2bcf913a-f16e-4834-ac59-0b21485b9574",
+                      "timestamp": 1788036881108
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "2bcf913a-f16e-4834-ac59-0b21485b9574",
+                      "timestamp": 1788036929546
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "capability": "reference-edit",
+              "variant": "base",
+              "steps": 20,
+              "guidance": 5.0,
+              "sampler": "euler",
+              "scheduler": "Flux2Scheduler"
+            },
+            "outputs": [
+              {
+                "filename": "ugas-reference-edit_00013_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "18",
+                "data_sha256": "5be7894f0e9e5e6a1bcea784f246a04db3b62897d4614a88ea1eb4830a808b14"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\reference-edit-rgb.png",
+                "sha256": "5be7894f0e9e5e6a1bcea784f246a04db3b62897d4614a88ea1eb4830a808b14",
+                "filename": "ugas-reference-edit_00013_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "background_execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-5bb9e9d3f3614dd18f154550c97f6224",
+            "prompt_id": "abbc5e50-5bb2-48e3-94a1-cbef426e5e92",
+            "submitted_at": "2026-08-29T20:55:31+00:00",
+            "first_poll_at": "2026-08-29T20:55:31+00:00",
+            "completed_at": "2026-08-29T20:55:36+00:00",
+            "runtime_ms": 5429.058,
+            "history_record_key": "abbc5e50-5bb2-48e3-94a1-cbef426e5e92",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "5be7894f0e9e5e6a1bcea784f246a04db3b62897d4614a88ea1eb4830a808b14"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\transparency\\job-1e35f630217e49dcac5153241f41490d\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "abbc5e50-5bb2-48e3-94a1-cbef426e5e92",
+                      "timestamp": 1788036931620
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "abbc5e50-5bb2-48e3-94a1-cbef426e5e92",
+                      "timestamp": 1788036931634
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "abbc5e50-5bb2-48e3-94a1-cbef426e5e92",
+                      "timestamp": 1788036935664
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00019_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "a5cbd73796039df2fdcbedd2d3c43dba3af57b9fb572eda773968b9daf14e1f5"
+              },
+              {
+                "filename": "ugas-master-transparent_00019_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "72c871c3ab79dc6e5313e502b6a7fcb7838779a8f18f1a6ee93ff1a9d4768e98"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\transparency\\job-1e35f630217e49dcac5153241f41490d\\birefnet-output.png",
+                "sha256": "a5cbd73796039df2fdcbedd2d3c43dba3af57b9fb572eda773968b9daf14e1f5",
+                "filename": "ugas-foreground-mask_00019_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\transparency\\job-1e35f630217e49dcac5153241f41490d\\birefnet-output-1.png",
+                "sha256": "72c871c3ab79dc6e5313e502b6a7fcb7838779a8f18f1a6ee93ff1a9d4768e98",
+                "filename": "ugas-master-transparent_00019_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "rgb_qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "status": "not-run"
+              }
+            },
+            "requirements": {
+              "requires_transparency": false,
+              "transparency_profile": null
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\reference-edit-rgb.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGB",
+              "source_mode": "RGB",
+              "bytes": 134261,
+              "sha256": "5be7894f0e9e5e6a1bcea784f246a04db3b62897d4614a88ea1eb4830a808b14",
+              "has_alpha": false,
+              "has_alpha_channel": false,
+              "has_transparent_pixels": false,
+              "alpha_min": null,
+              "alpha_max": null,
+              "opaque_fraction": 1.0,
+              "transparent_fraction": 0.0,
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "status": "not-run"
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "fidelity": {
+            "schema_version": "0.4.3",
+            "candidate_id": "benchmark-official-base-20x5-2",
+            "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+            "source_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output.png",
+            "candidate_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\official-base-20x5\\job-d1bb94708f17476199fd5eeeead3f7ba\\transparency\\job-1e35f630217e49dcac5153241f41490d\\output.png",
+            "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+            "candidate_sha256": "7b3db1c2e9e3d71c812023f4e3771830109d594e6c2d0388e907bc50029cd259",
+            "contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "thresholds": {
+              "silhouette_iou_min": 0.9,
+              "centroid_drift_max": 0.025,
+              "bbox_scale_delta_max": 0.05,
+              "foreground_luma_ratio_min": 0.88,
+              "foreground_luma_ratio_max": 1.12,
+              "foreground_luma_mae_max": 18.0,
+              "head_luma_ratio_min": 0.9,
+              "head_luma_ratio_max": 1.1,
+              "head_luma_mae_max": 12.0,
+              "head_changed_fraction_max": 0.12,
+              "protected_rgb_mae_max": 10.0,
+              "protected_changed_fraction_max": 0.18,
+              "max_global_change_fraction": 0.2,
+              "target_changed_fraction_min": 0.1,
+              "target_hue_distance_max": 0.4,
+              "runtime_plausibility_ratio_min": 0.25
+            },
+            "status": "REFERENCE_EDIT_FIDELITY_FAILED",
+            "failure_reasons": [
+              "foreground_luma_ratio",
+              "foreground_luma_mae",
+              "head_luma_ratio",
+              "head_luma_mae",
+              "head_changed_fraction",
+              "protected_rgb_mae",
+              "protected_changed_fraction",
+              "target_hue_direction"
+            ],
+            "checks": {
+              "silhouette_iou": true,
+              "centroid_drift": true,
+              "bbox_scale_delta": true,
+              "not_pixel_identical": true,
+              "foreground_luma_ratio": false,
+              "foreground_luma_mae": false,
+              "head_luma_ratio": false,
+              "head_luma_mae": false,
+              "head_changed_fraction": false,
+              "protected_rgb_mae": false,
+              "protected_changed_fraction": false,
+              "global_change_fraction": true,
+              "target_changed": true,
+              "target_hue_direction": false,
+              "target_hue_destination": true
+            },
+            "structural": {
+              "source": {
+                "bbox": [
+                  159,
+                  40,
+                  360,
+                  486
+                ],
+                "centroid": [
+                  0.5116447834291408,
+                  0.5095780800087635
+                ],
+                "area": 47926
+              },
+              "candidate": {
+                "bbox": [
+                  159,
+                  41,
+                  359,
+                  486
+                ],
+                "centroid": [
+                  0.510511542295547,
+                  0.509741749290837
+                ],
+                "area": 46710
+              },
+              "silhouette_iou": 0.960515,
+              "centroid_drift": 0.001133,
+              "bbox_scale_delta": 0.007206
+            },
+            "appearance": {
+              "foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 37.467754,
+                "luma_ratio": 0.781552,
+                "luma_mae": 36.630281,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 21.93,
+                  "p75": 27.9472,
+                  "p95": 211.3513
+                },
+                "rgb_mae": 38.253599,
+                "changed_fraction": 0.954576
+              },
+              "source_foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 47.940172,
+                "luma_ratio": 1.0,
+                "luma_mae": 0.0,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "rgb_mae": 0.0,
+                "changed_fraction": 0.0
+              },
+              "head": {
+                "pixels": 6371,
+                "source_luma_mean": 50.839982,
+                "candidate_luma_mean": 20.388019,
+                "luma_ratio": 0.401023,
+                "luma_mae": 50.822916,
+                "source_luma_percentiles": {
+                  "p05": 0.9278,
+                  "p25": 8.2834,
+                  "p50": 24.593,
+                  "p75": 88.976,
+                  "p95": 165.9996
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 0.0,
+                  "p75": 0.0,
+                  "p95": 233.2728
+                },
+                "rgb_mae": 50.6956,
+                "changed_fraction": 0.859991
+              },
+              "protected_outside_target": {
+                "pixels": 25579,
+                "source_luma_mean": 42.462213,
+                "candidate_luma_mean": 43.065433,
+                "luma_ratio": 1.014206,
+                "luma_mae": 34.805816,
+                "source_luma_percentiles": {
+                  "p05": 1.21208,
+                  "p25": 9.7874,
+                  "p50": 23.173,
+                  "p75": 60.6403,
+                  "p95": 152.32258
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 16.1294,
+                  "p75": 18.5638,
+                  "p95": 236.3454
+                },
+                "rgb_mae": 38.601561,
+                "changed_fraction": 0.937019
+              },
+              "target": {
+                "pixels": 22347,
+                "source_luma_mean": 54.210397,
+                "candidate_luma_mean": 31.060494,
+                "luma_ratio": 0.572962,
+                "luma_mae": 38.718614,
+                "source_luma_percentiles": {
+                  "p05": 4.43356,
+                  "p25": 29.5937,
+                  "p50": 52.0912,
+                  "p75": 75.0016,
+                  "p95": 115.175
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 23.5048,
+                  "p50": 26.871,
+                  "p75": 28.0916,
+                  "p95": 47.17634
+                },
+                "rgb_mae": 37.855312,
+                "changed_fraction": 0.974672
+              },
+              "target_candidate_mean_hue": 0.54887,
+              "target_hue_distance_to_220": 0.062241,
+              "target_direction_score": -21.350069,
+              "global_changed_fraction": 0.0
+            },
+            "target_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-target-mask.png",
+              "sha256": "8bd9edb800144b0b9ee16c7b116144b94d756b6bbf9a6c11c799152319ddc9cf",
+              "pixels": 22347
+            },
+            "protected_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-protected-mask.png",
+              "sha256": "113af2fef3bf5031cfcb0af720c872900cacc9525903c334478654dc86cd0be9",
+              "pixels": 6371
+            },
+            "human_review": "required",
+            "production_ready": false
+          },
+          "eligible": false,
+          "failure_reasons": [
+            "foreground_luma_ratio",
+            "foreground_luma_mae",
+            "head_luma_ratio",
+            "head_luma_mae",
+            "head_changed_fraction",
+            "protected_rgb_mae",
+            "protected_changed_fraction",
+            "target_hue_direction"
+          ],
+          "runtime_plausibility": {
+            "runtime_ms": 49560.544,
+            "benchmark_runtimes_ms": [
+              50226.201,
+              49560.544
+            ],
+            "benchmark_median_ms": 49893.372,
+            "ratio_to_median": 0.993329,
+            "minimum_ratio": 0.25,
+            "status": "RUNTIME_PLAUSIBLE",
+            "cache_explanation_required": false
+          }
+        }
+      ],
+      "eligible_count": 0,
+      "runtime_ms": [
+        50226.201,
+        49560.544
+      ]
+    },
+    {
+      "configuration": {
+        "id": "legacy-50x4-not-qualified",
+        "steps": 50,
+        "guidance": 4.0,
+        "sampler": "euler",
+        "scheduler": "Flux2Scheduler",
+        "qualification": "legacy-tested-not-qualified"
+      },
+      "seeds": [
+        10003,
+        10004
+      ],
+      "candidates": [
+        {
+          "candidate_id": "benchmark-legacy-50x4-not-qualified-1",
+          "stage": "legacy-50x4-not-qualified",
+          "route": "generative-reference-edit",
+          "seed": 10003,
+          "steps": 50,
+          "guidance": 4.0,
+          "sampler": "euler",
+          "scheduler": "Flux2Scheduler",
+          "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+          "workflow_sha256": "29e2062fbb23a2b5dded949869ca2c040d92be8516899531de9cf7b2cabbce98",
+          "model_id": "flux2-klein-4b-base-nvfp4",
+          "rgb_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\reference-edit-rgb.png",
+          "rgb_sha256": "0704a901b1f1049bcac5244379fae4857ec4e639887909864c206d6e8716d61e",
+          "transparent_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\transparency\\job-7eddb715504e44ce8fe898b8937c2226\\output.png",
+          "transparent_sha256": "71047a4c21c99d8a014ba40ae45405e00b7994a43a6bbea07202fe3b58cbadfd",
+          "checkerboard_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\transparency\\job-7eddb715504e44ce8fe898b8937c2226\\checkerboard.png",
+          "execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-474cdca82fac4395a83673571973eff9",
+            "prompt_id": "dafe5c15-be92-4d54-8b40-140a34ba78b9",
+            "submitted_at": "2026-08-29T20:55:41+00:00",
+            "first_poll_at": "2026-08-29T20:55:41+00:00",
+            "completed_at": "2026-08-29T20:56:45+00:00",
+            "runtime_ms": 64577.077,
+            "history_record_key": "dafe5c15-be92-4d54-8b40-140a34ba78b9",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+              "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427"
+            },
+            "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427",
+            "edit_contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "workflow_sha256": "29e2062fbb23a2b5dded949869ca2c040d92be8516899531de9cf7b2cabbce98",
+            "model_ids": [
+              "flux2-klein-4b-base-nvfp4"
+            ],
+            "model_file_sha256": {
+              "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+              "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+              "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+            },
+            "seed": 10003,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\reference-edit-rgb.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "dafe5c15-be92-4d54-8b40-140a34ba78b9",
+                      "timestamp": 1788036941405
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "dafe5c15-be92-4d54-8b40-140a34ba78b9",
+                      "timestamp": 1788036941410
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "dafe5c15-be92-4d54-8b40-140a34ba78b9",
+                      "timestamp": 1788037005675
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "capability": "reference-edit",
+              "variant": "base",
+              "steps": 50,
+              "guidance": 4.0,
+              "sampler": "euler",
+              "scheduler": "Flux2Scheduler"
+            },
+            "outputs": [
+              {
+                "filename": "ugas-reference-edit_00014_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "18",
+                "data_sha256": "0704a901b1f1049bcac5244379fae4857ec4e639887909864c206d6e8716d61e"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\reference-edit-rgb.png",
+                "sha256": "0704a901b1f1049bcac5244379fae4857ec4e639887909864c206d6e8716d61e",
+                "filename": "ugas-reference-edit_00014_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "background_execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-0f99dc92865444c5b168b6fb8b8b01d1",
+            "prompt_id": "25c5df48-c8bb-4fc5-b499-426e549a9fb7",
+            "submitted_at": "2026-08-29T20:56:47+00:00",
+            "first_poll_at": "2026-08-29T20:56:47+00:00",
+            "completed_at": "2026-08-29T20:56:56+00:00",
+            "runtime_ms": 9734.63,
+            "history_record_key": "25c5df48-c8bb-4fc5-b499-426e549a9fb7",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "0704a901b1f1049bcac5244379fae4857ec4e639887909864c206d6e8716d61e"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\transparency\\job-7eddb715504e44ce8fe898b8937c2226\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "25c5df48-c8bb-4fc5-b499-426e549a9fb7",
+                      "timestamp": 1788037007030
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "25c5df48-c8bb-4fc5-b499-426e549a9fb7",
+                      "timestamp": 1788037007041
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "25c5df48-c8bb-4fc5-b499-426e549a9fb7",
+                      "timestamp": 1788037012575
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00020_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "fa62310d324c2a121f98e33455835959b168c5f2bbed9ef11426c243ffb65e2b"
+              },
+              {
+                "filename": "ugas-master-transparent_00020_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "e206767ae431ff73141b333d9b2f4aae38682d376d0f8d30543843e2a68e816d"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\transparency\\job-7eddb715504e44ce8fe898b8937c2226\\birefnet-output.png",
+                "sha256": "fa62310d324c2a121f98e33455835959b168c5f2bbed9ef11426c243ffb65e2b",
+                "filename": "ugas-foreground-mask_00020_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\transparency\\job-7eddb715504e44ce8fe898b8937c2226\\birefnet-output-1.png",
+                "sha256": "e206767ae431ff73141b333d9b2f4aae38682d376d0f8d30543843e2a68e816d",
+                "filename": "ugas-master-transparent_00020_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "rgb_qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "status": "not-run"
+              }
+            },
+            "requirements": {
+              "requires_transparency": false,
+              "transparency_profile": null
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\reference-edit-rgb.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGB",
+              "source_mode": "RGB",
+              "bytes": 137768,
+              "sha256": "0704a901b1f1049bcac5244379fae4857ec4e639887909864c206d6e8716d61e",
+              "has_alpha": false,
+              "has_alpha_channel": false,
+              "has_transparent_pixels": false,
+              "alpha_min": null,
+              "alpha_max": null,
+              "opaque_fraction": 1.0,
+              "transparent_fraction": 0.0,
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "status": "not-run"
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "fidelity": {
+            "schema_version": "0.4.3",
+            "candidate_id": "benchmark-legacy-50x4-not-qualified-1",
+            "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+            "source_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output.png",
+            "candidate_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-288425e9fe844f05a42fe2f51bd6525d\\transparency\\job-7eddb715504e44ce8fe898b8937c2226\\output.png",
+            "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+            "candidate_sha256": "71047a4c21c99d8a014ba40ae45405e00b7994a43a6bbea07202fe3b58cbadfd",
+            "contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "thresholds": {
+              "silhouette_iou_min": 0.9,
+              "centroid_drift_max": 0.025,
+              "bbox_scale_delta_max": 0.05,
+              "foreground_luma_ratio_min": 0.88,
+              "foreground_luma_ratio_max": 1.12,
+              "foreground_luma_mae_max": 18.0,
+              "head_luma_ratio_min": 0.9,
+              "head_luma_ratio_max": 1.1,
+              "head_luma_mae_max": 12.0,
+              "head_changed_fraction_max": 0.12,
+              "protected_rgb_mae_max": 10.0,
+              "protected_changed_fraction_max": 0.18,
+              "max_global_change_fraction": 0.2,
+              "target_changed_fraction_min": 0.1,
+              "target_hue_distance_max": 0.4,
+              "runtime_plausibility_ratio_min": 0.25
+            },
+            "status": "REFERENCE_EDIT_FIDELITY_FAILED",
+            "failure_reasons": [
+              "foreground_luma_ratio",
+              "foreground_luma_mae",
+              "head_luma_ratio",
+              "head_luma_mae",
+              "head_changed_fraction",
+              "protected_rgb_mae",
+              "protected_changed_fraction",
+              "target_hue_direction"
+            ],
+            "checks": {
+              "silhouette_iou": true,
+              "centroid_drift": true,
+              "bbox_scale_delta": true,
+              "not_pixel_identical": true,
+              "foreground_luma_ratio": false,
+              "foreground_luma_mae": false,
+              "head_luma_ratio": false,
+              "head_luma_mae": false,
+              "head_changed_fraction": false,
+              "protected_rgb_mae": false,
+              "protected_changed_fraction": false,
+              "global_change_fraction": true,
+              "target_changed": true,
+              "target_hue_direction": false,
+              "target_hue_destination": true
+            },
+            "structural": {
+              "source": {
+                "bbox": [
+                  159,
+                  40,
+                  360,
+                  486
+                ],
+                "centroid": [
+                  0.5116447834291408,
+                  0.5095780800087635
+                ],
+                "area": 47926
+              },
+              "candidate": {
+                "bbox": [
+                  158,
+                  40,
+                  359,
+                  487
+                ],
+                "centroid": [
+                  0.5094725243712019,
+                  0.5115052711955604
+                ],
+                "area": 47392
+              },
+              "silhouette_iou": 0.949363,
+              "centroid_drift": 0.002172,
+              "bbox_scale_delta": 0.002242
+            },
+            "appearance": {
+              "foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 33.596732,
+                "luma_ratio": 0.700805,
+                "luma_mae": 44.95567,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 8.1684,
+                  "p75": 20.9396,
+                  "p95": 224.928
+                },
+                "rgb_mae": 43.159642,
+                "changed_fraction": 0.935546
+              },
+              "source_foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 47.940172,
+                "luma_ratio": 1.0,
+                "luma_mae": 0.0,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "rgb_mae": 0.0,
+                "changed_fraction": 0.0
+              },
+              "head": {
+                "pixels": 6371,
+                "source_luma_mean": 50.839982,
+                "candidate_luma_mean": 19.337691,
+                "luma_ratio": 0.380364,
+                "luma_mae": 52.373571,
+                "source_luma_percentiles": {
+                  "p05": 0.9278,
+                  "p25": 8.2834,
+                  "p50": 24.593,
+                  "p75": 88.976,
+                  "p95": 165.9996
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 0.0,
+                  "p75": 0.0,
+                  "p95": 248.2848
+                },
+                "rgb_mae": 52.328677,
+                "changed_fraction": 0.862345
+              },
+              "protected_outside_target": {
+                "pixels": 25579,
+                "source_luma_mean": 42.462213,
+                "candidate_luma_mean": 42.566955,
+                "luma_ratio": 1.002467,
+                "luma_mae": 45.595346,
+                "source_luma_percentiles": {
+                  "p05": 1.21208,
+                  "p25": 9.7874,
+                  "p50": 23.173,
+                  "p75": 60.6403,
+                  "p95": 152.32258
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 0.0,
+                  "p75": 3.2172,
+                  "p95": 246.35982
+                },
+                "rgb_mae": 45.033217,
+                "changed_fraction": 0.902615
+              },
+              "target": {
+                "pixels": 22347,
+                "source_luma_mean": 54.210397,
+                "candidate_luma_mean": 23.329164,
+                "luma_ratio": 0.430345,
+                "luma_mae": 44.223479,
+                "source_luma_percentiles": {
+                  "p05": 4.43356,
+                  "p25": 29.5937,
+                  "p50": 52.0912,
+                  "p75": 75.0016,
+                  "p95": 115.175
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 13.4786,
+                  "p50": 19.3648,
+                  "p75": 21.08,
+                  "p95": 30.82832
+                },
+                "rgb_mae": 41.015095,
+                "changed_fraction": 0.97324
+              },
+              "target_candidate_mean_hue": 0.558149,
+              "target_hue_distance_to_220": 0.052962,
+              "target_direction_score": -26.201683,
+              "global_changed_fraction": 0.0
+            },
+            "target_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-target-mask.png",
+              "sha256": "8bd9edb800144b0b9ee16c7b116144b94d756b6bbf9a6c11c799152319ddc9cf",
+              "pixels": 22347
+            },
+            "protected_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-protected-mask.png",
+              "sha256": "113af2fef3bf5031cfcb0af720c872900cacc9525903c334478654dc86cd0be9",
+              "pixels": 6371
+            },
+            "human_review": "required",
+            "production_ready": false
+          },
+          "eligible": false,
+          "failure_reasons": [
+            "foreground_luma_ratio",
+            "foreground_luma_mae",
+            "head_luma_ratio",
+            "head_luma_mae",
+            "head_changed_fraction",
+            "protected_rgb_mae",
+            "protected_changed_fraction",
+            "target_hue_direction"
+          ],
+          "runtime_plausibility": {
+            "runtime_ms": 64577.077,
+            "benchmark_runtimes_ms": [
+              64577.077,
+              69611.498
+            ],
+            "benchmark_median_ms": 67094.288,
+            "ratio_to_median": 0.962482,
+            "minimum_ratio": 0.25,
+            "status": "RUNTIME_PLAUSIBLE",
+            "cache_explanation_required": false
+          }
+        },
+        {
+          "candidate_id": "benchmark-legacy-50x4-not-qualified-2",
+          "stage": "legacy-50x4-not-qualified",
+          "route": "generative-reference-edit",
+          "seed": 10004,
+          "steps": 50,
+          "guidance": 4.0,
+          "sampler": "euler",
+          "scheduler": "Flux2Scheduler",
+          "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+          "workflow_sha256": "5cfcc1fc1319d39354adc67b2dfa41155ce19e3bc6df40b60cf227e5bc0a96e9",
+          "model_id": "flux2-klein-4b-base-nvfp4",
+          "rgb_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\reference-edit-rgb.png",
+          "rgb_sha256": "7bd08d2d7f85b82d94c3217d689b8c7dcffefaf97e2cef23dabb994d22c62035",
+          "transparent_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\transparency\\job-cc77559ca8ed4da1a821d15f88652d07\\output.png",
+          "transparent_sha256": "7854e6ad6be89332e1a822402a6285df8c2e2d45f1f3d23073c7690a8bd2a077",
+          "checkerboard_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\transparency\\job-cc77559ca8ed4da1a821d15f88652d07\\checkerboard.png",
+          "execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-cfac2f7c0921496480915f1110f69e2a",
+            "prompt_id": "68b6e412-1be9-48f5-8ff8-0fcfbca4d661",
+            "submitted_at": "2026-08-29T20:57:01+00:00",
+            "first_poll_at": "2026-08-29T20:57:01+00:00",
+            "completed_at": "2026-08-29T20:58:10+00:00",
+            "runtime_ms": 69611.498,
+            "history_record_key": "68b6e412-1be9-48f5-8ff8-0fcfbca4d661",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+              "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427"
+            },
+            "instruction_sha256": "a6a8d4738be739dc6acecd45292b7eaa455f0dcaa9389ba26f2fd06032b63427",
+            "edit_contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "workflow_sha256": "5cfcc1fc1319d39354adc67b2dfa41155ce19e3bc6df40b60cf227e5bc0a96e9",
+            "model_ids": [
+              "flux2-klein-4b-base-nvfp4"
+            ],
+            "model_file_sha256": {
+              "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+              "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+              "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+            },
+            "seed": 10004,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\reference-edit-rgb.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "68b6e412-1be9-48f5-8ff8-0fcfbca4d661",
+                      "timestamp": 1788037021089
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "68b6e412-1be9-48f5-8ff8-0fcfbca4d661",
+                      "timestamp": 1788037021094
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "68b6e412-1be9-48f5-8ff8-0fcfbca4d661",
+                      "timestamp": 1788037086228
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "capability": "reference-edit",
+              "variant": "base",
+              "steps": 50,
+              "guidance": 4.0,
+              "sampler": "euler",
+              "scheduler": "Flux2Scheduler"
+            },
+            "outputs": [
+              {
+                "filename": "ugas-reference-edit_00015_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "18",
+                "data_sha256": "7bd08d2d7f85b82d94c3217d689b8c7dcffefaf97e2cef23dabb994d22c62035"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\reference-edit-rgb.png",
+                "sha256": "7bd08d2d7f85b82d94c3217d689b8c7dcffefaf97e2cef23dabb994d22c62035",
+                "filename": "ugas-reference-edit_00015_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "background_execution_evidence": {
+            "schema_version": "0.4.3",
+            "client_job_id": "job-b33c8bfb716b4e6ea42b3348a66bbb47",
+            "prompt_id": "3d60c6f8-0ed3-4c84-bc79-04946ce54e65",
+            "submitted_at": "2026-08-29T20:58:12+00:00",
+            "first_poll_at": "2026-08-29T20:58:12+00:00",
+            "completed_at": "2026-08-29T20:58:17+00:00",
+            "runtime_ms": 5405.363,
+            "history_record_key": "3d60c6f8-0ed3-4c84-bc79-04946ce54e65",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "7bd08d2d7f85b82d94c3217d689b8c7dcffefaf97e2cef23dabb994d22c62035"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\transparency\\job-cc77559ca8ed4da1a821d15f88652d07\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "3d60c6f8-0ed3-4c84-bc79-04946ce54e65",
+                      "timestamp": 1788037092068
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "3d60c6f8-0ed3-4c84-bc79-04946ce54e65",
+                      "timestamp": 1788037092082
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "3d60c6f8-0ed3-4c84-bc79-04946ce54e65",
+                      "timestamp": 1788037095922
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00021_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "479feb5fd30ac81429526c4fb82e2c3f42a8601854070861279337e48946b4cb"
+              },
+              {
+                "filename": "ugas-master-transparent_00021_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "f428ff3c2d48f5ec2e6fb29d5d3062e96fa5f9f4d28ade0a380ddc437b8d00f1"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\transparency\\job-cc77559ca8ed4da1a821d15f88652d07\\birefnet-output.png",
+                "sha256": "479feb5fd30ac81429526c4fb82e2c3f42a8601854070861279337e48946b4cb",
+                "filename": "ugas-foreground-mask_00021_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\transparency\\job-cc77559ca8ed4da1a821d15f88652d07\\birefnet-output-1.png",
+                "sha256": "f428ff3c2d48f5ec2e6fb29d5d3062e96fa5f9f4d28ade0a380ddc437b8d00f1",
+                "filename": "ugas-master-transparent_00021_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "rgb_qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "status": "not-run"
+              }
+            },
+            "requirements": {
+              "requires_transparency": false,
+              "transparency_profile": null
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\reference-edit-rgb.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGB",
+              "source_mode": "RGB",
+              "bytes": 128870,
+              "sha256": "7bd08d2d7f85b82d94c3217d689b8c7dcffefaf97e2cef23dabb994d22c62035",
+              "has_alpha": false,
+              "has_alpha_channel": false,
+              "has_transparent_pixels": false,
+              "alpha_min": null,
+              "alpha_max": null,
+              "opaque_fraction": 1.0,
+              "transparent_fraction": 0.0,
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.0,
+              "alpha_opaque_fraction": 1.0,
+              "alpha_partial_fraction": 0.0,
+              "foreground_coverage": 1.0,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 1.0,
+              "soft_edge_foreground_fraction": 0.0,
+              "alpha_bbox": null,
+              "alpha_centroid": null,
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "status": "not-run"
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "fidelity": {
+            "schema_version": "0.4.3",
+            "candidate_id": "benchmark-legacy-50x4-not-qualified-2",
+            "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+            "source_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output.png",
+            "candidate_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\reference-edit-benchmark\\legacy-50x4-not-qualified\\job-809fb569d937451490e95fd14226586f\\transparency\\job-cc77559ca8ed4da1a821d15f88652d07\\output.png",
+            "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+            "candidate_sha256": "7854e6ad6be89332e1a822402a6285df8c2e2d45f1f3d23073c7690a8bd2a077",
+            "contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+            "thresholds": {
+              "silhouette_iou_min": 0.9,
+              "centroid_drift_max": 0.025,
+              "bbox_scale_delta_max": 0.05,
+              "foreground_luma_ratio_min": 0.88,
+              "foreground_luma_ratio_max": 1.12,
+              "foreground_luma_mae_max": 18.0,
+              "head_luma_ratio_min": 0.9,
+              "head_luma_ratio_max": 1.1,
+              "head_luma_mae_max": 12.0,
+              "head_changed_fraction_max": 0.12,
+              "protected_rgb_mae_max": 10.0,
+              "protected_changed_fraction_max": 0.18,
+              "max_global_change_fraction": 0.2,
+              "target_changed_fraction_min": 0.1,
+              "target_hue_distance_max": 0.4,
+              "runtime_plausibility_ratio_min": 0.25
+            },
+            "status": "REFERENCE_EDIT_FIDELITY_FAILED",
+            "failure_reasons": [
+              "silhouette_iou",
+              "foreground_luma_ratio",
+              "foreground_luma_mae",
+              "head_luma_ratio",
+              "head_luma_mae",
+              "head_changed_fraction",
+              "protected_rgb_mae",
+              "protected_changed_fraction",
+              "target_hue_direction"
+            ],
+            "checks": {
+              "silhouette_iou": false,
+              "centroid_drift": true,
+              "bbox_scale_delta": true,
+              "not_pixel_identical": true,
+              "foreground_luma_ratio": false,
+              "foreground_luma_mae": false,
+              "head_luma_ratio": false,
+              "head_luma_mae": false,
+              "head_changed_fraction": false,
+              "protected_rgb_mae": false,
+              "protected_changed_fraction": false,
+              "global_change_fraction": true,
+              "target_changed": true,
+              "target_hue_direction": false,
+              "target_hue_destination": true
+            },
+            "structural": {
+              "source": {
+                "bbox": [
+                  159,
+                  40,
+                  360,
+                  486
+                ],
+                "centroid": [
+                  0.5116447834291408,
+                  0.5095780800087635
+                ],
+                "area": 47926
+              },
+              "candidate": {
+                "bbox": [
+                  152,
+                  40,
+                  357,
+                  486
+                ],
+                "centroid": [
+                  0.5013149625910482,
+                  0.5090524137680777
+                ],
+                "area": 47365
+              },
+              "silhouette_iou": 0.789637,
+              "centroid_drift": 0.01033,
+              "bbox_scale_delta": 0.0199
+            },
+            "appearance": {
+              "foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 41.574491,
+                "luma_ratio": 0.867216,
+                "luma_mae": 62.764551,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.2848,
+                  "p50": 4.095,
+                  "p75": 14.02945,
+                  "p95": 254.0
+                },
+                "rgb_mae": 62.560475,
+                "changed_fraction": 0.950236
+              },
+              "source_foreground": {
+                "pixels": 47926,
+                "source_luma_mean": 47.940172,
+                "candidate_luma_mean": 47.940172,
+                "luma_ratio": 1.0,
+                "luma_mae": 0.0,
+                "source_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 2.0,
+                  "p25": 15.0384,
+                  "p50": 35.1496,
+                  "p75": 72.2531,
+                  "p95": 135.2467
+                },
+                "rgb_mae": 0.0,
+                "changed_fraction": 0.0
+              },
+              "head": {
+                "pixels": 6371,
+                "source_luma_mean": 50.839982,
+                "candidate_luma_mean": 41.527081,
+                "luma_ratio": 0.816819,
+                "luma_mae": 59.634868,
+                "source_luma_percentiles": {
+                  "p05": 0.9278,
+                  "p25": 8.2834,
+                  "p50": 24.593,
+                  "p75": 88.976,
+                  "p95": 165.9996
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 1.5094,
+                  "p75": 31.926,
+                  "p95": 254.0
+                },
+                "rgb_mae": 60.375085,
+                "changed_fraction": 0.905195
+              },
+              "protected_outside_target": {
+                "pixels": 25579,
+                "source_luma_mean": 42.462213,
+                "candidate_luma_mean": 46.039285,
+                "luma_ratio": 1.084241,
+                "luma_mae": 54.631097,
+                "source_luma_percentiles": {
+                  "p05": 1.21208,
+                  "p25": 9.7874,
+                  "p50": 23.173,
+                  "p75": 60.6403,
+                  "p95": 152.32258
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 0.0,
+                  "p50": 0.9278,
+                  "p75": 37.3192,
+                  "p95": 254.0722
+                },
+                "rgb_mae": 54.723614,
+                "changed_fraction": 0.922593
+              },
+              "target": {
+                "pixels": 22347,
+                "source_luma_mean": 54.210397,
+                "candidate_luma_mean": 36.463962,
+                "luma_ratio": 0.672638,
+                "luma_mae": 72.074329,
+                "source_luma_percentiles": {
+                  "p05": 4.43356,
+                  "p25": 29.5937,
+                  "p50": 52.0912,
+                  "p75": 75.0016,
+                  "p95": 115.175
+                },
+                "candidate_luma_percentiles": {
+                  "p05": 0.0,
+                  "p25": 3.8062,
+                  "p50": 5.4532,
+                  "p75": 8.2486,
+                  "p95": 254.0
+                },
+                "rgb_mae": 71.530765,
+                "changed_fraction": 0.981877
+              },
+              "target_candidate_mean_hue": 0.559658,
+              "target_hue_distance_to_220": 0.051453,
+              "target_direction_score": -63.193046,
+              "global_changed_fraction": 0.0
+            },
+            "target_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-target-mask.png",
+              "sha256": "8bd9edb800144b0b9ee16c7b116144b94d756b6bbf9a6c11c799152319ddc9cf",
+              "pixels": 22347
+            },
+            "protected_mask": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-protected-mask.png",
+              "sha256": "113af2fef3bf5031cfcb0af720c872900cacc9525903c334478654dc86cd0be9",
+              "pixels": 6371
+            },
+            "human_review": "required",
+            "production_ready": false
+          },
+          "eligible": false,
+          "failure_reasons": [
+            "silhouette_iou",
+            "foreground_luma_ratio",
+            "foreground_luma_mae",
+            "head_luma_ratio",
+            "head_luma_mae",
+            "head_changed_fraction",
+            "protected_rgb_mae",
+            "protected_changed_fraction",
+            "target_hue_direction"
+          ],
+          "runtime_plausibility": {
+            "runtime_ms": 69611.498,
+            "benchmark_runtimes_ms": [
+              64577.077,
+              69611.498
+            ],
+            "benchmark_median_ms": 67094.288,
+            "ratio_to_median": 1.037518,
+            "minimum_ratio": 0.25,
+            "status": "RUNTIME_PLAUSIBLE",
+            "cache_explanation_required": false
+          }
+        }
+      ],
+      "eligible_count": 0,
+      "runtime_ms": [
+        64577.077,
+        69611.498
+      ]
+    }
+  ],
+  "selected_configuration": {
+    "id": "official-base-20x5",
+    "steps": 20,
+    "guidance": 5.0,
+    "sampler": "euler",
+    "scheduler": "Flux2Scheduler"
+  },
+  "contact_sheet": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\reference-edit-config-benchmark-contact-sheet.png"
+}

@@ -74,9 +74,10 @@ SCHEMAS = [
     "candidate-set",
     "visual-assessment",
     "asset-revision",
+    "reference-edit-contract",
 ]
 
-UGAS_VERSION = "0.4.2"
+UGAS_VERSION = "0.4.3"
 
 CONSUMER_FILES = [
     "studio.json",

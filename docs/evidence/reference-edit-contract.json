@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.4.3",
+  "contract_id": "reference-edit-contract-92f12825a9b2b057",
+  "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+  "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+  "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+  "edit_type": "reference-edit-color-only",
+  "requested_change": "Change armor color/material tint from blue steel to deep cobalt/navy steel.",
+  "target_property": "armor color/material tint",
+  "allowed_changes": [
+    "blue steel armor -> deep cobalt/navy steel armor tint"
+  ],
+  "protected_properties": [
+    "face identity",
+    "skin tone",
+    "facial exposure and lighting",
+    "hair",
+    "body proportions",
+    "exact pose",
+    "camera",
+    "silhouette",
+    "sword shape and position",
+    "black cloth",
+    "global background and composition before background removal"
+  ],
+  "protected_regions": [
+    "head/face/skin",
+    "hair",
+    "sword",
+    "black cloth",
+    "non-target foreground",
+    "background"
+  ],
+  "preserve_identity": true,
+  "preserve_pose": true,
+  "preserve_camera": true,
+  "preserve_silhouette": true,
+  "preserve_exposure": true,
+  "preserve_skin_face": true,
+  "target_mask_policy": {
+    "space": "HSV with alpha foreground restriction",
+    "hue_range_degrees": [
+      170,
+      285
+    ],
+    "minimum_saturation": 0.2,
+    "blue_dominance": "B >= R*1.05 and B >= G*0.90",
+    "exclude_sword_like_component": "8-connected component >=500 px, height/width >=2.35, left-side and lower-canvas extent",
+    "confidence_min": 0.4,
+    "transformation": "set hue near 220 degrees, preserve value/luminance and texture, raise saturation only as needed"
+  },
+  "protected_mask_policy": {
+    "head": "top-central 32 percent of alpha foreground bbox, expanded by 4 percent of canvas",
+    "outside_target": "foreground alpha excluding target mask"
+  },
+  "thresholds": {
+    "silhouette_iou_min": 0.9,
+    "centroid_drift_max": 0.025,
+    "bbox_scale_delta_max": 0.05,
+    "foreground_luma_ratio_min": 0.88,
+    "foreground_luma_ratio_max": 1.12,
+    "foreground_luma_mae_max": 18.0,
+    "head_luma_ratio_min": 0.9,
+    "head_luma_ratio_max": 1.1,
+    "head_luma_mae_max": 12.0,
+    "head_changed_fraction_max": 0.12,
+    "protected_rgb_mae_max": 10.0,
+    "protected_changed_fraction_max": 0.18,
+    "max_global_change_fraction": 0.2,
+    "target_changed_fraction_min": 0.1,
+    "target_hue_distance_max": 0.4,
+    "runtime_plausibility_ratio_min": 0.25
+  },
+  "candidate_count": 4,
+  "seeds": [
+    10501,
+    10502,
+    10503,
+    10504
+  ],
+  "preferred_route": "deterministic-then-generative",
+  "human_review_required": true,
+  "created_by": "UGAS-03E"
+}

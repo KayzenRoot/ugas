@@ -1,4 +1,4 @@
-"""Review-evidence manifest integrity checks for v0.4.2."""
+"""Review-evidence manifest integrity checks for v0.4.3."""
 
 from __future__ import annotations
 
@@ -7,20 +7,32 @@ from pathlib import Path
 from typing import Any, Mapping
 
 
-REQUIRED_V042_VISUAL_EVIDENCE = {
-    "quality-benchmark-contact-sheet.png",
-    "quality-benchmark.json",
+REQUIRED_V043_REVIEW_EVIDENCE = {
     "master-selected-before-bg.png",
-    "master-selected-transparent.png",
     "master-selected-checkerboard.png",
+    "reference-edit-config-benchmark-contact-sheet.png",
+    "reference-edit-config-benchmark.json",
+    "reference-edit-candidates-contact-sheet.png",
+    "reference-edit-candidates.json",
+    "reference-edit-selected-rgb.png",
+    "reference-edit-selected-transparent.png",
+    "reference-edit-selected-checkerboard.png",
     "reference-edit-before-after.png",
-    "reference-edit-transparent.png",
-    "reference-edit-checkerboard.png",
+    "reference-edit-diff-heatmap.png",
+    "reference-edit-target-mask.png",
+    "reference-edit-protected-mask.png",
+    "reference-edit-contract.json",
+    "reference-edit-fidelity.json",
+    "reference-edit-execution-evidence.json",
+    "reference-edit-workflow-qualification.json",
     "revision-chain.json",
     "reference-edit-qa.json",
-    "transparency-qa-master.json",
-    "transparency-qa-reference-edit.json",
+    "reference-edit-transparency-qa.json",
 }
+
+# Kept as a compatibility import for the v0.4.2 regression test module. The
+# active manifest is intentionally the v0.4.3 contract above.
+REQUIRED_V042_VISUAL_EVIDENCE = REQUIRED_V043_REVIEW_EVIDENCE
 
 
 def _digest(path: Path) -> str:
@@ -36,11 +48,19 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
     items = manifest.get("images") if isinstance(manifest, Mapping) else None
     items = items if isinstance(items, list) else []
     by_name = {str(item.get("archive_name")): item for item in items if isinstance(item, Mapping)}
-    missing = sorted(REQUIRED_V042_VISUAL_EVIDENCE - set(by_name))
+    missing = sorted(REQUIRED_V043_REVIEW_EVIDENCE - set(by_name))
     failures: list[str] = [f"missing visual evidence: {name}" for name in missing]
-    master = by_name.get("master-selected-transparent.png")
-    reference = by_name.get("reference-edit-transparent.png")
-    if master and reference:
+    role_pairs = [
+        (by_name.get("master-selected-checkerboard.png"), by_name.get("reference-edit-selected-checkerboard.png")),
+        (by_name.get("master-selected-transparent.png"), by_name.get("reference-edit-selected-transparent.png")),
+    ]
+    # Keep the v0.4.2 role names checkable for the immutable historical
+    # regression fixture; the active v0.4.3 manifest uses the roles above.
+    if "reference-edit-transparent.png" in by_name:
+        role_pairs.append((by_name.get("master-selected-transparent.png"), by_name.get("reference-edit-transparent.png")))
+    for master, reference in role_pairs:
+        if not master or not reference:
+            continue
         for field in ("source_path", "revision_id", "sha256"):
             if not master.get(field) or not reference.get(field):
                 failures.append(f"transparent role missing {field}")
@@ -64,7 +84,7 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
                 failures.append(f"visual source hash mismatch: {item.get('archive_name')}")
     return {
         "status": "REVIEW_VISUAL_MANIFEST_PASSED" if not failures else "REVIEW_VISUAL_MANIFEST_FAILED",
-        "required_count": len(REQUIRED_V042_VISUAL_EVIDENCE),
+        "required_count": len(REQUIRED_V043_REVIEW_EVIDENCE),
         "listed_count": len(by_name),
         "failures": failures,
     }

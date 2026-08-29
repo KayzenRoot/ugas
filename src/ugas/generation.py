@@ -1,4 +1,4 @@
-"""Real v0.4.2 2D generation, immutable revision orchestration and QA."""
+"""Real v0.4.3 2D generation, immutable revision orchestration and QA."""
 
 from __future__ import annotations
 
@@ -34,6 +34,15 @@ from .model_registry import load_model, verify_model_files
 from .profiles import load_profile
 from .provenance import append_event
 from .qa import validate_output
+from .reference_edit import (
+    build_edit_contract,
+    build_protected_mask,
+    build_target_mask,
+    contract_sha256,
+    deterministic_recolor,
+    reference_edit_fidelity,
+    runtime_plausibility,
+)
 from .workflow_registry import bind_workflow, load_workflow, validate_api_workflow
 
 
@@ -90,21 +99,57 @@ def inspect_png_bytes(data: bytes) -> dict[str, Any]:
 
 def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_dir: Path, filename: str, profile: str,
              capability: str, workflow_id: str, model_id: str, prompt: str, seed: int, width: int, height: int,
-             input_hashes: dict[str, str] | None = None) -> tuple[dict, list[dict[str, Any]]]:
+             input_hashes: dict[str, str] | None = None, instruction_sha256: str | None = None,
+             edit_contract_sha256: str | None = None, qualification_context: dict[str, Any] | None = None,
+             seed_was_used_before: bool = False, runtime_baseline: list[int | float] | None = None,
+             workflow_sha256: str | None = None) -> tuple[dict, list[dict[str, Any]]]:
     model = load_model(repo_root, model_id)
     workflow_record = load_workflow(repo_root, workflow_id)
     from .model_registry import validate_model_workflow_compatibility
     compatibility = validate_model_workflow_compatibility(model, workflow_record)
+    effective_workflow_sha256 = workflow_sha256 or workflow_record["sha256"]
     job = new_job(consumer_project_id=None, asset_request_id=f"request-{uuid.uuid4().hex}", profile=profile,
-        provider="provider-comfyui", capability=capability, workflow={"id": workflow_id, "sha256": workflow_record["sha256"]},
-        models=[{"id": model_id, "family": model.get("family"), "variant": model.get("variant")}],
+        provider="provider-comfyui", capability=capability, workflow={"id": workflow_id, "sha256": effective_workflow_sha256},
+        models=[{"id": model_id, "family": model.get("family"), "variant": model.get("variant"), "file_sha256": model.get("sha256", {})}],
         prompts={"positive": prompt, "negative": ""}, seed=seed, dimensions={"width": width, "height": height},
         parameters={"endpoint": client.base_url, "model_variant": model.get("variant"), "workflow_parameters": workflow_record.get("parameters", {}), "compatibility": compatibility}, input_hashes=input_hashes)
     validated = transition(job, "validated"); persist(validated, output_dir)
     try:
-        job = validated; submitted = client.submit_workflow(workflow); job = transition(job, "queued"); job = transition(job, "running")
-        history = client.poll_history(submitted["prompt_id"]); outputs = client.fetch_history_outputs(history)
+        job = validated
+        job_id = job["job_id"]
+        target_path = output_dir / filename
+        target_existed_before_submission = target_path.exists()
+        submitted_at = _now(); started = time.perf_counter()
+        submitted = client.submit_workflow(workflow, client_id=job_id)
+        prompt_id = submitted["prompt_id"]
+        first_poll_at: str | None = None
+        def mark_first_poll(_: str) -> None:
+            nonlocal first_poll_at
+            if first_poll_at is None:
+                first_poll_at = _now()
+        job = transition(job, "queued"); job = transition(job, "running")
+        history = client.poll_history(prompt_id, on_poll=mark_first_poll); completed_at = _now(); outputs = client.fetch_history_outputs(history)
         if not outputs: raise GenerationError("ComfyUI history contained no retrievable output")
+        runtime_ms = round((time.perf_counter() - started) * 1000, 3)
+        history_key = history.get("_ugas_prompt_id") == prompt_id
+        output_records = [{"filename": item.get("filename"), "subfolder": item.get("subfolder", ""), "type": item.get("type", "output"), "node_id": item.get("node_id"), "data_sha256": inspect_png_bytes(item.get("data", b""))["sha256"]} for item in outputs]
+        job["execution_evidence"] = {
+            "schema_version": "0.4.3", "client_job_id": job_id, "prompt_id": prompt_id,
+            "submitted_at": submitted_at, "first_poll_at": first_poll_at, "completed_at": completed_at,
+            "runtime_ms": runtime_ms, "history_record_key": prompt_id, "history_key_matches_prompt_id": history_key,
+            "source_hashes": input_hashes or {}, "instruction_sha256": instruction_sha256,
+            "edit_contract_sha256": edit_contract_sha256, "workflow_sha256": effective_workflow_sha256,
+            "model_ids": [model_id], "model_file_sha256": model.get("sha256", {}), "seed": int(seed),
+            "seed_was_used_before": bool(seed_was_used_before), "target_path": str(target_path),
+            "target_existed_before_submission": target_existed_before_submission,
+            "cache": {"authoritative_history_status": history.get("status", {}), "cache_hit_declared": history.get("cache_hit")},
+            "qualification_context": qualification_context or {},
+            "outputs": output_records,
+            "runtime_plausibility": runtime_plausibility(runtime_ms, runtime_baseline or []) if runtime_baseline else {"status": "NOT_RUN"},
+            "fresh_binding": bool(prompt_id and history_key and not target_existed_before_submission and all(record["data_sha256"] for record in output_records)),
+        }
+        if not job["execution_evidence"]["fresh_binding"]:
+            raise GenerationError("FRESH_EXECUTION_BINDING_FAILED: prompt/history/output binding or stale target check failed")
         job = transition(job, "succeeded"); job = transition(job, "postprocessed")
         job["output_hashes"] = {item.get("filename", str(index)): inspect_png_bytes(item["data"]) for index, item in enumerate(outputs) if item.get("data", b"").startswith(b"\x89PNG")}
         job = transition(job, "validated_output"); job["provenance_event"] = {"event": "comfyui-job", "job_id": job["job_id"], "workflow": workflow_id, "model": model_id, "prompt": prompt, "seed": seed}; job = transition(job, "registered")
@@ -112,6 +157,7 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
         for index, item in enumerate(outputs):
             target = output_dir / (filename if index == 0 else f"{Path(filename).stem}-{index}{Path(filename).suffix}")
             target.write_bytes(item["data"]); target_outputs.append({**item, "path": str(target), "qa": validate_output(target, width=width, height=height)})
+        job["execution_evidence"]["output_paths"] = [{"path": item["path"], "sha256": sha256(Path(item["path"])), "filename": item.get("filename"), "subfolder": item.get("subfolder", ""), "type": item.get("type", "output")} for item in target_outputs]
         job_path = persist(job, output_dir)
         return {"job": job, "job_path": str(job_path)}, target_outputs
     except (ComfyUIError, OSError, KeyError, GenerationError) as exc:
@@ -299,12 +345,14 @@ def benchmark_quality_lanes(repo_root: Path, *, endpoint: str, prompt: str, prof
     return evidence
 
 
-def background_remove(repo_root: Path, image_or_asset_id: str, *, endpoint: str, output_dir: Path | None = None) -> dict[str, Any]:
+def background_remove(repo_root: Path, image_or_asset_id: str, *, endpoint: str, output_dir: Path | None = None, promote: bool = True, evidence_prefix: str | None = None) -> dict[str, Any]:
     asset_path: Path | None = None
     asset: dict | None = None
     try:
         asset_path, asset = load_asset(repo_root, image_or_asset_id)
         source = Path(asset["current_revision"]["output_path"])
+        if not promote:
+            asset_path = None
     except MasterAssetError:
         source = Path(image_or_asset_id)
         if not source.is_file():
@@ -357,7 +405,7 @@ def background_remove(repo_root: Path, image_or_asset_id: str, *, endpoint: str,
     if joined_qa["status"] != "TECHNICAL_VALID":
         raise GenerationError("BiRefNet output failed transparency or RGB-preservation QA")
     structural = None
-    transparency_evidence_name = "transparency-qa-master.json"
+    transparency_evidence_name = f"{evidence_prefix}-transparency-qa.json" if evidence_prefix else "transparency-qa-master.json"
     if asset is not None and asset_path is not None:
         asset["requires_transparency"] = True
         current = asset["current_revision"]
@@ -384,9 +432,9 @@ def background_remove(repo_root: Path, image_or_asset_id: str, *, endpoint: str,
         )
         revision_dir = Path(revision["output_path"]).parent
         revision["background_removal"]["mask_path"] = str(revision_dir / "mask.png") if mask_source else None
-        is_reference_edit = current.get("workflow_id") in {QUALITY_EDIT, FAST_EDIT}
+        is_reference_edit = current.get("workflow_id") in {QUALITY_EDIT, FAST_EDIT} or current.get("capability") == "reference-edit" or current.get("edit_route") in {"deterministic-recolor", "generative-reference-edit"}
         if is_reference_edit:
-            transparency_evidence_name = "transparency-qa-reference-edit.json"
+            transparency_evidence_name = f"{evidence_prefix}-transparency-qa.json" if evidence_prefix else "transparency-qa-reference-edit.json"
             source_revision_id = (current.get("derived_from") or {}).get("revision_id")
             source_revision = next((item for item in previous_revisions if item.get("revision_id") == source_revision_id), None)
             if source_revision:
@@ -401,7 +449,7 @@ def background_remove(repo_root: Path, image_or_asset_id: str, *, endpoint: str,
                     output_expected_sha256=revision.get("output_sha256"),
                 )
                 revision["reference_edit_qa"] = structural
-                write_json(repo_root / "docs" / "evidence" / "reference-edit-qa.json", structural)
+                write_json(repo_root / "docs" / "evidence" / (f"{evidence_prefix}-qa.json" if evidence_prefix else "reference-edit-qa.json"), structural)
         write_json(revision["metadata_path"] and Path(revision["metadata_path"]), revision)
         asset.setdefault("revisions", []).append(revision)
         asset["current_revision"] = revision
@@ -437,11 +485,13 @@ def background_remove(repo_root: Path, image_or_asset_id: str, *, endpoint: str,
         "halo": halo,
         "status": "passed" if qa["status"] == "TECHNICAL_VALID" else "failed",
     }
-    write_json(repo_root / "docs" / "evidence" / transparency_evidence_name, transparency_evidence)
+    if promote:
+        write_json(repo_root / "docs" / "evidence" / transparency_evidence_name, transparency_evidence)
     evidence = {**evidence, "schema_version": UGAS_VERSION, "state": "verified", "asset_capabilities_qualified": ["background-removal", "transparent-sprite-master"], "smoke_test": {"status": "passed", "source_sha256": sha256(source), "output": inspect_png(transparent_output), "mask": inspect_png(mask_output) if mask_output else None, "alpha_metrics": inspect_png(transparent_output).get("alpha_metrics"), "rgb_preservation": qa.get("rgb_preservation"), "halo": halo, "runtime_ms": elapsed_ms, "revision_id": transparency_evidence["revision_id"]}}
-    write_json(repo_root / "docs" / "evidence" / "birefnet.json", evidence)
-    append_event(repo_root / "tmp" / "provenance.jsonl", {"event": "background-removed", "workflow": "birefnet-background-removal", "model": "birefnet", "source_sha256": sha256(source), "output_sha256": qa["technical"]["sha256"], "mask_path": str(mask_output) if mask_output else None, "revision_id": transparency_evidence["revision_id"]})
-    return {"status": "TRANSPARENCY_VALID", "output": str(transparent_output), "mask": str(mask_output) if mask_output else None, "checkerboard": str(checker), "revision_id": transparency_evidence["revision_id"], "qa": qa, "halo": halo, "reference_edit_qa": structural, "integrity": integrity, "capability_evidence": evidence}
+    if promote:
+        write_json(repo_root / "docs" / "evidence" / (f"{evidence_prefix}-birefnet.json" if evidence_prefix else "birefnet.json"), evidence)
+        append_event(repo_root / "tmp" / "provenance.jsonl", {"event": "background-removed", "workflow": "birefnet-background-removal", "model": "birefnet", "source_sha256": sha256(source), "output_sha256": qa["technical"]["sha256"], "mask_path": str(mask_output) if mask_output else None, "revision_id": transparency_evidence["revision_id"]})
+    return {"status": "TRANSPARENCY_VALID", "output": str(transparent_output), "mask": str(mask_output) if mask_output else None, "checkerboard": str(checker), "revision_id": transparency_evidence["revision_id"], "qa": qa, "halo": halo, "reference_edit_qa": structural, "integrity": integrity, "capability_evidence": evidence, "execution_evidence": job["job"].get("execution_evidence", {}), "promoted": promote}
 
 
 def refine_master(repo_root: Path, asset_id: str, *, instruction: str, endpoint: str) -> dict[str, Any]:
@@ -479,3 +529,198 @@ def sprite_pilot(repo_root: Path, **kwargs) -> dict:
 
 def visual_approve(repo_root: Path, asset_id: str, note: str = "") -> dict[str, Any]:
     return approve_visual(repo_root, asset_id, note)
+
+
+def _clone_reference_source(repo_root: Path, source_asset_id: str) -> tuple[Path, dict[str, Any], dict[str, Any]]:
+    """Create a fresh v0.4.3 asset chain containing immutable R1/R2 source copies."""
+    source_path, source_asset = load_asset(repo_root, source_asset_id)
+    revisions = sorted(source_asset.get("revisions", []), key=lambda item: int(item.get("revision_number", 0)))
+    source_r1 = next((item for item in revisions if item.get("revision_number") == 1), None)
+    source_r2 = next((item for item in revisions if item.get("revision_number") == 2), None)
+    if not source_r1 or not source_r2:
+        raise GenerationError("reference-edit source must contain immutable R1 and R2")
+    r1_path, r2_path = Path(source_r1["output_path"]), Path(source_r2["output_path"])
+    if not r1_path.is_file() or not r2_path.is_file():
+        raise GenerationError("reference-edit source R1/R2 output is missing")
+    source_spec = json.loads(Path(source_asset["master_asset_spec"]).read_text(encoding="utf-8"))
+    new_id = f"asset-{uuid.uuid4().hex}"
+    asset_dir = repo_root / "tmp" / "assets" / new_id
+    asset_dir.mkdir(parents=True, exist_ok=False)
+    source_spec["schema_version"] = UGAS_VERSION
+    source_spec["asset_id"] = new_id
+    source_spec.setdefault("generation_policy", {})["reference_edit_qa"] = {
+        "silhouette_iou_min": 0.90, "centroid_drift_max": 0.025, "bbox_scale_delta_max": 0.05, "allow_pixel_identical": False,
+    }
+    spec_path = asset_dir / "master-asset-spec.json"
+    write_json(spec_path, source_spec)
+    asset = {
+        "schema_version": UGAS_VERSION, "asset_id": new_id, "id": new_id, "category": source_asset.get("category", "character"),
+        "profile": source_asset.get("profile", "generic-2d"), "created_at": _now(), "updated_at": _now(),
+        "master_asset_spec": str(spec_path), "compiled_prompt": source_asset.get("compiled_prompt", ""),
+        "compiled_prompt_sha256": source_asset.get("compiled_prompt_sha256"), "requires_transparency": True,
+        "generation": {"source_asset_id": source_asset_id, "source_asset_path": str(source_path), "lane": "reference-edit", "capability": "reference-edit"},
+        "revisions": [], "visual_approval": {"status": "pending"},
+    }
+    new_r1 = _create_revision(asset_dir, new_id, 1, r1_path, validate_output(r1_path, width=inspect_png(r1_path)["width"], height=inspect_png(r1_path)["height"]), extra={"imported_from_asset_id": source_asset_id, "imported_from_revision_id": source_r1["revision_id"], "source_sha256": sha256(r1_path)})
+    new_r2 = _create_revision(asset_dir, new_id, 2, r2_path, validate_output(r2_path, width=inspect_png(r2_path)["width"], height=inspect_png(r2_path)["height"], requires_transparency=True, rgb_source=r1_path), derived_from={"revision_id": new_r1["revision_id"], "output_sha256": new_r1["output_sha256"]}, transparency_status="TRANSPARENCY_VALID", mask_source=Path(source_r2["output_path"]).parent / "mask.png" if (Path(source_r2["output_path"]).parent / "mask.png").is_file() else None, extra={"imported_from_asset_id": source_asset_id, "imported_from_revision_id": source_r2["revision_id"], "rgb_source": str(r1_path), "source_sha256": sha256(r2_path)})
+    asset["revisions"] = [new_r1, new_r2]
+    asset["current_revision"] = new_r2
+    asset_path = _persist_asset(asset, asset_dir)
+    return asset_path, asset, {"source_asset_id": source_asset_id, "source_asset_path": str(source_path), "source_r1": source_r1, "source_r2": source_r2}
+
+
+def _copy_review_artifact(source: Path, destination: Path) -> str:
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_bytes(Path(source).read_bytes())
+    return str(destination)
+
+
+def _make_before_after(left: Path, right: Path, destination: Path) -> str:
+    from PIL import Image, ImageDraw
+    with Image.open(left) as left_opened, Image.open(right) as right_opened:
+        left_image, right_image = left_opened.convert("RGB"), right_opened.convert("RGB")
+        canvas = Image.new("RGB", (left_image.width + right_image.width, max(left_image.height, right_image.height)), (32, 32, 32))
+        canvas.paste(left_image, (0, 0)); canvas.paste(right_image, (left_image.width, 0))
+        draw = ImageDraw.Draw(canvas); draw.text((8, 8), "source R2", fill=(255, 255, 255)); draw.text((left_image.width + 8, 8), "selected R4", fill=(255, 255, 255))
+        destination.parent.mkdir(parents=True, exist_ok=True); canvas.save(destination, format="PNG", optimize=False)
+    return str(destination)
+
+
+def reference_edit_pilot(
+    repo_root: Path,
+    source_asset_id: str,
+    *,
+    instruction: str = "Change armor color/material tint from blue steel to deep cobalt/navy steel.",
+    endpoint: str = "http://127.0.0.1:8188",
+    candidates: int = 4,
+    seed_base: int = 10401,
+    output_dir: Path | None = None,
+) -> dict[str, Any]:
+    """Run the bounded 03E benchmark, candidate set and selected R1-R4 chain."""
+    if candidates < 4 or candidates > 6:
+        raise GenerationError("03E requires between 4 and 6 generative candidates")
+    asset_path, asset, source_context = _clone_reference_source(repo_root, source_asset_id)
+    asset_dir = asset_path.parent
+    source_revision = asset["revisions"][1]
+    source = Path(source_revision["output_path"])
+    dimensions = inspect_png(source)
+    seeds: list[int] = []
+    candidate_seed = int(seed_base)
+    while len(seeds) < candidates:
+        if candidate_seed not in seeds:
+            seeds.append(candidate_seed)
+        candidate_seed += 1
+    contract = build_edit_contract(asset_id=asset["asset_id"], source_revision_id=source_revision["revision_id"], source_sha256=sha256(source), instruction=instruction, candidate_count=candidates, seeds=seeds)
+    contract_path = asset_dir / "reference-edit-contract.json"; write_json(contract_path, contract)
+    target_mask, target_mask_info = build_target_mask(source, contract)
+    protected_mask, protected_mask_info = build_protected_mask(source, contract)
+    compiled_instruction = compile_reference_edit_instruction(instruction, json.loads(Path(asset["master_asset_spec"]).read_text(encoding="utf-8")))
+    prompt = asset.get("compiled_prompt", "") + " " + compiled_instruction
+    client = ComfyUIClient(endpoint, timeout=30.0)
+    capability_evidence = probe_comfy_capability(repo_root, client, QUALITY_MODEL, QUALITY_EDIT, capability="reference-edit")
+    if capability_evidence["state"] not in {"ready", "verified"}:
+        raise GenerationError(f"reference-edit capability gap: {capability_evidence.get('failure_reason')}")
+    model = load_model(repo_root, QUALITY_MODEL); workflow_record = load_workflow(repo_root, QUALITY_EDIT)
+    upload = client.upload_image(source); image_filename = upload.get("name") or upload.get("filename")
+    if not isinstance(image_filename, str) or not image_filename:
+        raise GenerationError("/upload/image did not return an input filename")
+    from .workflow_registry import workflow_hash
+
+    benchmark_root = asset_dir / "reference-edit-benchmark"; benchmark_root.mkdir(parents=True, exist_ok=True)
+    candidate_root = asset_dir / "reference-edit-candidates"; candidate_root.mkdir(parents=True, exist_ok=True)
+    all_execution: list[dict[str, Any]] = []
+    benchmark_entries: list[dict[str, Any]] = []
+    generative_entries: list[dict[str, Any]] = []
+
+    def run_generative(label: str, seed: int, *, steps: int, guidance: float, root: Path, candidate_id: str) -> dict[str, Any]:
+        workflow = bind_workflow(workflow_record["api"], prompt=prompt, seed=seed, width=dimensions["width"], height=dimensions["height"], model_names=_model_names(model), image_filename=image_filename)
+        for node in workflow.values():
+            if node.get("class_type") == "Flux2Scheduler": node.setdefault("inputs", {})["steps"] = steps
+            if node.get("class_type") == "CFGGuider": node.setdefault("inputs", {})["cfg"] = guidance
+        graph_check = validate_api_workflow(workflow, node_info=client.node_info())
+        if not graph_check["live_valid"]:
+            raise GenerationError(f"reference-edit native node validation failed: {graph_check['missing_nodes']}")
+        job_dir = _unique_job_dir(repo_root, root, "reference-edit")
+        job_result, outputs = _run_job(repo_root, client, workflow, output_dir=job_dir, filename="reference-edit-rgb.png", profile=asset.get("profile", "generic-2d"), capability="reference-edit", workflow_id=QUALITY_EDIT, model_id=QUALITY_MODEL, prompt=prompt, seed=seed, width=dimensions["width"], height=dimensions["height"], input_hashes={"reference_sha256": sha256(source), "instruction_sha256": prompt_sha256(compiled_instruction)}, instruction_sha256=prompt_sha256(compiled_instruction), edit_contract_sha256=contract_sha256(contract), qualification_context={"capability": "reference-edit", "variant": "base", "steps": steps, "guidance": guidance, "sampler": "euler", "scheduler": "Flux2Scheduler"}, seed_was_used_before=False, workflow_sha256=workflow_hash(workflow))
+        rgb = Path(outputs[0]["path"]); rgb_qa = validate_output(rgb, width=dimensions["width"], height=dimensions["height"])
+        transparent = background_remove(repo_root, str(rgb), endpoint=endpoint, output_dir=job_dir / "transparency", promote=False)
+        fidelity = reference_edit_fidelity(source, Path(transparent["output"]), contract, target_mask=target_mask, protected_mask=protected_mask, source_revision_id=source_revision["revision_id"], candidate_id=candidate_id)
+        execution = job_result["job"].get("execution_evidence", {})
+        all_execution.append({"candidate_id": candidate_id, "stage": label, "image_edit": execution, "background_removal": transparent.get("execution_evidence", {})})
+        return {"candidate_id": candidate_id, "stage": label, "route": "generative-reference-edit", "seed": seed, "steps": steps, "guidance": guidance, "sampler": "euler", "scheduler": "Flux2Scheduler", "workflow_id": QUALITY_EDIT, "workflow_sha256": workflow_hash(workflow), "model_id": QUALITY_MODEL, "rgb_path": str(rgb), "rgb_sha256": sha256(rgb), "transparent_path": transparent["output"], "transparent_sha256": sha256(Path(transparent["output"])), "checkerboard_path": transparent["checkerboard"], "execution_evidence": execution, "background_execution_evidence": transparent.get("execution_evidence", {}), "rgb_qa": rgb_qa, "fidelity": fidelity, "eligible": fidelity.get("status") == "REFERENCE_EDIT_FIDELITY_PASSED", "failure_reasons": fidelity.get("failure_reasons", [])}
+
+    benchmark_configs = [("official-base-20x5", 20, 5.0, [10001, 10002]), ("legacy-50x4-not-qualified", 50, 4.0, [10003, 10004])]
+    for label, steps, guidance, config_seeds in benchmark_configs:
+        group: list[dict[str, Any]] = []
+        for index, config_seed in enumerate(config_seeds, 1):
+            try:
+                group.append(run_generative(label, config_seed, steps=steps, guidance=guidance, root=benchmark_root / label, candidate_id=f"benchmark-{label}-{index}"))
+            except GenerationError as exc:
+                group.append({"candidate_id": f"benchmark-{label}-{index}", "stage": label, "seed": config_seed, "steps": steps, "guidance": guidance, "eligible": False, "failure_reasons": ["generation_failed", str(exc)]})
+        runtimes = [item.get("execution_evidence", {}).get("runtime_ms", 0) for item in group]
+        for item in group:
+            item["runtime_plausibility"] = runtime_plausibility(item.get("execution_evidence", {}).get("runtime_ms", 0), runtimes)
+        benchmark_entries.append({"configuration": {"id": label, "steps": steps, "guidance": guidance, "sampler": "euler", "scheduler": "Flux2Scheduler", "qualification": "official-qualified" if steps == 20 else "legacy-tested-not-qualified"}, "seeds": config_seeds, "candidates": group, "eligible_count": sum(1 for item in group if item.get("eligible")), "runtime_ms": runtimes})
+    selected_benchmark = next((item for item in benchmark_entries if item["eligible_count"] > 0 and item["configuration"]["qualification"] == "official-qualified"), None)
+    if selected_benchmark is None:
+        selected_benchmark = next((item for item in benchmark_entries if item["eligible_count"] > 0), None)
+    production_config = selected_benchmark["configuration"] if selected_benchmark else {"id": "official-base-20x5", "steps": 20, "guidance": 5.0, "sampler": "euler", "scheduler": "Flux2Scheduler"}
+    for index, generative_seed in enumerate(seeds, 1):
+        try:
+            generative_entries.append(run_generative("generative-candidate-set", generative_seed, steps=int(production_config["steps"]), guidance=float(production_config["guidance"]), root=candidate_root, candidate_id=f"candidate-{index}"))
+        except GenerationError as exc:
+            generative_entries.append({"candidate_id": f"candidate-{index}", "stage": "generative-candidate-set", "seed": generative_seed, "steps": production_config["steps"], "guidance": production_config["guidance"], "eligible": False, "failure_reasons": ["generation_failed", str(exc)]})
+    generative_runtimes = [item.get("execution_evidence", {}).get("runtime_ms", 0) for item in generative_entries]
+    for item in generative_entries:
+        item["runtime_plausibility"] = runtime_plausibility(item.get("execution_evidence", {}).get("runtime_ms", 0), generative_runtimes)
+
+    deterministic_entry: dict[str, Any]
+    if target_mask_info.get("uncertain"):
+        deterministic_entry = {"candidate_id": "deterministic-recolor", "route": "deterministic-recolor", "status": "TARGET_MASK_UNCERTAIN", "target_mask": target_mask_info, "eligible": False, "failure_reasons": ["TARGET_MASK_UNCERTAIN"]}
+    else:
+        deterministic_rgb = asset_dir / "deterministic-recolor-rgb.png"
+        deterministic_meta = deterministic_recolor(source, deterministic_rgb, target_mask, contract)
+        deterministic_transparent = background_remove(repo_root, str(deterministic_rgb), endpoint=endpoint, output_dir=asset_dir / "deterministic-transparency", promote=False)
+        deterministic_fidelity = reference_edit_fidelity(source, Path(deterministic_transparent["output"]), contract, target_mask=target_mask, protected_mask=protected_mask, source_revision_id=source_revision["revision_id"], candidate_id="deterministic-recolor")
+        deterministic_entry = {"candidate_id": "deterministic-recolor", **deterministic_meta, "transparent_path": deterministic_transparent["output"], "transparent_sha256": sha256(Path(deterministic_transparent["output"])), "checkerboard_path": deterministic_transparent["checkerboard"], "execution_evidence": deterministic_transparent.get("execution_evidence", {}), "fidelity": deterministic_fidelity, "eligible": deterministic_fidelity.get("status") == "REFERENCE_EDIT_FIDELITY_PASSED", "failure_reasons": deterministic_fidelity.get("failure_reasons", [])}
+    eligible_generative = [item for item in generative_entries if item.get("eligible")]
+    selected = deterministic_entry if deterministic_entry.get("eligible") else (eligible_generative[0] if eligible_generative else None)
+    all_candidates = {"benchmark": benchmark_entries, "generative": generative_entries, "deterministic": deterministic_entry}
+    review_root = repo_root / "docs" / "evidence"
+    benchmark_paths = [Path(item["rgb_path"]) for group in benchmark_entries for item in group["candidates"] if item.get("rgb_path")]
+    generative_paths = [Path(item["rgb_path"]) for item in generative_entries if item.get("rgb_path")]
+    benchmark_sheet = compose_sheet(benchmark_paths, asset_dir / "reference-edit-config-benchmark-contact-sheet.png", 2) if benchmark_paths else None
+    candidate_sheet = compose_sheet(generative_paths, asset_dir / "reference-edit-candidates-contact-sheet.png", 4) if generative_paths else None
+    write_json(review_root / "reference-edit-contract.json", contract)
+    write_json(review_root / "reference-edit-config-benchmark.json", {"schema_version": UGAS_VERSION, "asset_id": asset["asset_id"], "source_revision_id": source_revision["revision_id"], "source_sha256": sha256(source), "workflow_qualification": str(review_root / "reference-edit-workflow-qualification.json"), "configurations": benchmark_entries, "selected_configuration": production_config, "contact_sheet": str(review_root / "reference-edit-config-benchmark-contact-sheet.png")})
+    if benchmark_sheet: _copy_review_artifact(Path(benchmark_sheet["path"]), review_root / "reference-edit-config-benchmark-contact-sheet.png")
+    if candidate_sheet: _copy_review_artifact(Path(candidate_sheet["path"]), review_root / "reference-edit-candidates-contact-sheet.png")
+    _copy_review_artifact(target_mask, review_root / "reference-edit-target-mask.png")
+    _copy_review_artifact(protected_mask, review_root / "reference-edit-protected-mask.png")
+    write_json(review_root / "reference-edit-candidates.json", {"schema_version": UGAS_VERSION, "asset_id": asset["asset_id"], "source_revision_id": source_revision["revision_id"], "source_sha256": sha256(source), "candidate_count": candidates, "benchmark": benchmark_entries, "generative": generative_entries, "deterministic": deterministic_entry, "eligible_candidate_count": len(eligible_generative), "selected_candidate_id": selected.get("candidate_id") if selected else None, "selection_status": "selected" if selected else "NO_ACCEPTABLE_REFERENCE_EDIT", "temporary_candidates_are_not_revisions": True})
+    write_json(review_root / "reference-edit-execution-evidence.json", {"schema_version": UGAS_VERSION, "asset_id": asset["asset_id"], "source_sha256": sha256(source), "records": all_execution, "fresh_seed_set": sorted(set(seeds + [10001, 10002, 10003, 10004])), "all_prompt_ids_present": all(bool(item.get("image_edit", {}).get("prompt_id")) for item in all_execution), "all_history_bindings_exact": all(item.get("image_edit", {}).get("fresh_binding") for item in all_execution), "stale_output_rejected": all(not item.get("image_edit", {}).get("target_existed_before_submission", True) for item in all_execution)})
+    if not selected:
+        write_json(review_root / "reference-edit-fidelity.json", {"schema_version": UGAS_VERSION, "status": "NO_ACCEPTABLE_REFERENCE_EDIT", "failure_reasons": ["no candidate passed structural and photometric gates"], "benchmark": benchmark_entries, "generative": generative_entries, "deterministic": deterministic_entry})
+        return {"status": "NO_ACCEPTABLE_REFERENCE_EDIT", "asset_id": asset["asset_id"], "asset_path": str(asset_path), "contract": str(review_root / "reference-edit-contract.json"), "candidate_set": str(review_root / "reference-edit-candidates.json"), "benchmark": benchmark_entries, "candidates": generative_entries, "deterministic": deterministic_entry}
+
+    selected_rgb = Path(selected.get("rgb_path") or selected["output_path"])
+    selected_fidelity = selected["fidelity"]
+    write_json(review_root / "reference-edit-fidelity.json", {"schema_version": UGAS_VERSION, "status": selected_fidelity["status"], "selected_route": selected.get("route"), "selected_candidate_id": selected.get("candidate_id"), "selected": selected_fidelity, "all_candidates": {"generative_eligible": [item["candidate_id"] for item in eligible_generative], "deterministic_status": deterministic_entry.get("fidelity", {}).get("status", deterministic_entry.get("status"))}, "thresholds": contract["thresholds"]})
+    selected_r3 = _create_revision(asset_dir, asset["asset_id"], 3, selected_rgb, validate_output(selected_rgb, width=dimensions["width"], height=dimensions["height"]), derived_from={"revision_id": source_revision["revision_id"], "output_sha256": source_revision["output_sha256"]}, extra={"capability": "reference-edit", "edit_route": selected.get("route", "generative-reference-edit"), "workflow_id": selected.get("workflow_id", "deterministic-recolor"), "model_id": selected.get("model_id"), "seed": selected.get("seed"), "contract_path": str(review_root / "reference-edit-contract.json"), "contract_sha256": contract_sha256(contract), "candidate_id": selected.get("candidate_id"), "fidelity_status": selected_fidelity["status"], "execution_evidence": selected.get("execution_evidence", {})})
+    asset["revisions"].append(selected_r3); asset["current_revision"] = selected_r3; asset["updated_at"] = _now(); save_asset(asset_path, asset)
+    promoted = background_remove(repo_root, asset["asset_id"], endpoint=endpoint, output_dir=asset_dir / "jobs", evidence_prefix="reference-edit-v0.4.3")
+    asset_path, asset = load_asset(repo_root, asset["asset_id"])
+    selected_r4 = asset["current_revision"]
+    _copy_review_artifact(asset["revisions"][0]["output_path"], review_root / "master-selected-before-bg.png")
+    _copy_review_artifact(source_revision["checkerboard_path"], review_root / "master-selected-checkerboard.png")
+    _copy_review_artifact(selected_r3["output_path"], review_root / "reference-edit-selected-rgb.png")
+    _copy_review_artifact(selected_r4["output_path"], review_root / "reference-edit-selected-transparent.png")
+    _copy_review_artifact(selected_r4["checkerboard_path"], review_root / "reference-edit-selected-checkerboard.png")
+    _make_before_after(Path(source_revision["checkerboard_path"]), Path(selected_r4["checkerboard_path"]), review_root / "reference-edit-v0.4.3-before-after.png")
+    from PIL import Image, ImageChops
+    with Image.open(source) as source_opened, Image.open(selected_r3["output_path"]) as selected_opened:
+        difference = ImageChops.difference(source_opened.convert("RGB"), selected_opened.convert("RGB"))
+        difference.save(review_root / "reference-edit-diff-heatmap.png", format="PNG", optimize=False)
+    write_json(review_root / "reference-edit-transparency-qa.json", promoted.get("qa", {}))
+    write_json(review_root / "revision-chain-v0.4.3.json", {"schema_version": UGAS_VERSION, "asset_id": asset["asset_id"], "source_asset_id": source_context["source_asset_id"], "revisions": asset["revisions"], "selected_candidate_id": selected.get("candidate_id"), "selected_route": selected.get("route"), "selected_r3": selected_r3["revision_id"], "selected_r4": selected_r4["revision_id"], "all_temporary_candidates_remain_outside_revisions": True})
+    return {"status": "VISUAL_REVIEW_REQUIRED", "asset_id": asset["asset_id"], "asset_path": str(asset_path), "source_asset_id": source_context["source_asset_id"], "source_revision_id": source_revision["revision_id"], "selected_candidate_id": selected.get("candidate_id"), "selected_route": selected.get("route"), "selected_r3": selected_r3["revision_id"], "selected_r4": selected_r4["revision_id"], "selected_fidelity": selected_fidelity, "transparency": promoted, "benchmark": benchmark_entries, "candidates": generative_entries, "deterministic": deterministic_entry, "contract_sha256": contract_sha256(contract), "review_evidence": str(review_root)}

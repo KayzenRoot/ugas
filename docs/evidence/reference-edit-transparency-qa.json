@@ -1,0 +1,101 @@
+{
+  "status": "TECHNICAL_VALID",
+  "checks": {
+    "exists": true,
+    "format": true,
+    "dimensions": true,
+    "size": true,
+    "non_empty_content": true,
+    "transparency_requirement": true,
+    "rgb_preservation": {
+      "compared_pixels": 42648,
+      "high_alpha_threshold": 250,
+      "mae_r": 0.0,
+      "mae_g": 0.0,
+      "mae_b": 0.0,
+      "mae_total": 0.0,
+      "max_mean_abs_error": 2.0,
+      "passed": true
+    }
+  },
+  "requirements": {
+    "requires_transparency": true,
+    "transparency_profile": {
+      "min_transparent_fraction": 0.01,
+      "max_foreground_coverage": 0.98,
+      "allow_border_contact": false,
+      "near_opaque_threshold": 250,
+      "min_near_opaque_foreground_fraction": 0.85,
+      "high_alpha_threshold": 250,
+      "max_mean_abs_rgb_error": 2.0
+    }
+  },
+  "technical": {
+    "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-3a425d184b1a49be9f6d6c8d52d04b96\\output.png",
+    "format": "PNG",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "source_mode": "RGBA",
+    "bytes": 193439,
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "has_alpha": true,
+    "has_alpha_channel": true,
+    "has_transparent_pixels": true,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "opaque_fraction": 0.000377655029296875,
+    "transparent_fraction": 0.8125801086425781,
+    "alpha_zero_fraction": 0.8125801086425781,
+    "alpha_opaque_fraction": 0.000377655029296875,
+    "alpha_partial_fraction": 0.187042236328125,
+    "foreground_coverage": 0.18741989135742188,
+    "near_opaque_threshold": 250,
+    "near_opaque_foreground_fraction": 0.8680466507907432,
+    "soft_edge_foreground_fraction": 0.1319533492092569,
+    "alpha_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "alpha_centroid": [
+      0.5116871857890131,
+      0.5108756993420651
+    ],
+    "border_contact": false,
+    "non_empty_content": true
+  },
+  "alpha_metrics": {
+    "alpha_zero_fraction": 0.8125801086425781,
+    "alpha_opaque_fraction": 0.000377655029296875,
+    "alpha_partial_fraction": 0.187042236328125,
+    "foreground_coverage": 0.18741989135742188,
+    "near_opaque_threshold": 250,
+    "near_opaque_foreground_fraction": 0.8680466507907432,
+    "soft_edge_foreground_fraction": 0.1319533492092569,
+    "alpha_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "alpha_centroid": [
+      0.5116871857890131,
+      0.5108756993420651
+    ],
+    "border_contact": false
+  },
+  "rgb_preservation": {
+    "compared_pixels": 42648,
+    "high_alpha_threshold": 250,
+    "mae_r": 0.0,
+    "mae_g": 0.0,
+    "mae_b": 0.0,
+    "mae_total": 0.0,
+    "max_mean_abs_error": 2.0,
+    "passed": true
+  },
+  "visual_review": "required",
+  "production_ready": false
+}

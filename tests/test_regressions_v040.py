@@ -155,8 +155,8 @@ class VersionAndImageQARegressionTests(unittest.TestCase):
         from ugas.constants import UGAS_VERSION
         package = load_json(ROOT / "package.json")
         with (ROOT / "pyproject.toml").open("rb") as stream: pyproject = tomllib.load(stream)
-        self.assertEqual("0.4.2", UGAS_VERSION); self.assertEqual(UGAS_VERSION, ugas.__version__); self.assertEqual(UGAS_VERSION, package["version"]); self.assertEqual(UGAS_VERSION, pyproject["project"]["version"])
-        for filename in ("README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.4.2.md"): self.assertIn(UGAS_VERSION, (ROOT / filename).read_text(encoding="utf-8"))
+        self.assertEqual("0.4.3", UGAS_VERSION); self.assertEqual(UGAS_VERSION, ugas.__version__); self.assertEqual(UGAS_VERSION, package["version"]); self.assertEqual(UGAS_VERSION, pyproject["project"]["version"])
+        for filename in ("README.md", "INSTALL.md", "CHECKPOINT.md"): self.assertIn(UGAS_VERSION, (ROOT / filename).read_text(encoding="utf-8"))
 
     def test_alpha_and_transparency_stats_distinguish_rgb_and_rgba(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -234,7 +234,7 @@ class ComfyAndPipelineRegressionTests(unittest.TestCase):
             with patch("ugas.generation.generate_image", return_value={"output": str(source), "job": {"job_id": "job-test"}}):
                 result = sprite_pilot(ROOT, endpoint=self.endpoint, prompt="master", output_dir=output_dir, columns=1, rows=1)
             self.assertTrue(Path(result["sprite_sheet"]).exists())
-            with self.assertRaisesRegex(GenerationError, "v0.4.2"): sprite_pilot(ROOT, endpoint=self.endpoint, prompt="grid", output_dir=output_dir, columns=2, rows=1)
+            with self.assertRaisesRegex(GenerationError, "v0.4.3"): sprite_pilot(ROOT, endpoint=self.endpoint, prompt="grid", output_dir=output_dir, columns=2, rows=1)
 
 
 class MasterAssetRegressionTests(unittest.TestCase):

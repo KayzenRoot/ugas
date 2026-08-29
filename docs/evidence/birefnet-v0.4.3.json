@@ -1,0 +1,227 @@
+{
+  "schema_version": "0.4.3",
+  "provider": "provider-comfyui",
+  "capability": "background-removal",
+  "state": "verified",
+  "endpoint": "http://127.0.0.1:8188",
+  "server_version": "0.34.0",
+  "devices": [
+    {
+      "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+      "type": "cuda",
+      "index": 0,
+      "vram_total": 8546484224,
+      "vram_free": 6825510006,
+      "torch_vram_total": 134217728,
+      "torch_vram_free": 62194806
+    }
+  ],
+  "required_nodes": [
+    {
+      "class_type": "LoadImage",
+      "present": true
+    },
+    {
+      "class_type": "LoadBackgroundRemovalModel",
+      "present": true
+    },
+    {
+      "class_type": "RemoveBackground",
+      "present": true
+    },
+    {
+      "class_type": "InvertMask",
+      "present": true
+    },
+    {
+      "class_type": "JoinImageWithAlpha",
+      "present": true
+    },
+    {
+      "class_type": "MaskToImage",
+      "present": true
+    },
+    {
+      "class_type": "SaveImage",
+      "present": true
+    },
+    {
+      "class_type": "SaveImage",
+      "present": true
+    }
+  ],
+  "required_models": [
+    {
+      "file": "background_removal/birefnet.safetensors",
+      "folder": "background_removal",
+      "present": true
+    }
+  ],
+  "workflow": {
+    "id": "birefnet-background-removal",
+    "version": "0.4.3",
+    "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+    "validation": {
+      "valid_graph": true,
+      "node_count": 8,
+      "missing_nodes": [],
+      "missing_models": [],
+      "live_valid": true
+    },
+    "compatibility": {
+      "compatible": true,
+      "model_id": "birefnet",
+      "workflow_id": "birefnet-background-removal",
+      "family": "birefnet",
+      "variant": "native",
+      "steps": null,
+      "guidance": null,
+      "mismatches": [],
+      "experimental_override": false
+    },
+    "qualified_capabilities": [
+      "background-removal",
+      "transparent-sprite-master"
+    ]
+  },
+  "model": {
+    "id": "birefnet",
+    "family": "birefnet",
+    "variant": "native",
+    "license": "MIT",
+    "sha256": {
+      "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+    },
+    "qualification_evidence": {
+      "status": "qualified",
+      "hashes_verified": true,
+      "files_verified_at": "2026-08-29",
+      "live_smoke_evidence": "docs/evidence/birefnet.json"
+    },
+    "inventory": {
+      "model_id": "birefnet",
+      "files": [
+        {
+          "file": "background_removal/birefnet.safetensors",
+          "folder": "background_removal",
+          "present": true
+        }
+      ],
+      "inventory_complete": true
+    }
+  },
+  "transport_capabilities": [
+    "workflow-submit",
+    "polling",
+    "output-retrieval",
+    "system-stats"
+  ],
+  "asset_capabilities_declared": [
+    "background-removal",
+    "transparent-sprite-master"
+  ],
+  "asset_capabilities_qualified": [
+    "background-removal",
+    "transparent-sprite-master"
+  ],
+  "smoke_test": {
+    "status": "passed",
+    "source_sha256": "d8d66a20b2b15b9c5218703e85062918d999a4bf9ef27f9d8fcafe6bcadd2d3c",
+    "output": {
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-3a425d184b1a49be9f6d6c8d52d04b96\\output.png",
+      "format": "PNG",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "source_mode": "RGBA",
+      "bytes": 193439,
+      "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "has_alpha": true,
+      "has_alpha_channel": true,
+      "has_transparent_pixels": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "opaque_fraction": 0.000377655029296875,
+      "transparent_fraction": 0.8125801086425781,
+      "alpha_zero_fraction": 0.8125801086425781,
+      "alpha_opaque_fraction": 0.000377655029296875,
+      "alpha_partial_fraction": 0.187042236328125,
+      "foreground_coverage": 0.18741989135742188,
+      "near_opaque_threshold": 250,
+      "near_opaque_foreground_fraction": 0.8680466507907432,
+      "soft_edge_foreground_fraction": 0.1319533492092569,
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "alpha_centroid": [
+        0.5116871857890131,
+        0.5108756993420651
+      ],
+      "border_contact": false,
+      "non_empty_content": true
+    },
+    "mask": {
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-3a425d184b1a49be9f6d6c8d52d04b96\\mask.png",
+      "format": "PNG",
+      "width": 512,
+      "height": 512,
+      "mode": "RGB",
+      "source_mode": "RGB",
+      "bytes": 26790,
+      "sha256": "6c31caab5955e92d3f568b22da94bda445fe61ccd1dfb072b335d17f0c3340a1",
+      "has_alpha": false,
+      "has_alpha_channel": false,
+      "has_transparent_pixels": false,
+      "alpha_min": null,
+      "alpha_max": null,
+      "opaque_fraction": 1.0,
+      "transparent_fraction": 0.0,
+      "alpha_zero_fraction": 0.0,
+      "alpha_opaque_fraction": 1.0,
+      "alpha_partial_fraction": 0.0,
+      "foreground_coverage": 1.0,
+      "near_opaque_threshold": 250,
+      "near_opaque_foreground_fraction": 1.0,
+      "soft_edge_foreground_fraction": 0.0,
+      "alpha_bbox": null,
+      "alpha_centroid": null,
+      "border_contact": false,
+      "non_empty_content": true
+    },
+    "alpha_metrics": null,
+    "rgb_preservation": {
+      "compared_pixels": 42648,
+      "high_alpha_threshold": 250,
+      "mae_r": 0.0,
+      "mae_g": 0.0,
+      "mae_b": 0.0,
+      "mae_total": 0.0,
+      "max_mean_abs_error": 2.0,
+      "passed": true
+    },
+    "halo": {
+      "checked": true,
+      "border_semi_transparent_fraction": 0.0,
+      "halo_detected": false
+    },
+    "runtime_ms": 2014,
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96"
+  },
+  "failure_reason": null,
+  "observed_at": "2026-08-29T21:03:17+00:00",
+  "features": {
+    "supports_preview_metadata": true,
+    "supports_model_type_tags": true,
+    "max_upload_size": 104857600,
+    "extension": {
+      "manager": {
+        "supports_v4": true
+      }
+    },
+    "node_replacements": true,
+    "assets": false
+  }
+}

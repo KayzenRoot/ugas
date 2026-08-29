@@ -1,0 +1,58 @@
+{
+  "status": "REFERENCE_EDIT_QA_PASSED",
+  "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+  "output_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+  "output_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+  "source": {
+    "bbox": [
+      39,
+      10,
+      90,
+      122
+    ],
+    "centroid": [
+      0.5084758942457231,
+      0.5126409409020217
+    ],
+    "area": 3215
+  },
+  "output": {
+    "bbox": [
+      39,
+      10,
+      90,
+      122
+    ],
+    "centroid": [
+      0.5084730533105377,
+      0.5127253652471246
+    ],
+    "area": 3217
+  },
+  "metrics": {
+    "silhouette_iou": 0.999378,
+    "centroid_drift": 8.4e-05,
+    "bbox_scale_delta": 0.0,
+    "pixel_identical": false
+  },
+  "thresholds": {
+    "silhouette_iou_min": 0.9,
+    "centroid_drift_max": 0.025,
+    "bbox_scale_delta_max": 0.05,
+    "allow_pixel_identical": false
+  },
+  "checks": {
+    "source_exists": true,
+    "output_exists": true,
+    "distinct_paths": true,
+    "distinct_revisions": true,
+    "source_hash_matches_metadata": true,
+    "output_hash_matches_metadata": true,
+    "immutable_inputs": true,
+    "silhouette_iou": true,
+    "centroid_drift": true,
+    "bbox_scale_delta": true,
+    "not_pixel_identical": true
+  }
+}

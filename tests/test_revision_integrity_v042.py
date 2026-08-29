@@ -125,7 +125,7 @@ class ExistingScopeRegressionTests(unittest.TestCase):
         with self.assertRaises(ModelRegistryError): validate_model_workflow_compatibility(base, workflow)
 
     def test_sprite_grid_scope_block_remains_green(self):
-        with self.assertRaisesRegex(GenerationError, "v0.4.2"): __import__("ugas.generation", fromlist=["sprite_pilot"]).sprite_pilot(ROOT, endpoint="http://127.0.0.1:1", prompt="grid", columns=2, rows=1)
+        with self.assertRaisesRegex(GenerationError, "v0.4.3"): __import__("ugas.generation", fromlist=["sprite_pilot"]).sprite_pilot(ROOT, endpoint="http://127.0.0.1:1", prompt="grid", columns=2, rows=1)
 
 
 if __name__ == "__main__":

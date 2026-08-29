@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .comfyui_client import ComfyUIClient, ComfyUIError
+from .constants import UGAS_VERSION
 from .model_registry import ModelRegistryError, load_model, inventory_matches
 from .workflow_registry import load_workflow, validate_api_workflow
 
@@ -18,7 +19,7 @@ def _now() -> str:
 
 def declared_evidence(repo_root: Path, provider: str = "provider-comfyui", capability: str = "2d") -> dict:
     return {
-        "schema_version": "0.4.2",
+        "schema_version": UGAS_VERSION,
         "provider": provider,
         "capability": capability,
         "state": "declared",

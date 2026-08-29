@@ -11,7 +11,7 @@ import urllib.request
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Callable, Mapping
 
 
 class ComfyUIError(RuntimeError):
@@ -246,10 +246,13 @@ class ComfyUIClient:
         timeout: float = 300.0,
         initial_interval: float = 0.5,
         max_interval: float = 5.0,
+        on_poll: Callable[[str], None] | None = None,
     ) -> dict[str, Any]:
         deadline = time.monotonic() + timeout
         interval = max(0.05, initial_interval)
         while True:
+            if on_poll is not None:
+                on_poll(prompt_id)
             history = self.history(prompt_id)
             item = history.get(prompt_id)
             if isinstance(item, dict):
@@ -257,7 +260,9 @@ class ComfyUIClient:
                 if isinstance(status, dict) and status.get("status_str") in {"error", "failed"}:
                     raise ComfyUIExecutionError(f"ComfyUI job {prompt_id} failed: {status.get('status_str')}")
                 if "outputs" in item or (isinstance(status, dict) and status.get("completed") is True):
-                    return item
+                    bound = dict(item)
+                    bound["_ugas_prompt_id"] = prompt_id
+                    return bound
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 raise ComfyUITimeoutError(f"ComfyUI job {prompt_id} exceeded polling timeout")

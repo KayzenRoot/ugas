@@ -3,7 +3,7 @@
   "$id": "https://ugas.dev/schema/generation-job.json",
   "title": "UGAS generation job",
   "type": "object",
-  "required": ["schema_version", "job_id", "state", "consumer_project_id", "asset_request_id", "profile", "provider", "capability", "workflow", "models", "prompts", "seed", "dimensions", "parameters", "timestamps", "retry_count", "input_hashes", "output_hashes", "validation", "provenance_event"],
+  "required": ["schema_version", "job_id", "state", "consumer_project_id", "asset_request_id", "profile", "provider", "capability", "workflow", "models", "prompts", "seed", "dimensions", "parameters", "timestamps", "retry_count", "input_hashes", "output_hashes", "execution_evidence", "validation", "provenance_event"],
   "properties": {
     "schema_version": {"type": "string"},
     "job_id": {"type": "string"},
@@ -23,6 +23,7 @@
     "retry_count": {"type": "integer", "minimum": 0},
     "input_hashes": {"type": "object"},
     "output_hashes": {"type": "object"},
+    "execution_evidence": {"type": "object"},
     "validation": {"type": "object"},
     "provenance_event": {"type": "object"},
     "history": {"type": "array", "items": {"type": "object"}},

@@ -21,8 +21,9 @@ def validate_model_workflow_compatibility(model: dict, workflow: dict, *, allow_
     workflow_variant = workflow.get("model_variant", variant)
     steps = workflow.get("parameters", {}).get("steps")
     guidance = workflow.get("parameters", {}).get("guidance")
-    expected_steps = model.get("recommended_steps")
-    expected_guidance = model.get("recommended_guidance")
+    capability_parameters = model.get("capability_parameters", {}).get(workflow.get("capability"), {})
+    expected_steps = capability_parameters.get("steps", model.get("recommended_steps"))
+    expected_guidance = capability_parameters.get("guidance", model.get("recommended_guidance"))
     mismatches = []
     if family != workflow_family:
         mismatches.append("model family differs from workflow family")

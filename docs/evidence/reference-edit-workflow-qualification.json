@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.4.3",
+  "capability": "reference-edit",
+  "family": "flux2-klein-4b",
+  "variant": "base",
+  "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+  "parameters": {
+    "steps": 20,
+    "guidance": 5.0,
+    "sampler": "euler",
+    "scheduler": "Flux2Scheduler"
+  },
+  "upstream": {
+    "repository": "Comfy-Org/workflow_templates",
+    "path": "templates/image_flux2_klein_image_edit_4b_base.json",
+    "commit": "d3b4a9e89573162b005961865164c18c8ae2206b",
+    "source_sha256": "346cd9a63bfe34a5a9207f50c34a87feaf4e70806d13c9d2738fd521133670d0",
+    "raw_materialized": "docs/evidence/upstream/workflow_templates-image-edit-base.json"
+  },
+  "blueprint_reference": {
+    "repository": "comfyanonymous/ComfyUI",
+    "path": "blueprints/Image Edit (Flux.2 Klein 4B).json",
+    "commit": "5bdcb5f4edd70412e12fb04f357766cb4504e0fa",
+    "source_sha256": "b658fc1f67114c0306c4bea8958699767bd76ba9c728dfb36e79928af20cb597",
+    "raw_materialized": "docs/evidence/upstream/comfyui-blueprint-image-edit.json"
+  },
+  "installed_runtime": {
+    "comfyui_version": "0.34.0",
+    "installed_templates_version": "0.11.48",
+    "gpu": "NVIDIA GeForce RTX 5050",
+    "vram_total_gb": 8.546,
+    "pytorch": "2.13.0+cu130",
+    "endpoint": "http://127.0.0.1:8188"
+  },
+  "adaptation": {
+    "format": "ComfyUI API prompt graph",
+    "topology_preserved": true,
+    "public_markers": ["__MODEL__", "__CLIP__", "__VAE__", "__IMAGE__", "__SEED__"],
+    "native_nodes_only": true,
+    "custom_nodes_required": []
+  },
+  "status": "qualified-pending-fresh-pilot",
+  "qualification_date": "2026-08-29",
+  "fresh_pilot_required": true,
+  "legacy_rejected_configuration": {"steps": 50, "guidance": 4.0, "reason": "historical v0.4.2 evidence is not qualification evidence for v0.4.3"}
+}

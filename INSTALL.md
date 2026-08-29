@@ -1,27 +1,28 @@
-# Installing UGAS 0.4.2
+# Installing UGAS 0.4.3
+
+UGAS requires Python 3.10 or newer, Pillow and a local ComfyUI server. The supported real pilot target is an NVIDIA RTX 5050 with ComfyUI native nodes and locally installed, hash-registered model files.
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
 python -m pip install -e .
-python -m compileall -q src scripts tests
-python -m unittest -q
+python -m ugas --version
 python scripts/validation/run_validation.py
 ```
 
-For real local generation, run ComfyUI privately at `http://127.0.0.1:8188`. Place the exact registered files below the ComfyUI model root:
+Start ComfyUI on `http://127.0.0.1:8188`, then verify the provider and nodes:
 
-- `diffusion_models/flux-2-klein-4b-nvfp4.safetensors` for FAST;
-- `diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors` for QUALITY;
-- shared `text_encoders/qwen_3_4b_fp4_flux2.safetensors` and `vae/flux2-vae.safetensors`;
-- `background_removal/birefnet.safetensors` for transparency.
+```powershell
+python -m ugas comfyui-health --json
+python -m ugas workflows validate flux2-klein-base-4b-quality-image-edit --url http://127.0.0.1:8188 --json
+```
 
-Verify exact files with `python -m ugas.cli models qualify <model-id>`. The registry records SHA-256, license and hardware evidence; weights, caches, `.env`, tokens and generated output do not belong in Git.
+The image-edit lane is independently qualified from the text-to-image lanes. Base image-edit uses the official native graph with Euler, Flux2Scheduler, 20 steps and CFG 5; Base text-to-image remains 50/4 and Distilled remains 4/1.0. BiRefNet is native and preserves the selected RGB while supplying the alpha matte.
 
-## Revision and QA contract
+Run the fresh corrective pilot with a known v0.4.2 asset containing R1/R2:
 
-New asset revisions live in unique `tmp/assets/<asset-id>/revisions/<revision-id>/` directories. Background removal keeps the original RGB and joins only the native BiRefNet alpha; the resulting transparency evidence includes near-opaque alpha and RGB-preservation metrics. `python -m ugas.cli asset verify-integrity <asset-id> --json` is the integrity auditor.
+```powershell
+python -m ugas reference-edit pilot <source-asset-id> --instruction "Change armor color/material tint from blue steel to deep cobalt/navy steel." --candidates 4 --seed-base 10401 --json
+```
 
-The reference-edit chain is R1 RGB master -> R2 transparent master -> R3 edited RGB -> R4 transparent edited result. Structural QA compares R2 and R4. Human visual approval is a separate decision and is not inferred automatically.
+The command creates a fresh v0.4.3 asset chain, benchmarks official and legacy reference-edit parameters, records every prompt/history/output binding, runs four generative candidates, evaluates deterministic recolour when the target mask is confident, promotes only the selected R3 and creates R4 after native background removal. Technical output remains pending human visual approval.
 
-The consumer installer remains safe-refresh aware: use `ugas install <consumer-root> --force` only when intentionally refreshing an existing `.game-assets` contract. Animation, grids greater than 1, 3D/Blender, audio, hosted inference and paid providers are outside 0.4.2.
+Model weights must stay outside Git and must match `providers/models/registry.json` hashes before a production claim. Do not commit `.env`, credentials, caches, `tmp/` or `review/`. Animation, grids larger than 1, custom nodes, hosted inference and paid providers are outside 0.4.3.

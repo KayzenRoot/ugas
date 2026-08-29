@@ -1,4 +1,4 @@
-"""UGAS v0.4.2 machine-readable CLI."""
+"""UGAS v0.4.3 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ from .generation import (
     candidates_show,
     generate_image,
     generate_master_sprite,
+    reference_edit_pilot,
     refine_master,
     sprite_pilot,
     visual_approve,
@@ -48,7 +49,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.4.2")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.4.3")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -73,6 +74,7 @@ def build_parser() -> argparse.ArgumentParser:
     pilot = generate_sub.add_parser("sprite-pilot"); pilot.add_argument("prompt"); pilot.add_argument("--model", default="flux2-klein-4b-distilled-nvfp4"); pilot.add_argument("--workflow", default="flux2-klein-4b-distilled-text-to-image"); pilot.add_argument("--seed", type=int, default=1); pilot.add_argument("--width", type=int, default=256); pilot.add_argument("--height", type=int, default=256); pilot.add_argument("--columns", type=int, default=1); pilot.add_argument("--rows", type=int, default=1); pilot.add_argument("--requires-transparency", action="store_true"); _common_generation(pilot)
 
     refine = sub.add_parser("refine"); refine_sub = refine.add_subparsers(dest="refine_action", required=True); refine_master_parser = refine_sub.add_parser("master-sprite"); refine_master_parser.add_argument("asset_id"); refine_master_parser.add_argument("--instruction", required=True); refine_master_parser.add_argument("--url", default="http://127.0.0.1:8188"); _json_flag(refine_master_parser)
+    reference = sub.add_parser("reference-edit"); reference_sub = reference.add_subparsers(dest="reference_action", required=True); reference_pilot = reference_sub.add_parser("pilot"); reference_pilot.add_argument("source_asset_id"); reference_pilot.add_argument("--instruction", default="Change armor color/material tint from blue steel to deep cobalt/navy steel."); reference_pilot.add_argument("--candidates", type=int, default=4); reference_pilot.add_argument("--seed-base", type=int, default=10401); reference_pilot.add_argument("--url", default="http://127.0.0.1:8188"); reference_pilot.add_argument("--output-dir", type=Path); _json_flag(reference_pilot)
     background = sub.add_parser("background"); background_sub = background.add_subparsers(dest="background_action", required=True); remove = background_sub.add_parser("remove"); remove.add_argument("image_or_asset_id"); remove.add_argument("--url", default="http://127.0.0.1:8188"); remove.add_argument("--output-dir", type=Path); _json_flag(remove)
     candidates = sub.add_parser("candidates"); candidates_sub = candidates.add_subparsers(dest="candidates_action", required=True); show = candidates_sub.add_parser("show"); show.add_argument("asset_id"); _json_flag(show)
     visual = sub.add_parser("visual"); visual_sub = visual.add_subparsers(dest="visual_action", required=True); approve = visual_sub.add_parser("approve"); approve.add_argument("asset_id"); approve.add_argument("--note", default=""); _json_flag(approve)
@@ -115,6 +117,9 @@ def main(argv: list[str] | None = None) -> int:
             if args.generation_action == "sprite-pilot": kwargs.update({"columns": args.columns, "rows": args.rows}); _json(sprite_pilot(root, **kwargs)); return 0
             _json(generate_image(root, **kwargs)); return 0
         if args.command == "refine": _json(refine_master(root, args.asset_id, instruction=args.instruction, endpoint=args.url)); return 0
+        if args.command == "reference-edit":
+            result = reference_edit_pilot(root, args.source_asset_id, instruction=args.instruction, endpoint=args.url, candidates=args.candidates, seed_base=args.seed_base, output_dir=args.output_dir)
+            _json(result); return 0 if result.get("status") in {"VISUAL_REVIEW_REQUIRED", "REFERENCE_EDIT_FIDELITY_PASSED"} else 2
         if args.command == "background": _json(background_remove(root, args.image_or_asset_id, endpoint=args.url, output_dir=args.output_dir)); return 0
         if args.command == "candidates": _json(candidates_show(root, args.asset_id)); return 0
         if args.command == "visual": _json(visual_approve(root, args.asset_id, args.note)); return 0

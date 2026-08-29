@@ -1,0 +1,239 @@
+{
+  "schema_version": "0.4.3",
+  "status": "REFERENCE_EDIT_FIDELITY_PASSED",
+  "selected_route": "deterministic-recolor",
+  "selected_candidate_id": "deterministic-recolor",
+  "selected": {
+    "schema_version": "0.4.3",
+    "candidate_id": "deterministic-recolor",
+    "source_revision_id": "revision-2c67bd7917a04fb39d49a9b9e0eefcc3",
+    "source_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output.png",
+    "candidate_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\deterministic-transparency\\job-5157d0a09b9346a483ea7d07b49d181f\\output.png",
+    "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+    "candidate_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "contract_sha256": "7782899561be4e7de6f78864658cc7e2af55e8fa3b3f0d41e56f925204124bf1",
+    "thresholds": {
+      "silhouette_iou_min": 0.9,
+      "centroid_drift_max": 0.025,
+      "bbox_scale_delta_max": 0.05,
+      "foreground_luma_ratio_min": 0.88,
+      "foreground_luma_ratio_max": 1.12,
+      "foreground_luma_mae_max": 18.0,
+      "head_luma_ratio_min": 0.9,
+      "head_luma_ratio_max": 1.1,
+      "head_luma_mae_max": 12.0,
+      "head_changed_fraction_max": 0.12,
+      "protected_rgb_mae_max": 10.0,
+      "protected_changed_fraction_max": 0.18,
+      "max_global_change_fraction": 0.2,
+      "target_changed_fraction_min": 0.1,
+      "target_hue_distance_max": 0.4,
+      "runtime_plausibility_ratio_min": 0.25
+    },
+    "status": "REFERENCE_EDIT_FIDELITY_PASSED",
+    "failure_reasons": [],
+    "checks": {
+      "silhouette_iou": true,
+      "centroid_drift": true,
+      "bbox_scale_delta": true,
+      "not_pixel_identical": true,
+      "foreground_luma_ratio": true,
+      "foreground_luma_mae": true,
+      "head_luma_ratio": true,
+      "head_luma_mae": true,
+      "head_changed_fraction": true,
+      "protected_rgb_mae": true,
+      "protected_changed_fraction": true,
+      "global_change_fraction": true,
+      "target_changed": true,
+      "target_hue_direction": true,
+      "target_hue_destination": true
+    },
+    "structural": {
+      "source": {
+        "bbox": [
+          159,
+          40,
+          360,
+          486
+        ],
+        "centroid": [
+          0.5116447834291408,
+          0.5095780800087635
+        ],
+        "area": 47926
+      },
+      "candidate": {
+        "bbox": [
+          159,
+          40,
+          360,
+          486
+        ],
+        "centroid": [
+          0.5116427299205902,
+          0.5095228498831288
+        ],
+        "area": 47916
+      },
+      "silhouette_iou": 0.99854,
+      "centroid_drift": 5.5e-05,
+      "bbox_scale_delta": 0.0
+    },
+    "appearance": {
+      "foreground": {
+        "pixels": 47926,
+        "source_luma_mean": 47.940172,
+        "candidate_luma_mean": 47.842296,
+        "luma_ratio": 0.997958,
+        "luma_mae": 0.174819,
+        "source_luma_percentiles": {
+          "p05": 2.0,
+          "p25": 15.0384,
+          "p50": 35.1496,
+          "p75": 72.2531,
+          "p95": 135.2467
+        },
+        "candidate_luma_percentiles": {
+          "p05": 2.0,
+          "p25": 15.0372,
+          "p50": 35.1586,
+          "p75": 72.2107,
+          "p95": 134.3318
+        },
+        "rgb_mae": 6.282561,
+        "changed_fraction": 0.388286
+      },
+      "source_foreground": {
+        "pixels": 47926,
+        "source_luma_mean": 47.940172,
+        "candidate_luma_mean": 47.940172,
+        "luma_ratio": 1.0,
+        "luma_mae": 0.0,
+        "source_luma_percentiles": {
+          "p05": 2.0,
+          "p25": 15.0384,
+          "p50": 35.1496,
+          "p75": 72.2531,
+          "p95": 135.2467
+        },
+        "candidate_luma_percentiles": {
+          "p05": 2.0,
+          "p25": 15.0384,
+          "p50": 35.1496,
+          "p75": 72.2531,
+          "p95": 135.2467
+        },
+        "rgb_mae": 0.0,
+        "changed_fraction": 0.0
+      },
+      "head": {
+        "pixels": 6371,
+        "source_luma_mean": 50.839982,
+        "candidate_luma_mean": 50.839982,
+        "luma_ratio": 1.0,
+        "luma_mae": 0.0,
+        "source_luma_percentiles": {
+          "p05": 0.9278,
+          "p25": 8.2834,
+          "p50": 24.593,
+          "p75": 88.976,
+          "p95": 165.9996
+        },
+        "candidate_luma_percentiles": {
+          "p05": 0.9278,
+          "p25": 8.2834,
+          "p50": 24.593,
+          "p75": 88.976,
+          "p95": 165.9996
+        },
+        "rgb_mae": 0.0,
+        "changed_fraction": 0.0
+      },
+      "protected_outside_target": {
+        "pixels": 25579,
+        "source_luma_mean": 42.462213,
+        "candidate_luma_mean": 42.462213,
+        "luma_ratio": 1.0,
+        "luma_mae": 0.0,
+        "source_luma_percentiles": {
+          "p05": 1.21208,
+          "p25": 9.7874,
+          "p50": 23.173,
+          "p75": 60.6403,
+          "p95": 152.32258
+        },
+        "candidate_luma_percentiles": {
+          "p05": 1.21208,
+          "p25": 9.7874,
+          "p50": 23.173,
+          "p75": 60.6403,
+          "p95": 152.32258
+        },
+        "rgb_mae": 0.0,
+        "changed_fraction": 0.0
+      },
+      "target": {
+        "pixels": 22347,
+        "source_luma_mean": 54.210397,
+        "candidate_luma_mean": 54.000489,
+        "luma_ratio": 0.996128,
+        "luma_mae": 0.374921,
+        "source_luma_percentiles": {
+          "p05": 4.43356,
+          "p25": 29.5937,
+          "p50": 52.0912,
+          "p75": 75.0016,
+          "p95": 115.175
+        },
+        "candidate_luma_percentiles": {
+          "p05": 4.5868,
+          "p25": 29.632,
+          "p50": 52.0674,
+          "p75": 74.9647,
+          "p95": 113.33204
+        },
+        "rgb_mae": 13.473755,
+        "changed_fraction": 0.832729
+      },
+      "target_candidate_mean_hue": 0.607262,
+      "target_hue_distance_to_220": 0.003849,
+      "target_direction_score": 28.108113,
+      "global_changed_fraction": 0.0
+    },
+    "target_mask": {
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-target-mask.png",
+      "sha256": "8bd9edb800144b0b9ee16c7b116144b94d756b6bbf9a6c11c799152319ddc9cf",
+      "pixels": 22347
+    },
+    "protected_mask": {
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-2fec6fed1d714d0cb58ad75b56d7ba71\\revisions\\revision-2c67bd7917a04fb39d49a9b9e0eefcc3\\output-protected-mask.png",
+      "sha256": "113af2fef3bf5031cfcb0af720c872900cacc9525903c334478654dc86cd0be9",
+      "pixels": 6371
+    },
+    "human_review": "required",
+    "production_ready": false
+  },
+  "all_candidates": {
+    "generative_eligible": [],
+    "deterministic_status": "REFERENCE_EDIT_FIDELITY_PASSED"
+  },
+  "thresholds": {
+    "silhouette_iou_min": 0.9,
+    "centroid_drift_max": 0.025,
+    "bbox_scale_delta_max": 0.05,
+    "foreground_luma_ratio_min": 0.88,
+    "foreground_luma_ratio_max": 1.12,
+    "foreground_luma_mae_max": 18.0,
+    "head_luma_ratio_min": 0.9,
+    "head_luma_ratio_max": 1.1,
+    "head_luma_mae_max": 12.0,
+    "head_changed_fraction_max": 0.12,
+    "protected_rgb_mae_max": 10.0,
+    "protected_changed_fraction_max": 0.18,
+    "max_global_change_fraction": 0.2,
+    "target_changed_fraction_min": 0.1,
+    "target_hue_distance_max": 0.4,
+    "runtime_plausibility_ratio_min": 0.25
+  }
+}

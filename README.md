@@ -1,41 +1,32 @@
-# UGAS 0.4.2
+# UGAS 0.4.3
 
-Universal Game Asset Studio is a provider-agnostic control plane for a governed 2D master-sprite workflow over local ComfyUI. This corrective slice makes asset revisions immutable and evidence hash-verifiable before any multi-frame animation work.
+Universal Game Asset Studio is a provider-agnostic control plane for a governed 2D master-sprite workflow over local ComfyUI. This correction adds reference-edit fidelity evidence without changing the historical v0.4.2 text-to-image lanes.
 
-Pipeline:
+Pipeline corrente:
 
-`visual request -> machine master spec -> short visual prompt -> FAST/QUALITY lane -> safe-margin hard gates -> selected RGB R1 -> native BiRefNet -> immutable transparent R2 -> measured reference edit R3 -> native BiRefNet -> immutable transparent R4 -> structural QA -> human review`
+`visual request -> master spec -> FAST/QUALITY text-to-image -> R1 RGB -> BiRefNet R2 -> independently qualified image-edit benchmark -> fresh generative candidates -> deterministic armor recolour fallback -> R3 RGB -> BiRefNet R4 -> structural + appearance QA -> human review`
 
-## Model lanes
+The reference-edit contract permits only blue-steel armor to deep cobalt/navy steel. Face identity, skin tone and facial exposure, hair, proportions, pose, camera, silhouette, sword, black cloth and the pre-removal composition are protected. Structural IoU is not identity proof; the fidelity gate also measures luminance, head stability, target direction and protected-region changes.
 
-- FAST: `flux2-klein-4b-distilled-nvfp4`, 4 steps, guidance 1.0.
-- QUALITY: `flux2-klein-4b-base-nvfp4`, 50 steps, guidance 4.0.
+The Base image-edit workflow is capability-specific: official native graph, Euler, Flux2Scheduler, 20 steps and CFG 5. Text-to-image remains Base 50/4 and Distilled 4/1.0. The legacy 50/4 image-edit configuration is retained only as a labeled benchmark comparison.
 
-Base and Distilled remain explicit in the registries and API graphs. The loader rejects a family, variant, steps or guidance mismatch before submitting a ComfyUI job. Weights stay in the local ComfyUI model directory and are never committed.
-
-## Immutable revisions
-
-Every asset revision receives a new ID-owned directory under `tmp/assets/<asset-id>/revisions/<revision-id>/`. It owns its `output.png`, optional `mask.png`, `checkerboard.png` and `metadata.json`. New background-removal and reference-edit operations never overwrite a previous revision; standalone jobs also use unique directories.
-
-Run `python -m ugas.cli asset verify-integrity <asset-id> --json` to verify paths, hashes, ordering, derivation ancestry, current revision, approval binding and recomputed readiness.
-
-## QA and commands
+Run the bounded pilot against the local ComfyUI instance:
 
 ```powershell
-python -m pip install -e .
-python -m compileall -q src scripts tests
-python -m unittest -q
-python scripts/validation/run_validation.py
-python -m ugas.cli generate master-sprite "stylized fantasy human warrior with blue steel armor" --quality-policy quality-first --candidates 3 --width 512 --height 512 --transparent --json
-python -m ugas.cli asset verify-integrity <asset-id> --json
+python -m ugas reference-edit pilot <source-asset-id> --candidates 4 --seed-base 10401 --url http://127.0.0.1:8188 --json
 ```
 
-Native BiRefNet supplies the matte while the original RGB source is preserved. Transparency QA records alpha geometry, near-opaque and soft-edge fractions, and RGB MAE on strong foreground pixels. Human visual approval is never inferred from technical or structural QA.
+The pilot uses fresh prompt IDs, unique seeds, unique job directories and exact history/output hashes. Generative candidates are temporary until selected; a deterministic recolour is eligible only when its documented HSV mask confidence is sufficient. Zero eligible candidates produces `NO_ACCEPTABLE_REFERENCE_EDIT` and does not create R3.
 
-## Scope boundary
+Engineering validation:
 
-This release covers one 2D master sprite, immutable transparency/reference-edit revisions, safe margins, structural QA and review evidence. Animation clips, grids greater than 1, production LoRAs, 3D, Blender, audio, cloud inference and paid providers remain out of scope. The LoRAs `Limbicnation/pixel-art-lora` and `fal/flux-2-klein-4b-spritesheet-lora` are backlog only.
+```powershell
+python -m unittest -q
+python scripts/validation/run_validation.py
+```
 
-See [INSTALL.md](INSTALL.md), [docs/2d-master-pipeline.md](docs/2d-master-pipeline.md), [CHECKPOINT.md](CHECKPOINT.md), [docs/test-coverage-matrix-v0.4.2.md](docs/test-coverage-matrix-v0.4.2.md) and [REVIEW-v0.4.2.md](REVIEW-v0.4.2.md).
+Human visual approval is never inferred from technical QA. The current pilot is technically `VISUAL_REVIEW_REQUIRED`; animation, multi-frame grids, pose generation, custom nodes, 3D/Blender, audio, cloud inference and paid providers remain outside this increment.
+
+See [INSTALL.md](INSTALL.md), [docs/2d-master-pipeline.md](docs/2d-master-pipeline.md), [docs/comfyui.md](docs/comfyui.md), [CHECKPOINT.md](CHECKPOINT.md), [docs/test-coverage-matrix-v0.4.3.md](docs/test-coverage-matrix-v0.4.3.md) and [REVIEW-v0.4.3.md](REVIEW-v0.4.3.md).
 
 UGAS is MIT licensed. Provider services, model weights, references and generated assets can have separate terms.
