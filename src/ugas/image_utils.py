@@ -50,6 +50,10 @@ def inspect_png(path: Path) -> dict:
         transparent_pixels = sum(1 for value in alpha_values if value == 0)
         partial_pixels = sum(1 for value in alpha_values if 0 < value < 255)
         opaque_pixels = sum(1 for value in alpha_values if value == 255)
+        near_opaque_threshold = 250
+        foreground_pixels = sum(1 for value in alpha_values if value > 0)
+        near_opaque_pixels = sum(1 for value in alpha_values if value >= near_opaque_threshold)
+        soft_edge_pixels = sum(1 for value in alpha_values if 0 < value < near_opaque_threshold)
         content_bbox = alpha.getbbox() if has_alpha_channel else image.convert("RGB").getbbox()
         foreground_points = [(x, y) for y in range(image.height) for x in range(image.width) if alpha.getpixel((x, y)) > 0] if has_alpha_channel else []
         border_contact = bool(has_alpha_channel and (any(alpha.getpixel((x, 0)) > 0 or alpha.getpixel((x, image.height - 1)) > 0 for x in range(image.width)) or any(alpha.getpixel((0, y)) > 0 or alpha.getpixel((image.width - 1, y)) > 0 for y in range(image.height))))
@@ -73,10 +77,76 @@ def inspect_png(path: Path) -> dict:
             "alpha_opaque_fraction": opaque_pixels / total_pixels if total_pixels else 0.0,
             "alpha_partial_fraction": partial_pixels / total_pixels if total_pixels else 0.0,
             "foreground_coverage": (total_pixels - transparent_pixels) / total_pixels if total_pixels else 0.0,
+            "near_opaque_threshold": near_opaque_threshold,
+            "near_opaque_foreground_fraction": near_opaque_pixels / foreground_pixels if foreground_pixels else 0.0,
+            "soft_edge_foreground_fraction": soft_edge_pixels / foreground_pixels if foreground_pixels else 0.0,
             "alpha_bbox": list(alpha.getbbox()) if has_alpha_channel and alpha.getbbox() else None,
             "alpha_centroid": ([sum(x for x, _ in foreground_points) / len(foreground_points) / image.width, sum(y for _, y in foreground_points) / len(foreground_points) / image.height] if foreground_points else None),
             "border_contact": border_contact,
             "non_empty_content": content_bbox is not None,
+        }
+
+
+def rgb_preservation(source: Path, result: Path, *, high_alpha_threshold: int = 250, max_mean_abs_error: float = 2.0) -> dict:
+    """Compare RGB values on strongly foreground pixels after alpha joining.
+
+    Background removal is allowed to alter the matte, not the subject's RGB
+    appearance. The result is measured only where the resulting alpha is
+    strongly foreground so transparent background pixels cannot hide a
+    recolour of the subject.
+    """
+    try:
+        from PIL import Image
+        with Image.open(source) as source_image, Image.open(result) as result_image:
+            source_rgb = source_image.convert("RGB")
+            result_rgba = result_image.convert("RGBA")
+            if source_rgb.size != result_rgba.size:
+                return {
+                    "compared_pixels": 0,
+                    "high_alpha_threshold": high_alpha_threshold,
+                    "mae_r": None,
+                    "mae_g": None,
+                    "mae_b": None,
+                    "mae_total": None,
+                    "passed": False,
+                    "error": "source and result dimensions differ",
+                }
+            source_pixels = source_rgb.load()
+            result_pixels = result_rgba.load()
+            sums = [0.0, 0.0, 0.0]
+            compared = 0
+            for y in range(result_rgba.height):
+                for x in range(result_rgba.width):
+                    red, green, blue, alpha = result_pixels[x, y]
+                    if alpha < high_alpha_threshold:
+                        continue
+                    original = source_pixels[x, y]
+                    sums[0] += abs(original[0] - red)
+                    sums[1] += abs(original[1] - green)
+                    sums[2] += abs(original[2] - blue)
+                    compared += 1
+            maes = [value / compared for value in sums] if compared else [float("inf")] * 3
+            total = sum(maes) / 3 if compared else float("inf")
+            return {
+                "compared_pixels": compared,
+                "high_alpha_threshold": high_alpha_threshold,
+                "mae_r": round(maes[0], 6) if compared else None,
+                "mae_g": round(maes[1], 6) if compared else None,
+                "mae_b": round(maes[2], 6) if compared else None,
+                "mae_total": round(total, 6) if compared else None,
+                "max_mean_abs_error": max_mean_abs_error,
+                "passed": bool(compared and total <= max_mean_abs_error),
+            }
+    except Exception as exc:
+        return {
+            "compared_pixels": 0,
+            "high_alpha_threshold": high_alpha_threshold,
+            "mae_r": None,
+            "mae_g": None,
+            "mae_b": None,
+            "mae_total": None,
+            "passed": False,
+            "error": str(exc),
         }
 
 

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4.1",
+  "schema_version": "0.4.2",
   "provider": "provider-comfyui",
   "capability": "reference-edit",
   "state": "verified",
@@ -11,9 +11,9 @@
       "type": "cuda",
       "index": 0,
       "vram_total": 8546484224,
-      "vram_free": 6825510006,
+      "vram_free": 2736143856,
       "torch_vram_total": 134217728,
-      "torch_vram_free": 62194806
+      "torch_vram_free": 66469360
     }
   ],
   "required_nodes": [
@@ -109,7 +109,7 @@
   ],
   "workflow": {
     "id": "flux2-klein-base-4b-quality-image-edit",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "sha256": "ea3d24a235be2563e04eb1b6b9f3314a291e9b25fa0a2fd0380a0936e7482ddb",
     "validation": {
       "valid_graph": true,
@@ -185,16 +185,16 @@
   ],
   "smoke_test": {
     "status": "passed",
-    "source_sha256": "430eed523065d44919f9ae576f049e92bcf370d474d88e2ca4540399b046418c",
+    "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
     "output": {
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\revisions\\reference-edit-3.png",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-bd7baa4990c34a6e89bfca4e6aedb97e\\output.png",
       "format": "PNG",
       "width": 512,
       "height": 512,
       "mode": "RGB",
       "source_mode": "RGB",
-      "bytes": 192619,
-      "sha256": "cefe3c96c61e1d96482c2ed1203e0e85ae21e2e205a21775e7f3df2fb7764d67",
+      "bytes": 136907,
+      "sha256": "cf315b52ed4576ffac80616e515749ada45c03d02faba6d458002e8bfe8a8c48",
       "has_alpha": false,
       "has_alpha_channel": false,
       "has_transparent_pixels": false,
@@ -206,17 +206,21 @@
       "alpha_opaque_fraction": 1.0,
       "alpha_partial_fraction": 0.0,
       "foreground_coverage": 1.0,
+      "near_opaque_threshold": 250,
+      "near_opaque_foreground_fraction": 1.0,
+      "soft_edge_foreground_fraction": 0.0,
       "alpha_bbox": null,
       "alpha_centroid": null,
       "border_contact": false,
       "non_empty_content": true
     },
-    "instruction": "Change only this visual property: change the blue steel armor material to deep cobalt steel while preserving the character. Keep the same character identity, face, body proportions, exact pose, camera angle, silhouette, weapon type and overall composition. Preserve the neutral idle stance, full-body framing, readable hands and weapon beside the body. Do not redesign the character, add subjects, crop limbs, add text or add motion effects.",
-    "instruction_sha256": "13ced72d503e64fc7aafe76738cec3e8bb3a9dfd78305974a27f7ed9a3f1ec4a",
-    "runtime_ms": 59588
+    "instruction": "Change only this visual property: change only the blue steel armor material/color to deep cobalt navy steel while preserving the character identity, face, proportions, exact pose, camera, silhouette, sword and composition. Keep the same character identity, face, body proportions, exact pose, camera angle, silhouette, weapon type and overall composition. Preserve the neutral idle stance, full-body framing, readable hands and weapon beside the body. Do not redesign the character, add subjects, crop limbs, add text or add motion effects.",
+    "instruction_sha256": "4c34d8512dae561ef16c15a4ff8ed6e219497ba0d82b304f5e20992df32287ce",
+    "runtime_ms": 620,
+    "revision_id": "revision-bd7baa4990c34a6e89bfca4e6aedb97e"
   },
   "failure_reason": null,
-  "observed_at": "2026-08-29T14:36:55+00:00",
+  "observed_at": "2026-08-29T16:32:51+00:00",
   "features": {
     "supports_preview_metadata": true,
     "supports_model_type_tags": true,

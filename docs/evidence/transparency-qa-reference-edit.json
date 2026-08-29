@@ -1,0 +1,146 @@
+{
+  "schema_version": "0.4.2",
+  "asset_id": "asset-6802db1284dd4b4ba25c6987e5b26ddb",
+  "revision_id": "revision-2e7023c8e0c947ac9faa96c5f7e35650",
+  "source_sha256": "cf315b52ed4576ffac80616e515749ada45c03d02faba6d458002e8bfe8a8c48",
+  "output_sha256": "84e834db6adc51b4884e4b56d64bd9c196a17e818d792b177ae0fa0a06ecf928",
+  "source_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-bd7baa4990c34a6e89bfca4e6aedb97e\\output.png",
+  "output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-2e7023c8e0c947ac9faa96c5f7e35650\\output.png",
+  "qa": {
+    "status": "TECHNICAL_VALID",
+    "checks": {
+      "exists": true,
+      "format": true,
+      "dimensions": true,
+      "size": true,
+      "non_empty_content": true,
+      "transparency_requirement": true,
+      "rgb_preservation": {
+        "compared_pixels": 42540,
+        "high_alpha_threshold": 250,
+        "mae_r": 0.0,
+        "mae_g": 0.0,
+        "mae_b": 0.0,
+        "mae_total": 0.0,
+        "max_mean_abs_error": 2.0,
+        "passed": true
+      }
+    },
+    "requirements": {
+      "requires_transparency": true,
+      "transparency_profile": {
+        "min_transparent_fraction": 0.01,
+        "max_foreground_coverage": 0.98,
+        "allow_border_contact": false,
+        "near_opaque_threshold": 250,
+        "min_near_opaque_foreground_fraction": 0.85,
+        "high_alpha_threshold": 250,
+        "max_mean_abs_rgb_error": 2.0
+      }
+    },
+    "technical": {
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-2e7023c8e0c947ac9faa96c5f7e35650\\output.png",
+      "format": "PNG",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "source_mode": "RGBA",
+      "bytes": 147293,
+      "sha256": "84e834db6adc51b4884e4b56d64bd9c196a17e818d792b177ae0fa0a06ecf928",
+      "has_alpha": true,
+      "has_alpha_channel": true,
+      "has_transparent_pixels": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "opaque_fraction": 0.000934600830078125,
+      "transparent_fraction": 0.8154525756835938,
+      "alpha_zero_fraction": 0.8154525756835938,
+      "alpha_opaque_fraction": 0.000934600830078125,
+      "alpha_partial_fraction": 0.18361282348632812,
+      "foreground_coverage": 0.18454742431640625,
+      "near_opaque_threshold": 250,
+      "near_opaque_foreground_fraction": 0.8793253131588739,
+      "soft_edge_foreground_fraction": 0.12067468684112613,
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        486
+      ],
+      "alpha_centroid": [
+        0.5127406100784447,
+        0.5102218709304849
+      ],
+      "border_contact": false,
+      "non_empty_content": true
+    },
+    "alpha_metrics": {
+      "alpha_zero_fraction": 0.8154525756835938,
+      "alpha_opaque_fraction": 0.000934600830078125,
+      "alpha_partial_fraction": 0.18361282348632812,
+      "foreground_coverage": 0.18454742431640625,
+      "near_opaque_threshold": 250,
+      "near_opaque_foreground_fraction": 0.8793253131588739,
+      "soft_edge_foreground_fraction": 0.12067468684112613,
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        486
+      ],
+      "alpha_centroid": [
+        0.5127406100784447,
+        0.5102218709304849
+      ],
+      "border_contact": false
+    },
+    "rgb_preservation": {
+      "compared_pixels": 42540,
+      "high_alpha_threshold": 250,
+      "mae_r": 0.0,
+      "mae_g": 0.0,
+      "mae_b": 0.0,
+      "mae_total": 0.0,
+      "max_mean_abs_error": 2.0,
+      "passed": true
+    },
+    "visual_review": "required",
+    "production_ready": false
+  },
+  "alpha_metrics": {
+    "alpha_zero_fraction": 0.8154525756835938,
+    "alpha_opaque_fraction": 0.000934600830078125,
+    "alpha_partial_fraction": 0.18361282348632812,
+    "foreground_coverage": 0.18454742431640625,
+    "near_opaque_threshold": 250,
+    "near_opaque_foreground_fraction": 0.8793253131588739,
+    "soft_edge_foreground_fraction": 0.12067468684112613,
+    "alpha_bbox": [
+      159,
+      40,
+      361,
+      486
+    ],
+    "alpha_centroid": [
+      0.5127406100784447,
+      0.5102218709304849
+    ],
+    "border_contact": false
+  },
+  "rgb_preservation": {
+    "compared_pixels": 42540,
+    "high_alpha_threshold": 250,
+    "mae_r": 0.0,
+    "mae_g": 0.0,
+    "mae_b": 0.0,
+    "mae_total": 0.0,
+    "max_mean_abs_error": 2.0,
+    "passed": true
+  },
+  "halo": {
+    "checked": true,
+    "border_semi_transparent_fraction": 0.0,
+    "halo_detected": false
+  },
+  "status": "passed"
+}

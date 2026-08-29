@@ -1,36 +1,68 @@
 {
-  "schema_version": "0.4.1",
-  "asset_id": "asset-69b837a5b34045ceb25288ac34d6b4f7",
-  "selected_candidate": "candidate-3",
-  "source_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\464356c036654f83a84cddcc028adf80.png",
-  "output": {
-    "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\464356c036654f83a84cddcc028adf80.png",
-    "format": "PNG",
-    "width": 512,
-    "height": 512,
-    "mode": "RGB",
-    "source_mode": "RGB",
-    "bytes": 218333,
-    "sha256": "94424228a91b558404f9155c5f40843aeae2d9c39bb68055ff887c86a4e6ceaa",
-    "has_alpha": false,
-    "has_alpha_channel": false,
-    "has_transparent_pixels": false,
-    "alpha_min": null,
-    "alpha_max": null,
-    "opaque_fraction": 1.0,
-    "transparent_fraction": 0.0,
-    "alpha_zero_fraction": 0.0,
-    "alpha_opaque_fraction": 1.0,
-    "alpha_partial_fraction": 0.0,
-    "foreground_coverage": 1.0,
-    "alpha_bbox": null,
-    "alpha_centroid": null,
-    "border_contact": false,
-    "non_empty_content": true
+  "schema_version": "0.4.2",
+  "revision_id": "revision-670566d1a2324f08a6903415f95606ef",
+  "asset_id": "asset-6802db1284dd4b4ba25c6987e5b26ddb",
+  "revision_number": 1,
+  "derived_from": null,
+  "output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-670566d1a2324f08a6903415f95606ef\\output.png",
+  "output_sha256": "6a69069f25d5b9b2ad0d1f8a05a648d4047163e84b789e9a0328eba21385f8c7",
+  "technical_status": "TECHNICAL_VALID",
+  "transparency_status": "not-required",
+  "state": "VISUAL_REVIEW_REQUIRED",
+  "visual_approval": {
+    "status": "pending"
+  },
+  "production_ready": false,
+  "metadata_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-670566d1a2324f08a6903415f95606ef\\metadata.json",
+  "candidate_id": "candidate-6",
+  "candidate_metrics": {
+    "foreground_bbox": [
+      158,
+      40,
+      361,
+      487
+    ],
+    "occupancy": 0.346149,
+    "occupancy_target": {
+      "min": 0.2,
+      "max": 0.82
+    },
+    "margins": {
+      "left": 24,
+      "top": 24,
+      "right": 24,
+      "bottom": 24
+    },
+    "safe_margin_ok": true,
+    "safe_margin_violations": [],
+    "occupancy_ok": true,
+    "center_offset": {
+      "x": 0.006836,
+      "y": 0.014648
+    },
+    "centered_ok": true,
+    "edge_clipping": false,
+    "edge_clipping_ok": true,
+    "alpha_ok": true,
+    "perceptual_hash": "1111111111100111111000111110001111100011111001111110011111100111",
+    "file_size_ok": true,
+    "hard_gates": {
+      "valid_png": true,
+      "dimensions": true,
+      "non_empty": true,
+      "not_duplicate": true,
+      "edge_clipping": true,
+      "safe_margin": true,
+      "occupancy": true,
+      "centered": true,
+      "file_size": true,
+      "alpha": true
+    },
+    "hard_gate_failures": [],
+    "eligible": true
   },
   "model_id": "flux2-klein-4b-base-nvfp4",
   "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
-  "lane": "quality",
-  "visual_assessment": "human-inspected-preferred",
-  "visual_review": "required"
+  "checkerboard_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-670566d1a2324f08a6903415f95606ef\\checkerboard.png",
+  "evidence_role": "master-selected-before-bg"
 }

@@ -1,4 +1,4 @@
-"""UGAS v0.4.1 machine-readable CLI."""
+"""UGAS v0.4.2 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -48,7 +48,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.4.1")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.4.2")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -77,7 +77,7 @@ def build_parser() -> argparse.ArgumentParser:
     candidates = sub.add_parser("candidates"); candidates_sub = candidates.add_subparsers(dest="candidates_action", required=True); show = candidates_sub.add_parser("show"); show.add_argument("asset_id"); _json_flag(show)
     visual = sub.add_parser("visual"); visual_sub = visual.add_subparsers(dest="visual_action", required=True); approve = visual_sub.add_parser("approve"); approve.add_argument("asset_id"); approve.add_argument("--note", default=""); _json_flag(approve)
     benchmark = sub.add_parser("benchmark"); benchmark_sub = benchmark.add_subparsers(dest="benchmark_action", required=True); quality = benchmark_sub.add_parser("quality"); quality.add_argument("prompt"); quality.add_argument("--url", default="http://127.0.0.1:8188"); quality.add_argument("--profile", default="generic-2d"); quality.add_argument("--seed", type=int, default=4301); quality.add_argument("--width", type=int, default=512); quality.add_argument("--height", type=int, default=512); _json_flag(quality)
-    asset = sub.add_parser("asset"); asset_sub = asset.add_subparsers(dest="asset_action", required=True); status = asset_sub.add_parser("status"); status.add_argument("asset_id"); _json_flag(status)
+    asset = sub.add_parser("asset"); asset_sub = asset.add_subparsers(dest="asset_action", required=True); status = asset_sub.add_parser("status"); status.add_argument("asset_id"); _json_flag(status); verify_integrity = asset_sub.add_parser("verify-integrity"); verify_integrity.add_argument("asset_id"); _json_flag(verify_integrity)
     return parser
 
 
@@ -120,6 +120,8 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "visual": _json(visual_approve(root, args.asset_id, args.note)); return 0
         if args.command == "benchmark": _json(benchmark_quality_lanes(root, endpoint=args.url, prompt=args.prompt, profile=args.profile, seed=args.seed, width=args.width, height=args.height)); return 0
         if args.command == "asset":
+            if args.asset_action == "verify-integrity":
+                result = __import__("ugas.master_assets", fromlist=["verify_asset_integrity"]).verify_asset_integrity(root, args.asset_id); _json(result); return 0 if result.get("status") == "REVISION_INTEGRITY_PASSED" else 2
             _json(__import__("ugas.master_assets", fromlist=["asset_status"]).asset_status(root, args.asset_id)); return 0
     except Exception as exc:
         _json({"status": "error", "error_type": type(exc).__name__, "error": str(exc)})

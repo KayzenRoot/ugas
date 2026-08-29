@@ -1,37 +1,39 @@
 {
   "status": "REFERENCE_EDIT_QA_PASSED",
-  "source_sha256": "430eed523065d44919f9ae576f049e92bcf370d474d88e2ca4540399b046418c",
-  "output_sha256": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
+  "source_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+  "output_sha256": "84e834db6adc51b4884e4b56d64bd9c196a17e818d792b177ae0fa0a06ecf928",
+  "source_revision_id": "revision-142ce444c56a4fdba02c4b59c8532a0d",
+  "output_revision_id": "revision-2e7023c8e0c947ac9faa96c5f7e35650",
   "source": {
     "bbox": [
-      23,
-      4,
-      94,
-      125
+      39,
+      10,
+      90,
+      122
     ],
     "centroid": [
-      0.49636496316183815,
-      0.4864022696053946
+      0.5084758942457231,
+      0.5126409409020217
     ],
-    "area": 4004
+    "area": 3215
   },
   "output": {
     "bbox": [
-      23,
-      4,
-      93,
-      125
+      39,
+      10,
+      90,
+      122
     ],
     "centroid": [
-      0.49608595309381237,
-      0.4861741361027944
+      0.5093873031496063,
+      0.5116633858267716
     ],
-    "area": 4008
+    "area": 3175
   },
   "metrics": {
-    "silhouette_iou": 0.988583,
-    "centroid_drift": 0.000279,
-    "bbox_scale_delta": 0.014085,
+    "silhouette_iou": 0.978328,
+    "centroid_drift": 0.000978,
+    "bbox_scale_delta": 0.0,
     "pixel_identical": false
   },
   "thresholds": {
@@ -41,6 +43,13 @@
     "allow_pixel_identical": false
   },
   "checks": {
+    "source_exists": true,
+    "output_exists": true,
+    "distinct_paths": true,
+    "distinct_revisions": true,
+    "source_hash_matches_metadata": true,
+    "output_hash_matches_metadata": true,
+    "immutable_inputs": true,
     "silhouette_iou": true,
     "centroid_drift": true,
     "bbox_scale_delta": true,

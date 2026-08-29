@@ -18,7 +18,7 @@ def _now() -> str:
 
 def declared_evidence(repo_root: Path, provider: str = "provider-comfyui", capability: str = "2d") -> dict:
     return {
-        "schema_version": "0.4.1",
+        "schema_version": "0.4.2",
         "provider": provider,
         "capability": capability,
         "state": "declared",

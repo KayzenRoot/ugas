@@ -1,0 +1,83 @@
+{
+  "schema_version": "0.4.2",
+  "asset_id": "asset-6802db1284dd4b4ba25c6987e5b26ddb",
+  "chain": "R1 RGB -> R2 transparent -> R3 edited RGB -> R4 transparent",
+  "revisions": [
+    {
+      "revision_id": "R1",
+      "asset_revision_id": "revision-670566d1a2324f08a6903415f95606ef",
+      "revision_number": 1,
+      "immutable_output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-670566d1a2324f08a6903415f95606ef\\output.png",
+      "output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-670566d1a2324f08a6903415f95606ef\\output.png",
+      "archive_path": "docs/evidence/master-selected-before-bg.png",
+      "output_sha256": "6a69069f25d5b9b2ad0d1f8a05a648d4047163e84b789e9a0328eba21385f8c7",
+      "derived_from": null
+    },
+    {
+      "revision_id": "R2",
+      "asset_revision_id": "revision-142ce444c56a4fdba02c4b59c8532a0d",
+      "revision_number": 2,
+      "immutable_output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-142ce444c56a4fdba02c4b59c8532a0d\\output.png",
+      "output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-142ce444c56a4fdba02c4b59c8532a0d\\output.png",
+      "archive_path": "docs/evidence/master-selected-transparent.png",
+      "output_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488",
+      "derived_from": {
+        "revision_id": "R1",
+        "asset_revision_id": "revision-670566d1a2324f08a6903415f95606ef",
+        "output_sha256": "6a69069f25d5b9b2ad0d1f8a05a648d4047163e84b789e9a0328eba21385f8c7"
+      }
+    },
+    {
+      "revision_id": "R3",
+      "asset_revision_id": "revision-bd7baa4990c34a6e89bfca4e6aedb97e",
+      "revision_number": 3,
+      "immutable_output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-bd7baa4990c34a6e89bfca4e6aedb97e\\output.png",
+      "output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-bd7baa4990c34a6e89bfca4e6aedb97e\\output.png",
+      "archive_path": "docs/evidence/reference-edit-before-after.png",
+      "output_sha256": "cf315b52ed4576ffac80616e515749ada45c03d02faba6d458002e8bfe8a8c48",
+      "derived_from": {
+        "revision_id": "R2",
+        "asset_revision_id": "revision-142ce444c56a4fdba02c4b59c8532a0d",
+        "output_sha256": "1045c76fd1fb97632e2eb69f99244326c0acba837372a7afb2a531cca9388488"
+      }
+    },
+    {
+      "revision_id": "R4",
+      "asset_revision_id": "revision-2e7023c8e0c947ac9faa96c5f7e35650",
+      "revision_number": 4,
+      "immutable_output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-2e7023c8e0c947ac9faa96c5f7e35650\\output.png",
+      "output_path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\revisions\\revision-2e7023c8e0c947ac9faa96c5f7e35650\\output.png",
+      "archive_path": "docs/evidence/reference-edit-transparent.png",
+      "output_sha256": "84e834db6adc51b4884e4b56d64bd9c196a17e818d792b177ae0fa0a06ecf928",
+      "derived_from": {
+        "revision_id": "R3",
+        "asset_revision_id": "revision-bd7baa4990c34a6e89bfca4e6aedb97e",
+        "output_sha256": "cf315b52ed4576ffac80616e515749ada45c03d02faba6d458002e8bfe8a8c48"
+      }
+    }
+  ],
+  "r2_path_distinct_from_r4": true,
+  "r2_sha256_distinct_from_r4": true,
+  "revision_integrity": "PASS",
+  "integrity_evidence": {
+    "status": "REVISION_INTEGRITY_PASSED",
+    "checks": {
+      "asset_exists": true,
+      "unique_revision_ids": true,
+      "unique_output_paths": true,
+      "output_paths_exist": true,
+      "output_hashes_match": true,
+      "revision_metadata_match": true,
+      "revision_ordering": true,
+      "derived_from_exists": true,
+      "derived_from_hashes_match": true,
+      "no_forward_or_cyclic_derivation": true,
+      "current_revision_references_stored_revision": true,
+      "approval_binds_to_current_revision": true,
+      "production_ready_recomputed": true
+    },
+    "failures": [],
+    "production_ready_recomputed": false
+  },
+  "visual_approval": "pending"
+}

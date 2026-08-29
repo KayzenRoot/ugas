@@ -1,4 +1,4 @@
-"""v0.4.1 contract, gate and provenance tests."""
+"""v0.4.2 contract, gate, immutable revision and provenance tests."""
 
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ from ugas.workflow_registry import load_workflow
 
 class ContractTests(unittest.TestCase):
     def test_version_and_lane_metadata(self):
-        self.assertEqual("0.4.1", UGAS_VERSION)
+        self.assertEqual("0.4.2", UGAS_VERSION)
         models = json.loads((ROOT / "providers/models/registry.json").read_text(encoding="utf-8"))["models"]
         lanes = {item["variant"]: item for item in models if item["family"] == "flux2-klein-4b"}
         self.assertEqual((4, 1.0), (lanes["distilled"]["recommended_steps"], lanes["distilled"]["recommended_guidance"]))
@@ -167,7 +167,7 @@ class GateTests(unittest.TestCase):
             self.assertFalse(__import__("ugas.master_assets", fromlist=["asset_status"]).asset_status(root, str(asset_path))["production_ready"])
 
     def test_sprite_grid_stays_out_of_scope(self):
-        with self.assertRaisesRegex(GenerationError, "v0.4.1"):
+        with self.assertRaisesRegex(GenerationError, "v0.4.2"):
             sprite_pilot(ROOT, endpoint="http://127.0.0.1:1", prompt="grid", columns=2, rows=1)
 
 

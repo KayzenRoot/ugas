@@ -1,23 +1,17 @@
 {
-  "schema_version": "0.4.1",
-  "asset_id": "asset-69b837a5b34045ceb25288ac34d6b4f7",
-  "candidate_count": 3,
-  "eligible_candidate_count": 3,
-  "selection_status": "eligible",
-  "best_technical_candidate": "candidate-3",
-  "lane": "quality",
-  "model_id": "flux2-klein-4b-base-nvfp4",
-  "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
-  "fallback_reason": null,
-  "spec_sha256": "d5121c6f4001653799183235efa27ec9fe76e439954af400db1abfacdf4a756b",
-  "compiled_prompt_sha256": "d9f42c6ae35da4f4ccea83b924be2a4d0e0641858f5c38709cadb407c16c96a4",
+  "schema_version": "0.4.2",
+  "set_id": "candidate-set-46ecd5105e6c4c77bc79c26a3f700894",
+  "asset_id": "asset-6802db1284dd4b4ba25c6987e5b26ddb",
+  "spec_sha256": "457dfe346efbc7c1f358e22c3bf52f3b43966028fd684fd5b632fd28f4553ec9",
+  "compiled_prompt_sha256": "7e36d34802a1520322ff29265757a412de5dcb690fc9003b90eed9dc924af42e",
+  "candidate_count": 6,
   "candidates": [
     {
       "candidate_id": "candidate-1",
       "round": 0,
-      "seed": 9001,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\466eabf86c08478199926acdd0089ea0.png",
-      "sha256": "9b410844509a1ad80d397342efa3a4a2ad74354a80d0b4d45c472b8da8c96d07",
+      "seed": 9501,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-6ecb80c6ef504a518f09f4aee734409d\\output.png",
+      "sha256": "c07b1947ee3ff2a69cae757837bbd23558ae619ec0e838cc7460f814c5c06870",
       "qa": {
         "status": "TECHNICAL_VALID",
         "checks": {
@@ -26,21 +20,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\466eabf86c08478199926acdd0089ea0.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-6ecb80c6ef504a518f09f4aee734409d\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 228230,
-          "sha256": "9b410844509a1ad80d397342efa3a4a2ad74354a80d0b4d45c472b8da8c96d07",
+          "bytes": 152614,
+          "sha256": "c07b1947ee3ff2a69cae757837bbd23558ae619ec0e838cc7460f814c5c06870",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -52,6 +49,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -62,35 +62,49 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
+        },
+        "rgb_preservation": {
+          "status": "not-run"
         },
         "visual_review": "required",
         "production_ready": false
       },
       "metrics": {
         "foreground_bbox": [
-          5,
-          10,
-          358,
-          497
+          159,
+          99,
+          331,
+          482
         ],
-        "occupancy": 0.655788,
+        "occupancy": 0.251297,
         "occupancy_target": {
           "min": 0.2,
           "max": 0.82
         },
+        "margins": {
+          "left": 24,
+          "top": 24,
+          "right": 24,
+          "bottom": 24
+        },
+        "safe_margin_ok": true,
+        "safe_margin_violations": [],
         "occupancy_ok": true,
         "center_offset": {
-          "x": 0.145508,
-          "y": 0.004883
+          "x": 0.021484,
+          "y": 0.067383
         },
         "centered_ok": true,
         "edge_clipping": false,
         "edge_clipping_ok": true,
         "alpha_ok": true,
-        "perceptual_hash": "1110111111000111110000111100001111000111111001111110011111000111",
+        "perceptual_hash": "1111111111111111111001111110011111000111111001111110011111110111",
         "file_size_ok": true,
         "hard_gates": {
           "valid_png": true,
@@ -98,6 +112,7 @@
           "non_empty": true,
           "not_duplicate": true,
           "edge_clipping": true,
+          "safe_margin": true,
           "occupancy": true,
           "centered": true,
           "file_size": true,
@@ -107,125 +122,21 @@
         "eligible": true
       },
       "duplicate": false,
-      "objective_score": 2.703821,
+      "objective_score": 2.65243,
       "eligible": true,
       "visual_assessment": "pending",
-      "runtime_ms": 25383,
-      "model_id": "flux2-klein-4b-base-nvfp4",
-      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
-      "lane": "quality",
-      "technical_rank": 3
-    },
-    {
-      "candidate_id": "candidate-2",
-      "round": 0,
-      "seed": 9002,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\4f2252d3d0f149efb0136e9b9aac31e8.png",
-      "sha256": "6ebc8164444a34855f2529406b219413b784e74fb8ae5faa35ae8476b3096b90",
-      "qa": {
-        "status": "TECHNICAL_VALID",
-        "checks": {
-          "exists": true,
-          "format": true,
-          "dimensions": true,
-          "size": true,
-          "non_empty_content": true,
-          "transparency_requirement": true
-        },
-        "requirements": {
-          "requires_transparency": false,
-          "transparency_profile": null
-        },
-        "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\4f2252d3d0f149efb0136e9b9aac31e8.png",
-          "format": "PNG",
-          "width": 512,
-          "height": 512,
-          "mode": "RGB",
-          "source_mode": "RGB",
-          "bytes": 220216,
-          "sha256": "6ebc8164444a34855f2529406b219413b784e74fb8ae5faa35ae8476b3096b90",
-          "has_alpha": false,
-          "has_alpha_channel": false,
-          "has_transparent_pixels": false,
-          "alpha_min": null,
-          "alpha_max": null,
-          "opaque_fraction": 1.0,
-          "transparent_fraction": 0.0,
-          "alpha_zero_fraction": 0.0,
-          "alpha_opaque_fraction": 1.0,
-          "alpha_partial_fraction": 0.0,
-          "foreground_coverage": 1.0,
-          "alpha_bbox": null,
-          "alpha_centroid": null,
-          "border_contact": false,
-          "non_empty_content": true
-        },
-        "alpha_metrics": {
-          "alpha_zero_fraction": 0.0,
-          "alpha_opaque_fraction": 1.0,
-          "alpha_partial_fraction": 0.0,
-          "foreground_coverage": 1.0,
-          "alpha_bbox": null,
-          "alpha_centroid": null,
-          "border_contact": false
-        },
-        "visual_review": "required",
-        "production_ready": false
-      },
-      "metrics": {
-        "foreground_bbox": [
-          37,
-          9,
-          368,
-          502
-        ],
-        "occupancy": 0.622494,
-        "occupancy_target": {
-          "min": 0.2,
-          "max": 0.82
-        },
-        "occupancy_ok": true,
-        "center_offset": {
-          "x": 0.104492,
-          "y": 0.000977
-        },
-        "centered_ok": true,
-        "edge_clipping": false,
-        "edge_clipping_ok": true,
-        "alpha_ok": true,
-        "perceptual_hash": "1111111111100111110000111100001111000011111001111110001111001011",
-        "file_size_ok": true,
-        "hard_gates": {
-          "valid_png": true,
-          "dimensions": true,
-          "non_empty": true,
-          "not_duplicate": true,
-          "edge_clipping": true,
-          "occupancy": true,
-          "centered": true,
-          "file_size": true,
-          "alpha": true
-        },
-        "hard_gate_failures": [],
-        "eligible": true
-      },
-      "duplicate": false,
-      "objective_score": 2.782037,
-      "eligible": true,
-      "visual_assessment": "pending",
-      "runtime_ms": 20170,
+      "runtime_ms": 25594,
       "model_id": "flux2-klein-4b-base-nvfp4",
       "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
       "lane": "quality",
       "technical_rank": 2
     },
     {
-      "candidate_id": "candidate-3",
+      "candidate_id": "candidate-2",
       "round": 0,
-      "seed": 9003,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\464356c036654f83a84cddcc028adf80.png",
-      "sha256": "94424228a91b558404f9155c5f40843aeae2d9c39bb68055ff887c86a4e6ceaa",
+      "seed": 9502,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-a7683f0af73244d4a85b8877bf1f2a01\\output.png",
+      "sha256": "53d34c2b4647612abf06e14fe926fb4a4b8501753b7fb7b6d7d311a35a00296f",
       "qa": {
         "status": "TECHNICAL_VALID",
         "checks": {
@@ -234,21 +145,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\464356c036654f83a84cddcc028adf80.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-a7683f0af73244d4a85b8877bf1f2a01\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 218333,
-          "sha256": "94424228a91b558404f9155c5f40843aeae2d9c39bb68055ff887c86a4e6ceaa",
+          "bytes": 160245,
+          "sha256": "53d34c2b4647612abf06e14fe926fb4a4b8501753b7fb7b6d7d311a35a00296f",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -260,6 +174,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -270,35 +187,52 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
+        },
+        "rgb_preservation": {
+          "status": "not-run"
         },
         "visual_review": "required",
         "production_ready": false
       },
       "metrics": {
         "foreground_bbox": [
-          94,
-          17,
-          372,
-          498
+          115,
+          22,
+          370,
+          489
         ],
-        "occupancy": 0.510094,
+        "occupancy": 0.454273,
         "occupancy_target": {
           "min": 0.2,
           "max": 0.82
         },
+        "margins": {
+          "left": 24,
+          "top": 24,
+          "right": 24,
+          "bottom": 24
+        },
+        "safe_margin_ok": false,
+        "safe_margin_violations": [
+          "top",
+          "bottom"
+        ],
         "occupancy_ok": true,
         "center_offset": {
-          "x": 0.044922,
-          "y": 0.00293
+          "x": 0.026367,
+          "y": 0.000977
         },
         "centered_ok": true,
         "edge_clipping": false,
         "edge_clipping_ok": true,
         "alpha_ok": true,
-        "perceptual_hash": "1111111111100011110000111100001111000011111001111110011111000011",
+        "perceptual_hash": "1111111111100111110000111100001111000011111001111110001111101011",
         "file_size_ok": true,
         "hard_gates": {
           "valid_png": true,
@@ -306,6 +240,261 @@
           "non_empty": true,
           "not_duplicate": true,
           "edge_clipping": true,
+          "safe_margin": false,
+          "occupancy": true,
+          "centered": true,
+          "file_size": true,
+          "alpha": true
+        },
+        "hard_gate_failures": [
+          "safe_margin"
+        ],
+        "eligible": false
+      },
+      "duplicate": false,
+      "objective_score": 0.0,
+      "eligible": false,
+      "visual_assessment": "pending",
+      "runtime_ms": 20165,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+      "lane": "quality"
+    },
+    {
+      "candidate_id": "candidate-3",
+      "round": 0,
+      "seed": 9503,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-1d68a069247f4a8488a20592df6994e0\\output.png",
+      "sha256": "ffd354f07bea2ec0d355e5a63f75e1272544c8bf1bea4ad9d5a12699e84c820b",
+      "qa": {
+        "status": "TECHNICAL_VALID",
+        "checks": {
+          "exists": true,
+          "format": true,
+          "dimensions": true,
+          "size": true,
+          "non_empty_content": true,
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
+        },
+        "requirements": {
+          "requires_transparency": false,
+          "transparency_profile": null
+        },
+        "technical": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-1d68a069247f4a8488a20592df6994e0\\output.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 153366,
+          "sha256": "ffd354f07bea2ec0d355e5a63f75e1272544c8bf1bea4ad9d5a12699e84c820b",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "alpha_metrics": {
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false
+        },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
+        "visual_review": "required",
+        "production_ready": false
+      },
+      "metrics": {
+        "foreground_bbox": [
+          156,
+          102,
+          340,
+          489
+        ],
+        "occupancy": 0.271637,
+        "occupancy_target": {
+          "min": 0.2,
+          "max": 0.82
+        },
+        "margins": {
+          "left": 24,
+          "top": 24,
+          "right": 24,
+          "bottom": 24
+        },
+        "safe_margin_ok": false,
+        "safe_margin_violations": [
+          "bottom"
+        ],
+        "occupancy_ok": true,
+        "center_offset": {
+          "x": 0.015625,
+          "y": 0.077148
+        },
+        "centered_ok": true,
+        "edge_clipping": false,
+        "edge_clipping_ok": true,
+        "alpha_ok": true,
+        "perceptual_hash": "1111111111111111111001111100011111000011110001111100011111100111",
+        "file_size_ok": true,
+        "hard_gates": {
+          "valid_png": true,
+          "dimensions": true,
+          "non_empty": true,
+          "not_duplicate": true,
+          "edge_clipping": true,
+          "safe_margin": false,
+          "occupancy": true,
+          "centered": true,
+          "file_size": true,
+          "alpha": true
+        },
+        "hard_gate_failures": [
+          "safe_margin"
+        ],
+        "eligible": false
+      },
+      "duplicate": false,
+      "objective_score": 0.0,
+      "eligible": false,
+      "visual_assessment": "pending",
+      "runtime_ms": 20172,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+      "lane": "quality"
+    },
+    {
+      "candidate_id": "candidate-4",
+      "round": 0,
+      "seed": 9504,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-d8db418e296f40159146a83d05467dd3\\output.png",
+      "sha256": "1e6f6681c63e97f90ea31d7a54074c1a843b31139c4ce51365696f5ea65fe090",
+      "qa": {
+        "status": "TECHNICAL_VALID",
+        "checks": {
+          "exists": true,
+          "format": true,
+          "dimensions": true,
+          "size": true,
+          "non_empty_content": true,
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
+        },
+        "requirements": {
+          "requires_transparency": false,
+          "transparency_profile": null
+        },
+        "technical": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-d8db418e296f40159146a83d05467dd3\\output.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 166288,
+          "sha256": "1e6f6681c63e97f90ea31d7a54074c1a843b31139c4ce51365696f5ea65fe090",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "alpha_metrics": {
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false
+        },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
+        "visual_review": "required",
+        "production_ready": false
+      },
+      "metrics": {
+        "foreground_bbox": [
+          166,
+          136,
+          360,
+          483
+        ],
+        "occupancy": 0.256798,
+        "occupancy_target": {
+          "min": 0.2,
+          "max": 0.82
+        },
+        "margins": {
+          "left": 24,
+          "top": 24,
+          "right": 24,
+          "bottom": 24
+        },
+        "safe_margin_ok": true,
+        "safe_margin_violations": [],
+        "occupancy_ok": true,
+        "center_offset": {
+          "x": 0.013672,
+          "y": 0.104492
+        },
+        "centered_ok": true,
+        "edge_clipping": false,
+        "edge_clipping_ok": true,
+        "alpha_ok": true,
+        "perceptual_hash": "1111111111111111111001111100011111000011111001111110011111000111",
+        "file_size_ok": true,
+        "hard_gates": {
+          "valid_png": true,
+          "dimensions": true,
+          "non_empty": true,
+          "not_duplicate": true,
+          "edge_clipping": true,
+          "safe_margin": true,
           "occupancy": true,
           "centered": true,
           "file_size": true,
@@ -315,16 +504,317 @@
         "eligible": true
       },
       "duplicate": false,
-      "objective_score": 2.952054,
+      "objective_score": 2.628634,
       "eligible": true,
       "visual_assessment": "pending",
-      "runtime_ms": 20161,
+      "runtime_ms": 20383,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+      "lane": "quality",
+      "technical_rank": 3
+    },
+    {
+      "candidate_id": "candidate-5",
+      "round": 0,
+      "seed": 9505,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-9b4962e944d44b879bcffe5c562193a6\\output.png",
+      "sha256": "c33ef0524031b62b141e00502eb4484e0b5d645993112f2cc5def22e681364d4",
+      "qa": {
+        "status": "TECHNICAL_VALID",
+        "checks": {
+          "exists": true,
+          "format": true,
+          "dimensions": true,
+          "size": true,
+          "non_empty_content": true,
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
+        },
+        "requirements": {
+          "requires_transparency": false,
+          "transparency_profile": null
+        },
+        "technical": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-9b4962e944d44b879bcffe5c562193a6\\output.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 194414,
+          "sha256": "c33ef0524031b62b141e00502eb4484e0b5d645993112f2cc5def22e681364d4",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "alpha_metrics": {
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false
+        },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
+        "visual_review": "required",
+        "production_ready": false
+      },
+      "metrics": {
+        "foreground_bbox": [
+          174,
+          22,
+          383,
+          495
+        ],
+        "occupancy": 0.37711,
+        "occupancy_target": {
+          "min": 0.2,
+          "max": 0.82
+        },
+        "margins": {
+          "left": 24,
+          "top": 24,
+          "right": 24,
+          "bottom": 24
+        },
+        "safe_margin_ok": false,
+        "safe_margin_violations": [
+          "top",
+          "bottom"
+        ],
+        "occupancy_ok": true,
+        "center_offset": {
+          "x": 0.043945,
+          "y": 0.004883
+        },
+        "centered_ok": true,
+        "edge_clipping": false,
+        "edge_clipping_ok": true,
+        "alpha_ok": true,
+        "perceptual_hash": "1111011111100111111000111100001111100011111000111110001111100011",
+        "file_size_ok": true,
+        "hard_gates": {
+          "valid_png": true,
+          "dimensions": true,
+          "non_empty": true,
+          "not_duplicate": true,
+          "edge_clipping": true,
+          "safe_margin": false,
+          "occupancy": true,
+          "centered": true,
+          "file_size": true,
+          "alpha": true
+        },
+        "hard_gate_failures": [
+          "safe_margin"
+        ],
+        "eligible": false
+      },
+      "duplicate": false,
+      "objective_score": 0.0,
+      "eligible": false,
+      "visual_assessment": "pending",
+      "runtime_ms": 20303,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+      "lane": "quality"
+    },
+    {
+      "candidate_id": "candidate-6",
+      "round": 0,
+      "seed": 9506,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-f4b7a99b2e744710a5093d2030be9b59\\output.png",
+      "sha256": "6a69069f25d5b9b2ad0d1f8a05a648d4047163e84b789e9a0328eba21385f8c7",
+      "qa": {
+        "status": "TECHNICAL_VALID",
+        "checks": {
+          "exists": true,
+          "format": true,
+          "dimensions": true,
+          "size": true,
+          "non_empty_content": true,
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
+        },
+        "requirements": {
+          "requires_transparency": false,
+          "transparency_profile": null
+        },
+        "technical": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates\\job-f4b7a99b2e744710a5093d2030be9b59\\output.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 171730,
+          "sha256": "6a69069f25d5b9b2ad0d1f8a05a648d4047163e84b789e9a0328eba21385f8c7",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "alpha_metrics": {
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false
+        },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
+        "visual_review": "required",
+        "production_ready": false
+      },
+      "metrics": {
+        "foreground_bbox": [
+          158,
+          40,
+          361,
+          487
+        ],
+        "occupancy": 0.346149,
+        "occupancy_target": {
+          "min": 0.2,
+          "max": 0.82
+        },
+        "margins": {
+          "left": 24,
+          "top": 24,
+          "right": 24,
+          "bottom": 24
+        },
+        "safe_margin_ok": true,
+        "safe_margin_violations": [],
+        "occupancy_ok": true,
+        "center_offset": {
+          "x": 0.006836,
+          "y": 0.014648
+        },
+        "centered_ok": true,
+        "edge_clipping": false,
+        "edge_clipping_ok": true,
+        "alpha_ok": true,
+        "perceptual_hash": "1111111111100111111000111110001111100011111001111110011111100111",
+        "file_size_ok": true,
+        "hard_gates": {
+          "valid_png": true,
+          "dimensions": true,
+          "non_empty": true,
+          "not_duplicate": true,
+          "edge_clipping": true,
+          "safe_margin": true,
+          "occupancy": true,
+          "centered": true,
+          "file_size": true,
+          "alpha": true
+        },
+        "hard_gate_failures": [],
+        "eligible": true
+      },
+      "duplicate": false,
+      "objective_score": 2.8146649999999998,
+      "eligible": true,
+      "visual_assessment": "pending",
+      "runtime_ms": 20221,
       "model_id": "flux2-klein-4b-base-nvfp4",
       "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
       "lane": "quality",
       "technical_rank": 1
     }
   ],
+  "eligible_candidate_count": 3,
+  "best_technical_candidate": "candidate-6",
+  "selection_status": "eligible",
   "retry_log": [],
-  "visual_review": "required"
+  "lane": "quality",
+  "model_id": "flux2-klein-4b-base-nvfp4",
+  "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+  "fallback_reason": null,
+  "visual_approval": "pending",
+  "contact_sheet": {
+    "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-6802db1284dd4b4ba25c6987e5b26ddb\\candidates-contact-sheet.png",
+    "format": "PNG",
+    "width": 2048,
+    "height": 1024,
+    "mode": "RGBA",
+    "source_mode": "RGBA",
+    "bytes": 1094218,
+    "sha256": "932ffdf0f4c849965252bb1b5ceb56582a80eb5e8aebaa8733b0327ed4df96ed",
+    "has_alpha": true,
+    "has_alpha_channel": true,
+    "has_transparent_pixels": true,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "opaque_fraction": 0.75,
+    "transparent_fraction": 0.25,
+    "alpha_zero_fraction": 0.25,
+    "alpha_opaque_fraction": 0.75,
+    "alpha_partial_fraction": 0.0,
+    "foreground_coverage": 0.75,
+    "near_opaque_threshold": 250,
+    "near_opaque_foreground_fraction": 1.0,
+    "soft_edge_foreground_fraction": 0.0,
+    "alpha_bbox": [
+      0,
+      0,
+      2048,
+      1024
+    ],
+    "alpha_centroid": [
+      0.4164225260416667,
+      0.4161783854166667
+    ],
+    "border_contact": true,
+    "non_empty_content": true,
+    "columns": 4,
+    "rows": 2,
+    "frame_count": 6
+  },
+  "pilot_id": "v0.4.2-asset-6802db1284dd4b4ba25c6987e5b26ddb"
 }

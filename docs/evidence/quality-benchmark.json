@@ -1,9 +1,9 @@
 {
-  "schema_version": "0.4.1",
-  "benchmark_id": "quality-benchmark-2046a6290a0c4f59802b46c3694fedfb",
+  "schema_version": "0.4.2",
+  "benchmark_id": "quality-benchmark-8146c60f862f4c3ab3339abd255ed8d2",
   "spec": {
-    "schema_version": "0.4.1",
-    "asset_id": "asset-f8a10635e94a498aadc1c9c3f0fc9118",
+    "schema_version": "0.4.2",
+    "asset_id": "asset-deb276a189a041bfb002380d0ca79000",
     "category": "character",
     "subtype": "master-sprite",
     "intended_view": "2d gameplay sprite",
@@ -42,7 +42,7 @@
     },
     "pivot_intent": "center-bottom of subject",
     "requires_transparency": false,
-    "positive_prompt": "stylized fantasy human warrior with blue steel armor, clean readable fantasy game character",
+    "positive_prompt": "stylized fantasy human warrior, intentionally small subject with huge empty border, head and feet far from every canvas edge, visible human face, blue steel armor, one sword beside the body",
     "negative_constraints": [
       "multiple subjects",
       "cropped subject",
@@ -80,7 +80,7 @@
       }
     }
   },
-  "compiled_prompt": "Single full-body game character, neutral idle stance, entire body visible from head to feet, centered, three-quarter front view, arms separated enough to read the silhouette, weapon held beside the body without crossing the torso, clean readable anatomy, simple contrasting background, no motion effects, no text, no cropped limbs. clear, readable, cohesive. stylized fantasy human warrior with blue steel armor, clean readable fantasy game character",
+  "compiled_prompt": "Single full-body game character, neutral idle stance, entire body visible from head to feet, centered, three-quarter front view, arms separated enough to read the silhouette, weapon held beside the body without crossing the torso, clean readable anatomy, generous empty space around the entire silhouette, simple contrasting background, no motion effects, no text, no cropped limbs. clear, readable, cohesive. stylized fantasy human warrior, intentionally small subject with huge empty border, head and feet far from every canvas edge, visible human face, blue steel armor, one sword beside the body",
   "shared_seeds": [
     4301,
     4302,
@@ -110,11 +110,11 @@
       "model_id": "flux2-klein-4b-distilled-nvfp4",
       "workflow_id": "flux2-klein-4b-distilled-text-to-image",
       "seed": 4301,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\e2e1150bd21f4a41ba4808e95fdb4f71.png",
-      "sha256": "2541efc40c3abd3671cd8f902e621a7be1a16c6e220d782e73950faec9d32e0e",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\job-c943e8ee3fde4e1b810d98c286149238\\output.png",
+      "sha256": "bb7c27b82544c10dea57497aa42dc0afd2106eef42d7a1b86d5d9a70448e0fcc",
       "steps": 4,
       "guidance": 1.0,
-      "runtime_ms": 41131,
+      "runtime_ms": 51202,
       "dimensions": {
         "width": 512,
         "height": 512
@@ -125,6 +125,7 @@
         "non_empty": true,
         "not_duplicate": true,
         "edge_clipping": true,
+        "safe_margin": true,
         "occupancy": true,
         "centered": true,
         "file_size": true,
@@ -139,21 +140,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\e2e1150bd21f4a41ba4808e95fdb4f71.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\job-c943e8ee3fde4e1b810d98c286149238\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 182225,
-          "sha256": "2541efc40c3abd3671cd8f902e621a7be1a16c6e220d782e73950faec9d32e0e",
+          "bytes": 146750,
+          "sha256": "bb7c27b82544c10dea57497aa42dc0afd2106eef42d7a1b86d5d9a70448e0fcc",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -165,6 +169,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -175,24 +182,32 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
         },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
         "visual_review": "required",
         "production_ready": false
-      }
+      },
+      "safe_margin_ok": true,
+      "safe_margin_violations": []
     },
     {
       "lane": "FAST",
       "model_id": "flux2-klein-4b-distilled-nvfp4",
       "workflow_id": "flux2-klein-4b-distilled-text-to-image",
       "seed": 4302,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\69db8a5924bb47fe904c35b3cc3c5e54.png",
-      "sha256": "5f502af5e36414938684b3f6c8a7f135c54bee0a52ef35ed8afb807054213aec",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\job-777a7827544d4fb1862007367d3708d8\\output.png",
+      "sha256": "9f2350d3b2c8613f3e97dffa59b31bea22f65e41d69a70504ed12e186d69ec5a",
       "steps": 4,
       "guidance": 1.0,
-      "runtime_ms": 2483,
+      "runtime_ms": 2641,
       "dimensions": {
         "width": 512,
         "height": 512
@@ -203,6 +218,7 @@
         "non_empty": true,
         "not_duplicate": true,
         "edge_clipping": true,
+        "safe_margin": true,
         "occupancy": true,
         "centered": true,
         "file_size": true,
@@ -217,21 +233,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\69db8a5924bb47fe904c35b3cc3c5e54.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\job-777a7827544d4fb1862007367d3708d8\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 194542,
-          "sha256": "5f502af5e36414938684b3f6c8a7f135c54bee0a52ef35ed8afb807054213aec",
+          "bytes": 177252,
+          "sha256": "9f2350d3b2c8613f3e97dffa59b31bea22f65e41d69a70504ed12e186d69ec5a",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -243,6 +262,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -253,24 +275,32 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
         },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
         "visual_review": "required",
         "production_ready": false
-      }
+      },
+      "safe_margin_ok": true,
+      "safe_margin_violations": []
     },
     {
       "lane": "FAST",
       "model_id": "flux2-klein-4b-distilled-nvfp4",
       "workflow_id": "flux2-klein-4b-distilled-text-to-image",
       "seed": 4303,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\c1b4753d256947b6a83b3fad421071dd.png",
-      "sha256": "2c5b8691deed42caab6c2f2a4b0268f268a7ae0a69dde972a1319852b6b23da2",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\job-39bf783166664a9c8bbf764ce2f0b557\\output.png",
+      "sha256": "b7345c12f79451032c82f785ea8f2fa7ff0dbb632208fd316edf5c8a167d0a6e",
       "steps": 4,
       "guidance": 1.0,
-      "runtime_ms": 2436,
+      "runtime_ms": 2550,
       "dimensions": {
         "width": 512,
         "height": 512
@@ -281,12 +311,13 @@
         "non_empty": true,
         "not_duplicate": true,
         "edge_clipping": true,
-        "occupancy": true,
+        "safe_margin": false,
+        "occupancy": false,
         "centered": true,
         "file_size": true,
         "alpha": true
       },
-      "eligible": true,
+      "eligible": false,
       "qa": {
         "status": "TECHNICAL_VALID",
         "checks": {
@@ -295,21 +326,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\c1b4753d256947b6a83b3fad421071dd.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\fast\\job-39bf783166664a9c8bbf764ce2f0b557\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 176304,
-          "sha256": "2c5b8691deed42caab6c2f2a4b0268f268a7ae0a69dde972a1319852b6b23da2",
+          "bytes": 169383,
+          "sha256": "b7345c12f79451032c82f785ea8f2fa7ff0dbb632208fd316edf5c8a167d0a6e",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -321,6 +355,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -331,24 +368,37 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
         },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
         "visual_review": "required",
         "production_ready": false
-      }
+      },
+      "safe_margin_ok": false,
+      "safe_margin_violations": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ]
     },
     {
       "lane": "QUALITY",
       "model_id": "flux2-klein-4b-base-nvfp4",
       "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
       "seed": 4301,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\d4147dfd8f494aafba74e95e7de43a7b.png",
-      "sha256": "8c4ff8f909b7c7815889f627ac2756b32829972f3dfd7f45a98ed319d24567a6",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\job-44ecbe8b82df42f8bb6905db3953617d\\output.png",
+      "sha256": "15ce2e2bf1b7c25c1a9bc3fb3f940a7db466a7f321bfcc60e69454c5ecf5be67",
       "steps": 50,
       "guidance": 4.0,
-      "runtime_ms": 30604,
+      "runtime_ms": 35984,
       "dimensions": {
         "width": 512,
         "height": 512
@@ -359,6 +409,7 @@
         "non_empty": true,
         "not_duplicate": true,
         "edge_clipping": true,
+        "safe_margin": true,
         "occupancy": true,
         "centered": true,
         "file_size": true,
@@ -373,21 +424,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\d4147dfd8f494aafba74e95e7de43a7b.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\job-44ecbe8b82df42f8bb6905db3953617d\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 157960,
-          "sha256": "8c4ff8f909b7c7815889f627ac2756b32829972f3dfd7f45a98ed319d24567a6",
+          "bytes": 123522,
+          "sha256": "15ce2e2bf1b7c25c1a9bc3fb3f940a7db466a7f321bfcc60e69454c5ecf5be67",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -399,6 +453,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -409,24 +466,32 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
         },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
         "visual_review": "required",
         "production_ready": false
-      }
+      },
+      "safe_margin_ok": true,
+      "safe_margin_violations": []
     },
     {
       "lane": "QUALITY",
       "model_id": "flux2-klein-4b-base-nvfp4",
       "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
       "seed": 4302,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\4f9ede5fd51e449b8472e94e88e59176.png",
-      "sha256": "2b5d81b4caacfd0ea6efb052e1f6b4b3364346465f347a5b2eea4def12c883a5",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\job-60db6d3257824655930ae0d3c852450d\\output.png",
+      "sha256": "2c16b9fb90734aef895d2d32b93d2cc4178810409eef207e3ba114e860826158",
       "steps": 50,
       "guidance": 4.0,
-      "runtime_ms": 20450,
+      "runtime_ms": 20616,
       "dimensions": {
         "width": 512,
         "height": 512
@@ -437,12 +502,13 @@
         "non_empty": true,
         "not_duplicate": true,
         "edge_clipping": true,
+        "safe_margin": false,
         "occupancy": true,
         "centered": true,
         "file_size": true,
         "alpha": true
       },
-      "eligible": true,
+      "eligible": false,
       "qa": {
         "status": "TECHNICAL_VALID",
         "checks": {
@@ -451,21 +517,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\4f9ede5fd51e449b8472e94e88e59176.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\job-60db6d3257824655930ae0d3c852450d\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 211563,
-          "sha256": "2b5d81b4caacfd0ea6efb052e1f6b4b3364346465f347a5b2eea4def12c883a5",
+          "bytes": 186202,
+          "sha256": "2c16b9fb90734aef895d2d32b93d2cc4178810409eef207e3ba114e860826158",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -477,6 +546,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -487,24 +559,34 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
         },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
         "visual_review": "required",
         "production_ready": false
-      }
+      },
+      "safe_margin_ok": false,
+      "safe_margin_violations": [
+        "bottom"
+      ]
     },
     {
       "lane": "QUALITY",
       "model_id": "flux2-klein-4b-base-nvfp4",
       "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
       "seed": 4303,
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\860eaf926117479fa369b0126696be79.png",
-      "sha256": "c7de767cdeae57f980ac29fc998afb3e7bb01e0e29075ec03980f1691881eb2e",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\job-acd3bae36cd74d3b9a0757d0698fe6e9\\output.png",
+      "sha256": "1badb01d4cf344878a7e798268a943a03736f421b53644843c6e136d00ad9575",
       "steps": 50,
       "guidance": 4.0,
-      "runtime_ms": 20473,
+      "runtime_ms": 20696,
       "dimensions": {
         "width": 512,
         "height": 512
@@ -515,12 +597,13 @@
         "non_empty": true,
         "not_duplicate": true,
         "edge_clipping": true,
-        "occupancy": true,
+        "safe_margin": false,
+        "occupancy": false,
         "centered": true,
         "file_size": true,
         "alpha": true
       },
-      "eligible": true,
+      "eligible": false,
       "qa": {
         "status": "TECHNICAL_VALID",
         "checks": {
@@ -529,21 +612,24 @@
           "dimensions": true,
           "size": true,
           "non_empty_content": true,
-          "transparency_requirement": true
+          "transparency_requirement": true,
+          "rgb_preservation": {
+            "status": "not-run"
+          }
         },
         "requirements": {
           "requires_transparency": false,
           "transparency_profile": null
         },
         "technical": {
-          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\860eaf926117479fa369b0126696be79.png",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality\\job-acd3bae36cd74d3b9a0757d0698fe6e9\\output.png",
           "format": "PNG",
           "width": 512,
           "height": 512,
           "mode": "RGB",
           "source_mode": "RGB",
-          "bytes": 171685,
-          "sha256": "c7de767cdeae57f980ac29fc998afb3e7bb01e0e29075ec03980f1691881eb2e",
+          "bytes": 150293,
+          "sha256": "1badb01d4cf344878a7e798268a943a03736f421b53644843c6e136d00ad9575",
           "has_alpha": false,
           "has_alpha_channel": false,
           "has_transparent_pixels": false,
@@ -555,6 +641,9 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false,
@@ -565,13 +654,26 @@
           "alpha_opaque_fraction": 1.0,
           "alpha_partial_fraction": 0.0,
           "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
           "alpha_bbox": null,
           "alpha_centroid": null,
           "border_contact": false
         },
+        "rgb_preservation": {
+          "status": "not-run"
+        },
         "visual_review": "required",
         "production_ready": false
-      }
+      },
+      "safe_margin_ok": false,
+      "safe_margin_violations": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ]
     }
   ],
   "contact_sheet": "D:\\Projeto Codexx\\ugas\\tmp\\quality-benchmark\\quality-benchmark-contact-sheet.png",
