@@ -1,3 +1,11 @@
+---
+name: game-style-consistency-auditor
+description: Audits game asset metadata and visual review requirements against Art DNA profile palette silhouettes scale and naming rules. Use after planning or producing an asset set.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-style-consistency-auditor
 
 ## Description and trigger

@@ -1,54 +1,68 @@
-# Installing UGAS
+# Installing UGAS 0.2.1
 
-UGAS 0.2 is a lightweight repository bootstrap. Python 3.10 or newer is required. The runtime uses only the Python standard library, so a virtual environment is recommended but no model, GPU toolkit, Docker image, or global provider installation is required.
+Python 3.10 or newer is required. The runtime uses only the Python standard library; no model, GPU toolkit, Docker image, or provider installation is required for the bootstrap.
 
-## Manual installation
+## Clone and validate
 
 ```powershell
-git clone <public-ugas-url>
+git clone <PUBLIC_UGAS_URL>
 cd universal-game-asset-studio
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e .
+python scripts/tests/run_tests.py
 python scripts/validation/run_validation.py
 ```
 
-On macOS/Linux, use `source .venv/bin/activate`. If editable installation is not desired, the checkout scripts still work directly with `python scripts/...`.
+If editable installation is not desired, the scripts work directly from the checkout with `python scripts/...`.
 
-## Agent or skills installation
+## Agent Skills
 
-If the environment supports `npx skills`, an agent may install the skills from the public repository using that tool's normal repository syntax. The repository-local equivalent, which works without a global skills CLI, is:
+The tested repository-local route installs all 38 skills by default:
 
 ```powershell
-python scripts/bootstrap/install_skills.py C:\path\to\my-game --destination .agents\skills
+python scripts/bootstrap/install_skills.py C:\path\to\my-game
 ```
 
-Use `--skills` to select a small set, or omit it to install the core installer, orchestrator, resolver, planner, tool router, and provider router. The script refuses to overwrite an existing skill unless `--force` is passed.
+Use `--mode core` for the six bootstrap skills, or select a profile-oriented set:
 
-## Consumer project bootstrap
+```powershell
+python scripts/bootstrap/install_skills.py C:\path\to\my-game --mode profile --profile topdown-rpg-mmorpg-2d
+```
+
+An explicit `--skills` list is also supported. Existing skill directories are never replaced without `--force`. The installed skills are self-contained copies from this checkout and do not depend on temporary extraction paths. No unverified `npx skills` command is required; if another Agent Skills CLI is used, verify its current repository syntax separately.
+
+## Consumer bootstrap
 
 ```powershell
 python scripts/bootstrap/inspect_consumer.py C:\path\to\my-game
-python scripts/bootstrap/install_consumer.py C:\path\to\my-game --profile generic-2d --policy local-first
+python scripts/bootstrap/install_consumer.py C:\path\to\my-game
 ```
 
-Choose one of the profiles in `profiles/`. The installer creates `.game-assets/` and records the detected engine, language, profile, provider policy, and bootstrap provenance. It does not change gameplay code or install ComfyUI.
+Inspection reports engine, dimension, scan bounds, `profile_recommendation`, `profile_confidence`, and `profile_evidence`. The installer chooses an evidence-backed profile when possible. For a project with unknown style or dimension it creates `profile-pending`; pass an explicit profile when the owner has decided.
+
+The installer creates `.game-assets/` and records detected context, profile data, provider policy, bounded scan evidence, and bootstrap provenance. `--force` refreshes generated metadata but preserves `asset-registry.json`, `provenance.jsonl`, `CHECKPOINT.md`, existing `references/`, and existing `manifests/` contents. It does not change gameplay code.
 
 ## Provider readiness
 
 ```powershell
 python scripts/providers/comfyui_healthcheck.py --dry-run
 python scripts/providers/comfyui_healthcheck.py --url http://127.0.0.1:8188
-python scripts/providers/comfyui_config.py --dry-run
+python scripts/providers/remote_render_node_healthcheck.py --dry-run
+python scripts/providers/remote_render_node_healthcheck.py --endpoint http://remote-render-node:8188
 python scripts/providers/capability_probe.py --dry-run
 ```
 
-The live healthcheck only reads ComfyUI `/system_stats` and exits nonzero when the endpoint is unavailable. The RTX 5050 Render Node is a documented remote target; use a private network, set its endpoint in consumer-local configuration, and keep credentials out of Git.
+The local ComfyUI healthcheck reads local `/system_stats`. The remote check reads the configured remote endpoint. Local GPU detection is a separate local-only probe; it never asserts the remote RTX 5050 state. Keep endpoints and credentials out of Git and use a private network for the Render Node.
+
+## Routing semantics
+
+`available`, `unavailable`, and `unknown` are distinct. Without a probe, providers are `unknown` and no provider is selected. Routing filters capabilities before fallback: final 3D models require `3d-model`, while concept/reference work can use `3d-reference`. `paid-disabled` excludes only `paid`; `self-hosted` remains eligible.
 
 ## Troubleshooting
 
-- `FileExistsError` during install: inspect `.game-assets/`; use `--force` only after reviewing existing consumer files.
-- Unknown engine: pass a profile and review `toolchain.json`; unknown is an honest result, not a failure of the game project.
-- ComfyUI unavailable: use the dry-run to confirm the contract, then let the router fall back according to policy. Do not mark a generated result complete.
-- No GPU detected: V0.2 does not require a local GPU. A Render Node remains a separate, private endpoint.
-- GitHub publication unavailable: verify `gh auth status`, then create the public repository and push only after reviewing the tracked-file scan. This checkout never stores tokens.
+- `FileExistsError`: inspect `.game-assets/` and use `--force` only after reviewing consumer data.
+- `profile-pending`: provide an explicit profile or add authoritative project evidence; UGAS does not silently assume generic 2D.
+- `ComfyUI unavailable`: use the dry-run contract and do not mark a generation result complete.
+- no local GPU: the bootstrap does not require one; configure and probe a private remote endpoint separately.
+- GitHub publication blocked: verify authentication, then set the repository remote and push reviewed commits. Never store tokens in files.

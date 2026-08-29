@@ -1,3 +1,11 @@
+---
+name: provider-model-registry
+description: Records provider model identifiers revisions licenses size classes and capability tags for game asset workflows. Use before selecting a model and never infer permission.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # provider-model-registry
 
 ## Description and trigger

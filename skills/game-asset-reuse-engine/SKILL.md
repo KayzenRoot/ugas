@@ -1,3 +1,11 @@
+---
+name: game-asset-reuse-engine
+description: Searches the game asset registry and references for compatible existing items before new generation. Use when matching profile dimensions Art DNA licensing and validation state.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-reuse-engine
 
 ## Description and trigger

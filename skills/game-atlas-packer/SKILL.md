@@ -1,3 +1,11 @@
+---
+name: game-atlas-packer
+description: Plans 2D game atlas packing with page size padding rotation policy naming and engine import settings. Use after compatible assets pass registry and license checks.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-atlas-packer
 
 ## Description and trigger

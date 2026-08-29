@@ -1,3 +1,11 @@
+---
+name: game-context-resolver
+description: Resolves bounded consumer project context including Unity Godot Unreal and web or custom engine evidence without scanning heavy directories. Use before profile selection or asset planning.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-context-resolver
 
 ## Description and trigger

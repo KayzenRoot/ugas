@@ -4,5 +4,5 @@
   "title": "UGAS toolchain",
   "type": "object",
   "required": ["schema_version", "engine", "language", "provider_policy", "providers"],
-  "properties": {"schema_version": {"type": "string"}, "engine": {"type": "string"}, "language": {"type": "string"}, "detected_files": {"type": "array", "items": {"type": "string"}}, "provider_policy": {"enum": ["free-first", "local-first", "remote-first", "paid-disabled"]}, "providers": {"type": "array", "items": {"type": "string"}}, "comfyui_endpoint": {"type": ["string", "null"]}, "render_node_endpoint": {"type": ["string", "null"]}}
+  "properties": {"schema_version": {"type": "string"}, "engine": {"type": "string"}, "language": {"type": "string"}, "detected_files": {"type": "array", "items": {"type": "string"}}, "scan_summary": {"type": "object"}, "provider_policy": {"enum": ["free-first", "local-first", "remote-first", "paid-disabled"]}, "providers": {"type": "array", "items": {"type": "string"}}, "profile_recommendation": {"type": ["string", "null"]}, "profile_confidence": {"enum": ["high", "medium", "low", "unknown"]}, "profile_evidence": {"type": "array", "items": {"type": "string"}}, "comfyui_endpoint": {"type": ["string", "null"]}, "render_node_endpoint": {"type": ["string", "null"]}}
 }

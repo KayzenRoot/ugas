@@ -1,3 +1,11 @@
+---
+name: game-asset-dependency-graph
+description: Records traceable dependencies between game asset sources variants materials animations and packaging outputs. Use when changes must be followed through an asset set.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-dependency-graph
 
 ## Description and trigger

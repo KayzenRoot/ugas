@@ -1,6 +1,6 @@
 # Roadmap
 
-V0.2 establishes the contracts and dry-run proof. Later work must be separately scoped and reviewed.
+V0.2.1 establishes the contracts, bounded discovery, profile selection, capability-aware routing, safe refresh, and dry-run proof. Later work must be separately scoped and reviewed.
 
 1. ComfyUI HTTP/WebSocket client with bounded job lifecycle and workflow validation.
 2. Provider model registry with revision, license, cache, and quota evidence.

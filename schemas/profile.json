@@ -3,13 +3,14 @@
   "$id": "https://ugas.dev/schema/profile.json",
   "title": "UGAS profile",
   "type": "object",
-  "required": ["id", "name", "dimension", "description", "use_cases", "artistic_parameters", "technical_parameters", "asset_structure", "budgets", "provider_guidance", "naming", "animation", "limitations"],
+  "required": ["schema_version", "id", "name", "dimension", "description", "use_cases", "artistic_parameters", "technical_parameters", "asset_structure", "budgets", "provider_guidance", "naming", "animation", "limitations"],
   "properties": {
+    "schema_version": {"type": "string"},
     "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
     "name": {"type": "string", "minLength": 1},
-    "dimension": {"enum": ["2d", "3d"]},
+    "dimension": {"enum": ["2d", "3d", "unknown"]},
     "description": {"type": "string"},
-    "use_cases": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "use_cases": {"type": "array", "items": {"type": "string"}, "minItems": 0},
     "artistic_parameters": {"type": "object"},
     "technical_parameters": {"type": "object"},
     "asset_structure": {"type": "object"},
@@ -17,7 +18,11 @@
     "provider_guidance": {"type": "array", "items": {"type": "string"}},
     "naming": {"type": "object"},
     "animation": {"type": "object"},
-    "limitations": {"type": "array", "items": {"type": "string"}}
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "selection_status": {"enum": ["selected", "pending"]},
+    "profile_recommendation": {"type": ["string", "null"]},
+    "profile_confidence": {"enum": ["high", "medium", "low", "unknown"]},
+    "profile_evidence": {"type": "array", "items": {"type": "string"}}
   },
   "additionalProperties": false
 }

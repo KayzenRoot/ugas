@@ -1,3 +1,11 @@
+---
+name: game-sprite-studio
+description: Plans 2D game character object and effect sprites with silhouettes frames pivots resolutions and export conventions. Use for sprite asset briefs and manifests.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-sprite-studio
 
 ## Description and trigger

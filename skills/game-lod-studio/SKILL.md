@@ -1,3 +1,11 @@
+---
+name: game-lod-studio
+description: Defines distance-based 3D game LOD counts screen thresholds polygon targets and material simplification. Use after source model and performance budgets are known.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-lod-studio
 
 ## Description and trigger

@@ -1,3 +1,11 @@
+---
+name: game-asset-planner
+description: Turns a classified game asset request into an ordered plan with asset types dependencies acceptance checks and profile budgets. Use after context resolution and before provider selection.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-planner
 
 ## Description and trigger

@@ -1,3 +1,11 @@
+---
+name: game-asset-validator
+description: Validates game asset schemas naming dimensions budgets dependencies licenses and provenance while separating metadata checks from visual proof. Use after planning or producing manifests.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-validator
 
 ## Description and trigger

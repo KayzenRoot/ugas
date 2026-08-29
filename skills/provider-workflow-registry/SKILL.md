@@ -1,3 +1,11 @@
+---
+name: provider-workflow-registry
+description: Registers versioned provider workflows with inputs outputs model requirements and safety constraints for reproducible game asset jobs. Use before resolving a workflow.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # provider-workflow-registry
 
 ## Description and trigger

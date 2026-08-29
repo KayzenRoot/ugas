@@ -1,3 +1,11 @@
+---
+name: game-3d-model-studio
+description: Plans 3D game meshes topology scale units pivots and LOD handoff for stylized low-poly or realistic assets. Use when a model brief needs technical acceptance targets.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-3d-model-studio
 
 ## Description and trigger

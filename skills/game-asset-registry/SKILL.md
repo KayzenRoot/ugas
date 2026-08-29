@@ -1,3 +1,11 @@
+---
+name: game-asset-registry
+description: Registers and reviews game asset identity status paths dimensions licensing and provenance as reusable metadata. Use when an asset enters or changes state in the project registry.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-registry
 
 ## Description and trigger

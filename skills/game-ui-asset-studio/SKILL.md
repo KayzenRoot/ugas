@@ -1,3 +1,11 @@
+---
+name: game-ui-asset-studio
+description: Plans game interface panels buttons HUD frames and UI states with nine-slice accessibility resolution and localization-safe boundaries. Use for UI asset contracts.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-ui-asset-studio
 
 ## Description and trigger

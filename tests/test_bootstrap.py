@@ -4,12 +4,19 @@ import unittest
 from pathlib import Path
 
 from ugas.constants import CONSUMER_FILES, PROFILES, PROVIDERS, SCHEMAS, SKILLS
+from ugas.context import resolve_project_context
 from ugas.installer import install_consumer
-from ugas.providers import comfyui_healthcheck, detect_render_capability
+from ugas.providers import comfyui_healthcheck, detect_local_gpu_capability, remote_render_node_healthcheck
 from ugas.router import route_request
+from ugas.schema_validation import validate_instance, validate_schema_document
+from ugas.skills import validate_skill_frontmatter
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 class RepositoryContractTests(unittest.TestCase):
@@ -19,88 +26,179 @@ class RepositoryContractTests(unittest.TestCase):
             with self.subTest(item=item):
                 self.assertTrue((ROOT / item).exists())
 
-    def test_every_skill_has_trigger_and_limits(self):
+    def test_every_skill_has_valid_agent_skills_frontmatter(self):
+        self.assertEqual(38, len(SKILLS))
         for skill in SKILLS:
             with self.subTest(skill=skill):
-                content = (ROOT / "skills" / skill / "SKILL.md").read_text(encoding="utf-8").casefold()
+                path = ROOT / "skills" / skill / "SKILL.md"
+                valid, errors, values = validate_skill_frontmatter(path.read_text(encoding="utf-8"), skill)
+                self.assertTrue(valid, errors)
+                self.assertEqual(skill, values["name"])
+                self.assertNotIn("disable-model-invocation", path.read_text(encoding="utf-8"))
+                content = path.read_text(encoding="utf-8").casefold()
                 self.assertIn("trigger", content)
                 self.assertIn("when not", content)
                 self.assertIn("limits", content)
 
-    def test_profiles_and_schemas_are_valid_json(self):
+    def test_profiles_and_schema_documents_validate(self):
+        schemas = {name: load_json(ROOT / "schemas" / f"{name}.json") for name in SCHEMAS}
+        for schema_name, schema in schemas.items():
+            with self.subTest(schema=schema_name):
+                validate_schema_document(schema)
+                self.assertEqual("https://json-schema.org/draft/2020-12/schema", schema["$schema"])
+        profile_schema = schemas["profile"]
         for profile in PROFILES:
             with self.subTest(profile=profile):
-                value = json.loads((ROOT / "profiles" / f"{profile}.json").read_text(encoding="utf-8"))
-                self.assertEqual(profile, value["id"])
-                self.assertIn("budgets", value)
-        for schema in SCHEMAS:
-            with self.subTest(schema=schema):
-                value = json.loads((ROOT / "schemas" / f"{schema}.json").read_text(encoding="utf-8"))
-                self.assertTrue(value["$schema"])
-                self.assertTrue(value["required"])
+                value = load_json(ROOT / "profiles" / f"{profile}.json")
+                validate_instance(value, profile_schema)
+                self.assertEqual("0.2.1", value["schema_version"])
+        validate_instance(load_json(ROOT / "templates" / "profile.json"), profile_schema)
 
-    def test_templates_and_workflow_manifest_are_valid_json(self):
-        for template in ["studio.json", "profile.json", "art-dna.json", "asset-standards.json", "performance-budget.json", "toolchain.json", "asset-registry.json", "asset-dependencies.json"]:
-            with self.subTest(template=template):
-                self.assertIsInstance(json.loads((ROOT / "templates" / template).read_text(encoding="utf-8")), dict)
-        workflow = json.loads((ROOT / "providers" / "workflows" / "comfyui-bootstrap.json").read_text(encoding="utf-8"))
-        self.assertEqual("provider-comfyui", workflow["provider"])
-
-    def test_provider_manifests_exist(self):
+    def test_templates_provider_and_workflow_instances_validate(self):
+        schemas = {name: load_json(ROOT / "schemas" / f"{name}.json") for name in SCHEMAS}
+        pairs = {
+            "art-dna.json": "art-dna",
+            "asset-registry.json": "asset-registry",
+            "performance-budget.json": "performance-budget",
+            "toolchain.json": "toolchain",
+        }
+        for filename, schema_name in pairs.items():
+            with self.subTest(template=filename):
+                validate_instance(load_json(ROOT / "templates" / filename), schemas[schema_name])
         for provider in PROVIDERS:
             with self.subTest(provider=provider):
-                value = json.loads((ROOT / "providers" / "manifests" / f"{provider}.json").read_text(encoding="utf-8"))
-                self.assertEqual(provider, value["id"])
-                self.assertTrue(value["capabilities"])
+                manifest = load_json(ROOT / "providers" / "manifests" / f"{provider}.json")
+                validate_instance(manifest, schemas["provider-manifest"])
+                self.assertIn(manifest["cost_class"], {"local", "self-hosted", "free-tier", "paid"})
+        for workflow in (ROOT / "providers" / "workflows").glob("*.json"):
+            with self.subTest(workflow=workflow.name):
+                validate_instance(load_json(workflow), schemas["workflow-manifest"])
 
 
-class InstallerTests(unittest.TestCase):
-    def test_installer_creates_consumer_contract(self):
+class ContextAndInstallerTests(unittest.TestCase):
+    def test_engine_markers_and_dimension_evidence(self):
         with tempfile.TemporaryDirectory() as directory:
-            consumer = Path(directory) / "godot-game"
+            root = Path(directory)
+            unity = root / "unity"
+            (unity / "Assets").mkdir(parents=True)
+            (unity / "ProjectSettings").mkdir()
+            (unity / "ProjectSettings" / "ProjectVersion.txt").write_text("m_EditorVersion: 2022.3\n", encoding="utf-8")
+            unity_context = resolve_project_context(unity)
+            self.assertEqual(("unity", "unknown"), (unity_context.engine, unity_context.dimension))
+            godot = root / "godot"
+            godot.mkdir()
+            (godot / "project.godot").write_text("[application]\n", encoding="utf-8")
+            godot_context = resolve_project_context(godot)
+            self.assertEqual(("godot", "unknown"), (godot_context.engine, godot_context.dimension))
+            unreal = root / "unreal"
+            unreal.mkdir()
+            (unreal / "Game.uproject").write_text("{}", encoding="utf-8")
+            self.assertEqual("unreal", resolve_project_context(unreal).engine)
+            web = root / "web"
+            web.mkdir()
+            (web / "package.json").write_text(json.dumps({"dependencies": {"pixi.js": "^8.0.0"}}), encoding="utf-8")
+            web_context = resolve_project_context(web)
+            self.assertEqual(("pixijs", "2d"), (web_context.engine, web_context.dimension))
+            self.assertEqual("generic-2d", web_context.profile_recommendation)
+            self.assertEqual("medium", web_context.profile_confidence)
+
+    def test_context_scan_is_bounded_and_skips_heavy_directories(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".git").mkdir()
+            (root / ".git" / "project.godot").write_text("[application]\n", encoding="utf-8")
+            (root / "node_modules").mkdir()
+            (root / "node_modules" / "package.json").write_text("{}", encoding="utf-8")
+            context = resolve_project_context(root)
+            self.assertEqual("unknown", context.engine)
+            self.assertIn(".git", context.scan_summary["skipped_directories"])
+            self.assertIn("node_modules", context.scan_summary["skipped_directories"])
+            self.assertLessEqual(context.scan_summary["files_scanned"], 5000)
+            self.assertEqual([], context.detected_files)
+
+    def test_installer_auto_selection_and_refresh_preserve_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            consumer = Path(directory) / "game"
             consumer.mkdir()
-            (consumer / "project.godot").write_text("[application]\n", encoding="utf-8")
-            result = install_consumer(ROOT, consumer, "pixel-rpg-2d")
-            self.assertEqual("installed", result["status"])
+            first = install_consumer(ROOT, consumer)
+            self.assertEqual("profile-pending", first["profile"])
+            self.assertEqual("unknown", first["profile_confidence"])
             target = consumer / ".game-assets"
             for filename in CONSUMER_FILES:
                 with self.subTest(filename=filename):
                     self.assertTrue((target / filename).exists())
-            self.assertEqual("godot", json.loads((target / "studio.json").read_text(encoding="utf-8"))["engine"])
-            self.assertEqual("0.2", json.loads((target / "profile.json").read_text(encoding="utf-8"))["schema_version"])
+            registry = target / "asset-registry.json"
+            registry.write_text(json.dumps({"schema_version": "0.2.1", "assets": [{"id": "keep-me", "status": "draft"}]}), encoding="utf-8")
+            provenance = target / "provenance.jsonl"
+            with provenance.open("a", encoding="utf-8") as stream:
+                stream.write('{"event":"user-history"}\n')
+            references = target / "references" / "approved.txt"
+            references.write_text("keep", encoding="utf-8")
+            manifests = target / "manifests" / "custom.json"
+            manifests.write_text("{}", encoding="utf-8")
+            refreshed = install_consumer(ROOT, consumer, profile_id="pixel-rpg-2d", force=True)
+            self.assertIn("asset-registry.json", refreshed["preserved"])
+            self.assertIn("keep-me", registry.read_text(encoding="utf-8"))
+            self.assertIn("user-history", provenance.read_text(encoding="utf-8"))
+            self.assertIn("bootstrap-refreshed", provenance.read_text(encoding="utf-8"))
+            self.assertTrue(references.exists())
+            self.assertTrue(manifests.exists())
+            self.assertEqual("pixel-rpg-2d", load_json(target / "profile.json")["id"])
 
 
 class RoutingTests(unittest.TestCase):
-    def test_required_dry_run_routes(self):
-        checks = {
-            "Criar vila humana 2D de MMORPG": ("2d", ["sprite", "tileset", "animation"]),
-            "Criar planetas e naves de jogo idle espacial": ("2d", ["sprite", "background", "ui", "vfx"]),
-            "Criar boss 3D stylized": ("3d", ["model", "material", "animation", "lod"]),
-        }
-        for request, (dimension, asset_types) in checks.items():
-            with self.subTest(request=request):
-                result = route_request(request)
-                self.assertTrue(result["asset_studio_relevant"])
-                self.assertEqual(dimension, result["dimension"])
-                self.assertEqual(asset_types, result["asset_types"])
-                self.assertEqual("provider-comfyui", result["provider"])
-
-    def test_non_asset_request_is_rejected(self):
-        result = route_request("Ajustar matchmaking do jogo")
-        self.assertFalse(result["asset_studio_relevant"])
+    def test_default_availability_is_unknown(self):
+        result = route_request("Criar vila humana 2D de MMORPG")
         self.assertIsNone(result["provider"])
+        self.assertEqual("unknown", result["routing_status"])
+        self.assertEqual([], result["available_providers"])
 
-    def test_render_node_unavailable_falls_back(self):
-        result = route_request("Criar boss 3D stylized", providers={"provider-comfyui": False, "provider-remote-render-node": False})
-        self.assertEqual("provider-huggingface", result["provider"])
+    def test_asset_and_non_asset_classification(self):
+        result = route_request(
+            "Criar vila humana 2D de MMORPG",
+            availability={"provider-comfyui": "available", "provider-remote-render-node": "available", "provider-huggingface": "available"},
+        )
+        self.assertTrue(result["asset_studio_relevant"])
+        self.assertEqual(["sprite", "tileset", "animation"], result["asset_types"])
+        self.assertEqual("provider-comfyui", result["provider"])
+        irrelevant = route_request("Ajustar matchmaking do jogo")
+        self.assertFalse(irrelevant["asset_studio_relevant"])
+        self.assertIsNone(irrelevant["provider"])
+
+    def test_3d_final_never_falls_back_to_2d_provider(self):
+        result = route_request("Criar boss 3D stylized", availability={"provider-comfyui": "unavailable", "provider-remote-render-node": "unavailable", "provider-huggingface": "available"})
+        self.assertEqual("3d", result["dimension"])
+        self.assertEqual("capability_gap", result["routing_status"])
+        self.assertIsNone(result["provider"])
+        self.assertIn("3d-model", result["capability_gaps"]["provider-huggingface"])
+
+    def test_paid_disabled_keeps_self_hosted_remote_eligible(self):
+        result = route_request(
+            "Criar boss 3D stylized",
+            policy="paid-disabled",
+            availability={"provider-comfyui": "unavailable", "provider-remote-render-node": "available", "provider-huggingface": "available"},
+        )
+        self.assertEqual("provider-remote-render-node", result["provider"])
+
+    def test_capability_gap_skips_preferred_provider_and_uses_capable_fallback(self):
+        result = route_request(
+            "Criar sprite de inventário",
+            availability={"provider-comfyui": "available", "provider-remote-render-node": "available"},
+            capabilities={"provider-comfyui": ["2d"], "provider-remote-render-node": ["2d", "sprite-generation"]},
+        )
+        self.assertEqual("provider-remote-render-node", result["provider"])
+        self.assertIn("sprite-generation", result["capability_gaps"]["provider-comfyui"])
 
 
 class ProviderReadinessTests(unittest.TestCase):
-    def test_comfyui_and_render_node_dry_runs(self):
-        self.assertEqual("dry-run-ready", comfyui_healthcheck(dry_run=True)["status"])
-        result = detect_render_capability(dry_run=True)
-        self.assertEqual("contract-ready", result["status"])
-        self.assertIn("RTX 5050", result["gpu"])
+    def test_local_and_remote_dry_runs_are_separate(self):
+        comfy = comfyui_healthcheck(dry_run=True)
+        self.assertEqual(("local", "dry-run-ready"), (comfy["scope"], comfy["status"]))
+        local = detect_local_gpu_capability(dry_run=True)
+        self.assertEqual("local", local["scope"])
+        remote = remote_render_node_healthcheck(dry_run=True)
+        self.assertEqual(("remote", "dry-run-ready"), (remote["scope"], remote["status"]))
+        self.assertIn("no local nvidia-smi", remote["checks"])
 
 
 if __name__ == "__main__":

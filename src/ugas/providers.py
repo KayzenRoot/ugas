@@ -10,40 +10,90 @@ import urllib.request
 from pathlib import Path
 
 
-def comfyui_healthcheck(url: str = "http://127.0.0.1:8188", timeout: float = 2.0, dry_run: bool = False) -> dict:
-    base = url.rstrip("/")
+def comfyui_healthcheck(
+    local_endpoint: str = "http://127.0.0.1:8188",
+    timeout: float = 2.0,
+    dry_run: bool = False,
+) -> dict:
+    """Probe only the local ComfyUI endpoint; never infer remote GPU state."""
+    base = local_endpoint.rstrip("/")
     if dry_run:
         return {
             "provider": "provider-comfyui",
+            "scope": "local",
             "status": "dry-run-ready",
             "endpoint": base,
+            "simulation": True,
             "checks": ["HTTP endpoint contract", "system_stats probe", "no credentials persisted"],
         }
     try:
         with urllib.request.urlopen(f"{base}/system_stats", timeout=timeout) as response:
             payload = json.loads(response.read().decode("utf-8"))
-        return {"provider": "provider-comfyui", "status": "healthy", "endpoint": base, "system_stats": payload}
+        return {"provider": "provider-comfyui", "scope": "local", "status": "healthy", "endpoint": base, "system_stats": payload}
     except (urllib.error.URLError, TimeoutError, ValueError, OSError) as exc:
-        return {"provider": "provider-comfyui", "status": "unavailable", "endpoint": base, "error": str(exc)}
+        return {"provider": "provider-comfyui", "scope": "local", "status": "unavailable", "endpoint": base, "error": str(exc)}
 
 
-def detect_render_capability(dry_run: bool = False) -> dict:
+def detect_local_gpu_capability(dry_run: bool = False) -> dict:
+    """Inspect this machine's GPU only; it says nothing about a remote render node."""
     if dry_run:
         return {
-            "provider": "provider-remote-render-node",
-            "status": "contract-ready",
-            "gpu": "RTX 5050 expected on the remote node; not asserted on this machine",
-            "network": "private-network endpoint required",
+            "provider": "local-gpu",
+            "scope": "local",
+            "status": "dry-run-ready",
+            "simulation": True,
+            "probe": "nvidia-smi (local machine only)",
         }
     nvidia_smi = shutil.which("nvidia-smi")
     if not nvidia_smi:
-        return {"provider": "provider-remote-render-node", "status": "not-detected", "reason": "nvidia-smi unavailable"}
+        return {"provider": "local-gpu", "scope": "local", "status": "unavailable", "reason": "nvidia-smi unavailable"}
     try:
-        result = subprocess.run([nvidia_smi, "--query-gpu=name", "--format=csv,noheader"], capture_output=True, text=True, timeout=3)
+        result = subprocess.run(
+            [nvidia_smi, "--query-gpu=name", "--format=csv,noheader"],
+            capture_output=True,
+            text=True,
+            timeout=3,
+            check=False,
+        )
         names = [line.strip() for line in result.stdout.splitlines() if line.strip()]
-        return {"provider": "provider-remote-render-node", "status": "detected" if result.returncode == 0 else "error", "gpus": names}
+        return {"provider": "local-gpu", "scope": "local", "status": "available" if result.returncode == 0 else "error", "gpus": names}
     except (OSError, subprocess.SubprocessError) as exc:
-        return {"provider": "provider-remote-render-node", "status": "error", "error": str(exc)}
+        return {"provider": "local-gpu", "scope": "local", "status": "error", "error": str(exc)}
+
+
+def remote_render_node_healthcheck(
+    remote_endpoint: str | None = None,
+    timeout: float = 3.0,
+    dry_run: bool = False,
+) -> dict:
+    """Probe the remote node's own health endpoint, without local GPU probing."""
+    base = (remote_endpoint or "").rstrip("/")
+    if dry_run:
+        return {
+            "provider": "provider-remote-render-node",
+            "scope": "remote",
+            "status": "dry-run-ready",
+            "simulation": True,
+            "endpoint": base or None,
+            "checks": ["remote /system_stats contract", "private endpoint required", "no local nvidia-smi"],
+        }
+    if not base:
+        return {
+            "provider": "provider-remote-render-node",
+            "scope": "remote",
+            "status": "unknown",
+            "reason": "remote endpoint not configured",
+        }
+    try:
+        with urllib.request.urlopen(f"{base}/system_stats", timeout=timeout) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        return {"provider": "provider-remote-render-node", "scope": "remote", "status": "healthy", "endpoint": base, "system_stats": payload}
+    except (urllib.error.URLError, TimeoutError, ValueError, OSError) as exc:
+        return {"provider": "provider-remote-render-node", "scope": "remote", "status": "unavailable", "endpoint": base, "error": str(exc)}
+
+
+# Compatibility for callers from v0.2.0. The corrected name makes the scope explicit.
+detect_render_capability = detect_local_gpu_capability
 
 
 def load_provider_manifest(repo_root: Path, provider_id: str) -> dict:

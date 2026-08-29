@@ -1,3 +1,11 @@
+---
+name: game-asset-tool-router
+description: Routes game asset work to the smallest applicable UGAS skill for sprites tilesets animation UI VFX models materials rigging or LOD. Use when a plan needs specialized asset tooling.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-tool-router
 
 ## Description and trigger

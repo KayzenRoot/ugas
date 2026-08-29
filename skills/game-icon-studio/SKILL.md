@@ -1,3 +1,11 @@
+---
+name: game-icon-studio
+description: Plans readable game inventory ability and navigation icons with silhouette contrast size variants and stable naming. Use for icon asset briefs and acceptance checks.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-icon-studio
 
 ## Description and trigger

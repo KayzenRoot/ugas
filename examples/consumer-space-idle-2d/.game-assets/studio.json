@@ -1,12 +1,18 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.2.1",
   "studio": "UGAS",
-  "installed_version": "0.2.0",
-  "installed_at": "2026-08-28T22:51:56+00:00",
+  "installed_version": "0.2.1",
+  "installed_at": "2026-08-29T02:19:25+00:00",
   "consumer_root": ".",
   "engine": "web-or-custom",
   "language": "JavaScript/TypeScript",
   "dimension": "2d",
   "provider_policy": "local-first",
-  "orchestrator": "game-asset-orchestrator"
+  "orchestrator": "game-asset-orchestrator",
+  "profile_selection_status": "selected",
+  "profile_recommendation": "space-idle-strategy-2d",
+  "profile_confidence": "high",
+  "profile_evidence": [
+    "explicit profile selection"
+  ]
 }

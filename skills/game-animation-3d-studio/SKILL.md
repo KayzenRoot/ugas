@@ -1,3 +1,11 @@
+---
+name: game-animation-3d-studio
+description: Plans 3D game animation clips root motion loops and retargeting requirements. Use when a rigged model needs an explicit runtime-neutral animation manifest.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-animation-3d-studio
 
 ## Description and trigger

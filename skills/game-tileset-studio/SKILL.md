@@ -1,3 +1,11 @@
+---
+name: game-tileset-studio
+description: Plans modular 2D game terrain and environment tilesets with grids adjacency collision layers and atlas constraints. Use for tile asset briefs and manifests.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-tileset-studio
 
 ## Description and trigger

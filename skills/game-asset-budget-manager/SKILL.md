@@ -1,3 +1,11 @@
+---
+name: game-asset-budget-manager
+description: Applies profile limits for game asset texture size atlas area polygon count draw calls animation frames and provider cost policy. Use when planning or validating an asset request.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-budget-manager
 
 ## Description and trigger

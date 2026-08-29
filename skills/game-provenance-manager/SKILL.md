@@ -1,3 +1,11 @@
+---
+name: game-provenance-manager
+description: Appends auditable provenance events for game asset bootstrap planning provider requests outputs imports and review transitions. Use for every state-changing asset operation.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-provenance-manager
 
 ## Description and trigger

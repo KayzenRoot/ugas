@@ -15,8 +15,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Inspect a consumer project for UGAS")
     parser.add_argument("consumer_root", type=Path)
     parser.add_argument("--dimension", choices=["2d", "3d", "unknown"])
+    parser.add_argument("--profile")
     args = parser.parse_args()
-    print(json.dumps(resolve_project_context(args.consumer_root, args.dimension).to_dict(), indent=2, ensure_ascii=False))
+    print(json.dumps(resolve_project_context(args.consumer_root, args.dimension, args.profile).to_dict(), indent=2, ensure_ascii=False))
     return 0
 
 

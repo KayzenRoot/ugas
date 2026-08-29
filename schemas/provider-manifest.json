@@ -3,6 +3,6 @@
   "$id": "https://ugas.dev/schema/provider-manifest.json",
   "title": "UGAS provider manifest",
   "type": "object",
-  "required": ["schema_version", "id", "kind", "capabilities", "availability_contract", "credential_policy"],
-  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "kind": {"type": "string"}, "capabilities": {"type": "array", "items": {"type": "string"}}, "availability_contract": {"type": "object"}, "credential_policy": {"type": "string"}, "endpoint": {"type": ["string", "null"]}}
+  "required": ["schema_version", "id", "kind", "cost_class", "capabilities", "availability_contract", "credential_policy"],
+  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "kind": {"type": "string"}, "cost_class": {"enum": ["local", "self-hosted", "free-tier", "paid"]}, "capabilities": {"type": "array", "items": {"type": "string"}}, "availability_contract": {"type": "object"}, "credential_policy": {"type": "string"}, "endpoint": {"type": ["string", "null"]}}
 }

@@ -1,3 +1,11 @@
+---
+name: provider-comfyui
+description: Integrates the local ComfyUI game asset provider through health capability workflow and bounded job contracts. Use when ComfyUI is selected or evaluated without assuming live availability.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # provider-comfyui
 
 ## Description and trigger

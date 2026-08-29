@@ -1,4 +1,4 @@
-"""V0.2 contracts shared by the installer, validator and tests."""
+"""V0.2.1 contracts shared by the installer, validator and tests."""
 
 SKILLS = [
     "game-asset-installer",

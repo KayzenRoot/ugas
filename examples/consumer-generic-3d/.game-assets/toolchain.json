@@ -1,28 +1,26 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.2.1",
   "engine": "unknown",
   "language": "unknown",
-  "detected_files": [
-    ".game-assets/CHECKPOINT.md",
-    ".game-assets/INSTALLATION-REVIEW.md",
-    ".game-assets/art-dna.json",
-    ".game-assets/asset-dependencies.json",
-    ".game-assets/asset-registry.json",
-    ".game-assets/asset-standards.json",
-    ".game-assets/manifests/README.md",
-    ".game-assets/performance-budget.json",
-    ".game-assets/profile.json",
-    ".game-assets/provenance.jsonl",
-    ".game-assets/references/README.md",
-    ".game-assets/studio.json",
-    ".game-assets/toolchain.json",
-    "README.md"
-  ],
+  "detected_files": [],
+  "scan_summary": {
+    "files_scanned": 14,
+    "directories_scanned": 4,
+    "skipped_directories": {},
+    "truncated": false,
+    "max_files": 5000,
+    "max_directories": 512
+  },
   "provider_policy": "local-first",
   "providers": [
     "provider-comfyui",
     "provider-remote-render-node",
     "provider-huggingface"
+  ],
+  "profile_recommendation": "stylized-3d",
+  "profile_confidence": "high",
+  "profile_evidence": [
+    "explicit profile selection"
   ],
   "comfyui_endpoint": "http://127.0.0.1:8188",
   "render_node_endpoint": null,

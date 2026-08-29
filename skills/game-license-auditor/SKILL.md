@@ -1,3 +1,11 @@
+---
+name: game-license-auditor
+description: Checks game asset source license attribution restrictions and commercial-use metadata before registry approval. Use whenever a reference model image or generated output becomes distributable.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-license-auditor
 
 ## Description and trigger

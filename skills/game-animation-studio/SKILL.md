@@ -1,3 +1,11 @@
+---
+name: game-animation-studio
+description: Defines 2D game animation clips timing loops pivots and state mapping for sprite assets. Use when a sprite set needs an explicit animation contract.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-animation-studio
 
 ## Description and trigger

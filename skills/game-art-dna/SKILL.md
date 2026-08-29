@@ -1,3 +1,11 @@
+---
+name: game-art-dna
+description: Captures reusable game visual rules such as style keywords palette shape language and consistency checks. Use when creating or reviewing Art DNA for a profile or consumer project.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-art-dna
 
 ## Description and trigger

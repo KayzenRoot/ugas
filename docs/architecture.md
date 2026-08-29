@@ -13,7 +13,7 @@ request
   -> manifests + validators + provenance
 ```
 
-The V0.2 Python runtime implements context inspection, consumer bootstrap, deterministic request classification, provider ordering, and safe readiness probes. The Agent Skills carry the operational contracts for later agents. No provider is allowed to make the game runtime or server authoritative state implicit.
+The V0.2.1 Python runtime implements bounded context inspection, evidence-backed profile resolution, consumer bootstrap, deterministic capability-aware request classification, provider ordering, and safe readiness probes. The Agent Skills carry the operational contracts for later agents. No provider is allowed to make the game runtime or server authoritative state implicit.
 
 ## Boundaries
 
@@ -24,4 +24,4 @@ The V0.2 Python runtime implements context inspection, consumer bootstrap, deter
 
 ## Policies
 
-`free-first` prefers Hugging Face, then local ComfyUI, then the Render Node. `local-first` prefers local ComfyUI, then the private Render Node, then Hugging Face. `remote-first` reverses the local order. `paid-disabled` excludes the remote Render Node and only selects declared non-paid alternatives.
+`free-first` prefers Hugging Face, then local ComfyUI, then the Render Node. `local-first` prefers local ComfyUI, then the private Render Node, then Hugging Face. `remote-first` reverses the local order. `paid-disabled` filters only providers whose manifest cost class is `paid`; a `self-hosted` remote Render Node remains eligible. Availability is `available`, `unavailable`, or `unknown`, and no unprobed provider is selected.

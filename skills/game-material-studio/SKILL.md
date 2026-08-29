@@ -1,3 +1,11 @@
+---
+name: game-material-studio
+description: Plans 3D game materials and texture sets with channels resolution color space shader assumptions and compression. Use for material manifests tied to a profile.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-material-studio
 
 ## Description and trigger

@@ -1,8 +1,8 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.2.1",
   "id": "comfyui-bootstrap-readiness",
   "provider": "provider-comfyui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "inputs": ["prompt", "profile", "asset_types", "seed"],
   "outputs": ["image-or-model-reference", "metadata", "job-status"],
   "model_requirements": ["declared by consumer; no model is bundled"],

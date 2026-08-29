@@ -1,3 +1,11 @@
+---
+name: game-rigging-studio
+description: Defines 3D game skeleton deformation retargeting and export contracts for rigged models. Use when a model needs a reviewable rig brief without changing gameplay controllers.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-rigging-studio
 
 ## Description and trigger

@@ -16,13 +16,15 @@ def main() -> int:
     parser.add_argument("--request", required=True)
     parser.add_argument("--policy", default="local-first", choices=["free-first", "local-first", "remote-first", "paid-disabled"])
     parser.add_argument("--engine", default="unknown")
-    parser.add_argument("--comfyui", choices=["available", "unavailable"], default="available")
-    parser.add_argument("--render-node", choices=["available", "unavailable"], default="available")
+    parser.add_argument("--comfyui", choices=["available", "unavailable", "unknown"], default="unknown")
+    parser.add_argument("--render-node", choices=["available", "unavailable", "unknown"], default="unknown")
+    parser.add_argument("--huggingface", choices=["available", "unavailable", "unknown"], default="unknown")
     parser.add_argument("--dry-run", action="store_true", help="kept for script symmetry; routing is always dry-run")
     args = parser.parse_args()
     result = route_request(args.request, policy=args.policy, engine=args.engine, providers={
-        "provider-comfyui": args.comfyui == "available",
-        "provider-remote-render-node": args.render_node == "available",
+        "provider-comfyui": args.comfyui,
+        "provider-remote-render-node": args.render_node,
+        "provider-huggingface": args.huggingface,
     })
     print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0 if not result["asset_studio_relevant"] or result.get("provider") else 2

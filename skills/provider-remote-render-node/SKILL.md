@@ -1,3 +1,11 @@
+---
+name: provider-remote-render-node
+description: Routes game asset work to a private remote ComfyUI Render Node such as an RTX 5050 PC with endpoint health and fallback checks. Use for remote self-hosted rendering only.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # provider-remote-render-node
 
 ## Description and trigger

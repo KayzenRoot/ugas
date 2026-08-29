@@ -1,3 +1,11 @@
+---
+name: game-generation-provider-router
+description: Selects a capable and evidenced game asset provider using policy availability capability cost class and 2D or 3D requirements. Use before any provider request or fallback decision.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-generation-provider-router
 
 ## Description and trigger

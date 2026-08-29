@@ -1,3 +1,11 @@
+---
+name: game-vfx-studio
+description: Plans readable 2D game visual effects with duration blend mode spawn budget and fallback behavior. Use for VFX briefs that must remain within profile limits.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-vfx-studio
 
 ## Description and trigger

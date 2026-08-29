@@ -1,3 +1,11 @@
+---
+name: game-engine-adapter
+description: Translates neutral game asset contracts into engine-specific import guidance for Godot Unity Unreal or custom toolchains. Use after reliable context detection.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-engine-adapter
 
 ## Description and trigger

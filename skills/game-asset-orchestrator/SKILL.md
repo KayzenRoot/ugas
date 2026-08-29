@@ -1,3 +1,11 @@
+---
+name: game-asset-orchestrator
+description: Orchestrates game asset work across 2D and 3D requests by loading profiles Art DNA registry reuse rules and provider routing. Use automatically for sprites tilesets characters UI VFX models materials animation validation or packaging.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-orchestrator
 
 ## Description and trigger

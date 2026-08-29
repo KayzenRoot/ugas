@@ -1,3 +1,11 @@
+---
+name: provider-huggingface
+description: Represents Hugging Face as an explicit game asset fallback with model license quota and availability checks. Use only when policy and declared capabilities permit it.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # provider-huggingface
 
 ## Description and trigger

@@ -1,3 +1,11 @@
+---
+name: game-visual-regression
+description: Defines evidence for comparing game asset renders against approved visual references including capture conditions and review thresholds. Use when images are actually available.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-visual-regression
 
 ## Description and trigger

@@ -1,3 +1,11 @@
+---
+name: game-asset-installer
+description: Installs UGAS into consumer game projects by detecting engine context selecting a profile and creating the .game-assets contract. Use when bootstrapping or safely refreshing a consumer project.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-asset-installer
 
 ## Description and trigger

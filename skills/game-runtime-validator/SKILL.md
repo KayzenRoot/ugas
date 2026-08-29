@@ -1,3 +1,11 @@
+---
+name: game-runtime-validator
+description: Checks whether game asset packages can be consumed by a declared runtime through engine import paths formats and budgets. Use for runtime readiness without overstating static metadata.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-runtime-validator
 
 ## Description and trigger

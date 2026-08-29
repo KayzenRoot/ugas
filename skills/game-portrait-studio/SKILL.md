@@ -1,3 +1,11 @@
+---
+name: game-portrait-studio
+description: Plans game character faction and NPC portraits with framing expression variants crop and profile consistency. Use when portrait rights and likeness review are explicit.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # game-portrait-studio
 
 ## Description and trigger

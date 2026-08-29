@@ -1,7 +1,7 @@
 """Install UGAS metadata into a consumer project.
 
-This wrapper keeps the bootstrap usable directly from a Git checkout:
-python scripts/bootstrap/install_consumer.py path/to/game --profile generic-2d
+This wrapper keeps the bootstrap usable directly from a Git checkout. With no
+profile, it records a pending selection when project evidence is insufficient.
 """
 
 from pathlib import Path
@@ -18,7 +18,7 @@ from ugas.installer import install_consumer
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create a UGAS .game-assets bootstrap")
     parser.add_argument("consumer_root", type=Path)
-    parser.add_argument("--profile", default="generic-2d")
+    parser.add_argument("--profile", default=None)
     parser.add_argument("--policy", default="local-first", choices=["free-first", "local-first", "remote-first", "paid-disabled"])
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()

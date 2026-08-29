@@ -1,3 +1,11 @@
+---
+name: provider-manifest-registry
+description: Registers and validates provider capability availability endpoint and credential-policy declarations for the UGAS router. Use when adding or reviewing a provider contract.
+license: MIT
+metadata:
+  ugas-version: "0.2.1"
+---
+
 # provider-manifest-registry
 
 ## Description and trigger
