@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/candidate-set.json",
+  "title": "UGAS candidate set",
+  "type": "object",
+  "required": ["schema_version", "set_id", "asset_id", "spec_sha256", "compiled_prompt_sha256", "candidate_count", "candidates", "best_technical_candidate", "visual_approval", "contact_sheet"],
+  "properties": {
+    "schema_version": {"type": "string"}, "set_id": {"type": "string"}, "asset_id": {"type": "string"}, "spec_sha256": {"type": "string"}, "compiled_prompt_sha256": {"type": "string"}, "candidate_count": {"type": "integer", "minimum": 1}, "candidates": {"type": "array", "items": {"type": "object"}}, "best_technical_candidate": {"type": ["string", "null"]}, "visual_approval": {"enum": ["pending", "approved"]}, "contact_sheet": {"type": "object"}
+  }
+}

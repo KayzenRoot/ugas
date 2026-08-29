@@ -1,4 +1,4 @@
-"""Objective v0.3.1 repository validation with public-snapshot evidence."""
+"""Objective v0.4.0 repository validation with Git and review-snapshot evidence."""
 
 from __future__ import annotations
 
@@ -28,6 +28,7 @@ from ugas.constants import UGAS_VERSION
 from ugas.model_registry import load_registry, load_model
 from ugas.workflow_registry import load_workflows, load_workflow, validate_api_workflow
 from ugas.image_utils import inspect_png
+from ugas.master_assets import candidate_metrics, compile_prompt, make_master_spec
 from ugas.qa import validate_output
 from ugas.generation import GenerationError, sprite_pilot
 
@@ -43,17 +44,33 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+GIT_CONTEXT = (ROOT / ".git").exists()
+
+
 def git_tracked(relative: str) -> bool:
     if os.environ.get("UGAS_TRACKED_SNAPSHOT") == "1":
         return True
+    if not GIT_CONTEXT:
+        return (ROOT / relative).is_file()
     result = subprocess.run(["git", "ls-files", "--error-unmatch", "--", relative], cwd=ROOT, capture_output=True, text=True, check=False)
     return result.returncode == 0 and bool(result.stdout.strip())
+
+
+def git_context_check(relative: str) -> tuple[bool, str]:
+    if not (ROOT / relative).is_file():
+        return False, "distributable file is missing"
+    if not GIT_CONTEXT:
+        return True, "SKIP_EXTERNAL_GIT_CONTEXT: review snapshot has no .git"
+    return git_tracked(relative), "tracked in Git" if git_tracked(relative) else "file exists but is not tracked"
 
 
 def run_snapshot_check() -> None:
     """Run the required install/CLI/tests from an exact ``git archive HEAD``."""
     if os.environ.get("UGAS_SKIP_TRACKED_SNAPSHOT") == "1":
         check("snapshot:tracked", True, "nested validation skipped inside the isolated archive")
+        return
+    if not GIT_CONTEXT:
+        check("snapshot:git-context", True, "SKIP_EXTERNAL_GIT_CONTEXT: no .git in review snapshot")
         return
     with tempfile.TemporaryDirectory(prefix="ugas-tracked-snapshot-") as directory:
         snapshot = Path(directory) / "snapshot"
@@ -94,13 +111,24 @@ def run_snapshot_check() -> None:
             check(name, expected, detail or f"exit={result.returncode}")
             if not expected and name == "snapshot:pip-install":
                 break
+        no_git_snapshot = snapshot.parent / "review-snapshot-no-git"
+        shutil.copytree(snapshot, no_git_snapshot, ignore=shutil.ignore_patterns(".venv", "__pycache__", "*.pyc"))
+        no_git_env = env.copy()
+        no_git_env.pop("UGAS_TRACKED_SNAPSHOT", None)
+        no_git_env.pop("UGAS_SKIP_TRACKED_SNAPSHOT", None)
+        no_git_env["UGAS_SKIP_NO_GIT_REGRESSION"] = "1"
+        no_git_env["UGAS_REVIEW_SNAPSHOT"] = "1"
+        no_git_env["PYTHONPATH"] = str(no_git_snapshot / "src")
+        no_git = subprocess.run([sys.executable, "scripts/validation/run_validation.py"], cwd=no_git_snapshot, env=no_git_env, capture_output=True, text=True, check=False)
+        check("snapshot:no-git-validation", no_git.returncode == 0 and "SKIP_EXTERNAL_GIT_CONTEXT" in no_git.stdout, (no_git.stdout + no_git.stderr).strip()[-500:])
 
 
 def main() -> int:
     required_paths = [
-        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.2.md", "REVIEW-v0.2.1.md", "REVIEW-v0.3.1.md", "LICENSE", "package.json", "pyproject.toml",
+        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.2.md", "REVIEW-v0.2.1.md", "REVIEW-v0.3.1.md", "REVIEW-v0.4.0.md", "LICENSE", "package.json", "pyproject.toml",
         "docs", "skills", "profiles", "templates", "schemas", "providers", "scripts", "examples", "tests",
-        "providers/models/registry.json", "providers/workflows/registry.json",
+        "providers/models/registry.json", "providers/workflows/registry.json", "providers/workflows/flux2-klein-4b-image-edit.api.json", "providers/workflows/birefnet-background-removal.api.json",
+        "docs/evidence/candidates.json", "docs/evidence/master-before-bg-removal.json", "docs/evidence/master-transparent.json", "docs/evidence/reference-edit.json", "docs/evidence/birefnet.json", "docs/evidence/review-visuals.json",
     ]
     for path in required_paths:
         check(f"path:{path}", (ROOT / path).exists(), "present" if (ROOT / path).exists() else "missing")
@@ -140,6 +168,7 @@ def main() -> int:
         "performance-budget.json": "performance-budget",
         "profile.json": "profile",
         "toolchain.json": "toolchain",
+        "master-asset-spec.json": "master-asset-spec",
     }
     for filename, schema_name in template_pairs.items():
         try:
@@ -163,7 +192,7 @@ def main() -> int:
         except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
             check(f"provider:{provider}", False, str(exc))
     for workflow in (ROOT / "providers" / "workflows").glob("*.json"):
-        if workflow.name in {"registry.json", "flux2-klein-4b-text-to-image.api.json"}:
+        if workflow.name == "registry.json" or workflow.name.endswith(".api.json"):
             continue
         try:
             validate_instance(load_json(workflow), schemas["workflow-manifest"])
@@ -181,18 +210,22 @@ def main() -> int:
             check(f"model:{model['id']}", model["commercial_use_status"] == "approved" and (qualified or candidate), "approved license; exact hashes/smoke gate recorded" if qualified else "approved license; qualification remains gated by exact hashes and smoke")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
         check("registry:models", False, str(exc))
-    check("tracked:providers/models/registry.json", (ROOT / "providers" / "models" / "registry.json").is_file() and git_tracked("providers/models/registry.json"), "public model registry is tracked")
+    ok, detail = git_context_check("providers/models/registry.json")
+    check("tracked:providers/models/registry.json", ok, detail)
     try:
-        workflow_registry = {"schema_version": "0.3.0", "workflows": load_workflows(ROOT)}
-        check("registry:workflows", len(workflow_registry["workflows"]) >= 1, "native API workflow registry present")
+        workflow_registry = {"schema_version": "0.4.0", "workflows": load_workflows(ROOT)}
+        check("registry:workflows", len(workflow_registry["workflows"]) >= 3, "text-to-image, reference-edit and BiRefNet API workflows present")
         for item in workflow_registry["workflows"]:
             record = load_workflow(ROOT, item["id"])
             graph = validate_api_workflow(record["api"])
             check(f"workflow-api:{item['id']}", graph["valid_graph"] and not item["custom_nodes_required"], "API graph is statically valid and custom-node-free")
     except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
         check("registry:workflows", False, str(exc))
-    check("tracked:providers/workflows/registry.json", (ROOT / "providers" / "workflows" / "registry.json").is_file() and git_tracked("providers/workflows/registry.json"), "public workflow registry is tracked")
-    check("tracked:workflow-api-json", any(git_tracked(path.relative_to(ROOT).as_posix()) for path in (ROOT / "providers" / "workflows").glob("*.api.json")), "native API workflow JSON is tracked")
+    ok, detail = git_context_check("providers/workflows/registry.json")
+    check("tracked:providers/workflows/registry.json", ok, detail)
+    api_paths = [path for path in (ROOT / "providers" / "workflows").glob("*.api.json")]
+    api_tracked = all(git_context_check(path.relative_to(ROOT).as_posix())[0] for path in api_paths) if api_paths else False
+    check("tracked:workflow-api-json", api_tracked, "all native API workflow JSON files are tracked" if GIT_CONTEXT else "SKIP_EXTERNAL_GIT_CONTEXT: API workflow files exist in review snapshot")
     evidence_path = ROOT / "docs" / "evidence" / "comfyui-smoke.json"
     try:
         evidence = load_json(evidence_path)
@@ -200,6 +233,30 @@ def main() -> int:
         check("evidence:comfyui-smoke", evidence["state"] == "verified" and evidence["smoke_test"]["status"] == "passed" and evidence.get("asset_capabilities_qualified") == ["2d", "sprite-master", "sprite-generation"], "real local RTX 5050 smoke evidence is recorded as the qualification source")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
         check("evidence:comfyui-smoke", False, str(exc))
+    for evidence_name, capability, qualified in (
+        ("reference-edit.json", "reference-edit", ["reference-edit"]),
+        ("birefnet.json", "background-removal", ["background-removal", "transparent-sprite-master"]),
+    ):
+        try:
+            value = load_json(ROOT / "docs" / "evidence" / evidence_name)
+            validate_instance(value, schemas["capability-evidence"])
+            check(
+                f"evidence:{evidence_name}",
+                value["state"] == "verified" and value["capability"] == capability and value["smoke_test"]["status"] == "passed" and value.get("asset_capabilities_qualified") == qualified,
+                f"real {capability} smoke is verified with qualified asset capability evidence",
+            )
+        except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc:
+            check(f"evidence:{evidence_name}", False, str(exc))
+    try:
+        candidates = load_json(ROOT / "docs" / "evidence" / "candidates.json")
+        visual_manifest = load_json(ROOT / "docs" / "evidence" / "review-visuals.json")
+        candidate_ok = candidates["candidate_count"] >= 3 and len(candidates["candidates"]) == candidates["candidate_count"] and candidates["best_technical_candidate"] == "candidate-1" and all(item["qa_status"] == "TECHNICAL_VALID" for item in candidates["candidates"])
+        visual_ok = len(visual_manifest["images"]) == 4 and all(item["source_path"] and item["metadata_path"] for item in visual_manifest["images"])
+        check("evidence:candidate-set", candidate_ok, "three real candidates, deterministic ranking and runtime/model/workflow evidence recorded")
+        check("evidence:review-visuals", visual_ok, "contact sheet, before/after visuals and metadata manifest recorded")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("evidence:candidate-set", False, str(exc))
+        check("evidence:review-visuals", False, str(exc))
     sprite_evidence_path = ROOT / "docs" / "evidence" / "sprite-pilot.json"
     try:
         sprite_evidence = load_json(sprite_evidence_path)
@@ -217,8 +274,8 @@ def main() -> int:
         with (ROOT / "pyproject.toml").open("rb") as stream:
             pyproject_version = tomllib.load(stream)["project"]["version"]
         init_version = __import__("ugas").__version__
-        version_ok = UGAS_VERSION == package_version == pyproject_version == init_version == "0.3.1"
-        docs_ok = all("0.3.1" in (ROOT / name).read_text(encoding="utf-8") for name in ("README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.3.1.md"))
+        version_ok = UGAS_VERSION == package_version == pyproject_version == init_version == "0.4.0"
+        docs_ok = all("0.4.0" in (ROOT / name).read_text(encoding="utf-8") for name in ("README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.4.0.md"))
         check("version:consistency", version_ok and docs_ok, f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}, docs={docs_ok}")
     except (OSError, json.JSONDecodeError, KeyError, tomllib.TOMLDecodeError) as exc:
         check("version:consistency", False, str(exc))
@@ -307,7 +364,7 @@ def main() -> int:
                 sprite_pilot(ROOT, endpoint="http://127.0.0.1:1", prompt="grid", output_dir=alpha_root / "pilot", columns=2, rows=1)
                 grid_error = False
             except GenerationError as exc:
-                grid_error = str(exc) == "sprite-grid workflow not qualified in v0.3.1"
+                grid_error = str(exc) == "sprite-grid workflow not qualified in v0.4.0"
             check("sprite-pilot:grid-rejected", grid_error, "grid > 1 fails closed until a qualified sprite-grid workflow exists")
     except (ImportError, OSError, ValueError, KeyError) as exc:
         for name in ("qa:alpha-rgb", "qa:alpha-rgba-opaque", "qa:alpha-rgba-transparent", "qa:transparency-requirement", "sprite-pilot:1x1", "sprite-pilot:grid-rejected"):

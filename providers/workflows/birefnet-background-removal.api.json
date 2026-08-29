@@ -1,0 +1,10 @@
+{
+  "1": {"class_type": "LoadImage", "inputs": {"image": "__IMAGE__"}},
+  "2": {"class_type": "LoadBackgroundRemovalModel", "inputs": {"bg_removal_name": "__BG_MODEL__"}},
+  "3": {"class_type": "RemoveBackground", "inputs": {"image": ["1", 0], "bg_removal_model": ["2", 0]}},
+  "4": {"class_type": "InvertMask", "inputs": {"mask": ["3", 0]}},
+  "5": {"class_type": "JoinImageWithAlpha", "inputs": {"image": ["1", 0], "alpha": ["4", 0]}},
+  "6": {"class_type": "MaskToImage", "inputs": {"mask": ["3", 0]}},
+  "7": {"class_type": "SaveImage", "inputs": {"filename_prefix": "ugas-master-transparent", "images": ["5", 0]}},
+  "8": {"class_type": "SaveImage", "inputs": {"filename_prefix": "ugas-foreground-mask", "images": ["6", 0]}}
+}

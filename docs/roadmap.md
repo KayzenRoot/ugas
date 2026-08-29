@@ -1,9 +1,9 @@
 # Roadmap and scope gate
 
-## v0.3.1 (current correction slice)
+## v0.4.0 (current slice)
 
-Distributable real 2D ComfyUI/render-node foundation: tracked model metadata, public-snapshot validation, evidence-driven routing, exact-license/hash gates, durable image jobs, truthful alpha QA, master-only Sprite Pilot, consumer runtime and reproducible review evidence.
+2D master-sprite production: deterministic master-asset spec and Art DNA compiler, 3-4 reproducible candidates, objective technical ranking, contact sheet, native BiRefNet transparency, official FLUX.2 Klein reference edit, revision provenance, optional machine assessment and explicit visual approval.
 
 ## Explicitly not started
 
-Reference-edit qualification, full animation production, 3D/Blender, audio, cloud/paid inference, arbitrary custom nodes and later prompts. These require a new authorization and review gate.
+Full animation production, `sprite-grid > 1`, 3D/Blender, audio, hosted or paid inference and arbitrary custom nodes. These require a separate authorization and review gate. `TECHNICAL_VALID` and `VISUALLY_APPROVED` do not become `PRODUCTION_READY` without the same-revision approval gate.

@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.4.0",
+  "asset_id": "asset-b5a3a5e1368c44a4a40ba1ec338fbb37",
+  "source": "tmp/background-removal/master-transparent.png",
+  "sha256": "7df6435e95bd4344af1e2a5e406d8adeb6ada34fd9d51adcea31ed859d07a68d",
+  "format": "PNG",
+  "dimensions": {"width": 384, "height": 384},
+  "mode": "RGBA",
+  "has_alpha_channel": true,
+  "has_transparent_pixels": true,
+  "transparent_fraction": 0.9999186197916666,
+  "mask": "tmp/background-removal/master-mask.png",
+  "mask_sha256": "606bd280d22dcc1bd06dfaa13f233b700f438d429eac7ad078be914b0dbf23c4",
+  "halo_detected": false,
+  "workflow_id": "birefnet-background-removal",
+  "model_id": "birefnet",
+  "model_sha256": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154",
+  "runtime_ms": 1460,
+  "technical_status": "TECHNICAL_VALID",
+  "visual_review": "required",
+  "production_ready": false
+}

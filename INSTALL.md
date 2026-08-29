@@ -1,6 +1,6 @@
-# Installing UGAS 0.3.1
+# Installing UGAS 0.4.0
 
-Python 3.10+ is required. Installation downloads the small Python runtime and Pillow only; model weights and ComfyUI stay outside the Git checkout.
+Python 3.10+ is required. Installation installs the small Python runtime and Pillow only; ComfyUI and model weights remain outside the Git checkout.
 
 ## Clone and validate
 
@@ -14,33 +14,37 @@ python scripts/tests/run_tests.py
 python scripts/validation/run_validation.py
 ```
 
-The clone directory is `ugas`; all commands are intentionally relative to the actual clone and do not depend on a different historical project name.
+The validator works both in a normal Git checkout and in a review snapshot extracted without `.git`. In the latter context, Git-only checks report `SKIP_EXTERNAL_GIT_CONTEXT`; required distributable files are still validated.
 
-## Render node
+## Render node and models
 
 ```powershell
 ugas render-node doctor
 ugas render-node setup
-comfy --help
-comfy install --help
-comfy install
 ugas render-node start
-ugas render-node probe
-```
-
-UGAS inspects the installed comfy-cli help before using version-sensitive options. Its default workspace is under the user local application data directory, not the repository. The default bind is `127.0.0.1`; remote use requires explicit private-network configuration.
-
-## Model and workflow qualification
-
-`providers/models/registry.json` is versioned provider metadata (weights remain ignored). It records exact files, sources, SHA-256 values, license status, VRAM expectations and qualification evidence. A model is not qualified from its name or a `/models` filename alone. The native FLUX.2 Klein workflow is API-format and requires live `/object_info` validation plus a smoke test. Schema instances remain `0.3.0` where their contract did not change; the project/runtime version is `0.3.1`.
-
-```powershell
 ugas models list
 ugas models qualify flux2-klein-4b-nvfp4
-ugas workflows list
-ugas workflows validate flux2-klein-4b-text-to-image --url http://127.0.0.1:8188
-ugas capability --model flux2-klein-4b-nvfp4
+ugas models qualify birefnet
+ugas workflows validate flux2-klein-4b-image-edit --url http://127.0.0.1:8188
+ugas workflows validate birefnet-background-removal --url http://127.0.0.1:8188
 ```
+
+The model registry records the exact source, folder, license, SHA-256 and qualification state. Weights are not downloaded into this repository. BiRefNet must be placed at `ComfyUI/models/background_removal/birefnet.safetensors`; UGAS never installs `rembg`, ControlNet, IP-Adapter or arbitrary custom nodes for this slice.
+
+The current 8 GB-class target starts at 384x384. Benchmark 512 only after observing available VRAM; an OOM is recorded as a gap, not hidden by an unregistered model.
+
+## Master, transparency and refinement
+
+```powershell
+ugas generate master-sprite "human warrior, stylized fantasy, top-down 3/4" --profile topdown-rpg-mmorpg-2d --candidates 4 --transparent --json
+ugas candidates show <asset-id> --json
+ugas background remove <asset-id> --json
+ugas refine master-sprite <asset-id> --instruction "keep the same character; make the sword shorter and armor blue" --json
+ugas asset status <asset-id> --json
+ugas visual approve <asset-id> --note "explicit art-owner approval" --json
+```
+
+The master command persists the full spec, compiled prompt, seeds, per-candidate QA and contact sheet. The recommended candidate remains `VISUAL_REVIEW_REQUIRED`. Native BiRefNet must produce `has_alpha_channel=true`, `has_transparent_pixels=true` and `transparent_fraction > 0`. Refinement writes a new revision with `derived_from` and the input SHA-256; the original file is never overwritten.
 
 ## Consumer runtime
 
@@ -48,21 +52,8 @@ ugas capability --model flux2-klein-4b-nvfp4
 python scripts/bootstrap/install_consumer.py C:\path\to\my-game
 ```
 
-The installer copies a self-contained runtime to `C:\path\to\my-game\.game-assets\tools`. A fresh consumer can invoke that copied launcher from another working directory; it does not reference this checkout by absolute path. `--force` is required for refresh and user registry/provenance/reference history is preserved.
+The installer copies the runtime under `C:\path\to\my-game\.game-assets\tools` and does not depend on the checkout path. `--force` is required for refresh and user registry, provenance, references and manifests are preserved.
 
-## Real generation
+## Scope and troubleshooting
 
-```powershell
-ugas generate image "initial warrior sprite, centered, transparent background" --width 256 --height 256 --seed 7
-ugas generate sprite-pilot "initial warrior sprite sheet master" --width 256 --height 256 --seed 7
-```
-
-Generation fails closed unless capability evidence is `ready` or `verified`. The v0.3.1 Sprite Pilot is master-image only: `--columns 1 --rows 1` is accepted; grid > 1 returns `sprite-grid workflow not qualified in v0.3.1`. Output QA is technical only: `TECHNICAL_VALID`, alpha/transparency requirements and `VISUAL_REVIEW_REQUIRED` are distinct from human approval and `PRODUCTION_READY`.
-
-## Troubleshooting
-
-- `comfy` unavailable: install the official comfy-cli in the isolated user environment and rerun setup.
-- capability `unavailable`: inspect the recorded missing endpoint, native node, exact model, hash/license or workflow evidence.
-- GPU memory failure: record the OOM as evidence and use only the explicitly registered lower-VRAM candidate; do not silently switch models.
-- `reference-edit`: intentionally reports a capability gap until a qualified reference workflow exists.
-- GitHub publication: push only source/docs/tests/manifests; never weights, generated output, caches, secrets or private network settings.
+Full animation, `sprite-grid > 1`, 3D/Blender, audio, hosted inference and paid providers are outside v0.4.0. A `capability_gap` is expected when the endpoint, exact models, native nodes, license or real smoke evidence are unavailable. Keep ComfyUI on localhost/private networks and never commit weights, `.env`, tokens, caches or generated outputs.

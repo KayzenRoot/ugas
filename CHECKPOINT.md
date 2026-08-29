@@ -1,55 +1,56 @@
 # UGAS Checkpoint
 
 ## STATUS
-READY_FOR_EXTERNAL_REVIEW — Prompt 02-C v0.3.1 correction implemented; external approval, visual approval and production approval are not claimed.
+READY_FOR_EXTERNAL_REVIEW — Prompt 03 v0.4.0 is implemented, tested, published and qualified on the local RTX 5050 path. Human visual approval and production approval are not claimed.
 
 ## VERSION
-0.3.1
+0.4.0
 
 ## PHASE
-Distributable registry, evidence-driven capabilities and 2D QA hardening
+2D master sprite, native transparency and reference-edit qualification
 
 ## OBJECTIVE
-Make the v0.3.0 real 2D MVP reproducible from the public tracked snapshot without falsely qualifying 3D, full animation or transparency.
+Provide a reproducible 2D master-asset pipeline with deterministic Art DNA/spec compilation, multi-candidate ranking, native BiRefNet alpha, official FLUX.2 Klein reference editing, revision provenance and explicit visual gates.
 
 ## SCOPE
-Correct model-registry tracking, tracked-snapshot validation, capability-based routing, alpha QA, master-only Sprite Pilot semantics, version consistency, visual review evidence and publication packaging.
+Only 2D master assets, reference edit, background removal, alpha QA, provenance, documentation and safe review packaging. Full animation, grids greater than 1, 3D/Blender, audio, cloud inference, paid providers and arbitrary custom nodes remain excluded.
 
 ## COMPLETED
-- `providers/models/registry.json` is explicitly unignored and contains the previously verified NVFP4 hashes, license and qualification evidence; weights remain ignored.
-- Provider manifests separate transport from asset qualification; only qualified workflow/model evidence can select an asset provider.
-- ComfyUI 2D master capability remains qualified; 3D, material, LOD and full animation remain capability gaps.
-- `inspect_png()` preserves source mode and reports alpha/transparency statistics; `requires_transparency=True` fails opaque/RGB output.
-- Sprite Pilot accepts only `columns=1` and `rows=1`; grid > 1 fails closed with the documented error.
-- Project/runtime/package/docs version surfaces are aligned to `0.3.1`; unchanged schema contracts remain `0.3.0` and are documented.
-- Review packaging includes a small real Sprite Pilot preview and corresponding audit JSON without weights, caches or secrets.
+- Master-asset spec, Art DNA compiler, candidate-set, visual-assessment and asset-revision contracts are implemented.
+- Three real 384x384 candidates were generated with deterministic seeds 4301-4303; contact sheet and objective ranking are recorded.
+- Official FLUX.2 Klein 4B image-edit workflow passed live native-node validation and a real reference-edit smoke on ComfyUI 0.34.0.
+- Native BiRefNet passed live validation and a real RTX 5050 smoke with RGBA output, mask, transparent pixels and no detected border halo.
+- Revision history preserves the original candidate, transparent master, reference edit and final transparent revision; no master is overwritten.
+- CLI commands are available for `generate master-sprite`, `refine master-sprite`, `background remove`, `candidates show`, `visual approve` and `asset status`.
+- Validation distinguishes missing `.git` from missing distributable files and reports `SKIP_EXTERNAL_GIT_CONTEXT` in review snapshots.
 
-## IN PROGRESS
-- External audit and human visual review of the real 2D evidence.
+## REAL EVIDENCE
+- Asset: `asset-b5a3a5e1368c44a4a40ba1ec338fbb37`.
+- GPU/server: NVIDIA GeForce RTX 5050, ComfyUI 0.34.0; model registry hashes and licenses are tracked.
+- Reference edit: `reference-edit-3.png`, source SHA-256 `61a7e5b...`, output SHA-256 `1aeb7f4...`, runtime 34,598 ms.
+- BiRefNet final output SHA-256 `7df6435...`, RGBA 384x384, mask SHA-256 `606bd28...`, runtime 1,460 ms, halo detector false.
+- Full values are in `docs/evidence/candidates.json`, `docs/evidence/reference-edit.json` and `docs/evidence/birefnet.json`.
 
-## PENDING
-- Human visual approval and production approval.
-- Optional FP8 qualification.
+## GATES
+Technical QA and transparency QA are machine checks. Visual review remains required. Approval must be explicit, same-revision and actor/date/hash-bound; refinement invalidates any prior approval. The current asset remains `VISUAL_REVIEW_REQUIRED` and `production_ready=false`.
 
 ## BLOCKERS
-No known critical/high in-scope blocker remains after the registry tracking, routing, snapshot, version, alpha and Sprite Pilot corrections. The real sample is technically valid but visual approval remains a human gate.
+No in-scope native capability blocker remains. Candidate-1 has a disclosed edge-clipping metric finding and candidates 2-3 are objectively weaker; a human reviewer may reject the visuals and request another refinement.
 
 ## DECISIONS
-- `providers/models/registry.json` is versioned metadata; local model weights are never versioned.
-- Transport health or manifest declarations never qualify an asset capability.
-- The current ComfyUI workflow qualifies only 2D text-to-image/master sprite output.
-- RGB, RGBA opaque and RGBA transparent states are reported separately; non-empty content is not used as a transparency proxy.
-- Grid/animation claims require a separately qualified workflow; none exists in v0.3.1.
-- Prompt 03, full animation, Blender, 3D, audio and paid providers are not started.
+- Model weights stay outside Git and review ZIPs; exact source, license and SHA-256 metadata is tracked.
+- The BiRefNet and image-edit workflows use native ComfyUI nodes only and no custom nodes.
+- The official sources and licenses used are documented in `docs/comfyui.md`.
+- Animation and `sprite-grid > 1` remain explicit capability gaps.
 
 ## TEST EVIDENCE
-`python -m compileall src scripts tests` passed; unit suite `23/23` passed; repository validation `143/143` passed, including the tracked `git archive HEAD` snapshot, isolated editable install, public CLI commands and controlled unavailable capability. The validation also covers version consistency, model/workflow registry loading, capability routing, 3D/animation gaps, RGB/RGBA alpha cases, 1x1 Sprite Pilot and grid rejection. Real ComfyUI evidence remains in `docs/evidence/comfyui-smoke.json`; visual audit evidence is generated under `__REVIEW__/visual-evidence/` in the final ZIP.
+Final counts are recorded in `REVIEW-v0.4.0.md`. The required checks include compile, unit tests, schemas, routing, fake `/upload/image`, workflow injection, model/workflow registry, real evidence presence, no-Git validation, exact tracked snapshot and controlled unavailable capability.
 
 ## NEXT STEP
-Complete the external/human review gate. No new product slice may start from this checkpoint without separate authorization.
+Perform the human visual review from the final ZIP. If approved, use the explicit `ugas visual approve <asset-id>` command; otherwise create a new revision and repeat transparency QA.
 
 ## DEFINITION OF DONE
-Registry is tracked in GitHub and the review ZIP; the public tracked snapshot installs and validates; qualified routing is evidence-driven; alpha/transparency and Sprite Pilot semantics are honest; versions agree; all required tests pass; GitHub and the final self-validating review ZIP are published; no critical/high in-scope finding remains.
+Prompt 03 v0.4.0 is implemented and published with real qualified capabilities, safe review evidence and no production-ready claim without explicit same-revision visual approval. Prompt 04 and excluded slices were not started.
 
-## BACKLOG
-Future authorized work only: qualified reference-edit, full animation/grid workflows, 3D/Blender, audio or additional providers.
+## REVIEW ZIP PATH
+Recorded in `REVIEW-v0.4.0.md` after the final ZIP is created.

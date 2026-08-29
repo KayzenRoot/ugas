@@ -46,14 +46,14 @@ def validate_api_workflow(workflow: dict, node_info: dict | None = None, model_n
             missing_nodes.append(class_type)
         if model_names is not None:
             for key, value in node.get("inputs", {}).items():
-                if key in {"unet_name", "clip_name", "vae_name"} and isinstance(value, str) and value in {"__MODEL__", "__CLIP__", "__VAE__"}:
+                if key in {"unet_name", "clip_name", "vae_name", "bg_removal_name"} and isinstance(value, str) and value in {"__MODEL__", "__CLIP__", "__VAE__", "__BG_MODEL__"}:
                     continue
-                if key in {"unet_name", "clip_name", "vae_name"} and isinstance(value, str) and value not in model_names:
+                if key in {"unet_name", "clip_name", "vae_name", "bg_removal_name"} and isinstance(value, str) and value not in model_names:
                     missing_models.append(value)
     return {"valid_graph": True, "node_count": len(workflow), "missing_nodes": sorted(set(missing_nodes)), "missing_models": sorted(set(missing_models)), "live_valid": not missing_nodes and not missing_models}
 
 
-def bind_workflow(template: dict, *, prompt: str, negative_prompt: str = "", seed: int = 1, width: int = 512, height: int = 512, model_names: dict[str, str] | None = None) -> dict:
+def bind_workflow(template: dict, *, prompt: str, negative_prompt: str = "", seed: int = 1, width: int = 512, height: int = 512, model_names: dict[str, str] | None = None, image_filename: str | None = None) -> dict:
     """Bind the stable public inputs without altering graph topology."""
     value = json.loads(json.dumps(template))
     for node in value.values():
@@ -64,11 +64,21 @@ def bind_workflow(template: dict, *, prompt: str, negative_prompt: str = "", see
         for key, marker in (("unet_name", "__MODEL__"), ("clip_name", "__CLIP__"), ("vae_name", "__VAE__")):
             if inputs.get(key) == marker and model_names and marker in model_names:
                 inputs[key] = model_names[marker]
+        if inputs.get("bg_removal_name") == "__BG_MODEL__" and model_names and "__BG_MODEL__" in model_names:
+            inputs["bg_removal_name"] = model_names["__BG_MODEL__"]
+        if inputs.get("filename") == "__IMAGE__" and image_filename:
+            inputs["filename"] = image_filename
+        if inputs.get("image") == "__IMAGE__" and image_filename:
+            inputs["image"] = image_filename
         if "noise_seed" in inputs and inputs["noise_seed"] == "__SEED__":
             inputs["noise_seed"] = int(seed)
         for key in ("width", "height"):
             if inputs.get(key) == "__DIMENSION__":
                 inputs[key] = int(width if key == "width" else height)
+            if inputs.get(key) == "__WIDTH__":
+                inputs[key] = int(width)
+            if inputs.get(key) == "__HEIGHT__":
+                inputs[key] = int(height)
     return value
 
 

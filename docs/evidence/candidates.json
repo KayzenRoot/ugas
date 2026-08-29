@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.4.0",
+  "asset_id": "asset-b5a3a5e1368c44a4a40ba1ec338fbb37",
+  "candidate_set_id": "candidate-set-bf536fbcac7c41f3b63078f4dad3b7c7",
+  "observed_at": "2026-08-29T12:35:34+00:00",
+  "server": "ComfyUI 0.34.0",
+  "gpu": "NVIDIA GeForce RTX 5050",
+  "vram_total_bytes": 8546484224,
+  "model_id": "flux2-klein-4b-nvfp4",
+  "model_license": "Apache-2.0",
+  "model_sha256": {
+    "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+    "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+    "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+  },
+  "workflow_id": "flux2-klein-4b-text-to-image",
+  "workflow_sha256": "06a5a6ec2ec564d57830f7ded471dbdb61b1c8b666d8c4409dd0c5f4ab702832",
+  "prompt_sha256": "55f0816c065bc3780bbac71d94d2c638a48406245c080e70d305d26c1dcbb876",
+  "spec_sha256": "b57e6fa50ea7ed338d10a3f68344cd0ebc7e9f9cc0766ba00e67c4dc962ce1d7",
+  "candidate_count": 3,
+  "candidates": [
+    {
+      "candidate_id": "candidate-1",
+      "seed": 4301,
+      "runtime_ms": 46000,
+      "path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates/c26c53b8eb044c478c08a978ed431ff9.png",
+      "sha256": "9eeea7eff9d3c4816e46e0ef0dd7c89ac3f48ecb8916c4d5c098bec5a6d312f5",
+      "technical_rank": 1,
+      "objective_score": 5,
+      "qa_status": "TECHNICAL_VALID",
+      "metrics": {
+        "foreground_bbox": [76, 0, 340, 354],
+        "occupancy": 0.633789,
+        "occupancy_ok": true,
+        "center_offset": {"x": 0.041667, "y": 0.039062},
+        "centered_ok": true,
+        "edge_clipping": true,
+        "edge_clipping_ok": false,
+        "duplicate": false,
+        "file_size_ok": true
+      },
+      "visual_assessment": "pending"
+    },
+    {
+      "candidate_id": "candidate-2",
+      "seed": 4302,
+      "runtime_ms": 2000,
+      "path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates/73fdb666ce234da2b4df80d7bac5978e.png",
+      "sha256": "6c215a60f8ef65fe43850ffc35b7dacff1a0468743d9a726a04a311c2703cc86",
+      "technical_rank": 2,
+      "objective_score": 4,
+      "qa_status": "TECHNICAL_VALID",
+      "metrics": {"occupancy": 1.0, "occupancy_ok": false, "edge_clipping": true, "edge_clipping_ok": false, "centered_ok": true, "duplicate": false, "file_size_ok": true},
+      "visual_assessment": "pending"
+    },
+    {
+      "candidate_id": "candidate-3",
+      "seed": 4303,
+      "runtime_ms": 2000,
+      "path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates/c39a86d60c6f498e90704e176225809c.png",
+      "sha256": "1f92d7032f67b01604e166d77330bc889ddf5fef9f278bd2d1af313366012e2a",
+      "technical_rank": 3,
+      "objective_score": 4,
+      "qa_status": "TECHNICAL_VALID",
+      "metrics": {"occupancy": 0.997396, "occupancy_ok": false, "edge_clipping": true, "edge_clipping_ok": false, "centered_ok": true, "duplicate": false, "file_size_ok": true},
+      "visual_assessment": "pending"
+    }
+  ],
+  "best_technical_candidate": "candidate-1",
+  "contact_sheet": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates-contact-sheet.png",
+  "visual_review": "required",
+  "note": "Objective ranking is deterministic; visual review remains pending and edge-clipping findings are disclosed."
+}

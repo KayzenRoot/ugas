@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "workflows": [
     {
       "id": "flux2-klein-4b-text-to-image",
@@ -17,6 +17,40 @@
       "custom_nodes_required": [],
       "deterministic_seed": true,
       "validation": {"status": "qualified", "live_node_validation": "docs/evidence/comfyui-smoke.json", "smoke_status": "passed"}
+    },
+    {
+      "id": "flux2-klein-4b-image-edit",
+      "purpose": "2d master sprite reference edit and identity-preserving refinement",
+      "capability": "reference-edit",
+      "qualified_capabilities": ["reference-edit"],
+      "provider": "provider-comfyui",
+      "version": "0.4.0",
+      "source": "Comfy-Org official Image Edit (Flux.2 Klein 4B) blueprint flattened to API format",
+      "api_json": "providers/workflows/flux2-klein-4b-image-edit.api.json",
+      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "LoadImage", "VAEEncode", "ReferenceLatent", "GetImageSize", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"],
+      "required_models": ["flux2-klein-4b-nvfp4"],
+      "inputs": ["prompt", "negative_prompt", "image", "seed"],
+      "outputs": ["SaveImage"],
+      "custom_nodes_required": [],
+      "deterministic_seed": true,
+      "validation": {"status": "qualified", "official_source": "https://github.com/Comfy-Org/ComfyUI/blob/master/blueprints/Image%20Edit%20(Flux.2%20Klein%204B).json", "smoke_status": "passed", "smoke_evidence": "docs/evidence/reference-edit.json"}
+    },
+    {
+      "id": "birefnet-background-removal",
+      "purpose": "native BiRefNet background removal with RGBA output and audit mask",
+      "capability": "background-removal",
+      "qualified_capabilities": ["background-removal", "transparent-sprite-master"],
+      "provider": "provider-comfyui",
+      "version": "0.4.0",
+      "source": "ComfyUI native BiRefNet Remove Background template",
+      "api_json": "providers/workflows/birefnet-background-removal.api.json",
+      "required_nodes": ["LoadImage", "LoadBackgroundRemovalModel", "RemoveBackground", "InvertMask", "JoinImageWithAlpha", "MaskToImage", "SaveImage"],
+      "required_models": ["birefnet"],
+      "inputs": ["image", "background_removal_model"],
+      "outputs": ["SaveImage", "SaveImage"],
+      "custom_nodes_required": [],
+      "deterministic_seed": true,
+      "validation": {"status": "qualified", "official_source": "https://docs.comfy.org/tutorials/utility/remove-background-birefnet", "smoke_status": "passed", "smoke_evidence": "docs/evidence/birefnet.json"}
     }
   ]
 }

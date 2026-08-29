@@ -1,0 +1,211 @@
+{
+  "schema_version": "0.4.0",
+  "provider": "provider-comfyui",
+  "capability": "reference-edit",
+  "state": "verified",
+  "endpoint": "http://127.0.0.1:8188",
+  "server_version": "0.34.0",
+  "devices": [
+    {
+      "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+      "type": "cuda",
+      "index": 0,
+      "vram_total": 8546484224,
+      "vram_free": 6827607158,
+      "torch_vram_total": 134217728,
+      "torch_vram_free": 62194806
+    }
+  ],
+  "required_nodes": [
+    {
+      "class_type": "UNETLoader",
+      "present": true
+    },
+    {
+      "class_type": "CLIPLoader",
+      "present": true
+    },
+    {
+      "class_type": "VAELoader",
+      "present": true
+    },
+    {
+      "class_type": "CLIPTextEncode",
+      "present": true
+    },
+    {
+      "class_type": "CLIPTextEncode",
+      "present": true
+    },
+    {
+      "class_type": "LoadImage",
+      "present": true
+    },
+    {
+      "class_type": "VAEEncode",
+      "present": true
+    },
+    {
+      "class_type": "ReferenceLatent",
+      "present": true
+    },
+    {
+      "class_type": "ReferenceLatent",
+      "present": true
+    },
+    {
+      "class_type": "GetImageSize",
+      "present": true
+    },
+    {
+      "class_type": "EmptyFlux2LatentImage",
+      "present": true
+    },
+    {
+      "class_type": "RandomNoise",
+      "present": true
+    },
+    {
+      "class_type": "KSamplerSelect",
+      "present": true
+    },
+    {
+      "class_type": "Flux2Scheduler",
+      "present": true
+    },
+    {
+      "class_type": "CFGGuider",
+      "present": true
+    },
+    {
+      "class_type": "SamplerCustomAdvanced",
+      "present": true
+    },
+    {
+      "class_type": "VAEDecode",
+      "present": true
+    },
+    {
+      "class_type": "SaveImage",
+      "present": true
+    }
+  ],
+  "required_models": [
+    {
+      "file": "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
+      "folder": "diffusion_models",
+      "present": true
+    },
+    {
+      "file": "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+      "folder": "text_encoders",
+      "present": true
+    },
+    {
+      "file": "vae/flux2-vae.safetensors",
+      "folder": "vae",
+      "present": true
+    }
+  ],
+  "workflow": {
+    "id": "flux2-klein-4b-image-edit",
+    "version": "0.4.0",
+    "sha256": "6593b4ee4738392647365860db0b98d603d5c11bdaadccd05b20fcb3a682ef37",
+    "validation": {
+      "valid_graph": true,
+      "node_count": 18,
+      "missing_nodes": [],
+      "missing_models": [],
+      "live_valid": true
+    },
+    "qualified_capabilities": [
+      "reference-edit"
+    ]
+  },
+  "model": {
+    "id": "flux2-klein-4b-nvfp4",
+    "license": "Apache-2.0",
+    "sha256": {
+      "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+      "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+      "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+    },
+    "qualification_evidence": {
+      "status": "qualified",
+      "hashes_verified": true,
+      "files_verified_at": "2026-08-29",
+      "smoke_evidence": "docs/evidence/comfyui-smoke.json"
+    },
+    "inventory": {
+      "model_id": "flux2-klein-4b-nvfp4",
+      "files": [
+        {
+          "file": "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
+          "folder": "diffusion_models",
+          "present": true
+        },
+        {
+          "file": "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+          "folder": "text_encoders",
+          "present": true
+        },
+        {
+          "file": "vae/flux2-vae.safetensors",
+          "folder": "vae",
+          "present": true
+        }
+      ],
+      "inventory_complete": true
+    }
+  },
+  "transport_capabilities": [
+    "workflow-submit",
+    "polling",
+    "output-retrieval",
+    "system-stats"
+  ],
+  "asset_capabilities_declared": [
+    "reference-edit"
+  ],
+  "asset_capabilities_qualified": [
+    "reference-edit"
+  ],
+  "smoke_test": {
+    "status": "passed",
+    "source_sha256": "61a7e5b94eef8085a3d41e0224d4d541d7602375c279c425a2350ddd1fb7a9f4",
+    "output": {
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-b5a3a5e1368c44a4a40ba1ec338fbb37\\revisions\\reference-edit-3.png",
+      "format": "PNG",
+      "width": 384,
+      "height": 384,
+      "mode": "RGB",
+      "source_mode": "RGB",
+      "bytes": 137087,
+      "sha256": "1aeb7f4cab59fb76a6c6af9b96e39b73380a70a5f777dbd746c6d618253db4dc",
+      "has_alpha": false,
+      "has_alpha_channel": false,
+      "has_transparent_pixels": false,
+      "alpha_min": null,
+      "alpha_max": null,
+      "opaque_fraction": 1.0,
+      "transparent_fraction": 0.0,
+      "non_empty_content": true
+    },
+    "instruction": "Keep the same character identity and silhouette; make the armor blue steel and shorten the sword slightly.",
+    "runtime_ms": 34598
+  },
+  "failure_reason": null,
+  "observed_at": "2026-08-29T12:41:33+00:00",
+  "features": {
+    "supports_preview_metadata": true,
+    "supports_model_type_tags": true,
+    "max_upload_size": 104857600,
+    "extension": {
+      "manager": {
+        "supports_v4": true
+      }
+    },
+    "node_replacements": true,
+    "assets": false
+  }
+}

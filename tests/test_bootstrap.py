@@ -20,6 +20,8 @@ from ugas.image_utils import compose_sheet, crop_grid, inspect_png
 from ugas.jobs import JobError, new_job, transition
 from ugas.qa import validate_output
 from ugas.generation import GenerationError, sprite_pilot
+from ugas.master_assets import asset_status, candidate_metrics, compile_prompt, make_master_spec, approve_visual
+from ugas.workflow_registry import bind_workflow, load_workflow
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +33,7 @@ def load_json(path: Path) -> dict:
 
 class RepositoryContractTests(unittest.TestCase):
     def test_expected_directories_and_documents_exist(self):
-        expected = ["docs", "skills", "profiles", "templates", "schemas", "providers", "scripts", "examples", "tests", "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.3.1.md", "providers/models/registry.json", "providers/workflows/registry.json"]
+        expected = ["docs", "skills", "profiles", "templates", "schemas", "providers", "scripts", "examples", "tests", "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.3.1.md", "REVIEW-v0.4.0.md", "providers/models/registry.json", "providers/workflows/registry.json", "providers/workflows/flux2-klein-4b-image-edit.api.json", "providers/workflows/birefnet-background-removal.api.json"]
         for item in expected:
             with self.subTest(item=item):
                 self.assertTrue((ROOT / item).exists())
@@ -83,7 +85,7 @@ class RepositoryContractTests(unittest.TestCase):
                 self.assertNotIn("3d-model", manifest["capabilities"])
                 self.assertNotIn("animation", manifest["capabilities"])
         for workflow in (ROOT / "providers" / "workflows").glob("*.json"):
-            if workflow.name in {"registry.json", "flux2-klein-4b-text-to-image.api.json"}:
+            if workflow.name == "registry.json" or workflow.name.endswith(".api.json"):
                 continue
             with self.subTest(workflow=workflow.name):
                 validate_instance(load_json(workflow), schemas["workflow-manifest"])
@@ -255,11 +257,11 @@ class VersionAndImageQATests(unittest.TestCase):
         package = load_json(ROOT / "package.json")
         with (ROOT / "pyproject.toml").open("rb") as stream:
             pyproject = tomllib.load(stream)
-        self.assertEqual("0.3.1", UGAS_VERSION)
+        self.assertEqual("0.4.0", UGAS_VERSION)
         self.assertEqual(UGAS_VERSION, ugas.__version__)
         self.assertEqual(UGAS_VERSION, package["version"])
         self.assertEqual(UGAS_VERSION, pyproject["project"]["version"])
-        for filename in ("README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.3.1.md"):
+        for filename in ("README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.4.0.md"):
             self.assertIn(UGAS_VERSION, (ROOT / filename).read_text(encoding="utf-8"))
 
     def test_alpha_and_transparency_stats_distinguish_rgb_and_rgba(self):
@@ -322,6 +324,8 @@ class ComfyAndPipelineTests(unittest.TestCase):
                 if self.path.startswith("/view?"): return self._send(Path(ComfyAndPipelineTests.png_file.name).read_bytes(), content_type="image/png")
                 return self._send({"error": "not found"}, 404)
             def do_POST(self):
+                if self.path == "/upload/image":
+                    length = int(self.headers.get("Content-Length", "0")); self.rfile.read(length); return self._send({"name": "uploaded-reference.png", "subfolder": "", "type": "input"})
                 if self.path == "/prompt":
                     length = int(self.headers.get("Content-Length", "0")); json.loads(self.rfile.read(length)); return self._send({"prompt_id": "test-prompt"})
                 return self._send({"error": "bad"}, 400)
@@ -341,6 +345,16 @@ class ComfyAndPipelineTests(unittest.TestCase):
         item = client.poll_history(prompt["prompt_id"], timeout=3, initial_interval=0.01)
         outputs = client.fetch_history_outputs(item)
         self.assertEqual(b"\x89PNG", outputs[0]["data"][:4])
+
+    def test_reference_upload_and_official_workflow_injection(self):
+        client = ComfyUIClient(self.endpoint, timeout=2)
+        uploaded = client.upload_image(Path(self.png_file.name))
+        self.assertEqual("uploaded-reference.png", uploaded["name"])
+        record = load_workflow(ROOT, "flux2-klein-4b-image-edit")
+        bound = bind_workflow(record["api"], prompt="keep identity; make armor blue", seed=11, width=4, height=4, model_names={"__MODEL__": "model.safetensors", "__CLIP__": "clip.safetensors", "__VAE__": "vae.safetensors"}, image_filename=uploaded["name"])
+        self.assertEqual("uploaded-reference.png", bound["6"]["inputs"]["image"])
+        self.assertEqual(11, bound["12"]["inputs"]["noise_seed"])
+        self.assertEqual("ReferenceLatent", bound["8"]["class_type"])
 
     def test_client_error_and_route_evidence(self):
         client = ComfyUIClient(self.endpoint)
@@ -386,8 +400,34 @@ class ComfyAndPipelineTests(unittest.TestCase):
             with patch("ugas.generation.generate_image", return_value={"output": str(source), "job": {"job_id": "job-test"}}):
                 result = sprite_pilot(ROOT, endpoint=self.endpoint, prompt="master", output_dir=output_dir, columns=1, rows=1)
             self.assertTrue(Path(result["sprite_sheet"]).exists())
-            with self.assertRaisesRegex(GenerationError, "sprite-grid workflow not qualified in v0.3.1"):
+            with self.assertRaisesRegex(GenerationError, "sprite-grid workflow not qualified in v0.4.0"):
                 sprite_pilot(ROOT, endpoint=self.endpoint, prompt="grid", output_dir=output_dir, columns=2, rows=1)
+
+
+class MasterAssetContractTests(unittest.TestCase):
+    def test_prompt_compiler_is_reproducible(self):
+        profile = load_json(ROOT / "profiles" / "generic-2d.json")
+        left = make_master_spec("human warrior, stylized fantasy", profile=profile, profile_id="generic-2d", candidates=3, seed=10, asset_id="asset-fixed", width=384, height=384)
+        right = make_master_spec("human warrior, stylized fantasy", profile=profile, profile_id="generic-2d", candidates=3, seed=10, asset_id="asset-fixed", width=384, height=384)
+        self.assertEqual(left.to_dict(), right.to_dict())
+        self.assertEqual(compile_prompt(left.to_dict(), profile), compile_prompt(right.to_dict(), profile))
+
+    def test_candidate_metrics_and_visual_gate_are_distinct(self):
+        from PIL import Image, ImageDraw
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "master.png"
+            image = Image.new("RGBA", (32, 32), (0, 0, 0, 0)); ImageDraw.Draw(image).rectangle((8, 6, 23, 27), fill=(255, 0, 0, 255)); image.save(output)
+            metrics = candidate_metrics(output, width=32, height=32, requires_transparency=True)
+            self.assertTrue(metrics["alpha_ok"])
+            self.assertTrue(metrics["occupancy_ok"])
+            asset_path = root / "asset.json"
+            revision = {"schema_version": "0.4.0", "revision_id": "revision-1", "asset_id": "asset-test", "revision_number": 1, "derived_from": None, "output_path": str(output), "output_sha256": inspect_png(output)["sha256"], "technical_status": "TECHNICAL_VALID", "transparency_status": "TRANSPARENCY_VALID", "state": "VISUAL_REVIEW_REQUIRED", "visual_approval": {"status": "pending"}, "production_ready": False}
+            asset_path.write_text(json.dumps({"schema_version": "0.4.0", "asset_id": "asset-test", "current_revision": revision, "revisions": [revision]}), encoding="utf-8")
+            self.assertFalse(asset_status(root, str(asset_path))["production_ready"])
+            approved = approve_visual(root, str(asset_path), "looks readable at gameplay distance")
+            self.assertTrue(approved["production_ready"])
+            self.assertEqual("revision-1", approved["visual_approval"]["revision_id"])
 
 
 if __name__ == "__main__":

@@ -50,6 +50,23 @@ def classify_request(request: str) -> dict:
             "profile_hint": None,
         }
 
+    if _has(normalized, "reference edit", "reference-edit", "refine master", "refinar", "referência", "referencia") and _has(normalized, "sprite", "asset", "image", "imagem", "character", "personagem"):
+        return {
+            "asset_studio_relevant": True,
+            "reason": "2D master reference-edit request.",
+            "dimension": "2d",
+            "asset_types": ["sprite", "reference-edit"],
+            "profile_hint": "generic-2d",
+        }
+    if _has(normalized, "background removal", "remove background", "remover fundo", "remove o fundo", "fundo transparente", "transparent background", "transparência", "transparencia") and _has(normalized, "sprite", "asset", "image", "imagem", "master"):
+        return {
+            "asset_studio_relevant": True,
+            "reason": "2D transparency/background-removal request.",
+            "dimension": "2d",
+            "asset_types": ["sprite", "background-removal", "transparency"],
+            "profile_hint": "generic-2d",
+        }
+
     if _has(normalized, "boss 3d", "3d stylized", "3d estilizado", "modelo 3d"):
         reference_only = _has(normalized, "concept", "conceito", "referência", "reference")
         return {
@@ -85,11 +102,14 @@ def classify_request(request: str) -> dict:
         }
     if _has(normalized, "asset", "sprite", "tileset", "texture", "ícone", "icon", "modelo", "material"):
         dimension = "3d" if _has(normalized, "3d", "modelo", "material") else "2d"
+        asset_types = ["model" if dimension == "3d" else "sprite"]
+        if _has(normalized, "master sprite", "master-sprite"):
+            asset_types.append("master")
         return {
             "asset_studio_relevant": True,
             "reason": "Generic game asset request.",
             "dimension": dimension,
-            "asset_types": ["model" if dimension == "3d" else "sprite"],
+            "asset_types": asset_types,
             "profile_hint": "stylized-3d" if dimension == "3d" else "generic-2d",
         }
     return {
@@ -137,6 +157,10 @@ def _required_capabilities(classification: Mapping[str, object]) -> set[str]:
         "material": "material",
         "animation": "animation",
         "lod": "lod",
+        "master": "sprite-master",
+        "reference-edit": "reference-edit",
+        "background-removal": "background-removal",
+        "transparency": "transparent-sprite-master",
     }
     required.update(type_capabilities[item] for item in asset_types if item in type_capabilities)
     return required

@@ -70,9 +70,13 @@ SCHEMAS = [
     "model-registry",
     "generation-job",
     "sprite-sheet",
+    "master-asset-spec",
+    "candidate-set",
+    "visual-assessment",
+    "asset-revision",
 ]
 
-UGAS_VERSION = "0.3.1"
+UGAS_VERSION = "0.4.0"
 
 CONSUMER_FILES = [
     "studio.json",

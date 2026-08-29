@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/visual-assessment.json",
+  "title": "UGAS optional visual assessment",
+  "type": "object",
+  "required": ["schema_version", "revision_id", "assessment_type", "machine_assessment", "human_approval"],
+  "properties": {
+    "schema_version": {"type": "string"}, "revision_id": {"type": "string"}, "assessment_type": {"enum": ["machine", "human", "combined"]}, "machine_assessment": {"type": "object"}, "human_approval": {"type": "object"}
+  }
+}

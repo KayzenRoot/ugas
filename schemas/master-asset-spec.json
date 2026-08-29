@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/master-asset-spec.json",
+  "title": "UGAS 2D master asset specification",
+  "type": "object",
+  "required": ["schema_version", "asset_id", "category", "subtype", "intended_view", "orientation", "game_profile", "art_dna", "visual_style", "palette_intent", "outline_policy", "lighting", "detail_density", "canvas_target", "subject_occupancy_target", "margins", "pivot_intent", "requires_transparency", "positive_prompt", "negative_constraints", "reference_anchors", "candidate_count", "seeds", "generation_policy"],
+  "properties": {
+    "schema_version": {"type": "string"}, "asset_id": {"type": "string"}, "category": {"type": "string"}, "subtype": {"type": "string"}, "intended_view": {"type": "string"}, "orientation": {"type": "string"}, "game_profile": {"type": "string"}, "art_dna": {"type": "object"}, "visual_style": {"type": "string"}, "palette_intent": {"type": "string"}, "outline_policy": {"type": "string"}, "lighting": {"type": "string"}, "detail_density": {"type": "string"},
+    "canvas_target": {"type": "object", "required": ["width", "height"], "properties": {"width": {"type": "integer", "minimum": 64}, "height": {"type": "integer", "minimum": 64}}},
+    "subject_occupancy_target": {"type": "object", "required": ["min", "max"], "properties": {"min": {"type": "number"}, "max": {"type": "number"}}},
+    "margins": {"type": "object"}, "pivot_intent": {"type": "string"}, "requires_transparency": {"type": "boolean"}, "positive_prompt": {"type": "string", "minLength": 1}, "negative_constraints": {"type": "array", "items": {"type": "string"}}, "reference_anchors": {"type": "array", "items": {"type": "object"}}, "candidate_count": {"type": "integer", "minimum": 1}, "seeds": {"type": "array", "items": {"type": "integer"}}, "generation_policy": {"type": "object"}
+  }
+}
