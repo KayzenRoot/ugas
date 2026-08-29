@@ -68,11 +68,11 @@ The restored/adapted v0.4.0 coverage matrix maps all 26 historical test intents.
 
 ## VALIDATION
 
-The canonical commands passed locally before publication: `python -m compileall -q src scripts tests`, `python -m unittest -q`, review-manifest validation, and the integrity CLI. The exact Git archive and no-Git snapshot checks are required and recorded after the final commit below.
+The canonical validation passed with `112/112` checks: `python -m compileall -q src scripts tests`, `python -m unittest -q` (`58` tests), review-manifest validation, integrity CLI, exact `git archive HEAD` extraction, nested validation and no-Git review-snapshot validation.
 
 ## TRACKED SNAPSHOT / GITHUB
 
-Weights, secrets, caches and generated `tmp/` outputs remain outside the tracked distributable snapshot. Final commit, push and remote `main` equality are recorded here after they are verified.
+Weights, secrets, caches and generated `tmp/` outputs remain outside the tracked distributable snapshot. The final published commit and the matching `origin/main` SHA are reported in the handoff; the remote was verified after publication at `https://github.com/csn1985-ship-it/ugas`.
 
 ## VISUAL REVIEW STATUS
 
