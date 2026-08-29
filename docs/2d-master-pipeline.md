@@ -1,34 +1,11 @@
-# UGAS 2D master pipeline
+# 2D master pipeline v0.4.1
 
-## Contract
+The master specification separates machine composition constraints from generation language. `canvas_target`, occupancy, margins, pivot, QA thresholds and provenance remain in `master-asset-spec.json`; the compiled prompt is short visual language with full-body framing, neutral pose, readable anatomy, separated arms and a weapon beside—not crossing—the torso.
 
-`schemas/master-asset-spec.json` turns a human request into a reproducible visual contract. It records profile, Art DNA, style, palette, outline, lighting, detail density, canvas, occupancy, margins, pivot, transparency requirement, positive/negative prompt material, references and deterministic seeds. `ugas generate master-sprite` persists the JSON spec and the compiled prompt instead of relying on hidden agent context.
+The two generation lanes are not interchangeable: Distilled uses 4 steps/guidance 1.0, while Base uses 50 steps/guidance 4.0. Compatibility is checked by family, variant, steps and guidance before `/prompt`.
 
-## Candidate flow
+Candidate hard gates run before ranking. A candidate is eligible only when its PNG, dimensions, content, uniqueness, clipping, occupancy, centering, file size and transparency requirements pass. Soft scoring runs only over eligible candidates. Two bounded corrective retry rounds are recorded; no least-bad candidate is promoted.
 
-1. Compile the prompt from profile + Art DNA + spec.
-2. Generate 1-6 independent seeds, with a safe default of 4, beginning at a qualified 384x384 resolution.
-3. Run PNG, dimensions, non-empty, clipping, occupancy, centering, duplicate/perceptual-hash and size checks for each candidate.
-4. Create `candidates-contact-sheet.png` and `candidate-set.json`.
-5. Select `best_technical_candidate` by deterministic objective metrics only. Visual assessment remains pending.
+After selection, the required order is native BiRefNet, alpha statistics and checkerboard preview, a measurable reference edit, BiRefNet again, and structural QA. Structural QA records source/output SHA-256, silhouette IoU (minimum 0.70), centroid drift (maximum 0.08), bounding-box scale delta (maximum 0.15), and pixel-identity rejection. Any new edit invalidates prior transparency and approval.
 
-## Native transparency flow
-
-`ugas background remove <asset-id>` uploads the current master, validates native BiRefNet nodes, submits the registered graph, saves the transparent PNG and a small mask copy, and records halo metrics. `TRANSPARENCY_VALID` requires real alpha values below 255 and a non-zero transparent fraction.
-
-## Reference edit flow
-
-`ugas refine master-sprite <asset-id> --instruction "..."` uploads the current revision, injects the image filename into the official FLUX.2 Klein image-edit graph, and creates a new revision. The old file remains immutable. Provenance includes `derived_from`, reference SHA-256, instruction, workflow/model IDs and output SHA-256.
-
-## Quality states
-
-```text
-GENERATED
-  -> TECHNICAL_VALID
-  -> TRANSPARENCY_VALID (when required)
-  -> VISUAL_REVIEW_REQUIRED
-  -> VISUALLY_APPROVED (explicit `ugas visual approve`)
-  -> PRODUCTION_READY
-```
-
-Approval records actor, timestamp, revision ID, output hash and note. Any new revision has pending approval; technical validity alone can never produce production readiness. A future visual evaluator may populate `machine_assessment`, but it is not a substitute for `human_approval`.
+Human review remains mandatory. `production_ready` is false until technical QA, transparency QA when required, same-revision visual approval and approval/output SHA equality all pass.

@@ -46,9 +46,13 @@ def inspect_png(path: Path) -> dict:
         alpha = rgba.getchannel("A")
         alpha_min, alpha_max = alpha.getextrema()
         total_pixels = image.width * image.height
-        transparent_pixels = sum(1 for value in alpha.getdata() if value < 255)
-        opaque_pixels = total_pixels - transparent_pixels
+        alpha_values = list(alpha.getdata())
+        transparent_pixels = sum(1 for value in alpha_values if value == 0)
+        partial_pixels = sum(1 for value in alpha_values if 0 < value < 255)
+        opaque_pixels = sum(1 for value in alpha_values if value == 255)
         content_bbox = alpha.getbbox() if has_alpha_channel else image.convert("RGB").getbbox()
+        foreground_points = [(x, y) for y in range(image.height) for x in range(image.width) if alpha.getpixel((x, y)) > 0] if has_alpha_channel else []
+        border_contact = bool(has_alpha_channel and (any(alpha.getpixel((x, 0)) > 0 or alpha.getpixel((x, image.height - 1)) > 0 for x in range(image.width)) or any(alpha.getpixel((0, y)) > 0 or alpha.getpixel((image.width - 1, y)) > 0 for y in range(image.height))))
         return {
             "path": str(path),
             "format": "PNG",
@@ -60,11 +64,18 @@ def inspect_png(path: Path) -> dict:
             "sha256": sha256(path),
             "has_alpha": has_alpha_channel,
             "has_alpha_channel": has_alpha_channel,
-            "has_transparent_pixels": bool(has_alpha_channel and transparent_pixels > 0),
+            "has_transparent_pixels": bool(has_alpha_channel and transparent_pixels + partial_pixels > 0),
             "alpha_min": alpha_min if has_alpha_channel else None,
             "alpha_max": alpha_max if has_alpha_channel else None,
             "opaque_fraction": opaque_pixels / total_pixels if total_pixels else 0.0,
             "transparent_fraction": transparent_pixels / total_pixels if total_pixels else 0.0,
+            "alpha_zero_fraction": transparent_pixels / total_pixels if total_pixels else 0.0,
+            "alpha_opaque_fraction": opaque_pixels / total_pixels if total_pixels else 0.0,
+            "alpha_partial_fraction": partial_pixels / total_pixels if total_pixels else 0.0,
+            "foreground_coverage": (total_pixels - transparent_pixels) / total_pixels if total_pixels else 0.0,
+            "alpha_bbox": list(alpha.getbbox()) if has_alpha_channel and alpha.getbbox() else None,
+            "alpha_centroid": ([sum(x for x, _ in foreground_points) / len(foreground_points) / image.width, sum(y for _, y in foreground_points) / len(foreground_points) / image.height] if foreground_points else None),
+            "border_contact": border_contact,
             "non_empty_content": content_bbox is not None,
         }
 

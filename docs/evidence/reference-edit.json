@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4.0",
+  "schema_version": "0.4.1",
   "provider": "provider-comfyui",
   "capability": "reference-edit",
   "state": "verified",
@@ -11,7 +11,7 @@
       "type": "cuda",
       "index": 0,
       "vram_total": 8546484224,
-      "vram_free": 6827607158,
+      "vram_free": 6825510006,
       "torch_vram_total": 134217728,
       "torch_vram_free": 62194806
     }
@@ -108,9 +108,9 @@
     }
   ],
   "workflow": {
-    "id": "flux2-klein-4b-image-edit",
-    "version": "0.4.0",
-    "sha256": "6593b4ee4738392647365860db0b98d603d5c11bdaadccd05b20fcb3a682ef37",
+    "id": "flux2-klein-base-4b-quality-image-edit",
+    "version": "0.4.1",
+    "sha256": "ea3d24a235be2563e04eb1b6b9f3314a291e9b25fa0a2fd0380a0936e7482ddb",
     "validation": {
       "valid_graph": true,
       "node_count": 18,
@@ -118,12 +118,25 @@
       "missing_models": [],
       "live_valid": true
     },
+    "compatibility": {
+      "compatible": true,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+      "family": "flux2-klein-4b",
+      "variant": "base",
+      "steps": 50,
+      "guidance": 4.0,
+      "mismatches": [],
+      "experimental_override": false
+    },
     "qualified_capabilities": [
       "reference-edit"
     ]
   },
   "model": {
-    "id": "flux2-klein-4b-nvfp4",
+    "id": "flux2-klein-4b-base-nvfp4",
+    "family": "flux2-klein-4b",
+    "variant": "base",
     "license": "Apache-2.0",
     "sha256": {
       "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
@@ -134,10 +147,10 @@
       "status": "qualified",
       "hashes_verified": true,
       "files_verified_at": "2026-08-29",
-      "smoke_evidence": "docs/evidence/comfyui-smoke.json"
+      "smoke_evidence": "docs/evidence/quality-benchmark.json"
     },
     "inventory": {
-      "model_id": "flux2-klein-4b-nvfp4",
+      "model_id": "flux2-klein-4b-base-nvfp4",
       "files": [
         {
           "file": "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
@@ -172,16 +185,16 @@
   ],
   "smoke_test": {
     "status": "passed",
-    "source_sha256": "61a7e5b94eef8085a3d41e0224d4d541d7602375c279c425a2350ddd1fb7a9f4",
+    "source_sha256": "430eed523065d44919f9ae576f049e92bcf370d474d88e2ca4540399b046418c",
     "output": {
-      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-b5a3a5e1368c44a4a40ba1ec338fbb37\\revisions\\reference-edit-3.png",
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\revisions\\reference-edit-3.png",
       "format": "PNG",
-      "width": 384,
-      "height": 384,
+      "width": 512,
+      "height": 512,
       "mode": "RGB",
       "source_mode": "RGB",
-      "bytes": 137087,
-      "sha256": "1aeb7f4cab59fb76a6c6af9b96e39b73380a70a5f777dbd746c6d618253db4dc",
+      "bytes": 192619,
+      "sha256": "cefe3c96c61e1d96482c2ed1203e0e85ae21e2e205a21775e7f3df2fb7764d67",
       "has_alpha": false,
       "has_alpha_channel": false,
       "has_transparent_pixels": false,
@@ -189,13 +202,21 @@
       "alpha_max": null,
       "opaque_fraction": 1.0,
       "transparent_fraction": 0.0,
+      "alpha_zero_fraction": 0.0,
+      "alpha_opaque_fraction": 1.0,
+      "alpha_partial_fraction": 0.0,
+      "foreground_coverage": 1.0,
+      "alpha_bbox": null,
+      "alpha_centroid": null,
+      "border_contact": false,
       "non_empty_content": true
     },
-    "instruction": "Keep the same character identity and silhouette; make the armor blue steel and shorten the sword slightly.",
-    "runtime_ms": 34598
+    "instruction": "Change only this visual property: change the blue steel armor material to deep cobalt steel while preserving the character. Keep the same character identity, face, body proportions, exact pose, camera angle, silhouette, weapon type and overall composition. Preserve the neutral idle stance, full-body framing, readable hands and weapon beside the body. Do not redesign the character, add subjects, crop limbs, add text or add motion effects.",
+    "instruction_sha256": "13ced72d503e64fc7aafe76738cec3e8bb3a9dfd78305974a27f7ed9a3f1ec4a",
+    "runtime_ms": 59588
   },
   "failure_reason": null,
-  "observed_at": "2026-08-29T12:41:33+00:00",
+  "observed_at": "2026-08-29T14:36:55+00:00",
   "features": {
     "supports_preview_metadata": true,
     "supports_model_type_tags": true,

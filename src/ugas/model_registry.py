@@ -13,6 +13,41 @@ class ModelRegistryError(RuntimeError):
     pass
 
 
+def validate_model_workflow_compatibility(model: dict, workflow: dict, *, allow_experimental: bool = False) -> dict:
+    """Reject Base/Distilled parameter mismatches before a ComfyUI submission."""
+    family = model.get("family")
+    workflow_family = workflow.get("model_family", family)
+    variant = model.get("variant")
+    workflow_variant = workflow.get("model_variant", variant)
+    steps = workflow.get("parameters", {}).get("steps")
+    guidance = workflow.get("parameters", {}).get("guidance")
+    expected_steps = model.get("recommended_steps")
+    expected_guidance = model.get("recommended_guidance")
+    mismatches = []
+    if family != workflow_family:
+        mismatches.append("model family differs from workflow family")
+    if variant != workflow_variant:
+        mismatches.append("model variant differs from workflow variant")
+    if expected_steps is not None and steps != expected_steps:
+        mismatches.append(f"{variant} expects steps={expected_steps}, workflow has steps={steps}")
+    if expected_guidance is not None and float(guidance) != float(expected_guidance):
+        mismatches.append(f"{variant} expects guidance={expected_guidance}, workflow has guidance={guidance}")
+    experimental = bool(workflow.get("experimental_override"))
+    if mismatches and not (allow_experimental and experimental):
+        raise ModelRegistryError("incompatible model/workflow: " + "; ".join(mismatches))
+    return {
+        "compatible": not mismatches or (allow_experimental and experimental),
+        "model_id": model.get("id"),
+        "workflow_id": workflow.get("id"),
+        "family": family,
+        "variant": variant,
+        "steps": steps,
+        "guidance": guidance,
+        "mismatches": mismatches,
+        "experimental_override": bool(mismatches and allow_experimental and experimental),
+    }
+
+
 def load_registry(repo_root: Path) -> dict:
     path = repo_root / "providers" / "models" / "registry.json"
     return json.loads(path.read_text(encoding="utf-8"))

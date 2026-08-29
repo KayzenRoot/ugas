@@ -1,22 +1,64 @@
 {
-  "schema_version": "0.4.0",
-  "asset_id": "asset-b5a3a5e1368c44a4a40ba1ec338fbb37",
-  "source": "tmp/background-removal/master-transparent.png",
-  "sha256": "7df6435e95bd4344af1e2a5e406d8adeb6ada34fd9d51adcea31ed859d07a68d",
-  "format": "PNG",
-  "dimensions": {"width": 384, "height": 384},
-  "mode": "RGBA",
-  "has_alpha_channel": true,
-  "has_transparent_pixels": true,
-  "transparent_fraction": 0.9999186197916666,
-  "mask": "tmp/background-removal/master-mask.png",
-  "mask_sha256": "606bd280d22dcc1bd06dfaa13f233b700f438d429eac7ad078be914b0dbf23c4",
-  "halo_detected": false,
-  "workflow_id": "birefnet-background-removal",
-  "model_id": "birefnet",
-  "model_sha256": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154",
-  "runtime_ms": 1460,
-  "technical_status": "TECHNICAL_VALID",
-  "visual_review": "required",
-  "production_ready": false
+  "schema_version": "0.4.1",
+  "asset_id": "asset-69b837a5b34045ceb25288ac34d6b4f7",
+  "revision_id": "revision-d8852ed0822a4037972d478ac1c1b7d4",
+  "output_path": "D:\\Projeto Codexx\\ugas\\tmp\\background-removal\\master-transparent.png",
+  "output": {
+    "path": "D:\\Projeto Codexx\\ugas\\tmp\\background-removal\\master-transparent.png",
+    "format": "PNG",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "source_mode": "RGBA",
+    "bytes": 222860,
+    "sha256": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
+    "has_alpha": true,
+    "has_alpha_channel": true,
+    "has_transparent_pixels": true,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "opaque_fraction": 0.00391387939453125,
+    "transparent_fraction": 0.7678718566894531,
+    "alpha_zero_fraction": 0.7678718566894531,
+    "alpha_opaque_fraction": 0.00391387939453125,
+    "alpha_partial_fraction": 0.22821426391601562,
+    "foreground_coverage": 0.23212814331054688,
+    "alpha_bbox": [
+      93,
+      16,
+      372,
+      499
+    ],
+    "alpha_centroid": [
+      0.5001458480550853,
+      0.4854464889134936
+    ],
+    "border_contact": false,
+    "non_empty_content": true
+  },
+  "alpha_metrics": {
+    "alpha_zero_fraction": 0.7678718566894531,
+    "alpha_opaque_fraction": 0.00391387939453125,
+    "alpha_partial_fraction": 0.22821426391601562,
+    "foreground_coverage": 0.23212814331054688,
+    "alpha_bbox": [
+      93,
+      16,
+      372,
+      499
+    ],
+    "alpha_centroid": [
+      0.5001458480550853,
+      0.4854464889134936
+    ],
+    "border_contact": false
+  },
+  "checkerboard_path": "D:\\Projeto Codexx\\ugas\\tmp\\background-removal\\master-checkerboard.png",
+  "transparency_status": "TRANSPARENCY_VALID",
+  "halo": {
+    "checked": true,
+    "border_semi_transparent_fraction": 0.0,
+    "halo_detected": false
+  },
+  "visual_review": "required"
 }

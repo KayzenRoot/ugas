@@ -4,5 +4,5 @@
   "title": "UGAS workflow manifest",
   "type": "object",
   "required": ["schema_version", "id", "provider", "version", "inputs", "outputs"],
-  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "provider": {"type": "string"}, "version": {"type": "string"}, "inputs": {"type": "array", "items": {"type": "string"}}, "outputs": {"type": "array", "items": {"type": "string"}}, "model_requirements": {"type": "array", "items": {"type": "string"}}}
+  "properties": {"schema_version": {"type": "string"}, "id": {"type": "string"}, "provider": {"type": "string"}, "version": {"type": "string"}, "inputs": {"type": "array", "items": {"type": "string"}}, "outputs": {"type": "array", "items": {"type": "string"}}, "model_requirements": {"type": "array", "items": {"type": "string"}}, "model_family": {"type": "string"}, "model_variant": {"type": "string"}, "quality_tier": {"type": "string"}, "parameters": {"type": "object"}}
 }

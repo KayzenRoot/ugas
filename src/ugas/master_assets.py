@@ -1,4 +1,4 @@
-"""v0.4.0 master-sprite contracts, prompt compilation and revision gates."""
+"""v0.4.1 master-sprite contracts, quality gates and revision approval."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ from pathlib import Path
 from statistics import median
 from typing import Any, Mapping
 
+from .constants import UGAS_VERSION
 from .image_utils import inspect_png, sha256
 
 
@@ -21,10 +22,6 @@ class MasterAssetError(RuntimeError):
 
 def _now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-
-def _canonical(value: Any) -> str:
-    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
 
 def _hash_reference(path: Path) -> dict[str, str]:
@@ -45,7 +42,7 @@ def _art_dna(profile: Mapping[str, Any], art_dna: Mapping[str, Any] | None) -> d
 
 @dataclass(frozen=True)
 class MasterAssetSpec:
-    """Serializable human request compiled into a reproducible generation spec."""
+    """Serializable visual request plus machine-only composition constraints."""
 
     asset_id: str
     category: str
@@ -73,7 +70,7 @@ class MasterAssetSpec:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "schema_version": "0.4.0",
+            "schema_version": UGAS_VERSION,
             "asset_id": self.asset_id,
             "category": self.category,
             "subtype": self.subtype,
@@ -107,8 +104,8 @@ def make_master_spec(
     profile_id: str,
     candidates: int = 4,
     seed: int = 1,
-    width: int = 384,
-    height: int = 384,
+    width: int = 512,
+    height: int = 512,
     requires_transparency: bool = False,
     references: list[Path] | None = None,
     asset_id: str | None = None,
@@ -124,69 +121,54 @@ def make_master_spec(
     refs = [_hash_reference(path.resolve()) for path in references or []]
     seeds = [int(seed) + index for index in range(candidates)]
     return MasterAssetSpec(
-        asset_id=asset_id or f"asset-{uuid.uuid4().hex}",
-        category="character",
-        subtype="master-sprite",
+        asset_id=asset_id or f"asset-{uuid.uuid4().hex}", category="character", subtype="master-sprite",
         intended_view="2d gameplay sprite",
         orientation="front-facing three-quarter" if "top-down" not in prompt.casefold() else "top-down three-quarter",
-        game_profile=profile_id,
-        art_dna=dna,
-        visual_style=", ".join(str(item) for item in keywords),
-        palette_intent=str(dna.get("palette", "project-defined")),
-        outline_policy="clean readable silhouette with controlled outline",
-        lighting="soft directional key light with readable rim separation",
-        detail_density="medium-high at gameplay distance",
-        canvas_target={"width": int(width), "height": int(height)},
-        subject_occupancy_target={"min": 0.25, "max": 0.80},
-        margins={"left": 16, "top": 16, "right": 16, "bottom": 16},
-        pivot_intent="center-bottom of subject",
-        requires_transparency=bool(requires_transparency),
-        positive_prompt=prompt.strip(),
-        negative_constraints=[
-            "multiple subjects",
-            "cropped subject",
-            "text or watermark",
-            "extra limbs or duplicate equipment",
-            "muddy silhouette",
-            "motion blur",
-        ],
-        reference_anchors=refs,
-        candidate_count=candidates,
-        seeds=seeds,
+        game_profile=profile_id, art_dna=dna, visual_style=", ".join(str(item) for item in keywords),
+        palette_intent=str(dna.get("palette", "project-defined")), outline_policy="clean readable silhouette with controlled outline",
+        lighting="soft directional key light with readable rim separation", detail_density="medium-high at gameplay distance",
+        canvas_target={"width": int(width), "height": int(height)}, subject_occupancy_target={"min": 0.20, "max": 0.82},
+        margins={"left": 24, "top": 24, "right": 24, "bottom": 24}, pivot_intent="center-bottom of subject",
+        requires_transparency=bool(requires_transparency), positive_prompt=prompt.strip(),
+        negative_constraints=["multiple subjects", "cropped subject", "text or watermark", "extra limbs or duplicate equipment", "muddy silhouette", "motion blur or visual effects", "weapon crossing the torso"],
+        reference_anchors=refs, candidate_count=candidates, seeds=seeds,
         generation_policy={
-            "provider": "provider-comfyui",
-            "resolution_policy": "benchmark-384-before-512",
-            "default_candidates": 4,
-            "max_candidates": 6,
-            "deterministic": True,
-            "visual_approval": "pending",
+            "provider": "provider-comfyui", "quality_policy": "quality-first", "lane_order": ["quality", "fast"],
+            "resolution_policy": "benchmark-512-preferred", "default_candidates": 4, "max_candidates": 6,
+            "max_auto_retry_rounds": 2, "deterministic": True, "visual_approval": "pending",
+            "reference_edit_qa": {"silhouette_iou_min": 0.70, "centroid_drift_max": 0.08, "bbox_scale_delta_max": 0.15, "allow_pixel_identical": False},
         },
     )
 
 
-def compile_prompt(spec: Mapping[str, Any], profile: Mapping[str, Any] | None = None) -> str:
-    """Compile a stable, inspectable prompt; no hidden agent memory is involved."""
+def compile_generation_prompt(spec: Mapping[str, Any], profile: Mapping[str, Any] | None = None, *, retry_reason: str | None = None) -> str:
+    """Return only natural visual language; dimensions and QA stay in the spec."""
     dna = spec.get("art_dna", {})
-    style = spec.get("visual_style") or ", ".join(map(str, dna.get("style_keywords", [])))
-    profile_id = spec.get("game_profile") or (profile or {}).get("id", "unspecified")
-    lines = [
-        "UGAS MASTER SPRITE",
-        f"subject: {spec.get('positive_prompt', '').strip()}",
-        f"game profile: {profile_id}",
-        f"art DNA style: {style}",
-        f"palette intent: {spec.get('palette_intent', dna.get('palette', 'project-defined'))}",
-        f"shape language: {dna.get('shape_language', 'clear readable shapes')}",
-        f"outline policy: {spec.get('outline_policy', 'controlled outline')}",
-        f"lighting: {spec.get('lighting', 'readable directional light')}",
-        f"detail density: {spec.get('detail_density', 'medium')}",
-        f"view: {spec.get('intended_view', '2d gameplay sprite')}; orientation: {spec.get('orientation', 'front-facing three-quarter')}",
-        f"canvas: {spec.get('canvas_target', {}).get('width', 384)}x{spec.get('canvas_target', {}).get('height', 384)}",
-        f"occupancy target: {spec.get('subject_occupancy_target', {}).get('min', 0.25)}-{spec.get('subject_occupancy_target', {}).get('max', 0.80)}",
-        f"pivot intent: {spec.get('pivot_intent', 'center-bottom of subject')}",
-        "transparent background" if spec.get("requires_transparency") else "simple clean background for later native removal",
-        "avoid: " + "; ".join(str(item) for item in spec.get("negative_constraints", [])),
-    ]
-    return "\n".join(lines)
+    style = spec.get("visual_style") or ", ".join(map(str, dna.get("style_keywords", []))) or "cohesive stylized game art"
+    subject = str(spec.get("positive_prompt", "")).strip()
+    orientation = "three-quarter front view"
+    if "top-down" in str(spec.get("orientation", "")).casefold():
+        orientation = "top-down three-quarter view"
+    prompt = ("Single full-body game character, neutral idle stance, entire body visible from head to feet, centered, "
+        f"{orientation}, arms separated enough to read the silhouette, weapon held beside the body without crossing the torso, "
+        "clean readable anatomy, simple contrasting background, no motion effects, no text, no cropped limbs. "
+        f"{style}. {subject}")
+    if retry_reason:
+        prompt += f" Corrective pass: {retry_reason}."
+    return " ".join(prompt.split())
+
+
+def compile_prompt(spec: Mapping[str, Any], profile: Mapping[str, Any] | None = None) -> str:
+    return compile_generation_prompt(spec, profile)
+
+
+def compile_reference_edit_instruction(instruction: str, spec: Mapping[str, Any] | None = None) -> str:
+    change = " ".join(str(instruction).split())
+    if not change:
+        raise MasterAssetError("reference edit instruction cannot be empty")
+    return (f"Change only this visual property: {change}. Keep the same character identity, face, body proportions, exact pose, "
+        "camera angle, silhouette, weapon type and overall composition. Preserve the neutral idle stance, full-body framing, "
+        "readable hands and weapon beside the body. Do not redesign the character, add subjects, crop limbs, add text or add motion effects.")
 
 
 def prompt_sha256(compiled_prompt: str) -> str:
@@ -195,118 +177,135 @@ def prompt_sha256(compiled_prompt: str) -> str:
 
 def _foreground_bbox(path: Path) -> tuple[int, int, int, int] | None:
     from PIL import Image
-
     with Image.open(path) as source:
         image = source.convert("RGBA")
-        if "A" in source.getbands() and image.getchannel("A").getextrema()[0] < 255:
-            return image.getchannel("A").getbbox()
-        pixels = image.load()
-        sample = []
-        for x in range(image.width):
-            sample.extend((pixels[x, 0][:3], pixels[x, image.height - 1][:3]))
-        for y in range(image.height):
-            sample.extend((pixels[0, y][:3], pixels[image.width - 1, y][:3]))
+        alpha = image.getchannel("A")
+        if "A" in source.getbands() and alpha.getextrema() != (255, 255):
+            return alpha.getbbox()
+        pixels = image.load(); sample = []
+        for x in range(image.width): sample.extend((pixels[x, 0][:3], pixels[x, image.height - 1][:3]))
+        for y in range(image.height): sample.extend((pixels[0, y][:3], pixels[image.width - 1, y][:3]))
         background = tuple(int(median([item[channel] for item in sample])) for channel in range(3))
-        threshold = max(18, int(max(image.width, image.height) * 0.03))
-        points = []
+        threshold = max(24, int(max(image.width, image.height) * 0.04)); points = []
         for y in range(image.height):
             for x in range(image.width):
                 rgb = pixels[x, y][:3]
-                distance = sum(abs(int(rgb[channel]) - background[channel]) for channel in range(3))
-                if distance > threshold:
-                    points.append((x, y))
-        if not points:
-            return None
-        xs = [point[0] for point in points]
-        ys = [point[1] for point in points]
+                if sum(abs(int(rgb[channel]) - background[channel]) for channel in range(3)) > threshold: points.append((x, y))
+        if not points: return None
+        xs = [point[0] for point in points]; ys = [point[1] for point in points]
         return min(xs), min(ys), max(xs) + 1, max(ys) + 1
 
 
 def _average_hash(path: Path, size: int = 8) -> str:
     from PIL import Image, ImageOps
-
-    with Image.open(path) as source:
-        image = ImageOps.grayscale(source.convert("RGB")).resize((size, size))
-        values = list(image.getdata())
+    with Image.open(path) as source: values = list(ImageOps.grayscale(source.convert("RGB")).resize((size, size)).getdata())
     average = sum(values) / len(values)
     return "".join("1" if value >= average else "0" for value in values)
 
 
-def candidate_metrics(path: Path, *, width: int, height: int, requires_transparency: bool = False) -> dict[str, Any]:
-    info = inspect_png(path)
-    bbox = _foreground_bbox(path)
+def candidate_metrics(path: Path, *, width: int, height: int, requires_transparency: bool = False,
+                      occupancy_target: Mapping[str, float] | None = None, centering_limit: float = 0.18,
+                      duplicate: bool = False, max_bytes: int = 20 * 1024 * 1024) -> dict[str, Any]:
+    try:
+        info = inspect_png(path); bbox = _foreground_bbox(path)
+    except Exception as exc:
+        return {"eligible": False, "hard_gate_failures": ["invalid_png"], "hard_gates": {"valid_png": False}, "error": str(exc)}
+    target = occupancy_target or {"min": 0.20, "max": 0.82}
     if bbox:
-        left, top, right, bottom = bbox
-        box_width, box_height = right - left, bottom - top
+        left, top, right, bottom = bbox; box_width, box_height = right - left, bottom - top
         occupancy = (box_width * box_height) / max(1, width * height)
-        center_offset = {
-            "x": round(abs(((left + right) / 2) - width / 2) / max(1, width), 6),
-            "y": round(abs(((top + bottom) / 2) - height / 2) / max(1, height), 6),
-        }
+        center_offset = {"x": round(abs(((left + right) / 2) - width / 2) / max(1, width), 6), "y": round(abs(((top + bottom) / 2) - height / 2) / max(1, height), 6)}
         edge_clipping = left <= 0 or top <= 0 or right >= width or bottom >= height
     else:
-        occupancy = 0.0
-        center_offset = {"x": 1.0, "y": 1.0}
-        edge_clipping = True
-    alpha_ok = not requires_transparency or info["has_transparent_pixels"]
-    occupancy_ok = 0.10 <= occupancy <= 0.90
-    centered_ok = center_offset["x"] <= 0.25 and center_offset["y"] <= 0.25
-    return {
-        "foreground_bbox": list(bbox) if bbox else None,
-        "occupancy": round(occupancy, 6),
-        "occupancy_ok": occupancy_ok,
-        "center_offset": center_offset,
-        "centered_ok": centered_ok,
-        "edge_clipping": edge_clipping,
-        "edge_clipping_ok": not edge_clipping,
-        "alpha_ok": alpha_ok,
-        "perceptual_hash": _average_hash(path),
-        "file_size_ok": info["bytes"] <= 20 * 1024 * 1024,
+        occupancy = 0.0; center_offset = {"x": 1.0, "y": 1.0}; edge_clipping = True
+    alpha_ok = not requires_transparency or info.get("has_transparent_pixels", False)
+    gates = {
+        "valid_png": info.get("format") == "PNG", "dimensions": info.get("width") == width and info.get("height") == height,
+        "non_empty": bool(info.get("non_empty_content")), "not_duplicate": not duplicate, "edge_clipping": not edge_clipping,
+        "occupancy": float(target.get("min", 0.20)) <= occupancy <= float(target.get("max", 0.82)),
+        "centered": center_offset["x"] <= centering_limit and center_offset["y"] <= centering_limit,
+        "file_size": info.get("bytes", max_bytes + 1) <= max_bytes, "alpha": alpha_ok,
     }
+    failures = [name for name, passed in gates.items() if not passed]
+    return {"foreground_bbox": list(bbox) if bbox else None, "occupancy": round(occupancy, 6), "occupancy_target": dict(target),
+        "occupancy_ok": gates["occupancy"], "center_offset": center_offset, "centered_ok": gates["centered"],
+        "edge_clipping": edge_clipping, "edge_clipping_ok": gates["edge_clipping"], "alpha_ok": alpha_ok,
+        "perceptual_hash": _average_hash(path), "file_size_ok": gates["file_size"], "hard_gates": gates,
+        "hard_gate_failures": failures, "eligible": not failures}
 
 
 def detect_halo(path: Path) -> dict[str, Any]:
     from PIL import Image
-
     with Image.open(path) as source:
-        image = source.convert("RGBA")
-        alpha = image.getchannel("A")
-        if alpha.getextrema()[0] == 255:
-            return {"checked": False, "halo_detected": False, "reason": "no transparency"}
+        image = source.convert("RGBA"); alpha = image.getchannel("A")
+        if alpha.getextrema()[0] == 255: return {"checked": False, "halo_detected": False, "reason": "no transparency"}
         border = []
-        for x in range(image.width):
-            border.extend([alpha.getpixel((x, 0)), alpha.getpixel((x, image.height - 1))])
-        for y in range(image.height):
-            border.extend([alpha.getpixel((0, y)), alpha.getpixel((image.width - 1, y))])
-        semi = sum(0 < value < 255 for value in border)
-        fraction = semi / max(1, len(border))
+        for x in range(image.width): border.extend([alpha.getpixel((x, 0)), alpha.getpixel((x, image.height - 1))])
+        for y in range(image.height): border.extend([alpha.getpixel((0, y)), alpha.getpixel((image.width - 1, y))])
+        fraction = sum(0 < value < 255 for value in border) / max(1, len(border))
         return {"checked": True, "border_semi_transparent_fraction": round(fraction, 6), "halo_detected": fraction > 0.35}
 
 
+def _mask_points(path: Path, size: int = 128) -> set[tuple[int, int]]:
+    from PIL import Image
+    with Image.open(path) as source:
+        image = source.convert("RGBA"); alpha = image.getchannel("A")
+        if "A" not in source.getbands() or alpha.getextrema() == (255, 255):
+            bbox = _foreground_bbox(path)
+            if not bbox: return set()
+            left, top, right, bottom = bbox
+            return {(x, y) for y in range(round(top / image.height * size), round(bottom / image.height * size)) for x in range(round(left / image.width * size), round(right / image.width * size))}
+        mask = alpha.resize((size, size))
+        return {(x, y) for y in range(size) for x in range(size) if mask.getpixel((x, y)) > 8}
+
+
+def _mask_geometry(points: set[tuple[int, int]], size: int = 128) -> dict[str, Any]:
+    if not points: return {"bbox": None, "centroid": None, "area": 0}
+    xs = [point[0] for point in points]; ys = [point[1] for point in points]
+    return {"bbox": [min(xs), min(ys), max(xs) + 1, max(ys) + 1], "centroid": [sum(xs) / len(xs) / size, sum(ys) / len(ys) / size], "area": len(points)}
+
+
+def reference_edit_structural_qa(source: Path, output: Path, *, thresholds: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    limits = {"silhouette_iou_min": 0.70, "centroid_drift_max": 0.08, "bbox_scale_delta_max": 0.15, "allow_pixel_identical": False}; limits.update(dict(thresholds or {}))
+    source_points = _mask_points(source); output_points = _mask_points(output); union = source_points | output_points; intersection = source_points & output_points
+    source_geometry = _mask_geometry(source_points); output_geometry = _mask_geometry(output_points)
+    iou = len(intersection) / max(1, len(union)); source_centroid = source_geometry["centroid"] or [1.0, 1.0]; output_centroid = output_geometry["centroid"] or [1.0, 1.0]
+    centroid_drift = max(abs(source_centroid[0] - output_centroid[0]), abs(source_centroid[1] - output_centroid[1]))
+    source_bbox = source_geometry["bbox"] or [0, 0, 0, 0]; output_bbox = output_geometry["bbox"] or [0, 0, 0, 0]
+    source_size = max(1, (source_bbox[2] - source_bbox[0]) * (source_bbox[3] - source_bbox[1])); output_size = (output_bbox[2] - output_bbox[0]) * (output_bbox[3] - output_bbox[1])
+    bbox_scale_delta = abs(output_size - source_size) / source_size; pixel_identical = sha256(source) == sha256(output)
+    checks = {"silhouette_iou": iou >= float(limits["silhouette_iou_min"]), "centroid_drift": centroid_drift <= float(limits["centroid_drift_max"]), "bbox_scale_delta": bbox_scale_delta <= float(limits["bbox_scale_delta_max"]), "not_pixel_identical": bool(limits["allow_pixel_identical"]) or not pixel_identical}
+    return {"status": "REFERENCE_EDIT_QA_PASSED" if all(checks.values()) else "REFERENCE_EDIT_QA_FAILED", "source_sha256": sha256(source), "output_sha256": sha256(output), "source": source_geometry, "output": output_geometry, "metrics": {"silhouette_iou": round(iou, 6), "centroid_drift": round(centroid_drift, 6), "bbox_scale_delta": round(bbox_scale_delta, 6), "pixel_identical": pixel_identical}, "thresholds": limits, "checks": checks}
+
+
+def checkerboard_preview(source: Path, destination: Path, *, tile: int = 16) -> dict[str, Any]:
+    from PIL import Image, ImageDraw
+    with Image.open(source) as opened: image = opened.convert("RGBA")
+    background = Image.new("RGBA", image.size, (224, 224, 224, 255)); draw = ImageDraw.Draw(background)
+    for y in range(0, image.height, tile):
+        for x in range(0, image.width, tile):
+            if (x // tile + y // tile) % 2 == 0: draw.rectangle((x, y, min(x + tile, image.width), min(y + tile, image.height)), fill=(176, 176, 176, 255))
+    background.alpha_composite(image); destination.parent.mkdir(parents=True, exist_ok=True); background.convert("RGB").save(destination, format="PNG", optimize=False)
+    return inspect_png(destination)
+
+
 def write_json(path: Path, value: Mapping[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True); path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def _find_asset(root: Path, asset_id: str) -> Path:
     candidate = Path(asset_id)
-    if candidate.is_file() and candidate.name == "asset.json":
-        return candidate
-    if candidate.is_dir() and (candidate / "asset.json").is_file():
-        return candidate / "asset.json"
+    if candidate.is_file() and candidate.name == "asset.json": return candidate
+    if candidate.is_dir() and (candidate / "asset.json").is_file(): return candidate / "asset.json"
     for path in (root / "tmp").glob("**/asset.json"):
-        try:
-            value = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
-        if value.get("asset_id") == asset_id or value.get("id") == asset_id:
-            return path
+        try: value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError): continue
+        if value.get("asset_id") == asset_id or value.get("id") == asset_id: return path
     raise MasterAssetError(f"asset not found: {asset_id}")
 
 
 def load_asset(root: Path, asset_id: str) -> tuple[Path, dict[str, Any]]:
-    path = _find_asset(root, asset_id)
-    return path, json.loads(path.read_text(encoding="utf-8"))
+    path = _find_asset(root, asset_id); return path, json.loads(path.read_text(encoding="utf-8"))
 
 
 def save_asset(asset_path: Path, value: Mapping[str, Any]) -> None:
@@ -314,41 +313,17 @@ def save_asset(asset_path: Path, value: Mapping[str, Any]) -> None:
 
 
 def asset_status(root: Path, asset_id: str) -> dict[str, Any]:
-    path, asset = load_asset(root, asset_id)
-    current = asset.get("current_revision", {})
-    approval = current.get("visual_approval") or {"status": "pending"}
-    technical = current.get("technical_status") in {"TECHNICAL_VALID", "TRANSPARENCY_VALID"}
-    same_revision_approval = approval.get("revision_id") == current.get("revision_id")
-    production_ready = technical and same_revision_approval and approval.get("status") == "approved"
-    return {
-        "asset_id": asset.get("asset_id", asset.get("id")),
-        "asset_path": str(path),
-        "revision_id": current.get("revision_id"),
-        "state": "PRODUCTION_READY" if production_ready else ("VISUALLY_APPROVED" if same_revision_approval and approval.get("status") == "approved" else current.get("state", "GENERATED")),
-        "technical_status": current.get("technical_status"),
-        "transparency_status": current.get("transparency_status"),
-        "visual_approval": approval,
-        "production_ready": production_ready,
-        "current_revision_sha256": current.get("output_sha256"),
-    }
+    path, asset = load_asset(root, asset_id); current = asset.get("current_revision", {}); approval = current.get("visual_approval") or {"status": "pending"}
+    technical = current.get("technical_status") in {"TECHNICAL_VALID", "TRANSPARENCY_VALID"}; transparency_required = bool(asset.get("requires_transparency")); transparency = not transparency_required or current.get("transparency_status") == "TRANSPARENCY_VALID"
+    same_revision_approval = approval.get("revision_id") == current.get("revision_id"); approval_hash_ok = approval.get("output_sha256") == current.get("output_sha256")
+    production_ready = technical and transparency and same_revision_approval and approval_hash_ok and approval.get("status") == "approved"
+    return {"asset_id": asset.get("asset_id", asset.get("id")), "asset_path": str(path), "revision_id": current.get("revision_id"), "state": "PRODUCTION_READY" if production_ready else ("VISUALLY_APPROVED" if same_revision_approval and approval_hash_ok and approval.get("status") == "approved" else current.get("state", "GENERATED")), "technical_status": current.get("technical_status"), "transparency_status": current.get("transparency_status"), "visual_approval": approval, "production_ready": production_ready, "current_revision_sha256": current.get("output_sha256"), "approval_hash_ok": approval_hash_ok}
 
 
 def approve_visual(root: Path, asset_id: str, note: str = "") -> dict[str, Any]:
-    path, asset = load_asset(root, asset_id)
-    current = asset.get("current_revision")
-    if not current or current.get("technical_status") not in {"TECHNICAL_VALID", "TRANSPARENCY_VALID"}:
-        raise MasterAssetError("visual approval requires current technical QA to pass")
-    stamp = _now()
-    actor = os.environ.get("USERNAME") or os.environ.get("USER") or "local-user"
-    current["visual_approval"] = {
-        "status": "approved",
-        "actor": actor,
-        "approved_at": stamp,
-        "revision_id": current.get("revision_id"),
-        "output_sha256": current.get("output_sha256"),
-        "note": note,
-    }
-    current["state"] = "PRODUCTION_READY"
-    asset["updated_at"] = stamp
-    save_asset(path, asset)
-    return asset_status(root, str(path))
+    path, asset = load_asset(root, asset_id); current = asset.get("current_revision")
+    if not current or current.get("technical_status") not in {"TECHNICAL_VALID", "TRANSPARENCY_VALID"}: raise MasterAssetError("visual approval requires current technical QA to pass")
+    if asset.get("requires_transparency") and current.get("transparency_status") != "TRANSPARENCY_VALID": raise MasterAssetError("visual approval requires current transparency QA to pass")
+    stamp = _now(); actor = os.environ.get("USERNAME") or os.environ.get("USER") or "local-user"
+    current["visual_approval"] = {"status": "approved", "actor": actor, "approved_at": stamp, "revision_id": current.get("revision_id"), "output_sha256": current.get("output_sha256"), "note": note}
+    current["state"] = "VISUALLY_APPROVED"; asset["updated_at"] = stamp; save_asset(path, asset); return asset_status(root, str(path))

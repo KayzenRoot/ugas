@@ -1,9 +1,14 @@
-# Roadmap and scope gate
+# UGAS roadmap
 
-## v0.4.0 (current slice)
+## v0.4.1 — current slice
 
-2D master-sprite production: deterministic master-asset spec and Art DNA compiler, 3-4 reproducible candidates, objective technical ranking, contact sheet, native BiRefNet transparency, official FLUX.2 Klein reference edit, revision provenance, optional machine assessment and explicit visual approval.
+Stabilize the real 2D master pipeline: correct Base/Distilled semantics, qualify FAST and QUALITY on RTX 5050 where possible, enforce candidate and transparency gates, preserve reference-edit structure, and stop at human visual review.
 
-## Explicitly not started
+## Backlog only
 
-Full animation production, `sprite-grid > 1`, 3D/Blender, audio, hosted or paid inference and arbitrary custom nodes. These require a separate authorization and review gate. `TECHNICAL_VALID` and `VISUALLY_APPROVED` do not become `PRODUCTION_READY` without the same-revision approval gate.
+- `Limbicnation/pixel-art-lora`
+- `fal/flux-2-klein-4b-spritesheet-lora`
+
+## Later, gated by a new prompt
+
+Multi-frame idle/walk/run/attack/death, spritesheets, 3D/Blender, audio, cloud or paid providers. No item in this list is integrated by v0.4.1.

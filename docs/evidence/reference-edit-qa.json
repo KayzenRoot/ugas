@@ -1,0 +1,49 @@
+{
+  "status": "REFERENCE_EDIT_QA_PASSED",
+  "source_sha256": "430eed523065d44919f9ae576f049e92bcf370d474d88e2ca4540399b046418c",
+  "output_sha256": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
+  "source": {
+    "bbox": [
+      23,
+      4,
+      94,
+      125
+    ],
+    "centroid": [
+      0.49636496316183815,
+      0.4864022696053946
+    ],
+    "area": 4004
+  },
+  "output": {
+    "bbox": [
+      23,
+      4,
+      93,
+      125
+    ],
+    "centroid": [
+      0.49608595309381237,
+      0.4861741361027944
+    ],
+    "area": 4008
+  },
+  "metrics": {
+    "silhouette_iou": 0.988583,
+    "centroid_drift": 0.000279,
+    "bbox_scale_delta": 0.014085,
+    "pixel_identical": false
+  },
+  "thresholds": {
+    "silhouette_iou_min": 0.7,
+    "centroid_drift_max": 0.08,
+    "bbox_scale_delta_max": 0.15,
+    "allow_pixel_identical": false
+  },
+  "checks": {
+    "silhouette_iou": true,
+    "centroid_drift": true,
+    "bbox_scale_delta": true,
+    "not_pixel_identical": true
+  }
+}

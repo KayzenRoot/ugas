@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4.0",
+  "schema_version": "0.4.1",
   "provider": "provider-comfyui",
   "capability": "background-removal",
   "state": "verified",
@@ -11,9 +11,9 @@
       "type": "cuda",
       "index": 0,
       "vram_total": 8546484224,
-      "vram_free": 6825510006,
+      "vram_free": 2669034992,
       "torch_vram_total": 134217728,
-      "torch_vram_free": 62194806
+      "torch_vram_free": 66469360
     }
   ],
   "required_nodes": [
@@ -59,7 +59,7 @@
   ],
   "workflow": {
     "id": "birefnet-background-removal",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
     "validation": {
       "valid_graph": true,
@@ -68,6 +68,17 @@
       "missing_models": [],
       "live_valid": true
     },
+    "compatibility": {
+      "compatible": true,
+      "model_id": "birefnet",
+      "workflow_id": "birefnet-background-removal",
+      "family": "birefnet",
+      "variant": "native",
+      "steps": null,
+      "guidance": null,
+      "mismatches": [],
+      "experimental_override": false
+    },
     "qualified_capabilities": [
       "background-removal",
       "transparent-sprite-master"
@@ -75,6 +86,8 @@
   },
   "model": {
     "id": "birefnet",
+    "family": "birefnet",
+    "variant": "native",
     "license": "MIT",
     "sha256": {
       "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
@@ -113,34 +126,49 @@
   ],
   "smoke_test": {
     "status": "passed",
-    "source_sha256": "7df6435e95bd4344af1e2a5e406d8adeb6ada34fd9d51adcea31ed859d07a68d",
+    "source_sha256": "cefe3c96c61e1d96482c2ed1203e0e85ae21e2e205a21775e7f3df2fb7764d67",
     "output": {
       "path": "D:\\Projeto Codexx\\ugas\\tmp\\background-removal\\master-transparent.png",
       "format": "PNG",
-      "width": 384,
-      "height": 384,
+      "width": 512,
+      "height": 512,
       "mode": "RGBA",
       "source_mode": "RGBA",
-      "bytes": 156896,
-      "sha256": "7df6435e95bd4344af1e2a5e406d8adeb6ada34fd9d51adcea31ed859d07a68d",
+      "bytes": 222860,
+      "sha256": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
       "has_alpha": true,
       "has_alpha_channel": true,
       "has_transparent_pixels": true,
       "alpha_min": 0,
       "alpha_max": 255,
-      "opaque_fraction": 8.138020833333333e-05,
-      "transparent_fraction": 0.9999186197916666,
+      "opaque_fraction": 0.00391387939453125,
+      "transparent_fraction": 0.7678718566894531,
+      "alpha_zero_fraction": 0.7678718566894531,
+      "alpha_opaque_fraction": 0.00391387939453125,
+      "alpha_partial_fraction": 0.22821426391601562,
+      "foreground_coverage": 0.23212814331054688,
+      "alpha_bbox": [
+        93,
+        16,
+        372,
+        499
+      ],
+      "alpha_centroid": [
+        0.5001458480550853,
+        0.4854464889134936
+      ],
+      "border_contact": false,
       "non_empty_content": true
     },
     "mask": {
       "path": "D:\\Projeto Codexx\\ugas\\tmp\\background-removal\\master-mask.png",
       "format": "PNG",
-      "width": 384,
-      "height": 384,
+      "width": 512,
+      "height": 512,
       "mode": "RGB",
       "source_mode": "RGB",
-      "bytes": 12146,
-      "sha256": "606bd280d22dcc1bd06dfaa13f233b700f438d429eac7ad078be914b0dbf23c4",
+      "bytes": 28735,
+      "sha256": "fca65fd29aef97f52db212c2a373dcfcfd67bfbfd18b7be3f17c495100c6ee42",
       "has_alpha": false,
       "has_alpha_channel": false,
       "has_transparent_pixels": false,
@@ -148,17 +176,25 @@
       "alpha_max": null,
       "opaque_fraction": 1.0,
       "transparent_fraction": 0.0,
+      "alpha_zero_fraction": 0.0,
+      "alpha_opaque_fraction": 1.0,
+      "alpha_partial_fraction": 0.0,
+      "foreground_coverage": 1.0,
+      "alpha_bbox": null,
+      "alpha_centroid": null,
+      "border_contact": false,
       "non_empty_content": true
     },
+    "alpha_metrics": null,
     "halo": {
       "checked": true,
       "border_semi_transparent_fraction": 0.0,
       "halo_detected": false
     },
-    "runtime_ms": 1460
+    "runtime_ms": 5666
   },
   "failure_reason": null,
-  "observed_at": "2026-08-29T12:45:12+00:00",
+  "observed_at": "2026-08-29T14:38:08+00:00",
   "features": {
     "supports_preview_metadata": true,
     "supports_model_type_tags": true,

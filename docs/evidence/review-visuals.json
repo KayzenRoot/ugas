@@ -1,30 +1,73 @@
 {
-  "schema_version": "0.4.0",
-  "asset_id": "asset-b5a3a5e1368c44a4a40ba1ec338fbb37",
+  "schema_version": "0.4.1",
+  "asset_id": "asset-69b837a5b34045ceb25288ac34d6b4f7",
   "images": [
     {
-      "archive_name": "candidates-contact-sheet.png",
-      "source_path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates-contact-sheet.png",
-      "metadata_path": "docs/evidence/candidates.json",
-      "metadata_archive_name": "candidates.json"
-    },
-    {
-      "archive_name": "master-before-bg-removal.png",
-      "source_path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates/c26c53b8eb044c478c08a978ed431ff9.png",
-      "metadata_path": "docs/evidence/master-before-bg-removal.json",
+      "archive_name": "v0.4.0-baseline.png",
+      "source_path": "docs\\evidence\\v0.4.0-baseline.png",
+      "sha256": "b54a49a1600c49e22029da07644c08a8ce16d41479d0d913f06f180ad0066413",
+      "metadata_path": "docs\\evidence\\master-before-bg-removal.json",
       "metadata_archive_name": "master-before-bg-removal.json"
     },
     {
-      "archive_name": "master-transparent.png",
-      "source_path": "tmp/background-removal/master-transparent.png",
-      "metadata_path": "docs/evidence/master-transparent.json",
+      "archive_name": "quality-benchmark-contact-sheet.png",
+      "source_path": "docs\\evidence\\quality-benchmark-contact-sheet.png",
+      "sha256": "63b6405ef00e52535cd7cea275043a681bdbd6e7fc91c78b98419834dc052f2f",
+      "metadata_path": "docs\\evidence\\quality-benchmark.json",
+      "metadata_archive_name": "quality-benchmark.json"
+    },
+    {
+      "archive_name": "master-selected-before-bg.png",
+      "source_path": "tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\464356c036654f83a84cddcc028adf80.png",
+      "sha256": "94424228a91b558404f9155c5f40843aeae2d9c39bb68055ff887c86a4e6ceaa",
+      "metadata_path": "docs\\evidence\\master-before-bg-removal.json",
+      "metadata_archive_name": "master-before-bg-removal.json"
+    },
+    {
+      "archive_name": "master-selected-transparent.png",
+      "source_path": "tmp\\background-removal\\master-transparent.png",
+      "sha256": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
+      "metadata_path": "docs\\evidence\\master-transparent.json",
       "metadata_archive_name": "master-transparent.json"
     },
     {
-      "archive_name": "reference-edit.png",
-      "source_path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/revisions/reference-edit-3.png",
-      "metadata_path": "docs/evidence/reference-edit.json",
+      "archive_name": "master-selected-checkerboard.png",
+      "source_path": "tmp\\background-removal\\master-checkerboard.png",
+      "sha256": "447502fdfe16827ab6a696c330a3907282dfa6d290d56d32409880f2e26b464e",
+      "metadata_path": "docs\\evidence\\master-transparent.json",
+      "metadata_archive_name": "master-transparent.json"
+    },
+    {
+      "archive_name": "reference-edit-before-after.png",
+      "source_path": "docs\\evidence\\reference-edit-before-after.png",
+      "sha256": "f4a3ffb14558bc8b0d673c5c4bd253f81327b6d092950cdf14e3f8626bb91b5e",
+      "metadata_path": "docs\\evidence\\reference-edit.json",
       "metadata_archive_name": "reference-edit.json"
+    },
+    {
+      "archive_name": "reference-edit-transparent.png",
+      "source_path": "tmp\\background-removal\\master-transparent.png",
+      "sha256": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
+      "metadata_path": "docs\\evidence\\reference-edit-qa.json",
+      "metadata_archive_name": "reference-edit-qa.json"
+    },
+    {
+      "archive_name": "reference-edit-qa.json",
+      "source_path": "docs\\evidence\\reference-edit-qa.json",
+      "sha256": "9a3821db31e17485b1888be021346cbf1416313bf127a6ad01005db9e5dd7c6e",
+      "metadata_path": "docs\\evidence\\reference-edit-qa.json",
+      "metadata_archive_name": "reference-edit-qa.json"
     }
-  ]
+  ],
+  "all_image_hashes": {
+    "v0.4.0-baseline.png": "b54a49a1600c49e22029da07644c08a8ce16d41479d0d913f06f180ad0066413",
+    "quality-benchmark-contact-sheet.png": "63b6405ef00e52535cd7cea275043a681bdbd6e7fc91c78b98419834dc052f2f",
+    "master-selected-before-bg.png": "94424228a91b558404f9155c5f40843aeae2d9c39bb68055ff887c86a4e6ceaa",
+    "master-selected-transparent.png": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
+    "master-selected-checkerboard.png": "447502fdfe16827ab6a696c330a3907282dfa6d290d56d32409880f2e26b464e",
+    "reference-edit-before-after.png": "f4a3ffb14558bc8b0d673c5c4bd253f81327b6d092950cdf14e3f8626bb91b5e",
+    "reference-edit-transparent.png": "ac567e6c778bf34227aea2e2348651ea2e6c3182d0bcdb62fd55f0e26288cd6c",
+    "reference-edit-qa.json": "9a3821db31e17485b1888be021346cbf1416313bf127a6ad01005db9e5dd7c6e"
+  },
+  "visual_review": "required"
 }

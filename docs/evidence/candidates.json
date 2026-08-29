@@ -1,73 +1,330 @@
 {
-  "schema_version": "0.4.0",
-  "asset_id": "asset-b5a3a5e1368c44a4a40ba1ec338fbb37",
-  "candidate_set_id": "candidate-set-bf536fbcac7c41f3b63078f4dad3b7c7",
-  "observed_at": "2026-08-29T12:35:34+00:00",
-  "server": "ComfyUI 0.34.0",
-  "gpu": "NVIDIA GeForce RTX 5050",
-  "vram_total_bytes": 8546484224,
-  "model_id": "flux2-klein-4b-nvfp4",
-  "model_license": "Apache-2.0",
-  "model_sha256": {
-    "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
-    "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
-    "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
-  },
-  "workflow_id": "flux2-klein-4b-text-to-image",
-  "workflow_sha256": "06a5a6ec2ec564d57830f7ded471dbdb61b1c8b666d8c4409dd0c5f4ab702832",
-  "prompt_sha256": "55f0816c065bc3780bbac71d94d2c638a48406245c080e70d305d26c1dcbb876",
-  "spec_sha256": "b57e6fa50ea7ed338d10a3f68344cd0ebc7e9f9cc0766ba00e67c4dc962ce1d7",
+  "schema_version": "0.4.1",
+  "asset_id": "asset-69b837a5b34045ceb25288ac34d6b4f7",
   "candidate_count": 3,
+  "eligible_candidate_count": 3,
+  "selection_status": "eligible",
+  "best_technical_candidate": "candidate-3",
+  "lane": "quality",
+  "model_id": "flux2-klein-4b-base-nvfp4",
+  "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+  "fallback_reason": null,
+  "spec_sha256": "d5121c6f4001653799183235efa27ec9fe76e439954af400db1abfacdf4a756b",
+  "compiled_prompt_sha256": "d9f42c6ae35da4f4ccea83b924be2a4d0e0641858f5c38709cadb407c16c96a4",
   "candidates": [
     {
       "candidate_id": "candidate-1",
-      "seed": 4301,
-      "runtime_ms": 46000,
-      "path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates/c26c53b8eb044c478c08a978ed431ff9.png",
-      "sha256": "9eeea7eff9d3c4816e46e0ef0dd7c89ac3f48ecb8916c4d5c098bec5a6d312f5",
-      "technical_rank": 1,
-      "objective_score": 5,
-      "qa_status": "TECHNICAL_VALID",
-      "metrics": {
-        "foreground_bbox": [76, 0, 340, 354],
-        "occupancy": 0.633789,
-        "occupancy_ok": true,
-        "center_offset": {"x": 0.041667, "y": 0.039062},
-        "centered_ok": true,
-        "edge_clipping": true,
-        "edge_clipping_ok": false,
-        "duplicate": false,
-        "file_size_ok": true
+      "round": 0,
+      "seed": 9001,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\466eabf86c08478199926acdd0089ea0.png",
+      "sha256": "9b410844509a1ad80d397342efa3a4a2ad74354a80d0b4d45c472b8da8c96d07",
+      "qa": {
+        "status": "TECHNICAL_VALID",
+        "checks": {
+          "exists": true,
+          "format": true,
+          "dimensions": true,
+          "size": true,
+          "non_empty_content": true,
+          "transparency_requirement": true
+        },
+        "requirements": {
+          "requires_transparency": false,
+          "transparency_profile": null
+        },
+        "technical": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\466eabf86c08478199926acdd0089ea0.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 228230,
+          "sha256": "9b410844509a1ad80d397342efa3a4a2ad74354a80d0b4d45c472b8da8c96d07",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "alpha_metrics": {
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false
+        },
+        "visual_review": "required",
+        "production_ready": false
       },
-      "visual_assessment": "pending"
+      "metrics": {
+        "foreground_bbox": [
+          5,
+          10,
+          358,
+          497
+        ],
+        "occupancy": 0.655788,
+        "occupancy_target": {
+          "min": 0.2,
+          "max": 0.82
+        },
+        "occupancy_ok": true,
+        "center_offset": {
+          "x": 0.145508,
+          "y": 0.004883
+        },
+        "centered_ok": true,
+        "edge_clipping": false,
+        "edge_clipping_ok": true,
+        "alpha_ok": true,
+        "perceptual_hash": "1110111111000111110000111100001111000111111001111110011111000111",
+        "file_size_ok": true,
+        "hard_gates": {
+          "valid_png": true,
+          "dimensions": true,
+          "non_empty": true,
+          "not_duplicate": true,
+          "edge_clipping": true,
+          "occupancy": true,
+          "centered": true,
+          "file_size": true,
+          "alpha": true
+        },
+        "hard_gate_failures": [],
+        "eligible": true
+      },
+      "duplicate": false,
+      "objective_score": 2.703821,
+      "eligible": true,
+      "visual_assessment": "pending",
+      "runtime_ms": 25383,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+      "lane": "quality",
+      "technical_rank": 3
     },
     {
       "candidate_id": "candidate-2",
-      "seed": 4302,
-      "runtime_ms": 2000,
-      "path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates/73fdb666ce234da2b4df80d7bac5978e.png",
-      "sha256": "6c215a60f8ef65fe43850ffc35b7dacff1a0468743d9a726a04a311c2703cc86",
-      "technical_rank": 2,
-      "objective_score": 4,
-      "qa_status": "TECHNICAL_VALID",
-      "metrics": {"occupancy": 1.0, "occupancy_ok": false, "edge_clipping": true, "edge_clipping_ok": false, "centered_ok": true, "duplicate": false, "file_size_ok": true},
-      "visual_assessment": "pending"
+      "round": 0,
+      "seed": 9002,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\4f2252d3d0f149efb0136e9b9aac31e8.png",
+      "sha256": "6ebc8164444a34855f2529406b219413b784e74fb8ae5faa35ae8476b3096b90",
+      "qa": {
+        "status": "TECHNICAL_VALID",
+        "checks": {
+          "exists": true,
+          "format": true,
+          "dimensions": true,
+          "size": true,
+          "non_empty_content": true,
+          "transparency_requirement": true
+        },
+        "requirements": {
+          "requires_transparency": false,
+          "transparency_profile": null
+        },
+        "technical": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\4f2252d3d0f149efb0136e9b9aac31e8.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 220216,
+          "sha256": "6ebc8164444a34855f2529406b219413b784e74fb8ae5faa35ae8476b3096b90",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "alpha_metrics": {
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false
+        },
+        "visual_review": "required",
+        "production_ready": false
+      },
+      "metrics": {
+        "foreground_bbox": [
+          37,
+          9,
+          368,
+          502
+        ],
+        "occupancy": 0.622494,
+        "occupancy_target": {
+          "min": 0.2,
+          "max": 0.82
+        },
+        "occupancy_ok": true,
+        "center_offset": {
+          "x": 0.104492,
+          "y": 0.000977
+        },
+        "centered_ok": true,
+        "edge_clipping": false,
+        "edge_clipping_ok": true,
+        "alpha_ok": true,
+        "perceptual_hash": "1111111111100111110000111100001111000011111001111110001111001011",
+        "file_size_ok": true,
+        "hard_gates": {
+          "valid_png": true,
+          "dimensions": true,
+          "non_empty": true,
+          "not_duplicate": true,
+          "edge_clipping": true,
+          "occupancy": true,
+          "centered": true,
+          "file_size": true,
+          "alpha": true
+        },
+        "hard_gate_failures": [],
+        "eligible": true
+      },
+      "duplicate": false,
+      "objective_score": 2.782037,
+      "eligible": true,
+      "visual_assessment": "pending",
+      "runtime_ms": 20170,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+      "lane": "quality",
+      "technical_rank": 2
     },
     {
       "candidate_id": "candidate-3",
-      "seed": 4303,
-      "runtime_ms": 2000,
-      "path": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates/c39a86d60c6f498e90704e176225809c.png",
-      "sha256": "1f92d7032f67b01604e166d77330bc889ddf5fef9f278bd2d1af313366012e2a",
-      "technical_rank": 3,
-      "objective_score": 4,
-      "qa_status": "TECHNICAL_VALID",
-      "metrics": {"occupancy": 0.997396, "occupancy_ok": false, "edge_clipping": true, "edge_clipping_ok": false, "centered_ok": true, "duplicate": false, "file_size_ok": true},
-      "visual_assessment": "pending"
+      "round": 0,
+      "seed": 9003,
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\464356c036654f83a84cddcc028adf80.png",
+      "sha256": "94424228a91b558404f9155c5f40843aeae2d9c39bb68055ff887c86a4e6ceaa",
+      "qa": {
+        "status": "TECHNICAL_VALID",
+        "checks": {
+          "exists": true,
+          "format": true,
+          "dimensions": true,
+          "size": true,
+          "non_empty_content": true,
+          "transparency_requirement": true
+        },
+        "requirements": {
+          "requires_transparency": false,
+          "transparency_profile": null
+        },
+        "technical": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\assets\\asset-69b837a5b34045ceb25288ac34d6b4f7\\candidates\\464356c036654f83a84cddcc028adf80.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 218333,
+          "sha256": "94424228a91b558404f9155c5f40843aeae2d9c39bb68055ff887c86a4e6ceaa",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "alpha_metrics": {
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false
+        },
+        "visual_review": "required",
+        "production_ready": false
+      },
+      "metrics": {
+        "foreground_bbox": [
+          94,
+          17,
+          372,
+          498
+        ],
+        "occupancy": 0.510094,
+        "occupancy_target": {
+          "min": 0.2,
+          "max": 0.82
+        },
+        "occupancy_ok": true,
+        "center_offset": {
+          "x": 0.044922,
+          "y": 0.00293
+        },
+        "centered_ok": true,
+        "edge_clipping": false,
+        "edge_clipping_ok": true,
+        "alpha_ok": true,
+        "perceptual_hash": "1111111111100011110000111100001111000011111001111110011111000011",
+        "file_size_ok": true,
+        "hard_gates": {
+          "valid_png": true,
+          "dimensions": true,
+          "non_empty": true,
+          "not_duplicate": true,
+          "edge_clipping": true,
+          "occupancy": true,
+          "centered": true,
+          "file_size": true,
+          "alpha": true
+        },
+        "hard_gate_failures": [],
+        "eligible": true
+      },
+      "duplicate": false,
+      "objective_score": 2.952054,
+      "eligible": true,
+      "visual_assessment": "pending",
+      "runtime_ms": 20161,
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "workflow_id": "flux2-klein-base-4b-quality-text-to-image",
+      "lane": "quality",
+      "technical_rank": 1
     }
   ],
-  "best_technical_candidate": "candidate-1",
-  "contact_sheet": "tmp/assets/asset-b5a3a5e1368c44a4a40ba1ec338fbb37/candidates-contact-sheet.png",
-  "visual_review": "required",
-  "note": "Objective ranking is deterministic; visual review remains pending and edge-clipping findings are disclosed."
+  "retry_log": [],
+  "visual_review": "required"
 }

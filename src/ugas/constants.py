@@ -76,7 +76,7 @@ SCHEMAS = [
     "asset-revision",
 ]
 
-UGAS_VERSION = "0.4.0"
+UGAS_VERSION = "0.4.1"
 
 CONSUMER_FILES = [
     "studio.json",
