@@ -95,6 +95,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         (
             name
             for name in (
+                "docs/evidence/review-visuals-v0.6.1.json",
                 "docs/evidence/review-visuals-v0.6.0.json",
                 "docs/evidence/review-visuals-v0.5.5.json",
                 "docs/evidence/review-visuals-v0.5.4.json",
@@ -106,7 +107,33 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if active_visual_name is None:
         raise ReviewArchiveError("no supported active review visual manifest is present")
     required_metadata = set(REQUIRED_ARCHIVE_METADATA)
-    if active_visual_name.endswith("v0.6.0.json"):
+    if active_visual_name.endswith("v0.6.1.json"):
+        required_metadata.update(
+            {
+                "docs/evidence/review-visuals-v0.6.1.json",
+                "REVIEW-v0.6.1.md",
+                "docs/evidence/current-state.json",
+                "docs/evidence/current-state-v0.6.0.json",
+                "docs/evidence/state-consistency.json",
+                "docs/evidence/custom-node-audit-ipadapter-plus.json",
+                "docs/evidence/sdxl-model-stack-qualification.json",
+                "docs/evidence/sdxl-base-model-qualification.json",
+                "docs/evidence/sdxl-openpose-controlnet-qualification.json",
+                "docs/evidence/ipadapter-sdxl-model-qualification.json",
+                "docs/evidence/clip-vision-qualification.json",
+                "docs/evidence/runtime-doctor-v0.6.0.json",
+                "docs/evidence/sdxl-provider-workflow-qualification.json",
+                "docs/evidence/sdxl-provider-workflow-qualification-v0.6.1.json",
+                "docs/evidence/sdxl-provider-qualification.json",
+                "docs/evidence/sdxl-provider-qualification-v0.6.1.json",
+                "docs/evidence/execution-evidence-v0.6.0.json",
+                "docs/evidence/execution-evidence-v0.6.1.json",
+                "docs/evidence/sdxl-smoke-phase-table.json",
+                "docs/evidence/sdxl-identity-hard-gates.json",
+                "docs/evidence/review-visuals-v0.6.0.json",
+            }
+        )
+    elif active_visual_name.endswith("v0.6.0.json"):
         required_metadata.update(
             {
                 "docs/evidence/review-visuals-v0.6.0.json",

@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT / "scripts" / "validation"))
 
 import run_sdxl_provider_qualification as provider
 from ugas.identity_hard_gates import analyze_foreground_components, evaluate_identity_hard_gates
+from ugas.review import validate_review_visual_manifest
 from ugas.sdxl_smoke_evidence import validate_execution_evidence_v061
 
 
@@ -143,6 +144,18 @@ class SdxlSmokeV061Tests(unittest.TestCase):
         tracked = [path.as_posix().casefold() for path in ROOT.rglob("*") if path.is_file()]
         self.assertFalse(any(path.endswith((".safetensors", ".ckpt", ".gguf", ".onnx")) for path in tracked))
         self.assertFalse((ROOT / "providers/custom-nodes/ComfyUI_IPAdapter_plus").exists())
+
+    def test_review_visual_manifest_rejects_duplicate_archive_names(self):
+        manifest = {
+            "schema_version": "0.6.1",
+            "images": [
+                {"archive_name": "same.png", "source_path": "one.png"},
+                {"archive_name": "same.png", "source_path": "two.png"},
+            ],
+        }
+        result = validate_review_visual_manifest(manifest)
+        self.assertEqual("REVIEW_VISUAL_MANIFEST_FAILED", result["status"])
+        self.assertIn("duplicate visual archive_name: same.png", result["failures"])
 
 
 if __name__ == "__main__":

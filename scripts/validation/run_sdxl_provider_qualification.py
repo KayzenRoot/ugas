@@ -894,9 +894,9 @@ def _visual_manifest_v061(provider: dict[str, Any], records: list[dict[str, Any]
         raw = item.get("raw_output_path")
         output = item.get("output_path")
         if raw:
-            add(REPO_ROOT / str(raw))
+            add(REPO_ROOT / str(raw), f"raw-{Path(str(raw)).name}")
         if output:
-            add(REPO_ROOT / str(output))
+            add(REPO_ROOT / str(output), f"processed-{Path(str(output)).name}")
     required = ["sdxl-smoke-raw-p-i-pi-contact-sheet.png", "sdxl-smoke-raw-pose-overlays-contact-sheet.png", "sdxl-smoke-phase-table.json", "sdxl-identity-hard-gates.json", "execution-evidence-v0.6.1.json"]
     if any(item.get("output_path") for item in records):
         required.append("sdxl-smoke-postprocessed-contact-sheet.png")

@@ -113,6 +113,7 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
     items = manifest.get("images") if isinstance(manifest, Mapping) else None
     items = items if isinstance(items, list) else []
     by_name = {str(item.get("archive_name")): item for item in items if isinstance(item, Mapping)}
+    archive_names = [str(item.get("archive_name")) for item in items if isinstance(item, Mapping)]
     schema_version = str(manifest.get("schema_version"))
     if schema_version == "0.5.0":
         required = REQUIRED_V050_REVIEW_EVIDENCE
@@ -135,6 +136,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))
     failures: list[str] = [f"missing visual evidence: {name}" for name in missing]
+    duplicates = sorted({name for name in archive_names if archive_names.count(name) > 1})
+    failures.extend(f"duplicate visual archive_name: {name}" for name in duplicates)
     role_pairs = [] if schema_version in {"0.5.0", "0.5.1"} else [
         (by_name.get("master-selected-checkerboard.png"), by_name.get("reference-edit-selected-checkerboard.png")),
         (by_name.get("master-selected-transparent.png"), by_name.get("reference-edit-selected-transparent.png")),
