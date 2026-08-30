@@ -90,11 +90,11 @@ A suíte histórica v0.5.1 permanece preservada. A versão 0.5.2 adiciona testes
 
 ## VALIDATION
 
-Pendente até a execução final: testes completos, validador, schemas, snapshot sem Git, publicação e auditoria read-only do ZIP.
+Passou no snapshot publicado: `313/313` checks, `110` testes unitários, compilação, schemas, snapshot arquivado e validação sem `.git`. Permanecem somente os avisos de depreciação do Pillow já existentes; não houve falha de teste.
 
 ## TRACKED SNAPSHOT / GITHUB
 
-Repositório: `https://github.com/csn1985-ship-it/ugas`. O SHA público e o estado final serão registrados somente após commit, validação e push verificáveis.
+Repositório: `https://github.com/csn1985-ship-it/ugas`. O primeiro commit da implementação foi publicado como `8180fdb1527a869ad3d03ca0b5ac839a53e1ebe6`; esta atualização documental será publicada e validada novamente antes do review ZIP.
 
 ## SECURITY
 
