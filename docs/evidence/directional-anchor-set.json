@@ -1,0 +1,3808 @@
+{
+  "schema_version": "0.5.0",
+  "status": "DIRECTIONAL_ANCHORS_VISUAL_REVIEW_REQUIRED",
+  "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+  "anchor_set": {
+    "front": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\anchor-front.png",
+      "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "source": "exact-v0.4.3-R4-no-regeneration",
+      "guide": "pose-guides/views/front.json"
+    },
+    "left": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\anchor-left.png",
+      "sha256": "cf61f91c2479d2fd3118c3e8a38b22d54481c082e5c98e2b6699c79d70ef61fa",
+      "candidate": 50601,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\left.json",
+      "guide_sha256": "83a652650b4347c79458c24b0aa3cbe85475b1cf0d6d1c98774fdc8206da7aa9",
+      "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+    },
+    "right": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\anchor-right.png",
+      "sha256": "cf1d13c35b45126dbb7b85366aeaaebe75e6d6012491e822274e71b6ea23454f",
+      "candidate": 50611,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\right.json",
+      "guide_sha256": "92fbb6c8dc97bb9fd426c58cea8f739fa54029e45ec03027b79121068c86073e",
+      "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+    },
+    "back": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\anchor-back.png",
+      "sha256": "ab394b04d20e97ef6b648140190eb5c173fb02e77dd89ee690bccbf37a69d338",
+      "candidate": 50621,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\back.json",
+      "guide_sha256": "1c0d4730ea55189072dce327260f25cb78c1add46236fa0fa6feaf4a77ccddc3",
+      "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+    }
+  },
+  "directions": [
+    "front",
+    "left",
+    "right",
+    "back"
+  ],
+  "candidate_count_per_generated_direction": 2,
+  "candidates": [
+    {
+      "direction": "left",
+      "candidate": 1,
+      "seed": 50601,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\left.json",
+      "guide_sha256": "83a652650b4347c79458c24b0aa3cbe85475b1cf0d6d1c98774fdc8206da7aa9",
+      "eligible": true,
+      "stage": "anchor-left-0",
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "c9f59bc0b3da53b956c33a12db54e3703020182766bd85246e545392c6e84000",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\job-15b9440965bf483ebeedab211a40a1ca\\anchor-left-0.png",
+      "output_sha256": "d4bf0838f3b662cbfbbe7c2621808e70492f608a39f96b8d5968f1eb435b0e09",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-5fec788208074131bde9deb72698631a",
+        "prompt_id": "b44c0bfe-38ec-4fe2-8cf5-8fbd2b552490",
+        "submitted_at": "2026-08-29T23:21:47+00:00",
+        "first_poll_at": "2026-08-29T23:21:47+00:00",
+        "completed_at": "2026-08-29T23:22:26+00:00",
+        "runtime_ms": 39655.317,
+        "history_record_key": "b44c0bfe-38ec-4fe2-8cf5-8fbd2b552490",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "c9f59bc0b3da53b956c33a12db54e3703020182766bd85246e545392c6e84000",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50601,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\job-15b9440965bf483ebeedab211a40a1ca\\anchor-left-0.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "b44c0bfe-38ec-4fe2-8cf5-8fbd2b552490",
+                  "timestamp": 1788045707230
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [
+                    "1",
+                    "2",
+                    "3",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "17",
+                    "18"
+                  ],
+                  "prompt_id": "b44c0bfe-38ec-4fe2-8cf5-8fbd2b552490",
+                  "timestamp": 1788045707250
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "b44c0bfe-38ec-4fe2-8cf5-8fbd2b552490",
+                  "timestamp": 1788045746009
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "anchor-left-0",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00003_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "d4bf0838f3b662cbfbbe7c2621808e70492f608a39f96b8d5968f1eb435b0e09"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\job-15b9440965bf483ebeedab211a40a1ca\\anchor-left-0.png",
+            "sha256": "d4bf0838f3b662cbfbbe7c2621808e70492f608a39f96b8d5968f1eb435b0e09",
+            "filename": "ugas-multiref_00003_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "left.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+      },
+      "fresh_binding": true,
+      "normalized_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\normalized.png",
+      "normalized_sha256": "cf61f91c2479d2fd3118c3e8a38b22d54481c082e5c98e2b6699c79d70ef61fa",
+      "metrics": {
+        "frame_name": "anchor-left",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\normalized.png",
+        "sha256": "cf61f91c2479d2fd3118c3e8a38b22d54481c082e5c98e2b6699c79d70ef61fa",
+        "alpha_bbox_before": [
+          99,
+          25,
+          375,
+          485
+        ],
+        "translation": {
+          "x": 19.0,
+          "y": -7
+        },
+        "scale": 1.0,
+        "pivot_policy": "centerline x 256, ground baseline y 478",
+        "ground_baseline": 478,
+        "guide_sha256": "83a652650b4347c79458c24b0aa3cbe85475b1cf0d6d1c98774fdc8206da7aa9",
+        "normalization_status": "TRANSLATED_NO_STRETCH",
+        "transparency": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 46987,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 198444,
+              "sha256": "4f6bb2c4aef702c234c175223b796eb9082f6754b86919d49921c4298b8c6452",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.002307891845703125,
+              "transparent_fraction": 0.799041748046875,
+              "alpha_zero_fraction": 0.799041748046875,
+              "alpha_opaque_fraction": 0.002307891845703125,
+              "alpha_partial_fraction": 0.19865036010742188,
+              "foreground_coverage": 0.200958251953125,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8919324221716022,
+              "soft_edge_foreground_fraction": 0.10806757782839788,
+              "alpha_bbox": [
+                99,
+                25,
+                375,
+                485
+              ],
+              "alpha_centroid": [
+                0.5020824435269552,
+                0.495450790741268
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.799041748046875,
+              "alpha_opaque_fraction": 0.002307891845703125,
+              "alpha_partial_fraction": 0.19865036010742188,
+              "foreground_coverage": 0.200958251953125,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8919324221716022,
+              "soft_edge_foreground_fraction": 0.10806757782839788,
+              "alpha_bbox": [
+                99,
+                25,
+                375,
+                485
+              ],
+              "alpha_centroid": [
+                0.5020824435269552,
+                0.495450790741268
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 46987,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.5.0",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 3675667952,
+                "torch_vram_total": 134217728,
+                "torch_vram_free": 66469360
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.4.3",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "d4bf0838f3b662cbfbbe7c2621808e70492f608a39f96b8d5968f1eb435b0e09",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 198444,
+                "sha256": "4f6bb2c4aef702c234c175223b796eb9082f6754b86919d49921c4298b8c6452",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.002307891845703125,
+                "transparent_fraction": 0.799041748046875,
+                "alpha_zero_fraction": 0.799041748046875,
+                "alpha_opaque_fraction": 0.002307891845703125,
+                "alpha_partial_fraction": 0.19865036010742188,
+                "foreground_coverage": 0.200958251953125,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8919324221716022,
+                "soft_edge_foreground_fraction": 0.10806757782839788,
+                "alpha_bbox": [
+                  99,
+                  25,
+                  375,
+                  485
+                ],
+                "alpha_centroid": [
+                  0.5020824435269552,
+                  0.495450790741268
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 27367,
+                "sha256": "1ebd836a27b65d0a0f45a54313c8f74129c6024b9d1fdd8e527febedee18a1f9",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 46987,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 5802,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-29T23:22:27+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.5.0",
+            "client_job_id": "job-627ffaad053b47bd86afb6ca173e89ec",
+            "prompt_id": "f7638d6a-74c6-4239-8e24-d815dd909b96",
+            "submitted_at": "2026-08-29T23:22:27+00:00",
+            "first_poll_at": "2026-08-29T23:22:27+00:00",
+            "completed_at": "2026-08-29T23:22:33+00:00",
+            "runtime_ms": 5448.165,
+            "history_record_key": "f7638d6a-74c6-4239-8e24-d815dd909b96",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "d4bf0838f3b662cbfbbe7c2621808e70492f608a39f96b8d5968f1eb435b0e09"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "f7638d6a-74c6-4239-8e24-d815dd909b96",
+                      "timestamp": 1788045747878
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "f7638d6a-74c6-4239-8e24-d815dd909b96",
+                      "timestamp": 1788045747892
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "f7638d6a-74c6-4239-8e24-d815dd909b96",
+                      "timestamp": 1788045751421
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00028_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "1ebd836a27b65d0a0f45a54313c8f74129c6024b9d1fdd8e527febedee18a1f9"
+              },
+              {
+                "filename": "ugas-master-transparent_00028_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "e8f1480c2ce962bbbd034c7cce35c2ddcb93f5f3ec05a8f52defba91d624e303"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\birefnet-output.png",
+                "sha256": "1ebd836a27b65d0a0f45a54313c8f74129c6024b9d1fdd8e527febedee18a1f9",
+                "filename": "ugas-foreground-mask_00028_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-0\\birefnet\\job-7f68035616e14c86b0abdb14c185df7b\\birefnet-output-1.png",
+                "sha256": "e8f1480c2ce962bbbd034c7cce35c2ddcb93f5f3ec05a8f52defba91d624e303",
+                "filename": "ugas-master-transparent_00028_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        },
+        "qa": {
+          "foreground_bbox": [
+            118,
+            18,
+            394,
+            478
+          ],
+          "occupancy": 0.484314,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 16,
+            "top": 16,
+            "right": 16,
+            "bottom": 16
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.0,
+            "y": 0.015625
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "0000100000001100000011000001110000111100001111000011110000010100",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        }
+      },
+      "rejection_reasons": []
+    },
+    {
+      "direction": "left",
+      "candidate": 2,
+      "seed": 50602,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\left.json",
+      "guide_sha256": "83a652650b4347c79458c24b0aa3cbe85475b1cf0d6d1c98774fdc8206da7aa9",
+      "eligible": true,
+      "stage": "anchor-left-1",
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "2f516a59f045514c09d2c7c7b40b11d8ebd2d689d0f7a6d0584a22d5ca0e6975",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\job-93b8677e655e4aeab00950974357fefe\\anchor-left-1.png",
+      "output_sha256": "9f255e0d618d7802fdb15e2bf62516df0635943be2a7e77c7840ecdc02defa62",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-305665e6552d4fb8b13af0208877e87e",
+        "prompt_id": "8666f47e-625f-4e62-b8a9-1f9cfa892335",
+        "submitted_at": "2026-08-29T23:22:36+00:00",
+        "first_poll_at": "2026-08-29T23:22:36+00:00",
+        "completed_at": "2026-08-29T23:23:41+00:00",
+        "runtime_ms": 64947.106,
+        "history_record_key": "8666f47e-625f-4e62-b8a9-1f9cfa892335",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "2f516a59f045514c09d2c7c7b40b11d8ebd2d689d0f7a6d0584a22d5ca0e6975",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50602,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\job-93b8677e655e4aeab00950974357fefe\\anchor-left-1.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "8666f47e-625f-4e62-b8a9-1f9cfa892335",
+                  "timestamp": 1788045756451
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "8666f47e-625f-4e62-b8a9-1f9cfa892335",
+                  "timestamp": 1788045756467
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "8666f47e-625f-4e62-b8a9-1f9cfa892335",
+                  "timestamp": 1788045819170
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "anchor-left-1",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00004_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "9f255e0d618d7802fdb15e2bf62516df0635943be2a7e77c7840ecdc02defa62"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\job-93b8677e655e4aeab00950974357fefe\\anchor-left-1.png",
+            "sha256": "9f255e0d618d7802fdb15e2bf62516df0635943be2a7e77c7840ecdc02defa62",
+            "filename": "ugas-multiref_00004_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "left.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+      },
+      "fresh_binding": true,
+      "normalized_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\normalized.png",
+      "normalized_sha256": "91b02551e87b3070bf680634303239c0ca74fa9164d6a7c54499bcef4e64f71d",
+      "metrics": {
+        "frame_name": "anchor-left",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\normalized.png",
+        "sha256": "91b02551e87b3070bf680634303239c0ca74fa9164d6a7c54499bcef4e64f71d",
+        "alpha_bbox_before": [
+          109,
+          34,
+          334,
+          492
+        ],
+        "translation": {
+          "x": 34.5,
+          "y": -14
+        },
+        "scale": 1.0,
+        "pivot_policy": "centerline x 256, ground baseline y 478",
+        "ground_baseline": 478,
+        "guide_sha256": "83a652650b4347c79458c24b0aa3cbe85475b1cf0d6d1c98774fdc8206da7aa9",
+        "normalization_status": "TRANSLATED_NO_STRETCH",
+        "transparency": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 44346,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 172994,
+              "sha256": "4d198b9a1f76d401dac42d4b49a7eb9f1c45d4dd43927e45b5907c88b505535e",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.003265380859375,
+              "transparent_fraction": 0.8130722045898438,
+              "alpha_zero_fraction": 0.8130722045898438,
+              "alpha_opaque_fraction": 0.003265380859375,
+              "alpha_partial_fraction": 0.18366241455078125,
+              "foreground_coverage": 0.18692779541015625,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.9049834700624464,
+              "soft_edge_foreground_fraction": 0.09501652993755356,
+              "alpha_bbox": [
+                109,
+                34,
+                334,
+                492
+              ],
+              "alpha_centroid": [
+                0.4679430734332272,
+                0.5201486514581037
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.8130722045898438,
+              "alpha_opaque_fraction": 0.003265380859375,
+              "alpha_partial_fraction": 0.18366241455078125,
+              "foreground_coverage": 0.18692779541015625,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.9049834700624464,
+              "soft_edge_foreground_fraction": 0.09501652993755356,
+              "alpha_bbox": [
+                109,
+                34,
+                334,
+                492
+              ],
+              "alpha_centroid": [
+                0.4679430734332272,
+                0.5201486514581037
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 44346,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.5.0",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 3675667952,
+                "torch_vram_total": 134217728,
+                "torch_vram_free": 66469360
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.4.3",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "9f255e0d618d7802fdb15e2bf62516df0635943be2a7e77c7840ecdc02defa62",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 172994,
+                "sha256": "4d198b9a1f76d401dac42d4b49a7eb9f1c45d4dd43927e45b5907c88b505535e",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.003265380859375,
+                "transparent_fraction": 0.8130722045898438,
+                "alpha_zero_fraction": 0.8130722045898438,
+                "alpha_opaque_fraction": 0.003265380859375,
+                "alpha_partial_fraction": 0.18366241455078125,
+                "foreground_coverage": 0.18692779541015625,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.9049834700624464,
+                "soft_edge_foreground_fraction": 0.09501652993755356,
+                "alpha_bbox": [
+                  109,
+                  34,
+                  334,
+                  492
+                ],
+                "alpha_centroid": [
+                  0.4679430734332272,
+                  0.5201486514581037
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 23281,
+                "sha256": "235f8b0eb64b17b1d768f9d013fba41ed33c3ffed828aab9759f07ff56b14fc8",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 44346,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 5757,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-29T23:23:41+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.5.0",
+            "client_job_id": "job-a6c9218ea28b413b8d52c8e4fe0d8225",
+            "prompt_id": "1e7c4bf5-f174-47bb-8197-087b1ecc55b6",
+            "submitted_at": "2026-08-29T23:23:42+00:00",
+            "first_poll_at": "2026-08-29T23:23:42+00:00",
+            "completed_at": "2026-08-29T23:23:47+00:00",
+            "runtime_ms": 5407.978,
+            "history_record_key": "1e7c4bf5-f174-47bb-8197-087b1ecc55b6",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "9f255e0d618d7802fdb15e2bf62516df0635943be2a7e77c7840ecdc02defa62"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "1e7c4bf5-f174-47bb-8197-087b1ecc55b6",
+                      "timestamp": 1788045822381
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "1e7c4bf5-f174-47bb-8197-087b1ecc55b6",
+                      "timestamp": 1788045822393
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "1e7c4bf5-f174-47bb-8197-087b1ecc55b6",
+                      "timestamp": 1788045826034
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00029_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "235f8b0eb64b17b1d768f9d013fba41ed33c3ffed828aab9759f07ff56b14fc8"
+              },
+              {
+                "filename": "ugas-master-transparent_00029_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "1216f650df6389269fb9e99e393ee13208aaeb2f28b015c4c84a61da9a01a6bb"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\birefnet-output.png",
+                "sha256": "235f8b0eb64b17b1d768f9d013fba41ed33c3ffed828aab9759f07ff56b14fc8",
+                "filename": "ugas-foreground-mask_00029_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\left\\candidate-1\\birefnet\\job-f73160824ad14b6eac274106c6f8d8ad\\birefnet-output-1.png",
+                "sha256": "1216f650df6389269fb9e99e393ee13208aaeb2f28b015c4c84a61da9a01a6bb",
+                "filename": "ugas-master-transparent_00029_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        },
+        "qa": {
+          "foreground_bbox": [
+            143,
+            20,
+            368,
+            478
+          ],
+          "occupancy": 0.393105,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 16,
+            "top": 16,
+            "right": 16,
+            "bottom": 16
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.000977,
+            "y": 0.013672
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "0000100000011000000111000001110000011100001110000011110000001100",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        }
+      },
+      "rejection_reasons": []
+    },
+    {
+      "direction": "right",
+      "candidate": 1,
+      "seed": 50611,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\right.json",
+      "guide_sha256": "92fbb6c8dc97bb9fd426c58cea8f739fa54029e45ec03027b79121068c86073e",
+      "eligible": true,
+      "stage": "anchor-right-0",
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "3dc6fac2e0a469bb812515b94aa88e0a1ad7760cd81a8a884933afee2c05c1b3",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\job-2dc0fcee669f44929a368b084faeeb76\\anchor-right-0.png",
+      "output_sha256": "70f8997f5e21d88c08d94c84c951b366ed1bbb6132b919b74b6c8874794a47aa",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-77e974f5ac8246f08d30aeaa9ce5caf1",
+        "prompt_id": "3373cbae-f77f-4f5f-b5c2-3dc7b35b754d",
+        "submitted_at": "2026-08-29T23:23:52+00:00",
+        "first_poll_at": "2026-08-29T23:23:52+00:00",
+        "completed_at": "2026-08-29T23:24:56+00:00",
+        "runtime_ms": 64614.87,
+        "history_record_key": "3373cbae-f77f-4f5f-b5c2-3dc7b35b754d",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "13423612ebc246e2696a6cc4fbb5620d5c05be83bcc300c26e408d0b76e3ef06"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "3dc6fac2e0a469bb812515b94aa88e0a1ad7760cd81a8a884933afee2c05c1b3",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50611,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\job-2dc0fcee669f44929a368b084faeeb76\\anchor-right-0.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "3373cbae-f77f-4f5f-b5c2-3dc7b35b754d",
+                  "timestamp": 1788045832079
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "3373cbae-f77f-4f5f-b5c2-3dc7b35b754d",
+                  "timestamp": 1788045832094
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "3373cbae-f77f-4f5f-b5c2-3dc7b35b754d",
+                  "timestamp": 1788045894161
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "anchor-right-0",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "13423612ebc246e2696a6cc4fbb5620d5c05be83bcc300c26e408d0b76e3ef06",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00005_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "70f8997f5e21d88c08d94c84c951b366ed1bbb6132b919b74b6c8874794a47aa"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\job-2dc0fcee669f44929a368b084faeeb76\\anchor-right-0.png",
+            "sha256": "70f8997f5e21d88c08d94c84c951b366ed1bbb6132b919b74b6c8874794a47aa",
+            "filename": "ugas-multiref_00005_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "right.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "13423612ebc246e2696a6cc4fbb5620d5c05be83bcc300c26e408d0b76e3ef06"
+      },
+      "fresh_binding": true,
+      "normalized_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\normalized.png",
+      "normalized_sha256": "cf1d13c35b45126dbb7b85366aeaaebe75e6d6012491e822274e71b6ea23454f",
+      "metrics": {
+        "frame_name": "anchor-right",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\normalized.png",
+        "sha256": "cf1d13c35b45126dbb7b85366aeaaebe75e6d6012491e822274e71b6ea23454f",
+        "alpha_bbox_before": [
+          148,
+          43,
+          355,
+          492
+        ],
+        "translation": {
+          "x": 4.5,
+          "y": -14
+        },
+        "scale": 1.0,
+        "pivot_policy": "centerline x 256, ground baseline y 478",
+        "ground_baseline": 478,
+        "guide_sha256": "92fbb6c8dc97bb9fd426c58cea8f739fa54029e45ec03027b79121068c86073e",
+        "normalization_status": "TRANSLATED_NO_STRETCH",
+        "transparency": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 42024,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 191474,
+              "sha256": "c4defc37831e13337c6e0299dc526194965d2d97c0350c0d0b97bf1561c67a01",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.000949859619140625,
+              "transparent_fraction": 0.819732666015625,
+              "alpha_zero_fraction": 0.819732666015625,
+              "alpha_opaque_fraction": 0.000949859619140625,
+              "alpha_partial_fraction": 0.17931747436523438,
+              "foreground_coverage": 0.180267333984375,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8892839004570848,
+              "soft_edge_foreground_fraction": 0.11071609954291518,
+              "alpha_bbox": [
+                148,
+                43,
+                355,
+                492
+              ],
+              "alpha_centroid": [
+                0.49818318374915355,
+                0.5176786000058193
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.819732666015625,
+              "alpha_opaque_fraction": 0.000949859619140625,
+              "alpha_partial_fraction": 0.17931747436523438,
+              "foreground_coverage": 0.180267333984375,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8892839004570848,
+              "soft_edge_foreground_fraction": 0.11071609954291518,
+              "alpha_bbox": [
+                148,
+                43,
+                355,
+                492
+              ],
+              "alpha_centroid": [
+                0.49818318374915355,
+                0.5176786000058193
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 42024,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.5.0",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 3575004656,
+                "torch_vram_total": 134217728,
+                "torch_vram_free": 66469360
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.4.3",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "70f8997f5e21d88c08d94c84c951b366ed1bbb6132b919b74b6c8874794a47aa",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 191474,
+                "sha256": "c4defc37831e13337c6e0299dc526194965d2d97c0350c0d0b97bf1561c67a01",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.000949859619140625,
+                "transparent_fraction": 0.819732666015625,
+                "alpha_zero_fraction": 0.819732666015625,
+                "alpha_opaque_fraction": 0.000949859619140625,
+                "alpha_partial_fraction": 0.17931747436523438,
+                "foreground_coverage": 0.180267333984375,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8892839004570848,
+                "soft_edge_foreground_fraction": 0.11071609954291518,
+                "alpha_bbox": [
+                  148,
+                  43,
+                  355,
+                  492
+                ],
+                "alpha_centroid": [
+                  0.49818318374915355,
+                  0.5176786000058193
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 24230,
+                "sha256": "0e48bde0f4474a76c1f61d0c44b58064c67634dceacaeeee094f5db1f6cc2b83",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 42024,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 5735,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-29T23:24:56+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.5.0",
+            "client_job_id": "job-5b60a0b6126247048c9186cff5fb7f2c",
+            "prompt_id": "6cfcc6e0-2eec-43d9-a076-b85293904d9f",
+            "submitted_at": "2026-08-29T23:24:57+00:00",
+            "first_poll_at": "2026-08-29T23:24:57+00:00",
+            "completed_at": "2026-08-29T23:25:02+00:00",
+            "runtime_ms": 5383.438,
+            "history_record_key": "6cfcc6e0-2eec-43d9-a076-b85293904d9f",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "70f8997f5e21d88c08d94c84c951b366ed1bbb6132b919b74b6c8874794a47aa"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "6cfcc6e0-2eec-43d9-a076-b85293904d9f",
+                      "timestamp": 1788045897526
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "6cfcc6e0-2eec-43d9-a076-b85293904d9f",
+                      "timestamp": 1788045897538
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "6cfcc6e0-2eec-43d9-a076-b85293904d9f",
+                      "timestamp": 1788045900502
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00030_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "0e48bde0f4474a76c1f61d0c44b58064c67634dceacaeeee094f5db1f6cc2b83"
+              },
+              {
+                "filename": "ugas-master-transparent_00030_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "607d5fd2118127215c3caef590ede97d66db44b93d81455903f92a38177f00af"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\birefnet-output.png",
+                "sha256": "0e48bde0f4474a76c1f61d0c44b58064c67634dceacaeeee094f5db1f6cc2b83",
+                "filename": "ugas-foreground-mask_00030_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-0\\birefnet\\job-476e751378624b07bd588c8383fc93fe\\birefnet-output-1.png",
+                "sha256": "607d5fd2118127215c3caef590ede97d66db44b93d81455903f92a38177f00af",
+                "filename": "ugas-master-transparent_00030_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        },
+        "qa": {
+          "foreground_bbox": [
+            152,
+            29,
+            359,
+            478
+          ],
+          "occupancy": 0.354549,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 16,
+            "top": 16,
+            "right": 16,
+            "bottom": 16
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.000977,
+            "y": 0.004883
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "0000100000011000000111000011110000111000001110000011100000010000",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        }
+      },
+      "rejection_reasons": []
+    },
+    {
+      "direction": "right",
+      "candidate": 2,
+      "seed": 50612,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\right.json",
+      "guide_sha256": "92fbb6c8dc97bb9fd426c58cea8f739fa54029e45ec03027b79121068c86073e",
+      "eligible": true,
+      "stage": "anchor-right-1",
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "950ed52fd8765852a378ea92b01a6c9d87750094d9ac1f1f83a0fd74413600e6",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\job-6a8d707f8ff145f0bdcf427a08a21c00\\anchor-right-1.png",
+      "output_sha256": "1791f7789020c4471a046be306223c5511d66597cd5257e72ad407604488de77",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-c8d1411a965041ccb2dbdd581b805fa4",
+        "prompt_id": "5e7fe00a-2e3f-4165-8e13-6c35231611f0",
+        "submitted_at": "2026-08-29T23:25:05+00:00",
+        "first_poll_at": "2026-08-29T23:25:05+00:00",
+        "completed_at": "2026-08-29T23:26:10+00:00",
+        "runtime_ms": 64922.125,
+        "history_record_key": "5e7fe00a-2e3f-4165-8e13-6c35231611f0",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "13423612ebc246e2696a6cc4fbb5620d5c05be83bcc300c26e408d0b76e3ef06"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "950ed52fd8765852a378ea92b01a6c9d87750094d9ac1f1f83a0fd74413600e6",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50612,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\job-6a8d707f8ff145f0bdcf427a08a21c00\\anchor-right-1.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "5e7fe00a-2e3f-4165-8e13-6c35231611f0",
+                  "timestamp": 1788045905712
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "5e7fe00a-2e3f-4165-8e13-6c35231611f0",
+                  "timestamp": 1788045905728
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "5e7fe00a-2e3f-4165-8e13-6c35231611f0",
+                  "timestamp": 1788045970038
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "anchor-right-1",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "13423612ebc246e2696a6cc4fbb5620d5c05be83bcc300c26e408d0b76e3ef06",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00006_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "1791f7789020c4471a046be306223c5511d66597cd5257e72ad407604488de77"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\job-6a8d707f8ff145f0bdcf427a08a21c00\\anchor-right-1.png",
+            "sha256": "1791f7789020c4471a046be306223c5511d66597cd5257e72ad407604488de77",
+            "filename": "ugas-multiref_00006_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "right.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "13423612ebc246e2696a6cc4fbb5620d5c05be83bcc300c26e408d0b76e3ef06"
+      },
+      "fresh_binding": true,
+      "normalized_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\normalized.png",
+      "normalized_sha256": "93793723d2ba125d5e36d6c20f7b51100656d8499ce58dab4712a80f592afa37",
+      "metrics": {
+        "frame_name": "anchor-right",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\normalized.png",
+        "sha256": "93793723d2ba125d5e36d6c20f7b51100656d8499ce58dab4712a80f592afa37",
+        "alpha_bbox_before": [
+          149,
+          46,
+          344,
+          496
+        ],
+        "translation": {
+          "x": 9.5,
+          "y": -18
+        },
+        "scale": 1.0,
+        "pivot_policy": "centerline x 256, ground baseline y 478",
+        "ground_baseline": 478,
+        "guide_sha256": "92fbb6c8dc97bb9fd426c58cea8f739fa54029e45ec03027b79121068c86073e",
+        "normalization_status": "TRANSLATED_NO_STRETCH",
+        "transparency": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 42634,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 190186,
+              "sha256": "f7a323d2145cbf95b3e3c117f3f5df4e25f1d6bd983fd54ca3aa6980bc87dba8",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.002048492431640625,
+              "transparent_fraction": 0.8175811767578125,
+              "alpha_zero_fraction": 0.8175811767578125,
+              "alpha_opaque_fraction": 0.002048492431640625,
+              "alpha_partial_fraction": 0.18037033081054688,
+              "foreground_coverage": 0.1824188232421875,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.89155165202844,
+              "soft_edge_foreground_fraction": 0.10844834797156001,
+              "alpha_bbox": [
+                149,
+                46,
+                344,
+                496
+              ],
+              "alpha_centroid": [
+                0.478001898395023,
+                0.5137957117837725
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.8175811767578125,
+              "alpha_opaque_fraction": 0.002048492431640625,
+              "alpha_partial_fraction": 0.18037033081054688,
+              "foreground_coverage": 0.1824188232421875,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.89155165202844,
+              "soft_edge_foreground_fraction": 0.10844834797156001,
+              "alpha_bbox": [
+                149,
+                46,
+                344,
+                496
+              ],
+              "alpha_centroid": [
+                0.478001898395023,
+                0.5137957117837725
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 42634,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.5.0",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 3575004656,
+                "torch_vram_total": 134217728,
+                "torch_vram_free": 66469360
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.4.3",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "1791f7789020c4471a046be306223c5511d66597cd5257e72ad407604488de77",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 190186,
+                "sha256": "f7a323d2145cbf95b3e3c117f3f5df4e25f1d6bd983fd54ca3aa6980bc87dba8",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.002048492431640625,
+                "transparent_fraction": 0.8175811767578125,
+                "alpha_zero_fraction": 0.8175811767578125,
+                "alpha_opaque_fraction": 0.002048492431640625,
+                "alpha_partial_fraction": 0.18037033081054688,
+                "foreground_coverage": 0.1824188232421875,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.89155165202844,
+                "soft_edge_foreground_fraction": 0.10844834797156001,
+                "alpha_bbox": [
+                  149,
+                  46,
+                  344,
+                  496
+                ],
+                "alpha_centroid": [
+                  0.478001898395023,
+                  0.5137957117837725
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 24739,
+                "sha256": "25604f0e57da9fa9229f496c7e54c97e75f49a93c92fdce226c8c2ee51c2b010",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 42634,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 5956,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-29T23:26:10+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.5.0",
+            "client_job_id": "job-73b82986c6e0480e9e0185ab0739ade2",
+            "prompt_id": "da2306ee-a8f3-4759-be4f-084837e449e1",
+            "submitted_at": "2026-08-29T23:26:11+00:00",
+            "first_poll_at": "2026-08-29T23:26:11+00:00",
+            "completed_at": "2026-08-29T23:26:16+00:00",
+            "runtime_ms": 5606.674,
+            "history_record_key": "da2306ee-a8f3-4759-be4f-084837e449e1",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "1791f7789020c4471a046be306223c5511d66597cd5257e72ad407604488de77"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "da2306ee-a8f3-4759-be4f-084837e449e1",
+                      "timestamp": 1788045971557
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "da2306ee-a8f3-4759-be4f-084837e449e1",
+                      "timestamp": 1788045971571
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "da2306ee-a8f3-4759-be4f-084837e449e1",
+                      "timestamp": 1788045975475
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00031_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "25604f0e57da9fa9229f496c7e54c97e75f49a93c92fdce226c8c2ee51c2b010"
+              },
+              {
+                "filename": "ugas-master-transparent_00031_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "eea5169d1909ebfbac2d8bb95d2a7e04fff7908ce11a5d1b2b77c98867029069"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\birefnet-output.png",
+                "sha256": "25604f0e57da9fa9229f496c7e54c97e75f49a93c92fdce226c8c2ee51c2b010",
+                "filename": "ugas-foreground-mask_00031_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\right\\candidate-1\\birefnet\\job-534e8bf4b43842019c49ce0d90200515\\birefnet-output-1.png",
+                "sha256": "eea5169d1909ebfbac2d8bb95d2a7e04fff7908ce11a5d1b2b77c98867029069",
+                "filename": "ugas-master-transparent_00031_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        },
+        "qa": {
+          "foreground_bbox": [
+            159,
+            28,
+            354,
+            478
+          ],
+          "occupancy": 0.33474,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 16,
+            "top": 16,
+            "right": 16,
+            "bottom": 16
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.000977,
+            "y": 0.005859
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "0000100000011000001110000011110000111100001110000001100000010000",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        }
+      },
+      "rejection_reasons": []
+    },
+    {
+      "direction": "back",
+      "candidate": 1,
+      "seed": 50621,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\back.json",
+      "guide_sha256": "1c0d4730ea55189072dce327260f25cb78c1add46236fa0fa6feaf4a77ccddc3",
+      "eligible": true,
+      "stage": "anchor-back-0",
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "84e304860de43a3024d9fa6840619426f3eff474ed2aaf21cc1cd170a6e8e54b",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\job-d2fea7bdbde44ff293966fa868a105f5\\anchor-back-0.png",
+      "output_sha256": "53730fa8db14c236c9d147a532c8ec700ac363701e51172812b4ae18f5103566",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-155f59689a484e82b55bb5d0466b76df",
+        "prompt_id": "83085902-037a-45df-95be-8af74499530b",
+        "submitted_at": "2026-08-29T23:26:21+00:00",
+        "first_poll_at": "2026-08-29T23:26:21+00:00",
+        "completed_at": "2026-08-29T23:27:26+00:00",
+        "runtime_ms": 65197.354,
+        "history_record_key": "83085902-037a-45df-95be-8af74499530b",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "886b8ddcbdf00ae6284b8de114ea6a2611f2830a5c436257d275d23843a3c9c1"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "84e304860de43a3024d9fa6840619426f3eff474ed2aaf21cc1cd170a6e8e54b",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50621,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\job-d2fea7bdbde44ff293966fa868a105f5\\anchor-back-0.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "83085902-037a-45df-95be-8af74499530b",
+                  "timestamp": 1788045981708
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "83085902-037a-45df-95be-8af74499530b",
+                  "timestamp": 1788045981739
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "83085902-037a-45df-95be-8af74499530b",
+                  "timestamp": 1788046042356
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "anchor-back-0",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "886b8ddcbdf00ae6284b8de114ea6a2611f2830a5c436257d275d23843a3c9c1",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00007_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "53730fa8db14c236c9d147a532c8ec700ac363701e51172812b4ae18f5103566"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\job-d2fea7bdbde44ff293966fa868a105f5\\anchor-back-0.png",
+            "sha256": "53730fa8db14c236c9d147a532c8ec700ac363701e51172812b4ae18f5103566",
+            "filename": "ugas-multiref_00007_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "back.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "886b8ddcbdf00ae6284b8de114ea6a2611f2830a5c436257d275d23843a3c9c1"
+      },
+      "fresh_binding": true,
+      "normalized_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\normalized.png",
+      "normalized_sha256": "ab394b04d20e97ef6b648140190eb5c173fb02e77dd89ee690bccbf37a69d338",
+      "metrics": {
+        "frame_name": "anchor-back",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\normalized.png",
+        "sha256": "ab394b04d20e97ef6b648140190eb5c173fb02e77dd89ee690bccbf37a69d338",
+        "alpha_bbox_before": [
+          110,
+          34,
+          362,
+          494
+        ],
+        "translation": {
+          "x": 20.0,
+          "y": -16
+        },
+        "scale": 1.0,
+        "pivot_policy": "centerline x 256, ground baseline y 478",
+        "ground_baseline": 478,
+        "guide_sha256": "1c0d4730ea55189072dce327260f25cb78c1add46236fa0fa6feaf4a77ccddc3",
+        "normalization_status": "TRANSLATED_NO_STRETCH",
+        "transparency": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 51976,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 191680,
+              "sha256": "ad6c891b18d9bb7db3c84642a9bbf3d58b3c009a2582196b4ee799a7dc9344c1",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.002399444580078125,
+              "transparent_fraction": 0.7810287475585938,
+              "alpha_zero_fraction": 0.7810287475585938,
+              "alpha_opaque_fraction": 0.002399444580078125,
+              "alpha_partial_fraction": 0.21657180786132812,
+              "foreground_coverage": 0.21897125244140625,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.9054736768753702,
+              "soft_edge_foreground_fraction": 0.0945263231246298,
+              "alpha_bbox": [
+                110,
+                34,
+                362,
+                494
+              ],
+              "alpha_centroid": [
+                0.49942704658592035,
+                0.5257630668356503
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.7810287475585938,
+              "alpha_opaque_fraction": 0.002399444580078125,
+              "alpha_partial_fraction": 0.21657180786132812,
+              "foreground_coverage": 0.21897125244140625,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.9054736768753702,
+              "soft_edge_foreground_fraction": 0.0945263231246298,
+              "alpha_bbox": [
+                110,
+                34,
+                362,
+                494
+              ],
+              "alpha_centroid": [
+                0.49942704658592035,
+                0.5257630668356503
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 51976,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.5.0",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 3575004656,
+                "torch_vram_total": 134217728,
+                "torch_vram_free": 66469360
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.4.3",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "53730fa8db14c236c9d147a532c8ec700ac363701e51172812b4ae18f5103566",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 191680,
+                "sha256": "ad6c891b18d9bb7db3c84642a9bbf3d58b3c009a2582196b4ee799a7dc9344c1",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.002399444580078125,
+                "transparent_fraction": 0.7810287475585938,
+                "alpha_zero_fraction": 0.7810287475585938,
+                "alpha_opaque_fraction": 0.002399444580078125,
+                "alpha_partial_fraction": 0.21657180786132812,
+                "foreground_coverage": 0.21897125244140625,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.9054736768753702,
+                "soft_edge_foreground_fraction": 0.0945263231246298,
+                "alpha_bbox": [
+                  110,
+                  34,
+                  362,
+                  494
+                ],
+                "alpha_centroid": [
+                  0.49942704658592035,
+                  0.5257630668356503
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 25853,
+                "sha256": "8a0d7f5437ec3b54b88d9caced9ad0f957c5851e96e4f498713593b42c684e69",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 51976,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 5792,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-29T23:27:27+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.5.0",
+            "client_job_id": "job-288e4b10c1eb48f790c8de7ea0440a5d",
+            "prompt_id": "d97bdaea-b224-430e-ad35-f93681c4bbfe",
+            "submitted_at": "2026-08-29T23:27:27+00:00",
+            "first_poll_at": "2026-08-29T23:27:27+00:00",
+            "completed_at": "2026-08-29T23:27:33+00:00",
+            "runtime_ms": 5441.248,
+            "history_record_key": "d97bdaea-b224-430e-ad35-f93681c4bbfe",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "53730fa8db14c236c9d147a532c8ec700ac363701e51172812b4ae18f5103566"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "d97bdaea-b224-430e-ad35-f93681c4bbfe",
+                      "timestamp": 1788046047797
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "d97bdaea-b224-430e-ad35-f93681c4bbfe",
+                      "timestamp": 1788046047810
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "d97bdaea-b224-430e-ad35-f93681c4bbfe",
+                      "timestamp": 1788046052171
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00032_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "8a0d7f5437ec3b54b88d9caced9ad0f957c5851e96e4f498713593b42c684e69"
+              },
+              {
+                "filename": "ugas-master-transparent_00032_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "761a7de261c4c3c38fca26fab84569ab789430f01f3c3c975c1938650ad2e7d6"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\birefnet-output.png",
+                "sha256": "8a0d7f5437ec3b54b88d9caced9ad0f957c5851e96e4f498713593b42c684e69",
+                "filename": "ugas-foreground-mask_00032_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-0\\birefnet\\job-e957688d678444348f17a26648a592ca\\birefnet-output-1.png",
+                "sha256": "761a7de261c4c3c38fca26fab84569ab789430f01f3c3c975c1938650ad2e7d6",
+                "filename": "ugas-master-transparent_00032_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        },
+        "qa": {
+          "foreground_bbox": [
+            130,
+            18,
+            382,
+            478
+          ],
+          "occupancy": 0.4422,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 16,
+            "top": 16,
+            "right": 16,
+            "bottom": 16
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.0,
+            "y": 0.015625
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "0000100000011100000111000001110000111100001110000011110000010100",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        }
+      },
+      "rejection_reasons": []
+    },
+    {
+      "direction": "back",
+      "candidate": 2,
+      "seed": 50622,
+      "guide": "D:\\Projeto Codexx\\ugas\\pose-guides\\views\\back.json",
+      "guide_sha256": "1c0d4730ea55189072dce327260f25cb78c1add46236fa0fa6feaf4a77ccddc3",
+      "eligible": true,
+      "stage": "anchor-back-1",
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "32edde5336f3dc53c3e2219b58efc719b48dea0767053e0f006db269ae6ce2d6",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\job-3bcb5f3767914eaeb8ff9810682d7b90\\anchor-back-1.png",
+      "output_sha256": "8523d290ec84fcb0e5c946f884dfee41f8cf013e4ded7adfa82e83a355f1baff",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-01473ac46e284197a0f762109abf242a",
+        "prompt_id": "92cdda46-91c4-48e9-a4b2-a96dbf937e8c",
+        "submitted_at": "2026-08-29T23:27:36+00:00",
+        "first_poll_at": "2026-08-29T23:27:36+00:00",
+        "completed_at": "2026-08-29T23:28:46+00:00",
+        "runtime_ms": 70012.486,
+        "history_record_key": "92cdda46-91c4-48e9-a4b2-a96dbf937e8c",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "886b8ddcbdf00ae6284b8de114ea6a2611f2830a5c436257d275d23843a3c9c1"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "32edde5336f3dc53c3e2219b58efc719b48dea0767053e0f006db269ae6ce2d6",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50622,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\job-3bcb5f3767914eaeb8ff9810682d7b90\\anchor-back-1.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "92cdda46-91c4-48e9-a4b2-a96dbf937e8c",
+                  "timestamp": 1788046056267
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "92cdda46-91c4-48e9-a4b2-a96dbf937e8c",
+                  "timestamp": 1788046056283
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "92cdda46-91c4-48e9-a4b2-a96dbf937e8c",
+                  "timestamp": 1788046122153
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "anchor-back-1",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "886b8ddcbdf00ae6284b8de114ea6a2611f2830a5c436257d275d23843a3c9c1",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00008_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "8523d290ec84fcb0e5c946f884dfee41f8cf013e4ded7adfa82e83a355f1baff"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\job-3bcb5f3767914eaeb8ff9810682d7b90\\anchor-back-1.png",
+            "sha256": "8523d290ec84fcb0e5c946f884dfee41f8cf013e4ded7adfa82e83a355f1baff",
+            "filename": "ugas-multiref_00008_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "back.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "886b8ddcbdf00ae6284b8de114ea6a2611f2830a5c436257d275d23843a3c9c1"
+      },
+      "fresh_binding": true,
+      "normalized_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\normalized.png",
+      "normalized_sha256": "c12465f2b61999a5cc85e7431f6014cdfc91d50cc9c46de56eaaa41a3acc7fd0",
+      "metrics": {
+        "frame_name": "anchor-back",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\normalized.png",
+        "sha256": "c12465f2b61999a5cc85e7431f6014cdfc91d50cc9c46de56eaaa41a3acc7fd0",
+        "alpha_bbox_before": [
+          123,
+          38,
+          349,
+          484
+        ],
+        "translation": {
+          "x": 20.0,
+          "y": -6
+        },
+        "scale": 1.0,
+        "pivot_policy": "centerline x 256, ground baseline y 478",
+        "ground_baseline": 478,
+        "guide_sha256": "1c0d4730ea55189072dce327260f25cb78c1add46236fa0fa6feaf4a77ccddc3",
+        "normalization_status": "TRANSLATED_NO_STRETCH",
+        "transparency": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 44220,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 166230,
+              "sha256": "039fa3df5929e2b2e2d627312d949f90c55963b7e1b58e6cb101e47db6e54cea",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.003215789794921875,
+              "transparent_fraction": 0.8105545043945312,
+              "alpha_zero_fraction": 0.8105545043945312,
+              "alpha_opaque_fraction": 0.003215789794921875,
+              "alpha_partial_fraction": 0.18622970581054688,
+              "foreground_coverage": 0.18944549560546875,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8904192340219886,
+              "soft_edge_foreground_fraction": 0.10958076597801136,
+              "alpha_bbox": [
+                123,
+                38,
+                349,
+                484
+              ],
+              "alpha_centroid": [
+                0.48620648238341185,
+                0.5155246340260159
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.8105545043945312,
+              "alpha_opaque_fraction": 0.003215789794921875,
+              "alpha_partial_fraction": 0.18622970581054688,
+              "foreground_coverage": 0.18944549560546875,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8904192340219886,
+              "soft_edge_foreground_fraction": 0.10958076597801136,
+              "alpha_bbox": [
+                123,
+                38,
+                349,
+                484
+              ],
+              "alpha_centroid": [
+                0.48620648238341185,
+                0.5155246340260159
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 44220,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.5.0",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 3608559088,
+                "torch_vram_total": 134217728,
+                "torch_vram_free": 66469360
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.4.3",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "8523d290ec84fcb0e5c946f884dfee41f8cf013e4ded7adfa82e83a355f1baff",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 166230,
+                "sha256": "039fa3df5929e2b2e2d627312d949f90c55963b7e1b58e6cb101e47db6e54cea",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.003215789794921875,
+                "transparent_fraction": 0.8105545043945312,
+                "alpha_zero_fraction": 0.8105545043945312,
+                "alpha_opaque_fraction": 0.003215789794921875,
+                "alpha_partial_fraction": 0.18622970581054688,
+                "foreground_coverage": 0.18944549560546875,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8904192340219886,
+                "soft_edge_foreground_fraction": 0.10958076597801136,
+                "alpha_bbox": [
+                  123,
+                  38,
+                  349,
+                  484
+                ],
+                "alpha_centroid": [
+                  0.48620648238341185,
+                  0.5155246340260159
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 25498,
+                "sha256": "1e5b1009812cebfbfa7d4a7327db00be27fe9bede05ce8e77081532955d500ba",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 44220,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 5950,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-29T23:28:46+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.5.0",
+            "client_job_id": "job-33a513d977a04f5da9eb95845d5505e6",
+            "prompt_id": "c4a6782d-13a6-44b6-9d7e-4374f609001b",
+            "submitted_at": "2026-08-29T23:28:46+00:00",
+            "first_poll_at": "2026-08-29T23:28:46+00:00",
+            "completed_at": "2026-08-29T23:28:52+00:00",
+            "runtime_ms": 5600.634,
+            "history_record_key": "c4a6782d-13a6-44b6-9d7e-4374f609001b",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "8523d290ec84fcb0e5c946f884dfee41f8cf013e4ded7adfa82e83a355f1baff"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "c4a6782d-13a6-44b6-9d7e-4374f609001b",
+                      "timestamp": 1788046126979
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "c4a6782d-13a6-44b6-9d7e-4374f609001b",
+                      "timestamp": 1788046126993
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "c4a6782d-13a6-44b6-9d7e-4374f609001b",
+                      "timestamp": 1788046130875
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00033_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "1e5b1009812cebfbfa7d4a7327db00be27fe9bede05ce8e77081532955d500ba"
+              },
+              {
+                "filename": "ugas-master-transparent_00033_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "fd72522ec581b1f8270f7f4797878bd8848441b153f223f30830a20fc4f829ae"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\birefnet-output.png",
+                "sha256": "1e5b1009812cebfbfa7d4a7327db00be27fe9bede05ce8e77081532955d500ba",
+                "filename": "ugas-foreground-mask_00033_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\anchors\\back\\candidate-1\\birefnet\\job-f0d16bb962ea44dfb64d0bd5d22942b4\\birefnet-output-1.png",
+                "sha256": "fd72522ec581b1f8270f7f4797878bd8848441b153f223f30830a20fc4f829ae",
+                "filename": "ugas-master-transparent_00033_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        },
+        "qa": {
+          "foreground_bbox": [
+            143,
+            32,
+            369,
+            478
+          ],
+          "occupancy": 0.384506,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 16,
+            "top": 16,
+            "right": 16,
+            "bottom": 16
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.0,
+            "y": 0.001953
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "0000100000011000000111000011110000111100001110000011110000011000",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        }
+      },
+      "rejection_reasons": []
+    }
+  ],
+  "contact_sheet": "docs/evidence/directional-anchors-contact-sheet.png",
+  "human_visual_review": "required",
+  "production_approval": "not-granted"
+}

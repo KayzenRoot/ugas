@@ -1,4 +1,4 @@
-"""UGAS v0.4.3 machine-readable CLI."""
+"""UGAS v0.5.0 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -26,6 +26,9 @@ from .providers import comfyui_healthcheck
 from .render_node import doctor, lifecycle, probe, setup
 from .router import route_request
 from .workflow_registry import load_workflows, load_workflow, validate_api_workflow
+from .identity import ANCHOR_ASSET_ID
+from .pose_guides import ensure_pose_guides, render_pose_guides
+from .multiview import qualify_multiref, generate_directional_anchors, generate_walk_pilot, identity_inspect
 
 
 def _repo_root() -> Path:
@@ -49,7 +52,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.4.3")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.5.0")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -80,6 +83,11 @@ def build_parser() -> argparse.ArgumentParser:
     visual = sub.add_parser("visual"); visual_sub = visual.add_subparsers(dest="visual_action", required=True); approve = visual_sub.add_parser("approve"); approve.add_argument("asset_id"); approve.add_argument("--note", default=""); _json_flag(approve)
     benchmark = sub.add_parser("benchmark"); benchmark_sub = benchmark.add_subparsers(dest="benchmark_action", required=True); quality = benchmark_sub.add_parser("quality"); quality.add_argument("prompt"); quality.add_argument("--url", default="http://127.0.0.1:8188"); quality.add_argument("--profile", default="generic-2d"); quality.add_argument("--seed", type=int, default=4301); quality.add_argument("--width", type=int, default=512); quality.add_argument("--height", type=int, default=512); _json_flag(quality)
     asset = sub.add_parser("asset"); asset_sub = asset.add_subparsers(dest="asset_action", required=True); status = asset_sub.add_parser("status"); status.add_argument("asset_id"); _json_flag(status); verify_integrity = asset_sub.add_parser("verify-integrity"); verify_integrity.add_argument("asset_id"); _json_flag(verify_integrity)
+    identity = sub.add_parser("identity"); identity_sub = identity.add_subparsers(dest="identity_action", required=True); identity_inspect_parser = identity_sub.add_parser("inspect"); identity_inspect_parser.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); identity_inspect_parser.add_argument("--output", type=Path); _json_flag(identity_inspect_parser)
+    guides = sub.add_parser("pose-guides"); guides_sub = guides.add_subparsers(dest="guides_action", required=True); guide_validate = guides_sub.add_parser("validate"); _json_flag(guide_validate); guide_render = guides_sub.add_parser("render"); guide_render.add_argument("kind", choices=["views", "walk-front-8"]); _json_flag(guide_render)
+    multiref = sub.add_parser("multiref"); multiref_sub = multiref.add_subparsers(dest="multiref_action", required=True); multiref_qualify = multiref_sub.add_parser("qualify"); multiref_qualify.add_argument("--asset-id", default=ANCHOR_ASSET_ID); multiref_qualify.add_argument("--url", default="http://127.0.0.1:8188"); multiref_qualify.add_argument("--seed-base", type=int, default=50501); _json_flag(multiref_qualify)
+    anchors = sub.add_parser("anchors"); anchors_sub = anchors.add_subparsers(dest="anchors_action", required=True); anchors_generate = anchors_sub.add_parser("generate"); anchors_generate.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); anchors_generate.add_argument("--directions", nargs="+", default=["front", "left", "right", "back"]); anchors_generate.add_argument("--url", default="http://127.0.0.1:8188"); anchors_generate.add_argument("--seed-base", type=int, default=50601); _json_flag(anchors_generate); anchors_status = anchors_sub.add_parser("status"); anchors_status.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); _json_flag(anchors_status)
+    animation = sub.add_parser("animation"); animation_sub = animation.add_subparsers(dest="animation_action", required=True); animation_generate = animation_sub.add_parser("generate"); animation_generate.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); animation_generate.add_argument("--animation", default="walk", choices=["walk"]); animation_generate.add_argument("--view", default="front", choices=["front"]); animation_generate.add_argument("--frames", type=int, default=8); animation_generate.add_argument("--url", default="http://127.0.0.1:8188"); animation_generate.add_argument("--seed-base", type=int, default=50701); _json_flag(animation_generate); animation_status = animation_sub.add_parser("status"); animation_status.add_argument("animation_id", nargs="?", default="walk-front-8"); _json_flag(animation_status); animation_preview = animation_sub.add_parser("preview"); animation_preview.add_argument("animation_id", nargs="?", default="walk-front-8"); _json_flag(animation_preview)
     return parser
 
 
@@ -128,6 +136,26 @@ def main(argv: list[str] | None = None) -> int:
             if args.asset_action == "verify-integrity":
                 result = __import__("ugas.master_assets", fromlist=["verify_asset_integrity"]).verify_asset_integrity(root, args.asset_id); _json(result); return 0 if result.get("status") == "REVISION_INTEGRITY_PASSED" else 2
             _json(__import__("ugas.master_assets", fromlist=["asset_status"]).asset_status(root, args.asset_id)); return 0
+        if args.command == "identity":
+            value = identity_inspect(root, args.asset_id)
+            if args.output:
+                args.output.parent.mkdir(parents=True, exist_ok=True); args.output.write_text(__import__("json").dumps(value["manifest"], indent=2, ensure_ascii=False) + "\n", encoding="utf-8"); value["output"] = str(args.output)
+            _json(value); return 0 if value.get("status") == "IDENTITY_MANIFEST_VALID" else 2
+        if args.command == "pose-guides":
+            value = ensure_pose_guides(root) if args.guides_action == "validate" else render_pose_guides(root, args.kind)
+            _json(value); return 0 if value.get("status") in {"POSE_GUIDES_VALID", "POSE_GUIDES_RENDERED"} else 2
+        if args.command == "multiref":
+            value = qualify_multiref(root, endpoint=args.url, asset_id=args.asset_id, seed_base=args.seed_base); _json(value); return 0 if value.get("status") == "MULTI_REFERENCE_QUALIFIED" else 2
+        if args.command == "anchors":
+            if args.anchors_action == "status":
+                path = root / "docs/evidence/directional-anchor-set.json"; value = __import__("json").loads(path.read_text(encoding="utf-8")) if path.is_file() else {"status": "NOT_RUN", "asset_id": args.asset_id}; _json(value); return 0 if value.get("status") == "DIRECTIONAL_ANCHORS_VISUAL_REVIEW_REQUIRED" else 2
+            value = generate_directional_anchors(root, args.asset_id, endpoint=args.url, directions=args.directions, seed_base=args.seed_base); _json(value); return 0 if value.get("status") == "DIRECTIONAL_ANCHORS_VISUAL_REVIEW_REQUIRED" else 2
+        if args.command == "animation":
+            if args.animation_action == "status":
+                path = root / "docs/evidence/walk-front-8.json"; value = __import__("json").loads(path.read_text(encoding="utf-8")) if path.is_file() else {"status": "NOT_RUN", "animation_id": args.animation_id}; _json(value); return 0 if value.get("status") == "WALK_CYCLE_VISUAL_REVIEW_REQUIRED" else 2
+            if args.animation_action == "preview":
+                path = root / "docs/evidence/walk-front-8-preview.gif"; value = {"status": "PREVIEW_READY" if path.is_file() else "NOT_AVAILABLE", "animation_id": args.animation_id, "preview": str(path)}; _json(value); return 0 if path.is_file() else 2
+            value = generate_walk_pilot(root, args.asset_id, endpoint=args.url, frames=args.frames, seed_base=args.seed_base); _json(value); return 0 if value.get("status") == "WALK_CYCLE_VISUAL_REVIEW_REQUIRED" else 2
     except Exception as exc:
         _json({"status": "error", "error_type": type(exc).__name__, "error": str(exc)})
         return 2

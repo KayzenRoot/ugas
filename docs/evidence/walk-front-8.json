@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.5.0",
+  "animation": "walk",
+  "view": "front",
+  "frames": 8,
+  "fps": 8,
+  "loop": true,
+  "frame_width": 512,
+  "frame_height": 512,
+  "pivot_policy": "centerline x 256, ground baseline y 478",
+  "frame_files": [
+    "tmp/multiview/walk-front-8/frame-00-contact-left/candidate-0/normalized.png",
+    "tmp/multiview/walk-front-8/frame-01-down-left/candidate-0/normalized.png",
+    "tmp/multiview/walk-front-8/frame-02-passing-left/candidate-0/normalized.png",
+    "tmp/multiview/walk-front-8/frame-03-up-left/candidate-0/normalized.png",
+    "tmp/multiview/walk-front-8/frame-04-contact-right/candidate-0/normalized.png",
+    "tmp/multiview/walk-front-8/frame-05-down-right/candidate-0/normalized.png",
+    "tmp/multiview/walk-front-8/frame-06-passing-right/candidate-0/normalized.png",
+    "tmp/multiview/walk-front-8/frame-07-high-right/candidate-1/normalized.png"
+  ],
+  "frame_hashes": [
+    "d43418c89626003cc3a3081322bc7f81aee2aa4347508c24d15df13a94ef48e9",
+    "2b134c4c4141f38359dab5d9396a2537e129753561ee34887200cdfdc1ae397e",
+    "9d1ec4db3ee41dc09513e5c34958ef263606a10ee03fb84a23e23566570bb51c",
+    "8ea5aa5c934ab451ae0fb97b7228361a2321ace8a316ae72c54e5670abc9f856",
+    "981a4546425f06fb03b1cbda143bb7931d9b4656c6bc185a386411c0f73c5f6a",
+    "26d37de8f4ebbfd167893571b4bbd7dc395142808e6a3e0bf8adaeb775c7b963",
+    "42fc855e81d1404feb593cf9d2c70df9c7ea273fb68adc1c6dc23b0ca8e85386",
+    "cdb98f78a226f62bde16fb75c86bf85ba3a52fbd1b01eec494c585a46f30c923"
+  ],
+  "spritesheet": "docs/evidence/walk-front-8-spritesheet.png",
+  "preview_gif": "docs/evidence/walk-front-8-preview.gif",
+  "contact_sheet": "docs/evidence/walk-front-8-contact-sheet.png",
+  "temporal_qa": "TEMPORAL_QA_PASSED",
+  "visual_review": "required",
+  "frame_diff_contact": "docs/evidence/walk-frame-diff-contact.png"
+}

@@ -1,13 +1,13 @@
 # UGAS roadmap
 
-## v0.4.3 - current slice
+## v0.5.0 - current slice
 
-Correct the v0.4.2 reference-edit quality failure. This slice independently qualifies the image-edit workflow, records fresh execution binding, adds an explicit color-only edit contract, benchmarks official and legacy parameters, runs a bounded generative candidate set, and uses deterministic armor recolour when the target mask is confident. Photometric, head, protected-region, transparency and revision-integrity evidence are required before human review.
+Qualificação experimental de multi-reference nativo FLUX.2 Klein, guias determinísticos, quatro âncoras coerentes e walk/front/8. O resultado técnico está `READY_FOR_REVIEW / ANIMATION_PILOT_VISUAL_REVIEW_REQUIRED`; aprovação visual humana e eventual aprovação de produção permanecem pendentes.
 
-## Release gate
+## Next gate
 
-The current pilot is technically `READY_FOR_REVIEW / VISUAL_REVIEW_REQUIRED`. Production readiness is false until a human explicitly approves the selected R4 revision and SHA-256. External approval is not inferred.
+Somente após a revisão visual do usuário e nova autorização explícita podem ser definidos outros ciclos, mais vistas ou integração de runtime. Nenhuma capacidade não testada é inferida a partir deste piloto.
 
-## Next gated increment
+## Explicitly not in v0.5.0
 
-Only after this correction is accepted may a new prompt define the next scope. Animation, multi-frame idle/walk/run/attack/death, spritesheets, pose generation, ControlNet/IP-Adapter, custom nodes, 3D/Blender, audio, cloud inference, paid providers and production LoRAs are not authorized by v0.4.3.
+Animação genérica, idle/run/attack/hit/death, todas as direções, 3D/Blender, áudio, engine integration, DWPose/OpenPose/ControlNet, custom nodes, cloud inference, paid providers e produção automática.

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.local/schemas/directional-anchor-set.json",
+  "title": "UGAS directional anchor set v0.5.0",
+  "type": "object",
+  "required": ["schema_version", "status", "asset_id", "anchor_set", "candidates"],
+  "properties": {"schema_version": {"const": "0.5.0"}, "status": {"type": "string"}, "asset_id": {"type": "string"}, "anchor_set": {"type": "object"}, "candidates": {"type": "array"}}
+}

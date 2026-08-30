@@ -1,0 +1,878 @@
+{
+  "schema_version": "0.5.0",
+  "status": "MULTI_REFERENCE_QUALIFIED",
+  "capability": "multi-reference-edit",
+  "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+  "canonical_anchor": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "conditioning_contract": {
+    "reference[0]": "canonical identity/style/material/character anchor",
+    "reference[1]": "deterministic pose/view guide",
+    "previous_frame_chaining": false,
+    "independent_text_to_image_frames": false
+  },
+  "upstream": {
+    "schema_version": "0.5.0",
+    "repository": "Comfy-Org/workflow_templates",
+    "path": "templates/image_flux2_klein_image_edit_4b_base.json",
+    "commit": "04f33569dad7a1d277429bda9f35209dfa4d91cf",
+    "url": "https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_flux2_klein_image_edit_4b_base.json",
+    "source_sha256": "346cd9a63bfe34a5a9207f50c34a87feaf4e70806d13c9d2738fd521133670d0",
+    "materialized_path": "docs/evidence/upstream/workflow_templates-image-edit-base.json",
+    "comfyui_version": "0.34.0",
+    "reference_latent_object_info_path": "docs/evidence/upstream/comfyui-object-info-reference-latent.json",
+    "reference_latent_object_info_sha256": "a9c79d644c1b698134bbea8cf61a3101b7d6d6003adc453ccb7b776bb6bee4bf",
+    "reference_latent_present": true,
+    "native_multi_reference_description": "This node sets the guiding latent for an edit model. If the model supports it you can chain multiple to set multiple reference images.",
+    "custom_nodes_required": [],
+    "captured_at": "2026-08-29T23:19:19Z"
+  },
+  "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+  "native_reference_latent_count": 4,
+  "same_transformation_model_and_seed_pairs": true,
+  "guide": {
+    "path": "pose-guides/views/left.json",
+    "sha256": "83a652650b4347c79458c24b0aa3cbe85475b1cf0d6d1c98774fdc8206da7aa9",
+    "rendered_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\views\\left.png"
+  },
+  "records": [
+    {
+      "mode": "A-canonical-only",
+      "stage": "multiref-a_canonical_only-0",
+      "seed": 50501,
+      "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+      "workflow_sha256": "84de0708d5e5f6980b77710375d44b19edc2c50f35ac6990f32d3e4268eaedda",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-4c5fb3f26439457f89e34e74a3b3dd75\\multiref-a_canonical_only-0.png",
+      "output_sha256": "658f170e210317a1fc707b646f8b9d871c8193c6f5bb3e0e1c262bbbc2831081",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-c06cfc22edb64a3884d8c0395165a5af",
+        "prompt_id": "ad98afd5-3a79-4212-9b48-69bdc0937f53",
+        "submitted_at": "2026-08-29T23:19:19+00:00",
+        "first_poll_at": "2026-08-29T23:19:19+00:00",
+        "completed_at": "2026-08-29T23:20:29+00:00",
+        "runtime_ms": 70103.306,
+        "history_record_key": "ad98afd5-3a79-4212-9b48-69bdc0937f53",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": null
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "84de0708d5e5f6980b77710375d44b19edc2c50f35ac6990f32d3e4268eaedda",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50501,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-4c5fb3f26439457f89e34e74a3b3dd75\\multiref-a_canonical_only-0.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "ad98afd5-3a79-4212-9b48-69bdc0937f53",
+                  "timestamp": 1788045559679
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "ad98afd5-3a79-4212-9b48-69bdc0937f53",
+                  "timestamp": 1788045559691
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "ad98afd5-3a79-4212-9b48-69bdc0937f53",
+                  "timestamp": 1788045626762
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-a_canonical_only-0",
+          "reference_order": [
+            "identity/style/material/character"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": null,
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-reference-edit_00020_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "18",
+            "data_sha256": "658f170e210317a1fc707b646f8b9d871c8193c6f5bb3e0e1c262bbbc2831081"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-4c5fb3f26439457f89e34e74a3b3dd75\\multiref-a_canonical_only-0.png",
+            "sha256": "658f170e210317a1fc707b646f8b9d871c8193c6f5bb3e0e1c262bbbc2831081",
+            "filename": "ugas-reference-edit_00020_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": null
+      },
+      "fresh_binding": true,
+      "score": {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-4c5fb3f26439457f89e34e74a3b3dd75\\multiref-a_canonical_only-0.png",
+        "sha256": "658f170e210317a1fc707b646f8b9d871c8193c6f5bb3e0e1c262bbbc2831081",
+        "png": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-4c5fb3f26439457f89e34e74a3b3dd75\\multiref-a_canonical_only-0.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 181185,
+          "sha256": "658f170e210317a1fc707b646f8b9d871c8193c6f5bb3e0e1c262bbbc2831081",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "structural": {
+          "foreground_bbox": [
+            140,
+            40,
+            371,
+            489
+          ],
+          "occupancy": 0.395657,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 20,
+            "top": 20,
+            "right": 20,
+            "bottom": 20
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.000977,
+            "y": 0.016602
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "1111111111100111111000111100001111000011111001111110011111100111",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        },
+        "identity_mae_normalized": 0.227283,
+        "identity_score": 0.772717,
+        "pose_adherence_heuristic": 0.879176,
+        "human_visual_review": "required"
+      }
+    },
+    {
+      "mode": "A-canonical-only",
+      "stage": "multiref-a_canonical_only-1",
+      "seed": 50502,
+      "workflow_id": "flux2-klein-base-4b-quality-image-edit",
+      "workflow_sha256": "89658a40fa24b5a4a46881bc04be97b2693a0d1f7085179b8e97355d94f59650",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-5f61ecdec2474ec2b08df4b2afaef6b0\\multiref-a_canonical_only-1.png",
+      "output_sha256": "8102e670e7e7ed832110ef038ffe810351927f818be0acffb10fc54e03a04f1d",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-9704d0dee78e49d1b72a7343ce91ecbb",
+        "prompt_id": "8a075b9e-c801-44ec-8484-b7077b8b62cf",
+        "submitted_at": "2026-08-29T23:20:30+00:00",
+        "first_poll_at": "2026-08-29T23:20:30+00:00",
+        "completed_at": "2026-08-29T23:20:45+00:00",
+        "runtime_ms": 14532.875,
+        "history_record_key": "8a075b9e-c801-44ec-8484-b7077b8b62cf",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": null
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "89658a40fa24b5a4a46881bc04be97b2693a0d1f7085179b8e97355d94f59650",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50502,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-5f61ecdec2474ec2b08df4b2afaef6b0\\multiref-a_canonical_only-1.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "8a075b9e-c801-44ec-8484-b7077b8b62cf",
+                  "timestamp": 1788045630707
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "13",
+                    "14",
+                    "15"
+                  ],
+                  "prompt_id": "8a075b9e-c801-44ec-8484-b7077b8b62cf",
+                  "timestamp": 1788045630722
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "8a075b9e-c801-44ec-8484-b7077b8b62cf",
+                  "timestamp": 1788045641693
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-a_canonical_only-1",
+          "reference_order": [
+            "identity/style/material/character"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": null,
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-reference-edit_00021_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "18",
+            "data_sha256": "8102e670e7e7ed832110ef038ffe810351927f818be0acffb10fc54e03a04f1d"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-5f61ecdec2474ec2b08df4b2afaef6b0\\multiref-a_canonical_only-1.png",
+            "sha256": "8102e670e7e7ed832110ef038ffe810351927f818be0acffb10fc54e03a04f1d",
+            "filename": "ugas-reference-edit_00021_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": null
+      },
+      "fresh_binding": true,
+      "score": {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-5f61ecdec2474ec2b08df4b2afaef6b0\\multiref-a_canonical_only-1.png",
+        "sha256": "8102e670e7e7ed832110ef038ffe810351927f818be0acffb10fc54e03a04f1d",
+        "png": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\A-canonical-only\\job-5f61ecdec2474ec2b08df4b2afaef6b0\\multiref-a_canonical_only-1.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 186861,
+          "sha256": "8102e670e7e7ed832110ef038ffe810351927f818be0acffb10fc54e03a04f1d",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "structural": {
+          "foreground_bbox": [
+            96,
+            36,
+            369,
+            489
+          ],
+          "occupancy": 0.47176,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 20,
+            "top": 20,
+            "right": 20,
+            "bottom": 20
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.045898,
+            "y": 0.012695
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "1111111111100111111000111110001111000011111001111110011111100111",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        },
+        "identity_mae_normalized": 0.058833,
+        "identity_score": 0.941167,
+        "pose_adherence_heuristic": 0.687086,
+        "human_visual_review": "required"
+      }
+    },
+    {
+      "mode": "B-canonical-plus-guide",
+      "stage": "multiref-b_canonical_plus_guide-0",
+      "seed": 50501,
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "f73a9161cba49ec8cad4bf2ec847536daaf0f78cfc079d6a658cd5c7018137c1",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-97f4f608ab4546ee8f0b5286742baf5e\\multiref-b_canonical_plus_guide-0.png",
+      "output_sha256": "99c6621fd4a8f8a56e302970759c8594eac080cf2bb68af2b94986f6aad90533",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-7e6d3ed0553d481687863c9138d04c93",
+        "prompt_id": "e5e2df81-d13b-49ae-bb05-855dea995edb",
+        "submitted_at": "2026-08-29T23:20:46+00:00",
+        "first_poll_at": "2026-08-29T23:20:46+00:00",
+        "completed_at": "2026-08-29T23:21:05+00:00",
+        "runtime_ms": 19464.554,
+        "history_record_key": "e5e2df81-d13b-49ae-bb05-855dea995edb",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "f73a9161cba49ec8cad4bf2ec847536daaf0f78cfc079d6a658cd5c7018137c1",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50501,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-97f4f608ab4546ee8f0b5286742baf5e\\multiref-b_canonical_plus_guide-0.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "e5e2df81-d13b-49ae-bb05-855dea995edb",
+                  "timestamp": 1788045646143
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "10",
+                    "12",
+                    "14",
+                    "15",
+                    "17",
+                    "18"
+                  ],
+                  "prompt_id": "e5e2df81-d13b-49ae-bb05-855dea995edb",
+                  "timestamp": 1788045646160
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "e5e2df81-d13b-49ae-bb05-855dea995edb",
+                  "timestamp": 1788045664909
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-b_canonical_plus_guide-0",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00001_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "99c6621fd4a8f8a56e302970759c8594eac080cf2bb68af2b94986f6aad90533"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-97f4f608ab4546ee8f0b5286742baf5e\\multiref-b_canonical_plus_guide-0.png",
+            "sha256": "99c6621fd4a8f8a56e302970759c8594eac080cf2bb68af2b94986f6aad90533",
+            "filename": "ugas-multiref_00001_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "left.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+      },
+      "fresh_binding": true,
+      "score": {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-97f4f608ab4546ee8f0b5286742baf5e\\multiref-b_canonical_plus_guide-0.png",
+        "sha256": "99c6621fd4a8f8a56e302970759c8594eac080cf2bb68af2b94986f6aad90533",
+        "png": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-97f4f608ab4546ee8f0b5286742baf5e\\multiref-b_canonical_plus_guide-0.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 156777,
+          "sha256": "99c6621fd4a8f8a56e302970759c8594eac080cf2bb68af2b94986f6aad90533",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "structural": {
+          "foreground_bbox": [
+            132,
+            43,
+            358,
+            488
+          ],
+          "occupancy": 0.383644,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 20,
+            "top": 20,
+            "right": 20,
+            "bottom": 20
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.021484,
+            "y": 0.018555
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "1111111111100111111000111100001111000011111001111110011111100111",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        },
+        "identity_mae_normalized": 0.330914,
+        "identity_score": 0.669086,
+        "pose_adherence_heuristic": 0.893579,
+        "human_visual_review": "required"
+      }
+    },
+    {
+      "mode": "B-canonical-plus-guide",
+      "stage": "multiref-b_canonical_plus_guide-1",
+      "seed": 50502,
+      "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "workflow_sha256": "27cedf3e0371bffcd4ecc023f65bca193f0b7e1c78237fc9b1a6c77d86a55de9",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "output": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-590e08bba79146d293aaa7c4fe7523d7\\multiref-b_canonical_plus_guide-1.png",
+      "output_sha256": "d91cc9b25e982159548c0f3322a94b82ca7797d2efb6d383130c9d5b45e5bacf",
+      "execution_evidence": {
+        "schema_version": "0.5.0",
+        "client_job_id": "job-b73779bb65304a6caeca7a6e70e3a62d",
+        "prompt_id": "63ba98d8-cfd2-486e-ad14-82b083795984",
+        "submitted_at": "2026-08-29T23:21:06+00:00",
+        "first_poll_at": "2026-08-29T23:21:06+00:00",
+        "completed_at": "2026-08-29T23:21:25+00:00",
+        "runtime_ms": 19682.798,
+        "history_record_key": "63ba98d8-cfd2-486e-ad14-82b083795984",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "27cedf3e0371bffcd4ecc023f65bca193f0b7e1c78237fc9b1a6c77d86a55de9",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 50502,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-590e08bba79146d293aaa7c4fe7523d7\\multiref-b_canonical_plus_guide-1.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "63ba98d8-cfd2-486e-ad14-82b083795984",
+                  "timestamp": 1788045666390
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "17",
+                    "18",
+                    "19"
+                  ],
+                  "prompt_id": "63ba98d8-cfd2-486e-ad14-82b083795984",
+                  "timestamp": 1788045666407
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "63ba98d8-cfd2-486e-ad14-82b083795984",
+                  "timestamp": 1788045683065
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-b_canonical_plus_guide-1",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00002_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "d91cc9b25e982159548c0f3322a94b82ca7797d2efb6d383130c9d5b45e5bacf"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-590e08bba79146d293aaa7c4fe7523d7\\multiref-b_canonical_plus_guide-1.png",
+            "sha256": "d91cc9b25e982159548c0f3322a94b82ca7797d2efb6d383130c9d5b45e5bacf",
+            "filename": "ugas-multiref_00002_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "reference_filenames": [
+        "reference-edit-selected-transparent.png",
+        "left.png"
+      ],
+      "input_hashes": {
+        "reference_0": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "reference_1": "b8eee9595748f17e4f5bd3171f47c4f3f29c1f4e950fef46d51e6c7e3c7061e5"
+      },
+      "fresh_binding": true,
+      "score": {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-590e08bba79146d293aaa7c4fe7523d7\\multiref-b_canonical_plus_guide-1.png",
+        "sha256": "d91cc9b25e982159548c0f3322a94b82ca7797d2efb6d383130c9d5b45e5bacf",
+        "png": {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview\\ab\\B-canonical-plus-guide\\job-590e08bba79146d293aaa7c4fe7523d7\\multiref-b_canonical_plus_guide-1.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGB",
+          "source_mode": "RGB",
+          "bytes": 186206,
+          "sha256": "d91cc9b25e982159548c0f3322a94b82ca7797d2efb6d383130c9d5b45e5bacf",
+          "has_alpha": false,
+          "has_alpha_channel": false,
+          "has_transparent_pixels": false,
+          "alpha_min": null,
+          "alpha_max": null,
+          "opaque_fraction": 1.0,
+          "transparent_fraction": 0.0,
+          "alpha_zero_fraction": 0.0,
+          "alpha_opaque_fraction": 1.0,
+          "alpha_partial_fraction": 0.0,
+          "foreground_coverage": 1.0,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 1.0,
+          "soft_edge_foreground_fraction": 0.0,
+          "alpha_bbox": null,
+          "alpha_centroid": null,
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "structural": {
+          "foreground_bbox": [
+            100,
+            36,
+            373,
+            484
+          ],
+          "occupancy": 0.466553,
+          "occupancy_target": {
+            "min": 0.01,
+            "max": 0.92
+          },
+          "margins": {
+            "left": 20,
+            "top": 20,
+            "right": 20,
+            "bottom": 20
+          },
+          "safe_margin_ok": true,
+          "safe_margin_violations": [],
+          "occupancy_ok": true,
+          "center_offset": {
+            "x": 0.038086,
+            "y": 0.007812
+          },
+          "centered_ok": true,
+          "edge_clipping": false,
+          "edge_clipping_ok": true,
+          "alpha_ok": true,
+          "perceptual_hash": "1111111111100111111000111100001111000011111001111110011111100111",
+          "file_size_ok": true,
+          "hard_gates": {
+            "valid_png": true,
+            "dimensions": true,
+            "non_empty": true,
+            "not_duplicate": true,
+            "edge_clipping": true,
+            "safe_margin": true,
+            "occupancy": true,
+            "centered": true,
+            "file_size": true,
+            "alpha": true
+          },
+          "hard_gate_failures": [],
+          "eligible": true
+        },
+        "identity_mae_normalized": 0.054126,
+        "identity_score": 0.945874,
+        "pose_adherence_heuristic": 0.672433,
+        "human_visual_review": "required"
+      }
+    }
+  ],
+  "comparison": {
+    "A_pose_adherence_mean": 0.783131,
+    "B_pose_adherence_mean": 0.783006,
+    "B_identity_min": 0.669086,
+    "B_safe_margin": true,
+    "meaningful_B_pose_gain": false,
+    "qualification_rule": "B must improve pose adherence materially or be strongly adherent while preserving identity and margins",
+    "heuristic_requires_human_visual_review": true
+  },
+  "contact_sheet": "docs/evidence/multiref-ab-contact-sheet.png",
+  "stop_reason": null
+}

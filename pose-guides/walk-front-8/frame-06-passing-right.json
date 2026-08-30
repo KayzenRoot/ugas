@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.5.0",
+  "guide_type": "walk",
+  "guide_id": "walk-front-8-frame-06-passing-right",
+  "animation": "walk",
+  "view": "front",
+  "frame_index": 6,
+  "frame_name": "frame-06-passing-right",
+  "phase": "passing",
+  "foot_contact": "right",
+  "canvas": {
+    "width": 512,
+    "height": 512
+  },
+  "baseline_y": 478,
+  "centerline_x": 256,
+  "keypoints": {
+    "head": [
+      258,
+      112
+    ],
+    "neck": [
+      258,
+      160
+    ],
+    "pelvis": [
+      258,
+      286
+    ],
+    "shoulder_left": [
+      210,
+      172
+    ],
+    "shoulder_right": [
+      306,
+      172
+    ],
+    "elbow_left": [
+      196,
+      226
+    ],
+    "elbow_right": [
+      320,
+      226
+    ],
+    "hand_left": [
+      204,
+      286
+    ],
+    "hand_right": [
+      312,
+      286
+    ],
+    "knee_left": [
+      216,
+      374
+    ],
+    "knee_right": [
+      300,
+      374
+    ],
+    "foot_left": [
+      212,
+      478
+    ],
+    "foot_right": [
+      304,
+      478
+    ],
+    "weapon_tip": [
+      360,
+      392
+    ],
+    "weapon_grip": [
+      300,
+      272
+    ]
+  },
+  "orientation_cue": {
+    "facing": "front",
+    "camera": "orthographic gameplay reference",
+    "mirror_allowed": false
+  },
+  "ground_policy": "contact foot is on baseline_y; no guide pixels below baseline",
+  "pivot_policy": "pelvis centerline remains stable; x pivot is centerline_x and y pivot is baseline_y",
+  "source_controlled": true,
+  "generated_ai_content": false,
+  "deterministic": true
+}

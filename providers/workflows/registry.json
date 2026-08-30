@@ -1,11 +1,11 @@
 {
-  "schema_version": "0.4.3",
+  "schema_version": "0.5.0",
   "workflows": [
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "flux2-klein-4b-distilled-text-to-image",
       "purpose": "fast 2D master sprite generation with official Distilled semantics",
-      "capability": "2d", "qualified_capabilities": ["2d", "sprite-master", "sprite-generation"], "provider": "provider-comfyui", "version": "0.4.3",
+      "capability": "2d", "qualified_capabilities": ["2d", "sprite-master", "sprite-generation"], "provider": "provider-comfyui", "version": "0.5.0",
       "source": "Comfy-Org native FLUX.2 Klein workflow adapted to API format", "api_json": "providers/workflows/flux2-klein-4b-distilled-text-to-image.api.json",
       "model_family": "flux2-klein-4b", "model_variant": "distilled", "quality_tier": "fast",
       "parameters": {"steps": 4, "guidance": 1.0, "sampler": "euler", "scheduler": "Flux2Scheduler"},
@@ -14,10 +14,10 @@
       "validation": {"status": "qualified", "smoke_status": "passed", "smoke_evidence": "docs/evidence/quality-benchmark.json"}
     },
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "flux2-klein-base-4b-quality-text-to-image",
       "purpose": "quality-first 2D master sprite generation with official Base semantics",
-      "capability": "2d", "qualified_capabilities": ["2d", "sprite-master", "sprite-generation"], "provider": "provider-comfyui", "version": "0.4.3",
+      "capability": "2d", "qualified_capabilities": ["2d", "sprite-master", "sprite-generation"], "provider": "provider-comfyui", "version": "0.5.0",
       "source": "Comfy-Org native FLUX.2 Klein workflow adapted to API format", "api_json": "providers/workflows/flux2-klein-base-4b-quality-text-to-image.api.json",
       "model_family": "flux2-klein-4b", "model_variant": "base", "quality_tier": "quality",
       "parameters": {"steps": 50, "guidance": 4.0, "sampler": "euler", "scheduler": "Flux2Scheduler"},
@@ -26,10 +26,10 @@
       "validation": {"status": "qualified", "smoke_status": "passed", "smoke_evidence": "docs/evidence/quality-benchmark.json"}
     },
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "flux2-klein-4b-distilled-image-edit",
       "purpose": "fast identity-preserving 2D reference edit with Distilled semantics",
-      "capability": "reference-edit", "qualified_capabilities": ["reference-edit"], "provider": "provider-comfyui", "version": "0.4.3",
+      "capability": "reference-edit", "qualified_capabilities": ["reference-edit"], "provider": "provider-comfyui", "version": "0.5.0",
       "source": "Comfy-Org official Image Edit (Flux.2 Klein 4B) blueprint flattened to API format", "api_json": "providers/workflows/flux2-klein-4b-distilled-image-edit.api.json",
       "model_family": "flux2-klein-4b", "model_variant": "distilled", "quality_tier": "fast",
       "parameters": {"steps": 4, "guidance": 1.0, "sampler": "euler", "scheduler": "Flux2Scheduler", "qualification_status": "candidate"},
@@ -38,10 +38,10 @@
       "validation": {"status": "candidate", "smoke_status": "not-run"}
     },
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "flux2-klein-base-4b-quality-image-edit",
       "purpose": "quality-first identity-preserving 2D reference edit with Base semantics",
-      "capability": "reference-edit", "qualified_capabilities": ["reference-edit"], "provider": "provider-comfyui", "version": "0.4.3",
+      "capability": "reference-edit", "qualified_capabilities": ["reference-edit"], "provider": "provider-comfyui", "version": "0.5.0",
       "source": "Comfy-Org official Image Edit (Flux.2 Klein 4B) blueprint flattened to API format", "api_json": "providers/workflows/flux2-klein-base-4b-quality-image-edit.api.json",
       "model_family": "flux2-klein-4b", "model_variant": "base", "quality_tier": "quality",
       "parameters": {"steps": 20, "guidance": 5.0, "sampler": "euler", "scheduler": "Flux2Scheduler", "qualification_status": "qualified-pending-fresh-pilot"},
@@ -51,10 +51,23 @@
       "validation": {"status": "qualified-pending-fresh-pilot", "smoke_status": "fresh-pilot-required", "smoke_evidence": "docs/evidence/reference-edit-workflow-qualification.json"}
     },
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
+      "id": "flux2-klein-base-4b-quality-multi-reference-edit",
+      "purpose": "quality-first native FLUX.2 Klein multi-reference identity plus deterministic pose/view guide pilot",
+      "capability": "multi-reference-edit", "qualified_capabilities": ["multi-reference-edit", "character-view-edit", "pose-conditioned-frame"], "provider": "provider-comfyui", "version": "0.5.0",
+      "source": "Comfy-Org workflow_templates official FLUX.2 Klein Image Edit topology, flattened to API format with native ReferenceLatent chaining", "api_json": "providers/workflows/flux2-klein-base-4b-quality-multi-reference-edit.api.json",
+      "model_family": "flux2-klein-4b", "model_variant": "base", "quality_tier": "quality",
+      "parameters": {"steps": 20, "guidance": 5.0, "sampler": "euler", "scheduler": "Flux2Scheduler", "reference_order": ["identity-anchor", "pose-view-guide"], "qualification_status": "verified-pending-visual-review"},
+      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "LoadImage", "VAEEncode", "ReferenceLatent", "GetImageSize", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"],
+      "required_models": ["flux2-klein-4b-base-nvfp4"], "inputs": ["prompt", "negative_prompt", "reference[0]:identity-anchor", "reference[1]:pose-view-guide", "seed"], "outputs": ["SaveImage"], "custom_nodes_required": [], "deterministic_seed": true,
+      "qualification": {"capability": "multi-reference-edit", "status": "verified-pending-visual-review", "native_node": "ReferenceLatent", "official_template": "templates/image_flux2_klein_image_edit_4b_base.json", "evidence": "docs/evidence/multiref-qualification.json"},
+      "validation": {"status": "verified-pending-visual-review", "smoke_status": "passed-with-human-review-pending"}
+    },
+    {
+      "schema_version": "0.5.0",
       "id": "birefnet-background-removal",
       "purpose": "native BiRefNet background removal with RGBA output and audit mask",
-      "capability": "background-removal", "qualified_capabilities": ["background-removal", "transparent-sprite-master"], "provider": "provider-comfyui", "version": "0.4.3",
+      "capability": "background-removal", "qualified_capabilities": ["background-removal", "transparent-sprite-master"], "provider": "provider-comfyui", "version": "0.5.0",
       "source": "ComfyUI native BiRefNet Remove Background template", "api_json": "providers/workflows/birefnet-background-removal.api.json",
       "model_family": "birefnet", "model_variant": "native", "quality_tier": "quality", "parameters": {"sampler": null, "scheduler": null},
       "required_nodes": ["LoadImage", "LoadBackgroundRemovalModel", "RemoveBackground", "InvertMask", "JoinImageWithAlpha", "MaskToImage", "SaveImage"], "required_models": ["birefnet"], "inputs": ["image", "background_removal_model"], "outputs": ["SaveImage", "SaveImage"], "custom_nodes_required": [], "deterministic_seed": true,

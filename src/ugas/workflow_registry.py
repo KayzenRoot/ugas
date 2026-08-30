@@ -53,9 +53,17 @@ def validate_api_workflow(workflow: dict, node_info: dict | None = None, model_n
     return {"valid_graph": True, "node_count": len(workflow), "missing_nodes": sorted(set(missing_nodes)), "missing_models": sorted(set(missing_models)), "live_valid": not missing_nodes and not missing_models}
 
 
-def bind_workflow(template: dict, *, prompt: str, negative_prompt: str = "", seed: int = 1, width: int = 512, height: int = 512, model_names: dict[str, str] | None = None, image_filename: str | None = None) -> dict:
-    """Bind the stable public inputs without altering graph topology."""
+def bind_workflow(template: dict, *, prompt: str, negative_prompt: str = "", seed: int = 1, width: int = 512, height: int = 512, model_names: dict[str, str] | None = None, image_filename: str | None = None, image_filenames: list[str] | None = None) -> dict:
+    """Bind stable public inputs without altering graph topology.
+
+    ``image_filename`` remains the v0.4 compatibility input.  v0.5 workflows
+    use explicit ``__IMAGE__`` and ``__GUIDE__`` markers so the binding order
+    is auditable: reference zero is the canonical identity anchor and reference
+    one is the deterministic pose/view guide.
+    """
     value = json.loads(json.dumps(template))
+    filenames = list(image_filenames or ([] if image_filename is None else [image_filename]))
+    marker_map = {"__IMAGE__": filenames[0] if len(filenames) > 0 else None, "__GUIDE__": filenames[1] if len(filenames) > 1 else None}
     for node in value.values():
         if node.get("class_type") == "CLIPTextEncode":
             text = node.setdefault("inputs", {}).get("text")
@@ -66,10 +74,10 @@ def bind_workflow(template: dict, *, prompt: str, negative_prompt: str = "", see
                 inputs[key] = model_names[marker]
         if inputs.get("bg_removal_name") == "__BG_MODEL__" and model_names and "__BG_MODEL__" in model_names:
             inputs["bg_removal_name"] = model_names["__BG_MODEL__"]
-        if inputs.get("filename") == "__IMAGE__" and image_filename:
-            inputs["filename"] = image_filename
-        if inputs.get("image") == "__IMAGE__" and image_filename:
-            inputs["image"] = image_filename
+        for key in ("filename", "image"):
+            marker = inputs.get(key)
+            if isinstance(marker, str) and marker in marker_map and marker_map[marker]:
+                inputs[key] = marker_map[marker]
         if "noise_seed" in inputs and inputs["noise_seed"] == "__SEED__":
             inputs["noise_seed"] = int(seed)
         for key in ("width", "height"):

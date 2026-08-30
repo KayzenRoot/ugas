@@ -1,32 +1,22 @@
-# UGAS 0.4.3
+# UGAS 0.5.0
 
-Universal Game Asset Studio is a provider-agnostic control plane for a governed 2D master-sprite workflow over local ComfyUI. This correction adds reference-edit fidelity evidence without changing the historical v0.4.2 text-to-image lanes.
+Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão.
 
-Pipeline corrente:
+O slice atual implementa o piloto experimental de multi-reference FLUX.2 Klein: `reference[0]` é a identidade canônica R4 e `reference[1]` é um guia determinístico de pose/vista. A qualificação A/B real no RTX 5050 passou, quatro âncoras direcionais e o piloto `walk/front/8` passaram os gates técnicos. O estado final é `READY_FOR_REVIEW / ANIMATION_PILOT_VISUAL_REVIEW_REQUIRED`; revisão visual humana ainda é necessária e nenhuma aprovação de produção é inferida.
 
-`visual request -> master spec -> FAST/QUALITY text-to-image -> R1 RGB -> BiRefNet R2 -> independently qualified image-edit benchmark -> fresh generative candidates -> deterministic armor recolour fallback -> R3 RGB -> BiRefNet R4 -> structural + appearance QA -> human review`
+O escopo deliberadamente não inclui animação genérica, todas as direções, idle/run/attack/hit/death, 3D, áudio, integração de engine, DWPose/OpenPose/ControlNet/custom nodes, cloud ou provedores pagos.
 
-The reference-edit contract permits only blue-steel armor to deep cobalt/navy steel. Face identity, skin tone and facial exposure, hair, proportions, pose, camera, silhouette, sword, black cloth and the pre-removal composition are protected. Structural IoU is not identity proof; the fidelity gate also measures luminance, head stability, target direction and protected-region changes.
-
-The Base image-edit workflow is capability-specific: official native graph, Euler, Flux2Scheduler, 20 steps and CFG 5. Text-to-image remains Base 50/4 and Distilled 4/1.0. The legacy 50/4 image-edit configuration is retained only as a labeled benchmark comparison.
-
-Run the bounded pilot against the local ComfyUI instance:
+## Quick start
 
 ```powershell
-python -m ugas reference-edit pilot <source-asset-id> --candidates 4 --seed-base 10401 --url http://127.0.0.1:8188 --json
+$env:PYTHONPATH = "src"
+python -m ugas.cli pose-guides validate --json
+python -m ugas.cli identity inspect asset-2fec6fed1d714d0cb58ad75b56d7ba71 --json
+python -m ugas.cli multiref qualify --json
+python -m ugas.cli anchors generate asset-2fec6fed1d714d0cb58ad75b56d7ba71 --directions front left right back --json
+python -m ugas.cli animation generate asset-2fec6fed1d714d0cb58ad75b56d7ba71 --animation walk --view front --frames 8 --json
 ```
 
-The pilot uses fresh prompt IDs, unique seeds, unique job directories and exact history/output hashes. Generative candidates are temporary until selected; a deterministic recolour is eligible only when its documented HSV mask confidence is sufficient. Zero eligible candidates produces `NO_ACCEPTABLE_REFERENCE_EDIT` and does not create R3.
+Todos os comandos experimentais falham com código não zero quando o gate correspondente não passa. Pesos, caches e jobs ficam fora do Git; o resultado visual permanece sujeito a revisão humana.
 
-Engineering validation:
-
-```powershell
-python -m unittest -q
-python scripts/validation/run_validation.py
-```
-
-Human visual approval is never inferred from technical QA. The current pilot is technically `VISUAL_REVIEW_REQUIRED`; animation, multi-frame grids, pose generation, custom nodes, 3D/Blender, audio, cloud inference and paid providers remain outside this increment.
-
-See [INSTALL.md](INSTALL.md), [docs/2d-master-pipeline.md](docs/2d-master-pipeline.md), [docs/comfyui.md](docs/comfyui.md), [CHECKPOINT.md](CHECKPOINT.md), [docs/test-coverage-matrix-v0.4.3.md](docs/test-coverage-matrix-v0.4.3.md) and [REVIEW-v0.4.3.md](REVIEW-v0.4.3.md).
-
-UGAS is MIT licensed. Provider services, model weights, references and generated assets can have separate terms.
+Consulte [INSTALL.md](INSTALL.md), [docs/2d-master-pipeline.md](docs/2d-master-pipeline.md), [docs/comfyui.md](docs/comfyui.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.5.0.md](REVIEW-v0.5.0.md) e [docs/test-coverage-matrix-v0.5.0.md](docs/test-coverage-matrix-v0.5.0.md). Os documentos `REVIEW-v0.4.2.md` e `REVIEW-v0.4.3.md` são históricos e permanecem imutáveis.

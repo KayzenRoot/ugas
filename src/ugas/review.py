@@ -1,4 +1,4 @@
-"""Review-evidence manifest integrity checks for v0.4.3."""
+"""Review-evidence manifest integrity checks for historical and v0.5 slices."""
 
 from __future__ import annotations
 
@@ -34,6 +34,12 @@ REQUIRED_V043_REVIEW_EVIDENCE = {
 # active manifest is intentionally the v0.4.3 contract above.
 REQUIRED_V042_VISUAL_EVIDENCE = REQUIRED_V043_REVIEW_EVIDENCE
 
+REQUIRED_V050_REVIEW_EVIDENCE = {
+    "v043-approved-anchor.png", "multiref-ab-contact-sheet.png", "pose-guides-contact-sheet.png",
+    "directional-anchors-contact-sheet.png", "anchor-front.png", "anchor-left.png", "anchor-right.png", "anchor-back.png",
+    "walk-front-8-contact-sheet.png", "walk-front-8-spritesheet.png", "walk-front-8-preview.gif", "walk-frame-diff-contact.png",
+}
+
 
 def _digest(path: Path) -> str:
     digest = hashlib.sha256()
@@ -51,9 +57,10 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
     items = manifest.get("images") if isinstance(manifest, Mapping) else None
     items = items if isinstance(items, list) else []
     by_name = {str(item.get("archive_name")): item for item in items if isinstance(item, Mapping)}
-    missing = sorted(REQUIRED_V043_REVIEW_EVIDENCE - set(by_name))
+    required = REQUIRED_V050_REVIEW_EVIDENCE if str(manifest.get("schema_version")) == "0.5.0" else REQUIRED_V043_REVIEW_EVIDENCE
+    missing = sorted(required - set(by_name))
     failures: list[str] = [f"missing visual evidence: {name}" for name in missing]
-    role_pairs = [
+    role_pairs = [] if str(manifest.get("schema_version")) == "0.5.0" else [
         (by_name.get("master-selected-checkerboard.png"), by_name.get("reference-edit-selected-checkerboard.png")),
         (by_name.get("master-selected-transparent.png"), by_name.get("reference-edit-selected-transparent.png")),
     ]
@@ -87,7 +94,7 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
                 failures.append(f"visual source hash mismatch: {item.get('archive_name')}")
     return {
         "status": "REVIEW_VISUAL_MANIFEST_PASSED" if not failures else "REVIEW_VISUAL_MANIFEST_FAILED",
-        "required_count": len(REQUIRED_V043_REVIEW_EVIDENCE),
+        "required_count": len(required),
         "listed_count": len(by_name),
         "failures": failures,
     }

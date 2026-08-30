@@ -1,0 +1,228 @@
+{
+  "schema_version": "0.5.0",
+  "status": "POSE_GUIDES_VALID",
+  "views": [
+    "pose-guides\\views\\front.json",
+    "pose-guides\\views\\left.json",
+    "pose-guides\\views\\right.json",
+    "pose-guides\\views\\back.json"
+  ],
+  "walk_frames": [
+    "pose-guides\\walk-front-8\\frame-00-contact-left.json",
+    "pose-guides\\walk-front-8\\frame-01-down-left.json",
+    "pose-guides\\walk-front-8\\frame-02-passing-left.json",
+    "pose-guides\\walk-front-8\\frame-03-up-left.json",
+    "pose-guides\\walk-front-8\\frame-04-contact-right.json",
+    "pose-guides\\walk-front-8\\frame-05-down-right.json",
+    "pose-guides\\walk-front-8\\frame-06-passing-right.json",
+    "pose-guides\\walk-front-8\\frame-07-high-right.json"
+  ],
+  "guides": [
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "view-front",
+      "sha256": "3adf68720997229429815bd29b224a20b29fd8cbba604678e073d31cda6dd531",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "view-left",
+      "sha256": "83a652650b4347c79458c24b0aa3cbe85475b1cf0d6d1c98774fdc8206da7aa9",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "view-right",
+      "sha256": "92fbb6c8dc97bb9fd426c58cea8f739fa54029e45ec03027b79121068c86073e",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "view-back",
+      "sha256": "1c0d4730ea55189072dce327260f25cb78c1add46236fa0fa6feaf4a77ccddc3",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-00-contact-left",
+      "sha256": "7294067f0bfbd1335413c088bf4dd80861a31e5319c9e32e44b889997a1e75c6",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-01-down-left",
+      "sha256": "c337cf658964459704513ab55110beff6d1cc75eb9216aa41ed7052861bde887",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-02-passing-left",
+      "sha256": "1568f5cfce2fc597b1bfef29295b72e80dd5dc301228b1374a1fb776026da987",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-03-up-left",
+      "sha256": "94e553fce7c23336a67cd78ef6a01df4cf5a444c39f53aad02b9b98e84551252",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-04-contact-right",
+      "sha256": "73f12509b86f0c1a789e081bfe82772a2a9479c9afa14b1f31378de805931144",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-05-down-right",
+      "sha256": "b86c6b1959792864c446bf94328565561ef1fecb58c650edc291de25744bcfb2",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-06-passing-right",
+      "sha256": "9855f8712b75d1ed6847ca72a2496febd0414859af3e5317b04d1d7693af454c",
+      "failures": []
+    },
+    {
+      "status": "POSE_GUIDE_VALID",
+      "guide_id": "walk-front-8-frame-07-high-right",
+      "sha256": "4b146a97818786cba995f717ade29be63ed110ef90d1c1f2a67d4965d78975ce",
+      "failures": []
+    }
+  ],
+  "render": {
+    "schema_version": "0.5.0",
+    "status": "POSE_GUIDES_RENDERED",
+    "kind": "walk-front-8",
+    "guides": [
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-00-contact-left.png",
+        "sha256": "1cf78ffdb52fb3dea4c311df15ce43b2e639b285e100dc6d817ca0bda1147492",
+        "guide_id": "walk-front-8-frame-00-contact-left",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-00-contact-left",
+          "sha256": "7294067f0bfbd1335413c088bf4dd80861a31e5319c9e32e44b889997a1e75c6",
+          "failures": []
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-01-down-left.png",
+        "sha256": "b941dad1ec1fd02807d5844dd3666c606569523837289a1ff995a974fd98833d",
+        "guide_id": "walk-front-8-frame-01-down-left",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-01-down-left",
+          "sha256": "c337cf658964459704513ab55110beff6d1cc75eb9216aa41ed7052861bde887",
+          "failures": []
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-02-passing-left.png",
+        "sha256": "d2b545bf08aebacf60ac5a92f7b56648907c9cf90e24219a4a832c594b74521f",
+        "guide_id": "walk-front-8-frame-02-passing-left",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-02-passing-left",
+          "sha256": "1568f5cfce2fc597b1bfef29295b72e80dd5dc301228b1374a1fb776026da987",
+          "failures": []
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-03-up-left.png",
+        "sha256": "bf84bbaded069e262cb1a9eda3b77f6caabd625b1dec5133e22a71824ff6ffd8",
+        "guide_id": "walk-front-8-frame-03-up-left",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-03-up-left",
+          "sha256": "94e553fce7c23336a67cd78ef6a01df4cf5a444c39f53aad02b9b98e84551252",
+          "failures": []
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-04-contact-right.png",
+        "sha256": "ea6cad8666aaf6c7ea32c3dbd2ccdb0dde592e81f6af2d9d1bd53b07a1800731",
+        "guide_id": "walk-front-8-frame-04-contact-right",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-04-contact-right",
+          "sha256": "73f12509b86f0c1a789e081bfe82772a2a9479c9afa14b1f31378de805931144",
+          "failures": []
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-05-down-right.png",
+        "sha256": "be8d768d59bfbe060d5913a3da96d61956f9e72a620c8284a002b39d8cca8f3b",
+        "guide_id": "walk-front-8-frame-05-down-right",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-05-down-right",
+          "sha256": "b86c6b1959792864c446bf94328565561ef1fecb58c650edc291de25744bcfb2",
+          "failures": []
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-06-passing-right.png",
+        "sha256": "d103db86b80c7704234862395ce17e893d6f26f340ab10c16f37e1ccabd99b52",
+        "guide_id": "walk-front-8-frame-06-passing-right",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-06-passing-right",
+          "sha256": "9855f8712b75d1ed6847ca72a2496febd0414859af3e5317b04d1d7693af454c",
+          "failures": []
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\frame-07-high-right.png",
+        "sha256": "0db3afe224c8ef99443ab5451b7f72074d0808b670a5b5ddc0208d200d39662e",
+        "guide_id": "walk-front-8-frame-07-high-right",
+        "validation": {
+          "status": "POSE_GUIDE_VALID",
+          "guide_id": "walk-front-8-frame-07-high-right",
+          "sha256": "4b146a97818786cba995f717ade29be63ed110ef90d1c1f2a67d4965d78975ce",
+          "failures": []
+        }
+      }
+    ],
+    "contact_sheet": {
+      "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\walk-front-8\\contact-sheet.png",
+      "format": "PNG",
+      "width": 2048,
+      "height": 1024,
+      "mode": "RGBA",
+      "source_mode": "RGBA",
+      "bytes": 28927,
+      "sha256": "a8d2916592eb185a4b3bd6f28d21bbda100e12e18c33d6d5073190d9d69d32b2",
+      "has_alpha": true,
+      "has_alpha_channel": true,
+      "has_transparent_pixels": true,
+      "alpha_min": 180,
+      "alpha_max": 255,
+      "opaque_fraction": 0.998542308807373,
+      "transparent_fraction": 0.0,
+      "alpha_zero_fraction": 0.0,
+      "alpha_opaque_fraction": 0.998542308807373,
+      "alpha_partial_fraction": 0.0014576911926269531,
+      "foreground_coverage": 1.0,
+      "near_opaque_threshold": 250,
+      "near_opaque_foreground_fraction": 0.998542308807373,
+      "soft_edge_foreground_fraction": 0.0014576911926269531,
+      "alpha_bbox": [
+        0,
+        0,
+        2048,
+        1024
+      ],
+      "alpha_centroid": [
+        0.499755859375,
+        0.49951171875
+      ],
+      "border_contact": true,
+      "non_empty_content": true,
+      "columns": 4,
+      "rows": 2,
+      "frame_count": 8
+    }
+  }
+}

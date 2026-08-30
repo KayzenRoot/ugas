@@ -1,4 +1,4 @@
-"""Real v0.4.3 2D generation, immutable revision orchestration and QA."""
+"""Real v0.5.0 2D generation, immutable revision orchestration and QA."""
 
 from __future__ import annotations
 
@@ -134,7 +134,7 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
         history_key = history.get("_ugas_prompt_id") == prompt_id
         output_records = [{"filename": item.get("filename"), "subfolder": item.get("subfolder", ""), "type": item.get("type", "output"), "node_id": item.get("node_id"), "data_sha256": inspect_png_bytes(item.get("data", b""))["sha256"]} for item in outputs]
         job["execution_evidence"] = {
-            "schema_version": "0.4.3", "client_job_id": job_id, "prompt_id": prompt_id,
+            "schema_version": UGAS_VERSION, "client_job_id": job_id, "prompt_id": prompt_id,
             "submitted_at": submitted_at, "first_poll_at": first_poll_at, "completed_at": completed_at,
             "runtime_ms": runtime_ms, "history_record_key": prompt_id, "history_key_matches_prompt_id": history_key,
             "source_hashes": input_hashes or {}, "instruction_sha256": instruction_sha256,
@@ -523,7 +523,7 @@ def candidates_show(repo_root: Path, asset_id: str) -> dict[str, Any]:
 
 def sprite_pilot(repo_root: Path, **kwargs) -> dict:
     columns = int(kwargs.pop("columns", 1)); rows = int(kwargs.pop("rows", 1))
-    if columns != 1 or rows != 1: raise GenerationError(f"sprite-grid workflow not qualified in v{UGAS_VERSION}")
+    if columns != 1 or rows != 1: raise GenerationError("sprite-grid workflow not qualified in v0.4.3; this remains outside the current v0.5.0 slice")
     result = generate_image(repo_root, **kwargs); output = Path(result["output"]); destination = Path(kwargs.get("output_dir") or output.parent); frame_dir = destination / f"{output.stem}-frames"; cropped = crop_grid(output, frame_dir / "frame.png", columns, rows, trim=False, pad=0); sheet_path = destination / f"{output.stem}-sheet.png"; sheet = compose_sheet([Path(item["path"]) for item in cropped["frames"]], sheet_path, columns); metadata = {"schema_version": UGAS_VERSION, "id": f"sprite-sheet-{output.stem}", "source": {"master": str(output), "master_sha256": inspect_png(output)["sha256"]}, "sheet": sheet, "grid": {"columns": columns, "rows": rows, "cell_width": cropped["frames"][0]["width"], "cell_height": cropped["frames"][0]["height"]}, "frames": cropped["frames"], "qa": {"technical_status": "TECHNICAL_VALID", "visual_review": "required", "production_ready": False}, "provenance_ref": result["job"]["job_id"]}; metadata_path = destination / f"{output.stem}-sheet.json"; write_metadata(metadata_path, metadata); result["sprite_sheet"] = str(sheet_path); result["sprite_metadata"] = str(metadata_path); result["pipeline"] = "master-image -> explicit crop/normalize -> sheet metadata -> technical QA; visual review required"; return result
 
 

@@ -77,7 +77,7 @@ SCHEMAS = [
     "reference-edit-contract",
 ]
 
-UGAS_VERSION = "0.4.3"
+UGAS_VERSION = "0.5.0"
 
 CONSUMER_FILES = [
     "studio.json",

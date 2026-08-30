@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.5.0",
+  "guide_type": "view",
+  "guide_id": "view-front",
+  "view": "front",
+  "canvas": {
+    "width": 512,
+    "height": 512
+  },
+  "baseline_y": 478,
+  "centerline_x": 256,
+  "keypoints": {
+    "head": [
+      256,
+      112
+    ],
+    "neck": [
+      256,
+      160
+    ],
+    "pelvis": [
+      256,
+      286
+    ],
+    "shoulder_left": [
+      208,
+      172
+    ],
+    "shoulder_right": [
+      304,
+      172
+    ],
+    "elbow_left": [
+      198,
+      226
+    ],
+    "elbow_right": [
+      314,
+      226
+    ],
+    "hand_left": [
+      206,
+      286
+    ],
+    "hand_right": [
+      306,
+      286
+    ],
+    "knee_left": [
+      222.0,
+      374
+    ],
+    "knee_right": [
+      290.0,
+      374
+    ],
+    "foot_left": [
+      218.0,
+      478
+    ],
+    "foot_right": [
+      294.0,
+      478
+    ],
+    "weapon_tip": [
+      358,
+      392
+    ],
+    "weapon_grip": [
+      298,
+      272
+    ]
+  },
+  "orientation_cue": {
+    "facing": "front",
+    "camera": "orthographic gameplay reference",
+    "mirror_allowed": false
+  },
+  "ground_policy": "both feet rest on baseline_y; no guide pixels below baseline",
+  "pivot_policy": "pelvis centerline is stable; x pivot is centerline_x and y pivot is baseline_y",
+  "source_controlled": true,
+  "generated_ai_content": false,
+  "deterministic": true
+}

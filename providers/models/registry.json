@@ -1,8 +1,8 @@
 {
-  "schema_version": "0.4.3",
+  "schema_version": "0.5.0",
   "models": [
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "flux2-klein-4b-distilled-nvfp4",
       "provider": "provider-comfyui",
       "family": "flux2-klein-4b",
@@ -31,7 +31,7 @@
       "download_files": {"diffusion_models/flux-2-klein-4b-nvfp4.safetensors": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-nvfp4/resolve/main/flux-2-klein-4b-nvfp4.safetensors", "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "https://huggingface.co/Comfy-Org/flux2-klein/resolve/main/split_files/text_encoders/qwen_3_4b_fp4_flux2.safetensors", "vae/flux2-vae.safetensors": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors"}
     },
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "flux2-klein-4b-base-nvfp4",
       "provider": "provider-comfyui",
       "family": "flux2-klein-4b",
@@ -41,7 +41,7 @@
       "step_distilled": false,
       "recommended_steps": 50,
       "recommended_guidance": 4.0,
-      "capability_parameters": {"text-to-image": {"steps": 50, "guidance": 4.0}, "2d": {"steps": 50, "guidance": 4.0}, "reference-edit": {"steps": 20, "guidance": 5.0}},
+      "capability_parameters": {"text-to-image": {"steps": 50, "guidance": 4.0}, "2d": {"steps": 50, "guidance": 4.0}, "reference-edit": {"steps": 20, "guidance": 5.0}, "multi-reference-edit": {"steps": 20, "guidance": 5.0}},
       "quality_tier": "quality",
       "verified_on_hardware": {"gpu": "NVIDIA GeForce RTX 5050", "vram_bytes": 8546484224, "resolution": "512x512", "evidence": "docs/evidence/quality-benchmark.json"},
       "source": "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4b-nvfp4",
@@ -54,13 +54,13 @@
       "recommended_vram_mb": 8192,
       "model_folders": {"diffusion_models": "diffusion_models", "text_encoders": "text_encoders", "vae": "vae"},
       "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader"],
-      "workflow_ids": ["flux2-klein-base-4b-quality-text-to-image", "flux2-klein-base-4b-quality-image-edit"],
+      "workflow_ids": ["flux2-klein-base-4b-quality-text-to-image", "flux2-klein-base-4b-quality-image-edit", "flux2-klein-base-4b-quality-multi-reference-edit"],
       "status": "qualified",
       "qualification_evidence": {"status": "qualified", "hashes_verified": true, "files_verified_at": "2026-08-29", "smoke_evidence": "docs/evidence/quality-benchmark.json"},
       "download_files": {"diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4b-nvfp4/resolve/main/flux-2-klein-base-4b-nvfp4.safetensors", "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "https://huggingface.co/Comfy-Org/flux2-klein/resolve/main/split_files/text_encoders/qwen_3_4b_fp4_flux2.safetensors", "vae/flux2-vae.safetensors": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors"}
     },
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "flux2-klein-4b-fp8",
       "provider": "provider-comfyui",
       "family": "flux2-klein-4b",
@@ -84,7 +84,7 @@
       "download_files": {}
     },
     {
-      "schema_version": "0.4.3",
+      "schema_version": "0.5.0",
       "id": "birefnet",
       "provider": "provider-comfyui",
       "family": "birefnet",

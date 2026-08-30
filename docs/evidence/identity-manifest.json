@@ -1,0 +1,176 @@
+{
+  "schema_version": "0.5.0",
+  "manifest_type": "character-identity",
+  "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+  "character_id": "ugas-character-r4-canonical",
+  "canonical_revision": {
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "dimensions": {
+      "width": 512,
+      "height": 512
+    },
+    "transparency": {
+      "required": true,
+      "has_alpha": true,
+      "transparent_pixels": true
+    }
+  },
+  "identity_signature": {
+    "palette": [
+      [
+        162,
+        161,
+        161
+      ],
+      [
+        158,
+        159,
+        159
+      ],
+      [
+        160,
+        158,
+        158
+      ],
+      [
+        158,
+        158,
+        159
+      ],
+      [
+        158,
+        158,
+        158
+      ],
+      [
+        158,
+        158,
+        157
+      ],
+      [
+        157,
+        158,
+        158
+      ],
+      [
+        64,
+        76,
+        101
+      ]
+    ],
+    "armor": {
+      "material": "blue-steel/cobalt metallic armor",
+      "mean_rgb": [
+        27.76,
+        44.251,
+        79.706
+      ]
+    },
+    "cloth": {
+      "material": "black cloth",
+      "protected": true
+    },
+    "skin": {
+      "protected": true
+    },
+    "head": {
+      "protected": true
+    },
+    "weapon": {
+      "type": "sword",
+      "protected": true
+    },
+    "proportions": {
+      "normalized_subject_width": 0.394531,
+      "normalized_subject_height": 0.873047
+    }
+  },
+  "geometry": {
+    "alpha_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "normalized_size": {
+      "width": 0.394531,
+      "height": 0.873047
+    },
+    "pivot_policy": "centerline of alpha bbox at foot baseline",
+    "ground_policy": "lowest opaque pixel is baseline; no stretch",
+    "pivot": {
+      "x": 260.0,
+      "y": 487,
+      "normalized_x": 0.507812,
+      "normalized_y": 0.951172
+    }
+  },
+  "protected_properties": [
+    "face",
+    "head",
+    "skin",
+    "armor silhouette",
+    "black cloth",
+    "sword presence",
+    "body proportions",
+    "palette identity",
+    "transparent background"
+  ],
+  "allowed_transforms": [
+    "pose/view conditioning through reference[1]",
+    "translation to shared pivot",
+    "alpha normalization without stretch"
+  ],
+  "art_dna": {
+    "profile": "profiles/generic-2d.json",
+    "style_reference": "source-controlled canonical R4"
+  },
+  "external_pipeline_anchor": {
+    "status": "APPROVED AS A PIPELINE IDENTITY ANCHOR FOR THE NEXT EXPERIMENTAL INCREMENT",
+    "approval_type": "external-pipeline-anchor",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "production_approval": "not-granted",
+    "production_ready_governance": "preserved"
+  },
+  "source_image_inspection": {
+    "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\reference-edit-selected-transparent.png",
+    "format": "PNG",
+    "width": 512,
+    "height": 512,
+    "mode": "RGBA",
+    "source_mode": "RGBA",
+    "bytes": 193439,
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "has_alpha": true,
+    "has_alpha_channel": true,
+    "has_transparent_pixels": true,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "opaque_fraction": 0.000377655029296875,
+    "transparent_fraction": 0.8125801086425781,
+    "alpha_zero_fraction": 0.8125801086425781,
+    "alpha_opaque_fraction": 0.000377655029296875,
+    "alpha_partial_fraction": 0.187042236328125,
+    "foreground_coverage": 0.18741989135742188,
+    "near_opaque_threshold": 250,
+    "near_opaque_foreground_fraction": 0.8680466507907432,
+    "soft_edge_foreground_fraction": 0.1319533492092569,
+    "alpha_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "alpha_centroid": [
+      0.5116871857890131,
+      0.5108756993420651
+    ],
+    "border_contact": false,
+    "non_empty_content": true
+  },
+  "manifest_sha256": "9a1901549bdba3b947306d1df6c723f148f9c09f867eab6b44a2db66caf2f334"
+}
