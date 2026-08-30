@@ -139,14 +139,14 @@ def _landmark_confidence(item: Mapping[str, Any]) -> float:
 
 
 @contextmanager
-def _landmarker(model_path: Path) -> Iterator[tuple[Any, Any]]:
+def _landmarker(model_path: Path, *, num_poses: int = 1) -> Iterator[tuple[Any, Any]]:
     mp = importlib.import_module("mediapipe")
     vision = importlib.import_module("mediapipe.tasks.python.vision")
     base_options = importlib.import_module("mediapipe.tasks.python.core.base_options")
     options = vision.PoseLandmarkerOptions(
         base_options=base_options.BaseOptions(model_asset_path=str(model_path)),
         running_mode=vision.RunningMode.IMAGE,
-        num_poses=1,
+        num_poses=max(1, int(num_poses)),
         min_pose_detection_confidence=0.5,
         min_pose_presence_confidence=0.5,
         min_tracking_confidence=0.5,
@@ -158,7 +158,7 @@ def _landmarker(model_path: Path) -> Iterator[tuple[Any, Any]]:
 def _detect_with_landmarker(path: Path, mp: Any, detector: Any) -> dict[str, Any]:
     image = mp.Image.create_from_file(str(path))
     result = detector.detect(image)
-    base = {"path": str(path), "sha256": _sha256(path), "detected": bool(result.pose_landmarks), "landmarks": {}}
+    base = {"path": str(path), "sha256": _sha256(path), "detected": bool(result.pose_landmarks), "pose_count": len(result.pose_landmarks), "landmarks": {}}
     if not result.pose_landmarks:
         return {**base, "measurable_body_joints": 0, "core_coverage": 0.0, "mean_confidence": 0.0, "min_confidence": 0.0}
     landmarks = map_mediapipe_landmarks(result.pose_landmarks[0])

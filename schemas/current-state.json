@@ -1,23 +1,25 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.6.1 SDXL smoke correction state",
+  "title": "UGAS active v0.6.2 SDXL OpenPose model-card calibration state",
   "type": "object",
-  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "provider_smoke_status", "historical_pose_lane_status", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"],
+  "required": ["schema_version", "version", "phase", "previous_release", "historical_smoke_status", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "provider_smoke_status", "historical_pose_lane_status", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"],
   "properties": {
-    "schema_version": {"const": "0.6.1"},
-    "version": {"const": "0.6.1"},
-    "phase": {"const": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION"},
-    "current_gate": {"type": "string", "minLength": 1},
+    "schema_version": {"const": "0.6.2"},
+    "version": {"const": "0.6.2"},
+    "phase": {"const": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION"},
+    "current_gate": {"enum": ["SDXL_OPENPOSE_CONFIG_CALIBRATION_REQUIRED", "SDXL_OPENPOSE_P_LANE_QUALIFIED", "SDXL_OPENPOSE_P_LANE_QUALIFIED_768", "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS", "SDXL_OPENPOSE_1024_HARDWARE_GAP"]},
     "stop_reason": {"type": ["string", "null"]},
     "generation_provider_change_authorized": {"type": "boolean"},
     "walk_authorized": {"const": false},
     "provider_smoke_status": {"type": "string", "minLength": 1},
+    "historical_smoke_status": {"const": "SDXL_OPENPOSE_CONTROL_GAP"},
     "historical_pose_lane_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"},
     "previous_release": {
       "type": "object",
-      "required": ["version", "pose_lane_status", "review_snapshot_status"],
+      "required": ["version", "historical_smoke_status", "pose_lane_status", "review_snapshot_status"],
       "properties": {
-        "version": {"const": "0.6.0"},
+        "version": {"const": "0.6.1"},
+        "historical_smoke_status": {"const": "SDXL_OPENPOSE_CONTROL_GAP"},
         "pose_lane_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"},
         "review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"}
       }

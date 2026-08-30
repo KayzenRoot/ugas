@@ -1,21 +1,23 @@
-# UGAS checkpoint - v0.6.1
+# UGAS checkpoint - v0.6.2
 
-**STATUS:** `SDXL_OPENPOSE_CONTROL_GAP`
-**VERSION:** `0.6.1`
-**PHASE:** `SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION`
+**STATUS:** `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`
+**VERSION:** `0.6.2`
+**PHASE:** `SDXL_OPENPOSE_MODEL_CARD_CALIBRATION`
 
 ## Current state
 
-O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). Esta correção preserva a auditoria, modelos, hashes, workflows e thresholds do v0.6.0, materializa cada PNG bruto antes do BiRefNet e torna a identidade e o sujeito único hard gates. O smoke P/I/PI foi executado somente com a seed 61701; `provider_smoke_status`, `generation_provider_change_authorized=false`, `walk_authorized=false` e `new_generation_jobs=3` ficam explícitos neste checkpoint após a execução.
+O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). A calibração P-only foi concluída: P0, P1 e P2 executaram com geração fresca, sem OOM, e nenhum passou o Stage A. O resultado corrente é `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`. O review v0.6.1 permanece imutável; os modelos, hashes, pin do IP-Adapter, R4, MediaPipe QA e thresholds permanecem preservados.
 
-O v0.5.5 é histórico e permanece preservado como `REVIEW_ARCHIVE_VERIFIED`; sua decisão de pose anterior também preserva `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED` do v0.5.4. Os 9 outputs A/C/R, hashes e thresholds de [v054-provider-qualification.json](docs/evidence/v054-provider-qualification.json) não são reescritos.
+O escopo de geração é somente P-only: SDXL Base 1.0 + xinsir OpenPose ControlNet. A matriz autorizada é P0/P1/P2 com a seed 62701. IP-Adapter, I/PI, benchmark, anchors, walk, spritesheet, GIF e novo provider permanecem proibidos.
 
 ## Scope and gate
 
-Este slice qualifica somente SDXL + OpenPose ControlNet + IP-Adapter para geração 2D controlada. O ControlNet recebe o PNG COCO-18 determinístico de UGAS; o IP-Adapter recebe exclusivamente o anchor R4. Não há preprocessor, FLUX replacement, walk, âncoras v3, spritesheet, GIF, animação ou 3D.
+P0 reproduz o baseline 512x512, 20 steps, Euler/normal e strength 0.9. P1 usa 768x768, 30 steps, Euler Ancestral semanticamente mapeado para os valores válidos do `object_info` real e strength 1.0. P2 usa 1024x1024, 30 steps, a mesma equivalência e strength 1.0.
 
-Com o gate de consistência e a auditoria aprovados, a ordem executada foi: qualificação de fontes, licenças, bytes e SHA-256; doctor do runtime RTX 5050; workflow API; smoke P/I/PI. O v0.6.1 encerra aqui: benchmark, confirmation, walk e anchors permanecem NOT_RUN mesmo que algum smoke fosse verde. Um gap encerra a lane com seu estado exato. A animação genérica também não é autorizada por este checkpoint.
+O PNG de controle é renderizado diretamente do JSON COCO-18 em cada resolução, sem upscale raster. Raw pose QA ocorreu antes de qualquer diagnóstico opcional de pós-processamento. P2 completou normalmente e não exigiu retry. Os três outputs e overlays estão hash-bound em `docs/evidence/sdxl-openpose-calibration/`.
 
 ## Evidence boundary
 
-Pesos e código do custom node ficam fora do Git e do review ZIP. O repositório registra apenas manifests, hashes, commit pinado, auditoria e evidência. `REVIEW_ARCHIVE_VERIFIED` não significa aprovação visual humana, GitHub Actions, deployment ou aprovação de produção. Walk permanece não autorizado.
+Pesos, bundle MediaPipe e source GPL continuam fora do Git e do review ZIP. A aprovação de produção e a aprovação externa não são inferidas. `walk_authorized=false` e `generation_provider_change_authorized=false` permanecem obrigatórios.
+
+Animação genérica não autoriza execução nesta fase; walk, spritesheet e GIF continuam fora do escopo e não foram executados. Confirmation também permaneceu `NOT_RUN`, pois nenhuma configuração passou Stage A.

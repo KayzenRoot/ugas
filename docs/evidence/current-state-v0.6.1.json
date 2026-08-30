@@ -1,10 +1,9 @@
 {
-  "schema_version": "0.6.2",
-  "version": "0.6.2",
-  "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+  "schema_version": "0.6.1",
+  "version": "0.6.1",
+  "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
   "previous_release": {
-    "version": "0.6.1",
-    "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP",
+    "version": "0.6.0",
     "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
     "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
     "historical_review": "REVIEW-v0.5.5.md",
@@ -12,10 +11,9 @@
     "nine_outputs_preserved": true,
     "review_manifest": "docs/evidence/review-visuals-v0.5.5.json"
   },
-  "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP",
-  "current_gate": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
-  "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
-  "provider_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+  "current_gate": "SDXL_OPENPOSE_CONTROL_GAP",
+  "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP",
+  "provider_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP",
   "historical_pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
   "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
   "previous_review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
@@ -27,20 +25,19 @@
   "generation_provider_change_authorized": false,
   "walk_authorized": false,
   "allowed_next_actions": [
-    "preserve_sdxl_openpose_model_card_calibration_evidence"
+    "review_sdxl_provider_smoke_classification",
+    "preserve_v060_provider_lane"
   ],
   "forbidden_actions": [
     "download_models_before_state_consistency_pass",
     "install_unpinned_custom_node_or_vendor_its_source",
     "change_pose_thresholds_or_reinterpret_the_v054_pose_decision",
     "generate_v3_anchors_or_walk_or_spritesheet_or_gif",
-    "execute_ipadapter_or_identity_lane",
-    "execute_benchmark_or_new_provider",
     "route_unqualified_sdxl_capabilities",
     "publish_the_local_pose_landmarker_bundle_or_generation_weights"
   ],
   "state_consistency": {
-    "status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+    "status": "SDXL_OPENPOSE_CONTROL_GAP",
     "validator": "src/ugas/state_consistency.py",
     "contradictory_walk_or_anchor_promotion": false,
     "new_generation_started": true,
@@ -50,7 +47,6 @@
     "review_verifier": "scripts/validation/verify_review_archive.py",
     "review_zip_self_validation_required": true,
     "phase_zero_no_download_or_install": true,
-    "calibration_scope": "P-only-P0-P1-P2-completed-no-stage-a-pass",
     "custom_node_audit": "docs/evidence/custom-node-audit-ipadapter-plus.json"
   }
 }

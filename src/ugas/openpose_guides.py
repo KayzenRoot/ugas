@@ -219,38 +219,55 @@ def _scaled(point: dict[str, Any], size: int) -> tuple[float, float]:
     return float(point["x"]) * size / CANVAS, float(point["y"]) * size / CANVAS
 
 
-def render_openpose_guide(guide: dict[str, Any], destination: Path, *, review: bool = False) -> dict[str, Any]:
+def render_openpose_guide_at_resolution(
+    guide: dict[str, Any],
+    destination: Path,
+    *,
+    width: int,
+    height: int,
+    review: bool = False,
+) -> dict[str, Any]:
+    """Render the JSON COCO-18 guide directly at a requested resolution.
+
+    Coordinates are scaled from the canonical 512x512 JSON; the source raster
+    is never resized. Primitive widths scale with the target bucket so the
+    control signal remains legible at model-card resolutions.
+    """
     from PIL import Image, ImageDraw, ImageFont
 
     validation = validate_openpose_guide(guide)
     if validation["status"] != "OPENPOSE_GUIDE_VALID":
         raise OpenPoseGuideError("cannot render invalid OpenPose guide")
-    size = CANVAS
-    image = Image.new("RGBA", (size, size), tuple(guide["renderer"]["control_background"]))
+    if width < 1 or height < 1:
+        raise OpenPoseGuideError("guide dimensions must be positive")
+    scale = max(width, height) / CANVAS
+    image = Image.new("RGBA", (width, height), tuple(guide["renderer"]["control_background"]))
     draw = ImageDraw.Draw(image)
-    radius = int(guide["renderer"]["joint_radius"])
-    width = int(guide["renderer"]["limb_thickness"])
+    radius = max(1, round(int(guide["renderer"]["joint_radius"]) * scale))
+    limb_width = max(1, round(int(guide["renderer"]["limb_thickness"]) * scale))
     joints = guide["joints"]
     for limb in guide["limbs"]:
         left, right = joints[limb["from"]], joints[limb["to"]]
         if left["visible"] and right["visible"]:
-            x1, y1 = _scaled(left, size); x2, y2 = _scaled(right, size)
-            draw.line((x1, y1, x2, y2), fill=tuple(limb["color"]), width=width)
+            x1, y1 = float(left["x"]) * width / CANVAS, float(left["y"]) * height / CANVAS
+            x2, y2 = float(right["x"]) * width / CANVAS, float(right["y"]) * height / CANVAS
+            draw.line((x1, y1, x2, y2), fill=tuple(limb["color"]), width=limb_width)
     for name in COCO18_JOINTS:
         joint = joints[name]
         if joint["visible"]:
-            x, y = _scaled(joint, size)
+            x, y = float(joint["x"]) * width / CANVAS, float(joint["y"]) * height / CANVAS
             draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=tuple(guide["renderer"]["joint_color"]))
     weapon = guide.get("weapon", {})
     if weapon.get("grip", {}).get("visible") and weapon.get("tip", {}).get("visible"):
-        grip, tip = _scaled(weapon["grip"], size), _scaled(weapon["tip"], size)
-        draw.line((*grip, *tip), fill=tuple(guide["renderer"]["weapon_color"]), width=max(3, width // 2))
+        grip = (float(weapon["grip"]["x"]) * width / CANVAS, float(weapon["grip"]["y"]) * height / CANVAS)
+        tip = (float(weapon["tip"]["x"]) * width / CANVAS, float(weapon["tip"]["y"]) * height / CANVAS)
+        draw.line((*grip, *tip), fill=tuple(guide["renderer"]["weapon_color"]), width=max(3, limb_width // 2))
     if review:
-        draw.line((CANVAS // 2, 16, CANVAS // 2, BASELINE_Y), fill=(160, 160, 160, 200), width=2)
-        draw.line((16, BASELINE_Y, CANVAS - 16, BASELINE_Y), fill=(80, 210, 100, 255), width=2)
+        draw.line((width // 2, round(16 * scale), width // 2, round(BASELINE_Y * height / CANVAS)), fill=(160, 160, 160, 200), width=max(1, round(2 * scale)))
+        draw.line((round(16 * scale), round(BASELINE_Y * height / CANVAS), width - round(16 * scale), round(BASELINE_Y * height / CANVAS)), fill=(80, 210, 100, 255), width=max(1, round(2 * scale)))
         label = str(guide.get("frame_name") or guide.get("view") or guide.get("guide_id"))
-        draw.rectangle((12, 12, 500, 40), fill=(255, 255, 255, 235))
-        draw.text((20, 20), f"UGAS OpenPose COCO-18 v3 | {label}", fill=(20, 20, 20, 255), font=ImageFont.load_default())
+        draw.rectangle((round(12 * scale), round(12 * scale), width - round(12 * scale), round(40 * scale)), fill=(255, 255, 255, 235))
+        draw.text((round(20 * scale), round(20 * scale)), f"UGAS OpenPose COCO-18 v3 | {label}", fill=(20, 20, 20, 255), font=ImageFont.load_default())
     destination.parent.mkdir(parents=True, exist_ok=True)
     image.save(destination, format="PNG", optimize=False)
     return {
@@ -261,8 +278,13 @@ def render_openpose_guide(guide: dict[str, Any], destination: Path, *, review: b
         "renderer_version": OPENPOSE_GUIDE_RENDERER_VERSION,
         "control_image": not review,
         "review_overlay": review,
-        "render_parameters": {"size": size, "background": guide["renderer"]["control_background"], "limb_thickness": width, "joint_radius": radius},
+        "render_parameters": {"width": width, "height": height, "source_canvas": CANVAS, "background": guide["renderer"]["control_background"], "limb_thickness": limb_width, "joint_radius": radius, "derived_from_json": True, "raster_upscale": False},
     }
+
+
+def render_openpose_guide(guide: dict[str, Any], destination: Path, *, review: bool = False) -> dict[str, Any]:
+    """Compatibility wrapper for the canonical 512x512 renderer."""
+    return render_openpose_guide_at_resolution(guide, destination, width=CANVAS, height=CANVAS, review=review)
 
 
 def render_openpose_guides(repo_root: Path, kind: str = "challenge") -> dict[str, Any]:

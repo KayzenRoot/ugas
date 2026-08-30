@@ -95,6 +95,17 @@ REQUIRED_V061_REVIEW_EVIDENCE = REQUIRED_V060_REVIEW_EVIDENCE | {
     "sdxl-identity-hard-gates.json",
     "execution-evidence-v0.6.1.json",
 }
+REQUIRED_V062_REVIEW_EVIDENCE = REQUIRED_V061_REVIEW_EVIDENCE | {
+    "sdxl-openpose-config-triage-contact-sheet.png",
+    "sdxl-openpose-config-pose-overlays-contact-sheet.png",
+    "sdxl-openpose-config-matrix.json",
+    "sdxl-openpose-config-runtime-table.json",
+    "execution-evidence-v0.6.2.json",
+    "sdxl-openpose-p-qualification.json",
+    "sdxl-openpose-guide-512.png",
+    "sdxl-openpose-guide-768.png",
+    "sdxl-openpose-guide-1024.png",
+}
 
 
 def _digest(path: Path) -> str:
@@ -132,6 +143,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V060_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     elif schema_version == "0.6.1":
         required = REQUIRED_V061_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.6.2":
+        required = REQUIRED_V062_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

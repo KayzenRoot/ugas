@@ -1,12 +1,12 @@
 # UGAS roadmap
 
-## v0.6.1 - SDXL smoke evidence hard-gate correction
+## v0.6.2 - SDXL OpenPose model-card calibration
 
-Preserve raw generation evidence before BiRefNet, run raw pose QA for P/PI, enforce identity and single-subject hard gates, and stop before benchmark/confirmation/walk/anchors.
+Preserve raw generation evidence before BiRefNet, render the model-card guides directly at 512/768/1024, and run raw pose QA for P0/P1/P2. The completed calibration stopped at `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`; confirmation, identity R4, benchmark, walk and anchors were not run.
 
 ## v0.6.0 - SDXL ControlNet/IP-Adapter provider qualification
 
-Audita e instala somente o custom node IP-Adapter Plus pinado localmente, registra os quatro artefatos externos, valida o runtime RTX 5050 e executa o smoke factorial P/I/PI. O estado atual é `SDXL_OPENPOSE_CONTROL_GAP`; benchmark, confirmação, walk e routing SDXL permanecem bloqueados.
+O operating point xinsir foi testado somente na lane P: P0 512/20/Euler/0.9, P1 768/30/Euler Ancestral/1.0 e P2 1024/30/Euler Ancestral/1.0. O resultado atual é `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`; IP-Adapter, I/PI, benchmark, confirmation, walk e routing SDXL permanecem bloqueados.
 
 ## v0.5.5 - review snapshot integrity
 

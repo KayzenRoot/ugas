@@ -95,6 +95,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         (
             name
             for name in (
+                "docs/evidence/review-visuals-v0.6.2.json",
                 "docs/evidence/review-visuals-v0.6.1.json",
                 "docs/evidence/review-visuals-v0.6.0.json",
                 "docs/evidence/review-visuals-v0.5.5.json",
@@ -107,7 +108,27 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if active_visual_name is None:
         raise ReviewArchiveError("no supported active review visual manifest is present")
     required_metadata = set(REQUIRED_ARCHIVE_METADATA)
-    if active_visual_name.endswith("v0.6.1.json"):
+    if active_visual_name.endswith("v0.6.2.json"):
+        required_metadata.update(
+            {
+                "docs/evidence/review-visuals-v0.6.2.json",
+                "REVIEW-v0.6.2.md",
+                "docs/test-coverage-matrix-v0.6.2.md",
+                "docs/evidence/current-state.json",
+                "docs/evidence/current-state-v0.6.1.json",
+                "docs/evidence/state-consistency.json",
+                "docs/evidence/sdxl-model-stack-qualification.json",
+                "docs/evidence/sdxl-openpose-config-matrix.json",
+                "docs/evidence/sdxl-openpose-config-runtime-table.json",
+                "docs/evidence/execution-evidence-v0.6.2.json",
+                "docs/evidence/sdxl-openpose-p-qualification.json",
+                "docs/evidence/review-visuals-v0.6.1.json",
+                "REVIEW-v0.6.1.md",
+                "docs/evidence/execution-evidence-v0.6.1.json",
+                "docs/evidence/review-visuals-v0.6.0.json",
+            }
+        )
+    elif active_visual_name.endswith("v0.6.1.json"):
         required_metadata.update(
             {
                 "docs/evidence/review-visuals-v0.6.1.json",

@@ -23,7 +23,7 @@ from ugas.constants import UGAS_VERSION
 from ugas.master_assets import verify_asset_integrity
 from ugas.model_registry import load_model, load_registry, validate_model_workflow_compatibility
 from ugas.reference_edit import validate_edit_contract, validate_execution_evidence
-from ugas.review import validate_review_visual_manifest
+from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, validate_review_visual_manifest
 from ugas.review_snapshot import self_test_sensitive_matcher
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.openpose_guides import COCO18_JOINTS, OPENPOSE_GUIDE_RENDERER_VERSION, validate_openpose_guide
@@ -673,17 +673,14 @@ def _v060_checks() -> None:
 
 
 def _v061_checks() -> None:
-    """Validate the active v0.6.1 smoke correction without inferring completion."""
-    state_path = ROOT / "docs/evidence/current-state.json"
-    checkpoint_path = ROOT / "CHECKPOINT.md"
+    """Validate the immutable v0.6.1 smoke correction history."""
+    state_path = ROOT / "docs/evidence/current-state-v0.6.1.json"
     review_path = ROOT / "REVIEW-v0.6.1.md"
     provider: dict[str, Any] = {}
     try:
         state = load_json(state_path)
-        checkpoint = checkpoint_path.read_text(encoding="utf-8")
         review = review_path.read_text(encoding="utf-8")
-        consistency = validate_state_consistency(state, checkpoint, review)
-        check("v061:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.6.1 state and documents are consistent")
+        check("v061:state-consistency", state.get("state_consistency", {}).get("status") == state.get("current_gate"), "immutable v0.6.1 state records its own historical gate")
         check("v061:state-schema", state.get("schema_version") == "0.6.1" and state.get("version") == "0.6.1" and state.get("phase") == "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION", "active state is the v0.6.1 smoke correction")
         check("v061:state-status", state.get("current_gate") == state.get("provider_smoke_status") and state.get("current_gate") == state.get("state_consistency", {}).get("status"), "provider smoke status, current gate and nested state agree")
         check("v061:state-boundary", state.get("previous_release", {}).get("version") == "0.6.0" and state.get("historical_pose_lane_status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and state.get("walk_authorized") is False and state.get("generation_provider_change_authorized") is False, "v0.6.0 history is preserved and walk/provider changes remain unauthorized")
@@ -770,6 +767,93 @@ def _v061_checks() -> None:
     check("v061:review-boundary", "review-visuals-v0.6.0.json" in review and "benchmark" in review.casefold() and "not_run" in json.dumps(provider).casefold() and "aprovação externa" in review.casefold() or "external approval" in review.casefold(), "current review separates historical v0.6.0 evidence, blocked later phases and external approval")
 
 
+def _v062_checks() -> None:
+    """Validate the active model-card calibration without granting production approval."""
+    state_path = ROOT / "docs/evidence/current-state.json"
+    review_path = ROOT / "REVIEW-v0.6.2.md"
+    try:
+        state = load_json(state_path)
+        review = review_path.read_text(encoding="utf-8")
+        consistency = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
+        check("v062:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.6.2 state and documents are consistent")
+        check("v062:state-schema", state.get("schema_version") == "0.6.2" and state.get("version") == "0.6.2" and state.get("phase") == "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION", "active state is v0.6.2 model-card calibration")
+        check("v062:state-boundary", state.get("historical_smoke_status") == "SDXL_OPENPOSE_CONTROL_GAP" and state.get("walk_authorized") is False and state.get("generation_provider_change_authorized") is False, "historical smoke and blocked promotion boundaries are explicit")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        state = {}
+        review = ""
+        check("v062:state-consistency", False, str(exc)); check("v062:state-schema", False, str(exc)); check("v062:state-boundary", False, str(exc))
+
+    matrix: dict[str, Any] = {}
+    try:
+        from ugas.sdxl_openpose_calibration import CALIBRATION_MATRIX, CONFIRMATION_SEEDS, MODEL_CARD_CONFIGURATION, PROMPT_ID, SEED, validate_calibration_matrix
+        matrix = load_json(ROOT / "docs/evidence/sdxl-openpose-config-matrix.json")
+        check("v062:matrix-contract", not validate_calibration_matrix(), "P0/P1/P2 matrix is exact and ordered")
+        entries = matrix.get("configs", [])
+        check("v062:matrix-evidence", matrix.get("schema_version") == "0.6.2" and matrix.get("prompt_id") == PROMPT_ID and len(entries) == 3, "matrix evidence is bound to the prompt")
+        expected = {item["id"]: item for item in CALIBRATION_MATRIX}
+        for item in entries:
+            wanted = expected.get(item.get("id"), {})
+            check(f"v062:config:{item.get('id')}", all(item.get(key) == wanted.get(key) for key in ("width", "height", "steps", "sampler_name", "scheduler", "controlnet_strength")) and (item.get("graph") or {}).get("p_only") is True and not (item.get("graph") or {}).get("ipadapter_nodes"), f"{item.get('id')} preserves exact parameters and P-only graph")
+        mapping = matrix.get("scheduler_mapping", {})
+        check("v062:scheduler-mapping", mapping.get("semantic_mapping_validated") is True and mapping.get("runtime_sampler_name") == "euler_ancestral" and mapping.get("runtime_scheduler") == "normal" and "euler_ancestral" in mapping.get("observed_sampler_values", []) and "normal" in mapping.get("observed_scheduler_values", []), "Euler Ancestral mapping is backed by live object_info values")
+        card = matrix.get("model_card", {}).get("configuration", {})
+        check("v062:model-card", card.get("controlnet_conditioning_scale") == MODEL_CARD_CONFIGURATION["controlnet_conditioning_scale"] and card.get("num_inference_steps") == MODEL_CARD_CONFIGURATION["num_inference_steps"] and card.get("scheduler") == MODEL_CARD_CONFIGURATION["scheduler"], "model-card operating point is recorded")
+        check("v062:matrix-seed", all(item.get("seed") == SEED for item in matrix.get("triage_results", [])), "triage seed is 62701")
+    except (OSError, json.JSONDecodeError, KeyError, ImportError) as exc:
+        check("v062:matrix-contract", False, str(exc)); check("v062:matrix-evidence", False, str(exc)); check("v062:scheduler-mapping", False, str(exc)); check("v062:model-card", False, str(exc)); check("v062:matrix-seed", False, str(exc))
+
+    try:
+        runtime_table = load_json(ROOT / "docs/evidence/sdxl-openpose-config-runtime-table.json")
+        check("v062:runtime-table", runtime_table.get("schema_version") == "0.6.2" and len(runtime_table.get("configs", [])) == 3 and runtime_table.get("p2_retry_policy", {}).get("max_retries") == 1 and runtime_table.get("p2_retry_policy", {}).get("parameters_unchanged") is True, "runtime table records all configurations and bounded P2 retry")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v062:runtime-table", False, str(exc))
+
+    try:
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.6.2.json")
+        records = execution.get("records", [])
+        check("v062:execution-contract", execution.get("schema_version") == "0.6.2" and execution.get("prompt_id") == "PROMPT-05D-UGAS-SDXL-OPENPOSE-MODEL-CARD-CALIBRATION-v0.6.2" and execution.get("triage_config_count") == 3 and execution.get("triage_attempted_execution_count") >= 3 and execution.get("ipadapter_executed") is False, "execution evidence has exact prompt and P-only boundary")
+        triage = [item for item in records if item.get("phase") == "triage"]
+        confirmation = [item for item in records if item.get("phase") == "confirmation"]
+        check("v062:triage-records", len(triage) == execution.get("triage_attempted_execution_count") and {item.get("config_id") for item in triage} == {"P0", "P1", "P2"} and all(item.get("seed") == 62701 for item in triage), "P0/P1/P2 triage records are unique and use seed 62701")
+        qualification = load_json(ROOT / "docs/evidence/sdxl-openpose-p-qualification.json")
+        stage_a_pass = qualification.get("triage", {}).get("stage_a_pass_count", 0) > 0
+        check("v062:confirmation-gate", (bool(confirmation) and len(confirmation) == 3 and {item.get("seed") for item in confirmation} == {62711, 62712, 62713}) if stage_a_pass else not confirmation and qualification.get("confirmation", {}).get("status") == "NOT_RUN", "confirmation follows the Stage A conditional gate")
+        check("v062:qualification-boundary", qualification.get("scope", {}).get("lane") == "P" and qualification.get("scope", {}).get("ipadapter_executed") is False and qualification.get("scope", {}).get("identity_r4_executed") is False and qualification.get("scope", {}).get("walk") == "NOT_RUN" and qualification.get("scope", {}).get("anchors") == "NOT_RUN" and qualification.get("production_approval") == "not-granted", "qualification excludes IP-Adapter, R4, walk and anchors")
+        if records:
+            for item in records:
+                generation = item.get("generation") or {}
+                if generation.get("completed") is True:
+                    raw = ROOT / str(generation.get("raw_output_path", ""))
+                    check(f"v062:raw-binding:{item.get('stage')}", generation.get("fresh_binding") is True and generation.get("history_key_matches_prompt_id") is True and generation.get("target_existed_before_submission") is False and generation.get("raw_output_hash_matches_comfy") is True and raw.is_file() and digest(raw) == generation.get("raw_output_sha256"), "fresh history/raw SHA binding is valid")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v062:execution-contract", False, str(exc)); check("v062:triage-records", False, str(exc)); check("v062:confirmation-gate", False, str(exc)); check("v062:qualification-boundary", False, str(exc))
+
+    try:
+        qualification = load_json(ROOT / "docs/evidence/sdxl-openpose-p-qualification.json")
+        threshold = load_json(ROOT / "docs/evidence/pose-thresholds-v054.json")
+        check("v062:threshold-boundary", qualification.get("thresholds", {}).get("source") == "docs/evidence/pose-thresholds-v054.json" and qualification.get("thresholds", {}).get("changed") is False and qualification.get("thresholds", {}).get("absolute_pose") == threshold.get("absolute_pose"), "frozen v0.5.4 pose thresholds are unchanged")
+        for item in qualification.get("triage", {}).get("records", []):
+            pose = (item.get("raw_pose_qa") or {}).get("pose") or {}
+            if pose:
+                check(f"v062:pose-order:{item.get('config_id')}", (item.get("raw_pose_qa") or {}).get("preprocess_policy") == "raw_rgb_neutral_gray" and item.get("postprocess", {}).get("status") == "NOT_RUN", "raw pose QA precedes independent postprocess")
+                check(f"v062:human-form:{item.get('config_id')}", (item.get("human_form_qa") or {}).get("visual_review") == "required", "human-form technical QA stays separate from auto-approval")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v062:threshold-boundary", False, str(exc))
+
+    try:
+        visual = load_json(ROOT / "docs/evidence/review-visuals-v0.6.2.json")
+        result = validate_review_visual_manifest(visual, ROOT)
+        check("v062:visual-manifest", result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "v0.6.2 visuals are hash-bound")
+        current_roles = {"sdxl-openpose-config-triage-contact-sheet.png", "sdxl-openpose-config-pose-overlays-contact-sheet.png", "sdxl-openpose-config-matrix.json", "sdxl-openpose-config-runtime-table.json", "execution-evidence-v0.6.2.json", "sdxl-openpose-p-qualification.json", "sdxl-openpose-guide-512.png", "sdxl-openpose-guide-768.png", "sdxl-openpose-guide-1024.png"}
+        check("v062:visual-roles", current_roles.issubset(set(visual.get("required_current_visuals", []))) and current_roles.issubset({item.get("archive_name") for item in visual.get("images", [])}), "guides and P-only review roles are listed")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v062:visual-manifest", False, str(exc)); check("v062:visual-roles", False, str(exc))
+
+    headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.6.1 AUDIT RESULT", "MODEL CARD CONFIGURATION FINDING", "STATE RECLASSIFICATION", "P-ONLY SCOPE", "MODEL CARD SOURCE", "SAMPLER / SCHEDULER MAPPING", "RESOLUTION GUIDE RENDERING", "RTX 5050 MEMORY STRATEGY", "P0 / P1 / P2 TRIAGE", "RAW POSE QA", "HUMAN-FORM TECHNICAL QA", "P-ONLY CONFIRMATION", "FINAL P-LANE DECISION", "POSTPROCESS DIAGNOSTIC", "EXECUTION EVIDENCE", "TESTS", "VALIDATION", "REVIEW ARCHIVE SELF-TEST", "TRACKED SNAPSHOT / GITHUB", "SECURITY / LICENSES", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+    check("v062:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.6.2 review headings present")
+    check("v062:review-boundary", "review-visuals-v0.6.0.json" in review and "not-granted" in review and "NOT_RUN" in review and "human" in review.casefold(), "review preserves history, blocked lanes and separate human review")
+
+
 
 def main() -> int:
     required = [
@@ -808,12 +892,18 @@ def main() -> int:
         "providers/workflows/sdxl-openpose-ipadapter-character.api.json",
     ]
     required += [
-        "REVIEW-v0.6.1.md", "docs/test-coverage-matrix-v0.6.1.md", "docs/evidence/current-state-v0.6.0.json",
+        "REVIEW-v0.6.1.md", "docs/test-coverage-matrix-v0.6.1.md", "docs/evidence/current-state-v0.6.0.json", "docs/evidence/current-state-v0.6.1.json",
         "docs/evidence/sdxl-provider-workflow-qualification-v0.6.1.json",
         "docs/evidence/sdxl-provider-qualification-v0.6.1.json",
         "docs/evidence/execution-evidence-v0.6.1.json", "docs/evidence/sdxl-smoke-phase-table.json",
         "docs/evidence/sdxl-identity-hard-gates.json", "docs/evidence/review-visuals-v0.6.1.json",
         "src/ugas/identity_hard_gates.py", "src/ugas/sdxl_smoke_evidence.py",
+    ]
+    required += [
+        "REVIEW-v0.6.2.md", "docs/test-coverage-matrix-v0.6.2.md", "src/ugas/sdxl_openpose_calibration.py",
+        "scripts/validation/run_sdxl_openpose_model_card_calibration.py", "docs/evidence/review-visuals-v0.6.2.json",
+        "docs/evidence/sdxl-openpose-config-matrix.json", "docs/evidence/sdxl-openpose-config-runtime-table.json",
+        "docs/evidence/execution-evidence-v0.6.2.json", "docs/evidence/sdxl-openpose-p-qualification.json",
     ]
     for item in required:
         path = ROOT / item; check(f"path:{item}", path.exists(), "present" if path.exists() else "missing")
@@ -841,18 +931,18 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.6.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.6.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.6.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.6.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.6.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.6.2")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
     compile_run = _run([sys.executable, "-m", "compileall", "-q", "src", "scripts", "tests"], ROOT); check("tests:compileall", compile_run.returncode == 0, (compile_run.stdout + compile_run.stderr).strip()[-500:])
-    test_run = _run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"], ROOT, timeout=360); test_text = test_run.stdout + test_run.stderr; match = re.search(r"Ran (\d+) tests", test_text); check("tests:unit", test_run.returncode == 0 and match is not None and int(match.group(1)) >= 79, test_text.strip()[-800:])
+    test_run = _run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"], ROOT, timeout=360); test_text = test_run.stdout + test_run.stderr; match = re.search(r"Ran (\d+) tests", test_text); check("tests:unit", test_run.returncode == 0 and match is not None and int(match.group(1)) >= 152, test_text.strip()[-800:])
     snapshot_check()
     failures = 0
     for name, ok, detail in RESULTS: print(f"{'PASS' if ok else 'FAIL'} {name} - {detail}"); failures += not ok

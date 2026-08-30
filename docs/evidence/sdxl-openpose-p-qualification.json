@@ -1,0 +1,1075 @@
+{
+  "schema_version": "0.6.2",
+  "prompt_id": "PROMPT-05D-UGAS-SDXL-OPENPOSE-MODEL-CARD-CALIBRATION-v0.6.2",
+  "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+  "status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+  "model_card": {
+    "url": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0",
+    "revision": "23f966cd5cfdd3f7729c903e243d87152162d2b7",
+    "license": "Apache-2.0",
+    "configuration": {
+      "controlnet_conditioning_scale": 1.0,
+      "num_inference_steps": 30,
+      "scheduler": "EulerAncestralDiscreteScheduler",
+      "resolution_guidance": "approximately 1024x1024 or same bucket resolution"
+    }
+  },
+  "baseline": {
+    "version": "0.6.1",
+    "commit": "95e590360dc90b509be5e70495f5904af2eb489f",
+    "tests_audited": 152,
+    "snapshot_checks": 500
+  },
+  "scope": {
+    "lane": "P",
+    "configs": [
+      "P0",
+      "P1",
+      "P2"
+    ],
+    "triage_seed": 62701,
+    "confirmation_seeds": [],
+    "ipadapter_executed": false,
+    "identity_r4_executed": false,
+    "benchmark": "NOT_RUN",
+    "walk": "NOT_RUN",
+    "anchors": "NOT_RUN",
+    "new_provider": false
+  },
+  "thresholds": {
+    "source": "docs/evidence/pose-thresholds-v054.json",
+    "schema_version": "0.5.4",
+    "changed": false,
+    "absolute_pose": {
+      "measurable_body_joints_min": 10,
+      "pck_at_010_min": 0.8,
+      "nme_max": 0.1,
+      "limb_angle_mae_max_degrees": 18.0,
+      "lower_body_pck_min": 0.75,
+      "orientation_match_required": true,
+      "sanity_required": true
+    }
+  },
+  "triage": {
+    "records": [
+      {
+        "schema_version": "0.6.2",
+        "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+        "lane": "P",
+        "config_id": "P0",
+        "config": {
+          "id": "P0",
+          "label": "CURRENT_BASELINE",
+          "width": 512,
+          "height": 512,
+          "steps": 20,
+          "sampler_name": "euler",
+          "scheduler": "normal",
+          "controlnet_strength": 0.9,
+          "model_card_like": false
+        },
+        "seed": 62701,
+        "stage": "p0-seed-62701",
+        "strategy": "normal-runtime",
+        "workflow_template_sha256": "ef5f736da409c9719886206d73832b5fdb3b27433c97e6c92ac06a6c76fceea7",
+        "workflow_sha256": "e1df2ab9e3a4d3db726d9a45e5264627729376cfefcbfdf653291f5343027bd6",
+        "workflow_graph": {
+          "valid_graph": true,
+          "node_count": 10,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true,
+          "ipadapter_nodes": [],
+          "p_only": true,
+          "dimensions": [
+            512,
+            512
+          ],
+          "steps": 20,
+          "sampler_name": "euler",
+          "scheduler": "normal",
+          "controlnet_strength": 0.9
+        },
+        "guide_upload_name": "sdxl-openpose-guide-512.png",
+        "generation": {
+          "submitted": true,
+          "completed": true,
+          "prompt_id": "b0866820-883c-4e31-b9b2-96b1a5b70d9c",
+          "history_record_key": "b0866820-883c-4e31-b9b2-96b1a5b70d9c",
+          "history_key_matches_prompt_id": true,
+          "fresh_binding": true,
+          "target_existed_before_submission": false,
+          "previous_frame_chaining": false,
+          "raw_output_path": "docs/evidence/sdxl-openpose-calibration/raw/p0-seed-62701.png",
+          "raw_output_sha256": "638b245586e7a62f9b583d9fb6b256cc07ea1204514e811c54733f6508b9f17d",
+          "raw_output_bytes": 255909,
+          "raw_output_hash_matches_comfy": true,
+          "execution_evidence": {
+            "schema_version": "0.6.2",
+            "client_job_id": "job-8e39f38013d54fe0b8f778f106b93b80",
+            "prompt_id": "b0866820-883c-4e31-b9b2-96b1a5b70d9c",
+            "submitted_at": "2026-08-30T21:20:10+00:00",
+            "first_poll_at": "2026-08-30T21:20:10+00:00",
+            "completed_at": "2026-08-30T21:21:50+00:00",
+            "runtime_ms": 99865.858,
+            "history_record_key": "b0866820-883c-4e31-b9b2-96b1a5b70d9c",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "openpose_control_png_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "e1df2ab9e3a4d3db726d9a45e5264627729376cfefcbfdf653291f5343027bd6",
+            "model_ids": [
+              "sdxl-base-1.0"
+            ],
+            "model_file_sha256": {
+              "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+            },
+            "seed": 62701,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-89b5cbb0a69644b687249ec8eceb1722\\p0-seed-62701.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "b0866820-883c-4e31-b9b2-96b1a5b70d9c",
+                      "timestamp": 1788124810908
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "b0866820-883c-4e31-b9b2-96b1a5b70d9c",
+                      "timestamp": 1788124810916
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "b0866820-883c-4e31-b9b2-96b1a5b70d9c",
+                      "timestamp": 1788124909051
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "prompt_id": "PROMPT-05D-UGAS-SDXL-OPENPOSE-MODEL-CARD-CALIBRATION-v0.6.2",
+              "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+              "lane": "P",
+              "config_id": "P0",
+              "strategy": "normal-runtime",
+              "model_card_configuration": {
+                "controlnet_conditioning_scale": 1.0,
+                "num_inference_steps": 30,
+                "scheduler": "EulerAncestralDiscreteScheduler",
+                "resolution_guidance": "approximately 1024x1024 or same bucket resolution"
+              },
+              "previous_frame_chaining": false,
+              "ipadapter_executed": false,
+              "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "guide_png_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d"
+            },
+            "outputs": [
+              {
+                "filename": "ugas-sdxl-p_00004_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "10",
+                "data_sha256": "638b245586e7a62f9b583d9fb6b256cc07ea1204514e811c54733f6508b9f17d"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-89b5cbb0a69644b687249ec8eceb1722\\p0-seed-62701.png",
+                "sha256": "638b245586e7a62f9b583d9fb6b256cc07ea1204514e811c54733f6508b9f17d",
+                "filename": "ugas-sdxl-p_00004_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          }
+        },
+        "raw_output_path": "docs/evidence/sdxl-openpose-calibration/raw/p0-seed-62701.png",
+        "raw_output_sha256": "638b245586e7a62f9b583d9fb6b256cc07ea1204514e811c54733f6508b9f17d",
+        "raw_pose_qa": {
+          "status": "RAW_POSE_FAILED",
+          "preprocess_policy": "raw_rgb_neutral_gray",
+          "preprocess": {
+            "policy": "raw_rgb_neutral_gray",
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-89b5cbb0a69644b687249ec8eceb1722\\raw-pose-preprocess.png",
+            "sha256": "3b32a4b8c5403d67085f195d34e258e63d109142ffef98c80b4e274c5bcc7a90",
+            "source_sha256": "638b245586e7a62f9b583d9fb6b256cc07ea1204514e811c54733f6508b9f17d",
+            "source_scale": 1,
+            "alpha_bbox_normalized": [
+              0.0,
+              0.0,
+              1.0,
+              1.0
+            ],
+            "background": [
+              128,
+              128,
+              128
+            ],
+            "size": [
+              512,
+              512
+            ],
+            "uniform_scale_only": true
+          },
+          "detection": {
+            "detected": false,
+            "pose_count": 0,
+            "measurable_body_joints": 0,
+            "core_coverage": 0.0,
+            "mean_confidence": 0.0,
+            "min_confidence": 0.0
+          },
+          "detected_orientation": "unknown",
+          "pose": {
+            "metric_version": "detected-joint-pose-error-1.0",
+            "measurement_status": "UNMEASURABLE",
+            "measurable_body_joints": 0,
+            "required_core_present": false,
+            "pck_at_010": 0.0,
+            "nme": 1.0,
+            "limb_angle_mae_degrees": 180.0,
+            "lower_body_pck": 0.0,
+            "orientation_match": false,
+            "orientation_score": 0.0,
+            "pose_score": 0.0,
+            "qualifies": false,
+            "failure_reasons": [
+              "root_or_scale_unmeasurable"
+            ]
+          },
+          "absolute_pose_pass": false,
+          "overlay_path": "docs/evidence/sdxl-openpose-calibration/overlays/p0-seed-62701.png",
+          "raw_output_sha256": "638b245586e7a62f9b583d9fb6b256cc07ea1204514e811c54733f6508b9f17d"
+        },
+        "human_form_qa": {
+          "status": "HUMAN_FORM_TECHNICAL_FAILED",
+          "human_form_pass": false,
+          "single_primary_human_subject": false,
+          "duplicate_full_body": false,
+          "mediapipe_detectability_sufficient": false,
+          "frame_like_border_artifact": false,
+          "stencil_collapse": false,
+          "image_metrics": {
+            "quantized_color_count": 446,
+            "luma_stddev": 61.450745,
+            "border_inner_mean_delta": 0.937529,
+            "border_stddev": 66.574514
+          },
+          "failure_reasons": [
+            "mediapipe_detectability_insufficient_or_multiple_poses"
+          ],
+          "visual_review": "required"
+        },
+        "stage_a_pass": false,
+        "status": "TRIAGE_FAILED",
+        "runtime_ms": 99865.858,
+        "postprocess": {
+          "status": "NOT_RUN",
+          "reason": "BiRefNet is outside P-only qualification"
+        },
+        "identity_qa": null,
+        "runtime_snapshot": {
+          "status": "RUNTIME_SNAPSHOT_PASSED",
+          "comfyui": {
+            "version": "0.34.0",
+            "pytorch": "2.13.0+cu130"
+          },
+          "devices": [
+            {
+              "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+              "type": "cuda",
+              "index": 0,
+              "vram_total": 8546484224,
+              "vram_free": 2870789146,
+              "torch_vram_total": 67108864,
+              "torch_vram_free": 31245338
+            }
+          ]
+        }
+      },
+      {
+        "schema_version": "0.6.2",
+        "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+        "lane": "P",
+        "config_id": "P1",
+        "config": {
+          "id": "P1",
+          "label": "RECOMMENDED_LIKE_MID_RESOLUTION",
+          "width": 768,
+          "height": 768,
+          "steps": 30,
+          "sampler_name": "euler_ancestral",
+          "scheduler": "normal",
+          "controlnet_strength": 1.0,
+          "model_card_like": true
+        },
+        "seed": 62701,
+        "stage": "p1-seed-62701",
+        "strategy": "normal-runtime",
+        "workflow_template_sha256": "ef5f736da409c9719886206d73832b5fdb3b27433c97e6c92ac06a6c76fceea7",
+        "workflow_sha256": "b6745cf9722fa8fa03d3831de9d90c668aefcb2ffd8b43253fd15c4bcf9ca57c",
+        "workflow_graph": {
+          "valid_graph": true,
+          "node_count": 10,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true,
+          "ipadapter_nodes": [],
+          "p_only": true,
+          "dimensions": [
+            768,
+            768
+          ],
+          "steps": 30,
+          "sampler_name": "euler_ancestral",
+          "scheduler": "normal",
+          "controlnet_strength": 1.0
+        },
+        "guide_upload_name": "sdxl-openpose-guide-768.png",
+        "generation": {
+          "submitted": true,
+          "completed": true,
+          "prompt_id": "a44590e6-5940-4f5b-83b8-7c0800d5129d",
+          "history_record_key": "a44590e6-5940-4f5b-83b8-7c0800d5129d",
+          "history_key_matches_prompt_id": true,
+          "fresh_binding": true,
+          "target_existed_before_submission": false,
+          "previous_frame_chaining": false,
+          "raw_output_path": "docs/evidence/sdxl-openpose-calibration/raw/p1-seed-62701.png",
+          "raw_output_sha256": "1ef234421acce95ed4a58ee3ef735bbc667146f8fdcb1827a53d3ce94cd76538",
+          "raw_output_bytes": 392504,
+          "raw_output_hash_matches_comfy": true,
+          "execution_evidence": {
+            "schema_version": "0.6.2",
+            "client_job_id": "job-dd5d979b604b49abb2a7dbd822d41683",
+            "prompt_id": "a44590e6-5940-4f5b-83b8-7c0800d5129d",
+            "submitted_at": "2026-08-30T21:21:55+00:00",
+            "first_poll_at": "2026-08-30T21:21:56+00:00",
+            "completed_at": "2026-08-30T21:24:00+00:00",
+            "runtime_ms": 124770.936,
+            "history_record_key": "a44590e6-5940-4f5b-83b8-7c0800d5129d",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "openpose_control_png_sha256": "b52d7717fadb2a76c27d267fcf3816a96f51800abba5ad417217cd12f7dc4dce"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "b6745cf9722fa8fa03d3831de9d90c668aefcb2ffd8b43253fd15c4bcf9ca57c",
+            "model_ids": [
+              "sdxl-base-1.0"
+            ],
+            "model_file_sha256": {
+              "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+            },
+            "seed": 62701,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-fd0f9e756d9e483f94733c53ca07bdbb\\p1-seed-62701.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "a44590e6-5940-4f5b-83b8-7c0800d5129d",
+                      "timestamp": 1788124916449
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "a44590e6-5940-4f5b-83b8-7c0800d5129d",
+                      "timestamp": 1788124916455
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "a44590e6-5940-4f5b-83b8-7c0800d5129d",
+                      "timestamp": 1788125040023
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "prompt_id": "PROMPT-05D-UGAS-SDXL-OPENPOSE-MODEL-CARD-CALIBRATION-v0.6.2",
+              "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+              "lane": "P",
+              "config_id": "P1",
+              "strategy": "normal-runtime",
+              "model_card_configuration": {
+                "controlnet_conditioning_scale": 1.0,
+                "num_inference_steps": 30,
+                "scheduler": "EulerAncestralDiscreteScheduler",
+                "resolution_guidance": "approximately 1024x1024 or same bucket resolution"
+              },
+              "previous_frame_chaining": false,
+              "ipadapter_executed": false,
+              "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "guide_png_sha256": "b52d7717fadb2a76c27d267fcf3816a96f51800abba5ad417217cd12f7dc4dce"
+            },
+            "outputs": [
+              {
+                "filename": "ugas-sdxl-p_00005_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "10",
+                "data_sha256": "1ef234421acce95ed4a58ee3ef735bbc667146f8fdcb1827a53d3ce94cd76538"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-fd0f9e756d9e483f94733c53ca07bdbb\\p1-seed-62701.png",
+                "sha256": "1ef234421acce95ed4a58ee3ef735bbc667146f8fdcb1827a53d3ce94cd76538",
+                "filename": "ugas-sdxl-p_00005_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          }
+        },
+        "raw_output_path": "docs/evidence/sdxl-openpose-calibration/raw/p1-seed-62701.png",
+        "raw_output_sha256": "1ef234421acce95ed4a58ee3ef735bbc667146f8fdcb1827a53d3ce94cd76538",
+        "raw_pose_qa": {
+          "status": "RAW_POSE_FAILED",
+          "preprocess_policy": "raw_rgb_neutral_gray",
+          "preprocess": {
+            "policy": "raw_rgb_neutral_gray",
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-fd0f9e756d9e483f94733c53ca07bdbb\\raw-pose-preprocess.png",
+            "sha256": "a2d46975e674d0c90d09fe7b6fc3a1a4a6fe78e734c1953bee03fd2f259d80ca",
+            "source_sha256": "1ef234421acce95ed4a58ee3ef735bbc667146f8fdcb1827a53d3ce94cd76538",
+            "source_scale": 1,
+            "alpha_bbox_normalized": [
+              0.0,
+              0.0,
+              1.0,
+              1.0
+            ],
+            "background": [
+              128,
+              128,
+              128
+            ],
+            "size": [
+              512,
+              512
+            ],
+            "uniform_scale_only": true
+          },
+          "detection": {
+            "detected": false,
+            "pose_count": 0,
+            "measurable_body_joints": 0,
+            "core_coverage": 0.0,
+            "mean_confidence": 0.0,
+            "min_confidence": 0.0
+          },
+          "detected_orientation": "unknown",
+          "pose": {
+            "metric_version": "detected-joint-pose-error-1.0",
+            "measurement_status": "UNMEASURABLE",
+            "measurable_body_joints": 0,
+            "required_core_present": false,
+            "pck_at_010": 0.0,
+            "nme": 1.0,
+            "limb_angle_mae_degrees": 180.0,
+            "lower_body_pck": 0.0,
+            "orientation_match": false,
+            "orientation_score": 0.0,
+            "pose_score": 0.0,
+            "qualifies": false,
+            "failure_reasons": [
+              "root_or_scale_unmeasurable"
+            ]
+          },
+          "absolute_pose_pass": false,
+          "overlay_path": "docs/evidence/sdxl-openpose-calibration/overlays/p1-seed-62701.png",
+          "raw_output_sha256": "1ef234421acce95ed4a58ee3ef735bbc667146f8fdcb1827a53d3ce94cd76538"
+        },
+        "human_form_qa": {
+          "status": "HUMAN_FORM_TECHNICAL_FAILED",
+          "human_form_pass": false,
+          "single_primary_human_subject": false,
+          "duplicate_full_body": false,
+          "mediapipe_detectability_sufficient": false,
+          "frame_like_border_artifact": false,
+          "stencil_collapse": false,
+          "image_metrics": {
+            "quantized_color_count": 161,
+            "luma_stddev": 35.754664,
+            "border_inner_mean_delta": 11.011979,
+            "border_stddev": 19.257344
+          },
+          "failure_reasons": [
+            "mediapipe_detectability_insufficient_or_multiple_poses"
+          ],
+          "visual_review": "required"
+        },
+        "stage_a_pass": false,
+        "status": "TRIAGE_FAILED",
+        "runtime_ms": 124770.936,
+        "postprocess": {
+          "status": "NOT_RUN",
+          "reason": "BiRefNet is outside P-only qualification"
+        },
+        "identity_qa": null,
+        "runtime_snapshot": {
+          "status": "RUNTIME_SNAPSHOT_PASSED",
+          "comfyui": {
+            "version": "0.34.0",
+            "pytorch": "2.13.0+cu130"
+          },
+          "devices": [
+            {
+              "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+              "type": "cuda",
+              "index": 0,
+              "vram_total": 8546484224,
+              "vram_free": 3642541082,
+              "torch_vram_total": 67108864,
+              "torch_vram_free": 31245338
+            }
+          ]
+        }
+      },
+      {
+        "schema_version": "0.6.2",
+        "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+        "lane": "P",
+        "config_id": "P2",
+        "config": {
+          "id": "P2",
+          "label": "MODEL_CARD_TARGET",
+          "width": 1024,
+          "height": 1024,
+          "steps": 30,
+          "sampler_name": "euler_ancestral",
+          "scheduler": "normal",
+          "controlnet_strength": 1.0,
+          "model_card_like": true
+        },
+        "seed": 62701,
+        "stage": "p2-seed-62701-normal",
+        "strategy": "normal-runtime",
+        "workflow_template_sha256": "ef5f736da409c9719886206d73832b5fdb3b27433c97e6c92ac06a6c76fceea7",
+        "workflow_sha256": "e3f3f92838ef3ad512d87db55df11a80ee46646d3ad702a5e5d634d79082c61d",
+        "workflow_graph": {
+          "valid_graph": true,
+          "node_count": 10,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true,
+          "ipadapter_nodes": [],
+          "p_only": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "steps": 30,
+          "sampler_name": "euler_ancestral",
+          "scheduler": "normal",
+          "controlnet_strength": 1.0
+        },
+        "guide_upload_name": "sdxl-openpose-guide-1024.png",
+        "generation": {
+          "submitted": true,
+          "completed": true,
+          "prompt_id": "d29fd70a-800b-4fca-bf95-eb67dfacc15f",
+          "history_record_key": "d29fd70a-800b-4fca-bf95-eb67dfacc15f",
+          "history_key_matches_prompt_id": true,
+          "fresh_binding": true,
+          "target_existed_before_submission": false,
+          "previous_frame_chaining": false,
+          "raw_output_path": "docs/evidence/sdxl-openpose-calibration/raw/p2-seed-62701-normal.png",
+          "raw_output_sha256": "ca3f486c8524ca2491f2628da2df6c48f0e4199d67717d0caad82ba173e90b18",
+          "raw_output_bytes": 815356,
+          "raw_output_hash_matches_comfy": true,
+          "execution_evidence": {
+            "schema_version": "0.6.2",
+            "client_job_id": "job-134bbe5952174f62ae05dccc0e6c8649",
+            "prompt_id": "d29fd70a-800b-4fca-bf95-eb67dfacc15f",
+            "submitted_at": "2026-08-30T21:24:01+00:00",
+            "first_poll_at": "2026-08-30T21:24:01+00:00",
+            "completed_at": "2026-08-30T21:26:06+00:00",
+            "runtime_ms": 124964.714,
+            "history_record_key": "d29fd70a-800b-4fca-bf95-eb67dfacc15f",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "openpose_control_png_sha256": "24eaa8bd8e237dbdbe0219cea57af1431f17f40018574bc391f89098d1648210"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "e3f3f92838ef3ad512d87db55df11a80ee46646d3ad702a5e5d634d79082c61d",
+            "model_ids": [
+              "sdxl-base-1.0"
+            ],
+            "model_file_sha256": {
+              "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+            },
+            "seed": 62701,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-e93a45b16ef043ea91c86e418dc2e19b\\p2-seed-62701.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "d29fd70a-800b-4fca-bf95-eb67dfacc15f",
+                      "timestamp": 1788125042509
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "d29fd70a-800b-4fca-bf95-eb67dfacc15f",
+                      "timestamp": 1788125042522
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "d29fd70a-800b-4fca-bf95-eb67dfacc15f",
+                      "timestamp": 1788125166410
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "prompt_id": "PROMPT-05D-UGAS-SDXL-OPENPOSE-MODEL-CARD-CALIBRATION-v0.6.2",
+              "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+              "lane": "P",
+              "config_id": "P2",
+              "strategy": "normal-runtime",
+              "model_card_configuration": {
+                "controlnet_conditioning_scale": 1.0,
+                "num_inference_steps": 30,
+                "scheduler": "EulerAncestralDiscreteScheduler",
+                "resolution_guidance": "approximately 1024x1024 or same bucket resolution"
+              },
+              "previous_frame_chaining": false,
+              "ipadapter_executed": false,
+              "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "guide_png_sha256": "24eaa8bd8e237dbdbe0219cea57af1431f17f40018574bc391f89098d1648210"
+            },
+            "outputs": [
+              {
+                "filename": "ugas-sdxl-p_00006_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "10",
+                "data_sha256": "ca3f486c8524ca2491f2628da2df6c48f0e4199d67717d0caad82ba173e90b18"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-e93a45b16ef043ea91c86e418dc2e19b\\p2-seed-62701.png",
+                "sha256": "ca3f486c8524ca2491f2628da2df6c48f0e4199d67717d0caad82ba173e90b18",
+                "filename": "ugas-sdxl-p_00006_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          }
+        },
+        "raw_output_path": "docs/evidence/sdxl-openpose-calibration/raw/p2-seed-62701-normal.png",
+        "raw_output_sha256": "ca3f486c8524ca2491f2628da2df6c48f0e4199d67717d0caad82ba173e90b18",
+        "raw_pose_qa": {
+          "status": "RAW_POSE_FAILED",
+          "preprocess_policy": "raw_rgb_neutral_gray",
+          "preprocess": {
+            "policy": "raw_rgb_neutral_gray",
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-openpose-calibration\\job-e93a45b16ef043ea91c86e418dc2e19b\\raw-pose-preprocess.png",
+            "sha256": "2df63a3fb193087ceb7f17739cf116c905f114da83a731a08ff083785fb1ba39",
+            "source_sha256": "ca3f486c8524ca2491f2628da2df6c48f0e4199d67717d0caad82ba173e90b18",
+            "source_scale": 1,
+            "alpha_bbox_normalized": [
+              0.0,
+              0.0,
+              1.0,
+              1.0
+            ],
+            "background": [
+              128,
+              128,
+              128
+            ],
+            "size": [
+              512,
+              512
+            ],
+            "uniform_scale_only": true
+          },
+          "detection": {
+            "detected": true,
+            "pose_count": 1,
+            "measurable_body_joints": 7,
+            "core_coverage": 0.5,
+            "mean_confidence": 0.918648,
+            "min_confidence": 0.582444
+          },
+          "detected_orientation": "left_profile",
+          "pose": {
+            "metric_version": "detected-joint-pose-error-1.0",
+            "measurement_status": "UNMEASURABLE",
+            "measurable_body_joints": 7,
+            "required_core_present": false,
+            "pck_at_010": 0.428571,
+            "nme": 0.551963,
+            "limb_angle_mae_degrees": 16.352462,
+            "lower_body_pck": 1.0,
+            "orientation_match": true,
+            "orientation_score": 1.0,
+            "pose_score": 0.0,
+            "qualifies": false,
+            "failure_reasons": [
+              "measurable_body_joints_below_10",
+              "required_core_joint_missing",
+              "pck_below_080",
+              "nme_above_010"
+            ]
+          },
+          "absolute_pose_pass": false,
+          "overlay_path": "docs/evidence/sdxl-openpose-calibration/overlays/p2-seed-62701-normal.png",
+          "raw_output_sha256": "ca3f486c8524ca2491f2628da2df6c48f0e4199d67717d0caad82ba173e90b18"
+        },
+        "human_form_qa": {
+          "status": "HUMAN_FORM_TECHNICAL_FAILED",
+          "human_form_pass": false,
+          "single_primary_human_subject": false,
+          "duplicate_full_body": false,
+          "mediapipe_detectability_sufficient": false,
+          "frame_like_border_artifact": false,
+          "stencil_collapse": true,
+          "image_metrics": {
+            "quantized_color_count": 56,
+            "luma_stddev": 14.039184,
+            "border_inner_mean_delta": 6.455556,
+            "border_stddev": 9.437561
+          },
+          "failure_reasons": [
+            "mediapipe_detectability_insufficient_or_multiple_poses",
+            "pure_stencil_or_silhouette_collapse"
+          ],
+          "visual_review": "required"
+        },
+        "stage_a_pass": false,
+        "status": "TRIAGE_FAILED",
+        "runtime_ms": 124964.714,
+        "postprocess": {
+          "status": "NOT_RUN",
+          "reason": "BiRefNet is outside P-only qualification"
+        },
+        "identity_qa": null,
+        "runtime_snapshot": {
+          "status": "RUNTIME_SNAPSHOT_PASSED",
+          "comfyui": {
+            "version": "0.34.0",
+            "pytorch": "2.13.0+cu130"
+          },
+          "devices": [
+            {
+              "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+              "type": "cuda",
+              "index": 0,
+              "vram_total": 8546484224,
+              "vram_free": 4917609498,
+              "torch_vram_total": 67108864,
+              "torch_vram_free": 31245338
+            }
+          ]
+        }
+      }
+    ],
+    "selected_configuration": null,
+    "selection_rule": "pose metrics first; runtime only final tie-breaker",
+    "stage_a_pass_count": 0
+  },
+  "confirmation": {
+    "status": "NOT_RUN",
+    "seeds": [],
+    "records": [],
+    "pass": false
+  },
+  "p2": {
+    "status": "TRIAGE_FAILED",
+    "hardware_gap": false,
+    "normal_and_retry_preserve_parameters": true
+  },
+  "raw_contact_sheet": "docs/evidence/sdxl-openpose-config-triage-contact-sheet.png",
+  "pose_overlay_contact_sheet": "docs/evidence/sdxl-openpose-config-pose-overlays-contact-sheet.png",
+  "confirmation_contact_sheet": null,
+  "confirmation_pose_overlay_contact_sheet": null,
+  "execution_evidence": "docs/evidence/execution-evidence-v0.6.2.json",
+  "guide_manifest": {
+    "P0": {
+      "path": "docs/evidence/sdxl-openpose-guide-512.png",
+      "sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+      "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+      "renderer_version": "3.0.0",
+      "render_parameters": {
+        "width": 512,
+        "height": 512,
+        "source_canvas": 512,
+        "background": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "limb_thickness": 8,
+        "joint_radius": 9,
+        "derived_from_json": true,
+        "raster_upscale": false
+      }
+    },
+    "P1": {
+      "path": "docs/evidence/sdxl-openpose-guide-768.png",
+      "sha256": "b52d7717fadb2a76c27d267fcf3816a96f51800abba5ad417217cd12f7dc4dce",
+      "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+      "renderer_version": "3.0.0",
+      "render_parameters": {
+        "width": 768,
+        "height": 768,
+        "source_canvas": 512,
+        "background": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "limb_thickness": 12,
+        "joint_radius": 14,
+        "derived_from_json": true,
+        "raster_upscale": false
+      }
+    },
+    "P2": {
+      "path": "docs/evidence/sdxl-openpose-guide-1024.png",
+      "sha256": "24eaa8bd8e237dbdbe0219cea57af1431f17f40018574bc391f89098d1648210",
+      "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+      "renderer_version": "3.0.0",
+      "render_parameters": {
+        "width": 1024,
+        "height": 1024,
+        "source_canvas": 512,
+        "background": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "limb_thickness": 16,
+        "joint_radius": 18,
+        "derived_from_json": true,
+        "raster_upscale": false
+      }
+    }
+  },
+  "model_boundary": {
+    "source": "docs/evidence/sdxl-model-stack-qualification.json",
+    "download_requested": false,
+    "models": {
+      "sdxl-base-1.0": {
+        "manifest": {
+          "id": "sdxl-base-1.0",
+          "source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+          "source_revision": "462165984030d82259a11f4367a4eed129e94a7b",
+          "filename": "sd_xl_base_1.0.safetensors",
+          "folder": "checkpoints",
+          "bytes": 6938078334,
+          "sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+          "license": "CreativeML Open RAIL++-M",
+          "commercial_use_status": "conditional-license-review-required",
+          "evidence": "sdxl-base-model-qualification.json",
+          "download_url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/462165984030d82259a11f4367a4eed129e94a7b/sd_xl_base_1.0.safetensors",
+          "verification": {
+            "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\checkpoints\\sd_xl_base_1.0.safetensors",
+            "filename": "sd_xl_base_1.0.safetensors",
+            "expected_bytes": 6938078334,
+            "actual_bytes": 6938078334,
+            "expected_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+            "actual_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+            "present": true,
+            "bytes_match": true,
+            "hash_match": true,
+            "verified": true
+          }
+        },
+        "local_verification": {
+          "model_id": "sdxl-base-1.0",
+          "files": [
+            {
+              "file": "checkpoints/sd_xl_base_1.0.safetensors",
+              "present": true,
+              "expected_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+              "actual_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+              "ok": true
+            }
+          ],
+          "hashes_verified": true,
+          "license_approved": false,
+          "qualified": false
+        }
+      },
+      "xinsir-controlnet-openpose-sdxl-1.0": {
+        "manifest": {
+          "id": "xinsir-controlnet-openpose-sdxl-1.0",
+          "source": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0",
+          "source_revision": "23f966cd5cfdd3f7729c903e243d87152162d2b7",
+          "filename": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+          "folder": "controlnet",
+          "bytes": 2502139104,
+          "sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+          "license": "Apache-2.0",
+          "commercial_use_status": "approved",
+          "evidence": "sdxl-openpose-controlnet-qualification.json",
+          "download_url": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0/resolve/23f966cd5cfdd3f7729c903e243d87152162d2b7/diffusion_pytorch_model.safetensors",
+          "verification": {
+            "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\controlnet\\xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+            "filename": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+            "expected_bytes": 2502139104,
+            "actual_bytes": 2502139104,
+            "expected_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+            "actual_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+            "present": true,
+            "bytes_match": true,
+            "hash_match": true,
+            "verified": true
+          }
+        },
+        "local_verification": {
+          "model_id": "xinsir-controlnet-openpose-sdxl-1.0",
+          "files": [
+            {
+              "file": "controlnet/xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+              "present": true,
+              "expected_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+              "actual_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+              "ok": true
+            }
+          ],
+          "hashes_verified": true,
+          "license_approved": true,
+          "qualified": true
+        }
+      }
+    },
+    "ipadapter_outside_scope": true
+  },
+  "runtime": {
+    "schema_version": "0.6.0",
+    "status": "RUNTIME_DOCTOR_PASSED",
+    "checked_at": "2026-08-30T18:33:49Z",
+    "endpoint": "http://127.0.0.1:8188",
+    "comfyui": {
+      "version": "0.34.0",
+      "git_revision": "12d5279438bfefc058a269eae805ceab6047777f",
+      "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "pytorch": "2.13.0+cu130"
+    },
+    "gpu": {
+      "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+      "type": "cuda",
+      "index": 0,
+      "vram_total": 8546484224,
+      "vram_free": 7335837696,
+      "torch_vram_total": 67108864,
+      "torch_vram_free": 33554432
+    },
+    "nvidia_smi": {
+      "status": "available",
+      "gpus": [
+        {
+          "name": "NVIDIA GeForce RTX 5050",
+          "driver": "610.74",
+          "memory_total_mb": "8151",
+          "memory_free_mb": "6632"
+        }
+      ],
+      "stderr": ""
+    },
+    "required_nodes": {
+      "CheckpointLoaderSimple": true,
+      "CLIPTextEncode": true,
+      "ControlNetLoader": true,
+      "ControlNetApplyAdvanced": true,
+      "CLIPVisionLoader": true,
+      "CLIPVisionEncode": true,
+      "IPAdapterModelLoader": true,
+      "IPAdapterAdvanced": true,
+      "KSampler": true,
+      "VAEDecode": true,
+      "SaveImage": true
+    },
+    "inventory": {
+      "checkpoints": [
+        "sd_xl_base_1.0.safetensors"
+      ],
+      "controlnet": [
+        "xinsir-controlnet-openpose-sdxl-1.0.safetensors"
+      ],
+      "ipadapter": [
+        "ip-adapter-plus_sdxl_vit-h.safetensors"
+      ],
+      "clip_vision": [
+        "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      ]
+    },
+    "runtime_strategy": [
+      "512x512 FP16-compatible attempt",
+      "low-VRAM/offload fallback",
+      "sequential model unload/offload"
+    ],
+    "resolution_minimum": [
+      512,
+      512
+    ],
+    "failures": [],
+    "smoke_generation_run": false
+  },
+  "production_approval": "not-granted",
+  "external_approval": "not-claimed",
+  "review_visual_manifest": "docs/evidence/review-visuals-v0.6.2.json"
+}

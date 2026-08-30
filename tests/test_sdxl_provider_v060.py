@@ -19,7 +19,7 @@ def load(relative: str) -> dict:
 
 class SdxlProviderV060Tests(unittest.TestCase):
     def test_active_state_preserves_history_and_blocks_walk(self):
-        state = load("docs/evidence/current-state.json")
+        state = load("docs/evidence/current-state-v0.6.1.json")
         self.assertEqual("0.6.1", state["version"])
         self.assertEqual("SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION", state["phase"])
         self.assertEqual("0.6.0", state["previous_release"]["version"])
