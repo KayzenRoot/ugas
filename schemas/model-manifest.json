@@ -21,7 +21,7 @@
     "exact_files": {"type": "array", "items": {"type": "string"}},
     "sha256": {"type": "object"},
     "license": {"type": "string"},
-    "commercial_use_status": {"enum": ["approved", "review", "required", "rejected"]},
+    "commercial_use_status": {"enum": ["approved", "conditional-license-review-required", "review", "required", "rejected"]},
     "purpose": {"type": "array", "items": {"type": "string"}},
     "required_vram_mb": {"type": ["integer", "null"]},
     "recommended_vram_mb": {"type": ["integer", "null"]},

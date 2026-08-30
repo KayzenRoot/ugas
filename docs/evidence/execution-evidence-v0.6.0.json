@@ -1,0 +1,213 @@
+{
+  "schema_version": "0.6.0",
+  "status": "SDXL_OPENPOSE_CONTROL_GAP",
+  "prompt_id": "PROMPT-05-UGAS-SDXL-CONTROLNET-IPADAPTER-PROVIDER-v0.6.0",
+  "records": [
+    {
+      "schema_version": "0.6.0",
+      "client_job_id": "job-07906ac5bd2947c7a5a03dc34cad8ffa",
+      "prompt_id": "2e1b496a-5bed-4bee-a43f-162225fe07a6",
+      "submitted_at": "2026-08-30T18:36:41+00:00",
+      "first_poll_at": "2026-08-30T18:36:41+00:00",
+      "completed_at": "2026-08-30T18:37:45+00:00",
+      "runtime_ms": 64640.624,
+      "history_record_key": "2e1b496a-5bed-4bee-a43f-162225fe07a6",
+      "history_key_matches_prompt_id": true,
+      "source_hashes": {
+        "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "openpose_guide_image_sha256": null,
+        "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+      },
+      "instruction_sha256": null,
+      "edit_contract_sha256": null,
+      "workflow_sha256": "a03e7818570d7a0fc624915d110297c878805ab86327040898e6dbb442ab0515",
+      "model_ids": [
+        "sdxl-base-1.0"
+      ],
+      "model_file_sha256": {
+        "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+      },
+      "seed": 60701,
+      "seed_was_used_before": false,
+      "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v060\\job-5ddab45579c34950874e12c5e930a810\\smoke-i-seed-60701.png",
+      "target_existed_before_submission": false,
+      "cache": {
+        "authoritative_history_status": {
+          "status_str": "success",
+          "completed": true,
+          "messages": [
+            [
+              "execution_start",
+              {
+                "prompt_id": "2e1b496a-5bed-4bee-a43f-162225fe07a6",
+                "timestamp": 1788115001258
+              }
+            ],
+            [
+              "execution_cached",
+              {
+                "nodes": [],
+                "prompt_id": "2e1b496a-5bed-4bee-a43f-162225fe07a6",
+                "timestamp": 1788115001278
+              }
+            ],
+            [
+              "execution_success",
+              {
+                "prompt_id": "2e1b496a-5bed-4bee-a43f-162225fe07a6",
+                "timestamp": 1788115065553
+              }
+            ]
+          ]
+        },
+        "cache_hit_declared": null
+      },
+      "qualification_context": {
+        "prompt_id": "PROMPT-05-UGAS-SDXL-CONTROLNET-IPADAPTER-PROVIDER-v0.6.0",
+        "phase": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION",
+        "factorial_lane": "I",
+        "controlnet_strength": null,
+        "ipadapter_weight": 0.8,
+        "controlnet_start": 0.0,
+        "controlnet_end": 1.0,
+        "ipadapter_start": 0.0,
+        "ipadapter_end": 1.0,
+        "ipadapter_weight_type": "linear",
+        "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+        "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+        "previous_frame_chaining": false,
+        "previous_outputs": false
+      },
+      "outputs": [
+        {
+          "filename": "ugas-sdxl-i_00001_.png",
+          "subfolder": "",
+          "type": "output",
+          "node_id": "12",
+          "data_sha256": "5e84af45496ec2b8a28cc34b6fbb82c8464b8d72f9a9e1f66ff38509f3652b61"
+        }
+      ],
+      "runtime_plausibility": {
+        "status": "NOT_RUN"
+      },
+      "fresh_binding": true,
+      "output_paths": [
+        {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v060\\job-5ddab45579c34950874e12c5e930a810\\smoke-i-seed-60701.png",
+          "sha256": "5e84af45496ec2b8a28cc34b6fbb82c8464b8d72f9a9e1f66ff38509f3652b61",
+          "filename": "ugas-sdxl-i_00001_.png",
+          "subfolder": "",
+          "type": "output"
+        }
+      ]
+    },
+    {
+      "schema_version": "0.6.0",
+      "client_job_id": "job-b32a411898074dfeb8d2c4dfe5255e21",
+      "prompt_id": "e6fc8159-4dc5-47da-b801-ad9ae082fa96",
+      "submitted_at": "2026-08-30T18:38:17+00:00",
+      "first_poll_at": "2026-08-30T18:38:17+00:00",
+      "completed_at": "2026-08-30T18:39:56+00:00",
+      "runtime_ms": 99710.109,
+      "history_record_key": "e6fc8159-4dc5-47da-b801-ad9ae082fa96",
+      "history_key_matches_prompt_id": true,
+      "source_hashes": {
+        "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+        "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+      },
+      "instruction_sha256": null,
+      "edit_contract_sha256": null,
+      "workflow_sha256": "a3b38c337b2516662012eda96249ad164ce70403b21bf2db35c35f13d261ef98",
+      "model_ids": [
+        "sdxl-base-1.0"
+      ],
+      "model_file_sha256": {
+        "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+      },
+      "seed": 60701,
+      "seed_was_used_before": false,
+      "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v060\\job-46e72114efe544089e7fe32f68e2d62a\\smoke-pi-seed-60701.png",
+      "target_existed_before_submission": false,
+      "cache": {
+        "authoritative_history_status": {
+          "status_str": "success",
+          "completed": true,
+          "messages": [
+            [
+              "execution_start",
+              {
+                "prompt_id": "e6fc8159-4dc5-47da-b801-ad9ae082fa96",
+                "timestamp": 1788115097350
+              }
+            ],
+            [
+              "execution_cached",
+              {
+                "nodes": [],
+                "prompt_id": "e6fc8159-4dc5-47da-b801-ad9ae082fa96",
+                "timestamp": 1788115097366
+              }
+            ],
+            [
+              "execution_success",
+              {
+                "prompt_id": "e6fc8159-4dc5-47da-b801-ad9ae082fa96",
+                "timestamp": 1788115192645
+              }
+            ]
+          ]
+        },
+        "cache_hit_declared": null
+      },
+      "qualification_context": {
+        "prompt_id": "PROMPT-05-UGAS-SDXL-CONTROLNET-IPADAPTER-PROVIDER-v0.6.0",
+        "phase": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION",
+        "factorial_lane": "PI",
+        "controlnet_strength": 0.9,
+        "ipadapter_weight": 0.8,
+        "controlnet_start": 0.0,
+        "controlnet_end": 1.0,
+        "ipadapter_start": 0.0,
+        "ipadapter_end": 1.0,
+        "ipadapter_weight_type": "linear",
+        "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+        "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+        "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+        "previous_frame_chaining": false,
+        "previous_outputs": false
+      },
+      "outputs": [
+        {
+          "filename": "ugas-sdxl-pi_00001_.png",
+          "subfolder": "",
+          "type": "output",
+          "node_id": "14",
+          "data_sha256": "343284d77e9894986a5065d19643bed356f13bef90bbac7ae60f472efec3a52d"
+        }
+      ],
+      "runtime_plausibility": {
+        "status": "NOT_RUN"
+      },
+      "fresh_binding": true,
+      "output_paths": [
+        {
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v060\\job-46e72114efe544089e7fe32f68e2d62a\\smoke-pi-seed-60701.png",
+          "sha256": "343284d77e9894986a5065d19643bed356f13bef90bbac7ae60f472efec3a52d",
+          "filename": "ugas-sdxl-pi_00001_.png",
+          "subfolder": "",
+          "type": "output"
+        }
+      ]
+    }
+  ],
+  "attempted_record_count": 3,
+  "completed_execution_count": 2,
+  "all_prompt_ids_present": false,
+  "all_history_bindings_exact": false,
+  "stale_output_rejected": false,
+  "previous_frame_chaining": false,
+  "weights_in_git": false,
+  "custom_node_source_vendored": false
+}

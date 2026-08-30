@@ -1,0 +1,112 @@
+{
+  "schema_version": "0.6.0",
+  "qualified_at": "2026-08-30T18:33:44Z",
+  "status": "MODEL_ARTIFACTS_VERIFIED",
+  "download_requested": false,
+  "weights_outside_git": true,
+  "artifacts": [
+    {
+      "id": "sdxl-base-1.0",
+      "source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+      "source_revision": "462165984030d82259a11f4367a4eed129e94a7b",
+      "filename": "sd_xl_base_1.0.safetensors",
+      "folder": "checkpoints",
+      "bytes": 6938078334,
+      "sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+      "license": "CreativeML Open RAIL++-M",
+      "commercial_use_status": "conditional-license-review-required",
+      "evidence": "sdxl-base-model-qualification.json",
+      "download_url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/462165984030d82259a11f4367a4eed129e94a7b/sd_xl_base_1.0.safetensors",
+      "verification": {
+        "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\checkpoints\\sd_xl_base_1.0.safetensors",
+        "filename": "sd_xl_base_1.0.safetensors",
+        "expected_bytes": 6938078334,
+        "actual_bytes": 6938078334,
+        "expected_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+        "actual_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+        "present": true,
+        "bytes_match": true,
+        "hash_match": true,
+        "verified": true
+      }
+    },
+    {
+      "id": "xinsir-controlnet-openpose-sdxl-1.0",
+      "source": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0",
+      "source_revision": "23f966cd5cfdd3f7729c903e243d87152162d2b7",
+      "filename": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+      "folder": "controlnet",
+      "bytes": 2502139104,
+      "sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+      "license": "Apache-2.0",
+      "commercial_use_status": "approved",
+      "evidence": "sdxl-openpose-controlnet-qualification.json",
+      "download_url": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0/resolve/23f966cd5cfdd3f7729c903e243d87152162d2b7/diffusion_pytorch_model.safetensors",
+      "verification": {
+        "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\controlnet\\xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+        "filename": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+        "expected_bytes": 2502139104,
+        "actual_bytes": 2502139104,
+        "expected_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+        "actual_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+        "present": true,
+        "bytes_match": true,
+        "hash_match": true,
+        "verified": true
+      }
+    },
+    {
+      "id": "ipadapter-plus-sdxl-vit-h",
+      "source": "https://huggingface.co/h94/IP-Adapter",
+      "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "filename": "ip-adapter-plus_sdxl_vit-h.safetensors",
+      "folder": "ipadapter",
+      "bytes": 847517512,
+      "sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+      "license": "Apache-2.0",
+      "commercial_use_status": "approved",
+      "evidence": "ipadapter-sdxl-model-qualification.json",
+      "download_url": "https://huggingface.co/h94/IP-Adapter/resolve/018e402774aeeddd60609b4ecdb7e298259dc729/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors",
+      "verification": {
+        "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\ipadapter\\ip-adapter-plus_sdxl_vit-h.safetensors",
+        "filename": "ip-adapter-plus_sdxl_vit-h.safetensors",
+        "expected_bytes": 847517512,
+        "actual_bytes": 847517512,
+        "expected_sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+        "actual_sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+        "present": true,
+        "bytes_match": true,
+        "hash_match": true,
+        "verified": true
+      }
+    },
+    {
+      "id": "clip-vision-vit-h",
+      "source": "https://huggingface.co/h94/IP-Adapter",
+      "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "filename": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+      "folder": "clip_vision",
+      "bytes": 2528373448,
+      "sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+      "license": "Apache-2.0",
+      "commercial_use_status": "approved",
+      "evidence": "clip-vision-qualification.json",
+      "variant": "OpenCLIP-ViT-H-14",
+      "pairing": "ip-adapter-plus_sdxl_vit-h.safetensors",
+      "download_url": "https://huggingface.co/h94/IP-Adapter/resolve/018e402774aeeddd60609b4ecdb7e298259dc729/models/image_encoder/model.safetensors",
+      "verification": {
+        "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\clip_vision\\CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+        "filename": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+        "expected_bytes": 2528373448,
+        "actual_bytes": 2528373448,
+        "expected_sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+        "actual_sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+        "present": true,
+        "bytes_match": true,
+        "hash_match": true,
+        "verified": true
+      }
+    }
+  ],
+  "failures": []
+}

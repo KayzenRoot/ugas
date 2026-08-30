@@ -1,6 +1,6 @@
-# 2D master pipeline v0.5.5
+# 2D master pipeline v0.6.0
 
-This release performs review snapshot integrity only. The v0.5.4 pose/provider evidence remains historical; no new generation is executed here.
+This release qualifies the bounded SDXL ControlNet/IP-Adapter provider lane. The v0.5.4 pose/provider and v0.5.5 review-snapshot evidence remain historical; the current lane stopped at its explicit OpenPose gap.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 

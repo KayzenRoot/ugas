@@ -1,6 +1,247 @@
 {
-  "schema_version": "0.5.2",
+  "schema_version": "0.6.0",
   "models": [
+    {
+      "schema_version": "0.6.0",
+      "id": "sdxl-base-1.0",
+      "provider": "provider-comfyui",
+      "family": "stable-diffusion-xl",
+      "variant": "base",
+      "quantization": "fp16",
+      "guidance_distilled": false,
+      "step_distilled": false,
+      "recommended_steps": 20,
+      "recommended_guidance": 7.0,
+      "quality_tier": "quality",
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050",
+        "status": "runtime-qualification-required"
+      },
+      "artifact_type": "checkpoint",
+      "source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+      "source_revision": "462165984030d82259a11f4367a4eed129e94a7b",
+      "exact_files": [
+        "checkpoints/sd_xl_base_1.0.safetensors"
+      ],
+      "sha256": {
+        "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+      },
+      "bytes": {
+        "checkpoints/sd_xl_base_1.0.safetensors": 6938078334
+      },
+      "license": "CreativeML Open RAIL++-M",
+      "commercial_use_status": "conditional-license-review-required",
+      "model_folders": {
+        "checkpoints": "checkpoints"
+      },
+      "required_nodes": [
+        "CheckpointLoaderSimple"
+      ],
+      "purpose": [
+        "sdxl-provider-qualification",
+        "pose-controlled-character-generation"
+      ],
+      "required_vram_mb": 8192,
+      "recommended_vram_mb": 12288,
+      "workflow_ids": [
+        "sdxl-openpose-controlnet-p",
+        "sdxl-openpose-ipadapter-character"
+      ],
+      "status": "qualified",
+      "qualification_evidence": {
+        "status": "MODEL_ARTIFACT_HASH_VERIFIED",
+        "hashes_verified": true,
+        "license_recorded": true,
+        "commercial_use_status": "conditional-license-review-required",
+        "evidence": "docs/evidence/sdxl-base-model-qualification.json"
+      },
+      "download_files": {
+        "checkpoints/sd_xl_base_1.0.safetensors": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/462165984030d82259a11f4367a4eed129e94a7b/sd_xl_base_1.0.safetensors"
+      }
+    },
+    {
+      "schema_version": "0.6.0",
+      "id": "xinsir-controlnet-openpose-sdxl-1.0",
+      "provider": "provider-comfyui",
+      "family": "stable-diffusion-xl",
+      "variant": "base",
+      "artifact_variant": "controlnet-openpose-sdxl-1.0",
+      "quantization": "fp16",
+      "guidance_distilled": false,
+      "step_distilled": false,
+      "recommended_steps": 20,
+      "recommended_guidance": 7.0,
+      "quality_tier": "quality",
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050",
+        "status": "runtime-qualification-required"
+      },
+      "artifact_type": "controlnet",
+      "source": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0",
+      "source_revision": "23f966cd5cfdd3f7729c903e243d87152162d2b7",
+      "exact_files": [
+        "controlnet/xinsir-controlnet-openpose-sdxl-1.0.safetensors"
+      ],
+      "sha256": {
+        "controlnet/xinsir-controlnet-openpose-sdxl-1.0.safetensors": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5"
+      },
+      "bytes": {
+        "controlnet/xinsir-controlnet-openpose-sdxl-1.0.safetensors": 2502139104
+      },
+      "license": "Apache-2.0",
+      "commercial_use_status": "approved",
+      "model_folders": {
+        "controlnet": "controlnet"
+      },
+      "required_nodes": [
+        "ControlNetLoader",
+        "ControlNetApplyAdvanced"
+      ],
+      "purpose": [
+        "sdxl-provider-qualification",
+        "openpose-controlnet"
+      ],
+      "required_vram_mb": 8192,
+      "recommended_vram_mb": 12288,
+      "workflow_ids": [
+        "sdxl-openpose-controlnet-p",
+        "sdxl-openpose-ipadapter-character"
+      ],
+      "status": "qualified",
+      "qualification_evidence": {
+        "status": "MODEL_ARTIFACT_HASH_VERIFIED",
+        "hashes_verified": true,
+        "license_recorded": true,
+        "commercial_use_status": "approved",
+        "evidence": "docs/evidence/sdxl-openpose-controlnet-qualification.json"
+      },
+      "download_files": {
+        "controlnet/xinsir-controlnet-openpose-sdxl-1.0.safetensors": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0/resolve/23f966cd5cfdd3f7729c903e243d87152162d2b7/diffusion_pytorch_model.safetensors"
+      }
+    },
+    {
+      "schema_version": "0.6.0",
+      "id": "ipadapter-plus-sdxl-vit-h",
+      "provider": "provider-comfyui",
+      "family": "stable-diffusion-xl",
+      "variant": "base",
+      "artifact_variant": "ip-adapter-plus-sdxl-vit-h",
+      "quantization": "fp16",
+      "guidance_distilled": false,
+      "step_distilled": false,
+      "recommended_steps": 20,
+      "recommended_guidance": 7.0,
+      "quality_tier": "quality",
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050",
+        "status": "runtime-qualification-required"
+      },
+      "artifact_type": "ipadapter",
+      "required_clip_vision_variant": "OpenCLIP-ViT-H-14",
+      "source": "https://huggingface.co/h94/IP-Adapter",
+      "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "exact_files": [
+        "ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors"
+      ],
+      "sha256": {
+        "ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581"
+      },
+      "bytes": {
+        "ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors": 847517512
+      },
+      "license": "Apache-2.0",
+      "commercial_use_status": "approved",
+      "model_folders": {
+        "ipadapter": "ipadapter"
+      },
+      "required_nodes": [
+        "IPAdapterModelLoader",
+        "IPAdapterAdvanced"
+      ],
+      "purpose": [
+        "sdxl-provider-qualification",
+        "identity-conditioning"
+      ],
+      "required_vram_mb": 8192,
+      "recommended_vram_mb": 12288,
+      "workflow_ids": [
+        "sdxl-ipadapter-i",
+        "sdxl-openpose-ipadapter-character"
+      ],
+      "status": "qualified",
+      "qualification_evidence": {
+        "status": "MODEL_ARTIFACT_HASH_VERIFIED",
+        "hashes_verified": true,
+        "license_recorded": true,
+        "commercial_use_status": "approved",
+        "evidence": "docs/evidence/ipadapter-sdxl-model-qualification.json"
+      },
+      "download_files": {
+        "ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors": "https://huggingface.co/h94/IP-Adapter/resolve/018e402774aeeddd60609b4ecdb7e298259dc729/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors"
+      }
+    },
+    {
+      "schema_version": "0.6.0",
+      "id": "clip-vision-vit-h",
+      "provider": "provider-comfyui",
+      "family": "clip-vision",
+      "variant": "native",
+      "artifact_variant": "OpenCLIP-ViT-H-14",
+      "quantization": "fp16",
+      "guidance_distilled": false,
+      "step_distilled": false,
+      "recommended_steps": null,
+      "recommended_guidance": null,
+      "quality_tier": "quality",
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050",
+        "status": "runtime-qualification-required"
+      },
+      "artifact_type": "clip-vision",
+      "source": "https://huggingface.co/h94/IP-Adapter",
+      "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+      "exact_files": [
+        "clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      ],
+      "sha256": {
+        "clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030"
+      },
+      "bytes": {
+        "clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors": 2528373448
+      },
+      "source_subpath": "models/image_encoder/model.safetensors",
+      "paired_with": "ip-adapter-plus_sdxl_vit-h.safetensors",
+      "license": "Apache-2.0",
+      "commercial_use_status": "approved",
+      "model_folders": {
+        "clip_vision": "clip_vision"
+      },
+      "required_nodes": [
+        "CLIPVisionLoader",
+        "CLIPVisionEncode"
+      ],
+      "purpose": [
+        "sdxl-provider-qualification",
+        "ipadapter-vision-encoder"
+      ],
+      "required_vram_mb": 4096,
+      "recommended_vram_mb": 8192,
+      "workflow_ids": [
+        "sdxl-ipadapter-i",
+        "sdxl-openpose-ipadapter-character"
+      ],
+      "status": "qualified",
+      "qualification_evidence": {
+        "status": "MODEL_ARTIFACT_HASH_VERIFIED",
+        "hashes_verified": true,
+        "license_recorded": true,
+        "commercial_use_status": "approved",
+        "evidence": "docs/evidence/clip-vision-qualification.json"
+      },
+      "download_files": {
+        "clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors": "https://huggingface.co/h94/IP-Adapter/resolve/018e402774aeeddd60609b4ecdb7e298259dc729/models/image_encoder/model.safetensors"
+      }
+    },
     {
       "schema_version": "0.5.1",
       "id": "flux2-klein-4b-distilled-nvfp4",
@@ -12,23 +253,75 @@
       "step_distilled": true,
       "recommended_steps": 4,
       "recommended_guidance": 1.0,
-      "capability_parameters": {"text-to-image": {"steps": 4, "guidance": 1.0}, "2d": {"steps": 4, "guidance": 1.0}, "reference-edit": {"steps": 4, "guidance": 1.0}},
+      "capability_parameters": {
+        "text-to-image": {
+          "steps": 4,
+          "guidance": 1.0
+        },
+        "2d": {
+          "steps": 4,
+          "guidance": 1.0
+        },
+        "reference-edit": {
+          "steps": 4,
+          "guidance": 1.0
+        }
+      },
       "quality_tier": "fast",
-      "verified_on_hardware": {"gpu": "NVIDIA GeForce RTX 5050", "vram_bytes": 8546484224, "resolution": "512x512", "evidence": "docs/evidence/quality-benchmark.json"},
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050",
+        "vram_bytes": 8546484224,
+        "resolution": "512x512",
+        "evidence": "docs/evidence/quality-benchmark.json"
+      },
       "source": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-nvfp4",
-      "exact_files": ["diffusion_models/flux-2-klein-4b-nvfp4.safetensors", "text_encoders/qwen_3_4b_fp4_flux2.safetensors", "vae/flux2-vae.safetensors"],
-      "sha256": {"diffusion_models/flux-2-klein-4b-nvfp4.safetensors": "D8C5007B6A3BBBDFD38538BBCEF5101A55DFDE81894F58D2E3C8701CDEF3542B", "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8", "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"},
+      "exact_files": [
+        "diffusion_models/flux-2-klein-4b-nvfp4.safetensors",
+        "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+        "vae/flux2-vae.safetensors"
+      ],
+      "sha256": {
+        "diffusion_models/flux-2-klein-4b-nvfp4.safetensors": "D8C5007B6A3BBBDFD38538BBCEF5101A55DFDE81894F58D2E3C8701CDEF3542B",
+        "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+        "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+      },
       "license": "Apache-2.0",
       "commercial_use_status": "approved",
-      "purpose": ["2d", "text-to-image", "reference-edit", "sprite-generation", "fast-lane"],
+      "purpose": [
+        "2d",
+        "text-to-image",
+        "reference-edit",
+        "sprite-generation",
+        "fast-lane"
+      ],
       "required_vram_mb": 5000,
       "recommended_vram_mb": 6144,
-      "model_folders": {"diffusion_models": "diffusion_models", "text_encoders": "text_encoders", "vae": "vae"},
-      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader"],
-      "workflow_ids": ["flux2-klein-4b-distilled-text-to-image", "flux2-klein-4b-distilled-image-edit"],
+      "model_folders": {
+        "diffusion_models": "diffusion_models",
+        "text_encoders": "text_encoders",
+        "vae": "vae"
+      },
+      "required_nodes": [
+        "UNETLoader",
+        "CLIPLoader",
+        "VAELoader"
+      ],
+      "workflow_ids": [
+        "flux2-klein-4b-distilled-text-to-image",
+        "flux2-klein-4b-distilled-image-edit"
+      ],
       "status": "qualified",
-      "qualification_evidence": {"status": "qualified", "hashes_verified": true, "files_verified_at": "2026-08-29", "smoke_evidence": "docs/evidence/quality-benchmark.json"},
-      "download_files": {"diffusion_models/flux-2-klein-4b-nvfp4.safetensors": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-nvfp4/resolve/main/flux-2-klein-4b-nvfp4.safetensors", "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "https://huggingface.co/Comfy-Org/flux2-klein/resolve/main/split_files/text_encoders/qwen_3_4b_fp4_flux2.safetensors", "vae/flux2-vae.safetensors": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors"}
+      "qualification_evidence": {
+        "status": "qualified",
+        "hashes_verified": true,
+        "files_verified_at": "2026-08-29",
+        "smoke_evidence": "docs/evidence/quality-benchmark.json"
+      },
+      "download_files": {
+        "diffusion_models/flux-2-klein-4b-nvfp4.safetensors": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-nvfp4/resolve/main/flux-2-klein-4b-nvfp4.safetensors",
+        "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "https://huggingface.co/Comfy-Org/flux2-klein/resolve/main/split_files/text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+        "vae/flux2-vae.safetensors": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors"
+      }
     },
     {
       "schema_version": "0.5.1",
@@ -41,23 +334,84 @@
       "step_distilled": false,
       "recommended_steps": 50,
       "recommended_guidance": 4.0,
-      "capability_parameters": {"text-to-image": {"steps": 50, "guidance": 4.0}, "2d": {"steps": 50, "guidance": 4.0}, "reference-edit": {"steps": 20, "guidance": 5.0}, "multi-reference-edit": {"steps": 20, "guidance": 5.0}, "native-reference-order-benchmark": {"steps": 20, "guidance": 5.0}},
+      "capability_parameters": {
+        "text-to-image": {
+          "steps": 50,
+          "guidance": 4.0
+        },
+        "2d": {
+          "steps": 50,
+          "guidance": 4.0
+        },
+        "reference-edit": {
+          "steps": 20,
+          "guidance": 5.0
+        },
+        "multi-reference-edit": {
+          "steps": 20,
+          "guidance": 5.0
+        },
+        "native-reference-order-benchmark": {
+          "steps": 20,
+          "guidance": 5.0
+        }
+      },
       "quality_tier": "quality",
-      "verified_on_hardware": {"gpu": "NVIDIA GeForce RTX 5050", "vram_bytes": 8546484224, "resolution": "512x512", "evidence": "docs/evidence/quality-benchmark.json"},
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050",
+        "vram_bytes": 8546484224,
+        "resolution": "512x512",
+        "evidence": "docs/evidence/quality-benchmark.json"
+      },
       "source": "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4b-nvfp4",
-      "exact_files": ["diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors", "text_encoders/qwen_3_4b_fp4_flux2.safetensors", "vae/flux2-vae.safetensors"],
-      "sha256": {"diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB", "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8", "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"},
+      "exact_files": [
+        "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
+        "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+        "vae/flux2-vae.safetensors"
+      ],
+      "sha256": {
+        "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+        "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+        "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+      },
       "license": "Apache-2.0",
       "commercial_use_status": "approved",
-      "purpose": ["2d", "text-to-image", "reference-edit", "sprite-generation", "quality-lane"],
+      "purpose": [
+        "2d",
+        "text-to-image",
+        "reference-edit",
+        "sprite-generation",
+        "quality-lane"
+      ],
       "required_vram_mb": 5000,
       "recommended_vram_mb": 8192,
-      "model_folders": {"diffusion_models": "diffusion_models", "text_encoders": "text_encoders", "vae": "vae"},
-      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader"],
-      "workflow_ids": ["flux2-klein-base-4b-quality-text-to-image", "flux2-klein-base-4b-quality-image-edit", "flux2-klein-base-4b-quality-multi-reference-edit"],
+      "model_folders": {
+        "diffusion_models": "diffusion_models",
+        "text_encoders": "text_encoders",
+        "vae": "vae"
+      },
+      "required_nodes": [
+        "UNETLoader",
+        "CLIPLoader",
+        "VAELoader"
+      ],
+      "workflow_ids": [
+        "flux2-klein-base-4b-quality-text-to-image",
+        "flux2-klein-base-4b-quality-image-edit",
+        "flux2-klein-base-4b-quality-multi-reference-edit"
+      ],
       "status": "qualified",
-      "qualification_evidence": {"status": "qualified", "hashes_verified": true, "files_verified_at": "2026-08-29", "smoke_evidence": "docs/evidence/quality-benchmark.json"},
-      "download_files": {"diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4b-nvfp4/resolve/main/flux-2-klein-base-4b-nvfp4.safetensors", "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "https://huggingface.co/Comfy-Org/flux2-klein/resolve/main/split_files/text_encoders/qwen_3_4b_fp4_flux2.safetensors", "vae/flux2-vae.safetensors": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors"}
+      "qualification_evidence": {
+        "status": "qualified",
+        "hashes_verified": true,
+        "files_verified_at": "2026-08-29",
+        "smoke_evidence": "docs/evidence/quality-benchmark.json"
+      },
+      "download_files": {
+        "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4b-nvfp4/resolve/main/flux-2-klein-base-4b-nvfp4.safetensors",
+        "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "https://huggingface.co/Comfy-Org/flux2-klein/resolve/main/split_files/text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+        "vae/flux2-vae.safetensors": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors"
+      }
     },
     {
       "schema_version": "0.5.1",
@@ -73,14 +427,43 @@
       "quality_tier": "quality",
       "verified_on_hardware": {},
       "source": "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4b-fp8",
-      "exact_files": ["diffusion_models/flux-2-klein-base-4b-fp8.safetensors", "text_encoders/qwen_3_4b.safetensors", "vae/flux2-vae.safetensors"],
-      "sha256": {"diffusion_models/flux-2-klein-base-4b-fp8.safetensors": "RECORD_AFTER_DOWNLOAD", "text_encoders/qwen_3_4b.safetensors": "RECORD_AFTER_DOWNLOAD", "vae/flux2-vae.safetensors": "RECORD_AFTER_DOWNLOAD"},
-      "license": "Apache-2.0", "commercial_use_status": "approved", "purpose": ["2d", "quality-lane-candidate"],
-      "required_vram_mb": 7000, "recommended_vram_mb": 8192,
-      "model_folders": {"diffusion_models": "diffusion_models", "text_encoders": "text_encoders", "vae": "vae"},
-      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader"],
-      "workflow_ids": ["flux2-klein-base-4b-quality-text-to-image"], "status": "candidate",
-      "qualification_evidence": {"status": "not-qualified", "hashes_verified": false, "smoke_evidence": null},
+      "exact_files": [
+        "diffusion_models/flux-2-klein-base-4b-fp8.safetensors",
+        "text_encoders/qwen_3_4b.safetensors",
+        "vae/flux2-vae.safetensors"
+      ],
+      "sha256": {
+        "diffusion_models/flux-2-klein-base-4b-fp8.safetensors": "RECORD_AFTER_DOWNLOAD",
+        "text_encoders/qwen_3_4b.safetensors": "RECORD_AFTER_DOWNLOAD",
+        "vae/flux2-vae.safetensors": "RECORD_AFTER_DOWNLOAD"
+      },
+      "license": "Apache-2.0",
+      "commercial_use_status": "approved",
+      "purpose": [
+        "2d",
+        "quality-lane-candidate"
+      ],
+      "required_vram_mb": 7000,
+      "recommended_vram_mb": 8192,
+      "model_folders": {
+        "diffusion_models": "diffusion_models",
+        "text_encoders": "text_encoders",
+        "vae": "vae"
+      },
+      "required_nodes": [
+        "UNETLoader",
+        "CLIPLoader",
+        "VAELoader"
+      ],
+      "workflow_ids": [
+        "flux2-klein-base-4b-quality-text-to-image"
+      ],
+      "status": "candidate",
+      "qualification_evidence": {
+        "status": "not-qualified",
+        "hashes_verified": false,
+        "smoke_evidence": null
+      },
       "download_files": {}
     },
     {
@@ -96,24 +479,55 @@
       "step_distilled": false,
       "recommended_steps": 50,
       "recommended_guidance": 4.0,
-      "capability_parameters": {"refcontrol-pose-edit": {"steps": 20, "guidance": 5.0}},
+      "capability_parameters": {
+        "refcontrol-pose-edit": {
+          "steps": 20,
+          "guidance": 5.0
+        }
+      },
       "quality_tier": "quality",
-      "verified_on_hardware": {"gpu": "NVIDIA GeForce RTX 5050", "resolution": "512x512", "evidence": "docs/evidence/refcontrol-model-qualification.json"},
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050",
+        "resolution": "512x512",
+        "evidence": "docs/evidence/refcontrol-model-qualification.json"
+      },
       "source": "https://huggingface.co/xocialize/refcontrol-FLUX.2-klein-4B-pose-lora",
       "source_revision": "b2b0edf2622f2abd980bf868441149d71b3eb7b0",
-      "exact_files": ["loras/refcontrol-pose-klein-4b.safetensors"],
-      "sha256": {"loras/refcontrol-pose-klein-4b.safetensors": "F9880F9070576FF1603C0988ED2AFC9957DEB0D7DD7C52CF15DECBD4087F1339"},
+      "exact_files": [
+        "loras/refcontrol-pose-klein-4b.safetensors"
+      ],
+      "sha256": {
+        "loras/refcontrol-pose-klein-4b.safetensors": "F9880F9070576FF1603C0988ED2AFC9957DEB0D7DD7C52CF15DECBD4087F1339"
+      },
       "license": "Apache-2.0",
       "commercial_use_status": "approved",
-      "purpose": ["refcontrol", "pose-control", "reference-edit", "2d"],
+      "purpose": [
+        "refcontrol",
+        "pose-control",
+        "reference-edit",
+        "2d"
+      ],
       "required_vram_mb": 7000,
       "recommended_vram_mb": 8192,
-      "model_folders": {"loras": "loras"},
-      "required_nodes": ["LoraLoaderModelOnly"],
-      "workflow_ids": ["flux2-klein-base-4b-quality-refcontrol-pose"],
+      "model_folders": {
+        "loras": "loras"
+      },
+      "required_nodes": [
+        "LoraLoaderModelOnly"
+      ],
+      "workflow_ids": [
+        "flux2-klein-base-4b-quality-refcontrol-pose"
+      ],
       "status": "candidate",
-      "qualification_evidence": {"status": "runtime-verification-required", "hashes_verified": false, "license_reverified": false, "native_loader_verified": false},
-      "download_files": {"loras/refcontrol-pose-klein-4b.safetensors": "https://huggingface.co/xocialize/refcontrol-FLUX.2-klein-4B-pose-lora/resolve/b2b0edf2622f2abd980bf868441149d71b3eb7b0/refcontrol-pose-klein-4b.safetensors"}
+      "qualification_evidence": {
+        "status": "runtime-verification-required",
+        "hashes_verified": false,
+        "license_reverified": false,
+        "native_loader_verified": false
+      },
+      "download_files": {
+        "loras/refcontrol-pose-klein-4b.safetensors": "https://huggingface.co/xocialize/refcontrol-FLUX.2-klein-4B-pose-lora/resolve/b2b0edf2622f2abd980bf868441149d71b3eb7b0/refcontrol-pose-klein-4b.safetensors"
+      }
     },
     {
       "schema_version": "0.5.1",
@@ -127,18 +541,55 @@
       "recommended_steps": null,
       "recommended_guidance": null,
       "quality_tier": "quality",
-      "verified_on_hardware": {"gpu": "NVIDIA GeForce RTX 5050"},
+      "verified_on_hardware": {
+        "gpu": "NVIDIA GeForce RTX 5050"
+      },
       "source": "https://huggingface.co/Comfy-Org/BiRefNet",
-      "exact_files": ["background_removal/birefnet.safetensors"],
-      "sha256": {"background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"},
-      "license": "MIT", "commercial_use_status": "approved", "purpose": ["background-removal", "transparent-sprite-master"],
-      "required_vram_mb": 1500, "recommended_vram_mb": 2500,
-      "model_folders": {"background_removal": "background_removal"},
-      "required_nodes": ["LoadBackgroundRemovalModel", "RemoveBackground", "InvertMask", "JoinImageWithAlpha", "MaskToImage", "SaveImage"],
-      "workflow_ids": ["birefnet-background-removal"], "status": "qualified",
-      "qualification_evidence": {"status": "qualified", "hashes_verified": true, "files_verified_at": "2026-08-29", "live_smoke_evidence": "docs/evidence/birefnet.json"},
-      "download_files": {"background_removal/birefnet.safetensors": "https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors"}
+      "exact_files": [
+        "background_removal/birefnet.safetensors"
+      ],
+      "sha256": {
+        "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+      },
+      "license": "MIT",
+      "commercial_use_status": "approved",
+      "purpose": [
+        "background-removal",
+        "transparent-sprite-master"
+      ],
+      "required_vram_mb": 1500,
+      "recommended_vram_mb": 2500,
+      "model_folders": {
+        "background_removal": "background_removal"
+      },
+      "required_nodes": [
+        "LoadBackgroundRemovalModel",
+        "RemoveBackground",
+        "InvertMask",
+        "JoinImageWithAlpha",
+        "MaskToImage",
+        "SaveImage"
+      ],
+      "workflow_ids": [
+        "birefnet-background-removal"
+      ],
+      "status": "qualified",
+      "qualification_evidence": {
+        "status": "qualified",
+        "hashes_verified": true,
+        "files_verified_at": "2026-08-29",
+        "live_smoke_evidence": "docs/evidence/birefnet.json"
+      },
+      "download_files": {
+        "background_removal/birefnet.safetensors": "https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors"
+      }
     }
   ],
-  "registry_policy": {"weights_outside_git": true, "hash_required": true, "license_required_before_commercial_use": true, "floating_latest_forbidden": true, "base_distilled_mismatch_rejected": true}
+  "registry_policy": {
+    "weights_outside_git": true,
+    "hash_required": true,
+    "license_required_before_commercial_use": true,
+    "floating_latest_forbidden": true,
+    "base_distilled_mismatch_rejected": true
+  }
 }

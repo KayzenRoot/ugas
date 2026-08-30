@@ -176,6 +176,13 @@ class ComfyUIClient:
             raise ComfyUIProtocolError("/prompt GET response must be an object")
         return value
 
+    def free_memory(self, *, unload_models: bool = True, free_memory: bool = True) -> dict[str, Any]:
+        """Ask ComfyUI to unload models between bounded qualification jobs."""
+        value = self._json("POST", "/free", payload={"unload_models": unload_models, "free_memory": free_memory})
+        if not isinstance(value, dict):
+            raise ComfyUIProtocolError("/free response must be an object")
+        return value
+
     def history(self, prompt_id: str) -> dict[str, Any]:
         value = self._json("GET", f"/history/{urllib.parse.quote(prompt_id, safe='')}")
         if not isinstance(value, dict):

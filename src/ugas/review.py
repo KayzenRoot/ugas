@@ -83,6 +83,12 @@ REQUIRED_V054_REVIEW_EVIDENCE = {
 }
 REQUIRED_V055_REVIEW_EVIDENCE = REQUIRED_V054_REVIEW_EVIDENCE
 
+# v0.6.0 always carries the immutable v0.5.5 visual snapshot. Current SDXL
+# visuals are declared by the generated manifest only after the corresponding
+# phase actually reached them; a hardware/technical stop must not fabricate a
+# contact sheet.
+REQUIRED_V060_REVIEW_EVIDENCE = REQUIRED_V055_REVIEW_EVIDENCE
+
 
 def _digest(path: Path) -> str:
     digest = hashlib.sha256()
@@ -114,6 +120,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V054_REVIEW_EVIDENCE
     elif schema_version == "0.5.5":
         required = REQUIRED_V055_REVIEW_EVIDENCE
+    elif schema_version == "0.6.0":
+        required = REQUIRED_V060_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.6.0",
+  "status": "RUNTIME_DOCTOR_PASSED",
+  "checked_at": "2026-08-30T18:33:49Z",
+  "endpoint": "http://127.0.0.1:8188",
+  "comfyui": {
+    "version": "0.34.0",
+    "git_revision": "12d5279438bfefc058a269eae805ceab6047777f",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "pytorch": "2.13.0+cu130"
+  },
+  "gpu": {
+    "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+    "type": "cuda",
+    "index": 0,
+    "vram_total": 8546484224,
+    "vram_free": 7335837696,
+    "torch_vram_total": 67108864,
+    "torch_vram_free": 33554432
+  },
+  "nvidia_smi": {
+    "status": "available",
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 5050",
+        "driver": "610.74",
+        "memory_total_mb": "8151",
+        "memory_free_mb": "6632"
+      }
+    ],
+    "stderr": ""
+  },
+  "required_nodes": {
+    "CheckpointLoaderSimple": true,
+    "CLIPTextEncode": true,
+    "ControlNetLoader": true,
+    "ControlNetApplyAdvanced": true,
+    "CLIPVisionLoader": true,
+    "CLIPVisionEncode": true,
+    "IPAdapterModelLoader": true,
+    "IPAdapterAdvanced": true,
+    "KSampler": true,
+    "VAEDecode": true,
+    "SaveImage": true
+  },
+  "inventory": {
+    "checkpoints": [
+      "sd_xl_base_1.0.safetensors"
+    ],
+    "controlnet": [
+      "xinsir-controlnet-openpose-sdxl-1.0.safetensors"
+    ],
+    "ipadapter": [
+      "ip-adapter-plus_sdxl_vit-h.safetensors"
+    ],
+    "clip_vision": [
+      "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    ]
+  },
+  "runtime_strategy": [
+    "512x512 FP16-compatible attempt",
+    "low-VRAM/offload fallback",
+    "sequential model unload/offload"
+  ],
+  "resolution_minimum": [
+    512,
+    512
+  ],
+  "failures": [],
+  "smoke_generation_run": false
+}

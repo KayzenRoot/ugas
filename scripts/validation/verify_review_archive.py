@@ -84,7 +84,42 @@ def _verify_png(data: bytes, name: str) -> None:
 
 
 def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> dict[str, Any]:
-    missing = sorted(REQUIRED_ARCHIVE_METADATA - names)
+    active_visual_name = next(
+        (
+            name
+            for name in (
+                "docs/evidence/review-visuals-v0.6.0.json",
+                "docs/evidence/review-visuals-v0.5.5.json",
+                "docs/evidence/review-visuals-v0.5.4.json",
+            )
+            if name in names
+        ),
+        None,
+    )
+    if active_visual_name is None:
+        raise ReviewArchiveError("no supported active review visual manifest is present")
+    required_metadata = set(REQUIRED_ARCHIVE_METADATA)
+    if active_visual_name.endswith("v0.6.0.json"):
+        required_metadata.update(
+            {
+                "docs/evidence/review-visuals-v0.6.0.json",
+                "REVIEW-v0.6.0.md",
+                "docs/evidence/current-state.json",
+                "docs/evidence/state-consistency.json",
+                "docs/evidence/custom-node-audit-ipadapter-plus.json",
+                "docs/evidence/sdxl-model-stack-qualification.json",
+                "docs/evidence/sdxl-base-model-qualification.json",
+                "docs/evidence/sdxl-openpose-controlnet-qualification.json",
+                "docs/evidence/ipadapter-sdxl-model-qualification.json",
+                "docs/evidence/clip-vision-qualification.json",
+                "docs/evidence/runtime-doctor-v0.6.0.json",
+                "docs/evidence/sdxl-provider-workflow-qualification.json",
+                "docs/evidence/sdxl-provider-qualification.json",
+                "docs/evidence/execution-evidence-v0.6.0.json",
+                "docs/evidence/sdxl-identity-drift-contact.json",
+            }
+        )
+    missing = sorted(required_metadata - names)
     if missing:
         raise ReviewArchiveError("archive metadata missing: " + ", ".join(missing))
     for name in sorted(names):
@@ -97,9 +132,10 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if "docs/evidence/v054-lanes/" not in "\n".join(sorted(names)):
         raise ReviewArchiveError("canonical v0.5.4 lane directory is missing")
 
-    visual_manifest = _read_json(archive, "docs/evidence/review-visuals-v0.5.5.json")
-    if visual_manifest.get("schema_version") != "0.5.5":
-        raise ReviewArchiveError("active review visual manifest is not v0.5.5")
+    visual_manifest = _read_json(archive, active_visual_name)
+    expected_visual_schema = active_visual_name.split("review-visuals-v", 1)[1].removesuffix(".json")
+    if visual_manifest.get("schema_version") != expected_visual_schema:
+        raise ReviewArchiveError(f"active review visual manifest is not {expected_visual_schema}")
     visual_result = validate_review_visual_manifest(visual_manifest)
     if visual_result["status"] != "REVIEW_VISUAL_MANIFEST_PASSED":
         raise ReviewArchiveError("invalid review visual manifest: " + "; ".join(visual_result["failures"]))

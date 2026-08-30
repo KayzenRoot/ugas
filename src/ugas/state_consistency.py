@@ -1,8 +1,9 @@
-"""Fatal consistency checks for the active UGAS v0.5.5 release state.
+"""Fatal consistency checks for the active UGAS v0.6.0 provider qualification.
 
-Historical v0.5.2, v0.5.3 and v0.5.4 reports remain immutable evidence. This
-module keeps the v0.5.4 pose result separate from the v0.5.5 review snapshot
-gate; it never grants external approval.
+The v0.5.4 pose decision and v0.5.5 review-snapshot result are immutable
+historical inputs. This validator only permits the new SDXL qualification slice
+to progress through its declared gates; it never grants external approval or
+animation authorization.
 """
 
 from __future__ import annotations
@@ -11,13 +12,26 @@ import re
 from typing import Any, Mapping
 
 
-CURRENT_SCHEMA_VERSION = "0.5.5"
+CURRENT_SCHEMA_VERSION = "0.6.0"
 CANONICAL_R4_SHA256 = "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
 CANONICAL_R4_REVISION = "revision-3a425d184b1a49be9f6d6c8d52d04b96"
-CURRENT_PHASES = {"REVIEW_SNAPSHOT_INTEGRITY"}
-CURRENT_GATES = {"REVIEW_SNAPSHOT_INTEGRITY_FIXED"}
+CURRENT_PHASE = "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION"
+CURRENT_GATES = {
+    "SDXL_CONTROL_PROVIDER_AUDIT_REQUIRED",
+    "SDXL_MODEL_QUALIFICATION_REQUIRED",
+    "SDXL_PROVIDER_RUNTIME_REQUIRED",
+    "SDXL_P_I_PI_SMOKE_REQUIRED",
+    "SDXL_STRENGTH_BENCHMARK_REQUIRED",
+    "SDXL_POSE_PROVIDER_CONFIRMATION_REQUIRED",
+    "SDXL_CONTROL_POSE_PROVIDER_QUALIFIED",
+    "SDXL_CONTROL_POSE_PROVIDER_GAP",
+    "IPADAPTER_CUSTOM_NODE_SECURITY_GAP",
+    "SDXL_CONTROL_PROVIDER_HARDWARE_GAP",
+    "SDXL_IDENTITY_ADAPTER_GAP",
+    "SDXL_OPENPOSE_CONTROL_GAP",
+}
 POSE_LANE_STATUS = "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"
-PREVIOUS_REPORTED_STATUS = POSE_LANE_STATUS
+HISTORICAL_REVIEW_STATUS = "REVIEW_ARCHIVE_VERIFIED"
 
 
 class StateConsistencyError(ValueError):
@@ -38,32 +52,30 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         "schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason",
         "canonical_anchor", "allowed_next_actions", "forbidden_actions",
         "generation_provider_change_authorized", "walk_authorized", "pose_lane_status",
-        "review_snapshot_status", "state_consistency",
+        "previous_review_snapshot_status", "state_consistency",
     }
     failures.extend(f"missing:{key}" for key in sorted(required - set(state)))
     if state.get("schema_version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_schema_version_must_be_0.5.5")
+        failures.append("state_schema_version_must_be_0.6.0")
     if state.get("version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_version_must_be_0.5.5")
-    if state.get("phase") not in CURRENT_PHASES:
+        failures.append("state_version_must_be_0.6.0")
+    if state.get("phase") != CURRENT_PHASE:
         failures.append("state_phase_invalid")
     if state.get("current_gate") not in CURRENT_GATES:
         failures.append("state_current_gate_invalid")
-    if state.get("generation_provider_change_authorized") is not False:
-        failures.append("generation_provider_change_must_be_false")
     if state.get("walk_authorized") is not False:
         failures.append("walk_must_be_false")
     if state.get("pose_lane_status") != POSE_LANE_STATUS:
         failures.append("pose_lane_status_must_preserve_v0.5.4_decision")
-    if state.get("review_snapshot_status") != "REVIEW_ARCHIVE_VERIFIED":
-        failures.append("review_snapshot_status_must_be_verified")
-    if state.get("stop_reason") is not None:
-        failures.append("review_snapshot_fix_must_not_use_pose_stop_reason")
+    if state.get("previous_review_snapshot_status") != HISTORICAL_REVIEW_STATUS:
+        failures.append("previous_review_snapshot_status_must_preserve_v0.5.5")
 
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
-    if previous.get("version") != "0.5.4":
-        failures.append("previous_release_must_be_0.5.4")
-    if previous.get("reported_status") != PREVIOUS_REPORTED_STATUS:
+    if previous.get("version") != "0.5.5":
+        failures.append("previous_release_must_be_0.5.5")
+    if previous.get("review_snapshot_status") != HISTORICAL_REVIEW_STATUS:
+        failures.append("previous_release_review_snapshot_missing")
+    if previous.get("pose_lane_status") != POSE_LANE_STATUS:
         failures.append("previous_release_pose_status_missing")
 
     anchor = state.get("canonical_anchor") if isinstance(state.get("canonical_anchor"), Mapping) else {}
@@ -85,34 +97,43 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     if nested.get("contradictory_walk_or_anchor_promotion") is not False:
         failures.append("nested_promotion_flag_must_be_false")
     started = nested.get("new_generation_started")
+    jobs = nested.get("new_generation_jobs")
     if not isinstance(started, bool):
         failures.append("new_generation_started_must_be_boolean")
-    elif gate == "REVIEW_SNAPSHOT_INTEGRITY_FIXED" and started is not False:
-        failures.append("review_snapshot_fix_must_record_no_new_generation")
-    if nested.get("new_generation_jobs") != 0:
-        failures.append("review_snapshot_fix_must_record_zero_new_generation_jobs")
+    if not isinstance(jobs, int) or jobs < 0:
+        failures.append("new_generation_jobs_must_be_nonnegative_integer")
+    if gate == "SDXL_CONTROL_PROVIDER_AUDIT_REQUIRED":
+        if started is not False or jobs != 0:
+            failures.append("audit_gate_must_record_no_generation")
+        if state.get("generation_provider_change_authorized") is not False:
+            failures.append("audit_gate_provider_change_must_be_false")
+    elif state.get("stop_reason") is not None and state.get("generation_provider_change_authorized") is not False:
+        failures.append("stopped_state_provider_change_must_be_false")
 
     combined = f"{checkpoint_text}\n{review_text}"
-    if CURRENT_SCHEMA_VERSION not in combined:
-        failures.append("active_documents_must_identify_0.5.5")
-    if "REVIEW_SNAPSHOT_INTEGRITY_FIXED" not in combined:
-        failures.append("active_documents_must_record_review_snapshot_fix")
-    if POSE_LANE_STATUS not in combined:
-        failures.append("active_documents_must_preserve_pose_decision")
-    if gate and gate not in combined:
-        failures.append("active_gate_missing_from_documents")
-    if "POSE_QA_LOCAL_USE_LICENSE_RESOLVED" not in combined:
-        failures.append("active_documents_must_record_pose_license_resolution")
-    if "v054-provider-qualification.json" not in combined:
-        failures.append("provider_gap_evidence_missing_from_documents")
-    if "A próxima ação autorizada é verificar o RefControl" in combined or re.search(
-        r"pr[oó]xima\s+a[cç][aã]o[^\n]{0,100}verificar\s+o?\s*RefControl", combined, re.IGNORECASE
+    for required_text, failure in (
+        (CURRENT_SCHEMA_VERSION, "active_documents_must_identify_0.6.0"),
+        (CURRENT_PHASE, "active_documents_must_identify_sdxl_qualification_phase"),
+        ("0.5.5", "active_documents_must_preserve_v0.5.5_history"),
+        (POSE_LANE_STATUS, "active_documents_must_preserve_pose_decision"),
+        (HISTORICAL_REVIEW_STATUS, "active_documents_must_preserve_review_snapshot"),
+        (gate, "active_gate_missing_from_documents"),
     ):
+        if required_text not in combined:
+            failures.append(failure)
+    combined_lower = combined.casefold()
+    if "walk_authorized=false" not in combined_lower and "walk permanece não autorizado" not in combined_lower:
+        failures.append("active_documents_must_keep_walk_blocked")
+    if "v054-provider-qualification.json" not in combined:
+        failures.append("historical_pose_evidence_missing_from_documents")
+    if "review-visuals-v0.5.5.json" not in combined:
+        failures.append("historical_review_manifest_missing_from_documents")
+    if re.search(r"verificar\s+o\s+RefControl", combined, re.IGNORECASE):
         failures.append("active_documents_have_stale_refcontrol_pending_action")
 
     contradictory = re.compile(
-        r"(?:WALK(?:/FRONT/8|\s+FRONT\s*[/ ]\s*8|\s+V[23])?[^\n.]{0,80}\b(?:PASSED|PASSOU|PASSARAM|PASSADO|QUALIFIED|QUALIFICADO)|"
-        r"(?:DIRECTIONAL\s+ANCHOR|ÂNCORAS?)[^\n.]{0,80}\b(?:PASSED|PASSOU|PASSARAM|PASSADO|QUALIFIED|QUALIFICADO))",
+        r"(?:WALK(?:/FRONT/8|\s+FRONT\s*[/ ]\s*8|\s+V[23])?[^\n.]{0,100}\b(?:PASSED|PASSOU|PASSARAM|PASSADO|QUALIFIED|QUALIFICADO)|"
+        r"(?:DIRECTIONAL\s+ANCHOR|ÂNCORAS?)[^\n.]{0,100}\b(?:PASSED|PASSOU|PASSARAM|PASSADO|QUALIFIED|QUALIFICADO))",
         re.IGNORECASE,
     )
     positive_lines = []
@@ -123,21 +144,20 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
             positive_lines.append(line)
     if positive_lines:
         failures.append("active_documents_promote_blocked_walk_or_anchor_result")
-    if state.get("stop_reason") is None and "READY_FOR_REVIEW" in combined:
-        failures.append("active_documents_cannot_claim_ready_for_review_before_gate")
 
     return {
         "status": "STATE_CONSISTENCY_PASSED" if not failures else "STATE_CONSISTENCY_FAILED",
         "schema_version": CURRENT_SCHEMA_VERSION,
         "failures": failures,
         "checked": {
+            "phase": state.get("phase"),
             "current_gate": state.get("current_gate"),
             "stop_reason": state.get("stop_reason"),
-            "nested_status": nested.get("status"),
-            "contradictory_promotion_scan": True,
-            "stale_refcontrol_action_scan": True,
-            "license_resolution_scan": True,
+            "historical_pose_status": state.get("pose_lane_status"),
+            "historical_review_status": state.get("previous_review_snapshot_status"),
+            "contradictory_walk_or_anchor_scan": True,
             "new_generation_started": started,
+            "new_generation_jobs": jobs,
         },
     }
 

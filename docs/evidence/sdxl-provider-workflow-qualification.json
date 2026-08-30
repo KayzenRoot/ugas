@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.6.0",
+  "status": "SDXL_PROVIDER_WORKFLOW_VALID",
+  "prompt_id": "PROMPT-05-UGAS-SDXL-CONTROLNET-IPADAPTER-PROVIDER-v0.6.0",
+  "resolution": [
+    512,
+    512
+  ],
+  "prompt_sha256": "b7dd93c9383533014a17955efa229e9197a3c18d1705a4290207a18106a88cc0",
+  "negative_prompt_sha256": "7a5a7d4c29f153c8ce09a917b86dd3565a1649bca33225d37f44c6b282940aad",
+  "anchor": {
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96"
+  },
+  "guide": {
+    "path": "docs/evidence/openpose-guide-v3-control-example.png",
+    "uploaded_name": "openpose-guide-v3-control-example.png"
+  },
+  "lanes": [
+    {
+      "lane": "P",
+      "workflow_id": "sdxl-openpose-controlnet-p",
+      "template_sha256": "ef5f736da409c9719886206d73832b5fdb3b27433c97e6c92ac06a6c76fceea7",
+      "bound_sha256": "0033a343ce21f14c6d0f18c38930f480d5dd97528e2aa1b635d90082c54a2fd8",
+      "graph": {
+        "valid_graph": true,
+        "node_count": 10,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "required_custom_nodes": [],
+      "model_names": {
+        "__SDXL_CHECKPOINT__": "sd_xl_base_1.0.safetensors",
+        "__CONTROLNET__": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+        "__IPADAPTER__": "ip-adapter-plus_sdxl_vit-h.safetensors",
+        "__CLIP_VISION__": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      },
+      "direct_guide": true,
+      "r4_identity_only": false,
+      "previous_outputs": false
+    },
+    {
+      "lane": "I",
+      "workflow_id": "sdxl-ipadapter-i",
+      "template_sha256": "31f30d5420072e217f0cd36b64e30debdee7a54f3234aa2335c3ee721d6e5580",
+      "bound_sha256": "a03e7818570d7a0fc624915d110297c878805ab86327040898e6dbb442ab0515",
+      "graph": {
+        "valid_graph": true,
+        "node_count": 12,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "required_custom_nodes": [
+        "comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      ],
+      "model_names": {
+        "__SDXL_CHECKPOINT__": "sd_xl_base_1.0.safetensors",
+        "__CONTROLNET__": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+        "__IPADAPTER__": "ip-adapter-plus_sdxl_vit-h.safetensors",
+        "__CLIP_VISION__": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      },
+      "direct_guide": false,
+      "r4_identity_only": true,
+      "previous_outputs": false
+    },
+    {
+      "lane": "PI",
+      "workflow_id": "sdxl-openpose-ipadapter-character",
+      "template_sha256": "56c23d4bbc83a3182bcd849d8ab08d2184674efee78bc68fb4fbb31f1309aa20",
+      "bound_sha256": "a3b38c337b2516662012eda96249ad164ce70403b21bf2db35c35f13d261ef98",
+      "graph": {
+        "valid_graph": true,
+        "node_count": 14,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "required_custom_nodes": [
+        "comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+      ],
+      "model_names": {
+        "__SDXL_CHECKPOINT__": "sd_xl_base_1.0.safetensors",
+        "__CONTROLNET__": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+        "__IPADAPTER__": "ip-adapter-plus_sdxl_vit-h.safetensors",
+        "__CLIP_VISION__": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      },
+      "direct_guide": true,
+      "r4_identity_only": true,
+      "previous_outputs": false
+    }
+  ],
+  "ipadapter_never_receives_skeleton": true,
+  "controlnet_never_receives_r4_identity": true
+}

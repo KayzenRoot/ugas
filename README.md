@@ -1,24 +1,25 @@
-# UGAS 0.5.5
+# UGAS 0.6.0
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão.
 
-O prompt 04G corrige a integridade do snapshot distribuído do review v0.5.4. A decisão de pose permanece historicamente `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`; os 9 outputs A/C/R, hashes e execution evidence foram preservados. Esta release não executa ComfyUI nem MediaPipe, não altera thresholds e não gera walk/âncoras.
+O prompt v0.6.0 qualifica, com gates fail-closed, a lane experimental SDXL + OpenPose ControlNet + IP-Adapter. A decisão histórica de pose `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED` do v0.5.4 e o snapshot `REVIEW_ARCHIVE_VERIFIED` do v0.5.5 permanecem imutáveis.
 
 ## Quick start
 
 ```powershell
 $env:PYTHONPATH = "src"
-python -m ugas.cli pose-guides validate --json
-python -m ugas.cli openpose validate --json
-python -m ugas.cli identity inspect asset-2fec6fed1d714d0cb58ad75b56d7ba71 --json
-python scripts/validation/run_pose_metric_calibration.py
-python scripts/validation/run_pose_qa_qualification.py
-python scripts/validation/run_v054_lane_recheck.py
 python -m unittest discover -s tests -q
+python scripts/validation/validate_state_consistency.py
 python scripts/validation/run_validation.py
 python scripts/validation/verify_review_archive.py <FINAL_REVIEW_ZIP>
 ```
 
-O verificador do review extrai o ZIP em um diretório temporário externo, executa `compileall`, os testes e a validação sem depender de `.git`, e exige `REVIEW_ARCHIVE_VERIFIED`. O bundle `.task` e os pesos ficam fora do Git e do review ZIP. A aprovação visual humana e qualquer aprovação externa continuam separadas dos gates automatizados.
+Para executar a qualificação local, leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.6.0.md](REVIEW-v0.6.0.md). O script de qualificação registra cada seed, workflow, modelo, hash, prompt/history binding e resultado da QA MediaPipe detectada. Não use o bundle MediaPipe local para distribuição.
 
-Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.5.5.md](REVIEW-v0.5.5.md), [docs/evidence/current-state.json](docs/evidence/current-state.json) e [docs/test-coverage-matrix-v0.5.5.md](docs/test-coverage-matrix-v0.5.5.md). O [REVIEW-v0.5.4.md](REVIEW-v0.5.4.md) e as evidências de pose são históricos e permanecem imutáveis.
+## Boundaries
+
+O workflow SDXL usa o PNG COCO-18 diretamente como controle de pose e o anchor R4 somente como identidade. P/I/PI são lanes separadas. Os thresholds de pose em [pose-thresholds-v054.json](docs/evidence/pose-thresholds-v054.json) são reutilizados sem alteração; a QA de silhueta legada é apenas diagnóstica.
+
+Não são autorizados neste slice walk, âncoras, spritesheet, GIF, animação, 3D, provider alternativo ou pesos dentro do Git/ZIP. `REVIEW_ARCHIVE_VERIFIED` é verificação local do artefato, não aprovação externa.
+
+Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.6.0.md](REVIEW-v0.6.0.md) e [docs/evidence/current-state.json](docs/evidence/current-state.json). As releases v0.5.4 e v0.5.5 continuam disponíveis como histórico.

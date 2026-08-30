@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.6.0",
+  "status": "MODEL_VARIANT_MISMATCH_CORRECTED",
+  "observed_on": "2026-08-30",
+  "lane": "I",
+  "workflow_id": "sdxl-ipadapter-i",
+  "ipadapter": {
+    "filename": "ip-adapter-plus_sdxl_vit-h.safetensors",
+    "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+    "sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+    "observed_proj_in_shape": [1280, 1280]
+  },
+  "incorrect_encoder_observed": {
+    "external_path": "models/clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+    "source_subpath": "sdxl_models/image_encoder/model.safetensors",
+    "official_variant": "OpenCLIP-ViT-bigG-14",
+    "bytes": 3689912664,
+    "sha256": "657723e09f46a7c3957df651601029f66b1748afb12b419816330f16ed45d64d",
+    "runtime_error": "Resampler proj_in checkpoint shape [1280,1280] versus loaded model input dimension [1280,11664]"
+  },
+  "corrected_encoder": {
+    "external_path": "models/clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+    "source_subpath": "models/image_encoder/model.safetensors",
+    "official_variant": "OpenCLIP-ViT-H-14",
+    "expected_bytes": 2528373448,
+    "expected_sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+    "paired_ipadapter": "ip-adapter-plus_sdxl_vit-h.safetensors"
+  },
+  "decision": "The mismatch blocks I and PI qualification until the exact official ViT-H encoder is hash-verified and the factorial smoke is rerun. No alternate model or provider is introduced."
+}

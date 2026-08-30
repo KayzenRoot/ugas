@@ -1,26 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.5.5 review snapshot integrity state",
+  "title": "UGAS active v0.6.0 SDXL ControlNet and IP-Adapter qualification state",
   "type": "object",
-  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "pose_lane_status", "review_snapshot_status", "state_consistency"],
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"],
   "properties": {
-    "schema_version": {"const": "0.5.5"},
-    "version": {"const": "0.5.5"},
-    "phase": {"const": "REVIEW_SNAPSHOT_INTEGRITY"},
-    "current_gate": {"const": "REVIEW_SNAPSHOT_INTEGRITY_FIXED"},
+    "schema_version": {"const": "0.6.0"},
+    "version": {"const": "0.6.0"},
+    "phase": {"const": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION"},
+    "current_gate": {"type": "string", "minLength": 1},
     "stop_reason": {"type": ["string", "null"]},
-    "generation_provider_change_authorized": {"const": false},
+    "generation_provider_change_authorized": {"type": "boolean"},
     "walk_authorized": {"const": false},
     "previous_release": {
       "type": "object",
-      "required": ["version", "reported_status"],
+      "required": ["version", "pose_lane_status", "review_snapshot_status"],
       "properties": {
-        "version": {"const": "0.5.4"},
-        "reported_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"}
+        "version": {"const": "0.5.5"},
+        "pose_lane_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"},
+        "review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"}
       }
     },
     "pose_lane_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"},
-    "review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"},
+    "previous_review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"},
     "canonical_anchor": {
       "type": "object",
       "required": ["asset_id", "revision_id", "sha256"],
@@ -34,8 +35,8 @@
       "properties": {
         "status": {"type": "string", "minLength": 1},
         "contradictory_walk_or_anchor_promotion": {"const": false},
-        "new_generation_started": {"const": false},
-        "new_generation_jobs": {"const": 0}
+        "new_generation_started": {"type": "boolean"},
+        "new_generation_jobs": {"type": "integer", "minimum": 0}
       }
     }
   }

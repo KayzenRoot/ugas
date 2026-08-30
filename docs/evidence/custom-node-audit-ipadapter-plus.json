@@ -1,0 +1,90 @@
+{
+  "schema_version": "0.6.0",
+  "audit_status": "CUSTOM_NODE_AUDIT_PASSED",
+  "audited_at": "2026-08-30T15:48:24Z",
+  "source": "https://github.com/cubiq/ComfyUI_IPAdapter_plus.git",
+  "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+  "actual_commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+  "license": "GPL-3.0-only",
+  "distribution_boundary": "local-only",
+  "source_vendored_in_ugas": false,
+  "required_source_files": [
+    "CrossAttentionPatch.py",
+    "IPAdapterPlus.py",
+    "LICENSE",
+    "__init__.py",
+    "image_proj_models.py",
+    "pyproject.toml",
+    "utils.py"
+  ],
+  "missing_source_files": [],
+  "source_file_sha256": {
+    "CrossAttentionPatch.py": "8511ea6f6495d408275893bf199d1db0529b746b0167d55d962e95898d281d0c",
+    "IPAdapterPlus.py": "a0424207242ddda05640b4c32d79a095f0cf7016969bf3dd118065e17b27898b",
+    "LICENSE": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+    "__init__.py": "b11b6feced87e43ebcc4a2665737f94680bebf7f5ddcc5840a7d0ecbd570df41",
+    "image_proj_models.py": "bdd2a890e0c53749e1c9863bc3021859a0ffb7fdcfea7e3505c18e34a1a4c132",
+    "pyproject.toml": "1f7db239f494a9190078d6eda7f9ec11bbf93091455877d6d98b95caeffda0c0",
+    "utils.py": "5a9f113767a149dc2593f7e06d9efe1572fa9f66a8b95586127bb705cc2a83fd"
+  },
+  "python_static_audit": {
+    "python_files": 5,
+    "syntax_failures": [],
+    "imports": [
+      "CrossAttentionPatch",
+      "IPAdapterPlus",
+      "PIL",
+      "comfy.clip_vision",
+      "comfy.ldm.modules.attention",
+      "comfy.model_management",
+      "comfy.sd",
+      "comfy.utils",
+      "copy",
+      "einops",
+      "einops.layers.torch",
+      "folder_paths",
+      "image_proj_models",
+      "insightface.app",
+      "insightface.utils",
+      "math",
+      "node_helpers",
+      "os",
+      "random",
+      "re",
+      "torch",
+      "torch.nn",
+      "torch.nn.functional",
+      "torchvision.transforms",
+      "torchvision.transforms.v2",
+      "utils"
+    ],
+    "blocked_network_or_process_imports": [],
+    "blocked_dynamic_or_process_calls": [],
+    "local_serialization_load_calls": [
+      "load"
+    ]
+  },
+  "network_access": "not detected in Python source",
+  "subprocess_access": "not detected in Python source",
+  "credential_access": "not detected in Python source",
+  "dynamic_download": "not detected in Python source",
+  "local_file_io": "model path registration, local model loading and optional local output/embed files",
+  "residual_risks": [
+    "IPAdapterLoadEmbeds uses torch.load on a local .ipadpt file; this optional node is not used by the qualified workflow and untrusted embed files must not be loaded.",
+    "The GPL-3.0 source remains outside UGAS distribution and is locally removable."
+  ],
+  "failures": [],
+  "install_allowed": true,
+  "install_path": "<ComfyUI>/custom_nodes/ComfyUI_IPAdapter_plus",
+  "required_nodes": [
+    "IPAdapterModelLoader",
+    "IPAdapterAdvanced",
+    "IPAdapterApply",
+    "IPAdapterUnifiedLoader"
+  ],
+  "installation": {
+    "status": "INSTALLED_PINNED",
+    "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\custom_nodes\\ComfyUI_IPAdapter_plus",
+    "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+  }
+}

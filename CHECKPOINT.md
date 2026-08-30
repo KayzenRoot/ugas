@@ -1,25 +1,21 @@
-# UGAS checkpoint - v0.5.5
+# UGAS checkpoint - v0.6.0
 
-**STATUS:** `REVIEW_ARCHIVE_VERIFIED`. Esta release corrigiu a integridade do snapshot do review sem executar GPU, ComfyUI ou MediaPipe. A decisão técnica de pose do v0.5.4 permanece separada como `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`.
-**VERSION:** `0.5.5`
-**PHASE:** `PROMPT-04G / REVIEW_SNAPSHOT_INTEGRITY`
+**STATUS:** `SDXL_OPENPOSE_CONTROL_GAP`
+**VERSION:** `0.6.0`
+**PHASE:** `SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION`
 
 ## Current state
 
-O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). O release gate é `REVIEW_SNAPSHOT_INTEGRITY_FIXED` e o snapshot verificado é `REVIEW_ARCHIVE_VERIFIED`. A decisão de pose continua `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`, registrada na evidência [v054-provider-qualification.json](docs/evidence/v054-provider-qualification.json).
+O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). A auditoria do `ComfyUI_IPAdapter_plus`, a qualificação dos quatro artefatos e o doctor/runtime passaram; o smoke factorial executou um seed novo em P/I/PI e encerrou no stop condition `SDXL_OPENPOSE_CONTROL_GAP`. `generation_provider_change_authorized=false`, `walk_authorized=false` e `new_generation_jobs=3` neste checkpoint.
 
-O v0.5.4 é histórico e seus 9 outputs A/C/R, hashes, thresholds e execution evidence permanecem byte/hash-exatos. A licença `POSE_QA_LOCAL_USE_LICENSE_RESOLVED` continua válida apenas para QA local; o bundle `.task` não é redistribuído.
+O v0.5.5 é histórico e permanece preservado como `REVIEW_ARCHIVE_VERIFIED`; sua decisão de pose anterior também preserva `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED` do v0.5.4. Os 9 outputs A/C/R, hashes e thresholds de [v054-provider-qualification.json](docs/evidence/v054-provider-qualification.json) não são reescritos.
 
-## Review snapshot integrity
+## Scope and gate
 
-O matcher local do packager usa nomes exatos, componentes de caminho e padrões ancorados. `seed`, `tokenizer` e `monkey` em nomes de assets não são segredos genéricos. Segredos, credenciais, tokens explícitos, private keys, pesos e arquivos de modelo permanecem excluídos com motivos específicos.
+Este slice qualifica somente SDXL + OpenPose ControlNet + IP-Adapter para geração 2D controlada. O ControlNet recebe o PNG COCO-18 determinístico de UGAS; o IP-Adapter recebe exclusivamente o anchor R4. Não há preprocessor, FLUX replacement, walk, âncoras v3, spritesheet, GIF, animação ou 3D.
 
-O verificador tracked [scripts/validation/verify_review_archive.py](scripts/validation/verify_review_archive.py) não depende de `.git`: verifica o ZIP, preserva os 9 paths canônicos em `docs/evidence/v054-lanes/`, confere hashes e cópias, e executa compileall, unittest e repository validation dentro de uma extração temporária externa.
+Com o gate de consistência e a auditoria aprovados, a ordem autorizada é: qualificação de fontes, licenças, bytes e SHA-256; doctor do runtime RTX 5050; workflow API; smoke factorial P/I/PI; e somente se aprovado, benchmark e confirmação 3/3. Um gap encerra a lane com seu estado exato. A animação genérica também não é autorizada por este checkpoint.
 
-## Boundary
+## Evidence boundary
 
-`generation_provider_change_authorized=false`, `walk_authorized=false`, `new_generation_started=false` e `new_generation_jobs=0`. Nenhum provider alternativo, custom node, strength, estimator, walk, âncora v3, spritesheet ou GIF foi executado nesta release.
-
-O review ativo é [REVIEW-v0.5.5.md](REVIEW-v0.5.5.md). A aprovação visual humana, GitHub Actions, deployment e aprovação de produção não são inferidos da validação local ou do verificador.
-
-Animação genérica permanece fora deste slice e não autoriza promoção de walk.
+Pesos e código do custom node ficam fora do Git e do review ZIP. O repositório registra apenas manifests, hashes, commit pinado, auditoria e evidência. `REVIEW_ARCHIVE_VERIFIED` não significa aprovação visual humana, GitHub Actions, deployment ou aprovação de produção. Walk permanece não autorizado.

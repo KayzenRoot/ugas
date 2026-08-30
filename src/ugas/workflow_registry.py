@@ -46,9 +46,9 @@ def validate_api_workflow(workflow: dict, node_info: dict | None = None, model_n
             missing_nodes.append(class_type)
         if model_names is not None:
             for key, value in node.get("inputs", {}).items():
-                if key in {"unet_name", "clip_name", "vae_name", "bg_removal_name"} and isinstance(value, str) and value in {"__MODEL__", "__CLIP__", "__VAE__", "__BG_MODEL__"}:
+                if key in {"unet_name", "clip_name", "vae_name", "bg_removal_name", "ckpt_name", "control_net_name", "ipadapter_file"} and isinstance(value, str) and value in {"__MODEL__", "__CLIP__", "__VAE__", "__BG_MODEL__", "__SDXL_CHECKPOINT__", "__CONTROLNET__", "__IPADAPTER__", "__CLIP_VISION__"}:
                     continue
-                if key in {"unet_name", "clip_name", "vae_name", "bg_removal_name"} and isinstance(value, str) and value not in model_names:
+                if key in {"unet_name", "clip_name", "vae_name", "bg_removal_name", "ckpt_name", "control_net_name", "ipadapter_file"} and isinstance(value, str) and value not in model_names:
                     missing_models.append(value)
     return {"valid_graph": True, "node_count": len(workflow), "missing_nodes": sorted(set(missing_nodes)), "missing_models": sorted(set(missing_models)), "live_valid": not missing_nodes and not missing_models}
 
@@ -77,15 +77,22 @@ def bind_workflow(template: dict, *, prompt: str, negative_prompt: str = "", see
             text = node.setdefault("inputs", {}).get("text")
             node["inputs"]["text"] = negative_prompt if text == "__NEGATIVE__" else prompt
         inputs = node.setdefault("inputs", {})
-        for key, marker in (("unet_name", "__MODEL__"), ("clip_name", "__CLIP__"), ("vae_name", "__VAE__")):
+        for key, marker in (("unet_name", "__MODEL__"), ("clip_name", "__CLIP__"), ("vae_name", "__VAE__"), ("ckpt_name", "__SDXL_CHECKPOINT__"), ("control_net_name", "__CONTROLNET__"), ("ipadapter_file", "__IPADAPTER__")):
             if inputs.get(key) == marker and model_names and marker in model_names:
                 inputs[key] = model_names[marker]
+        if inputs.get("clip_name") == "__CLIP_VISION__" and model_names and "__CLIP_VISION__" in model_names:
+            inputs["clip_name"] = model_names["__CLIP_VISION__"]
         if inputs.get("bg_removal_name") == "__BG_MODEL__" and model_names and "__BG_MODEL__" in model_names:
             inputs["bg_removal_name"] = model_names["__BG_MODEL__"]
         if inputs.get("lora_name") == "__LORA__" and lora_name:
             inputs["lora_name"] = lora_name
         if inputs.get("strength_model") == "__LORA_STRENGTH__" and lora_strength is not None:
             inputs["strength_model"] = float(lora_strength)
+        if inputs.get("seed") == "__SEED__":
+            inputs["seed"] = int(seed)
+        for key, marker in (("strength", "__CONTROLNET_STRENGTH__"), ("weight", "__IP_STRENGTH__")):
+            if inputs.get(key) == marker and model_names and marker in model_names:
+                inputs[key] = float(model_names[marker])
         for key in ("filename", "image"):
             marker = inputs.get(key)
             if isinstance(marker, str) and marker in marker_map and marker_map[marker]:

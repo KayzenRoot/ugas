@@ -1,18 +1,20 @@
 {
-  "schema_version": "0.5.5",
-  "version": "0.5.5",
-  "phase": "REVIEW_SNAPSHOT_INTEGRITY",
+  "schema_version": "0.6.0",
+  "version": "0.6.0",
+  "phase": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION",
   "previous_release": {
-    "version": "0.5.4",
-    "reported_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
-    "historical_review": "REVIEW-v0.5.4.md",
+    "version": "0.5.5",
+    "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
+    "historical_review": "REVIEW-v0.5.5.md",
     "pose_evidence": "docs/evidence/v054-provider-qualification.json",
-    "nine_outputs_preserved": true
+    "nine_outputs_preserved": true,
+    "review_manifest": "docs/evidence/review-visuals-v0.5.5.json"
   },
-  "current_gate": "REVIEW_SNAPSHOT_INTEGRITY_FIXED",
-  "stop_reason": null,
+  "current_gate": "SDXL_OPENPOSE_CONTROL_GAP",
+  "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP",
   "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
-  "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
+  "previous_review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
   "canonical_anchor": {
     "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
     "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
@@ -21,24 +23,28 @@
   "generation_provider_change_authorized": false,
   "walk_authorized": false,
   "allowed_next_actions": [
-    "design_next_pose_control_provider_strategy"
+    "review_sdxl_provider_gap",
+    "preserve_previous_pose_lane"
   ],
   "forbidden_actions": [
-    "run_comfyui_or_mediapipe_for_this_review_fix",
+    "download_models_before_state_consistency_pass",
+    "install_unpinned_custom_node_or_vendor_its_source",
     "change_pose_thresholds_or_reinterpret_the_v054_pose_decision",
     "generate_v3_anchors_or_walk_or_spritesheet_or_gif",
-    "add_a_provider_custom_node_strength_seed_or_estimator",
+    "route_unqualified_sdxl_capabilities",
     "publish_the_local_pose_landmarker_bundle_or_generation_weights"
   ],
   "state_consistency": {
-    "status": "REVIEW_SNAPSHOT_INTEGRITY_FIXED",
+    "status": "SDXL_OPENPOSE_CONTROL_GAP",
     "validator": "src/ugas/state_consistency.py",
     "contradictory_walk_or_anchor_promotion": false,
-    "new_generation_started": false,
-    "new_generation_jobs": 0,
-    "pose_decision_evidence": "docs/evidence/v054-provider-qualification.json",
-    "review_visual_manifest": "docs/evidence/review-visuals-v0.5.5.json",
+    "new_generation_started": true,
+    "new_generation_jobs": 3,
+    "previous_pose_decision_evidence": "docs/evidence/v054-provider-qualification.json",
+    "previous_review_visual_manifest": "docs/evidence/review-visuals-v0.5.5.json",
     "review_verifier": "scripts/validation/verify_review_archive.py",
-    "review_zip_self_validation_required": true
+    "review_zip_self_validation_required": true,
+    "phase_zero_no_download_or_install": false,
+    "custom_node_audit": "docs/evidence/custom-node-audit-ipadapter-plus.json"
   }
 }

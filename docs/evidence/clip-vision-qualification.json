@@ -1,0 +1,28 @@
+{
+  "id": "clip-vision-vit-h",
+  "source": "https://huggingface.co/h94/IP-Adapter",
+  "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+  "filename": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+  "folder": "clip_vision",
+  "bytes": 2528373448,
+  "sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+  "license": "Apache-2.0",
+  "commercial_use_status": "approved",
+  "evidence": "clip-vision-qualification.json",
+  "variant": "OpenCLIP-ViT-H-14",
+  "pairing": "ip-adapter-plus_sdxl_vit-h.safetensors",
+  "download_url": "https://huggingface.co/h94/IP-Adapter/resolve/018e402774aeeddd60609b4ecdb7e298259dc729/models/image_encoder/model.safetensors",
+  "verification": {
+    "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\clip_vision\\CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+    "filename": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+    "expected_bytes": 2528373448,
+    "actual_bytes": 2528373448,
+    "expected_sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+    "actual_sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+    "present": true,
+    "bytes_match": true,
+    "hash_match": true,
+    "verified": true
+  },
+  "status": "MODEL_HASH_AND_LICENSE_VERIFIED"
+}

@@ -1,5 +1,9 @@
 # UGAS roadmap
 
+## v0.6.0 - SDXL ControlNet/IP-Adapter provider qualification
+
+Audita e instala somente o custom node IP-Adapter Plus pinado localmente, registra os quatro artefatos externos, valida o runtime RTX 5050 e executa o smoke factorial P/I/PI. O estado atual é `SDXL_OPENPOSE_CONTROL_GAP`; benchmark, confirmação, walk e routing SDXL permanecem bloqueados.
+
 ## v0.5.5 - review snapshot integrity
 
 Corrige o falso positivo de `seed` no empacotador local, adiciona regras de filename ancoradas e um verificador tracked que executa a suíte dentro da extração limpa. Os 9 outputs A/C/R e a decisão de pose v0.5.4 permanecem intactos. Nenhum job GPU foi executado.

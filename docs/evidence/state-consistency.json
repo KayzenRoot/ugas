@@ -1,15 +1,16 @@
 {
-  "schema_version": "0.5.5",
+  "schema_version": "0.6.0",
   "validator": "src/ugas/state_consistency.py",
   "status": "STATE_CONSISTENCY_PASSED",
   "failures": [],
   "checked": {
-    "current_gate": "REVIEW_SNAPSHOT_INTEGRITY_FIXED",
-    "stop_reason": null,
-    "nested_status": "REVIEW_SNAPSHOT_INTEGRITY_FIXED",
-    "contradictory_promotion_scan": true,
-    "stale_refcontrol_action_scan": true,
-    "license_resolution_scan": true,
-    "new_generation_started": false
+    "phase": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION",
+    "current_gate": "SDXL_OPENPOSE_CONTROL_GAP",
+    "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP",
+    "historical_pose_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "historical_review_status": "REVIEW_ARCHIVE_VERIFIED",
+    "contradictory_walk_or_anchor_scan": true,
+    "new_generation_started": true,
+    "new_generation_jobs": 3
   }
 }

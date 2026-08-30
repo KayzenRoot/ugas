@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and v0.5.5."""
+"""Objective UGAS validation, including immutable history and active v0.6.0."""
 
 from __future__ import annotations
 
@@ -582,6 +582,96 @@ def _v055_checks() -> None:
     check("v055:review-boundary", "REVIEW_SNAPSHOT_INTEGRITY_FIXED" in review and "REVIEW_ARCHIVE_VERIFIED" in review and "não houve comfyui" in review.casefold() and "nenhum threshold" in review.casefold() and "foi alterado" in review.casefold(), "review separates packaging fix from unchanged pose decision and GPU boundary")
 
 
+def _v060_checks() -> None:
+    """Validate the active SDXL ControlNet/IP-Adapter qualification slice."""
+    provider: dict[str, Any] = {}
+    state_path = ROOT / "docs/evidence/current-state.json"
+    checkpoint_path = ROOT / "CHECKPOINT.md"
+    review_path = ROOT / "REVIEW-v0.6.0.md"
+    try:
+        state = load_json(state_path)
+        consistency = validate_state_consistency(state, checkpoint_path.read_text(encoding="utf-8"), review_path.read_text(encoding="utf-8"))
+        check("v060:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.6.0 state and documents are consistent")
+        check("v060:state-schema", state.get("schema_version") == "0.6.0" and state.get("version") == "0.6.0" and state.get("phase") == "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION", "active state is the SDXL qualification phase")
+        check("v060:historical-separation", state.get("previous_release", {}).get("version") == "0.5.5" and state.get("pose_lane_status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and state.get("previous_review_snapshot_status") == "REVIEW_ARCHIVE_VERIFIED", "v0.5.4 pose and v0.5.5 review results remain historical")
+        check("v060:scope-boundary", state.get("walk_authorized") is False and state.get("generation_provider_change_authorized") is False, "walk and production provider routing remain unauthorized")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v060:state-consistency", False, str(exc)); check("v060:state-schema", False, str(exc)); check("v060:historical-separation", False, str(exc))
+
+    try:
+        audit = load_json(ROOT / "docs/evidence/custom-node-audit-ipadapter-plus.json")
+        check("v060:custom-node-audit", audit.get("audit_status") == "CUSTOM_NODE_AUDIT_PASSED" and audit.get("commit") == "a0f451a5113cf9becb0847b92884cb10cbdec0ef" and audit.get("license") == "GPL-3.0-only" and audit.get("distribution_boundary") == "local-only" and audit.get("source_vendored_in_ugas") is False, "custom node is pinned, audited and local-only")
+        check("v060:custom-node-residual-risk", "torch.load" in json.dumps(audit) and "optional" in json.dumps(audit).casefold(), "optional local embed loader residual risk is documented")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v060:custom-node-audit", False, str(exc))
+
+    try:
+        stack = load_json(ROOT / "docs/evidence/sdxl-model-stack-qualification.json")
+        artifacts = stack.get("artifacts", [])
+        check("v060:model-stack", stack.get("status") in {"MODEL_ARTIFACTS_VERIFIED", "MODEL_ARTIFACT_MISSING", "MODEL_HASH_MISMATCH"} and len(artifacts) == 4 and all(item.get("source_revision") and item.get("sha256") and item.get("license") and item.get("bytes", 0) > 0 for item in artifacts), "four exact SDXL provider artifacts have source/license/size/hash records")
+        check("v060:model-boundary", stack.get("weights_outside_git") is True and all(item.get("verification", {}).get("path", "").lower().endswith(".safetensors") for item in artifacts), "weights are external and not part of the source package")
+        for name in ("sdxl-base-model-qualification.json", "sdxl-openpose-controlnet-qualification.json", "ipadapter-sdxl-model-qualification.json", "clip-vision-qualification.json"):
+            item = load_json(ROOT / "docs/evidence" / name)
+            check(f"v060:artifact:{name}", item.get("source_revision") and item.get("license") and item.get("verification", {}).get("expected_sha256"), "artifact qualification record is explicit")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v060:model-stack", False, str(exc))
+
+    try:
+        doctor = load_json(ROOT / "docs/evidence/runtime-doctor-v0.6.0.json")
+        required_nodes = doctor.get("required_nodes", {})
+        check("v060:runtime-doctor", doctor.get("schema_version") == "0.6.0" and doctor.get("status") in {"RUNTIME_DOCTOR_PASSED", "SDXL_CONTROL_PROVIDER_HARDWARE_GAP"} and "RTX 5050" in doctor.get("gpu", {}).get("name", "") and doctor.get("gpu", {}).get("vram_total", 0) >= 512 * 1024 * 1024, "runtime doctor records the real RTX 5050 and VRAM gate")
+        check("v060:native-nodes", all(required_nodes.get(name) is True for name in ("ControlNetLoader", "ControlNetApplyAdvanced", "CLIPVisionLoader", "CLIPVisionEncode", "IPAdapterModelLoader", "IPAdapterAdvanced")), "native ControlNet and pinned IP-Adapter nodes are observed")
+        check("v060:runtime-strategy", doctor.get("runtime_strategy") == ["512x512 FP16-compatible attempt", "low-VRAM/offload fallback", "sequential model unload/offload"], "required 512/offload/unload strategy is recorded")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v060:runtime-doctor", False, str(exc)); check("v060:native-nodes", False, str(exc))
+
+    try:
+        workflow = load_json(ROOT / "docs/evidence/sdxl-provider-workflow-qualification.json")
+        lanes = workflow.get("lanes", [])
+        check("v060:workflow-qualification", workflow.get("status") in {"SDXL_PROVIDER_WORKFLOW_VALID", "SDXL_PROVIDER_WORKFLOW_GAP"} and {item.get("lane") for item in lanes} == {"P", "I", "PI"} and all(item.get("direct_guide") is (item.get("lane") in {"P", "PI"}) for item in lanes), "separate P/I/PI API graphs are registered with direct guide semantics")
+        check("v060:workflow-separation", workflow.get("ipadapter_never_receives_skeleton") is True and workflow.get("controlnet_never_receives_r4_identity") is True and workflow.get("anchor", {}).get("sha256") == ANCHOR_SHA256, "ControlNet/IP-Adapter input separation and R4 hash are explicit")
+        for workflow_id in ("sdxl-openpose-controlnet-p", "sdxl-ipadapter-i", "sdxl-openpose-ipadapter-character"):
+            record = load_workflow(ROOT, workflow_id)
+            check(f"v060:workflow:{workflow_id}", record.get("schema_version") == "0.6.0" and record.get("deterministic_seed") is True and record.get("api_json"), "v0.6.0 workflow registry entry is deterministic")
+    except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
+        check("v060:workflow-qualification", False, str(exc)); check("v060:workflow-separation", False, str(exc))
+
+    try:
+        provider = load_json(ROOT / "docs/evidence/sdxl-provider-qualification.json")
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.6.0.json")
+        final_status = provider.get("status")
+        allowed = {"SDXL_CONTROL_POSE_PROVIDER_QUALIFIED", "SDXL_CONTROL_POSE_PROVIDER_GAP", "SDXL_CONTROL_PROVIDER_HARDWARE_GAP", "SDXL_IDENTITY_ADAPTER_GAP", "SDXL_OPENPOSE_CONTROL_GAP"}
+        check("v060:provider-status", final_status in allowed and provider.get("walk_authorized") is False and provider.get("animation_authorized") is False and provider.get("external_approval") == "not-claimed", f"provider final state is fail-closed: {final_status}")
+        check("v060:execution", execution.get("schema_version") == "0.6.0" and execution.get("previous_frame_chaining") is False and execution.get("weights_in_git") is False and execution.get("custom_node_source_vendored") is False and execution.get("attempted_record_count", 0) >= 3, "new execution evidence binds prompt/history/output and distribution boundaries")
+        smoke = provider.get("smoke", {})
+        check("v060:factorial", len(smoke.get("records", [])) == 3 and {item.get("lane") for item in smoke.get("records", [])} == {"P", "I", "PI"} and provider.get("seeds", {}).get("smoke") == 60701, "one new smoke seed is recorded separately for P/I/PI")
+        if provider.get("paired", {}).get("records"):
+            paired = provider["paired"]["records"]
+            check("v060:paired", len(paired) == 9 and provider.get("seeds", {}).get("paired") == [60702, 60703, 60704], "three new paired seeds per factorial lane are recorded")
+        else:
+            check("v060:paired-blocked", provider.get("benchmark", {}).get("status") == "NOT_RUN" or provider.get("smoke", {}).get("technical_green") is False, "later phases are absent when the smoke technical gate is not green")
+        benchmark = provider.get("benchmark", {})
+        if benchmark.get("status") == "NOT_RUN":
+            check("v060:benchmark-blocked", provider.get("smoke", {}).get("technical_green") is False, "strength benchmark is not fabricated before smoke green")
+        else:
+            check("v060:benchmark", len(benchmark.get("configs", [])) == 4 and benchmark.get("seed") == 60705 and benchmark.get("ipadapter_weight_type") == "linear" and benchmark.get("ranking_rule") == ["pose", "identity", "weapon", "lower_body", "nme", "runtime"], "strength benchmark uses four fixed PI configurations and declared rank")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v060:provider-status", False, str(exc)); check("v060:execution", False, str(exc)); check("v060:factorial", False, str(exc))
+
+    try:
+        visuals = load_json(ROOT / "docs/evidence/review-visuals-v0.6.0.json")
+        result = validate_review_visual_manifest(visuals, ROOT)
+        check("v060:visual-manifest", result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "current SDXL visual roles are hash-bound")
+        check("v060:overlay-evidence", (ROOT / "docs/evidence/sdxl-identity-drift-contact.json").is_file() and (ROOT / "docs/evidence/sdxl-pose-detection-overlays-contact-sheet.png").is_file() or provider.get("smoke", {}).get("technical_green") is False, "pose overlays and regional identity evidence are present when generation reached QA")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v060:visual-manifest", False, str(exc))
+
+    review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""
+    headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.5.5 BASELINE", "POSE GAP STRATEGY", "STATE CONSISTENCY", "CUSTOM NODE AUDIT", "CUSTOM NODE PIN / LICENSE", "SDXL BASE MODEL", "OPENPOSE CONTROLNET MODEL", "IP-ADAPTER MODEL", "CLIP VISION MODEL", "RUNTIME / RTX 5050", "WORKFLOW TOPOLOGY", "P / I / PI FACTORIAL SMOKE", "STRENGTH BENCHMARK", "POSE QA", "IDENTITY / WEAPON QA", "FINAL PROVIDER QUALIFICATION", "CAPABILITY ROUTING", "REGRESSION PROTECTION", "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB", "SECURITY / DISTRIBUTION", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+    check("v060:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.6.0 review headings present")
+    check("v060:review-boundary", "walk" in review.casefold() and "não" in review.casefold() and "aprovação externa" in review.casefold() and "GPL-3.0" in review, "review separates blocked walk, external approval and GPL boundary")
+
+
 
 def main() -> int:
     required = [
@@ -595,6 +685,30 @@ def main() -> int:
         "docs/evidence/execution-evidence-v0.5.4.json",
         *V054_CANONICAL_OUTPUTS,
     ]
+    required += [
+        "REVIEW-v0.6.0.md", "docs/test-coverage-matrix-v0.6.0.md",
+        "docs/evidence/custom-node-audit-ipadapter-plus.json",
+        "docs/evidence/sdxl-base-model-qualification.json",
+        "docs/evidence/sdxl-openpose-controlnet-qualification.json",
+        "docs/evidence/ipadapter-sdxl-model-qualification.json",
+        "docs/evidence/clip-vision-qualification.json",
+        "docs/evidence/sdxl-model-stack-qualification.json",
+        "docs/evidence/runtime-doctor-v0.6.0.json",
+        "docs/evidence/sdxl-provider-workflow-qualification.json",
+        "docs/evidence/sdxl-provider-qualification.json",
+        "docs/evidence/execution-evidence-v0.6.0.json",
+        "docs/evidence/sdxl-identity-drift-contact.json",
+        "docs/evidence/review-visuals-v0.6.0.json",
+        "scripts/providers/audit_ipadapter_custom_node.py",
+        "scripts/providers/qualify_sdxl_models.py",
+        "scripts/providers/run_sdxl_runtime_doctor.py",
+        "scripts/validation/run_sdxl_provider_qualification.py",
+        "providers/custom-nodes/registry.json",
+        "providers/custom-nodes/README.md",
+        "providers/workflows/sdxl-openpose-controlnet-p.api.json",
+        "providers/workflows/sdxl-ipadapter-i.api.json",
+        "providers/workflows/sdxl-openpose-ipadapter-character.api.json",
+    ]
     for item in required:
         path = ROOT / item; check(f"path:{item}", path.exists(), "present" if path.exists() else "missing")
         if path.exists() and item not in {"README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.4.2.md"}: check(f"tracked:{item}", tracked(item), "tracked or present in review snapshot")
@@ -605,22 +719,29 @@ def main() -> int:
     try:
         models = load_registry(ROOT); validate_instance(models, schemas["model-registry"]); check("registry:models", len(models.get("models", [])) >= 4, "explicit model records")
         for model in models["models"]:
-            validate_instance(model, schemas["model-manifest"]); semantic = model["family"] == "birefnet" or (model["variant"] == "distilled" and model.get("recommended_steps") == 4 and model.get("recommended_guidance") == 1.0) or (model["variant"] == "base" and model.get("recommended_steps") == 50 and model.get("recommended_guidance") == 4.0)
-            check(f"model:{model['id']}", model["commercial_use_status"] == "approved" and semantic and all(str(v) != "RECORD_AFTER_DOWNLOAD" for v in model.get("sha256", {}).values()) or model.get("id") == "flux2-klein-4b-fp8", "license and historical lane semantics valid")
+            validate_instance(model, schemas["model-manifest"])
+            if model.get("schema_version") == "0.6.0":
+                semantic = model.get("recommended_steps") in {20, None} and model.get("recommended_guidance") in {7.0, None}
+                license_recorded = model.get("commercial_use_status") in {"approved", "conditional-license-review-required", "review", "required"}
+            else:
+                semantic = model["family"] == "birefnet" or (model["variant"] == "distilled" and model.get("recommended_steps") == 4 and model.get("recommended_guidance") == 1.0) or (model["variant"] == "base" and model.get("recommended_steps") == 50 and model.get("recommended_guidance") == 4.0)
+                license_recorded = model["commercial_use_status"] == "approved"
+            check(f"model:{model['id']}", license_recorded and semantic and all(str(v) != "RECORD_AFTER_DOWNLOAD" for v in model.get("sha256", {}).values()) or model.get("id") == "flux2-klein-4b-fp8", "license and lane semantics valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError) as exc: check("registry:models", False, str(exc))
     try:
         workflows = load_workflows(ROOT); check("registry:workflows", len(workflows) >= 6, "four historical FLUX lanes, native multi-reference and BiRefNet")
         for item in workflows:
             record = load_workflow(ROOT, item["id"]); graph = validate_api_workflow(record["api"]); model = load_model(ROOT, item["required_models"][0]); compatible = validate_model_workflow_compatibility(model, record)["compatible"]
-            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", UGAS_VERSION}, "native graph and capability compatibility valid")
+            custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
+            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v055_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.5", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.5.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.5")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.6.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.6.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.6.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

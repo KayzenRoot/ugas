@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.6.0",
+  "custom_nodes": [
+    {
+      "id": "comfyui-ipadapter-plus",
+      "source": "https://github.com/cubiq/ComfyUI_IPAdapter_plus.git",
+      "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+      "license": "GPL-3.0-only",
+      "distribution_boundary": "local-only",
+      "source_vendored_in_ugas": false,
+      "floating_ref_forbidden": true,
+      "install_path": "<ComfyUI>/custom_nodes/ComfyUI_IPAdapter_plus",
+      "required_nodes": [
+        "IPAdapterModelLoader",
+        "IPAdapterAdvanced",
+        "IPAdapterApply",
+        "IPAdapterUnifiedLoader"
+      ],
+      "audit_evidence": "docs/evidence/custom-node-audit-ipadapter-plus.json",
+      "removal": "remove only the pinned external checkout; retain shared models"
+    }
+  ]
+}
