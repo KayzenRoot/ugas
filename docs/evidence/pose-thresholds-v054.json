@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.5.4",
+  "metric_version": "detected-joint-pose-error-1.0",
+  "thresholds_are_frozen_before_jobs": true,
+  "detectability": {
+    "r4_and_reference_edit_measurable_required": true,
+    "walk_frames_measurable_min": 6,
+    "median_measurable_body_joints_min": 12,
+    "core_coverage_min": 0.8,
+    "systematic_left_right_inversion_max": 0
+  },
+  "absolute_pose": {
+    "measurable_body_joints_min": 10,
+    "pck_at_010_min": 0.8,
+    "nme_max": 0.1,
+    "limb_angle_mae_max_degrees": 18.0,
+    "lower_body_pck_min": 0.75,
+    "orientation_match_required": true,
+    "sanity_required": true
+  },
+  "causal": {
+    "relative_joint_error_reduction_min": 0.35,
+    "normalized_score_gain_min": 0.5,
+    "absolute_pose_pass_required_for_each_fresh_output": true,
+    "identity_and_weapon_pass_required_for_each_fresh_output": true,
+    "fresh_execution_pass_required_for_each_fresh_output": true,
+    "additive_only_gate": true,
+    "alternative_estimator_forbidden": true
+  },
+  "identity_weapon": {
+    "identity_score_min": 0.58,
+    "weapon_presence_required": true,
+    "all_three_outputs_per_lane_required": true
+  },
+  "fresh_execution": {
+    "lanes": ["A", "C", "R"],
+    "seeds": [54701, 54702, 54703],
+    "outputs_required": 9,
+    "seed_was_used_before_required": false,
+    "target_existed_before_submission_required": false,
+    "previous_frame_chaining_required": false,
+    "new_provider_forbidden": true,
+    "new_strength_forbidden": true
+  },
+  "range_validation": {
+    "status": "PASSED",
+    "bounded_metrics": {
+      "pck": [0.0, 1.0],
+      "nme": [0.0, 1.0],
+      "lower_body_pck": [0.0, 1.0],
+      "normalized_score": [0.0, 1.0],
+      "identity_score": [0.0, 1.0],
+      "angle_mae_degrees": [0.0, 180.0]
+    }
+  }
+}

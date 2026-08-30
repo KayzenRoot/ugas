@@ -1,13 +1,15 @@
 {
-  "schema_version": "0.5.3",
+  "schema_version": "0.5.4",
   "validator": "src/ugas/state_consistency.py",
   "status": "STATE_CONSISTENCY_PASSED",
   "failures": [],
   "checked": {
-    "current_gate": "POSE_QA_MODEL_LICENSE_GAP",
-    "stop_reason": "POSE_QA_MODEL_LICENSE_GAP",
-    "nested_status": "POSE_QA_MODEL_LICENSE_GAP",
+    "current_gate": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "stop_reason": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "nested_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
     "contradictory_promotion_scan": true,
-    "stale_refcontrol_action_scan": true
+    "stale_refcontrol_action_scan": true,
+    "license_resolution_scan": true,
+    "new_generation_started": true
   }
 }

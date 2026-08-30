@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.5.3 state",
+  "title": "UGAS active v0.5.4 state",
   "type": "object",
   "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "state_consistency"],
   "properties": {
-    "schema_version": {"const": "0.5.3"},
-    "version": {"const": "0.5.3"},
-    "phase": {"const": "POSE_METRIC_CALIBRATION"},
-    "current_gate": {"type": "string", "minLength": 1},
+    "schema_version": {"const": "0.5.4"},
+    "version": {"const": "0.5.4"},
+    "phase": {"enum": ["POSE_QA_ESTIMATOR_QUALIFICATION", "POSE_LANE_RECHECK"]},
+    "current_gate": {"enum": ["POSE_QA_ESTIMATOR_QUALIFICATION_REQUIRED", "POSE_QA_ESTIMATOR_GAP", "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", "POSE_LANE_QUALIFIED"]},
     "stop_reason": {"type": ["string", "null"]},
     "generation_provider_change_authorized": {"const": false},
     "walk_authorized": {"const": false},
@@ -15,8 +15,8 @@
       "type": "object",
       "required": ["version", "reported_status", "audit_reclassification"],
       "properties": {
-        "version": {"const": "0.5.2"},
-        "reported_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP"},
+        "version": {"const": "0.5.3"},
+        "reported_status": {"const": "POSE_QA_MODEL_LICENSE_GAP"},
         "audit_reclassification": {"const": "POSE_METRIC_GATE_DESIGN_GAP"}
       }
     },
@@ -33,7 +33,7 @@
       "properties": {
         "status": {"type": "string", "minLength": 1},
         "contradictory_walk_or_anchor_promotion": {"const": false},
-        "new_generation_started": {"const": false}
+        "new_generation_started": {"type": "boolean"}
       }
     }
   }

@@ -1,4 +1,4 @@
-"""Objective UGAS v0.5.2 validation, including immutable historical gates."""
+"""Objective UGAS validation, including immutable historical gates and v0.5.4."""
 
 from __future__ import annotations
 
@@ -457,6 +457,80 @@ def _v053_checks() -> None:
     check("v053:no-v053-provider-output", not any((ROOT / "docs/evidence/v053").glob("*.png")) if (ROOT / "docs/evidence/v053").is_dir() else True, "no provider output directory was created")
 
 
+def _v054_checks() -> None:
+    """Validate the active estimator/license/lane recheck slice."""
+    state_path = ROOT / "docs/evidence/current-state.json"
+    review_path = ROOT / "REVIEW-v0.5.4.md"
+    checkpoint_path = ROOT / "CHECKPOINT.md"
+    try:
+        state = load_json(state_path)
+        consistency = validate_state_consistency(state, checkpoint_path.read_text(encoding="utf-8"), review_path.read_text(encoding="utf-8"))
+        check("v054:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state and documents are consistent")
+        check("v054:state-schema", state.get("schema_version") == "0.5.4" and state.get("version") == "0.5.4" and state.get("phase") == "POSE_LANE_RECHECK", "active state is v0.5.4 lane recheck")
+        check("v054:state-stop", state.get("current_gate") == state.get("stop_reason") == state.get("state_consistency", {}).get("status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", "active provider gap, stop reason and nested status agree")
+        check("v054:state-boundary", state.get("generation_provider_change_authorized") is False and state.get("walk_authorized") is False and state.get("state_consistency", {}).get("new_generation_started") is True and state.get("state_consistency", {}).get("new_generation_jobs") == 9, "existing provider recheck is recorded while provider change and walk remain unauthorized")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v054:state-consistency", False, str(exc)); check("v054:state-schema", False, str(exc)); check("v054:state-stop", False, str(exc))
+
+    try:
+        thresholds = load_json(ROOT / "docs/evidence/pose-thresholds-v054.json")
+        check("v054:thresholds-frozen", thresholds.get("schema_version") == "0.5.4" and thresholds.get("thresholds_are_frozen_before_jobs") is True and thresholds.get("fresh_execution", {}).get("lanes") == ["A", "C", "R"] and thresholds.get("fresh_execution", {}).get("seeds") == [54701, 54702, 54703] and thresholds.get("fresh_execution", {}).get("outputs_required") == 9, "thresholds, lanes and exact seeds were frozen before jobs")
+        check("v054:threshold-ranges", thresholds.get("range_validation", {}).get("status") == "PASSED" and thresholds.get("range_validation", {}).get("bounded_metrics", {}).get("pck") == [0.0, 1.0] and thresholds.get("range_validation", {}).get("bounded_metrics", {}).get("angle_mae_degrees") == [0.0, 180.0], "metric ranges are explicit and mathematically bounded")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v054:thresholds-frozen", False, str(exc)); check("v054:threshold-ranges", False, str(exc))
+
+    try:
+        license_evidence = load_json(ROOT / "docs/evidence/pose-qa-license-resolution.json")
+        model = load_json(ROOT / "docs/evidence/pose-qa-estimator-model-v054.json")
+        check("v054:license-resolution", license_evidence.get("status") == "POSE_QA_LOCAL_USE_LICENSE_RESOLVED" and license_evidence.get("official_task_docs", {}).get("bundle_variant") == "Pose landmarker (Full)" and license_evidence.get("official_model_card", {}).get("license") == "Apache-2.0" and license_evidence.get("policy", {}).get("redistribute_bundle_in_ugas") is False, "official task/model-card mapping resolves local QA use without redistribution")
+        check("v054:model-bound", model.get("schema_version") == "0.5.4" and model.get("model", {}).get("url") and model.get("model", {}).get("sha256") == "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1" and model.get("model", {}).get("bytes", 0) > 0 and model.get("model", {}).get("license_status") == "RESOLVED_LOCAL_QA" and model.get("model", {}).get("outside_git") is True and model.get("model", {}).get("outside_review_zip") is True, "versioned local bundle hash, bytes and exclusion boundary are recorded")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v054:license-resolution", False, str(exc)); check("v054:model-bound", False, str(exc))
+
+    try:
+        estimator = load_json(ROOT / "docs/evidence/pose-qa-estimator-qualification-v054.json")
+        detectability = load_json(ROOT / "docs/evidence/pose-qa-estimator-detectability.json")
+        sanity = load_json(ROOT / "docs/evidence/pose-qa-estimator-sanity.json")
+        summary = detectability.get("summary", {})
+        gates = detectability.get("gates", {})
+        check("v054:estimator-qualified", estimator.get("status") == "POSE_QA_ESTIMATOR_QUALIFIED" and estimator.get("qa_only") is True and estimator.get("provider_routing_used") is False and estimator.get("preprocess_policy") == "transparent_neutral_gray", "independent estimator qualifies on one global preprocessing policy")
+        check("v054:detectability", summary.get("evaluated_images") == 10 and summary.get("measurable_images") == 10 and summary.get("r4_measurable") is True and summary.get("reference_edit_measurable") is True and summary.get("walk_frames_measurable") == 8 and summary.get("median_measurable_body_joints") >= 12 and summary.get("required_core_coverage_pass_ratio") >= 0.8 and summary.get("left_right_inversion_count") == 0 and all(gates.values()), "R4, reference edit and all eight historical walk frames are measurable")
+        check("v054:sanity", sanity.get("status") == "POSE_QA_ESTIMATOR_QUALIFIED" and sanity.get("summary", {}).get("all_landmarks_plausible") is True and len(sanity.get("records", [])) == 10 and (ROOT / "docs/evidence/pose-qa-estimator-overlays-contact-sheet.png").is_file(), "landmark sanity and overlay evidence pass")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v054:estimator-qualified", False, str(exc)); check("v054:detectability", False, str(exc)); check("v054:sanity", False, str(exc))
+
+    try:
+        provider = load_json(ROOT / "docs/evidence/v054-provider-qualification.json")
+        decision = provider.get("decision", {})
+        lanes = provider.get("lanes", {})
+        check("v054:provider-decision", provider.get("status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and provider.get("estimator_status") == "POSE_QA_ESTIMATOR_QUALIFIED" and provider.get("record_count") == 9 and provider.get("fresh_outputs") == 9 and provider.get("seeds") == [54701, 54702, 54703] and set(lanes) == {"A", "C", "R"}, "provider gap is emitted only after estimator qualification and exactly nine outputs")
+        check("v054:lane-causal-failure", decision.get("qualified_lane") is None and lanes.get("C", {}).get("validation", {}).get("live_valid") is True and lanes.get("R", {}).get("validation", {}).get("live_valid") is True and decision.get("lane_summary", {}).get("C", {}).get("absolute_pose_all_pass") is False and decision.get("lane_summary", {}).get("R", {}).get("absolute_pose_all_pass") is False, "C and R native graphs are live-valid but fail absolute detected-joint pose")
+        check("v054:identity-separated", decision.get("lane_summary", {}).get("C", {}).get("identity_weapon_all_pass") is True and decision.get("lane_summary", {}).get("R", {}).get("identity_weapon_all_pass") is True, "identity and weapon gates remain separate and pass")
+        check("v054:scope-boundary", provider.get("walk_authorized") is False and provider.get("directional_anchors_authorized") is False and provider.get("new_provider_used") is False and provider.get("new_strength_used") is False and provider.get("model_stack", {}).get("refcontrol_lora_strength") == 0.8, "no walk, anchors, provider or unauthorized strength was introduced")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v054:provider-decision", False, str(exc)); check("v054:lane-causal-failure", False, str(exc)); check("v054:scope-boundary", False, str(exc))
+
+    try:
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.5.4.json")
+        table = load_json(ROOT / "docs/evidence/v054-pose-error-table.json")
+        visual = load_json(ROOT / "docs/evidence/review-visuals-v0.5.4.json")
+        visual_result = validate_review_visual_manifest(visual, ROOT)
+        check("v054:visual-manifest", visual_result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(visual_result.get("failures", [])) or "v0.5.4 visual roles are hash-bound")
+        records = execution.get("records", [])
+        outputs = [item.get("output_path") for item in records if item.get("output_path")]
+        check("v054:execution", execution.get("record_count") == 9 and execution.get("required_output_count") == 9 and execution.get("all_fresh_binding") is True and execution.get("no_previous_frame_chaining") is True and execution.get("no_walk_executed") is True and len(set(outputs)) == 9, "all nine prompt/history/output bindings are fresh and independent")
+        check("v054:error-table", table.get("schema_version") == "0.5.4" and table.get("metric_version") == "detected-joint-pose-error-1.0" and len(table.get("rows", [])) == 9 and table.get("status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", "nine-row detected-joint error table is bound to the provider decision")
+        check("v054:lane-outputs", all((ROOT / path).is_file() for path in outputs) and len(outputs) == 9 and (ROOT / "docs/evidence/v054-pose-overlays-contact-sheet.png").is_file() and (ROOT / "docs/evidence/v054-lanes-contact-sheet.png").is_file(), "nine individual PNG outputs and review contacts are present")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v054:visual-manifest", False, str(exc)); check("v054:execution", False, str(exc)); check("v054:error-table", False, str(exc)); check("v054:lane-outputs", False, str(exc))
+
+    review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""
+    headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.5.3 HISTORICAL BASELINE", "LICENSE RESOLUTION", "POSE QA ESTIMATOR QUALIFICATION", "PREPROCESSING MATRIX", "THRESHOLDS FROZEN BEFORE JOBS", "NATIVE LANE RECHECK", "REFCONTROL LANE RECHECK", "IDENTITY / WEAPON QA", "CAUSAL PROVIDER DECISION", "EXECUTION EVIDENCE", "STATE CONSISTENCY", "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB", "SECURITY", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+    check("v054:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.5.4 review headings present")
+    check("v054:review-boundary", "POSE_QA_LOCAL_USE_LICENSE_RESOLVED" in review and "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" in review and "walk não foi executado" in review.casefold() and "aprovação externa" in review.casefold(), "active review separates license resolution, provider gap, blocked walk and external approval")
+
+
+
 def main() -> int:
     required = [
         "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.5.3.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "docs/test-coverage-matrix-v0.5.3.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/pose-metric-calibration.json", "docs/evidence/pose-metric-calibration-contact-sheet.png", "docs/evidence/pose-metric-negative-controls-contact-sheet.png", "docs/evidence/pose-qa-estimator-qualification.json", "docs/evidence/pose-qa-estimator-model.json", "docs/evidence/v052-refcontrol-baseline-contact.png", "docs/evidence/v053-pose-detection-overlay-contact.png", "docs/evidence/v053-pose-error-table.json", "docs/evidence/v053-provider-qualification.json", "docs/evidence/execution-evidence-v0.5.3.json", "docs/evidence/review-visuals-v0.5.3.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
@@ -480,13 +554,13 @@ def main() -> int:
             record = load_workflow(ROOT, item["id"]); graph = validate_api_workflow(record["api"]); model = load_model(ROOT, item["required_models"][0]); compatible = validate_model_workflow_compatibility(model, record)["compatible"]
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", UGAS_VERSION}, "native graph and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v053_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v054_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.3")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.4", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.4.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.4")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

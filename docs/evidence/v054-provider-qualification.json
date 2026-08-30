@@ -1,0 +1,4214 @@
+{
+  "schema_version": "0.5.4",
+  "status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "stop_reason": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "prompt_id": "PROMPT-04F-UGAS-POSE-QA-LICENSE-ESTIMATOR-LANE-RECHECK-v0.5.4",
+  "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED",
+  "license_status": "POSE_QA_LOCAL_USE_LICENSE_RESOLVED",
+  "selected_preprocess_policy": "transparent_neutral_gray",
+  "anchor": {
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "guide": {
+    "path": "docs/evidence/openpose-guide-v3-control-example.png",
+    "json_path": "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json",
+    "json_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+    "orientation": "left_profile"
+  },
+  "model_stack": {
+    "base_model_id": "flux2-klein-4b-base-nvfp4",
+    "refcontrol_model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+    "refcontrol_lora_filename": "refcontrol-pose-klein-4b.safetensors",
+    "refcontrol_lora_strength": 0.8,
+    "refcontrol_hashes_verified": true
+  },
+  "lanes": {
+    "A": {
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "workflow_sha256": "9efa45ad05f3993906a44afd4e7068bf6834d76985d17541b655fe0e4e52e594",
+      "validation": {
+        "valid_graph": true,
+        "node_count": 18,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "reference_order": [
+        "identity-only"
+      ],
+      "lora_strength": null
+    },
+    "C": {
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "workflow_sha256": "e637682c098cdd872a98682f8c5e4f8da720c5dc6349b1f99a3ad4d461bd509c",
+      "validation": {
+        "valid_graph": true,
+        "node_count": 22,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "reference_order": [
+        "openpose-coco18-pose-guide",
+        "identity-anchor"
+      ],
+      "lora_strength": null
+    },
+    "R": {
+      "workflow_id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "workflow_sha256": "cf8d49e9d2e4b524138a62033e897bd36f51fc4f2d26a898bf51a8efd8cd424d",
+      "validation": {
+        "valid_graph": true,
+        "node_count": 23,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "reference_order": [
+        "openpose-coco18-pose-guide",
+        "identity-anchor"
+      ],
+      "lora_strength": 0.8
+    }
+  },
+  "seeds": [
+    54701,
+    54702,
+    54703
+  ],
+  "records": [
+    {
+      "lane": "A",
+      "seed": 54701,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "workflow_sha256": "9efa45ad05f3993906a44afd4e7068bf6834d76985d17541b655fe0e4e52e594",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": null,
+      "lora_strength": null,
+      "prompt_id": "04013a79-e346-4fea-8c89-bf5bf95b9253",
+      "history_record_key": "04013a79-e346-4fea-8c89-bf5bf95b9253",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": null,
+      "guide_image_sha256": null,
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-d86db8ea188e4354b2ec9205d30c9116/v054-a-seed-54701.png",
+      "raw_output_sha256": "25e31fe34098a745383b6b1064376cf0067bdd3a71b4b36b012ac3c21e0b6486",
+      "output_path": "docs/evidence/v054-lanes/a-seed-54701.png",
+      "output_sha256": "8202c91904bbe90aad79cdcbb43d4b18658713ea6977be63098ce049e86c9993",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\a-seed-54701.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 187766,
+        "sha256": "8202c91904bbe90aad79cdcbb43d4b18658713ea6977be63098ce049e86c9993",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.0104217529296875,
+        "transparent_fraction": 0.8024826049804688,
+        "alpha_zero_fraction": 0.8024826049804688,
+        "alpha_opaque_fraction": 0.0104217529296875,
+        "alpha_partial_fraction": 0.18709564208984375,
+        "foreground_coverage": 0.19751739501953125,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8932558229363823,
+        "soft_edge_foreground_fraction": 0.10674417706361776,
+        "alpha_bbox": [
+          150,
+          40,
+          366,
+          489
+        ],
+        "alpha_centroid": [
+          0.5133538103779598,
+          0.5163333652202673
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-5e7b789e69fe47ae87af2a941e2696b7",
+        "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+        "submitted_at": "2026-08-30T13:41:50+00:00",
+        "first_poll_at": "2026-08-30T13:41:50+00:00",
+        "completed_at": "2026-08-30T13:41:55+00:00",
+        "runtime_ms": 5313.608,
+        "history_record_key": "451d68fc-9677-44d9-b07a-7c5889053098",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "25e31fe34098a745383b6b1064376cf0067bdd3a71b4b36b012ac3c21e0b6486"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-d86db8ea188e4354b2ec9205d30c9116\\birefnet\\job-479ff2a1f7cc4c6f8f81b51e291d94ac\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+                  "timestamp": 1788097310548
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+                  "timestamp": 1788097310561
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+                  "timestamp": 1788097315269
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00079_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "6c8e05e00acffaff9a77734d92dcfd65a8ccc4b0f44eca7482590ad27d37346f"
+          },
+          {
+            "filename": "ugas-master-transparent_00079_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "d161600c76daa7e3229ddc2c233fbf34eb2809bf9e6e1187c3cc929ea9416900"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-d86db8ea188e4354b2ec9205d30c9116\\birefnet\\job-479ff2a1f7cc4c6f8f81b51e291d94ac\\birefnet-output.png",
+            "sha256": "6c8e05e00acffaff9a77734d92dcfd65a8ccc4b0f44eca7482590ad27d37346f",
+            "filename": "ugas-foreground-mask_00079_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-d86db8ea188e4354b2ec9205d30c9116\\birefnet\\job-479ff2a1f7cc4c6f8f81b51e291d94ac\\birefnet-output-1.png",
+            "sha256": "d161600c76daa7e3229ddc2c233fbf34eb2809bf9e6e1187c3cc929ea9416900",
+            "filename": "ugas-master-transparent_00079_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-d86db8ea188e4354b2ec9205d30c9116\\pose-qa.png",
+        "sha256": "1f65279654a26cff0e4649bed7f39993c8b72d2ad8b25384da96cc6c3383c704",
+        "source_sha256": "8202c91904bbe90aad79cdcbb43d4b18658713ea6977be63098ce049e86c9993",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.292969,
+          0.078125,
+          0.714844,
+          0.955078
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 13,
+        "core_coverage": 1.0,
+        "mean_confidence": 0.981372,
+        "min_confidence": 0.895568
+      },
+      "detected_orientation": "front",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.0,
+        "nme": 0.758069,
+        "limb_angle_mae_degrees": 9.398254,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.239598,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.93655,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.929925,
+          "head_face": 0.904904,
+          "black_cloth": 0.890532,
+          "body_proportions": 0.96756,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            150,
+            40,
+            366,
+            489
+          ],
+          "regions": {
+            "whole": {
+              "count": 49523,
+              "mean_rgb": [
+                40.691,
+                57.931,
+                99.987
+              ],
+              "mean_hsv": [
+                0.618208,
+                0.593037,
+                0.392105
+              ],
+              "luma_histogram": [
+                0.507441,
+                0.064879,
+                0.314763,
+                0.013368,
+                0.010076,
+                0.009672,
+                0.023565,
+                0.056236
+              ]
+            },
+            "head_face": {
+              "count": 8127,
+              "mean_rgb": [
+                63.65,
+                82.598,
+                133.096
+              ],
+              "mean_hsv": [
+                0.621193,
+                0.521771,
+                0.521944
+              ],
+              "luma_histogram": [
+                0.284853,
+                0.066322,
+                0.426234,
+                0.02301,
+                0.014273,
+                0.019072,
+                0.107051,
+                0.059185
+              ]
+            },
+            "armor_palette_material": {
+              "count": 24076,
+              "mean_rgb": [
+                24.832,
+                42.83,
+                85.876
+              ],
+              "mean_hsv": [
+                0.617527,
+                0.71084,
+                0.336767
+              ],
+              "luma_histogram": [
+                0.593329,
+                0.056114,
+                0.316373,
+                0.007144,
+                0.00432,
+                0.003655,
+                0.003281,
+                0.015783
+              ]
+            },
+            "black_cloth": {
+              "count": 18328,
+              "mean_rgb": [
+                39.932,
+                54.497,
+                90.152
+              ],
+              "mean_hsv": [
+                0.618328,
+                0.557061,
+                0.353537
+              ],
+              "luma_histogram": [
+                0.575786,
+                0.056144,
+                0.260749,
+                0.013313,
+                0.010203,
+                0.009166,
+                0.007857,
+                0.066783
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.421875,
+            "bbox_height": 0.876953,
+            "bbox_ratio": 0.481069,
+            "head_area_fraction": 0.083797,
+            "armor_area_fraction": 0.248247,
+            "cloth_area_fraction": 0.18898
+          },
+          "weapon_outer_fraction": 0.374493,
+          "weapon_metallic_outer_fraction": 0.174916,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 84328.905,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-d86db8ea188e4354b2ec9205d30c9116/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "A",
+      "seed": 54702,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "workflow_sha256": "9efa45ad05f3993906a44afd4e7068bf6834d76985d17541b655fe0e4e52e594",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": null,
+      "lora_strength": null,
+      "prompt_id": "e5e27695-c6a0-43e7-858f-b83214597646",
+      "history_record_key": "e5e27695-c6a0-43e7-858f-b83214597646",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": null,
+      "guide_image_sha256": null,
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-3d6c4c0f4b1f4e89befbac35b927f642/v054-a-seed-54702.png",
+      "raw_output_sha256": "6750e374455b3ae0e9316b061228690d14d63ad53cbdd83672c3583617378575",
+      "output_path": "docs/evidence/v054-lanes/a-seed-54702.png",
+      "output_sha256": "4aceb8ae2b97a626024ef69eeb5fcc1ce2c748dfe2399520457af4364ab72d85",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\a-seed-54702.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 205976,
+        "sha256": "4aceb8ae2b97a626024ef69eeb5fcc1ce2c748dfe2399520457af4364ab72d85",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.0124053955078125,
+        "transparent_fraction": 0.8130149841308594,
+        "alpha_zero_fraction": 0.8130149841308594,
+        "alpha_opaque_fraction": 0.0124053955078125,
+        "alpha_partial_fraction": 0.17457962036132812,
+        "foreground_coverage": 0.18698501586914062,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8516637085092927,
+        "soft_edge_foreground_fraction": 0.14833629149070732,
+        "alpha_bbox": [
+          158,
+          39,
+          361,
+          488
+        ],
+        "alpha_centroid": [
+          0.5146977467638778,
+          0.5074510979609115
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-5fdcf9af8bd1431ea310de25125712c7",
+        "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+        "submitted_at": "2026-08-30T13:43:14+00:00",
+        "first_poll_at": "2026-08-30T13:43:14+00:00",
+        "completed_at": "2026-08-30T13:43:19+00:00",
+        "runtime_ms": 5423.407,
+        "history_record_key": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "6750e374455b3ae0e9316b061228690d14d63ad53cbdd83672c3583617378575"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3d6c4c0f4b1f4e89befbac35b927f642\\birefnet\\job-219ca7a36a554e1e998f2ea7fa143318\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+                  "timestamp": 1788097394128
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+                  "timestamp": 1788097394141
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+                  "timestamp": 1788097399113
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00080_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "9329d27b8bf848a79ad2030ab93d09f3c7004c1de971df889e26b28fc3ce1520"
+          },
+          {
+            "filename": "ugas-master-transparent_00080_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "1e581536a699c0b0a147be74862a66576d42317a8dc178854294dee232432e08"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3d6c4c0f4b1f4e89befbac35b927f642\\birefnet\\job-219ca7a36a554e1e998f2ea7fa143318\\birefnet-output.png",
+            "sha256": "9329d27b8bf848a79ad2030ab93d09f3c7004c1de971df889e26b28fc3ce1520",
+            "filename": "ugas-foreground-mask_00080_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3d6c4c0f4b1f4e89befbac35b927f642\\birefnet\\job-219ca7a36a554e1e998f2ea7fa143318\\birefnet-output-1.png",
+            "sha256": "1e581536a699c0b0a147be74862a66576d42317a8dc178854294dee232432e08",
+            "filename": "ugas-master-transparent_00080_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3d6c4c0f4b1f4e89befbac35b927f642\\pose-qa.png",
+        "sha256": "be65085e1bcf6f78bac197c0df7b0410972073749350ce5924b64b0f34272409",
+        "source_sha256": "4aceb8ae2b97a626024ef69eeb5fcc1ce2c748dfe2399520457af4364ab72d85",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.308594,
+          0.076172,
+          0.705078,
+          0.953125
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 13,
+        "core_coverage": 1.0,
+        "mean_confidence": 0.979885,
+        "min_confidence": 0.894896
+      },
+      "detected_orientation": "front",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.0,
+        "nme": 0.736877,
+        "limb_angle_mae_degrees": 9.516038,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.244634,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.939682,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.921385,
+          "head_face": 0.895813,
+          "black_cloth": 0.906501,
+          "body_proportions": 0.993203,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            158,
+            39,
+            361,
+            488
+          ],
+          "regions": {
+            "whole": {
+              "count": 46327,
+              "mean_rgb": [
+                26.957,
+                60.957,
+                100.237
+              ],
+              "mean_hsv": [
+                0.589338,
+                0.731064,
+                0.393085
+              ],
+              "luma_histogram": [
+                0.502731,
+                0.055324,
+                0.328146,
+                0.049172,
+                0.013059,
+                0.012433,
+                0.014527,
+                0.024608
+              ]
+            },
+            "head_face": {
+              "count": 7852,
+              "mean_rgb": [
+                57.191,
+                97.901,
+                143.303
+              ],
+              "mean_hsv": [
+                0.587874,
+                0.600905,
+                0.561971
+              ],
+              "luma_histogram": [
+                0.24758,
+                0.076414,
+                0.426516,
+                0.043683,
+                0.016556,
+                0.017957,
+                0.051452,
+                0.119842
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22732,
+              "mean_rgb": [
+                16.585,
+                47.807,
+                85.126
+              ],
+              "mean_hsv": [
+                0.590745,
+                0.805174,
+                0.333828
+              ],
+              "luma_histogram": [
+                0.603818,
+                0.044959,
+                0.299842,
+                0.0377,
+                0.005015,
+                0.004751,
+                0.002903,
+                0.001012
+              ]
+            },
+            "black_cloth": {
+              "count": 16742,
+              "mean_rgb": [
+                21.99,
+                51.32,
+                85.408
+              ],
+              "mean_hsv": [
+                0.589586,
+                0.742531,
+                0.334933
+              ],
+              "luma_histogram": [
+                0.583503,
+                0.043663,
+                0.290706,
+                0.043722,
+                0.013141,
+                0.013021,
+                0.008541,
+                0.003703
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.396484,
+            "bbox_height": 0.876953,
+            "bbox_ratio": 0.452116,
+            "head_area_fraction": 0.086147,
+            "armor_area_fraction": 0.249399,
+            "cloth_area_fraction": 0.183681
+          },
+          "weapon_outer_fraction": 0.359769,
+          "weapon_metallic_outer_fraction": 0.091198,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 81119.586,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-3d6c4c0f4b1f4e89befbac35b927f642/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "A",
+      "seed": 54703,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "workflow_sha256": "9efa45ad05f3993906a44afd4e7068bf6834d76985d17541b655fe0e4e52e594",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": null,
+      "lora_strength": null,
+      "prompt_id": "edb064eb-1df7-4fc8-b6ce-294a56b696a8",
+      "history_record_key": "edb064eb-1df7-4fc8-b6ce-294a56b696a8",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": null,
+      "guide_image_sha256": null,
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-ffdaea142d724943a1903e7257c6e61f/v054-a-seed-54703.png",
+      "raw_output_sha256": "ea2f5400b4d446210fecef8ecf8f39bf760ac647c58a8701149d725ed8f184f2",
+      "output_path": "docs/evidence/v054-lanes/a-seed-54703.png",
+      "output_sha256": "76cc5252648299a3d92e2596c72b36f1f5b2a8ece4654d608a08afeacc708a60",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\a-seed-54703.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 178748,
+        "sha256": "76cc5252648299a3d92e2596c72b36f1f5b2a8ece4654d608a08afeacc708a60",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.0071258544921875,
+        "transparent_fraction": 0.8098220825195312,
+        "alpha_zero_fraction": 0.8098220825195312,
+        "alpha_opaque_fraction": 0.0071258544921875,
+        "alpha_partial_fraction": 0.18305206298828125,
+        "foreground_coverage": 0.19017791748046875,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8917238335940948,
+        "soft_edge_foreground_fraction": 0.10827616640590525,
+        "alpha_bbox": [
+          157,
+          38,
+          360,
+          487
+        ],
+        "alpha_centroid": [
+          0.5097063111786416,
+          0.5107511981862037
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-9be0e4671a7e48e6ad0d0c42d7928cc8",
+        "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+        "submitted_at": "2026-08-30T13:44:35+00:00",
+        "first_poll_at": "2026-08-30T13:44:35+00:00",
+        "completed_at": "2026-08-30T13:44:41+00:00",
+        "runtime_ms": 5585.503,
+        "history_record_key": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "ea2f5400b4d446210fecef8ecf8f39bf760ac647c58a8701149d725ed8f184f2"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-ffdaea142d724943a1903e7257c6e61f\\birefnet\\job-a200c85fa87b42e281b52d408ab90d70\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+                  "timestamp": 1788097475944
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+                  "timestamp": 1788097475957
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+                  "timestamp": 1788097481093
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00081_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "1c1d7dfb75e299f2d84851106e0abcffb76883f15a169a6d2b73fb29e2756e4e"
+          },
+          {
+            "filename": "ugas-master-transparent_00081_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "f91ff4727769b10df1cfbcfcd66f1954da6fb710031683482d1fdc6722bde210"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-ffdaea142d724943a1903e7257c6e61f\\birefnet\\job-a200c85fa87b42e281b52d408ab90d70\\birefnet-output.png",
+            "sha256": "1c1d7dfb75e299f2d84851106e0abcffb76883f15a169a6d2b73fb29e2756e4e",
+            "filename": "ugas-foreground-mask_00081_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-ffdaea142d724943a1903e7257c6e61f\\birefnet\\job-a200c85fa87b42e281b52d408ab90d70\\birefnet-output-1.png",
+            "sha256": "f91ff4727769b10df1cfbcfcd66f1954da6fb710031683482d1fdc6722bde210",
+            "filename": "ugas-master-transparent_00081_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-ffdaea142d724943a1903e7257c6e61f\\pose-qa.png",
+        "sha256": "252c174386d33de54c16e4bed409862c1025f341557fff4213540131bb4b1b5f",
+        "source_sha256": "76cc5252648299a3d92e2596c72b36f1f5b2a8ece4654d608a08afeacc708a60",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.306641,
+          0.074219,
+          0.703125,
+          0.951172
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 13,
+        "core_coverage": 1.0,
+        "mean_confidence": 0.992965,
+        "min_confidence": 0.97756
+      },
+      "detected_orientation": "front",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.0,
+        "nme": 0.747673,
+        "limb_angle_mae_degrees": 9.590381,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.24177,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.930934,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.921146,
+          "head_face": 0.826392,
+          "black_cloth": 0.952951,
+          "body_proportions": 0.991321,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            157,
+            38,
+            360,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 47732,
+              "mean_rgb": [
+                21.98,
+                30.385,
+                65.362
+              ],
+              "mean_hsv": [
+                0.634377,
+                0.663717,
+                0.256322
+              ],
+              "luma_histogram": [
+                0.622329,
+                0.262298,
+                0.054848,
+                0.019421,
+                0.010056,
+                0.015294,
+                0.015378,
+                0.000377
+              ]
+            },
+            "head_face": {
+              "count": 7813,
+              "mean_rgb": [
+                55.363,
+                58.066,
+                92.882
+              ],
+              "mean_hsv": [
+                0.654661,
+                0.403939,
+                0.364244
+              ],
+              "luma_histogram": [
+                0.420197,
+                0.340202,
+                0.019967,
+                0.019199,
+                0.025086,
+                0.082171,
+                0.09113,
+                0.002048
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22914,
+              "mean_rgb": [
+                10.696,
+                19.699,
+                54.305
+              ],
+              "mean_hsv": [
+                0.632258,
+                0.803045,
+                0.212961
+              ],
+              "luma_histogram": [
+                0.706642,
+                0.259536,
+                0.018722,
+                0.008728,
+                0.00384,
+                0.001789,
+                0.000655,
+                8.7e-05
+              ]
+            },
+            "black_cloth": {
+              "count": 17487,
+              "mean_rgb": [
+                17.014,
+                24.923,
+                56.417
+              ],
+              "mean_hsv": [
+                0.633216,
+                0.69842,
+                0.221244
+              ],
+              "luma_histogram": [
+                0.70378,
+                0.195517,
+                0.072683,
+                0.018185,
+                0.007263,
+                0.00183,
+                0.000743,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.396484,
+            "bbox_height": 0.876953,
+            "bbox_ratio": 0.452116,
+            "head_area_fraction": 0.085719,
+            "armor_area_fraction": 0.251396,
+            "cloth_area_fraction": 0.191855
+          },
+          "weapon_outer_fraction": 0.383076,
+          "weapon_metallic_outer_fraction": 0.076839,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 81553.801,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-ffdaea142d724943a1903e7257c6e61f/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "C",
+      "seed": 54701,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "workflow_sha256": "e637682c098cdd872a98682f8c5e4f8da720c5dc6349b1f99a3ad4d461bd509c",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": null,
+      "lora_strength": null,
+      "prompt_id": "3110dcb7-5c7a-4812-bf62-42e253805b99",
+      "history_record_key": "3110dcb7-5c7a-4812-bf62-42e253805b99",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-3c2b076b04dd4e04b42df70f551ce73d/v054-c-seed-54701.png",
+      "raw_output_sha256": "3233f9cd20851ded686f502b0d7e1449d4b37b564b01f59c93d0aabca0a572be",
+      "output_path": "docs/evidence/v054-lanes/c-seed-54701.png",
+      "output_sha256": "e5b89d82f29accd6344cb845262526015612c4ca16ec330333b0e4a46d68e2cf",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\c-seed-54701.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 162173,
+        "sha256": "e5b89d82f29accd6344cb845262526015612c4ca16ec330333b0e4a46d68e2cf",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.00229644775390625,
+        "transparent_fraction": 0.8577461242675781,
+        "alpha_zero_fraction": 0.8577461242675781,
+        "alpha_opaque_fraction": 0.00229644775390625,
+        "alpha_partial_fraction": 0.13995742797851562,
+        "foreground_coverage": 0.14225387573242188,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8859242176396449,
+        "soft_edge_foreground_fraction": 0.11407578236035505,
+        "alpha_bbox": [
+          152,
+          10,
+          358,
+          506
+        ],
+        "alpha_centroid": [
+          0.4716161825239334,
+          0.5337949128140839
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-bebdf09edf29405cb33ac422594e91c1",
+        "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+        "submitted_at": "2026-08-30T13:45:57+00:00",
+        "first_poll_at": "2026-08-30T13:45:57+00:00",
+        "completed_at": "2026-08-30T13:46:02+00:00",
+        "runtime_ms": 5438.72,
+        "history_record_key": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "3233f9cd20851ded686f502b0d7e1449d4b37b564b01f59c93d0aabca0a572be"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3c2b076b04dd4e04b42df70f551ce73d\\birefnet\\job-c200f135c7b2472e870dc9d49ccafe3a\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+                  "timestamp": 1788097557608
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+                  "timestamp": 1788097557622
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+                  "timestamp": 1788097561581
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00082_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "2b2218cccc76cf4963a63c5f0ab6bf0f6f62940a95b1810b6b9f20d5dd7390e7"
+          },
+          {
+            "filename": "ugas-master-transparent_00082_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "96495664579c020188784c050f122b26bd7ab550cd56ae805bc40cffda961595"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3c2b076b04dd4e04b42df70f551ce73d\\birefnet\\job-c200f135c7b2472e870dc9d49ccafe3a\\birefnet-output.png",
+            "sha256": "2b2218cccc76cf4963a63c5f0ab6bf0f6f62940a95b1810b6b9f20d5dd7390e7",
+            "filename": "ugas-foreground-mask_00082_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3c2b076b04dd4e04b42df70f551ce73d\\birefnet\\job-c200f135c7b2472e870dc9d49ccafe3a\\birefnet-output-1.png",
+            "sha256": "96495664579c020188784c050f122b26bd7ab550cd56ae805bc40cffda961595",
+            "filename": "ugas-master-transparent_00082_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3c2b076b04dd4e04b42df70f551ce73d\\pose-qa.png",
+        "sha256": "fdaea747e199426145c1daa1a8cdc384e0043d159b98880ffb4862bd1556c09c",
+        "source_sha256": "e5b89d82f29accd6344cb845262526015612c4ca16ec330333b0e4a46d68e2cf",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.296875,
+          0.019531,
+          0.699219,
+          0.988281
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 11,
+        "core_coverage": 0.833333,
+        "mean_confidence": 0.968072,
+        "min_confidence": 0.836717
+      },
+      "detected_orientation": "right_profile",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "UNMEASURABLE",
+        "measurable_body_joints": 11,
+        "required_core_present": false,
+        "pck_at_010": 0.0,
+        "nme": 0.682411,
+        "limb_angle_mae_degrees": 16.945442,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.0,
+        "qualifies": false,
+        "failure_reasons": [
+          "required_core_joint_missing",
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.932745,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.97689,
+          "head_face": 0.90151,
+          "black_cloth": 0.963901,
+          "body_proportions": 0.831494,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            152,
+            10,
+            358,
+            506
+          ],
+          "regions": {
+            "whole": {
+              "count": 35508,
+              "mean_rgb": [
+                24.502,
+                40.891,
+                77.082
+              ],
+              "mean_hsv": [
+                0.614717,
+                0.682135,
+                0.302283
+              ],
+              "luma_histogram": [
+                0.527966,
+                0.241241,
+                0.135068,
+                0.052523,
+                0.028585,
+                0.009491,
+                0.005126,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 6474,
+              "mean_rgb": [
+                62.028,
+                70.493,
+                102.51
+              ],
+              "mean_hsv": [
+                0.631816,
+                0.394909,
+                0.402001
+              ],
+              "luma_histogram": [
+                0.33148,
+                0.171455,
+                0.189064,
+                0.113686,
+                0.118474,
+                0.047884,
+                0.027958,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 14771,
+              "mean_rgb": [
+                25.759,
+                37.965,
+                65.179
+              ],
+              "mean_hsv": [
+                0.615061,
+                0.604795,
+                0.255606
+              ],
+              "luma_histogram": [
+                0.546273,
+                0.237695,
+                0.134114,
+                0.055514,
+                0.01855,
+                0.00765,
+                0.000203,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 17061,
+              "mean_rgb": [
+                14.954,
+                29.155,
+                60.747
+              ],
+              "mean_hsv": [
+                0.614983,
+                0.753825,
+                0.238223
+              ],
+              "luma_histogram": [
+                0.622707,
+                0.265049,
+                0.080593,
+                0.024911,
+                0.006037,
+                0.000703,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.402344,
+            "bbox_height": 0.96875,
+            "bbox_ratio": 0.415323,
+            "head_area_fraction": 0.063361,
+            "armor_area_fraction": 0.144564,
+            "cloth_area_fraction": 0.166977
+          },
+          "weapon_outer_fraction": 0.294215,
+          "weapon_metallic_outer_fraction": 0.041064,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 81122.103,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-3c2b076b04dd4e04b42df70f551ce73d/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "C",
+      "seed": 54702,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "workflow_sha256": "e637682c098cdd872a98682f8c5e4f8da720c5dc6349b1f99a3ad4d461bd509c",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": null,
+      "lora_strength": null,
+      "prompt_id": "38d4a65e-880d-4e08-a3d0-e6c8fe942dd7",
+      "history_record_key": "38d4a65e-880d-4e08-a3d0-e6c8fe942dd7",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-001ab8d0959d405fb5e8dcf817678b11/v054-c-seed-54702.png",
+      "raw_output_sha256": "70fef04b9d76bcdd4d618394f81179e24192fec97afebbc6569bd0b777ce4eec",
+      "output_path": "docs/evidence/v054-lanes/c-seed-54702.png",
+      "output_sha256": "58bb0ba9f0cb635b07ccbb7ce87082e23d3a06718d417d68981d4716117790d4",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\c-seed-54702.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 214952,
+        "sha256": "58bb0ba9f0cb635b07ccbb7ce87082e23d3a06718d417d68981d4716117790d4",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.003162384033203125,
+        "transparent_fraction": 0.8021736145019531,
+        "alpha_zero_fraction": 0.8021736145019531,
+        "alpha_opaque_fraction": 0.003162384033203125,
+        "alpha_partial_fraction": 0.19466400146484375,
+        "foreground_coverage": 0.19782638549804688,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8956979502111495,
+        "soft_edge_foreground_fraction": 0.10430204978885053,
+        "alpha_bbox": [
+          145,
+          10,
+          471,
+          501
+        ],
+        "alpha_centroid": [
+          0.5013609242730288,
+          0.4963916204877649
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-930f9d1024b545bcaa228f6dbe5730aa",
+        "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+        "submitted_at": "2026-08-30T13:47:19+00:00",
+        "first_poll_at": "2026-08-30T13:47:19+00:00",
+        "completed_at": "2026-08-30T13:47:24+00:00",
+        "runtime_ms": 5460.866,
+        "history_record_key": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "70fef04b9d76bcdd4d618394f81179e24192fec97afebbc6569bd0b777ce4eec"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-001ab8d0959d405fb5e8dcf817678b11\\birefnet\\job-0e35a7c141d343b7b316466920b05930\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+                  "timestamp": 1788097639045
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+                  "timestamp": 1788097639060
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+                  "timestamp": 1788097643600
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00083_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "9f9327c7bb9b1629fa5b6f91e4958e1aa4b8bedb1700d46a24fa7d03f5609ecf"
+          },
+          {
+            "filename": "ugas-master-transparent_00083_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "964a83a6c26f520e3901f776a98c6f9cd3a48baa06153963f9bf1f8b5fec1626"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-001ab8d0959d405fb5e8dcf817678b11\\birefnet\\job-0e35a7c141d343b7b316466920b05930\\birefnet-output.png",
+            "sha256": "9f9327c7bb9b1629fa5b6f91e4958e1aa4b8bedb1700d46a24fa7d03f5609ecf",
+            "filename": "ugas-foreground-mask_00083_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-001ab8d0959d405fb5e8dcf817678b11\\birefnet\\job-0e35a7c141d343b7b316466920b05930\\birefnet-output-1.png",
+            "sha256": "964a83a6c26f520e3901f776a98c6f9cd3a48baa06153963f9bf1f8b5fec1626",
+            "filename": "ugas-master-transparent_00083_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-001ab8d0959d405fb5e8dcf817678b11\\pose-qa.png",
+        "sha256": "43236280cd17ce27dc3e18b74c8acad48dc7e95e5993578d810013790133cab8",
+        "source_sha256": "58bb0ba9f0cb635b07ccbb7ce87082e23d3a06718d417d68981d4716117790d4",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.283203,
+          0.019531,
+          0.919922,
+          0.978516
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 13,
+        "core_coverage": 1.0,
+        "mean_confidence": 0.993467,
+        "min_confidence": 0.97447
+      },
+      "detected_orientation": "right_profile",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.0,
+        "nme": 0.876655,
+        "limb_angle_mae_degrees": 28.237727,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.168086,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "limb_angle_mae_above_18_degrees",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.860733,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.976432,
+          "head_face": 0.816746,
+          "black_cloth": 0.963229,
+          "body_proportions": 0.565819,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            145,
+            10,
+            471,
+            501
+          ],
+          "regions": {
+            "whole": {
+              "count": 49674,
+              "mean_rgb": [
+                28.939,
+                46.245,
+                83.701
+              ],
+              "mean_hsv": [
+                0.613997,
+                0.654256,
+                0.328237
+              ],
+              "luma_histogram": [
+                0.53066,
+                0.202762,
+                0.130209,
+                0.075955,
+                0.032935,
+                0.016226,
+                0.007529,
+                0.003724
+              ]
+            },
+            "head_face": {
+              "count": 5205,
+              "mean_rgb": [
+                79.839,
+                67.409,
+                78.898
+              ],
+              "mean_hsv": [
+                0.845956,
+                0.155692,
+                0.313095
+              ],
+              "luma_histogram": [
+                0.353698,
+                0.178098,
+                0.145245,
+                0.113353,
+                0.127954,
+                0.080115,
+                0.001537,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22558,
+              "mean_rgb": [
+                19.412,
+                39.132,
+                77.452
+              ],
+              "mean_hsv": [
+                0.610038,
+                0.749369,
+                0.303732
+              ],
+              "luma_histogram": [
+                0.592561,
+                0.197447,
+                0.128912,
+                0.05825,
+                0.011393,
+                0.004389,
+                0.002349,
+                0.004699
+              ]
+            },
+            "black_cloth": {
+              "count": 19149,
+              "mean_rgb": [
+                29.625,
+                40.594,
+                62.207
+              ],
+              "mean_hsv": [
+                0.610558,
+                0.523775,
+                0.243949
+              ],
+              "luma_histogram": [
+                0.655804,
+                0.155935,
+                0.069664,
+                0.039689,
+                0.036399,
+                0.01598,
+                0.018069,
+                0.00846
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.636719,
+            "bbox_height": 0.958984,
+            "bbox_ratio": 0.663951,
+            "head_area_fraction": 0.032518,
+            "armor_area_fraction": 0.140929,
+            "cloth_area_fraction": 0.119632
+          },
+          "weapon_outer_fraction": 0.451645,
+          "weapon_metallic_outer_fraction": 0.098819,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 81265.909,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-001ab8d0959d405fb5e8dcf817678b11/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "C",
+      "seed": 54703,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "workflow_sha256": "e637682c098cdd872a98682f8c5e4f8da720c5dc6349b1f99a3ad4d461bd509c",
+      "model_id": "flux2-klein-4b-base-nvfp4",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": null,
+      "lora_strength": null,
+      "prompt_id": "b83a9229-1c1d-4b0b-b3c2-5cab7a1fcd8e",
+      "history_record_key": "b83a9229-1c1d-4b0b-b3c2-5cab7a1fcd8e",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-96e8e2ef22554420b8f57fd57ea2e30f/v054-c-seed-54703.png",
+      "raw_output_sha256": "ed91f73dd9147f35c49f4880ab7cffccf658f7a863510416e883c0799d6e28ef",
+      "output_path": "docs/evidence/v054-lanes/c-seed-54703.png",
+      "output_sha256": "81e36960b576e1e8205a998564795e4d90b4bfac081a9f31bbdd50702ade3acd",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\c-seed-54703.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 189299,
+        "sha256": "81e36960b576e1e8205a998564795e4d90b4bfac081a9f31bbdd50702ade3acd",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.00312042236328125,
+        "transparent_fraction": 0.8362655639648438,
+        "alpha_zero_fraction": 0.8362655639648438,
+        "alpha_opaque_fraction": 0.00312042236328125,
+        "alpha_partial_fraction": 0.160614013671875,
+        "foreground_coverage": 0.16373443603515625,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8838357951633196,
+        "soft_edge_foreground_fraction": 0.1161642048366805,
+        "alpha_bbox": [
+          152,
+          5,
+          411,
+          508
+        ],
+        "alpha_centroid": [
+          0.4934492819096268,
+          0.5633421890289362
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-856ecc75b7eb446db49956abb474452f",
+        "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+        "submitted_at": "2026-08-30T13:48:35+00:00",
+        "first_poll_at": "2026-08-30T13:48:35+00:00",
+        "completed_at": "2026-08-30T13:48:41+00:00",
+        "runtime_ms": 5528.376,
+        "history_record_key": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "ed91f73dd9147f35c49f4880ab7cffccf658f7a863510416e883c0799d6e28ef"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-96e8e2ef22554420b8f57fd57ea2e30f\\birefnet\\job-cec8a0321cc641c0b4269f6e5f5a526a\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+                  "timestamp": 1788097715932
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+                  "timestamp": 1788097715945
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+                  "timestamp": 1788097721091
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00084_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "e234825fe406975d3cb055a9ad0566e1719883ddcba027acfa744e671e292bcc"
+          },
+          {
+            "filename": "ugas-master-transparent_00084_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "6abe2cb6b2afbb001104d7b36c8285b292152085ed4df1dbbc2eec5e31290e6d"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-96e8e2ef22554420b8f57fd57ea2e30f\\birefnet\\job-cec8a0321cc641c0b4269f6e5f5a526a\\birefnet-output.png",
+            "sha256": "e234825fe406975d3cb055a9ad0566e1719883ddcba027acfa744e671e292bcc",
+            "filename": "ugas-foreground-mask_00084_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-96e8e2ef22554420b8f57fd57ea2e30f\\birefnet\\job-cec8a0321cc641c0b4269f6e5f5a526a\\birefnet-output-1.png",
+            "sha256": "6abe2cb6b2afbb001104d7b36c8285b292152085ed4df1dbbc2eec5e31290e6d",
+            "filename": "ugas-master-transparent_00084_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-96e8e2ef22554420b8f57fd57ea2e30f\\pose-qa.png",
+        "sha256": "f22af81303e6447ca910d665356b97b02255ce8040112ddef9e0a69a0f68ac26",
+        "source_sha256": "81e36960b576e1e8205a998564795e4d90b4bfac081a9f31bbdd50702ade3acd",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.296875,
+          0.009766,
+          0.802734,
+          0.992188
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 11,
+        "core_coverage": 0.833333,
+        "mean_confidence": 0.979013,
+        "min_confidence": 0.85904
+      },
+      "detected_orientation": "right_profile",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "UNMEASURABLE",
+        "measurable_body_joints": 11,
+        "required_core_present": false,
+        "pck_at_010": 0.0,
+        "nme": 0.708828,
+        "limb_angle_mae_degrees": 9.543997,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.0,
+        "qualifies": false,
+        "failure_reasons": [
+          "required_core_joint_missing",
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.900592,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.979909,
+          "head_face": 0.870072,
+          "black_cloth": 0.979674,
+          "body_proportions": 0.68925,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            152,
+            5,
+            411,
+            508
+          ],
+          "regions": {
+            "whole": {
+              "count": 40914,
+              "mean_rgb": [
+                28.915,
+                41.385,
+                74.569
+              ],
+              "mean_hsv": [
+                0.621144,
+                0.612239,
+                0.292428
+              ],
+              "luma_histogram": [
+                0.52823,
+                0.218434,
+                0.158601,
+                0.054822,
+                0.031872,
+                0.007357,
+                0.00066,
+                2.4e-05
+              ]
+            },
+            "head_face": {
+              "count": 4613,
+              "mean_rgb": [
+                69.339,
+                65.555,
+                92.442
+              ],
+              "mean_hsv": [
+                0.690123,
+                0.290859,
+                0.362519
+              ],
+              "luma_histogram": [
+                0.323,
+                0.217212,
+                0.147843,
+                0.128983,
+                0.1292,
+                0.050293,
+                0.003468,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 15707,
+              "mean_rgb": [
+                26.839,
+                36.143,
+                65.888
+              ],
+              "mean_hsv": [
+                0.626957,
+                0.592651,
+                0.258385
+              ],
+              "luma_histogram": [
+                0.578468,
+                0.222703,
+                0.124403,
+                0.042847,
+                0.022792,
+                0.007958,
+                0.000828,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 19332,
+              "mean_rgb": [
+                27.323,
+                37.683,
+                61.473
+              ],
+              "mean_hsv": [
+                0.616106,
+                0.555537,
+                0.241071
+              ],
+              "luma_histogram": [
+                0.576609,
+                0.199824,
+                0.142717,
+                0.053021,
+                0.024778,
+                0.002845,
+                0.000207,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.505859,
+            "bbox_height": 0.982422,
+            "bbox_ratio": 0.514911,
+            "head_area_fraction": 0.035409,
+            "armor_area_fraction": 0.120566,
+            "cloth_area_fraction": 0.148392
+          },
+          "weapon_outer_fraction": 0.416948,
+          "weapon_metallic_outer_fraction": 0.066006,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 76687.925,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-96e8e2ef22554420b8f57fd57ea2e30f/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "R",
+      "seed": 54701,
+      "workflow_id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "workflow_sha256": "cf8d49e9d2e4b524138a62033e897bd36f51fc4f2d26a898bf51a8efd8cd424d",
+      "model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+      "lora_strength": 0.8,
+      "prompt_id": "d6509c9e-448b-42e2-87e1-6fb0c1cad889",
+      "history_record_key": "d6509c9e-448b-42e2-87e1-6fb0c1cad889",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-e81b2830ce6c4f9aab8a0528f155e9ee/v054-r-seed-54701.png",
+      "raw_output_sha256": "912c83692e5f30fce662dac3265179846a4c1a54efdb07049ee4a205a767a58f",
+      "output_path": "docs/evidence/v054-lanes/r-seed-54701.png",
+      "output_sha256": "35bc999c9a306eaea208999a460fa85e462962aefbe7ba5782bf1b6d4d764bdf",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\r-seed-54701.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 189384,
+        "sha256": "35bc999c9a306eaea208999a460fa85e462962aefbe7ba5782bf1b6d4d764bdf",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.00142669677734375,
+        "transparent_fraction": 0.8317985534667969,
+        "alpha_zero_fraction": 0.8317985534667969,
+        "alpha_opaque_fraction": 0.00142669677734375,
+        "alpha_partial_fraction": 0.16677474975585938,
+        "foreground_coverage": 0.16820144653320312,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8856281042342322,
+        "soft_edge_foreground_fraction": 0.11437189576576781,
+        "alpha_bbox": [
+          148,
+          15,
+          339,
+          502
+        ],
+        "alpha_centroid": [
+          0.4914753156680199,
+          0.4890309526880684
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-2d3f0dca951f45c8baeec68cfc180bfd",
+        "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+        "submitted_at": "2026-08-30T13:50:03+00:00",
+        "first_poll_at": "2026-08-30T13:50:03+00:00",
+        "completed_at": "2026-08-30T13:50:08+00:00",
+        "runtime_ms": 5339.583,
+        "history_record_key": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "912c83692e5f30fce662dac3265179846a4c1a54efdb07049ee4a205a767a58f"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-e81b2830ce6c4f9aab8a0528f155e9ee\\birefnet\\job-77142adbc5214366a6aadcfc7a743bec\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+                  "timestamp": 1788097803101
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+                  "timestamp": 1788097803115
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+                  "timestamp": 1788097807018
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00085_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "ea455b49a5d97a87ff0edc6e07e5b3b83803d7c2a9f6e0e863ce71d012450a0d"
+          },
+          {
+            "filename": "ugas-master-transparent_00085_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "727ec4a79fc45f5b404ba848eaf54820707221d326a63fa444b12b3f4f3392dd"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-e81b2830ce6c4f9aab8a0528f155e9ee\\birefnet\\job-77142adbc5214366a6aadcfc7a743bec\\birefnet-output.png",
+            "sha256": "ea455b49a5d97a87ff0edc6e07e5b3b83803d7c2a9f6e0e863ce71d012450a0d",
+            "filename": "ugas-foreground-mask_00085_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-e81b2830ce6c4f9aab8a0528f155e9ee\\birefnet\\job-77142adbc5214366a6aadcfc7a743bec\\birefnet-output-1.png",
+            "sha256": "727ec4a79fc45f5b404ba848eaf54820707221d326a63fa444b12b3f4f3392dd",
+            "filename": "ugas-master-transparent_00085_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-e81b2830ce6c4f9aab8a0528f155e9ee\\pose-qa.png",
+        "sha256": "802f39290f2f4eb4d4ffcce87ba929d5ccb73d13c6ff840b034e85968283cf4d",
+        "source_sha256": "35bc999c9a306eaea208999a460fa85e462962aefbe7ba5782bf1b6d4d764bdf",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.289062,
+          0.029297,
+          0.662109,
+          0.980469
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 13,
+        "core_coverage": 1.0,
+        "mean_confidence": 0.993095,
+        "min_confidence": 0.972257
+      },
+      "detected_orientation": "front",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.0,
+        "nme": 0.849648,
+        "limb_angle_mae_degrees": 35.487957,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.158726,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "limb_angle_mae_above_18_degrees",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.92203,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.963143,
+          "head_face": 0.839615,
+          "black_cloth": 0.947917,
+          "body_proportions": 0.877234,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            148,
+            15,
+            339,
+            502
+          ],
+          "regions": {
+            "whole": {
+              "count": 42143,
+              "mean_rgb": [
+                24.87,
+                45.976,
+                81.983
+              ],
+              "mean_hsv": [
+                0.605075,
+                0.696648,
+                0.321503
+              ],
+              "luma_histogram": [
+                0.503927,
+                0.231118,
+                0.144579,
+                0.079966,
+                0.026291,
+                0.009634,
+                0.004485,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 6877,
+              "mean_rgb": [
+                54.336,
+                56.825,
+                74.754
+              ],
+              "mean_hsv": [
+                0.646348,
+                0.273135,
+                0.293152
+              ],
+              "luma_histogram": [
+                0.452814,
+                0.189181,
+                0.122583,
+                0.125782,
+                0.053948,
+                0.040715,
+                0.014977,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 19264,
+              "mean_rgb": [
+                20.708,
+                43.2,
+                78.271
+              ],
+              "mean_hsv": [
+                0.601544,
+                0.735436,
+                0.306946
+              ],
+              "luma_histogram": [
+                0.5489,
+                0.179402,
+                0.168553,
+                0.079838,
+                0.019051,
+                0.002907,
+                0.00135,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 14993,
+              "mean_rgb": [
+                13.536,
+                28.175,
+                53.622
+              ],
+              "mean_hsv": [
+                0.605799,
+                0.747574,
+                0.210283
+              ],
+              "luma_histogram": [
+                0.700994,
+                0.200627,
+                0.061229,
+                0.030814,
+                0.006336,
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.373047,
+            "bbox_height": 0.951172,
+            "bbox_ratio": 0.392197,
+            "head_area_fraction": 0.073933,
+            "armor_area_fraction": 0.207102,
+            "cloth_area_fraction": 0.161186
+          },
+          "weapon_outer_fraction": 0.42911,
+          "weapon_metallic_outer_fraction": 0.058173,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 86466.544,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-e81b2830ce6c4f9aab8a0528f155e9ee/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "R",
+      "seed": 54702,
+      "workflow_id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "workflow_sha256": "cf8d49e9d2e4b524138a62033e897bd36f51fc4f2d26a898bf51a8efd8cd424d",
+      "model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+      "lora_strength": 0.8,
+      "prompt_id": "7e217003-c203-4de6-8d23-d21471b685cc",
+      "history_record_key": "7e217003-c203-4de6-8d23-d21471b685cc",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-4add205b3f9344379ed7dffcb42317a7/v054-r-seed-54702.png",
+      "raw_output_sha256": "fc21a5dde266ed24735491fcd81e922deefd9bdf5c7e6b1bf53d8643e33da61f",
+      "output_path": "docs/evidence/v054-lanes/r-seed-54702.png",
+      "output_sha256": "5c0b04359977576c8f8a602df1ef0d256f6daac3eaad786e4a5358c0422de69e",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\r-seed-54702.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 198818,
+        "sha256": "5c0b04359977576c8f8a602df1ef0d256f6daac3eaad786e4a5358c0422de69e",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.001453399658203125,
+        "transparent_fraction": 0.8259506225585938,
+        "alpha_zero_fraction": 0.8259506225585938,
+        "alpha_opaque_fraction": 0.001453399658203125,
+        "alpha_partial_fraction": 0.17259597778320312,
+        "foreground_coverage": 0.17404937744140625,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8870819269714636,
+        "soft_edge_foreground_fraction": 0.11291807302853636,
+        "alpha_bbox": [
+          149,
+          18,
+          367,
+          504
+        ],
+        "alpha_centroid": [
+          0.4944660459496778,
+          0.5061944275878885
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-220f3476a1234a0e922b6e6680297579",
+        "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+        "submitted_at": "2026-08-30T13:51:30+00:00",
+        "first_poll_at": "2026-08-30T13:51:30+00:00",
+        "completed_at": "2026-08-30T13:51:35+00:00",
+        "runtime_ms": 5481.91,
+        "history_record_key": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "fc21a5dde266ed24735491fcd81e922deefd9bdf5c7e6b1bf53d8643e33da61f"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-4add205b3f9344379ed7dffcb42317a7\\birefnet\\job-39e2778cce704d78a236f6b6f4ddc8b7\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+                  "timestamp": 1788097890055
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+                  "timestamp": 1788097890069
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+                  "timestamp": 1788097895018
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00086_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "d18fa44dd38a018beb9952ebfc2f4b232002970b3ae8bfce6b2b4ef13845fde4"
+          },
+          {
+            "filename": "ugas-master-transparent_00086_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "7849048d0b2ccc154a4241dddcd86c42b3ec60df899e514fd73fe04194b1ce9a"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-4add205b3f9344379ed7dffcb42317a7\\birefnet\\job-39e2778cce704d78a236f6b6f4ddc8b7\\birefnet-output.png",
+            "sha256": "d18fa44dd38a018beb9952ebfc2f4b232002970b3ae8bfce6b2b4ef13845fde4",
+            "filename": "ugas-foreground-mask_00086_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-4add205b3f9344379ed7dffcb42317a7\\birefnet\\job-39e2778cce704d78a236f6b6f4ddc8b7\\birefnet-output-1.png",
+            "sha256": "7849048d0b2ccc154a4241dddcd86c42b3ec60df899e514fd73fe04194b1ce9a",
+            "filename": "ugas-master-transparent_00086_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-4add205b3f9344379ed7dffcb42317a7\\pose-qa.png",
+        "sha256": "b369c8df200b5eda7177527b3461f76d6f8767ebb98de7541d168540b548eca5",
+        "source_sha256": "5c0b04359977576c8f8a602df1ef0d256f6daac3eaad786e4a5358c0422de69e",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.291016,
+          0.035156,
+          0.716797,
+          0.984375
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 13,
+        "core_coverage": 1.0,
+        "mean_confidence": 0.993697,
+        "min_confidence": 0.974797
+      },
+      "detected_orientation": "front",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.0,
+        "nme": 0.833501,
+        "limb_angle_mae_degrees": 30.211024,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.174489,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "limb_angle_mae_above_18_degrees",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.946321,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.952864,
+          "head_face": 0.950241,
+          "black_cloth": 0.98431,
+          "body_proportions": 0.864098,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            149,
+            18,
+            367,
+            504
+          ],
+          "regions": {
+            "whole": {
+              "count": 43594,
+              "mean_rgb": [
+                30.424,
+                47.573,
+                83.832
+              ],
+              "mean_hsv": [
+                0.613151,
+                0.637085,
+                0.328752
+              ],
+              "luma_histogram": [
+                0.49071,
+                0.22409,
+                0.148828,
+                0.084645,
+                0.037689,
+                0.011676,
+                0.002363,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 5588,
+              "mean_rgb": [
+                66.848,
+                76.556,
+                120.092
+              ],
+              "mean_hsv": [
+                0.636279,
+                0.443355,
+                0.470948
+              ],
+              "luma_histogram": [
+                0.238726,
+                0.161596,
+                0.260558,
+                0.188976,
+                0.081782,
+                0.052613,
+                0.015748,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22317,
+              "mean_rgb": [
+                22.828,
+                44.176,
+                85.368
+              ],
+              "mean_hsv": [
+                0.609774,
+                0.732595,
+                0.334776
+              ],
+              "luma_histogram": [
+                0.52628,
+                0.190707,
+                0.186495,
+                0.074114,
+                0.015101,
+                0.006721,
+                0.000583,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 18044,
+              "mean_rgb": [
+                25.71,
+                39.388,
+                65.856
+              ],
+              "mean_hsv": [
+                0.609884,
+                0.6096,
+                0.25826
+              ],
+              "luma_histogram": [
+                0.609178,
+                0.210873,
+                0.067834,
+                0.058136,
+                0.04417,
+                0.009477,
+                0.000333,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.425781,
+            "bbox_height": 0.949219,
+            "bbox_ratio": 0.44856,
+            "head_area_fraction": 0.052743,
+            "armor_area_fraction": 0.210641,
+            "cloth_area_fraction": 0.17031
+          },
+          "weapon_outer_fraction": 0.362091,
+          "weapon_metallic_outer_fraction": 0.157365,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 86668.82,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-4add205b3f9344379ed7dffcb42317a7/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    },
+    {
+      "lane": "R",
+      "seed": 54703,
+      "workflow_id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "workflow_sha256": "cf8d49e9d2e4b524138a62033e897bd36f51fc4f2d26a898bf51a8efd8cd424d",
+      "model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+      "base_model_id": "flux2-klein-4b-base-nvfp4",
+      "lora_model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+      "lora_strength": 0.8,
+      "prompt_id": "6be51b77-0e31-4cbb-818e-575e91ecda1c",
+      "history_record_key": "6be51b77-0e31-4cbb-818e-575e91ecda1c",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+      "raw_output_path": "tmp/pose-qa-v054/lanes/job-b1b5ccc246a840608cdc742eaca02c0c/v054-r-seed-54703.png",
+      "raw_output_sha256": "bd9c6974a09ce79e6b896a47492902482e578d5fe5e70d892879013883a706d9",
+      "output_path": "docs/evidence/v054-lanes/r-seed-54703.png",
+      "output_sha256": "12043cf5c5aa6dbfeb1e11d7aed0dd7b2b033dc2a9af86f0db4fb822a506333a",
+      "output_png": {
+        "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\v054-lanes\\r-seed-54703.png",
+        "format": "PNG",
+        "width": 512,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 221434,
+        "sha256": "12043cf5c5aa6dbfeb1e11d7aed0dd7b2b033dc2a9af86f0db4fb822a506333a",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": true,
+        "alpha_min": 0,
+        "alpha_max": 255,
+        "opaque_fraction": 0.001430511474609375,
+        "transparent_fraction": 0.8193283081054688,
+        "alpha_zero_fraction": 0.8193283081054688,
+        "alpha_opaque_fraction": 0.001430511474609375,
+        "alpha_partial_fraction": 0.17924118041992188,
+        "foreground_coverage": 0.18067169189453125,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 0.8909041003336008,
+        "soft_edge_foreground_fraction": 0.10909589966639922,
+        "alpha_bbox": [
+          147,
+          10,
+          376,
+          506
+        ],
+        "alpha_centroid": [
+          0.49214832368248806,
+          0.5003816598090242
+        ],
+        "border_contact": false,
+        "non_empty_content": true
+      },
+      "birefnet_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-c33e150b84164096bfa248bf3d82f86b",
+        "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+        "submitted_at": "2026-08-30T13:52:51+00:00",
+        "first_poll_at": "2026-08-30T13:52:51+00:00",
+        "completed_at": "2026-08-30T13:52:57+00:00",
+        "runtime_ms": 5368.06,
+        "history_record_key": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "bd9c6974a09ce79e6b896a47492902482e578d5fe5e70d892879013883a706d9"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-b1b5ccc246a840608cdc742eaca02c0c\\birefnet\\job-05465063b38842e4b39315f50b8824d1\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+                  "timestamp": 1788097971768
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+                  "timestamp": 1788097971781
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+                  "timestamp": 1788097975962
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00087_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "6c659bf358df7e306107aa67d4f90d1406e34a3c4f8414a642bbec736b03a356"
+          },
+          {
+            "filename": "ugas-master-transparent_00087_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "4cebc50c4491a7095f6cd6c8e6d88e748d71f519581a30006a3c735d9ad3ca0b"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-b1b5ccc246a840608cdc742eaca02c0c\\birefnet\\job-05465063b38842e4b39315f50b8824d1\\birefnet-output.png",
+            "sha256": "6c659bf358df7e306107aa67d4f90d1406e34a3c4f8414a642bbec736b03a356",
+            "filename": "ugas-foreground-mask_00087_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-b1b5ccc246a840608cdc742eaca02c0c\\birefnet\\job-05465063b38842e4b39315f50b8824d1\\birefnet-output-1.png",
+            "sha256": "4cebc50c4491a7095f6cd6c8e6d88e748d71f519581a30006a3c735d9ad3ca0b",
+            "filename": "ugas-master-transparent_00087_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "pose_qa_preprocess": {
+        "policy": "transparent_neutral_gray",
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-b1b5ccc246a840608cdc742eaca02c0c\\pose-qa.png",
+        "sha256": "6e96936e59270a8503552bca97a51181dd53fc0fddcf92706bc777be716a3bfa",
+        "source_sha256": "12043cf5c5aa6dbfeb1e11d7aed0dd7b2b033dc2a9af86f0db4fb822a506333a",
+        "source_scale": 1,
+        "alpha_bbox_normalized": [
+          0.287109,
+          0.019531,
+          0.734375,
+          0.988281
+        ],
+        "background": [
+          128,
+          128,
+          128
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "uniform_scale_only": true
+      },
+      "detection": {
+        "detected": true,
+        "measurable_body_joints": 13,
+        "core_coverage": 1.0,
+        "mean_confidence": 0.993123,
+        "min_confidence": 0.982296
+      },
+      "detected_orientation": "left_profile",
+      "pose": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.0,
+        "nme": 0.819314,
+        "limb_angle_mae_degrees": 26.949601,
+        "lower_body_pck": 0.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.285284,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "limb_angle_mae_above_18_degrees",
+          "lower_body_pck_below_075"
+        ]
+      },
+      "identity": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.936624,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.943944,
+          "head_face": 0.936333,
+          "black_cloth": 0.987354,
+          "body_proportions": 0.841115,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            147,
+            10,
+            376,
+            506
+          ],
+          "regions": {
+            "whole": {
+              "count": 45298,
+              "mean_rgb": [
+                27.611,
+                46.773,
+                82.56
+              ],
+              "mean_hsv": [
+                0.608547,
+                0.665566,
+                0.323766
+              ],
+              "luma_histogram": [
+                0.479293,
+                0.22884,
+                0.177204,
+                0.081372,
+                0.025321,
+                0.006821,
+                0.000971,
+                0.000177
+              ]
+            },
+            "head_face": {
+              "count": 6393,
+              "mean_rgb": [
+                62.047,
+                72.601,
+                106.201
+              ],
+              "mean_hsv": [
+                0.626827,
+                0.415762,
+                0.416475
+              ],
+              "luma_histogram": [
+                0.251838,
+                0.197091,
+                0.236822,
+                0.186767,
+                0.07868,
+                0.044736,
+                0.004067,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22276,
+              "mean_rgb": [
+                21.117,
+                46.516,
+                88.775
+              ],
+              "mean_hsv": [
+                0.6041,
+                0.762128,
+                0.348137
+              ],
+              "luma_histogram": [
+                0.50202,
+                0.205737,
+                0.184369,
+                0.080625,
+                0.0246,
+                0.001437,
+                0.000853,
+                0.000359
+              ]
+            },
+            "black_cloth": {
+              "count": 18715,
+              "mean_rgb": [
+                21.389,
+                36.24,
+                63.558
+              ],
+              "mean_hsv": [
+                0.607971,
+                0.663472,
+                0.249249
+              ],
+              "luma_histogram": [
+                0.60171,
+                0.215709,
+                0.102592,
+                0.068074,
+                0.011648,
+                0.00016,
+                0.000107,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.447266,
+            "bbox_height": 0.96875,
+            "bbox_ratio": 0.461694,
+            "head_area_fraction": 0.056284,
+            "armor_area_fraction": 0.196119,
+            "cloth_area_fraction": 0.164768
+          },
+          "weapon_outer_fraction": 0.308645,
+          "weapon_metallic_outer_fraction": 0.103998,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "absolute_pose_pass": false,
+      "identity_pass": true,
+      "weapon_present": true,
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "execution_runtime_ms": 81250.009,
+      "overlay_path": "tmp/pose-qa-v054/lanes/job-b1b5ccc246a840608cdc742eaca02c0c/pose-overlay.png",
+      "status": "FAILED_GATES",
+      "estimator_status": "POSE_QA_ESTIMATOR_QUALIFIED"
+    }
+  ],
+  "record_count": 9,
+  "fresh_outputs": 9,
+  "decision": {
+    "status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "stop_reason": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "baseline_lane": "A",
+    "baseline_median_pose_error": 0.75823,
+    "lane_summary": {
+      "A": {
+        "record_count": 3,
+        "absolute_pose_all_pass": false,
+        "identity_weapon_all_pass": true,
+        "fresh_execution_all_pass": true,
+        "median_pose_score": 0.24177,
+        "median_pose_error": 0.75823,
+        "relative_joint_error_reduction_vs_A": 0.0,
+        "normalized_score_gain_vs_A": 0.0,
+        "causal_pass": false
+      },
+      "C": {
+        "record_count": 3,
+        "absolute_pose_all_pass": false,
+        "identity_weapon_all_pass": true,
+        "fresh_execution_all_pass": true,
+        "median_pose_score": 0.0,
+        "median_pose_error": 1.0,
+        "relative_joint_error_reduction_vs_A": -0.318861,
+        "normalized_score_gain_vs_A": -0.318861,
+        "causal_pass": false
+      },
+      "R": {
+        "record_count": 3,
+        "absolute_pose_all_pass": false,
+        "identity_weapon_all_pass": true,
+        "fresh_execution_all_pass": true,
+        "median_pose_score": 0.174489,
+        "median_pose_error": 0.825511,
+        "relative_joint_error_reduction_vs_A": -0.088734,
+        "normalized_score_gain_vs_A": -0.088734,
+        "causal_pass": false
+      }
+    },
+    "qualified_lane": null
+  },
+  "walk_authorized": false,
+  "directional_anchors_authorized": false,
+  "new_provider_used": false,
+  "new_strength_used": false,
+  "production_approval": "not-granted",
+  "human_visual_review": "required"
+}

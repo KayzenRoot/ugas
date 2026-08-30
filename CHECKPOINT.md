@@ -1,30 +1,31 @@
-# UGAS checkpoint - v0.5.3
+# UGAS checkpoint - v0.5.4
 
-**STATUS:** POSE_QA_MODEL_LICENSE_GAP. A calibração de métrica passou, a biblioteca MediaPipe foi importada localmente, mas o bundle Pose Landmarker .task não possui termos autoritativos determinados para uso comercial e redistribuição. O processo parou fail-closed antes de qualquer novo job de geração.
-**VERSION:** 0.5.3
-**PHASE:** PROMPT-04E / POSE_METRIC_CALIBRATION
+**STATUS:** `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`. O MediaPipe Pose Landmarker foi qualificado como estimador QA independente; as lanes A/C/R executaram 9 saídas frescas com as seeds autorizadas. A identidade/arma passou, mas nenhuma saída C/R passou os gates absolutos de pose por juntas. O processo para fail-closed antes de walk, âncoras v3 ou troca de provider.
+**VERSION:** `0.5.4`
+**PHASE:** `PROMPT-04F / POSE_LANE_RECHECK`
 
 ## Current state
 
-O estado machine-authoritative é [docs/evidence/current-state.json](docs/evidence/current-state.json). O resultado reportado no v0.5.2 como POSE CONTROL PROVIDER GAP foi reclassificado no v0.5.3 como POSE_METRIC_GATE_DESIGN_GAP: a baseline histórica A=0.894403 somada ao delta fixo 0.15 exigia B=1.044403, acima do máximo do score [0,1]. O v0.5.2 permanece histórico e não foi reescrito.
+O estado machine-authoritative é [docs/evidence/current-state.json](docs/evidence/current-state.json). O R4 continua imutável: revision `revision-3a425d184b1a49be9f6d6c8d52d04b96`, SHA-256 `7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798`.
 
-## State consistency correction
+O `REVIEW-v0.5.3.md` é histórico. Seu bloqueio de licença foi resolvido somente para uso local de QA: `POSE_QA_LOCAL_USE_LICENSE_RESOLVED`. O bundle não é redistribuído. A rechecagem atual confirmou o bloqueio do provider, sem reclassificar o histórico.
 
-- O gate ativo é POSE_QA_MODEL_LICENSE_GAP e o nested state_consistency.status é exatamente igual ao stop reason.
-- generation_provider_change_authorized e walk_authorized permanecem falsos.
-- O checkpoint não afirma que RefControl está pendente: o artifact histórico já contém hash, licença e loader nativo qualificados.
-- Âncoras direcionais v3, walk v3, spritesheet e GIF não foram promovidos.
+## Estimator and license gate
 
-## Pose metric calibration
+Uma política global única foi selecionada: `transparent_neutral_gray`. R4, referência editada e os 8 frames históricos são mensuráveis; mediana de juntas mensuráveis: 13; cobertura central: 100%; inversão esquerda/direita: 0. Overlays e sanity checks foram materializados.
 
-A métrica primária detected_joint_pose_error foi calibrada com nove fixtures determinísticos, sem IA: alvo, neutral frontal, lado espelhado, T-pose, braços para baixo, pernas erradas, braço errado e dois controles com espada vertical longa. Ela usa raiz/pelve, escala de torso/corpo, PCK@0.10, NME, erro angular de membros, PCK de lower body e orientação esquerda/direita. A métrica antiga de silhueta/keypoint ficou somente diagnóstica.
+As fontes oficiais registradas são a documentação do [Pose Landmarker](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker) e o [model card BlazePose GHUM 3D](https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf). O model card resolve Apache-2.0 para o uso local de QA documentado; o bundle permanece fora do Git e do ZIP.
 
-O alvo obteve 1.000; os negativos ficaram entre 0.278 e 0.714; neutral, mirror e T-pose ficaram abaixo de 0.65; a espada não alterou o score; a ablação de membro foi detectada. A evidência está em [docs/evidence/pose-metric-calibration.json](docs/evidence/pose-metric-calibration.json).
+## Provider lane recheck
 
-## Estimator boundary
+Thresholds foram congelados antes dos jobs em [pose-thresholds-v054.json](docs/evidence/pose-thresholds-v054.json). Foram executadas somente as lanes A, C e R, com `54701`, `54702`, `54703` em cada lane. A usou apenas identidade; C usou pose-first/identity-second nativo; R usou RefControl nativo a `0.8`.
 
-MediaPipe Pose Landmarker foi selecionado apenas como estimador independente QA. A versão local importável é registrada, o bundle foi baixado somente fora do repositório, e sua hash/bytes estão registradas. Como os termos do bundle não foram determinados de fonte autoritativa, nenhuma detecção em outputs estilizados foi usada para qualificação e nenhum provider foi medido nesta execução.
+As 9 execuções possuem prompt/history/output binding fresco. A lane A teve mediana de pose `0.241770` e identidade aprovada; C teve mediana de pose `0.000000`; R teve mediana `0.174489`. Nenhuma lane pose-first cumpriu os gates absolutos. O overlay confirma que o corpo gerado permanece em pose diferente do guia.
 
-## Execution and publication
+## Boundary
 
-Não houve novo job ComfyUI, mudança de provider, âncora, walk ou spritesheet no v0.5.3. Animação genérica permanece fora deste slice e não autoriza promoção de walk. O review ativo é [REVIEW-v0.5.3.md](REVIEW-v0.5.3.md); reviews v0.5.2 e anteriores são históricos. A aprovação visual humana e qualquer aprovação de produção continuam separadas.
+`generation_provider_change_authorized=false` e `walk_authorized=false`. Walk/front/8 não foi executado nesta fase; âncoras direcionais v3, spritesheet e GIF não foram promovidos. Não foi adicionado provider, custom node, estimator alternativo ou strength nova.
+
+O review ativo é [REVIEW-v0.5.4.md](REVIEW-v0.5.4.md). A aprovação visual humana, GitHub Actions, deployment e aprovação de produção não são inferidos da validação local.
+
+Animação genérica permanece fora deste slice e não autoriza promoção de walk.

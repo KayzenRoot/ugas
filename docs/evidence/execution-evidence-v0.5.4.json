@@ -1,0 +1,1032 @@
+{
+  "schema_version": "0.5.4",
+  "prompt_id": "PROMPT-04F-UGAS-POSE-QA-LICENSE-ESTIMATOR-LANE-RECHECK-v0.5.4",
+  "status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "lanes": [
+    "A",
+    "C",
+    "R"
+  ],
+  "seeds": [
+    54701,
+    54702,
+    54703
+  ],
+  "required_output_count": 9,
+  "record_count": 9,
+  "records": [
+    {
+      "lane": "A",
+      "seed": 54701,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "prompt_id": "04013a79-e346-4fea-8c89-bf5bf95b9253",
+      "history_record_key": "04013a79-e346-4fea-8c89-bf5bf95b9253",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": null,
+      "output_path": "docs/evidence/v054-lanes/a-seed-54701.png",
+      "output_sha256": "8202c91904bbe90aad79cdcbb43d4b18658713ea6977be63098ce049e86c9993",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "04013a79-e346-4fea-8c89-bf5bf95b9253",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-5e7b789e69fe47ae87af2a941e2696b7",
+        "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+        "submitted_at": "2026-08-30T13:41:50+00:00",
+        "first_poll_at": "2026-08-30T13:41:50+00:00",
+        "completed_at": "2026-08-30T13:41:55+00:00",
+        "runtime_ms": 5313.608,
+        "history_record_key": "451d68fc-9677-44d9-b07a-7c5889053098",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "25e31fe34098a745383b6b1064376cf0067bdd3a71b4b36b012ac3c21e0b6486"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-d86db8ea188e4354b2ec9205d30c9116\\birefnet\\job-479ff2a1f7cc4c6f8f81b51e291d94ac\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+                  "timestamp": 1788097310548
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+                  "timestamp": 1788097310561
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "451d68fc-9677-44d9-b07a-7c5889053098",
+                  "timestamp": 1788097315269
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00079_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "6c8e05e00acffaff9a77734d92dcfd65a8ccc4b0f44eca7482590ad27d37346f"
+          },
+          {
+            "filename": "ugas-master-transparent_00079_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "d161600c76daa7e3229ddc2c233fbf34eb2809bf9e6e1187c3cc929ea9416900"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-d86db8ea188e4354b2ec9205d30c9116\\birefnet\\job-479ff2a1f7cc4c6f8f81b51e291d94ac\\birefnet-output.png",
+            "sha256": "6c8e05e00acffaff9a77734d92dcfd65a8ccc4b0f44eca7482590ad27d37346f",
+            "filename": "ugas-foreground-mask_00079_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-d86db8ea188e4354b2ec9205d30c9116\\birefnet\\job-479ff2a1f7cc4c6f8f81b51e291d94ac\\birefnet-output-1.png",
+            "sha256": "d161600c76daa7e3229ddc2c233fbf34eb2809bf9e6e1187c3cc929ea9416900",
+            "filename": "ugas-master-transparent_00079_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "A",
+      "seed": 54702,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "prompt_id": "e5e27695-c6a0-43e7-858f-b83214597646",
+      "history_record_key": "e5e27695-c6a0-43e7-858f-b83214597646",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": null,
+      "output_path": "docs/evidence/v054-lanes/a-seed-54702.png",
+      "output_sha256": "4aceb8ae2b97a626024ef69eeb5fcc1ce2c748dfe2399520457af4364ab72d85",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "e5e27695-c6a0-43e7-858f-b83214597646",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-5fdcf9af8bd1431ea310de25125712c7",
+        "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+        "submitted_at": "2026-08-30T13:43:14+00:00",
+        "first_poll_at": "2026-08-30T13:43:14+00:00",
+        "completed_at": "2026-08-30T13:43:19+00:00",
+        "runtime_ms": 5423.407,
+        "history_record_key": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "6750e374455b3ae0e9316b061228690d14d63ad53cbdd83672c3583617378575"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3d6c4c0f4b1f4e89befbac35b927f642\\birefnet\\job-219ca7a36a554e1e998f2ea7fa143318\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+                  "timestamp": 1788097394128
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+                  "timestamp": 1788097394141
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "f1105ea1-e6f9-4ebd-8d7e-28bbfc444e6f",
+                  "timestamp": 1788097399113
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00080_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "9329d27b8bf848a79ad2030ab93d09f3c7004c1de971df889e26b28fc3ce1520"
+          },
+          {
+            "filename": "ugas-master-transparent_00080_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "1e581536a699c0b0a147be74862a66576d42317a8dc178854294dee232432e08"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3d6c4c0f4b1f4e89befbac35b927f642\\birefnet\\job-219ca7a36a554e1e998f2ea7fa143318\\birefnet-output.png",
+            "sha256": "9329d27b8bf848a79ad2030ab93d09f3c7004c1de971df889e26b28fc3ce1520",
+            "filename": "ugas-foreground-mask_00080_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3d6c4c0f4b1f4e89befbac35b927f642\\birefnet\\job-219ca7a36a554e1e998f2ea7fa143318\\birefnet-output-1.png",
+            "sha256": "1e581536a699c0b0a147be74862a66576d42317a8dc178854294dee232432e08",
+            "filename": "ugas-master-transparent_00080_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "A",
+      "seed": 54703,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "prompt_id": "edb064eb-1df7-4fc8-b6ce-294a56b696a8",
+      "history_record_key": "edb064eb-1df7-4fc8-b6ce-294a56b696a8",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": null,
+      "output_path": "docs/evidence/v054-lanes/a-seed-54703.png",
+      "output_sha256": "76cc5252648299a3d92e2596c72b36f1f5b2a8ece4654d608a08afeacc708a60",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "edb064eb-1df7-4fc8-b6ce-294a56b696a8",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-9be0e4671a7e48e6ad0d0c42d7928cc8",
+        "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+        "submitted_at": "2026-08-30T13:44:35+00:00",
+        "first_poll_at": "2026-08-30T13:44:35+00:00",
+        "completed_at": "2026-08-30T13:44:41+00:00",
+        "runtime_ms": 5585.503,
+        "history_record_key": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "ea2f5400b4d446210fecef8ecf8f39bf760ac647c58a8701149d725ed8f184f2"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-ffdaea142d724943a1903e7257c6e61f\\birefnet\\job-a200c85fa87b42e281b52d408ab90d70\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+                  "timestamp": 1788097475944
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+                  "timestamp": 1788097475957
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "8376f4a3-e3c1-4ce8-80e4-a777b79e98eb",
+                  "timestamp": 1788097481093
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00081_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "1c1d7dfb75e299f2d84851106e0abcffb76883f15a169a6d2b73fb29e2756e4e"
+          },
+          {
+            "filename": "ugas-master-transparent_00081_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "f91ff4727769b10df1cfbcfcd66f1954da6fb710031683482d1fdc6722bde210"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-ffdaea142d724943a1903e7257c6e61f\\birefnet\\job-a200c85fa87b42e281b52d408ab90d70\\birefnet-output.png",
+            "sha256": "1c1d7dfb75e299f2d84851106e0abcffb76883f15a169a6d2b73fb29e2756e4e",
+            "filename": "ugas-foreground-mask_00081_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-ffdaea142d724943a1903e7257c6e61f\\birefnet\\job-a200c85fa87b42e281b52d408ab90d70\\birefnet-output-1.png",
+            "sha256": "f91ff4727769b10df1cfbcfcd66f1954da6fb710031683482d1fdc6722bde210",
+            "filename": "ugas-master-transparent_00081_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "C",
+      "seed": 54701,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "prompt_id": "3110dcb7-5c7a-4812-bf62-42e253805b99",
+      "history_record_key": "3110dcb7-5c7a-4812-bf62-42e253805b99",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "output_path": "docs/evidence/v054-lanes/c-seed-54701.png",
+      "output_sha256": "e5b89d82f29accd6344cb845262526015612c4ca16ec330333b0e4a46d68e2cf",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "3110dcb7-5c7a-4812-bf62-42e253805b99",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-bebdf09edf29405cb33ac422594e91c1",
+        "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+        "submitted_at": "2026-08-30T13:45:57+00:00",
+        "first_poll_at": "2026-08-30T13:45:57+00:00",
+        "completed_at": "2026-08-30T13:46:02+00:00",
+        "runtime_ms": 5438.72,
+        "history_record_key": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "3233f9cd20851ded686f502b0d7e1449d4b37b564b01f59c93d0aabca0a572be"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3c2b076b04dd4e04b42df70f551ce73d\\birefnet\\job-c200f135c7b2472e870dc9d49ccafe3a\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+                  "timestamp": 1788097557608
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+                  "timestamp": 1788097557622
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "bc9711f9-589d-4b7d-abee-045e0ff4b50f",
+                  "timestamp": 1788097561581
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00082_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "2b2218cccc76cf4963a63c5f0ab6bf0f6f62940a95b1810b6b9f20d5dd7390e7"
+          },
+          {
+            "filename": "ugas-master-transparent_00082_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "96495664579c020188784c050f122b26bd7ab550cd56ae805bc40cffda961595"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3c2b076b04dd4e04b42df70f551ce73d\\birefnet\\job-c200f135c7b2472e870dc9d49ccafe3a\\birefnet-output.png",
+            "sha256": "2b2218cccc76cf4963a63c5f0ab6bf0f6f62940a95b1810b6b9f20d5dd7390e7",
+            "filename": "ugas-foreground-mask_00082_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-3c2b076b04dd4e04b42df70f551ce73d\\birefnet\\job-c200f135c7b2472e870dc9d49ccafe3a\\birefnet-output-1.png",
+            "sha256": "96495664579c020188784c050f122b26bd7ab550cd56ae805bc40cffda961595",
+            "filename": "ugas-master-transparent_00082_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "C",
+      "seed": 54702,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "prompt_id": "38d4a65e-880d-4e08-a3d0-e6c8fe942dd7",
+      "history_record_key": "38d4a65e-880d-4e08-a3d0-e6c8fe942dd7",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "output_path": "docs/evidence/v054-lanes/c-seed-54702.png",
+      "output_sha256": "58bb0ba9f0cb635b07ccbb7ce87082e23d3a06718d417d68981d4716117790d4",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "38d4a65e-880d-4e08-a3d0-e6c8fe942dd7",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-930f9d1024b545bcaa228f6dbe5730aa",
+        "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+        "submitted_at": "2026-08-30T13:47:19+00:00",
+        "first_poll_at": "2026-08-30T13:47:19+00:00",
+        "completed_at": "2026-08-30T13:47:24+00:00",
+        "runtime_ms": 5460.866,
+        "history_record_key": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "70fef04b9d76bcdd4d618394f81179e24192fec97afebbc6569bd0b777ce4eec"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-001ab8d0959d405fb5e8dcf817678b11\\birefnet\\job-0e35a7c141d343b7b316466920b05930\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+                  "timestamp": 1788097639045
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+                  "timestamp": 1788097639060
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "b4fc130a-10a6-4e6b-81c1-15abe95de29d",
+                  "timestamp": 1788097643600
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00083_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "9f9327c7bb9b1629fa5b6f91e4958e1aa4b8bedb1700d46a24fa7d03f5609ecf"
+          },
+          {
+            "filename": "ugas-master-transparent_00083_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "964a83a6c26f520e3901f776a98c6f9cd3a48baa06153963f9bf1f8b5fec1626"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-001ab8d0959d405fb5e8dcf817678b11\\birefnet\\job-0e35a7c141d343b7b316466920b05930\\birefnet-output.png",
+            "sha256": "9f9327c7bb9b1629fa5b6f91e4958e1aa4b8bedb1700d46a24fa7d03f5609ecf",
+            "filename": "ugas-foreground-mask_00083_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-001ab8d0959d405fb5e8dcf817678b11\\birefnet\\job-0e35a7c141d343b7b316466920b05930\\birefnet-output-1.png",
+            "sha256": "964a83a6c26f520e3901f776a98c6f9cd3a48baa06153963f9bf1f8b5fec1626",
+            "filename": "ugas-master-transparent_00083_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "C",
+      "seed": 54703,
+      "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "prompt_id": "b83a9229-1c1d-4b0b-b3c2-5cab7a1fcd8e",
+      "history_record_key": "b83a9229-1c1d-4b0b-b3c2-5cab7a1fcd8e",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "output_path": "docs/evidence/v054-lanes/c-seed-54703.png",
+      "output_sha256": "81e36960b576e1e8205a998564795e4d90b4bfac081a9f31bbdd50702ade3acd",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "b83a9229-1c1d-4b0b-b3c2-5cab7a1fcd8e",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-856ecc75b7eb446db49956abb474452f",
+        "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+        "submitted_at": "2026-08-30T13:48:35+00:00",
+        "first_poll_at": "2026-08-30T13:48:35+00:00",
+        "completed_at": "2026-08-30T13:48:41+00:00",
+        "runtime_ms": 5528.376,
+        "history_record_key": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "ed91f73dd9147f35c49f4880ab7cffccf658f7a863510416e883c0799d6e28ef"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-96e8e2ef22554420b8f57fd57ea2e30f\\birefnet\\job-cec8a0321cc641c0b4269f6e5f5a526a\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+                  "timestamp": 1788097715932
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+                  "timestamp": 1788097715945
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "e50e5926-3c99-4495-8346-dcf1d39d779a",
+                  "timestamp": 1788097721091
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00084_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "e234825fe406975d3cb055a9ad0566e1719883ddcba027acfa744e671e292bcc"
+          },
+          {
+            "filename": "ugas-master-transparent_00084_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "6abe2cb6b2afbb001104d7b36c8285b292152085ed4df1dbbc2eec5e31290e6d"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-96e8e2ef22554420b8f57fd57ea2e30f\\birefnet\\job-cec8a0321cc641c0b4269f6e5f5a526a\\birefnet-output.png",
+            "sha256": "e234825fe406975d3cb055a9ad0566e1719883ddcba027acfa744e671e292bcc",
+            "filename": "ugas-foreground-mask_00084_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-96e8e2ef22554420b8f57fd57ea2e30f\\birefnet\\job-cec8a0321cc641c0b4269f6e5f5a526a\\birefnet-output-1.png",
+            "sha256": "6abe2cb6b2afbb001104d7b36c8285b292152085ed4df1dbbc2eec5e31290e6d",
+            "filename": "ugas-master-transparent_00084_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "R",
+      "seed": 54701,
+      "workflow_id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "prompt_id": "d6509c9e-448b-42e2-87e1-6fb0c1cad889",
+      "history_record_key": "d6509c9e-448b-42e2-87e1-6fb0c1cad889",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "output_path": "docs/evidence/v054-lanes/r-seed-54701.png",
+      "output_sha256": "35bc999c9a306eaea208999a460fa85e462962aefbe7ba5782bf1b6d4d764bdf",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "d6509c9e-448b-42e2-87e1-6fb0c1cad889",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-2d3f0dca951f45c8baeec68cfc180bfd",
+        "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+        "submitted_at": "2026-08-30T13:50:03+00:00",
+        "first_poll_at": "2026-08-30T13:50:03+00:00",
+        "completed_at": "2026-08-30T13:50:08+00:00",
+        "runtime_ms": 5339.583,
+        "history_record_key": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "912c83692e5f30fce662dac3265179846a4c1a54efdb07049ee4a205a767a58f"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-e81b2830ce6c4f9aab8a0528f155e9ee\\birefnet\\job-77142adbc5214366a6aadcfc7a743bec\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+                  "timestamp": 1788097803101
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+                  "timestamp": 1788097803115
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "e5d8c25f-76ca-4128-8103-44f2dce2622e",
+                  "timestamp": 1788097807018
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00085_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "ea455b49a5d97a87ff0edc6e07e5b3b83803d7c2a9f6e0e863ce71d012450a0d"
+          },
+          {
+            "filename": "ugas-master-transparent_00085_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "727ec4a79fc45f5b404ba848eaf54820707221d326a63fa444b12b3f4f3392dd"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-e81b2830ce6c4f9aab8a0528f155e9ee\\birefnet\\job-77142adbc5214366a6aadcfc7a743bec\\birefnet-output.png",
+            "sha256": "ea455b49a5d97a87ff0edc6e07e5b3b83803d7c2a9f6e0e863ce71d012450a0d",
+            "filename": "ugas-foreground-mask_00085_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-e81b2830ce6c4f9aab8a0528f155e9ee\\birefnet\\job-77142adbc5214366a6aadcfc7a743bec\\birefnet-output-1.png",
+            "sha256": "727ec4a79fc45f5b404ba848eaf54820707221d326a63fa444b12b3f4f3392dd",
+            "filename": "ugas-master-transparent_00085_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "R",
+      "seed": 54702,
+      "workflow_id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "prompt_id": "7e217003-c203-4de6-8d23-d21471b685cc",
+      "history_record_key": "7e217003-c203-4de6-8d23-d21471b685cc",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "output_path": "docs/evidence/v054-lanes/r-seed-54702.png",
+      "output_sha256": "5c0b04359977576c8f8a602df1ef0d256f6daac3eaad786e4a5358c0422de69e",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "7e217003-c203-4de6-8d23-d21471b685cc",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-220f3476a1234a0e922b6e6680297579",
+        "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+        "submitted_at": "2026-08-30T13:51:30+00:00",
+        "first_poll_at": "2026-08-30T13:51:30+00:00",
+        "completed_at": "2026-08-30T13:51:35+00:00",
+        "runtime_ms": 5481.91,
+        "history_record_key": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "fc21a5dde266ed24735491fcd81e922deefd9bdf5c7e6b1bf53d8643e33da61f"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-4add205b3f9344379ed7dffcb42317a7\\birefnet\\job-39e2778cce704d78a236f6b6f4ddc8b7\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+                  "timestamp": 1788097890055
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+                  "timestamp": 1788097890069
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "2741aef9-e8ad-44b1-adfd-6c16bf266f5a",
+                  "timestamp": 1788097895018
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00086_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "d18fa44dd38a018beb9952ebfc2f4b232002970b3ae8bfce6b2b4ef13845fde4"
+          },
+          {
+            "filename": "ugas-master-transparent_00086_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "7849048d0b2ccc154a4241dddcd86c42b3ec60df899e514fd73fe04194b1ce9a"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-4add205b3f9344379ed7dffcb42317a7\\birefnet\\job-39e2778cce704d78a236f6b6f4ddc8b7\\birefnet-output.png",
+            "sha256": "d18fa44dd38a018beb9952ebfc2f4b232002970b3ae8bfce6b2b4ef13845fde4",
+            "filename": "ugas-foreground-mask_00086_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-4add205b3f9344379ed7dffcb42317a7\\birefnet\\job-39e2778cce704d78a236f6b6f4ddc8b7\\birefnet-output-1.png",
+            "sha256": "7849048d0b2ccc154a4241dddcd86c42b3ec60df899e514fd73fe04194b1ce9a",
+            "filename": "ugas-master-transparent_00086_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "lane": "R",
+      "seed": 54703,
+      "workflow_id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "prompt_id": "6be51b77-0e31-4cbb-818e-575e91ecda1c",
+      "history_record_key": "6be51b77-0e31-4cbb-818e-575e91ecda1c",
+      "history_key_matches_prompt_id": true,
+      "anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "guide_sha256": "b762bd5dafcd976dd7d8333ad6eb3e5036ef17eabf9a43371422401c76e65762",
+      "output_path": "docs/evidence/v054-lanes/r-seed-54703.png",
+      "output_sha256": "12043cf5c5aa6dbfeb1e11d7aed0dd7b2b033dc2a9af86f0db4fb822a506333a",
+      "fresh_binding": true,
+      "seed_was_used_before": false,
+      "target_existed_before_submission": false,
+      "previous_frame_chaining": false,
+      "image_edit_execution": "6be51b77-0e31-4cbb-818e-575e91ecda1c",
+      "background_removal_execution": {
+        "schema_version": "0.5.3",
+        "client_job_id": "job-c33e150b84164096bfa248bf3d82f86b",
+        "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+        "submitted_at": "2026-08-30T13:52:51+00:00",
+        "first_poll_at": "2026-08-30T13:52:51+00:00",
+        "completed_at": "2026-08-30T13:52:57+00:00",
+        "runtime_ms": 5368.06,
+        "history_record_key": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "bd9c6974a09ce79e6b896a47492902482e578d5fe5e70d892879013883a706d9"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-b1b5ccc246a840608cdc742eaca02c0c\\birefnet\\job-05465063b38842e4b39315f50b8824d1\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+                  "timestamp": 1788097971768
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+                  "timestamp": 1788097971781
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "3d4beaaf-a769-4dc1-9935-89743c97df30",
+                  "timestamp": 1788097975962
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00087_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "6c659bf358df7e306107aa67d4f90d1406e34a3c4f8414a642bbec736b03a356"
+          },
+          {
+            "filename": "ugas-master-transparent_00087_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "4cebc50c4491a7095f6cd6c8e6d88e748d71f519581a30006a3c735d9ad3ca0b"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-b1b5ccc246a840608cdc742eaca02c0c\\birefnet\\job-05465063b38842e4b39315f50b8824d1\\birefnet-output.png",
+            "sha256": "6c659bf358df7e306107aa67d4f90d1406e34a3c4f8414a642bbec736b03a356",
+            "filename": "ugas-foreground-mask_00087_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-qa-v054\\lanes\\job-b1b5ccc246a840608cdc742eaca02c0c\\birefnet\\job-05465063b38842e4b39315f50b8824d1\\birefnet-output-1.png",
+            "sha256": "4cebc50c4491a7095f6cd6c8e6d88e748d71f519581a30006a3c735d9ad3ca0b",
+            "filename": "ugas-master-transparent_00087_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    }
+  ],
+  "all_fresh_binding": true,
+  "no_previous_frame_chaining": true,
+  "no_walk_executed": true,
+  "provider_routing_used": true,
+  "production_approval": "not-granted"
+}

@@ -1,4 +1,4 @@
-"""Run the v0.5.3 fatal state-consistency gate and persist its evidence."""
+"""Run the v0.5.4 fatal state-consistency gate and persist its evidence."""
 
 from __future__ import annotations
 
@@ -21,9 +21,9 @@ def main() -> int:
     result = validate_state_consistency(
         state,
         (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-        (ROOT / "REVIEW-v0.5.3.md").read_text(encoding="utf-8"),
+        (ROOT / "REVIEW-v0.5.4.md").read_text(encoding="utf-8"),
     )
-    evidence = {"schema_version": "0.5.3", "validator": "src/ugas/state_consistency.py", **result}
+    evidence = {"schema_version": "0.5.4", "validator": "src/ugas/state_consistency.py", **result}
     (ROOT / "docs/evidence/state-consistency.json").write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(evidence, indent=2, ensure_ascii=False))
     return 0 if result["status"] == "STATE_CONSISTENCY_PASSED" else 2

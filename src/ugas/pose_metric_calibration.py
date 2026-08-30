@@ -1,4 +1,4 @@
-"""Deterministic v0.5.3 pose-metric calibration and QA contracts.
+"""Deterministic UGAS pose-metric calibration and QA contracts.
 
 The legacy v0.5.2 silhouette/keypoint score remains available to historical
 reports, but it is not used here as a provider gate. The primary metric uses
@@ -48,6 +48,11 @@ class PoseMetricError(ValueError):
 
 
 def _point(value: Any) -> tuple[float, float] | None:
+    if hasattr(value, "x") and hasattr(value, "y"):
+        try:
+            return float(value.x), float(value.y)
+        except (TypeError, ValueError):
+            return None
     if isinstance(value, Mapping):
         try:
             return float(value["x"]), float(value["y"])
@@ -62,13 +67,25 @@ def _point(value: Any) -> tuple[float, float] | None:
 
 
 def _confidence(value: Any) -> float:
+    landmark_confidences: list[float] = []
+    for key in ("presence", "visibility", "confidence"):
+        if hasattr(value, key):
+            try:
+                landmark_confidences.append(float(getattr(value, key)))
+            except (TypeError, ValueError):
+                pass
+    if landmark_confidences:
+        return min(landmark_confidences)
     if isinstance(value, Mapping):
+        values = []
         for key in ("presence", "visibility", "confidence"):
             if key in value:
                 try:
-                    return float(value[key])
+                    values.append(float(value[key]))
                 except (TypeError, ValueError):
                     return 0.0
+        if values:
+            return min(values)
         return 1.0
     return 1.0
 
@@ -84,7 +101,19 @@ def map_mediapipe_landmarks(landmarks: Sequence[Any], *, confidence_threshold: f
         if point is None:
             continue
         confidence = _confidence(item)
-        mapped[name] = {"x": point[0], "y": point[1], "confidence": confidence, "visible": confidence >= confidence_threshold, "source_index": index}
+        values = {}
+        for key in ("visibility", "presence"):
+            if hasattr(item, key):
+                try:
+                    values[key] = float(getattr(item, key))
+                except (TypeError, ValueError):
+                    pass
+            elif isinstance(item, Mapping) and key in item:
+                try:
+                    values[key] = float(item[key])
+                except (TypeError, ValueError):
+                    pass
+        mapped[name] = {"x": point[0], "y": point[1], "confidence": confidence, **values, "visible": confidence >= confidence_threshold, "source_index": index}
     return mapped
 
 

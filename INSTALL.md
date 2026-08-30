@@ -1,10 +1,10 @@
-# Installing UGAS 0.5.3
+# Installing UGAS 0.5.4
 
 ## Requirements
 
-- Python 3.12+ with Pillow available.
-- ComfyUI local em `http://127.0.0.1:8188` para o benchmark real.
-- FLUX.2 Klein Base NVFP4 e BiRefNet registrados com hashes aprovados fora do repositório.
+- Python 3.12+ com Pillow e MediaPipe disponíveis.
+- ComfyUI local em `http://127.0.0.1:8188` para a rechecagem real.
+- FLUX.2 Klein Base NVFP4, BiRefNet e o LoRA RefControl registrados/verificados fora do repositório.
 - GPU testada: NVIDIA GeForce RTX 5050, 8 GiB.
 
 ```powershell
@@ -16,8 +16,10 @@ python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
 ```
 
-## v0.5.3 pose-metric calibration
+## v0.5.4 pose QA and lane recheck
 
-Leia `docs/evidence/current-state.json` antes de iniciar qualquer execução. O fluxo é: consistência de estado, guard de impossibilidade, calibração sintética de joints, qualificação do estimador QA e só então uma eventual rechecagem A/C/R com seeds 53701–53703. A métrica antiga de silhueta é diagnóstica. O estimador não é provider nem nó de geração.
+Leia `docs/evidence/current-state.json` antes de iniciar qualquer execução. Os thresholds precisam existir e estar congelados em `docs/evidence/pose-thresholds-v054.json`. A ordem é: consistência, calibração histórica, MediaPipe QA-only, sanity/detectabilidade, e somente então o recheck A/C/R autorizado.
 
-Os pesos e bundles não são publicados. Âncoras v3, walk/front/8 v3 e spritesheet são proibidos enquanto a pose não estiver qualificada. O estado atual é `POSE_QA_MODEL_LICENSE_GAP`; resolver os termos do bundle é pré-requisito. A aprovação visual humana é independente dos gates automatizados.
+O estimador MediaPipe não é provider nem nó de geração. A documentação oficial do [Pose Landmarker](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker) e o [model card oficial](https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf) resolvem a licença para QA local; o arquivo `pose_landmarker_full.task` fica em `%LOCALAPPDATA%\UGAS\pose-qa` e não pode ser copiado para este repositório ou para o review ZIP.
+
+O estado atual é `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`. As nove saídas estão em `docs/evidence/v054-lanes/` para review técnico. Não execute walk, âncoras v3 ou provider alternativo a partir deste estado.

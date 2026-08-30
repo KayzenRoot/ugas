@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.5.4",
+  "library": {
+    "name": "mediapipe",
+    "installed": true,
+    "version": "0.10.35",
+    "import_status": "importable",
+    "repository": "https://github.com/google-ai-edge/mediapipe",
+    "api": "https://ai.google.dev/edge/api/mediapipe/python/mp/tasks/vision/PoseLandmarker",
+    "license": "Apache-2.0 (library repository)"
+  },
+  "model": {
+    "filename": "pose_landmarker_full.task",
+    "path_not_published": true,
+    "url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task",
+    "status": "DOWNLOADED_FOR_LOCAL_QUALIFICATION",
+    "bytes": 9398198,
+    "sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "outside_git": true,
+    "outside_review_zip": true,
+    "license_status": "RESOLVED_LOCAL_QA",
+    "license": "Apache-2.0",
+    "license_scope": "local QA only; bundle redistribution is not authorized"
+  },
+  "official_sources": {
+    "task_documentation": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "model_card": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+    "model_bundle": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task"
+  },
+  "model_card_audit": {
+    "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+    "license": "Apache-2.0",
+    "applies_to": [
+      "Lite",
+      "Full",
+      "Heavy"
+    ],
+    "local_audit_downloaded": true,
+    "local_audit_path_not_published": true,
+    "local_audit_sha256": "e982460cedece5ad9a46aa8f13523328e9ab95d7d5b2b8c99b33f13f6a79ca86",
+    "local_audit_bytes": 1398977,
+    "local_audit_retrieved_at": "2026-08-30T13:23:25Z"
+  }
+}

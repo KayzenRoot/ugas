@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.5.4",
+  "status": "POSE_QA_LOCAL_USE_LICENSE_RESOLVED",
+  "retrieved_at": "2026-08-30T13:32:16Z",
+  "task_bundle": {
+    "filename": "pose_landmarker_full.task",
+    "sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "outside_git": true,
+    "outside_review_zip": true
+  },
+  "official_task_docs": {
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "bundle_variant": "Pose landmarker (Full)",
+    "model_card_link_observed": true
+  },
+  "official_model_card": {
+    "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+    "license": "Apache-2.0",
+    "applies_to": [
+      "Lite",
+      "Full",
+      "Heavy"
+    ],
+    "local_audit_downloaded": true,
+    "local_audit_path_not_published": true,
+    "local_audit_sha256": "e982460cedece5ad9a46aa8f13523328e9ab95d7d5b2b8c99b33f13f6a79ca86",
+    "local_audit_bytes": 1398977,
+    "local_audit_retrieved_at": "2026-08-30T13:23:25Z"
+  },
+  "policy": {
+    "local_qa_use": "allowed",
+    "redistribute_bundle_in_ugas": false,
+    "future_redistribution_requires_notice_review": true
+  },
+  "sources": {
+    "task_documentation": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+    "model_card": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+    "bundle": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task"
+  }
+}

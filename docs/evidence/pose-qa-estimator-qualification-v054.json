@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.5.4",
+  "status": "POSE_QA_ESTIMATOR_QUALIFIED",
+  "candidate": "MediaPipe Pose Landmarker",
+  "library": {
+    "name": "mediapipe",
+    "installed": true,
+    "version": "0.10.35",
+    "import_status": "importable",
+    "repository": "https://github.com/google-ai-edge/mediapipe",
+    "api": "https://ai.google.dev/edge/api/mediapipe/python/mp/tasks/vision/PoseLandmarker",
+    "license": "Apache-2.0 (library repository)"
+  },
+  "model": {
+    "filename": "pose_landmarker_full.task",
+    "path_not_published": true,
+    "url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task",
+    "status": "DOWNLOADED_FOR_LOCAL_QUALIFICATION",
+    "bytes": 9398198,
+    "sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "outside_git": true,
+    "outside_review_zip": true,
+    "license_status": "RESOLVED_LOCAL_QA",
+    "license": "Apache-2.0",
+    "license_scope": "local QA only; bundle redistribution is not authorized"
+  },
+  "license_resolution": "docs/evidence/pose-qa-license-resolution.json",
+  "detectability": "docs/evidence/pose-qa-estimator-detectability.json",
+  "sanity": "docs/evidence/pose-qa-estimator-sanity.json",
+  "preprocess_policy": "transparent_neutral_gray",
+  "qa_only": true,
+  "generation_graph_unchanged": true,
+  "custom_nodes_required": false,
+  "provider_routing_used": false,
+  "stop_reason": null
+}

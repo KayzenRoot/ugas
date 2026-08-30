@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS v0.5.3 independent pose QA estimator",
+  "title": "UGAS v0.5.4 independent pose QA estimator",
   "type": "object",
   "required": ["schema_version", "status", "candidate", "library", "model", "qa_only", "generation_graph_unchanged", "provider_routing_used"],
   "properties": {
-    "schema_version": {"const": "0.5.3"},
-    "status": {"enum": ["POSE_QA_ESTIMATOR_QUALIFIED", "POSE_QA_ESTIMATOR_GAP", "POSE_QA_MODEL_LICENSE_GAP"]},
+    "schema_version": {"const": "0.5.4"},
+    "status": {"enum": ["POSE_QA_ESTIMATOR_QUALIFIED", "POSE_QA_ESTIMATOR_GAP"]},
     "candidate": {"type": "string", "minLength": 1},
     "library": {"type": "object"},
     "model": {"type": "object"},
