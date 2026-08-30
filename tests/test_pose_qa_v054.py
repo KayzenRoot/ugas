@@ -86,10 +86,11 @@ class PoseQAV054Tests(unittest.TestCase):
         schema = load("schemas/current-state.json")
         validate_schema_document(schema)
         validate_instance(state, schema)
-        result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.5.4.md").read_text(encoding="utf-8"))
+        result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.5.5.md").read_text(encoding="utf-8"))
         self.assertEqual("STATE_CONSISTENCY_PASSED", result["status"], result)
-        self.assertEqual("LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", state["state_consistency"]["status"])
-        self.assertEqual(9, state["state_consistency"]["new_generation_jobs"])
+        self.assertEqual("REVIEW_SNAPSHOT_INTEGRITY_FIXED", state["state_consistency"]["status"])
+        self.assertEqual("LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", state["pose_lane_status"])
+        self.assertEqual(0, state["state_consistency"]["new_generation_jobs"])
 
     def test_nine_individual_pngs_and_contacts_are_present(self):
         table = load("docs/evidence/v054-pose-error-table.json")

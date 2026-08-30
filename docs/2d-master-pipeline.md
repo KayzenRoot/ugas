@@ -1,4 +1,6 @@
-# 2D master pipeline v0.5.4
+# 2D master pipeline v0.5.5
+
+This release performs review snapshot integrity only. The v0.5.4 pose/provider evidence remains historical; no new generation is executed here.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 

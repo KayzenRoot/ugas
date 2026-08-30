@@ -1,4 +1,6 @@
-# ComfyUI v0.5.4
+# ComfyUI integration notes - UGAS v0.5.5
+
+The v0.5.5 release is a review-snapshot correction. It does not execute ComfyUI or submit new generation jobs. The ComfyUI/RTX 5050 and A/C/R evidence below is historical v0.5.4 evidence and remains unchanged.
 
 O alvo local é ComfyUI `0.34.0` com NVIDIA GeForce RTX 5050. O runtime e o grafo nativo foram verificados para as lanes A, C e R. Não houve custom node nem troca de provider.
 

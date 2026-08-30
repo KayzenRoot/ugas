@@ -87,7 +87,7 @@ SCHEMAS = [
     "pose-qa-estimator",
 ]
 
-UGAS_VERSION = "0.5.4"
+UGAS_VERSION = "0.5.5"
 
 CONSUMER_FILES = [
     "studio.json",

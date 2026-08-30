@@ -1,8 +1,8 @@
-"""Fatal consistency checks for the active UGAS v0.5.4 release state.
+"""Fatal consistency checks for the active UGAS v0.5.5 release state.
 
-Historical v0.5.2 and v0.5.3 reports remain immutable evidence. This module
-only decides whether the current checkpoint and active review agree with the
-machine-readable v0.5.4 gate; it never grants external approval.
+Historical v0.5.2, v0.5.3 and v0.5.4 reports remain immutable evidence. This
+module keeps the v0.5.4 pose result separate from the v0.5.5 review snapshot
+gate; it never grants external approval.
 """
 
 from __future__ import annotations
@@ -11,18 +11,13 @@ import re
 from typing import Any, Mapping
 
 
-CURRENT_SCHEMA_VERSION = "0.5.4"
+CURRENT_SCHEMA_VERSION = "0.5.5"
 CANONICAL_R4_SHA256 = "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
 CANONICAL_R4_REVISION = "revision-3a425d184b1a49be9f6d6c8d52d04b96"
-CURRENT_PHASES = {"POSE_QA_ESTIMATOR_QUALIFICATION", "POSE_LANE_RECHECK"}
-CURRENT_GATES = {
-    "POSE_QA_ESTIMATOR_QUALIFICATION_REQUIRED",
-    "POSE_QA_ESTIMATOR_GAP",
-    "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
-    "POSE_LANE_QUALIFIED",
-}
-PREVIOUS_REPORTED_STATUS = "POSE_QA_MODEL_LICENSE_GAP"
-AUDIT_RECLASSIFICATION = "POSE_METRIC_GATE_DESIGN_GAP"
+CURRENT_PHASES = {"REVIEW_SNAPSHOT_INTEGRITY"}
+CURRENT_GATES = {"REVIEW_SNAPSHOT_INTEGRITY_FIXED"}
+POSE_LANE_STATUS = "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"
+PREVIOUS_REPORTED_STATUS = POSE_LANE_STATUS
 
 
 class StateConsistencyError(ValueError):
@@ -42,13 +37,14 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     required = {
         "schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason",
         "canonical_anchor", "allowed_next_actions", "forbidden_actions",
-        "generation_provider_change_authorized", "walk_authorized", "state_consistency",
+        "generation_provider_change_authorized", "walk_authorized", "pose_lane_status",
+        "review_snapshot_status", "state_consistency",
     }
     failures.extend(f"missing:{key}" for key in sorted(required - set(state)))
     if state.get("schema_version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_schema_version_must_be_0.5.4")
+        failures.append("state_schema_version_must_be_0.5.5")
     if state.get("version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_version_must_be_0.5.4")
+        failures.append("state_version_must_be_0.5.5")
     if state.get("phase") not in CURRENT_PHASES:
         failures.append("state_phase_invalid")
     if state.get("current_gate") not in CURRENT_GATES:
@@ -57,14 +53,18 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         failures.append("generation_provider_change_must_be_false")
     if state.get("walk_authorized") is not False:
         failures.append("walk_must_be_false")
+    if state.get("pose_lane_status") != POSE_LANE_STATUS:
+        failures.append("pose_lane_status_must_preserve_v0.5.4_decision")
+    if state.get("review_snapshot_status") != "REVIEW_ARCHIVE_VERIFIED":
+        failures.append("review_snapshot_status_must_be_verified")
+    if state.get("stop_reason") is not None:
+        failures.append("review_snapshot_fix_must_not_use_pose_stop_reason")
 
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
-    if previous.get("version") != "0.5.3":
-        failures.append("previous_release_must_be_0.5.3")
+    if previous.get("version") != "0.5.4":
+        failures.append("previous_release_must_be_0.5.4")
     if previous.get("reported_status") != PREVIOUS_REPORTED_STATUS:
-        failures.append("previous_release_reported_status_missing")
-    if previous.get("audit_reclassification") != AUDIT_RECLASSIFICATION:
-        failures.append("previous_release_audit_reclassification_missing")
+        failures.append("previous_release_pose_status_missing")
 
     anchor = state.get("canonical_anchor") if isinstance(state.get("canonical_anchor"), Mapping) else {}
     if anchor.get("revision_id") != CANONICAL_R4_REVISION:
@@ -87,21 +87,23 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     started = nested.get("new_generation_started")
     if not isinstance(started, bool):
         failures.append("new_generation_started_must_be_boolean")
-    elif gate == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and started is not True:
-        failures.append("provider_gap_state_must_record_new_generation")
-    elif gate in {"POSE_QA_ESTIMATOR_QUALIFICATION_REQUIRED", "POSE_QA_ESTIMATOR_GAP"} and started is not False:
-        failures.append("estimator_gate_must_not_record_generation")
+    elif gate == "REVIEW_SNAPSHOT_INTEGRITY_FIXED" and started is not False:
+        failures.append("review_snapshot_fix_must_record_no_new_generation")
+    if nested.get("new_generation_jobs") != 0:
+        failures.append("review_snapshot_fix_must_record_zero_new_generation_jobs")
 
     combined = f"{checkpoint_text}\n{review_text}"
     if CURRENT_SCHEMA_VERSION not in combined:
-        failures.append("active_documents_must_identify_0.5.4")
-    if AUDIT_RECLASSIFICATION not in combined:
-        failures.append("active_documents_must_record_pose_metric_design_gap")
+        failures.append("active_documents_must_identify_0.5.5")
+    if "REVIEW_SNAPSHOT_INTEGRITY_FIXED" not in combined:
+        failures.append("active_documents_must_record_review_snapshot_fix")
+    if POSE_LANE_STATUS not in combined:
+        failures.append("active_documents_must_preserve_pose_decision")
     if gate and gate not in combined:
         failures.append("active_gate_missing_from_documents")
     if "POSE_QA_LOCAL_USE_LICENSE_RESOLVED" not in combined:
         failures.append("active_documents_must_record_pose_license_resolution")
-    if gate == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and "v054-provider-qualification.json" not in combined:
+    if "v054-provider-qualification.json" not in combined:
         failures.append("provider_gap_evidence_missing_from_documents")
     if "A próxima ação autorizada é verificar o RefControl" in combined or re.search(
         r"pr[oó]xima\s+a[cç][aã]o[^\n]{0,100}verificar\s+o?\s*RefControl", combined, re.IGNORECASE

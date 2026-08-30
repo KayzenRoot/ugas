@@ -1,16 +1,18 @@
 {
-  "schema_version": "0.5.4",
-  "version": "0.5.4",
-  "phase": "POSE_LANE_RECHECK",
+  "schema_version": "0.5.5",
+  "version": "0.5.5",
+  "phase": "REVIEW_SNAPSHOT_INTEGRITY",
   "previous_release": {
-    "version": "0.5.3",
-    "reported_status": "POSE_QA_MODEL_LICENSE_GAP",
-    "audit_reclassification": "POSE_METRIC_GATE_DESIGN_GAP",
-    "historical_review": "REVIEW-v0.5.3.md",
-    "evidence": "docs/evidence/pose-qa-estimator-qualification.json"
+    "version": "0.5.4",
+    "reported_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "historical_review": "REVIEW-v0.5.4.md",
+    "pose_evidence": "docs/evidence/v054-provider-qualification.json",
+    "nine_outputs_preserved": true
   },
-  "current_gate": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
-  "stop_reason": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "current_gate": "REVIEW_SNAPSHOT_INTEGRITY_FIXED",
+  "stop_reason": null,
+  "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
   "canonical_anchor": {
     "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
     "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
@@ -19,29 +21,24 @@
   "generation_provider_change_authorized": false,
   "walk_authorized": false,
   "allowed_next_actions": [
-    "document_next_pose_control_provider_strategy_without_running_another_provider_lane",
-    "preserve_the_9_fresh_lane_outputs_and_review_evidence",
-    "continue_only_with_a_new_explicit_governed_prompt_after_provider_strategy_review"
+    "design_next_pose_control_provider_strategy"
   ],
   "forbidden_actions": [
-    "generate_v3_anchors_or_walk_before_pose_lane_qualification",
-    "run_an_alternative_estimator_or_use_dwpose_or_controlnet_aux",
-    "change_provider_or_add_custom_nodes_or_additive_pose_strength",
-    "rerun_lanes_with_new_seeds_or_unauthorized_strengths",
-    "publish_the_local_pose_landmarker_bundle_or_refcontrol_weights",
-    "create_spritesheet_or_gif_before_frame_qa"
+    "run_comfyui_or_mediapipe_for_this_review_fix",
+    "change_pose_thresholds_or_reinterpret_the_v054_pose_decision",
+    "generate_v3_anchors_or_walk_or_spritesheet_or_gif",
+    "add_a_provider_custom_node_strength_seed_or_estimator",
+    "publish_the_local_pose_landmarker_bundle_or_generation_weights"
   ],
   "state_consistency": {
-    "status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "status": "REVIEW_SNAPSHOT_INTEGRITY_FIXED",
     "validator": "src/ugas/state_consistency.py",
     "contradictory_walk_or_anchor_promotion": false,
-    "new_generation_started": true,
-    "new_generation_jobs": 9,
-    "all_fresh_binding": true,
-    "metric_calibration_evidence": "docs/evidence/pose-metric-calibration.json",
-    "estimator_evidence": "docs/evidence/pose-qa-estimator-qualification-v054.json",
-    "license_evidence": "docs/evidence/pose-qa-license-resolution.json",
-    "provider_evidence": "docs/evidence/v054-provider-qualification.json",
-    "execution_evidence": "docs/evidence/execution-evidence-v0.5.4.json"
+    "new_generation_started": false,
+    "new_generation_jobs": 0,
+    "pose_decision_evidence": "docs/evidence/v054-provider-qualification.json",
+    "review_visual_manifest": "docs/evidence/review-visuals-v0.5.5.json",
+    "review_verifier": "scripts/validation/verify_review_archive.py",
+    "review_zip_self_validation_required": true
   }
 }

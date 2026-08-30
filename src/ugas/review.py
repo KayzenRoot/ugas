@@ -81,6 +81,7 @@ REQUIRED_V054_REVIEW_EVIDENCE = {
     "c-seed-54701.png", "c-seed-54702.png", "c-seed-54703.png",
     "r-seed-54701.png", "r-seed-54702.png", "r-seed-54703.png",
 }
+REQUIRED_V055_REVIEW_EVIDENCE = REQUIRED_V054_REVIEW_EVIDENCE
 
 
 def _digest(path: Path) -> str:
@@ -111,6 +112,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V053_REVIEW_EVIDENCE
     elif schema_version == "0.5.4":
         required = REQUIRED_V054_REVIEW_EVIDENCE
+    elif schema_version == "0.5.5":
+        required = REQUIRED_V055_REVIEW_EVIDENCE
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

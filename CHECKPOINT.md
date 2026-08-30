@@ -1,31 +1,25 @@
-# UGAS checkpoint - v0.5.4
+# UGAS checkpoint - v0.5.5
 
-**STATUS:** `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`. O MediaPipe Pose Landmarker foi qualificado como estimador QA independente; as lanes A/C/R executaram 9 saídas frescas com as seeds autorizadas. A identidade/arma passou, mas nenhuma saída C/R passou os gates absolutos de pose por juntas. O processo para fail-closed antes de walk, âncoras v3 ou troca de provider.
-**VERSION:** `0.5.4`
-**PHASE:** `PROMPT-04F / POSE_LANE_RECHECK`
+**STATUS:** `REVIEW_ARCHIVE_VERIFIED`. Esta release corrigiu a integridade do snapshot do review sem executar GPU, ComfyUI ou MediaPipe. A decisão técnica de pose do v0.5.4 permanece separada como `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`.
+**VERSION:** `0.5.5`
+**PHASE:** `PROMPT-04G / REVIEW_SNAPSHOT_INTEGRITY`
 
 ## Current state
 
-O estado machine-authoritative é [docs/evidence/current-state.json](docs/evidence/current-state.json). O R4 continua imutável: revision `revision-3a425d184b1a49be9f6d6c8d52d04b96`, SHA-256 `7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798`.
+O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). O release gate é `REVIEW_SNAPSHOT_INTEGRITY_FIXED` e o snapshot verificado é `REVIEW_ARCHIVE_VERIFIED`. A decisão de pose continua `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED`, registrada na evidência [v054-provider-qualification.json](docs/evidence/v054-provider-qualification.json).
 
-O `REVIEW-v0.5.3.md` é histórico. Seu bloqueio de licença foi resolvido somente para uso local de QA: `POSE_QA_LOCAL_USE_LICENSE_RESOLVED`. O bundle não é redistribuído. A rechecagem atual confirmou o bloqueio do provider, sem reclassificar o histórico.
+O v0.5.4 é histórico e seus 9 outputs A/C/R, hashes, thresholds e execution evidence permanecem byte/hash-exatos. A licença `POSE_QA_LOCAL_USE_LICENSE_RESOLVED` continua válida apenas para QA local; o bundle `.task` não é redistribuído.
 
-## Estimator and license gate
+## Review snapshot integrity
 
-Uma política global única foi selecionada: `transparent_neutral_gray`. R4, referência editada e os 8 frames históricos são mensuráveis; mediana de juntas mensuráveis: 13; cobertura central: 100%; inversão esquerda/direita: 0. Overlays e sanity checks foram materializados.
+O matcher local do packager usa nomes exatos, componentes de caminho e padrões ancorados. `seed`, `tokenizer` e `monkey` em nomes de assets não são segredos genéricos. Segredos, credenciais, tokens explícitos, private keys, pesos e arquivos de modelo permanecem excluídos com motivos específicos.
 
-As fontes oficiais registradas são a documentação do [Pose Landmarker](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker) e o [model card BlazePose GHUM 3D](https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf). O model card resolve Apache-2.0 para o uso local de QA documentado; o bundle permanece fora do Git e do ZIP.
-
-## Provider lane recheck
-
-Thresholds foram congelados antes dos jobs em [pose-thresholds-v054.json](docs/evidence/pose-thresholds-v054.json). Foram executadas somente as lanes A, C e R, com `54701`, `54702`, `54703` em cada lane. A usou apenas identidade; C usou pose-first/identity-second nativo; R usou RefControl nativo a `0.8`.
-
-As 9 execuções possuem prompt/history/output binding fresco. A lane A teve mediana de pose `0.241770` e identidade aprovada; C teve mediana de pose `0.000000`; R teve mediana `0.174489`. Nenhuma lane pose-first cumpriu os gates absolutos. O overlay confirma que o corpo gerado permanece em pose diferente do guia.
+O verificador tracked [scripts/validation/verify_review_archive.py](scripts/validation/verify_review_archive.py) não depende de `.git`: verifica o ZIP, preserva os 9 paths canônicos em `docs/evidence/v054-lanes/`, confere hashes e cópias, e executa compileall, unittest e repository validation dentro de uma extração temporária externa.
 
 ## Boundary
 
-`generation_provider_change_authorized=false` e `walk_authorized=false`. Walk/front/8 não foi executado nesta fase; âncoras direcionais v3, spritesheet e GIF não foram promovidos. Não foi adicionado provider, custom node, estimator alternativo ou strength nova.
+`generation_provider_change_authorized=false`, `walk_authorized=false`, `new_generation_started=false` e `new_generation_jobs=0`. Nenhum provider alternativo, custom node, strength, estimator, walk, âncora v3, spritesheet ou GIF foi executado nesta release.
 
-O review ativo é [REVIEW-v0.5.4.md](REVIEW-v0.5.4.md). A aprovação visual humana, GitHub Actions, deployment e aprovação de produção não são inferidos da validação local.
+O review ativo é [REVIEW-v0.5.5.md](REVIEW-v0.5.5.md). A aprovação visual humana, GitHub Actions, deployment e aprovação de produção não são inferidos da validação local ou do verificador.
 
 Animação genérica permanece fora deste slice e não autoriza promoção de walk.

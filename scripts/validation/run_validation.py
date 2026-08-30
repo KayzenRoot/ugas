@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable historical gates and v0.5.4."""
+"""Objective UGAS validation, including immutable history and v0.5.5."""
 
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ from ugas.master_assets import verify_asset_integrity
 from ugas.model_registry import load_model, load_registry, validate_model_workflow_compatibility
 from ugas.reference_edit import validate_edit_contract, validate_execution_evidence
 from ugas.review import validate_review_visual_manifest
+from ugas.review_snapshot import self_test_sensitive_matcher
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.openpose_guides import COCO18_JOINTS, OPENPOSE_GUIDE_RENDERER_VERSION, validate_openpose_guide
 from ugas.state_consistency import validate_state_consistency
@@ -34,6 +35,11 @@ from ugas.pose_metric_calibration import normalized_headroom_gain, provider_gap_
 
 
 RESULTS: list[tuple[str, bool, str]] = []
+V054_CANONICAL_OUTPUTS = tuple(
+    f"docs/evidence/v054-lanes/{lane}-seed-{seed}.png"
+    for lane in ("a", "c", "r")
+    for seed in (54701, 54702, 54703)
+)
 
 
 def check(name: str, condition: bool, detail: str) -> None:
@@ -530,10 +536,64 @@ def _v054_checks() -> None:
     check("v054:review-boundary", "POSE_QA_LOCAL_USE_LICENSE_RESOLVED" in review and "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" in review and "walk não foi executado" in review.casefold() and "aprovação externa" in review.casefold(), "active review separates license resolution, provider gap, blocked walk and external approval")
 
 
+def _v055_checks() -> None:
+    """Validate the active review-snapshot integrity correction."""
+    state_path = ROOT / "docs/evidence/current-state.json"
+    checkpoint_path = ROOT / "CHECKPOINT.md"
+    review_path = ROOT / "REVIEW-v0.5.5.md"
+    try:
+        state = load_json(state_path)
+        checkpoint = checkpoint_path.read_text(encoding="utf-8")
+        review = review_path.read_text(encoding="utf-8")
+        consistency = validate_state_consistency(state, checkpoint, review)
+        check("v055:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.5.5 state and documents are consistent")
+        check("v055:state-schema", state.get("schema_version") == "0.5.5" and state.get("version") == "0.5.5" and state.get("phase") == "REVIEW_SNAPSHOT_INTEGRITY", "active state is v0.5.5 review snapshot integrity")
+        check("v055:state-separation", state.get("pose_lane_status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and state.get("review_snapshot_status") == "REVIEW_ARCHIVE_VERIFIED" and state.get("current_gate") == "REVIEW_SNAPSHOT_INTEGRITY_FIXED", "pose decision and review snapshot status are separate")
+        check("v055:no-generation", state.get("generation_provider_change_authorized") is False and state.get("walk_authorized") is False and state.get("state_consistency", {}).get("new_generation_started") is False and state.get("state_consistency", {}).get("new_generation_jobs") == 0, "v0.5.5 records no new generation")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v055:state-consistency", False, str(exc)); check("v055:state-schema", False, str(exc)); check("v055:state-separation", False, str(exc)); check("v055:no-generation", False, str(exc))
+
+    try:
+        provider = load_json(ROOT / "docs/evidence/v054-provider-qualification.json")
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.5.4.json")
+        table = load_json(ROOT / "docs/evidence/v054-pose-error-table.json")
+        check("v055:v054-decision-preserved", provider.get("status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and provider.get("record_count") == 9 and execution.get("record_count") == 9 and table.get("status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", "v0.5.4 machine-readable pose decision is preserved")
+        check("v055:v054-output-contract", len(table.get("rows", [])) == 9 and execution.get("all_fresh_binding") is True and execution.get("no_walk_executed") is True and set(provider.get("lanes", {})) == {"A", "C", "R"}, "the 9 A/C/R outputs and execution contract remain intact")
+        output_hashes = {str(row.get("output_path")): str(row.get("output_sha256")) for row in table.get("rows", [])}
+        check("v055:v054-output-hashes", len(output_hashes) == 9 and all((ROOT / path).is_file() and digest(ROOT / path) == value for path, value in output_hashes.items()), "all nine canonical PNG hashes match the v0.5.4 table")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v055:v054-decision-preserved", False, str(exc)); check("v055:v054-output-contract", False, str(exc)); check("v055:v054-output-hashes", False, str(exc))
+
+    try:
+        visual = load_json(ROOT / "docs/evidence/review-visuals-v0.5.5.json")
+        visual_result = validate_review_visual_manifest(visual, ROOT)
+        check("v055:visual-manifest", visual_result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(visual_result.get("failures", [])) or "v0.5.5 visual sources are hash-bound")
+        sources = {str(item.get("source_path")) for item in visual.get("images", [])}
+        check("v055:visual-sources", set(V054_CANONICAL_OUTPUTS).issubset(sources) and all((ROOT / source).is_file() for source in sources), "review manifest resolves every canonical source path")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v055:visual-manifest", False, str(exc)); check("v055:visual-sources", False, str(exc))
+
+    matcher = self_test_sensitive_matcher()
+    check("v055:matcher-self-test", matcher["status"] == "SENSITIVE_MATCHER_SELF_TEST_PASSED", "; ".join(matcher.get("failures", [])) or "anchored security matcher passes required include/exclude cases")
+    check("v055:archive-verifier", (ROOT / "scripts/validation/verify_review_archive.py").is_file(), "tracked review archive verifier is present")
+    review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""
+    headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.5.4 AUDIT FINDING", "ROOT CAUSE", "SENSITIVE PATH MATCHER FIX", "CANONICAL SNAPSHOT CONTRACT", "REVIEW ARCHIVE VERIFIER", "V054 LANE OUTPUT PRESERVATION", "HASH VERIFICATION", "SECURITY EXCLUSIONS", "POSE DECISION PRESERVED", "NO NEW GENERATION EVIDENCE", "TESTS", "VALIDATION", "EXTRACTED ZIP SELF-TEST", "TRACKED SNAPSHOT / GITHUB", "STATE CONSISTENCY", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+    check("v055:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.5.5 review headings present")
+    check("v055:review-boundary", "REVIEW_SNAPSHOT_INTEGRITY_FIXED" in review and "REVIEW_ARCHIVE_VERIFIED" in review and "não houve comfyui" in review.casefold() and "nenhum threshold" in review.casefold() and "foi alterado" in review.casefold(), "review separates packaging fix from unchanged pose decision and GPU boundary")
+
+
 
 def main() -> int:
     required = [
         "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.5.3.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "docs/test-coverage-matrix-v0.5.3.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/pose-metric-calibration.json", "docs/evidence/pose-metric-calibration-contact-sheet.png", "docs/evidence/pose-metric-negative-controls-contact-sheet.png", "docs/evidence/pose-qa-estimator-qualification.json", "docs/evidence/pose-qa-estimator-model.json", "docs/evidence/v052-refcontrol-baseline-contact.png", "docs/evidence/v053-pose-detection-overlay-contact.png", "docs/evidence/v053-pose-error-table.json", "docs/evidence/v053-provider-qualification.json", "docs/evidence/execution-evidence-v0.5.3.json", "docs/evidence/review-visuals-v0.5.3.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
+    ]
+    required += [
+        "REVIEW-v0.5.5.md", "docs/test-coverage-matrix-v0.5.5.md",
+        "docs/evidence/review-visuals-v0.5.5.json", "scripts/validation/verify_review_archive.py",
+        "src/ugas/review_snapshot.py",
+        "docs/evidence/v054-pose-error-table.json", "docs/evidence/v054-provider-qualification.json",
+        "docs/evidence/execution-evidence-v0.5.4.json",
+        *V054_CANONICAL_OUTPUTS,
     ]
     for item in required:
         path = ROOT / item; check(f"path:{item}", path.exists(), "present" if path.exists() else "missing")
@@ -554,13 +614,13 @@ def main() -> int:
             record = load_workflow(ROOT, item["id"]); graph = validate_api_workflow(record["api"]); model = load_model(ROOT, item["required_models"][0]); compatible = validate_model_workflow_compatibility(model, record)["compatible"]
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", UGAS_VERSION}, "native graph and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v054_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v055_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.4", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.4.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.4")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.5", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.5.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.5")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
