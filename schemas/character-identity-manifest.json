@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ugas.local/schemas/character-identity-manifest.json",
-  "title": "UGAS character identity manifest v0.5.0",
+  "title": "UGAS character identity manifest v0.5.1",
   "type": "object",
   "required": ["schema_version", "manifest_type", "asset_id", "character_id", "canonical_revision", "identity_signature", "geometry", "protected_properties", "allowed_transforms", "external_pipeline_anchor"],
-  "properties": {"schema_version": {"const": "0.5.0"}, "manifest_type": {"const": "character-identity"}, "asset_id": {"type": "string"}, "character_id": {"type": "string"}, "canonical_revision": {"type": "object", "required": ["revision_id", "sha256", "dimensions", "transparency"]}, "identity_signature": {"type": "object"}, "geometry": {"type": "object"}, "protected_properties": {"type": "array", "minItems": 1}, "allowed_transforms": {"type": "array", "minItems": 1}, "external_pipeline_anchor": {"type": "object", "required": ["approval_type", "production_approval", "revision_id", "sha256"]}}
+  "properties": {"schema_version": {"const": "0.5.1"}, "manifest_type": {"const": "character-identity"}, "asset_id": {"type": "string"}, "character_id": {"type": "string"}, "canonical_revision": {"type": "object", "required": ["revision_id", "sha256", "dimensions", "transparency"]}, "identity_signature": {"type": "object"}, "geometry": {"type": "object"}, "protected_properties": {"type": "array", "minItems": 1}, "allowed_transforms": {"type": "array", "minItems": 1}, "external_pipeline_anchor": {"type": "object", "required": ["approval_type", "production_approval", "revision_id", "sha256"]}}
 }

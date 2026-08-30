@@ -1,4 +1,4 @@
-# Installing UGAS 0.5.0
+# Installing UGAS 0.5.1
 
 ## Requirements
 

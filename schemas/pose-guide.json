@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ugas.local/schemas/pose-guide.json",
-  "title": "UGAS deterministic pose guide v0.5.0",
+  "title": "UGAS deterministic mannequin pose guide v0.5.1",
   "type": "object",
-  "required": ["schema_version", "guide_type", "guide_id", "canvas", "baseline_y", "centerline_x", "keypoints", "ground_policy", "pivot_policy", "source_controlled", "generated_ai_content", "deterministic"],
-  "properties": {"schema_version": {"const": "0.5.0"}, "guide_type": {"enum": ["view", "walk"]}, "canvas": {"type": "object", "required": ["width", "height"]}, "baseline_y": {"const": 478}, "centerline_x": {"const": 256}, "keypoints": {"type": "object", "minProperties": 6}, "source_controlled": {"const": true}, "generated_ai_content": {"const": false}, "deterministic": {"const": true}}
+  "required": ["schema_version", "guide_type", "guide_id", "canvas", "baseline_y", "centerline_x", "keypoints", "ground_policy", "pivot_policy", "source_controlled", "generated_ai_content", "deterministic", "renderer"],
+  "properties": {"schema_version": {"const": "0.5.1"}, "guide_type": {"enum": ["view", "walk", "qualification-challenge"]}, "canvas": {"type": "object", "required": ["width", "height"]}, "baseline_y": {"const": 478}, "centerline_x": {"const": 256}, "keypoints": {"type": "object", "minProperties": 7}, "source_controlled": {"const": true}, "generated_ai_content": {"const": false}, "deterministic": {"const": true}, "renderer": {"type": "object", "required": ["version"]}}
 }

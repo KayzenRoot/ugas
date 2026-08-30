@@ -1,8 +1,9 @@
 {
   "schema_version": "0.5.1",
-  "guide_type": "view",
-  "guide_id": "view-front",
-  "view": "front",
+  "guide_type": "qualification-challenge",
+  "guide_id": "multiref-strong-left-arm-up",
+  "view": "left",
+  "challenge": "strict-left-profile-arm-above-head-forward-leg",
   "canvas": {
     "width": 512,
     "height": 512
@@ -11,85 +12,85 @@
   "centerline_x": 256,
   "keypoints": {
     "head": [
-      256.0,
+      244,
       112
     ],
     "nose": [
-      256.0,
-      98
+      216,
+      111
     ],
     "neck": [
-      256.0,
+      248,
       158
     ],
     "pelvis": [
-      256.0,
+      250,
       286
     ],
     "shoulder_left": [
-      208.0,
+      233,
       172
     ],
     "shoulder_right": [
-      304.0,
-      172
+      258,
+      176
     ],
     "elbow_left": [
-      190.0,
-      224
+      218,
+      116
     ],
     "elbow_right": [
-      322.0,
-      224
+      260,
+      232
     ],
     "hand_left": [
-      200.0,
-      286
+      206,
+      64
     ],
     "hand_right": [
-      312.0,
-      286
+      258,
+      282
     ],
     "knee_left": [
-      222.0,
+      202,
       372
     ],
     "knee_right": [
-      290.0,
+      293,
       366
     ],
     "foot_left": [
-      214.0,
+      186,
       478
     ],
     "foot_right": [
-      298.0,
+      308,
       478
     ],
     "foot_left_toe": [
-      196.0,
+      162,
       478
     ],
     "foot_right_toe": [
-      316.0,
+      284,
       478
     ],
     "weapon_grip": [
-      298.0,
-      270
+      224,
+      274
     ],
     "weapon_tip": [
-      388.0,
-      180
+      164,
+      28
     ]
   },
   "orientation_cue": {
-    "facing": "front",
+    "facing": "left",
     "camera": "orthographic gameplay reference",
     "mirror_allowed": false,
-    "profile_strict": false
+    "profile_strict": true
   },
-  "ground_policy": "both feet rest on baseline_y; no guide pixels below baseline_y",
+  "ground_policy": "contact foot rests on baseline_y; no guide pixels below baseline_y",
   "pivot_policy": "pelvis centerline is stable; x pivot is centerline_x and y pivot is baseline_y",
   "source_controlled": true,
   "generated_ai_content": false,

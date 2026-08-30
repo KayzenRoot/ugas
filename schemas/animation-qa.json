@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ugas.local/schemas/animation-qa.json",
-  "title": "UGAS animation QA v0.5.0",
+  "title": "UGAS animation QA v0.5.1",
   "type": "object",
   "required": ["schema_version", "animation", "view", "frames", "temporal"],
-  "properties": {"schema_version": {"const": "0.5.0"}, "animation": {"const": "walk"}, "view": {"const": "front"}, "frames": {"type": "array", "minItems": 0, "maxItems": 8}, "temporal": {"type": "object", "required": ["frame_count", "unique_sha256", "adjacent_differences_ok", "no_previous_frame_chaining"]}}
+  "properties": {"schema_version": {"const": "0.5.1"}, "animation": {"const": "walk"}, "view": {"const": "front"}, "frames": {"type": "array", "minItems": 0, "maxItems": 8}, "temporal": {"type": "object", "required": ["frame_count", "unique_sha256", "gates", "no_previous_frame_chaining"]}}
 }

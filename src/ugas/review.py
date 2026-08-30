@@ -1,4 +1,4 @@
-"""Review-evidence manifest integrity checks for historical and v0.5 slices."""
+"""Review-evidence manifest integrity checks for historical and current slices."""
 
 from __future__ import annotations
 
@@ -40,6 +40,25 @@ REQUIRED_V050_REVIEW_EVIDENCE = {
     "walk-front-8-contact-sheet.png", "walk-front-8-spritesheet.png", "walk-front-8-preview.gif", "walk-frame-diff-contact.png",
 }
 
+REQUIRED_V051_BASE_REVIEW_EVIDENCE = {
+    "v050-baseline-walk-contact.png",
+    "pose-guides-v2-contact-sheet.png",
+    "pose-guide-v2-control-example.png",
+    "multiref-v2-ab-contact-sheet.png",
+}
+REQUIRED_V051_ANCHOR_REVIEW_EVIDENCE = REQUIRED_V051_BASE_REVIEW_EVIDENCE | {
+    "directional-anchor-candidates-v2-contact-sheet.png",
+    "directional-anchors-v2-contact-sheet.png",
+}
+REQUIRED_V051_WALK_REVIEW_EVIDENCE = REQUIRED_V051_ANCHOR_REVIEW_EVIDENCE | {
+    "walk-v2-candidates-contact-sheet.png",
+    "walk-v2-selected-contact-sheet.png",
+    "walk-v2-pose-overlay-contact.png",
+    "walk-v2-identity-drift-contact.png",
+    "walk-v2-spritesheet.png",
+    "walk-v2-preview.gif",
+}
+
 
 def _digest(path: Path) -> str:
     digest = hashlib.sha256()
@@ -57,10 +76,17 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
     items = manifest.get("images") if isinstance(manifest, Mapping) else None
     items = items if isinstance(items, list) else []
     by_name = {str(item.get("archive_name")): item for item in items if isinstance(item, Mapping)}
-    required = REQUIRED_V050_REVIEW_EVIDENCE if str(manifest.get("schema_version")) == "0.5.0" else REQUIRED_V043_REVIEW_EVIDENCE
+    schema_version = str(manifest.get("schema_version"))
+    if schema_version == "0.5.0":
+        required = REQUIRED_V050_REVIEW_EVIDENCE
+    elif schema_version == "0.5.1":
+        state = str(manifest.get("review_state", "multiref-gap"))
+        required = REQUIRED_V051_WALK_REVIEW_EVIDENCE if state == "walk" else REQUIRED_V051_ANCHOR_REVIEW_EVIDENCE if state == "anchors" else REQUIRED_V051_BASE_REVIEW_EVIDENCE
+    else:
+        required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))
     failures: list[str] = [f"missing visual evidence: {name}" for name in missing]
-    role_pairs = [] if str(manifest.get("schema_version")) == "0.5.0" else [
+    role_pairs = [] if schema_version in {"0.5.0", "0.5.1"} else [
         (by_name.get("master-selected-checkerboard.png"), by_name.get("reference-edit-selected-checkerboard.png")),
         (by_name.get("master-selected-transparent.png"), by_name.get("reference-edit-selected-transparent.png")),
     ]

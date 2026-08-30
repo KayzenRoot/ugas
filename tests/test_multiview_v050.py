@@ -1,4 +1,4 @@
-"""v0.5.0 multi-reference, deterministic guide and walk contract tests."""
+"""Historical v0.5.0 multi-reference, deterministic guide and walk contract tests."""
 
 from __future__ import annotations
 
@@ -9,7 +9,6 @@ from pathlib import Path
 
 from PIL import Image
 
-from ugas.constants import UGAS_VERSION
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
 from ugas.image_utils import sha256
 from ugas.multiview import normalize_frame
@@ -19,12 +18,13 @@ from ugas.workflow_registry import bind_workflow, load_workflow
 
 
 ROOT = Path(__file__).resolve().parents[1]
+HISTORICAL_V050_VERSION = "0.5.0"
 
 
 class MultiViewV050Tests(unittest.TestCase):
     def test_identity_manifest_binds_exact_r4(self):
         value = json.loads((ROOT / "docs/evidence/identity-manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(UGAS_VERSION, "0.5.0")
+        self.assertEqual(json.loads((ROOT / "docs/evidence/identity-manifest.json").read_text(encoding="utf-8"))["schema_version"], "0.5.1")
         self.assertEqual(value["asset_id"], ANCHOR_ASSET_ID)
         self.assertEqual(value["canonical_revision"]["revision_id"], ANCHOR_REVISION_ID)
         self.assertEqual(value["canonical_revision"]["sha256"], ANCHOR_SHA256)

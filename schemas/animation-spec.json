@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ugas.local/schemas/animation-spec.json",
-  "title": "UGAS animation specification v0.5.0",
+  "title": "UGAS animation specification v0.5.1",
   "type": "object",
   "required": ["schema_version", "animation", "view", "frames", "fps", "loop", "frame_width", "frame_height", "pivot_policy", "frame_files", "frame_hashes"],
-  "properties": {"schema_version": {"const": "0.5.0"}, "animation": {"const": "walk"}, "view": {"const": "front"}, "frames": {"const": 8}, "fps": {"const": 8}, "loop": {"const": true}, "frame_width": {"const": 512}, "frame_height": {"const": 512}, "frame_files": {"type": "array", "minItems": 8, "maxItems": 8}, "frame_hashes": {"type": "array", "minItems": 8, "maxItems": 8}}
+  "properties": {"schema_version": {"const": "0.5.1"}, "animation": {"const": "walk"}, "view": {"const": "front"}, "frames": {"const": 8}, "fps": {"const": 8}, "loop": {"const": true}, "frame_width": {"const": 512}, "frame_height": {"const": 512}, "frame_files": {"type": "array", "minItems": 8, "maxItems": 8}, "frame_hashes": {"type": "array", "minItems": 8, "maxItems": 8}}
 }

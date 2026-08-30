@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.5.0",
+  "schema_version": "0.5.1",
   "guide_type": "walk",
   "guide_id": "walk-front-8-frame-04-contact-right",
   "animation": "walk",
@@ -16,74 +16,114 @@
   "centerline_x": 256,
   "keypoints": {
     "head": [
-      265,
+      264,
       112
     ],
+    "nose": [
+      264,
+      98
+    ],
     "neck": [
-      265,
-      160
+      264,
+      158
     ],
     "pelvis": [
-      265,
+      264,
       286
     ],
     "shoulder_left": [
-      217,
+      216,
       172
     ],
     "shoulder_right": [
-      313,
+      312,
       172
     ],
     "elbow_left": [
-      191,
-      226
+      166,
+      224
     ],
     "elbow_right": [
-      339,
-      226
+      362,
+      224
     ],
     "hand_left": [
-      199,
+      176,
       286
     ],
     "hand_right": [
-      331,
+      352,
       286
     ],
     "knee_left": [
-      249,
-      374
+      260,
+      372
     ],
     "knee_right": [
-      281,
-      374
+      268,
+      366
     ],
     "foot_left": [
-      245,
+      252,
       478
     ],
     "foot_right": [
-      285,
+      276,
       478
     ],
-    "weapon_tip": [
-      367,
-      392
+    "foot_left_toe": [
+      234,
+      478
+    ],
+    "foot_right_toe": [
+      294,
+      478
     ],
     "weapon_grip": [
-      307,
-      272
+      306,
+      270
+    ],
+    "weapon_tip": [
+      396,
+      180
     ]
   },
   "orientation_cue": {
     "facing": "front",
     "camera": "orthographic gameplay reference",
-    "mirror_allowed": false
+    "mirror_allowed": false,
+    "profile_strict": false
   },
-  "ground_policy": "contact foot is on baseline_y; no guide pixels below baseline",
+  "ground_policy": "contact foot is on baseline_y; no guide pixels below baseline_y",
   "pivot_policy": "pelvis centerline remains stable; x pivot is centerline_x and y pivot is baseline_y",
   "source_controlled": true,
   "generated_ai_content": false,
-  "deterministic": true
+  "deterministic": true,
+  "renderer": {
+    "version": "2.0.0",
+    "control_background": [
+      238,
+      239,
+      242,
+      255
+    ],
+    "body_color": [
+      105,
+      112,
+      122,
+      255
+    ],
+    "joint_color": [
+      74,
+      81,
+      91,
+      255
+    ],
+    "weapon_color": [
+      137,
+      143,
+      151,
+      255
+    ]
+  }
 }

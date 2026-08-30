@@ -1,0 +1,1166 @@
+{
+  "schema_version": "0.5.1",
+  "records": [
+    {
+      "stage": "multiref-v2-A-canonical-only-0",
+      "image_edit": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-e2026d8b466d4694981e1d0b4bbde279",
+        "prompt_id": "7c1afbbf-050f-40e4-a97f-12647409b2a0",
+        "submitted_at": "2026-08-30T02:10:33+00:00",
+        "first_poll_at": "2026-08-30T02:10:33+00:00",
+        "completed_at": "2026-08-30T02:12:08+00:00",
+        "runtime_ms": 94688.331,
+        "history_record_key": "7c1afbbf-050f-40e4-a97f-12647409b2a0",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_image_sha256": null,
+          "reference_1_pose_view_guide_json_sha256": null
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "1415764fa3cd85c182000027d5734faca2a845f7204413d30b81a508613a47a9",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 51701,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\job-14fab26b110e48278561010221ed002d\\multiref-v2-a_canonical_only-0.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "7c1afbbf-050f-40e4-a97f-12647409b2a0",
+                  "timestamp": 1788055833777
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "7c1afbbf-050f-40e4-a97f-12647409b2a0",
+                  "timestamp": 1788055833799
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "7c1afbbf-050f-40e4-a97f-12647409b2a0",
+                  "timestamp": 1788055923429
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-v2-a_canonical_only-0",
+          "reference_order": [
+            "identity/style/material/character"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": null,
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-reference-edit_00028_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "18",
+            "data_sha256": "23e342eba28f148f2bbe894463b2b0a0a3ac5e9afb7ad786d35379b69274051f"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\job-14fab26b110e48278561010221ed002d\\multiref-v2-a_canonical_only-0.png",
+            "sha256": "23e342eba28f148f2bbe894463b2b0a0a3ac5e9afb7ad786d35379b69274051f",
+            "filename": "ugas-reference-edit_00028_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "background_removal": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-8b133899b44f40c9ae5c4cfa9c0b2b44",
+        "prompt_id": "bed50a8a-909e-40bc-a381-35bbe4ca66a3",
+        "submitted_at": "2026-08-30T02:12:10+00:00",
+        "first_poll_at": "2026-08-30T02:12:10+00:00",
+        "completed_at": "2026-08-30T02:12:20+00:00",
+        "runtime_ms": 9475.633,
+        "history_record_key": "bed50a8a-909e-40bc-a381-35bbe4ca66a3",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "23e342eba28f148f2bbe894463b2b0a0a3ac5e9afb7ad786d35379b69274051f"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-0\\birefnet\\job-b2f3ae73b35a4f708b98b1713cf08207\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "bed50a8a-909e-40bc-a381-35bbe4ca66a3",
+                  "timestamp": 1788055930755
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "bed50a8a-909e-40bc-a381-35bbe4ca66a3",
+                  "timestamp": 1788055930770
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "bed50a8a-909e-40bc-a381-35bbe4ca66a3",
+                  "timestamp": 1788055939011
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00057_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "c7705962814d53669fbd1fac87c2ebde27807cd8af3b7d818433bfb6c600899b"
+          },
+          {
+            "filename": "ugas-master-transparent_00057_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "f914b8cd17e73348c954d5dc5777186745026b642f2f24307d566a91aac63eed"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-0\\birefnet\\job-b2f3ae73b35a4f708b98b1713cf08207\\birefnet-output.png",
+            "sha256": "c7705962814d53669fbd1fac87c2ebde27807cd8af3b7d818433bfb6c600899b",
+            "filename": "ugas-foreground-mask_00057_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-0\\birefnet\\job-b2f3ae73b35a4f708b98b1713cf08207\\birefnet-output-1.png",
+            "sha256": "f914b8cd17e73348c954d5dc5777186745026b642f2f24307d566a91aac63eed",
+            "filename": "ugas-master-transparent_00057_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "multiref-v2-A-canonical-only-1",
+      "image_edit": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-b16a1856726c4f2ba6f2e36b2c295ae4",
+        "prompt_id": "ce7bc828-d680-475d-b4fa-cc7e905104dc",
+        "submitted_at": "2026-08-30T02:12:24+00:00",
+        "first_poll_at": "2026-08-30T02:12:24+00:00",
+        "completed_at": "2026-08-30T02:14:00+00:00",
+        "runtime_ms": 95505.574,
+        "history_record_key": "ce7bc828-d680-475d-b4fa-cc7e905104dc",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_image_sha256": null,
+          "reference_1_pose_view_guide_json_sha256": null
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "10d2e0417d1485cb94db4ef1d8257a82660503b58adbe0a00d7bbf027cf4a22d",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 51702,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\job-7e37e798a1874d269f82a87e3959b824\\multiref-v2-a_canonical_only-1.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "ce7bc828-d680-475d-b4fa-cc7e905104dc",
+                  "timestamp": 1788055944872
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "ce7bc828-d680-475d-b4fa-cc7e905104dc",
+                  "timestamp": 1788055944892
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "ce7bc828-d680-475d-b4fa-cc7e905104dc",
+                  "timestamp": 1788056036909
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-v2-a_canonical_only-1",
+          "reference_order": [
+            "identity/style/material/character"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": null,
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-reference-edit_00029_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "18",
+            "data_sha256": "f3df71ef31df2fe5a32e11c28c06cd04b7bba205f45ff7d4fef32af47d9ed54b"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\job-7e37e798a1874d269f82a87e3959b824\\multiref-v2-a_canonical_only-1.png",
+            "sha256": "f3df71ef31df2fe5a32e11c28c06cd04b7bba205f45ff7d4fef32af47d9ed54b",
+            "filename": "ugas-reference-edit_00029_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "background_removal": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-204cb592a0234f548a29968ba4551dbd",
+        "prompt_id": "bce779de-1289-4067-b31c-ed62d316e6b8",
+        "submitted_at": "2026-08-30T02:14:02+00:00",
+        "first_poll_at": "2026-08-30T02:14:02+00:00",
+        "completed_at": "2026-08-30T02:14:07+00:00",
+        "runtime_ms": 5589.561,
+        "history_record_key": "bce779de-1289-4067-b31c-ed62d316e6b8",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "f3df71ef31df2fe5a32e11c28c06cd04b7bba205f45ff7d4fef32af47d9ed54b"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-1\\birefnet\\job-c8cf242f27ef49cf86e65e88e0c771e8\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "bce779de-1289-4067-b31c-ed62d316e6b8",
+                  "timestamp": 1788056042470
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "bce779de-1289-4067-b31c-ed62d316e6b8",
+                  "timestamp": 1788056042484
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "bce779de-1289-4067-b31c-ed62d316e6b8",
+                  "timestamp": 1788056046753
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00058_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "eaf4391c643a56a30266a62dc2ed7a6e8926e29699b8f0a1e965eaf659f6412b"
+          },
+          {
+            "filename": "ugas-master-transparent_00058_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "f5b48a9aeb4c88935e7ad8c5108b4948d199439f217f6e9938e7956c3a1771a7"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-1\\birefnet\\job-c8cf242f27ef49cf86e65e88e0c771e8\\birefnet-output.png",
+            "sha256": "eaf4391c643a56a30266a62dc2ed7a6e8926e29699b8f0a1e965eaf659f6412b",
+            "filename": "ugas-foreground-mask_00058_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-1\\birefnet\\job-c8cf242f27ef49cf86e65e88e0c771e8\\birefnet-output-1.png",
+            "sha256": "f5b48a9aeb4c88935e7ad8c5108b4948d199439f217f6e9938e7956c3a1771a7",
+            "filename": "ugas-master-transparent_00058_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "multiref-v2-A-canonical-only-2",
+      "image_edit": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-bd50c15046ca4cdfa1932f92dfe63a5b",
+        "prompt_id": "50377368-6181-481c-b602-a94b7cce43de",
+        "submitted_at": "2026-08-30T02:14:13+00:00",
+        "first_poll_at": "2026-08-30T02:14:13+00:00",
+        "completed_at": "2026-08-30T02:15:17+00:00",
+        "runtime_ms": 64525.49,
+        "history_record_key": "50377368-6181-481c-b602-a94b7cce43de",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_image_sha256": null,
+          "reference_1_pose_view_guide_json_sha256": null
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "3a9e5d53baf775dc39db966f4965987d4a78f3245a0d84ed0e4518758dbed5c1",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 51703,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\job-92aa2154e5ef4d5a926ea2f54642a22d\\multiref-v2-a_canonical_only-2.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "50377368-6181-481c-b602-a94b7cce43de",
+                  "timestamp": 1788056053308
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "50377368-6181-481c-b602-a94b7cce43de",
+                  "timestamp": 1788056053325
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "50377368-6181-481c-b602-a94b7cce43de",
+                  "timestamp": 1788056114731
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-v2-a_canonical_only-2",
+          "reference_order": [
+            "identity/style/material/character"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": null,
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-reference-edit_00030_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "18",
+            "data_sha256": "18fd9fe0bd5b4119d98a706d0912dccbdc2ba4c635d9337f48030dcb0d50fd7c"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\job-92aa2154e5ef4d5a926ea2f54642a22d\\multiref-v2-a_canonical_only-2.png",
+            "sha256": "18fd9fe0bd5b4119d98a706d0912dccbdc2ba4c635d9337f48030dcb0d50fd7c",
+            "filename": "ugas-reference-edit_00030_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "background_removal": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-c272667ec5244619a5d5b0b125a6d61b",
+        "prompt_id": "17ed366c-cb6e-40ac-8246-9a640c8f0bd7",
+        "submitted_at": "2026-08-30T02:15:19+00:00",
+        "first_poll_at": "2026-08-30T02:15:19+00:00",
+        "completed_at": "2026-08-30T02:15:25+00:00",
+        "runtime_ms": 5680.893,
+        "history_record_key": "17ed366c-cb6e-40ac-8246-9a640c8f0bd7",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "18fd9fe0bd5b4119d98a706d0912dccbdc2ba4c635d9337f48030dcb0d50fd7c"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-2\\birefnet\\job-56a3633e0e9d47eab9da8cdd1f213ea1\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "17ed366c-cb6e-40ac-8246-9a640c8f0bd7",
+                  "timestamp": 1788056119510
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "17ed366c-cb6e-40ac-8246-9a640c8f0bd7",
+                  "timestamp": 1788056119528
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "17ed366c-cb6e-40ac-8246-9a640c8f0bd7",
+                  "timestamp": 1788056123699
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00059_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "f54ccca0c28a8eb353da6eed7ca8ae229acd5639dd2364fc519be550589b0860"
+          },
+          {
+            "filename": "ugas-master-transparent_00059_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "687fd50ee1764cb3776037d381309bfb01b02ba8e8b826d31154defbf42eb71a"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-2\\birefnet\\job-56a3633e0e9d47eab9da8cdd1f213ea1\\birefnet-output.png",
+            "sha256": "f54ccca0c28a8eb353da6eed7ca8ae229acd5639dd2364fc519be550589b0860",
+            "filename": "ugas-foreground-mask_00059_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\A-canonical-only\\candidate-2\\birefnet\\job-56a3633e0e9d47eab9da8cdd1f213ea1\\birefnet-output-1.png",
+            "sha256": "687fd50ee1764cb3776037d381309bfb01b02ba8e8b826d31154defbf42eb71a",
+            "filename": "ugas-master-transparent_00059_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "multiref-v2-B-canonical-plus-mannequin-0",
+      "image_edit": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-398afbd8bc934da4a3e1ed0b88e73d64",
+        "prompt_id": "3736163d-6ec5-49ab-b4d6-f48a091c91bc",
+        "submitted_at": "2026-08-30T02:15:29+00:00",
+        "first_poll_at": "2026-08-30T02:15:29+00:00",
+        "completed_at": "2026-08-30T02:17:04+00:00",
+        "runtime_ms": 94607.426,
+        "history_record_key": "3736163d-6ec5-49ab-b4d6-f48a091c91bc",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_image_sha256": "93abc70b0ef7bf0b241332e1c8cd34cce8a34642ed2ecdf8e4bab0f5b8c62bc8",
+          "reference_1_pose_view_guide_json_sha256": "4a6e194a3aa8d3b93837f67e2776504bddade2d74539709d568eb86c90ecfdac"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "b5386d9043181debed076d4d786eace15d9d4d81ebef56666421a33b2eb8756b",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 51701,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\job-d531714695614b58950522bbb7302a24\\multiref-v2-b_canonical_plus_mannequin-0.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "3736163d-6ec5-49ab-b4d6-f48a091c91bc",
+                  "timestamp": 1788056129693
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "3736163d-6ec5-49ab-b4d6-f48a091c91bc",
+                  "timestamp": 1788056129713
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "3736163d-6ec5-49ab-b4d6-f48a091c91bc",
+                  "timestamp": 1788056221539
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-v2-b_canonical_plus_mannequin-0",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "4a6e194a3aa8d3b93837f67e2776504bddade2d74539709d568eb86c90ecfdac",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00026_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "1d7d32ca35d0b67e243279dade6732e3fe25056b988bc9970f9aa38250926267"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\job-d531714695614b58950522bbb7302a24\\multiref-v2-b_canonical_plus_mannequin-0.png",
+            "sha256": "1d7d32ca35d0b67e243279dade6732e3fe25056b988bc9970f9aa38250926267",
+            "filename": "ugas-multiref_00026_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "background_removal": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-8fe774f3decd4fd48aed9d9f5e92854a",
+        "prompt_id": "fdecc4ee-cf2c-4445-8525-8a964c6cbd90",
+        "submitted_at": "2026-08-30T02:17:06+00:00",
+        "first_poll_at": "2026-08-30T02:17:06+00:00",
+        "completed_at": "2026-08-30T02:17:16+00:00",
+        "runtime_ms": 9770.556,
+        "history_record_key": "fdecc4ee-cf2c-4445-8525-8a964c6cbd90",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "1d7d32ca35d0b67e243279dade6732e3fe25056b988bc9970f9aa38250926267"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-0\\birefnet\\job-d379ca1a2b784972ab92d0d89a865694\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "fdecc4ee-cf2c-4445-8525-8a964c6cbd90",
+                  "timestamp": 1788056226602
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "fdecc4ee-cf2c-4445-8525-8a964c6cbd90",
+                  "timestamp": 1788056226620
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "fdecc4ee-cf2c-4445-8525-8a964c6cbd90",
+                  "timestamp": 1788056235778
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00060_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "47e968a7abee8af10e46d0c2ad80f64db0e064384e4eb31a2d303a304e0a6499"
+          },
+          {
+            "filename": "ugas-master-transparent_00060_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "cea37917c21913cfcce75e05ea2d9841a2284a14c5dd5a363720e9765324bde8"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-0\\birefnet\\job-d379ca1a2b784972ab92d0d89a865694\\birefnet-output.png",
+            "sha256": "47e968a7abee8af10e46d0c2ad80f64db0e064384e4eb31a2d303a304e0a6499",
+            "filename": "ugas-foreground-mask_00060_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-0\\birefnet\\job-d379ca1a2b784972ab92d0d89a865694\\birefnet-output-1.png",
+            "sha256": "cea37917c21913cfcce75e05ea2d9841a2284a14c5dd5a363720e9765324bde8",
+            "filename": "ugas-master-transparent_00060_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "multiref-v2-B-canonical-plus-mannequin-1",
+      "image_edit": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-d1cfa347b0b34d0cb54a6209f7c9eb4d",
+        "prompt_id": "881cf4c5-d865-4196-87dd-da500a2aef6a",
+        "submitted_at": "2026-08-30T02:17:20+00:00",
+        "first_poll_at": "2026-08-30T02:17:20+00:00",
+        "completed_at": "2026-08-30T02:19:05+00:00",
+        "runtime_ms": 104878.708,
+        "history_record_key": "881cf4c5-d865-4196-87dd-da500a2aef6a",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_image_sha256": "93abc70b0ef7bf0b241332e1c8cd34cce8a34642ed2ecdf8e4bab0f5b8c62bc8",
+          "reference_1_pose_view_guide_json_sha256": "4a6e194a3aa8d3b93837f67e2776504bddade2d74539709d568eb86c90ecfdac"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "d3f861594cf7f1aa033a93decab754bd1b54ddec48334633787ea7ccfd71251d",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 51702,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\job-0afb83d0c9be49259b98ca7d81a6e9e4\\multiref-v2-b_canonical_plus_mannequin-1.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "881cf4c5-d865-4196-87dd-da500a2aef6a",
+                  "timestamp": 1788056240815
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "881cf4c5-d865-4196-87dd-da500a2aef6a",
+                  "timestamp": 1788056240834
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "881cf4c5-d865-4196-87dd-da500a2aef6a",
+                  "timestamp": 1788056340750
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-v2-b_canonical_plus_mannequin-1",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "4a6e194a3aa8d3b93837f67e2776504bddade2d74539709d568eb86c90ecfdac",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00027_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "2d048a0a1c4bffd54d3ac8353b61f8c2fd8b9936bedf97ab99e31e9c590beec7"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\job-0afb83d0c9be49259b98ca7d81a6e9e4\\multiref-v2-b_canonical_plus_mannequin-1.png",
+            "sha256": "2d048a0a1c4bffd54d3ac8353b61f8c2fd8b9936bedf97ab99e31e9c590beec7",
+            "filename": "ugas-multiref_00027_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "background_removal": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-b90de59759244406b88e632c1609dc16",
+        "prompt_id": "5bf2d7b0-46b0-4fc0-b9cd-6b7230fef3eb",
+        "submitted_at": "2026-08-30T02:19:08+00:00",
+        "first_poll_at": "2026-08-30T02:19:08+00:00",
+        "completed_at": "2026-08-30T02:19:17+00:00",
+        "runtime_ms": 9654.056,
+        "history_record_key": "5bf2d7b0-46b0-4fc0-b9cd-6b7230fef3eb",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "2d048a0a1c4bffd54d3ac8353b61f8c2fd8b9936bedf97ab99e31e9c590beec7"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-1\\birefnet\\job-273e6ffca4a74248ba3eb54ab3bcc832\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "5bf2d7b0-46b0-4fc0-b9cd-6b7230fef3eb",
+                  "timestamp": 1788056348092
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "5bf2d7b0-46b0-4fc0-b9cd-6b7230fef3eb",
+                  "timestamp": 1788056348111
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "5bf2d7b0-46b0-4fc0-b9cd-6b7230fef3eb",
+                  "timestamp": 1788056353437
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00061_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "9461b2df8e53bb81716bff48786966cd1e3e9ee1f38bda2eb179bbfae61d2d7d"
+          },
+          {
+            "filename": "ugas-master-transparent_00061_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "35fcc6aa186cff0772bd3d3a668b188c8b5a6e194beb761033397001faa8bdd3"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-1\\birefnet\\job-273e6ffca4a74248ba3eb54ab3bcc832\\birefnet-output.png",
+            "sha256": "9461b2df8e53bb81716bff48786966cd1e3e9ee1f38bda2eb179bbfae61d2d7d",
+            "filename": "ugas-foreground-mask_00061_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-1\\birefnet\\job-273e6ffca4a74248ba3eb54ab3bcc832\\birefnet-output-1.png",
+            "sha256": "35fcc6aa186cff0772bd3d3a668b188c8b5a6e194beb761033397001faa8bdd3",
+            "filename": "ugas-master-transparent_00061_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "multiref-v2-B-canonical-plus-mannequin-2",
+      "image_edit": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-bcf13f5bb2a54742b687fe3ebe63cf58",
+        "prompt_id": "206888c4-7bd2-40af-9ec2-d5758820f94a",
+        "submitted_at": "2026-08-30T02:19:21+00:00",
+        "first_poll_at": "2026-08-30T02:19:21+00:00",
+        "completed_at": "2026-08-30T02:20:31+00:00",
+        "runtime_ms": 69775.882,
+        "history_record_key": "206888c4-7bd2-40af-9ec2-d5758820f94a",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_0_identity_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "reference_1_pose_view_guide_image_sha256": "93abc70b0ef7bf0b241332e1c8cd34cce8a34642ed2ecdf8e4bab0f5b8c62bc8",
+          "reference_1_pose_view_guide_json_sha256": "4a6e194a3aa8d3b93837f67e2776504bddade2d74539709d568eb86c90ecfdac"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "d1465a80ac5defa70b9330c631eb194f9342ac04f4d34ce65c695e6ab2ba2e33",
+        "model_ids": [
+          "flux2-klein-4b-base-nvfp4"
+        ],
+        "model_file_sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "seed": 51703,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\job-cf9d6d587a504dbe869f7c58b9d4ed58\\multiref-v2-b_canonical_plus_mannequin-2.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "206888c4-7bd2-40af-9ec2-d5758820f94a",
+                  "timestamp": 1788056361845
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "206888c4-7bd2-40af-9ec2-d5758820f94a",
+                  "timestamp": 1788056361866
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "206888c4-7bd2-40af-9ec2-d5758820f94a",
+                  "timestamp": 1788056430131
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {
+          "stage": "multiref-v2-b_canonical_plus_mannequin-2",
+          "reference_order": [
+            "identity/style/material/character",
+            "pose/view/guide"
+          ],
+          "source_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+          "source_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+          "guide_sha256": "4a6e194a3aa8d3b93837f67e2776504bddade2d74539709d568eb86c90ecfdac",
+          "previous_frame_chaining": false
+        },
+        "outputs": [
+          {
+            "filename": "ugas-multiref_00028_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "22",
+            "data_sha256": "536571a104f56b90e3e22a23c02e744bba5a70f38a55e9efc03cacb182fbe8d1"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\job-cf9d6d587a504dbe869f7c58b9d4ed58\\multiref-v2-b_canonical_plus_mannequin-2.png",
+            "sha256": "536571a104f56b90e3e22a23c02e744bba5a70f38a55e9efc03cacb182fbe8d1",
+            "filename": "ugas-multiref_00028_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      },
+      "background_removal": {
+        "schema_version": "0.5.1",
+        "client_job_id": "job-7574d4f85fb64d2496975ab9cab6a751",
+        "prompt_id": "5642cad5-47b9-40e7-9782-a3a4bbe7525b",
+        "submitted_at": "2026-08-30T02:20:32+00:00",
+        "first_poll_at": "2026-08-30T02:20:32+00:00",
+        "completed_at": "2026-08-30T02:20:37+00:00",
+        "runtime_ms": 5290.315,
+        "history_record_key": "5642cad5-47b9-40e7-9782-a3a4bbe7525b",
+        "history_key_matches_prompt_id": true,
+        "source_hashes": {
+          "reference_sha256": "536571a104f56b90e3e22a23c02e744bba5a70f38a55e9efc03cacb182fbe8d1"
+        },
+        "instruction_sha256": null,
+        "edit_contract_sha256": null,
+        "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "model_ids": [
+          "birefnet"
+        ],
+        "model_file_sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "seed": 0,
+        "seed_was_used_before": false,
+        "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-2\\birefnet\\job-5d86f13a2b1f4d23bc2dbf8dc3386b97\\birefnet-output.png",
+        "target_existed_before_submission": false,
+        "cache": {
+          "authoritative_history_status": {
+            "status_str": "success",
+            "completed": true,
+            "messages": [
+              [
+                "execution_start",
+                {
+                  "prompt_id": "5642cad5-47b9-40e7-9782-a3a4bbe7525b",
+                  "timestamp": 1788056432685
+                }
+              ],
+              [
+                "execution_cached",
+                {
+                  "nodes": [],
+                  "prompt_id": "5642cad5-47b9-40e7-9782-a3a4bbe7525b",
+                  "timestamp": 1788056432700
+                }
+              ],
+              [
+                "execution_success",
+                {
+                  "prompt_id": "5642cad5-47b9-40e7-9782-a3a4bbe7525b",
+                  "timestamp": 1788056436552
+                }
+              ]
+            ]
+          },
+          "cache_hit_declared": null
+        },
+        "qualification_context": {},
+        "outputs": [
+          {
+            "filename": "ugas-foreground-mask_00062_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "8",
+            "data_sha256": "abb109664f9cd366e195badc0c9f0a4e85a135e60f3266f38b8128e8f99de19b"
+          },
+          {
+            "filename": "ugas-master-transparent_00062_.png",
+            "subfolder": "",
+            "type": "output",
+            "node_id": "7",
+            "data_sha256": "779a589a342fbaba66aa435d9caa4944ef4ded15b612ac676cd280169b0cf69d"
+          }
+        ],
+        "runtime_plausibility": {
+          "status": "NOT_RUN"
+        },
+        "fresh_binding": true,
+        "output_paths": [
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-2\\birefnet\\job-5d86f13a2b1f4d23bc2dbf8dc3386b97\\birefnet-output.png",
+            "sha256": "abb109664f9cd366e195badc0c9f0a4e85a135e60f3266f38b8128e8f99de19b",
+            "filename": "ugas-foreground-mask_00062_.png",
+            "subfolder": "",
+            "type": "output"
+          },
+          {
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\multiview-v2\\ab\\B-canonical-plus-mannequin\\candidate-2\\birefnet\\job-5d86f13a2b1f4d23bc2dbf8dc3386b97\\birefnet-output-1.png",
+            "sha256": "779a589a342fbaba66aa435d9caa4944ef4ded15b612ac676cd280169b0cf69d",
+            "filename": "ugas-master-transparent_00062_.png",
+            "subfolder": "",
+            "type": "output"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "MULTI_REFERENCE_POSE_CONTROL_GAP",
+  "fresh_binding_required": true,
+  "all_prompt_ids_present": true,
+  "all_history_bindings_exact": true,
+  "stale_output_rejected": true,
+  "previous_frame_chaining": false
+}

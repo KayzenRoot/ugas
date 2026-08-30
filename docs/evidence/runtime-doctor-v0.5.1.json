@@ -1,0 +1,524 @@
+{
+  "schema_version": "0.5.1",
+  "status": "READY",
+  "endpoint": "http://127.0.0.1:8188",
+  "health": {
+    "status": "healthy",
+    "value": {
+      "system": {
+        "os": "win32",
+        "ram_total": 16964046848,
+        "ram_free": 3203153920,
+        "comfyui_version": "0.34.0",
+        "required_frontend_version": "1.49.6",
+        "installed_templates_version": "0.11.48",
+        "required_templates_version": "0.11.48",
+        "comfy_package_versions": [
+          {
+            "name": "comfyui-frontend-package",
+            "installed": "1.49.6",
+            "required": "1.49.6"
+          },
+          {
+            "name": "comfyui-workflow-templates",
+            "installed": "0.11.48",
+            "required": "0.11.48"
+          },
+          {
+            "name": "comfyui-embedded-docs",
+            "installed": "0.5.10",
+            "required": "0.5.10"
+          },
+          {
+            "name": "comfy-kitchen",
+            "installed": "0.2.31",
+            "required": "0.2.31"
+          },
+          {
+            "name": "comfy-aimdo",
+            "installed": "0.4.15",
+            "required": "0.4.15"
+          }
+        ],
+        "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+        "pytorch_version": "2.13.0+cu130",
+        "embedded_python": false,
+        "deploy_environment": "local-git",
+        "argv": [
+          "main.py",
+          "--listen",
+          "127.0.0.1",
+          "--port",
+          "8188"
+        ]
+      },
+      "devices": [
+        {
+          "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+          "type": "cuda",
+          "index": 0,
+          "vram_total": 8546484224,
+          "vram_free": 6825510006,
+          "torch_vram_total": 134217728,
+          "torch_vram_free": 62194806
+        }
+      ]
+    }
+  },
+  "reference_latent_node": {
+    "present": true,
+    "object_info": {
+      "input": {
+        "required": {
+          "conditioning": [
+            "CONDITIONING",
+            {}
+          ]
+        },
+        "optional": {
+          "latent": [
+            "LATENT",
+            {}
+          ]
+        }
+      },
+      "input_order": {
+        "required": [
+          "conditioning"
+        ],
+        "optional": [
+          "latent"
+        ]
+      },
+      "is_input_list": false,
+      "output": [
+        "CONDITIONING"
+      ],
+      "output_is_list": [
+        false
+      ],
+      "output_name": [
+        "CONDITIONING"
+      ],
+      "output_tooltips": [
+        null
+      ],
+      "output_matchtypes": null,
+      "name": "ReferenceLatent",
+      "display_name": "Set Reference Latent",
+      "description": "This node sets the guiding latent for an edit model. If the model supports it you can chain multiple to set multiple reference images.",
+      "python_module": "comfy_extras.nodes_edit_model",
+      "category": "model/conditioning",
+      "output_node": false,
+      "deprecated": false,
+      "experimental": false,
+      "dev_only": false,
+      "api_node": false,
+      "price_badge": null,
+      "search_aliases": null,
+      "essentials_category": null,
+      "has_intermediate_output": false
+    }
+  },
+  "workflow": {
+    "id": "flux2-klein-base-4b-quality-multi-reference-edit",
+    "sha256": "5caa34247e8ed8f8a6a7d0204966e69e1a69d00dfb8a962dba58541f5416998b",
+    "parameters": {
+      "steps": 20,
+      "guidance": 5.0,
+      "sampler": "euler",
+      "scheduler": "Flux2Scheduler",
+      "reference_order": [
+        "identity-anchor",
+        "pose-view-guide"
+      ],
+      "qualification_status": "verified-pending-visual-review"
+    }
+  },
+  "model_hashes": {
+    "model_id": "flux2-klein-4b-base-nvfp4",
+    "manifest_status": "qualified",
+    "expected_sha256": {
+      "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+      "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+      "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+    },
+    "exact_files": [
+      "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
+      "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+      "vae/flux2-vae.safetensors"
+    ]
+  },
+  "capabilities": {
+    "multi_reference": {
+      "schema_version": "0.5.1",
+      "provider": "provider-comfyui",
+      "capability": "multi-reference-edit",
+      "state": "ready",
+      "endpoint": "http://127.0.0.1:8188",
+      "server_version": "0.34.0",
+      "devices": [
+        {
+          "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+          "type": "cuda",
+          "index": 0,
+          "vram_total": 8546484224,
+          "vram_free": 6825510006,
+          "torch_vram_total": 134217728,
+          "torch_vram_free": 62194806
+        }
+      ],
+      "required_nodes": [
+        {
+          "class_type": "UNETLoader",
+          "present": true
+        },
+        {
+          "class_type": "CLIPLoader",
+          "present": true
+        },
+        {
+          "class_type": "VAELoader",
+          "present": true
+        },
+        {
+          "class_type": "CLIPTextEncode",
+          "present": true
+        },
+        {
+          "class_type": "CLIPTextEncode",
+          "present": true
+        },
+        {
+          "class_type": "LoadImage",
+          "present": true
+        },
+        {
+          "class_type": "VAEEncode",
+          "present": true
+        },
+        {
+          "class_type": "LoadImage",
+          "present": true
+        },
+        {
+          "class_type": "VAEEncode",
+          "present": true
+        },
+        {
+          "class_type": "ReferenceLatent",
+          "present": true
+        },
+        {
+          "class_type": "ReferenceLatent",
+          "present": true
+        },
+        {
+          "class_type": "ReferenceLatent",
+          "present": true
+        },
+        {
+          "class_type": "ReferenceLatent",
+          "present": true
+        },
+        {
+          "class_type": "GetImageSize",
+          "present": true
+        },
+        {
+          "class_type": "EmptyFlux2LatentImage",
+          "present": true
+        },
+        {
+          "class_type": "RandomNoise",
+          "present": true
+        },
+        {
+          "class_type": "KSamplerSelect",
+          "present": true
+        },
+        {
+          "class_type": "Flux2Scheduler",
+          "present": true
+        },
+        {
+          "class_type": "CFGGuider",
+          "present": true
+        },
+        {
+          "class_type": "SamplerCustomAdvanced",
+          "present": true
+        },
+        {
+          "class_type": "VAEDecode",
+          "present": true
+        },
+        {
+          "class_type": "SaveImage",
+          "present": true
+        }
+      ],
+      "required_models": [
+        {
+          "file": "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
+          "folder": "diffusion_models",
+          "present": true
+        },
+        {
+          "file": "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+          "folder": "text_encoders",
+          "present": true
+        },
+        {
+          "file": "vae/flux2-vae.safetensors",
+          "folder": "vae",
+          "present": true
+        }
+      ],
+      "workflow": {
+        "id": "flux2-klein-base-4b-quality-multi-reference-edit",
+        "version": "0.5.1",
+        "sha256": "5caa34247e8ed8f8a6a7d0204966e69e1a69d00dfb8a962dba58541f5416998b",
+        "validation": {
+          "valid_graph": true,
+          "node_count": 22,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true
+        },
+        "compatibility": {
+          "compatible": true,
+          "model_id": "flux2-klein-4b-base-nvfp4",
+          "workflow_id": "flux2-klein-base-4b-quality-multi-reference-edit",
+          "family": "flux2-klein-4b",
+          "variant": "base",
+          "steps": 20,
+          "guidance": 5.0,
+          "mismatches": [],
+          "experimental_override": false
+        },
+        "qualified_capabilities": [
+          "multi-reference-edit",
+          "character-view-edit",
+          "pose-conditioned-frame"
+        ]
+      },
+      "model": {
+        "id": "flux2-klein-4b-base-nvfp4",
+        "family": "flux2-klein-4b",
+        "variant": "base",
+        "license": "Apache-2.0",
+        "sha256": {
+          "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+          "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+          "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+        },
+        "qualification_evidence": {
+          "status": "qualified",
+          "hashes_verified": true,
+          "files_verified_at": "2026-08-29",
+          "smoke_evidence": "docs/evidence/quality-benchmark.json"
+        },
+        "inventory": {
+          "model_id": "flux2-klein-4b-base-nvfp4",
+          "files": [
+            {
+              "file": "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
+              "folder": "diffusion_models",
+              "present": true
+            },
+            {
+              "file": "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+              "folder": "text_encoders",
+              "present": true
+            },
+            {
+              "file": "vae/flux2-vae.safetensors",
+              "folder": "vae",
+              "present": true
+            }
+          ],
+          "inventory_complete": true
+        }
+      },
+      "transport_capabilities": [
+        "workflow-submit",
+        "polling",
+        "output-retrieval",
+        "system-stats"
+      ],
+      "asset_capabilities_declared": [
+        "multi-reference-edit",
+        "character-view-edit",
+        "pose-conditioned-frame"
+      ],
+      "asset_capabilities_qualified": [
+        "multi-reference-edit",
+        "character-view-edit",
+        "pose-conditioned-frame"
+      ],
+      "smoke_test": {
+        "status": "not-run"
+      },
+      "failure_reason": null,
+      "observed_at": "2026-08-30T02:10:32+00:00",
+      "features": {
+        "supports_preview_metadata": true,
+        "supports_model_type_tags": true,
+        "max_upload_size": 104857600,
+        "extension": {
+          "manager": {
+            "supports_v4": true
+          }
+        },
+        "node_replacements": true,
+        "assets": false
+      }
+    },
+    "background_removal": {
+      "schema_version": "0.5.1",
+      "provider": "provider-comfyui",
+      "capability": "background-removal",
+      "state": "ready",
+      "endpoint": "http://127.0.0.1:8188",
+      "server_version": "0.34.0",
+      "devices": [
+        {
+          "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+          "type": "cuda",
+          "index": 0,
+          "vram_total": 8546484224,
+          "vram_free": 6825510006,
+          "torch_vram_total": 134217728,
+          "torch_vram_free": 62194806
+        }
+      ],
+      "required_nodes": [
+        {
+          "class_type": "LoadImage",
+          "present": true
+        },
+        {
+          "class_type": "LoadBackgroundRemovalModel",
+          "present": true
+        },
+        {
+          "class_type": "RemoveBackground",
+          "present": true
+        },
+        {
+          "class_type": "InvertMask",
+          "present": true
+        },
+        {
+          "class_type": "JoinImageWithAlpha",
+          "present": true
+        },
+        {
+          "class_type": "MaskToImage",
+          "present": true
+        },
+        {
+          "class_type": "SaveImage",
+          "present": true
+        },
+        {
+          "class_type": "SaveImage",
+          "present": true
+        }
+      ],
+      "required_models": [
+        {
+          "file": "background_removal/birefnet.safetensors",
+          "folder": "background_removal",
+          "present": true
+        }
+      ],
+      "workflow": {
+        "id": "birefnet-background-removal",
+        "version": "0.5.1",
+        "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+        "validation": {
+          "valid_graph": true,
+          "node_count": 8,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true
+        },
+        "compatibility": {
+          "compatible": true,
+          "model_id": "birefnet",
+          "workflow_id": "birefnet-background-removal",
+          "family": "birefnet",
+          "variant": "native",
+          "steps": null,
+          "guidance": null,
+          "mismatches": [],
+          "experimental_override": false
+        },
+        "qualified_capabilities": [
+          "background-removal",
+          "transparent-sprite-master"
+        ]
+      },
+      "model": {
+        "id": "birefnet",
+        "family": "birefnet",
+        "variant": "native",
+        "license": "MIT",
+        "sha256": {
+          "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+        },
+        "qualification_evidence": {
+          "status": "qualified",
+          "hashes_verified": true,
+          "files_verified_at": "2026-08-29",
+          "live_smoke_evidence": "docs/evidence/birefnet.json"
+        },
+        "inventory": {
+          "model_id": "birefnet",
+          "files": [
+            {
+              "file": "background_removal/birefnet.safetensors",
+              "folder": "background_removal",
+              "present": true
+            }
+          ],
+          "inventory_complete": true
+        }
+      },
+      "transport_capabilities": [
+        "workflow-submit",
+        "polling",
+        "output-retrieval",
+        "system-stats"
+      ],
+      "asset_capabilities_declared": [
+        "background-removal",
+        "transparent-sprite-master"
+      ],
+      "asset_capabilities_qualified": [
+        "background-removal",
+        "transparent-sprite-master"
+      ],
+      "smoke_test": {
+        "status": "not-run"
+      },
+      "failure_reason": null,
+      "observed_at": "2026-08-30T02:10:32+00:00",
+      "features": {
+        "supports_preview_metadata": true,
+        "supports_model_type_tags": true,
+        "max_upload_size": 104857600,
+        "extension": {
+          "manager": {
+            "supports_v4": true
+          }
+        },
+        "node_replacements": true,
+        "assets": false
+      }
+    }
+  },
+  "observed_at": "2026-08-30T02:10:32Z"
+}

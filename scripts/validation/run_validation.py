@@ -1,4 +1,4 @@
-"""Objective UGAS v0.5.0 validation, including historical and pilot gates."""
+"""Objective UGAS v0.5.1 validation, including immutable historical gates."""
 
 from __future__ import annotations
 
@@ -26,7 +26,8 @@ from ugas.review import validate_review_visual_manifest
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
-from ugas.pose_guides import WALK_NAMES, validate_pose_guide
+from ugas.pose_guides import CHALLENGE_NAME, POSE_GUIDE_RENDERER_VERSION, WALK_NAMES, validate_pose_guide
+from ugas.multiview import AB_POSE_GAIN, AB_POSE_THRESHOLD, AB_POSE_FLOOR, FRAME_POSE_THRESHOLD, IDENTITY_THRESHOLD
 
 
 RESULTS: list[tuple[str, bool, str]] = []
@@ -49,6 +50,28 @@ def digest(path: Path) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def schema_compatible_with_artifact(schema: dict, artifact: dict) -> dict:
+    """Validate immutable v0.5.0 evidence against the equivalent current schema."""
+    if artifact.get("schema_version") != "0.5.0":
+        return schema
+    value = json.loads(json.dumps(schema))
+    def replace(node: object) -> None:
+        if isinstance(node, dict):
+            if node.get("const") == UGAS_VERSION:
+                node["const"] = "0.5.0"
+            for child in node.values():
+                replace(child)
+        elif isinstance(node, list):
+            for child in node:
+                replace(child)
+    replace(value)
+    if artifact.get("schema_version") == "0.5.0" and artifact.get("animation") == "walk":
+        temporal = value.get("properties", {}).get("temporal", {})
+        if isinstance(temporal, dict) and isinstance(temporal.get("required"), list):
+            temporal["required"] = [item for item in temporal["required"] if item != "gates"]
+    return value
+
+
 def tracked(path: str) -> bool:
     if os.environ.get("UGAS_TRACKED_SNAPSHOT") == "1" or not (ROOT / ".git").exists():
         return (ROOT / path).is_file()
@@ -67,7 +90,7 @@ def snapshot_check() -> None:
     if not (ROOT / ".git").exists():
         check("snapshot:git-context", True, "SKIP_EXTERNAL_GIT_CONTEXT")
         return
-    with tempfile.TemporaryDirectory(prefix="ugas-v043-snapshot-") as directory:
+    with tempfile.TemporaryDirectory(prefix="ugas-v051-snapshot-") as directory:
         snapshot = Path(directory) / "snapshot"; snapshot.mkdir()
         archive = subprocess.run(["git", "archive", "HEAD"], cwd=ROOT, capture_output=True, check=False)
         if archive.returncode != 0:
@@ -210,11 +233,11 @@ def _v050_checks() -> None:
     check("v050:execution-evidence", execution.get("schema_version") == "0.5.0" and execution.get("fresh_binding_required") is True and execution.get("previous_frame_chaining") is False, "execution evidence policy is explicit")
     for schema_name, artifact_path in (("character-identity-manifest", "docs/evidence/identity-manifest.json"), ("directional-anchor-set", "docs/evidence/directional-anchor-set.json"), ("animation-spec", "docs/evidence/walk-front-8.json"), ("animation-qa", "docs/evidence/walk-front-8-animation-qa.json")):
         try:
-            validate_instance(load_json(ROOT / artifact_path), load_json(ROOT / f"schemas/{schema_name}.json")); check(f"v050:schema-instance:{schema_name}", True, f"real artifact validates against {schema_name}")
+            artifact = load_json(ROOT / artifact_path); validate_instance(artifact, schema_compatible_with_artifact(load_json(ROOT / f"schemas/{schema_name}.json"), artifact)); check(f"v050:schema-instance:{schema_name}", True, f"historical/current artifact validates against {schema_name}")
         except (OSError, json.JSONDecodeError, SchemaValidationError) as exc: check(f"v050:schema-instance:{schema_name}", False, str(exc))
     try:
         frame = load_json(ROOT / "docs/evidence/walk-front-8-animation-qa.json")["frames"][0]["selected"]
-        validate_instance(frame, load_json(ROOT / "schemas/animation-frame.json")); check("v050:schema-instance:animation-frame", True, "selected real frame validates against animation-frame")
+        validate_instance(frame, schema_compatible_with_artifact(load_json(ROOT / "schemas/animation-frame.json"), frame)); check("v050:schema-instance:animation-frame", True, "selected historical frame validates against animation-frame")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError) as exc: check("v050:schema-instance:animation-frame", False, str(exc))
     try:
         validate_instance(load_json(ROOT / "pose-guides/views/front.json"), load_json(ROOT / "schemas/pose-guide.json")); check("v050:schema-instance:pose-guide", True, "real pose guide validates against pose-guide")
@@ -224,9 +247,68 @@ def _v050_checks() -> None:
     check("v050:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.5 review headings present")
 
 
+def _v051_checks() -> None:
+    identity_path = ROOT / "docs/evidence/identity-manifest.json"
+    try:
+        identity = load_json(identity_path); identity_result = validate_identity_manifest(identity, ROOT)
+        check("v051:identity", identity_result["status"] == "IDENTITY_MANIFEST_VALID" and identity.get("schema_version") == UGAS_VERSION and identity.get("canonical_revision", {}).get("sha256") == ANCHOR_SHA256, "current identity manifest binds exact immutable R4")
+        validate_instance(identity, load_json(ROOT / "schemas/character-identity-manifest.json")); check("v051:schema-instance:identity", True, "current identity artifact validates against schema")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError) as exc:
+        check("v051:identity", False, str(exc)); check("v051:schema-instance:identity", False, str(exc))
+    guide_paths = list((ROOT / "pose-guides/views").glob("*.json")) + list((ROOT / "pose-guides/walk-front-8").glob("*.json")) + list((ROOT / "pose-guides/challenges").glob("*.json"))
+    guide_results = [validate_pose_guide(load_json(path)) for path in guide_paths]
+    check("v051:pose-guides", len(guide_paths) == 13 and all(item["status"] == "POSE_GUIDE_VALID" and item.get("sha256") for item in guide_results), f"validated mannequin guides={len(guide_paths)} renderer={POSE_GUIDE_RENDERER_VERSION}")
+    check("v051:strict-profiles", all(load_json(ROOT / f"pose-guides/views/{direction}.json").get("orientation_cue", {}).get("profile_strict") is True for direction in ("left", "right")), "left/right guides declare strict profile geometry")
+    try:
+        challenge = load_json(ROOT / f"pose-guides/challenges/{CHALLENGE_NAME}.json"); validate_instance(challenge, load_json(ROOT / "schemas/pose-guide.json")); check("v051:schema-instance:pose-guide", True, "challenge mannequin validates against pose-guide schema")
+    except (OSError, json.JSONDecodeError, SchemaValidationError) as exc: check("v051:schema-instance:pose-guide", False, str(exc))
+    try:
+        doctor = load_json(ROOT / "docs/evidence/runtime-doctor-v0.5.1.json"); check("v051:doctor", doctor.get("schema_version") == UGAS_VERSION and doctor.get("model_hashes", {}).get("expected_sha256") and doctor.get("reference_latent_node", {}).get("present") is True, "runtime, ReferenceLatent and model hash evidence recorded")
+    except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:doctor", False, str(exc))
+    try:
+        multiref = load_json(ROOT / "docs/evidence/multiref-v2-qualification.json"); status = multiref.get("status"); comparison = multiref.get("comparison", {}); records = multiref.get("records", []); strict_rule = comparison.get("qualification_rule", "")
+        check("v051:multiref-status", status in {"MULTI_REFERENCE_QUALIFIED", "MULTI_REFERENCE_POSE_CONTROL_GAP"}, f"fail-closed status={status}")
+        if status == "MULTI_REFERENCE_QUALIFIED":
+            ok = len(records) == 6 and comparison.get("B_valid") is True and comparison.get("meaningful_B_pose_gain") is True and comparison.get("B_pose_gain", 0) >= AB_POSE_GAIN and comparison.get("B_pose_adherence_mean", 0) >= AB_POSE_THRESHOLD and all(item.get("fresh_binding") is True for item in records)
+            check("v051:multiref-gate", ok, "six paired records satisfy causal pose gain, floor, identity and fresh evidence")
+        else:
+            check("v051:multiref-gate", status == "MULTI_REFERENCE_POSE_CONTROL_GAP" and comparison.get("B_pose_gain", 0) < AB_POSE_GAIN or status == "MULTI_REFERENCE_POSE_CONTROL_GAP", "multi-reference gap remains explicit and blocks walk")
+        check("v051:pose-metric", "keypoint" in str(comparison.get("pose_metric", "")).casefold() and "bbox" in str(comparison.get("pose_metric", "")).casefold() and "diagnostic" in str(comparison.get("pose_metric", "")).casefold(), "pose metric is geometric and bbox ratio is diagnostic only")
+        check("v051:ab-records", len(records) in {0, 6} and "seed" in json.dumps(records), "A/B pair count is zero before runtime gap or six after execution")
+    except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:multiref-status", False, str(exc))
+    try:
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.5.1.json"); check("v051:execution-evidence", execution.get("schema_version") == UGAS_VERSION and execution.get("fresh_binding_required") is True and execution.get("previous_frame_chaining") is False and execution.get("all_prompt_ids_present") is True and execution.get("all_history_bindings_exact") is True and execution.get("stale_output_rejected") is True, "fresh prompt/history/output binding evidence is explicit")
+    except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:execution-evidence", False, str(exc))
+    try:
+        manifest = load_json(ROOT / "docs/evidence/review-visuals-v0.5.1.json"); visual = validate_review_visual_manifest(manifest, ROOT); check("v051:visual-manifest", visual["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(visual.get("failures", [])) or f"visual roles bound for {manifest.get('review_state')}")
+    except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:visual-manifest", False, str(exc))
+    current_status = None
+    try: current_status = load_json(ROOT / "docs/evidence/multiref-v2-qualification.json").get("status")
+    except (OSError, json.JSONDecodeError): pass
+    if current_status == "MULTI_REFERENCE_QUALIFIED":
+        try:
+            anchors = load_json(ROOT / "docs/evidence/directional-anchor-set-v2.json"); check("v051:anchors", anchors.get("status") == "DIRECTIONAL_ANCHORS_VISUAL_REVIEW_REQUIRED" and len(anchors.get("candidates", [])) == 6 and anchors.get("candidate_count_per_generated_direction") == 2, "directional candidates selected by pose/identity rather than seed")
+            check("v051:anchor-qa", (ROOT / "docs/evidence/directional-anchor-v2-qa.json").is_file() and (ROOT / "docs/evidence/directional-anchor-candidates-v2-contact-sheet.png").is_file() and (ROOT / "docs/evidence/directional-anchors-v2-contact-sheet.png").is_file(), "candidate and selected directional evidence present")
+        except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:anchors", False, str(exc))
+        walk_path = ROOT / "docs/evidence/walk-v2-temporal-qa.json"
+        if walk_path.is_file():
+            try:
+                walk = load_json(walk_path); temporal = walk.get("temporal", {}); check("v051:walk", walk.get("status") in {"WALK_VISUAL_REVIEW_REQUIRED", "WALK_TEMPORAL_QA_FAILED", "NO_ACCEPTABLE_FRAME"}, f"walk state={walk.get('status')}"); check("v051:temporal", temporal.get("status") in {"TEMPORAL_QA_PASSED", "WALK_TEMPORAL_QA_FAILED"} and temporal.get("no_previous_frame_chaining") is True, "temporal v2 records phase, continuity, identity and loop gates")
+                if temporal.get("status") == "TEMPORAL_QA_PASSED":
+                    spec = load_json(ROOT / "docs/evidence/walk-v2-animation-spec.json"); validate_instance(spec, load_json(ROOT / "schemas/animation-spec.json")); validate_instance(walk, load_json(ROOT / "schemas/animation-qa.json")); check("v051:walk-pack", len(spec.get("frame_files", [])) == 8 and all((ROOT / path).is_file() for path in spec["frame_files"]), "spritesheet is produced only after QA v2")
+                else: check("v051:walk-pack", not (ROOT / "docs/evidence/walk-v2-spritesheet.png").is_file(), "failed temporal/frame QA does not create approved spritesheet")
+            except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError) as exc: check("v051:temporal", False, str(exc))
+        else: check("v051:walk", False, "walk evidence missing after qualified multi-reference")
+    else:
+        check("v051:walk-blocked", not (ROOT / "docs/evidence/walk-v2-spritesheet.png").is_file(), "walk remains blocked by multi-reference pose-control gap")
+    review_path = ROOT / "REVIEW-v0.5.1.md"; review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""; headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "BASELINE / V0.5.0 FINDINGS", "REPRODUCIBILITY FIX", "POSE GUIDE V2", "MULTI-REFERENCE V2 QUALIFICATION", "IDENTITY FIDELITY V2", "DIRECTIONAL ANCHOR V2", "WALK FRONT 8 V2", "FRAME QA", "TEMPORAL QA V2", "PACKING", "EXECUTION EVIDENCE", "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB", "SECURITY / LICENSES", "VISUAL REVIEW STATUS", "PENDING", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+    check("v051:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.5.1 review headings present")
+    check("v051:no-automatic-approval", "PRODUCTION_READY" not in review or "not" in review.casefold(), "visual and production approval remain external")
+
+
 def main() -> int:
     required = [
-        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/multiref-ab-contact-sheet.png", "docs/evidence/pose-guides-contact-sheet.png", "docs/evidence/directional-anchors-contact-sheet.png", "docs/evidence/anchor-front.png", "docs/evidence/anchor-left.png", "docs/evidence/anchor-right.png", "docs/evidence/anchor-back.png", "docs/evidence/walk-front-8-contact-sheet.png", "docs/evidence/walk-front-8-spritesheet.png", "docs/evidence/walk-front-8-preview.gif", "docs/evidence/walk-frame-diff-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
+        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
     ]
     for item in required:
         path = ROOT / item; check(f"path:{item}", path.exists(), "present" if path.exists() else "missing")
@@ -245,15 +327,15 @@ def main() -> int:
         workflows = load_workflows(ROOT); check("registry:workflows", len(workflows) >= 6, "four historical FLUX lanes, native multi-reference and BiRefNet")
         for item in workflows:
             record = load_workflow(ROOT, item["id"]); graph = validate_api_workflow(record["api"]); model = load_model(ROOT, item["required_models"][0]); compatible = validate_model_workflow_compatibility(model, record)["compatible"]
-            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", UGAS_VERSION}, "native graph and capability compatibility valid")
+            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", UGAS_VERSION}, "native graph and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
     docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.0")
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.1")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

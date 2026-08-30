@@ -1,7 +1,7 @@
-# UGAS checkpoint - v0.5.0
+# UGAS checkpoint - v0.5.1
 
 **STATUS:** READY_FOR_REVIEW / ANIMATION_PILOT_VISUAL_REVIEW_REQUIRED. O piloto técnico de multi-reference, conjunto direcional e walk/front/8 passou; falta revisão visual humana.
-**VERSION:** 0.5.0
+**VERSION:** 0.5.1
 **PHASE:** PROMPT-04 / MULTIVIEW-POSE-WALK-PILOT
 
 ## Canonical anchor
@@ -23,4 +23,8 @@ Não autoriza animação genérica, outros ciclos, todas as vistas, 3D, áudio, 
 
 ## Evidence
 
-O review técnico é `REVIEW-v0.5.0.md`; a evidência visual e machine-readable está em `docs/evidence/`. O ZIP `review/UGAS-review-v0.5.0.zip` só pode ser criado depois de commit, push e verificação pública do `main`, e deve ser a última escrita do processo.
+O review técnico é `REVIEW-v0.5.1.md`; a evidência visual e machine-readable está em `docs/evidence/`. O ZIP `review/UGAS-review-v0.5.1-*.zip` só pode ser criado depois de commit, push e verificação pública do `main`, e deve ser a última escrita do processo. `REVIEW-v0.5.0.md` permanece histórico e imutável.
+
+## Corrective gate
+
+O walk v2 só pode existir depois de três pares A/B demonstrarem ganho causal de pose de pelo menos 0.15 sobre o baseline A. A razão do bounding box é diagnóstico, nunca critério de qualificação. Se o gate falhar, o estado correto é `MULTI_REFERENCE_POSE_CONTROL_GAP` e nenhum spritesheet v2 aprovado é fabricado.

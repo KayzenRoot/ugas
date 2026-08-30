@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.5.0",
+  "schema_version": "0.5.1",
   "guide_type": "view",
   "guide_id": "view-left",
   "view": "left",
@@ -11,74 +11,114 @@
   "centerline_x": 256,
   "keypoints": {
     "head": [
-      251,
+      244,
       112
     ],
+    "nose": [
+      216,
+      111
+    ],
     "neck": [
-      251,
-      160
+      248,
+      158
     ],
     "pelvis": [
-      251,
+      250,
       286
     ],
     "shoulder_left": [
-      203,
+      233,
       172
     ],
     "shoulder_right": [
-      299,
-      172
+      258,
+      176
     ],
     "elbow_left": [
-      185,
-      226
+      222,
+      220
     ],
     "elbow_right": [
-      317,
-      226
+      260,
+      232
     ],
     "hand_left": [
-      193,
-      286
+      214,
+      278
     ],
     "hand_right": [
-      309,
-      286
+      258,
+      282
     ],
     "knee_left": [
-      217.0,
-      374
+      230.0,
+      372
     ],
     "knee_right": [
-      285.0,
-      374
+      265.0,
+      366
     ],
     "foot_left": [
-      213.0,
+      214.0,
       478
     ],
     "foot_right": [
-      289.0,
+      280.0,
       478
     ],
-    "weapon_tip": [
-      149,
-      392
+    "foot_left_toe": [
+      190.0,
+      478
+    ],
+    "foot_right_toe": [
+      256.0,
+      478
     ],
     "weapon_grip": [
-      209,
-      272
+      216,
+      278
+    ],
+    "weapon_tip": [
+      140,
+      230
     ]
   },
   "orientation_cue": {
     "facing": "left",
     "camera": "orthographic gameplay reference",
-    "mirror_allowed": false
+    "mirror_allowed": false,
+    "profile_strict": true
   },
-  "ground_policy": "both feet rest on baseline_y; no guide pixels below baseline",
+  "ground_policy": "both feet rest on baseline_y; no guide pixels below baseline_y",
   "pivot_policy": "pelvis centerline is stable; x pivot is centerline_x and y pivot is baseline_y",
   "source_controlled": true,
   "generated_ai_content": false,
-  "deterministic": true
+  "deterministic": true,
+  "renderer": {
+    "version": "2.0.0",
+    "control_background": [
+      238,
+      239,
+      242,
+      255
+    ],
+    "body_color": [
+      105,
+      112,
+      122,
+      255
+    ],
+    "joint_color": [
+      74,
+      81,
+      91,
+      255
+    ],
+    "weapon_color": [
+      137,
+      143,
+      151,
+      255
+    ]
+  }
 }

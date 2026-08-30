@@ -1,12 +1,12 @@
 {
-  "schema_version": "0.5.0",
+  "schema_version": "0.5.1",
   "guide_type": "walk",
-  "guide_id": "walk-front-8-frame-07-high-right",
+  "guide_id": "walk-front-8-frame-07-up-right",
   "animation": "walk",
   "view": "front",
   "frame_index": 7,
-  "frame_name": "frame-07-high-right",
-  "phase": "high",
+  "frame_name": "frame-07-up-right",
+  "phase": "up",
   "foot_contact": "right",
   "canvas": {
     "width": 512,
@@ -19,9 +19,13 @@
       254,
       112
     ],
+    "nose": [
+      254,
+      98
+    ],
     "neck": [
       254,
-      160
+      158
     ],
     "pelvis": [
       254,
@@ -36,54 +40,90 @@
       172
     ],
     "elbow_left": [
-      178,
-      226
+      164,
+      224
     ],
     "elbow_right": [
-      330,
-      226
+      344,
+      224
     ],
     "hand_left": [
-      186,
+      174,
       286
     ],
     "hand_right": [
-      322,
+      334,
       286
     ],
     "knee_left": [
-      202,
-      374
+      200,
+      372
     ],
     "knee_right": [
-      306,
-      374
+      308,
+      366
     ],
     "foot_left": [
-      198,
-      478
+      192,
+      448
     ],
     "foot_right": [
-      310,
+      316,
       478
     ],
-    "weapon_tip": [
-      356,
-      392
+    "foot_left_toe": [
+      174,
+      448
+    ],
+    "foot_right_toe": [
+      334,
+      478
     ],
     "weapon_grip": [
       296,
-      272
+      270
+    ],
+    "weapon_tip": [
+      386,
+      180
     ]
   },
   "orientation_cue": {
     "facing": "front",
     "camera": "orthographic gameplay reference",
-    "mirror_allowed": false
+    "mirror_allowed": false,
+    "profile_strict": false
   },
-  "ground_policy": "contact foot is on baseline_y; no guide pixels below baseline",
+  "ground_policy": "contact foot is on baseline_y; no guide pixels below baseline_y",
   "pivot_policy": "pelvis centerline remains stable; x pivot is centerline_x and y pivot is baseline_y",
   "source_controlled": true,
   "generated_ai_content": false,
-  "deterministic": true
+  "deterministic": true,
+  "renderer": {
+    "version": "2.0.0",
+    "control_background": [
+      238,
+      239,
+      242,
+      255
+    ],
+    "body_color": [
+      105,
+      112,
+      122,
+      255
+    ],
+    "joint_color": [
+      74,
+      81,
+      91,
+      255
+    ],
+    "weapon_color": [
+      137,
+      143,
+      151,
+      255
+    ]
+  }
 }

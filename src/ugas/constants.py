@@ -75,9 +75,15 @@ SCHEMAS = [
     "visual-assessment",
     "asset-revision",
     "reference-edit-contract",
+    "character-identity-manifest",
+    "pose-guide",
+    "directional-anchor-set",
+    "animation-spec",
+    "animation-frame",
+    "animation-qa",
 ]
 
-UGAS_VERSION = "0.5.0"
+UGAS_VERSION = "0.5.1"
 
 CONSUMER_FILES = [
     "studio.json",
