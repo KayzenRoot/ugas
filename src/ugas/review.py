@@ -88,6 +88,13 @@ REQUIRED_V055_REVIEW_EVIDENCE = REQUIRED_V054_REVIEW_EVIDENCE
 # phase actually reached them; a hardware/technical stop must not fabricate a
 # contact sheet.
 REQUIRED_V060_REVIEW_EVIDENCE = REQUIRED_V055_REVIEW_EVIDENCE
+REQUIRED_V061_REVIEW_EVIDENCE = REQUIRED_V060_REVIEW_EVIDENCE | {
+    "sdxl-smoke-raw-p-i-pi-contact-sheet.png",
+    "sdxl-smoke-raw-pose-overlays-contact-sheet.png",
+    "sdxl-smoke-phase-table.json",
+    "sdxl-identity-hard-gates.json",
+    "execution-evidence-v0.6.1.json",
+}
 
 
 def _digest(path: Path) -> str:
@@ -122,6 +129,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V055_REVIEW_EVIDENCE
     elif schema_version == "0.6.0":
         required = REQUIRED_V060_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.6.1":
+        required = REQUIRED_V061_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

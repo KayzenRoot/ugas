@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.6.0."""
+"""Objective UGAS validation, including immutable history and active v0.6.1."""
 
 from __future__ import annotations
 
@@ -14,6 +14,7 @@ import tarfile
 import tempfile
 import tomllib
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
@@ -32,6 +33,7 @@ from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, va
 from ugas.pose_guides import CHALLENGE_NAME, POSE_GUIDE_RENDERER_VERSION, WALK_NAMES, validate_pose_guide
 from ugas.multiview import AB_POSE_GAIN, AB_POSE_THRESHOLD, AB_POSE_FLOOR, FRAME_POSE_THRESHOLD, IDENTITY_THRESHOLD
 from ugas.pose_metric_calibration import normalized_headroom_gain, provider_gap_emission_authorized, validate_causal_gate_configuration
+from ugas.sdxl_smoke_evidence import validate_execution_evidence_v061
 
 
 RESULTS: list[tuple[str, bool, str]] = []
@@ -583,16 +585,14 @@ def _v055_checks() -> None:
 
 
 def _v060_checks() -> None:
-    """Validate the active SDXL ControlNet/IP-Adapter qualification slice."""
+    """Validate the immutable v0.6.0 SDXL ControlNet/IP-Adapter snapshot."""
     provider: dict[str, Any] = {}
-    state_path = ROOT / "docs/evidence/current-state.json"
-    checkpoint_path = ROOT / "CHECKPOINT.md"
+    state_path = ROOT / "docs/evidence/current-state-v0.6.0.json"
     review_path = ROOT / "REVIEW-v0.6.0.md"
     try:
         state = load_json(state_path)
-        consistency = validate_state_consistency(state, checkpoint_path.read_text(encoding="utf-8"), review_path.read_text(encoding="utf-8"))
-        check("v060:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.6.0 state and documents are consistent")
-        check("v060:state-schema", state.get("schema_version") == "0.6.0" and state.get("version") == "0.6.0" and state.get("phase") == "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION", "active state is the SDXL qualification phase")
+        check("v060:state-consistency", state.get("schema_version") == "0.6.0" and state.get("version") == "0.6.0" and state.get("phase") == "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION" and state.get("current_gate") == "SDXL_OPENPOSE_CONTROL_GAP", "immutable v0.6.0 state snapshot is internally identified")
+        check("v060:state-schema", state.get("schema_version") == "0.6.0" and state.get("version") == "0.6.0" and state.get("phase") == "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION", "historical state is the SDXL qualification phase")
         check("v060:historical-separation", state.get("previous_release", {}).get("version") == "0.5.5" and state.get("pose_lane_status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and state.get("previous_review_snapshot_status") == "REVIEW_ARCHIVE_VERIFIED", "v0.5.4 pose and v0.5.5 review results remain historical")
         check("v060:scope-boundary", state.get("walk_authorized") is False and state.get("generation_provider_change_authorized") is False, "walk and production provider routing remain unauthorized")
     except (OSError, json.JSONDecodeError, KeyError) as exc:
@@ -672,6 +672,102 @@ def _v060_checks() -> None:
     check("v060:review-boundary", "walk" in review.casefold() and "não" in review.casefold() and "aprovação externa" in review.casefold() and "GPL-3.0" in review, "review separates blocked walk, external approval and GPL boundary")
 
 
+def _v061_checks() -> None:
+    """Validate the active v0.6.1 smoke correction without inferring completion."""
+    state_path = ROOT / "docs/evidence/current-state.json"
+    checkpoint_path = ROOT / "CHECKPOINT.md"
+    review_path = ROOT / "REVIEW-v0.6.1.md"
+    provider: dict[str, Any] = {}
+    try:
+        state = load_json(state_path)
+        checkpoint = checkpoint_path.read_text(encoding="utf-8")
+        review = review_path.read_text(encoding="utf-8")
+        consistency = validate_state_consistency(state, checkpoint, review)
+        check("v061:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.6.1 state and documents are consistent")
+        check("v061:state-schema", state.get("schema_version") == "0.6.1" and state.get("version") == "0.6.1" and state.get("phase") == "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION", "active state is the v0.6.1 smoke correction")
+        check("v061:state-status", state.get("current_gate") == state.get("provider_smoke_status") and state.get("current_gate") == state.get("state_consistency", {}).get("status"), "provider smoke status, current gate and nested state agree")
+        check("v061:state-boundary", state.get("previous_release", {}).get("version") == "0.6.0" and state.get("historical_pose_lane_status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED" and state.get("walk_authorized") is False and state.get("generation_provider_change_authorized") is False, "v0.6.0 history is preserved and walk/provider changes remain unauthorized")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v061:state-consistency", False, str(exc)); check("v061:state-schema", False, str(exc)); check("v061:state-status", False, str(exc)); check("v061:state-boundary", False, str(exc))
+
+    allowed_statuses = {
+        "SDXL_POSTPROCESS_GAP",
+        "SDXL_OPENPOSE_CONTROL_GAP",
+        "SDXL_COMBINED_CONDITIONING_INTERFERENCE_GAP",
+        "SDXL_IDENTITY_ADAPTER_GAP",
+        "SDXL_COMBINED_IDENTITY_GAP",
+        "SDXL_SMOKE_GREEN_READY_FOR_BENCHMARK_PROMPT",
+    }
+    try:
+        provider = load_json(ROOT / "docs/evidence/sdxl-provider-qualification-v0.6.1.json")
+        status = provider.get("status")
+        check("v061:provider-status", status in allowed_statuses and provider.get("walk_authorized") is False and provider.get("anchors_authorized") is False and provider.get("animation_authorized") is False and provider.get("external_approval") == "not-claimed", f"provider status is one of the bounded smoke outcomes: {status}")
+        check("v061:provider-phase", provider.get("schema_version") == "0.6.1" and provider.get("phase") == "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION" and provider.get("prompt_id") == "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1", "provider evidence is bound to the active prompt and phase")
+        smoke = provider.get("smoke", {})
+        smoke_records = smoke.get("records", [])
+        check("v061:smoke-factorial", len(smoke_records) == 3 and {item.get("lane") for item in smoke_records} == {"P", "I", "PI"} and all(item.get("seed") == 61701 for item in smoke_records), "exactly one P/I/PI job per lane uses seed 61701")
+        check("v061:later-phases-not-run", provider.get("paired", {}).get("status") == "NOT_RUN" and provider.get("paired", {}).get("records") == [] and provider.get("benchmark", {}).get("status") == "NOT_RUN" and provider.get("confirmation", {}).get("status") == "NOT_RUN" and provider.get("confirmation", {}).get("records") == [] and provider.get("seeds", {}).get("paired") == [] and provider.get("seeds", {}).get("benchmark") is None and provider.get("seeds", {}).get("confirmation") == [], "paired, benchmark and confirmation phases remain NOT_RUN")
+        check("v061:provider-boundary", provider.get("new_generation_jobs") == 3 and provider.get("walk_authorized") is False and "walk" not in json.dumps(provider.get("smoke", {})).casefold(), "smoke is bounded to three jobs and contains no walk execution")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v061:provider-status", False, str(exc)); check("v061:provider-phase", False, str(exc)); check("v061:smoke-factorial", False, str(exc)); check("v061:later-phases-not-run", False, str(exc))
+
+    try:
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.6.1.json")
+        records = execution.get("records", [])
+        execution_result = validate_execution_evidence_v061(execution, ROOT)
+        check("v061:execution-exact-count", execution_result["status"] == "SDXL_V061_EXECUTION_EVIDENCE_PASSED", "; ".join(execution_result.get("failures", [])) or "execution validator requires three attempted and three completed generations")
+        check("v061:execution-bindings", execution_result["status"] == "SDXL_V061_EXECUTION_EVIDENCE_PASSED", "prompt, exact history, raw hash, fresh target and distribution boundaries all pass")
+        for item in records:
+            generation = item.get("generation", {})
+            lane = item.get("lane")
+            raw_path = ROOT / str(generation.get("raw_output_path", ""))
+            check(f"v061:raw:{lane}", generation.get("completed") is True and generation.get("prompt_id") == "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1" and generation.get("history_key_matches_prompt_id") is True and generation.get("target_existed_before_submission") is False and generation.get("previous_frame_chaining") is False and raw_path.is_file() and digest(raw_path) == generation.get("raw_output_sha256") and generation.get("raw_output_hash_matches_comfy") is True, f"{lane} preserves completed prompt/history/raw evidence with matching SHA-256")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v061:execution-exact-count", False, str(exc)); check("v061:execution-bindings", False, str(exc))
+
+    try:
+        phase_table = load_json(ROOT / "docs/evidence/sdxl-smoke-phase-table.json")
+        lanes = phase_table.get("lanes", [])
+        check("v061:phase-table", phase_table.get("schema_version") == "0.6.1" and len(lanes) == 3 and {item.get("lane") for item in lanes} == {"P", "I", "PI"} and all(item.get("generation", {}).get("completed") is True for item in lanes), "phase table preserves generation and postprocess stages for all lanes")
+        for item in lanes:
+            postprocess = item.get("postprocess") or {}
+            check(f"v061:postprocess:{item.get('lane')}", isinstance(postprocess.get("attempted"), bool) and isinstance(postprocess.get("passed"), bool) and postprocess.get("status") in {"POSTPROCESS_PASSED", "POSTPROCESS_FAILED"}, f"{item.get('lane')} has structured postprocess outcome")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v061:phase-table", False, str(exc))
+
+    try:
+        identity = load_json(ROOT / "docs/evidence/sdxl-identity-hard-gates.json")
+        required = {"aggregate_score_pass", "weapon_pass", "head_face_pass", "armor_palette_pass", "black_cloth_pass", "body_proportions_pass", "single_subject_pass", "identity_pass", "failure_reasons"}
+        identity_records = identity.get("records", [])
+        check("v061:identity-policy", identity.get("schema_version") == "0.6.1" and identity.get("hard_gate_policy", {}).get("aggregate_score_cannot_compensate") is True and set(identity.get("hard_gate_policy", {}).get("required", [])) == {"aggregate_score", "weapon", "head_face", "armor_palette", "black_cloth", "body_proportions", "single_subject"}, "identity hard-gate policy is explicit and fail-closed")
+        check("v061:identity-records", all(required.issubset(set((item.get("hard_gates") or {}))) for item in identity_records), "every evaluated identity lane records all hard booleans and reasons")
+        historical_i = ROOT / "docs/evidence/sdxl-qualification/outputs/smoke-i-seed-60701.png"
+        if historical_i.is_file():
+            from ugas.identity_hard_gates import analyze_foreground_components
+            historical_components = analyze_foreground_components(historical_i)
+            check("v061:historical-i-single-subject", historical_components.get("multiple_subjects_detected") is True and historical_components.get("large_foreground_components") >= 2, "historical v0.6.0 I fixture is rejected as multiple subjects")
+        else:
+            check("v061:historical-i-single-subject", False, "historical v0.6.0 I fixture is missing")
+    except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
+        check("v061:identity-policy", False, str(exc)); check("v061:identity-records", False, str(exc)); check("v061:historical-i-single-subject", False, str(exc))
+
+    try:
+        visual = load_json(ROOT / "docs/evidence/review-visuals-v0.6.1.json")
+        visual_result = validate_review_visual_manifest(visual, ROOT)
+        check("v061:visual-manifest", visual_result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(visual_result.get("failures", [])) or "v0.6.1 raw/pose/hard-gate visual roles are hash-bound")
+        required_visuals = set(visual.get("required_current_visuals", []))
+        check("v061:visual-roles", {"sdxl-smoke-raw-p-i-pi-contact-sheet.png", "sdxl-smoke-raw-pose-overlays-contact-sheet.png", "sdxl-smoke-phase-table.json", "sdxl-identity-hard-gates.json", "execution-evidence-v0.6.1.json"}.issubset(required_visuals), "raw contact, pose overlay, phase, identity and execution evidence are required")
+        if provider.get("smoke", {}).get("technical_green") is True or any(item.get("output_path") for item in provider.get("smoke", {}).get("records", [])):
+            check("v061:processed-role", "sdxl-smoke-postprocessed-contact-sheet.png" in required_visuals or not any(item.get("output_path") for item in provider.get("smoke", {}).get("records", [])), "postprocessed contact is listed only when a processed output exists")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v061:visual-manifest", False, str(exc)); check("v061:visual-roles", False, str(exc))
+
+    review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""
+    headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.6.0 AUDIT FINDINGS", "EXECUTION EVIDENCE PRESERVATION FIX", "RAW GENERATION EVIDENCE", "RAW POSE QA", "POSTPROCESS QA", "IDENTITY HARD GATES", "SINGLE SUBJECT GATE", "P / I / PI CORRECTIVE SMOKE", "FINAL SMOKE CLASSIFICATION", "MODEL / CUSTOM NODE BOUNDARY", "EXECUTION EVIDENCE", "TESTS", "VALIDATION", "REVIEW ARCHIVE SELF-TEST", "TRACKED SNAPSHOT / GITHUB", "SECURITY / LICENSES", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+    check("v061:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.6.1 review headings present")
+    check("v061:review-boundary", "review-visuals-v0.6.0.json" in review and "benchmark" in review.casefold() and "not_run" in json.dumps(provider).casefold() and "aprovação externa" in review.casefold() or "external approval" in review.casefold(), "current review separates historical v0.6.0 evidence, blocked later phases and external approval")
+
+
 
 def main() -> int:
     required = [
@@ -709,6 +805,14 @@ def main() -> int:
         "providers/workflows/sdxl-ipadapter-i.api.json",
         "providers/workflows/sdxl-openpose-ipadapter-character.api.json",
     ]
+    required += [
+        "REVIEW-v0.6.1.md", "docs/test-coverage-matrix-v0.6.1.md", "docs/evidence/current-state-v0.6.0.json",
+        "docs/evidence/sdxl-provider-workflow-qualification-v0.6.1.json",
+        "docs/evidence/sdxl-provider-qualification-v0.6.1.json",
+        "docs/evidence/execution-evidence-v0.6.1.json", "docs/evidence/sdxl-smoke-phase-table.json",
+        "docs/evidence/sdxl-identity-hard-gates.json", "docs/evidence/review-visuals-v0.6.1.json",
+        "src/ugas/identity_hard_gates.py", "src/ugas/sdxl_smoke_evidence.py",
+    ]
     for item in required:
         path = ROOT / item; check(f"path:{item}", path.exists(), "present" if path.exists() else "missing")
         if path.exists() and item not in {"README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.4.2.md"}: check(f"tracked:{item}", tracked(item), "tracked or present in review snapshot")
@@ -733,15 +837,15 @@ def main() -> int:
         for item in workflows:
             record = load_workflow(ROOT, item["id"]); graph = validate_api_workflow(record["api"]); model = load_model(ROOT, item["required_models"][0]); compatible = validate_model_workflow_compatibility(model, record)["compatible"]
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
-            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
+            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.6.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.6.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.6.0")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.6.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.6.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.6.1")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

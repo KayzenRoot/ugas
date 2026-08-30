@@ -1,21 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.6.0 SDXL ControlNet and IP-Adapter qualification state",
+  "title": "UGAS active v0.6.1 SDXL smoke correction state",
   "type": "object",
-  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"],
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "provider_smoke_status", "historical_pose_lane_status", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"],
   "properties": {
-    "schema_version": {"const": "0.6.0"},
-    "version": {"const": "0.6.0"},
-    "phase": {"const": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION"},
+    "schema_version": {"const": "0.6.1"},
+    "version": {"const": "0.6.1"},
+    "phase": {"const": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION"},
     "current_gate": {"type": "string", "minLength": 1},
     "stop_reason": {"type": ["string", "null"]},
     "generation_provider_change_authorized": {"type": "boolean"},
     "walk_authorized": {"const": false},
+    "provider_smoke_status": {"type": "string", "minLength": 1},
+    "historical_pose_lane_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"},
     "previous_release": {
       "type": "object",
       "required": ["version", "pose_lane_status", "review_snapshot_status"],
       "properties": {
-        "version": {"const": "0.5.5"},
+        "version": {"const": "0.6.0"},
         "pose_lane_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"},
         "review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"}
       }

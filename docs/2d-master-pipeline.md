@@ -1,4 +1,6 @@
-# 2D master pipeline v0.6.0
+# 2D master pipeline v0.6.1
+
+The active release is the v0.6.1 SDXL smoke-evidence correction. The v0.6.0 provider qualification remains historical and immutable; benchmark, confirmation, walk and anchors remain outside this slice.
 
 This release qualifies the bounded SDXL ControlNet/IP-Adapter provider lane. The v0.5.4 pose/provider and v0.5.5 review-snapshot evidence remain historical; the current lane stopped at its explicit OpenPose gap.
 

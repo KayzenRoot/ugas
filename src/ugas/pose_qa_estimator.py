@@ -215,7 +215,7 @@ def _crop_with_margin(image: Any, bbox: tuple[int, int, int, int], background: t
 def prepare_preprocessed_image(source_path: Path, policy: str, destination: Path) -> dict[str, Any]:
     """Materialize one deterministic RGB input plus the transformed alpha bbox."""
     from PIL import Image
-    if policy not in PREPROCESS_POLICIES:
+    if policy not in PREPROCESS_POLICIES and policy != "raw_rgb_neutral_gray":
         raise ValueError(f"unknown preprocess policy: {policy}")
     image, bbox = _rgba_and_bbox(source_path)
     if bbox is None:

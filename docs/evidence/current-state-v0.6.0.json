@@ -1,9 +1,9 @@
 {
-  "schema_version": "0.6.1",
-  "version": "0.6.1",
-  "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+  "schema_version": "0.6.0",
+  "version": "0.6.0",
+  "phase": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION",
   "previous_release": {
-    "version": "0.6.0",
+    "version": "0.5.5",
     "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
     "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
     "historical_review": "REVIEW-v0.5.5.md",
@@ -11,10 +11,8 @@
     "nine_outputs_preserved": true,
     "review_manifest": "docs/evidence/review-visuals-v0.5.5.json"
   },
-  "current_gate": "SDXL_P_I_PI_SMOKE_REQUIRED",
-  "stop_reason": null,
-  "provider_smoke_status": "SDXL_P_I_PI_SMOKE_REQUIRED",
-  "historical_pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "current_gate": "SDXL_OPENPOSE_CONTROL_GAP",
+  "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP",
   "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
   "previous_review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
   "canonical_anchor": {
@@ -24,10 +22,7 @@
   },
   "generation_provider_change_authorized": false,
   "walk_authorized": false,
-  "allowed_next_actions": [
-    "review_sdxl_provider_gap",
-    "preserve_previous_pose_lane"
-  ],
+  "allowed_next_actions": ["review_sdxl_provider_gap", "preserve_previous_pose_lane"],
   "forbidden_actions": [
     "download_models_before_state_consistency_pass",
     "install_unpinned_custom_node_or_vendor_its_source",
@@ -37,16 +32,16 @@
     "publish_the_local_pose_landmarker_bundle_or_generation_weights"
   ],
   "state_consistency": {
-    "status": "SDXL_P_I_PI_SMOKE_REQUIRED",
+    "status": "SDXL_OPENPOSE_CONTROL_GAP",
     "validator": "src/ugas/state_consistency.py",
     "contradictory_walk_or_anchor_promotion": false,
-    "new_generation_started": false,
-    "new_generation_jobs": 0,
+    "new_generation_started": true,
+    "new_generation_jobs": 3,
     "previous_pose_decision_evidence": "docs/evidence/v054-provider-qualification.json",
     "previous_review_visual_manifest": "docs/evidence/review-visuals-v0.5.5.json",
     "review_verifier": "scripts/validation/verify_review_archive.py",
     "review_zip_self_validation_required": true,
-    "phase_zero_no_download_or_install": true,
+    "phase_zero_no_download_or_install": false,
     "custom_node_audit": "docs/evidence/custom-node-audit-ipadapter-plus.json"
   }
 }

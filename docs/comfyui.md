@@ -1,4 +1,6 @@
-# ComfyUI integration notes - UGAS v0.6.0
+# ComfyUI integration notes - UGAS v0.6.1
+
+The active release is v0.6.1 and only executes the bounded P/I/PI smoke correction. The v0.6.0 runtime/model/custom-node records below remain historical.
 
 The v0.6.0 release records the bounded SDXL ControlNet/IP-Adapter runtime qualification. The ComfyUI/RTX 5050 and A/C/R evidence below is historical v0.5.4 evidence and remains unchanged; the current SDXL smoke stopped at `SDXL_OPENPOSE_CONTROL_GAP`.
 

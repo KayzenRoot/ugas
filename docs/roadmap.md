@@ -1,5 +1,9 @@
 # UGAS roadmap
 
+## v0.6.1 - SDXL smoke evidence hard-gate correction
+
+Preserve raw generation evidence before BiRefNet, run raw pose QA for P/PI, enforce identity and single-subject hard gates, and stop before benchmark/confirmation/walk/anchors.
+
 ## v0.6.0 - SDXL ControlNet/IP-Adapter provider qualification
 
 Audita e instala somente o custom node IP-Adapter Plus pinado localmente, registra os quatro artefatos externos, valida o runtime RTX 5050 e executa o smoke factorial P/I/PI. O estado atual é `SDXL_OPENPOSE_CONTROL_GAP`; benchmark, confirmação, walk e routing SDXL permanecem bloqueados.

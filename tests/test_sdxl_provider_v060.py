@@ -20,9 +20,9 @@ def load(relative: str) -> dict:
 class SdxlProviderV060Tests(unittest.TestCase):
     def test_active_state_preserves_history_and_blocks_walk(self):
         state = load("docs/evidence/current-state.json")
-        self.assertEqual("0.6.0", state["version"])
-        self.assertEqual("SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION", state["phase"])
-        self.assertEqual("0.5.5", state["previous_release"]["version"])
+        self.assertEqual("0.6.1", state["version"])
+        self.assertEqual("SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION", state["phase"])
+        self.assertEqual("0.6.0", state["previous_release"]["version"])
         self.assertFalse(state["walk_authorized"])
         self.assertEqual("LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", state["pose_lane_status"])
 

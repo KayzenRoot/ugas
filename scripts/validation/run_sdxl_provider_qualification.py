@@ -1,4 +1,4 @@
-"""Run the bounded UGAS v0.6.0 SDXL provider qualification.
+"""Run the bounded UGAS v0.6.1 corrective SDXL smoke qualification.
 
 The script implements only the prompt's P/I/PI qualification slice. It never
 creates walk frames, directional anchors, spritesheets, GIFs or animation
@@ -27,6 +27,7 @@ from ugas.comfyui_client import ComfyUIClient
 from ugas.constants import UGAS_VERSION
 from ugas.generation import _run_job, _unique_job_dir, background_remove
 from ugas.identity import ANCHOR_REVISION_ID, ANCHOR_SHA256
+from ugas.identity_hard_gates import analyze_foreground_components, evaluate_identity_hard_gates
 from ugas.image_utils import inspect_png, sha256
 from ugas.model_registry import load_model, verify_model_files
 from ugas.multiview import _identity_descriptor
@@ -43,19 +44,21 @@ from ugas.state_consistency import validate_state_consistency
 from ugas.workflow_registry import bind_workflow, load_workflow, validate_api_workflow, workflow_hash
 
 
-PROMPT_ID = "PROMPT-05-UGAS-SDXL-CONTROLNET-IPADAPTER-PROVIDER-v0.6.0"
+PROMPT_ID = "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1"
 ENDPOINT = "http://127.0.0.1:8188"
-SMOKE_SEED = 60701
-PAIRED_SEEDS = (60702, 60703, 60704)
-BENCHMARK_SEED = 60705
-CONFIRMATION_SEEDS = (60706, 60707, 60708)
+SMOKE_SEED = 61701
+PAIRED_SEEDS: tuple[int, ...] = ()
+BENCHMARK_SEED = None
+CONFIRMATION_SEEDS: tuple[int, ...] = ()
 WIDTH = 512
 HEIGHT = 512
 ANCHOR_RELATIVE = "docs/evidence/reference-edit-selected-transparent.png"
 GUIDE_RELATIVE = "docs/evidence/openpose-guide-v3-control-example.png"
 GUIDE_JSON_RELATIVE = "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json"
-OUTPUT_ROOT = REPO_ROOT / "tmp" / "sdxl-provider-v060"
+OUTPUT_ROOT = REPO_ROOT / "tmp" / "sdxl-provider-v061"
 PERMANENT_ROOT = REPO_ROOT / "docs" / "evidence" / "sdxl-qualification"
+RAW_ROOT = PERMANENT_ROOT / "raw"
+EXECUTION_EVIDENCE_PATH = REPO_ROOT / "docs" / "evidence" / "execution-evidence-v0.6.1.json"
 WORKFLOWS = {
     "P": "sdxl-openpose-controlnet-p",
     "I": "sdxl-ipadapter-i",
@@ -190,22 +193,14 @@ def _state_update(gate: str, *, started: bool, jobs: int, stop_reason: str | Non
     state = _read(path)
     state["current_gate"] = gate
     state["stop_reason"] = stop_reason
+    state["provider_smoke_status"] = gate
     state["state_consistency"]["status"] = gate
     state["state_consistency"]["new_generation_started"] = bool(started)
     state["state_consistency"]["new_generation_jobs"] = int(jobs)
-    if gate == "SDXL_P_I_PI_SMOKE_REQUIRED":
-        state["allowed_next_actions"] = ["run_one_new_smoke_seed_per_P_I_PI_lane"]
-    elif gate == "SDXL_STRENGTH_BENCHMARK_REQUIRED":
-        state["allowed_next_actions"] = ["run_four_fixed_strength_PI_benchmark_configs"]
-    elif gate == "SDXL_POSE_PROVIDER_CONFIRMATION_REQUIRED":
-        state["allowed_next_actions"] = ["run_three_new_winner_confirmation_seeds"]
-    elif gate == "SDXL_CONTROL_POSE_PROVIDER_QUALIFIED":
-        state["allowed_next_actions"] = ["run_sdxl_controlled_walk_pilot"]
-    else:
-        state["allowed_next_actions"] = ["review_sdxl_provider_gap", "preserve_previous_pose_lane"]
+    state["allowed_next_actions"] = ["review_sdxl_provider_smoke_classification", "preserve_v060_provider_lane"]
     _write(path, state)
     checkpoint = (REPO_ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
-    review = (REPO_ROOT / "REVIEW-v0.6.0.md").read_text(encoding="utf-8")
+    review = (REPO_ROOT / "REVIEW-v0.6.1.md").read_text(encoding="utf-8")
     result = validate_state_consistency(state, checkpoint, review)
     _write(REPO_ROOT / "docs/evidence/state-consistency.json", result)
     if result["status"] != "STATE_CONSISTENCY_PASSED":
@@ -214,12 +209,12 @@ def _state_update(gate: str, *, started: bool, jobs: int, stop_reason: str | Non
 
 
 def _replace_current_docs(gate: str, *, started: bool, jobs: int) -> None:
-    for path in (REPO_ROOT / "CHECKPOINT.md", REPO_ROOT / "REVIEW-v0.6.0.md"):
+    for path in (REPO_ROOT / "CHECKPOINT.md", REPO_ROOT / "REVIEW-v0.6.1.md"):
         text = path.read_text(encoding="utf-8")
         if path.name == "CHECKPOINT.md":
             text = re.sub(r"(\*\*STATUS:\*\*\s*`)\w+(?:_\w+)*(`)", rf"\g<1>{gate}\g<2>", text, count=1)
         else:
-            text = re.sub(r"(`)SDXL_[A-Z0-9_]+(`\s+—\s+qualificação)", rf"\g<1>{gate}\g<2>", text, count=1)
+            text = re.sub(r"(`)SDXL_[A-Z0-9_]+(`\s+—\s+smoke)", rf"\g<1>{gate}\g<2>", text, count=1)
             text = re.sub(r"(O estado atual é `)[^`]+(`)", rf"\g<1>{gate}\g<2>", text, count=1)
         text = re.sub(r"`new_generation_started=(?:true|false)`", f"`new_generation_started={'true' if started else 'false'}`", text, count=1)
         text = re.sub(r"`new_generation_jobs=\d+`", f"`new_generation_jobs={jobs}`", text, count=1)
@@ -244,7 +239,7 @@ def _workflow_qualification(client: ComfyUIClient, guide_name: str, identity_nam
         checks.append({"lane": lane, "workflow_id": workflow_id, "template_sha256": record["sha256"], "bound_sha256": workflow_hash(bound), "graph": graph, "required_custom_nodes": record.get("custom_nodes_required", []), "model_names": {key: value for key, value in MODEL_NAMES.items() if isinstance(value, str)}, "direct_guide": lane in {"P", "PI"}, "r4_identity_only": lane in {"I", "PI"}, "previous_outputs": False})
     status = "SDXL_PROVIDER_WORKFLOW_VALID" if all(item["graph"]["live_valid"] for item in checks) else "SDXL_PROVIDER_WORKFLOW_GAP"
     result = {"schema_version": UGAS_VERSION, "status": status, "prompt_id": PROMPT_ID, "resolution": [WIDTH, HEIGHT], "prompt_sha256": hashlib.sha256(COMMON_PROMPT.encode()).hexdigest(), "negative_prompt_sha256": hashlib.sha256(NEGATIVE_PROMPT.encode()).hexdigest(), "anchor": {"path": ANCHOR_RELATIVE, "sha256": ANCHOR_SHA256, "revision_id": ANCHOR_REVISION_ID}, "guide": {"path": GUIDE_RELATIVE, "uploaded_name": guide_name}, "lanes": checks, "ipadapter_never_receives_skeleton": True, "controlnet_never_receives_r4_identity": True}
-    _write(REPO_ROOT / "docs/evidence/sdxl-provider-workflow-qualification.json", result)
+    _write(REPO_ROOT / "docs/evidence/sdxl-provider-workflow-qualification-v0.6.1.json", result)
     if status != "SDXL_PROVIDER_WORKFLOW_VALID":
         raise RuntimeError(status)
     return result
@@ -253,6 +248,61 @@ def _workflow_qualification(client: ComfyUIClient, guide_name: str, identity_nam
 def _technical_error(error: Exception) -> bool:
     text = str(error).casefold()
     return any(token in text for token in ("out of memory", "cuda out of memory", "oom", "memoryerror", "vram"))
+
+
+def _raw_pose_qa(
+    raw: Path,
+    *,
+    lane: str,
+    seed: int,
+    stage: str,
+    job_dir: Path,
+    guide_points: dict[str, tuple[float, float]],
+    thresholds: dict[str, Any],
+) -> dict[str, Any] | None:
+    if lane not in {"P", "PI"}:
+        return None
+    policy = "raw_rgb_neutral_gray"
+    prepared = prepare_preprocessed_image(raw, policy, job_dir / "raw-pose-preprocess.png")
+    model_path = Path(_default_model_path())
+    if not model_path.is_file():
+        raise RuntimeError("POSE_QA_ESTIMATOR_MODEL_MISSING")
+    with _landmarker(model_path) as (mp, detector):
+        detection = _detect_with_landmarker(Path(prepared["path"]), mp, detector)
+    orientation = _infer_orientation(detection["landmarks"])
+    pose = detected_joint_pose_metrics(guide_points, detection["landmarks"], target_orientation="left_profile", detected_orientation=orientation)
+    absolute = bool(
+        pose["qualifies"]
+        and pose["measurable_body_joints"] >= thresholds["absolute_pose"]["measurable_body_joints_min"]
+        and pose["pck_at_010"] >= thresholds["absolute_pose"]["pck_at_010_min"]
+        and pose["nme"] <= thresholds["absolute_pose"]["nme_max"]
+        and pose["limb_angle_mae_degrees"] <= thresholds["absolute_pose"]["limb_angle_mae_max_degrees"]
+        and pose["lower_body_pck"] >= thresholds["absolute_pose"]["lower_body_pck_min"]
+        and pose["orientation_match"]
+    )
+    overlay = job_dir / "raw-pose-overlay.png"
+    _draw_overlay(
+        Path(prepared["path"]),
+        detection["landmarks"],
+        prepared["alpha_bbox_normalized"],
+        f"{lane} seed {seed} raw",
+        overlay,
+        f"pck={pose['pck_at_010']:.3f} nme={pose['nme']:.3f}",
+    )
+    permanent_overlay = PERMANENT_ROOT / "overlays" / f"{stage}-raw.png"
+    permanent_overlay.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(overlay, permanent_overlay)
+    return {
+        "status": "RAW_POSE_PASS" if absolute else "RAW_POSE_FAILED",
+        "preprocess_policy": policy,
+        "preprocess": prepared,
+        "detection": {key: detection.get(key) for key in ("detected", "measurable_body_joints", "core_coverage", "mean_confidence", "min_confidence")},
+        "detected_orientation": orientation,
+        "pose": pose,
+        "absolute_pose_pass": absolute,
+        "overlay_path": _relative(permanent_overlay),
+        "raw_output_sha256": sha256(raw),
+    }
 
 
 def _run_one(client: ComfyUIClient, *, lane: str, seed: int, anchor: Path, guide: Path, guide_value: dict[str, Any], guide_points: dict[str, tuple[float, float]], thresholds: dict[str, Any], control_strength: float = 0.9, ip_strength: float = 0.8, stage: str) -> dict[str, Any]:
@@ -282,36 +332,124 @@ def _run_one(client: ComfyUIClient, *, lane: str, seed: int, anchor: Path, guide
         raise RuntimeError(f"workflow graph invalid: {graph}")
     job_dir = _unique_job_dir(REPO_ROOT, OUTPUT_ROOT, stage)
     input_hashes = {"canonical_anchor_sha256": sha256(anchor) if lane in {"I", "PI"} else None, "openpose_guide_image_sha256": sha256(guide) if lane in {"P", "PI"} else None, "openpose_guide_json_sha256": hashlib.sha256(json.dumps(guide_value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()}
-    context = {"prompt_id": PROMPT_ID, "phase": "SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION", "factorial_lane": lane, "controlnet_strength": control_strength if lane in {"P", "PI"} else None, "ipadapter_weight": ip_strength if lane in {"I", "PI"} else None, "controlnet_start": 0.0, "controlnet_end": 1.0, "ipadapter_start": 0.0, "ipadapter_end": 1.0, "ipadapter_weight_type": "linear", "canonical_anchor_revision_id": ANCHOR_REVISION_ID, "canonical_anchor_sha256": ANCHOR_SHA256, "guide_json_sha256": input_hashes["openpose_guide_json_sha256"], "previous_frame_chaining": False, "previous_outputs": False}
+    context = {"prompt_id": PROMPT_ID, "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION", "factorial_lane": lane, "controlnet_strength": control_strength if lane in {"P", "PI"} else None, "ipadapter_weight": ip_strength if lane in {"I", "PI"} else None, "controlnet_start": 0.0, "controlnet_end": 1.0, "ipadapter_start": 0.0, "ipadapter_end": 1.0, "ipadapter_weight_type": "linear", "canonical_anchor_revision_id": ANCHOR_REVISION_ID, "canonical_anchor_sha256": ANCHOR_SHA256, "guide_json_sha256": input_hashes["openpose_guide_json_sha256"], "previous_frame_chaining": False, "previous_outputs": False}
     result, outputs = _run_job(REPO_ROOT, client, workflow, output_dir=job_dir, filename=f"{stage}.png", profile="generic-2d", capability="sdxl-provider-qualification", workflow_id=workflow_id, model_id="sdxl-base-1.0", prompt=COMMON_PROMPT, seed=seed, width=WIDTH, height=HEIGHT, input_hashes=input_hashes, qualification_context=context, seed_was_used_before=False, workflow_sha256=workflow_hash(workflow))
     raw = Path(outputs[0]["path"])
-    transparent = background_remove(REPO_ROOT, str(raw), endpoint=client.base_url, output_dir=job_dir / "background-removal", promote=False, evidence_prefix=f"sdxl-{stage}")
-    final = Path(transparent["output"])
-    final_qa = _load_transparent_qa(final)
-    if final_qa.get("status") != "TECHNICAL_VALID":
-        raise RuntimeError(f"technical transparency QA failed: {final_qa}")
+    execution = result["job"].get("execution_evidence", {})
+    fresh = bool(
+        execution.get("fresh_binding") is True
+        and execution.get("history_key_matches_prompt_id") is True
+        and execution.get("target_existed_before_submission") is False
+        and execution.get("seed_was_used_before") is False
+        and context["previous_frame_chaining"] is False
+    )
+    raw_destination = RAW_ROOT / f"{stage}.png"
+    raw_destination.parent.mkdir(parents=True, exist_ok=True)
+    raw_existed = raw_destination.exists()
+    if raw_existed:
+        raise RuntimeError("RAW_OUTPUT_STALE_TARGET")
+    shutil.copy2(raw, raw_destination)
+    raw_hash = sha256(raw_destination)
+    generation = {
+        "submitted": True,
+        "completed": True,
+        "prompt_id": execution.get("prompt_id"),
+        "history_record_key": execution.get("history_record_key"),
+        "history_key_matches_prompt_id": execution.get("history_key_matches_prompt_id") is True,
+        "fresh_binding": fresh,
+        "target_existed_before_submission": execution.get("target_existed_before_submission"),
+        "previous_frame_chaining": context["previous_frame_chaining"],
+        "raw_output_path": _relative(raw_destination),
+        "raw_output_sha256": raw_hash,
+        "raw_output_bytes": raw_destination.stat().st_size,
+        "raw_output_hash_matches_comfy": raw_hash == (execution.get("outputs") or [{}])[0].get("data_sha256"),
+        "execution_evidence": execution,
+    }
+    raw_pose: dict[str, Any] | None
+    try:
+        raw_pose = _raw_pose_qa(raw_destination, lane=lane, seed=seed, stage=stage, job_dir=job_dir, guide_points=guide_points, thresholds=thresholds)
+    except Exception as exc:
+        raw_pose = {
+            "status": "RAW_POSE_QA_FAILED",
+            "preprocess_policy": "raw_rgb_neutral_gray",
+            "absolute_pose_pass": False,
+            "failure_reasons": [f"{type(exc).__name__}: {exc}"],
+            "raw_output_sha256": raw_hash,
+        }
+    record_base: dict[str, Any] = {
+        "schema_version": UGAS_VERSION,
+        "lane": lane,
+        "seed": seed,
+        "stage": stage,
+        "workflow_id": workflow_id,
+        "workflow_template_sha256": record["sha256"],
+        "workflow_bound_sha256": workflow_hash(workflow),
+        "controlnet_strength": control_strength if lane in {"P", "PI"} else None,
+        "ipadapter_weight": ip_strength if lane in {"I", "PI"} else None,
+        "generation": generation,
+        "raw_output_path": _relative(raw_destination),
+        "raw_output_sha256": raw_hash,
+        "raw_pose_qa": raw_pose,
+        "postprocess": {"attempted": False, "passed": False, "error": None},
+        "identity_qa": None,
+        "output_path": None,
+        "output_sha256": None,
+        "execution_evidence": execution,
+        "fresh_binding": fresh,
+        "technical_pass": False,
+    }
+    # This snapshot is written before BiRefNet so a later exception cannot erase
+    # the generation binding or the raw PNG from the machine-readable evidence.
+    _write(PERMANENT_ROOT / "execution" / f"{stage}.json", record_base)
+    postprocess = record_base["postprocess"]
+    postprocess["attempted"] = True
+    try:
+        transparent = background_remove(REPO_ROOT, str(raw_destination), endpoint=client.base_url, output_dir=job_dir / "background-removal", promote=False, evidence_prefix=f"sdxl-{stage}")
+        final = Path(transparent["output"])
+        final_qa = _load_transparent_qa(final)
+        if final_qa.get("status") != "TECHNICAL_VALID":
+            raise RuntimeError(f"technical transparency QA failed: {final_qa}")
+        postprocess.update({"passed": True, "status": "POSTPROCESS_PASSED", "birefnet": transparent})
+    except Exception as exc:
+        postprocess.update({"passed": False, "status": "POSTPROCESS_FAILED", "error": f"{type(exc).__name__}: {exc}"})
+        record_base.update({"final_stage_status": "POSTPROCESS_FAILED", "status": "POSTPROCESS_FAILED"})
+        _write(PERMANENT_ROOT / "execution" / f"{stage}.json", record_base)
+        return record_base
+
     permanent = PERMANENT_ROOT / "outputs" / f"{stage}.png"
     permanent.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(final, permanent)
-    identity = _identity_descriptor(final, anchor)
-    prepared = prepare_preprocessed_image(final, "transparent_neutral_gray", job_dir / "pose-qa.png")
-    model_path = Path(_default_model_path())
-    if not model_path.is_file():
-        raise RuntimeError("POSE_QA_ESTIMATOR_MODEL_MISSING")
-    with _landmarker(model_path) as (mp, detector):
-        detection = _detect_with_landmarker(Path(prepared["path"]), mp, detector)
-    orientation = _infer_orientation(detection["landmarks"])
-    pose = detected_joint_pose_metrics(guide_points, detection["landmarks"], target_orientation="left_profile", detected_orientation=orientation)
-    absolute = bool(pose["qualifies"] and pose["measurable_body_joints"] >= thresholds["absolute_pose"]["measurable_body_joints_min"] and pose["pck_at_010"] >= thresholds["absolute_pose"]["pck_at_010_min"] and pose["nme"] <= thresholds["absolute_pose"]["nme_max"] and pose["limb_angle_mae_degrees"] <= thresholds["absolute_pose"]["limb_angle_mae_max_degrees"] and pose["lower_body_pck"] >= thresholds["absolute_pose"]["lower_body_pck_min"] and pose["orientation_match"])
-    identity_pass = bool(identity.get("identity_descriptor_score", 0.0) >= thresholds["identity_weapon"]["identity_score_min"] and identity.get("weapon_present") is True)
-    execution = result["job"].get("execution_evidence", {})
-    fresh = bool(execution.get("fresh_binding") is True and execution.get("history_key_matches_prompt_id") is True and execution.get("target_existed_before_submission") is False and execution.get("seed_was_used_before") is False and context["previous_frame_chaining"] is False)
-    overlay = job_dir / "pose-overlay.png"
-    _draw_overlay(Path(prepared["path"]), detection["landmarks"], prepared["alpha_bbox_normalized"], f"{lane} seed {seed}", overlay, f"pck={pose['pck_at_010']:.3f} nme={pose['nme']:.3f} id={identity.get('identity_descriptor_score', 0.0):.3f}")
-    permanent_overlay = PERMANENT_ROOT / "overlays" / f"{stage}.png"
-    permanent_overlay.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(overlay, permanent_overlay)
-    return {"lane": lane, "seed": seed, "stage": stage, "workflow_id": workflow_id, "workflow_template_sha256": record["sha256"], "workflow_bound_sha256": workflow_hash(workflow), "controlnet_strength": control_strength if lane in {"P", "PI"} else None, "ipadapter_weight": ip_strength if lane in {"I", "PI"} else None, "output_path": _relative(permanent), "output_sha256": sha256(permanent), "output_png": inspect_png(permanent), "overlay_path": _relative(permanent_overlay), "raw_output_path": str(raw), "background_removal": transparent, "detection": {key: detection.get(key) for key in ("detected", "measurable_body_joints", "core_coverage", "mean_confidence", "min_confidence")}, "detected_orientation": orientation, "pose": pose, "identity": identity, "absolute_pose_pass": absolute, "identity_pass": identity_pass, "weapon_present": bool(identity.get("weapon_present")), "technical_pass": True, "fresh_binding": fresh, "execution_evidence": execution, "status": "PASSED" if absolute and identity_pass and fresh else "FAILED_GATES", "runtime_ms": execution.get("runtime_ms")}
+    identity = _identity_descriptor(final, anchor) if lane in {"I", "PI"} else None
+    foreground = analyze_foreground_components(final) if identity is not None else None
+    identity_qa = evaluate_identity_hard_gates(identity, foreground) if identity is not None and foreground is not None else None
+    identity_pass = bool(identity_qa and identity_qa["identity_pass"])
+    pose = raw_pose.get("pose") if raw_pose else None
+    absolute = bool(raw_pose and raw_pose.get("absolute_pose_pass")) if lane in {"P", "PI"} else True
+    if lane in {"P", "PI"} and not absolute:
+        final_stage_status = "RAW_POSE_FAILED"
+    elif lane in {"I", "PI"} and not identity_pass:
+        final_stage_status = "IDENTITY_FAILED"
+    else:
+        final_stage_status = "SMOKE_PASSED"
+    technical_pass = bool(fresh and postprocess["passed"] and absolute and (lane == "P" or identity_pass))
+    result = {
+        **record_base,
+        "output_path": _relative(permanent),
+        "output_sha256": sha256(permanent),
+        "output_png": inspect_png(permanent),
+        "pose": pose,
+        "identity": identity,
+        "identity_qa": identity_qa,
+        "absolute_pose_pass": absolute,
+        "identity_pass": identity_pass if lane in {"I", "PI"} else None,
+        "weapon_present": bool(identity.get("weapon_present")) if identity else None,
+        "technical_pass": technical_pass,
+        "final_stage_status": final_stage_status,
+        "status": final_stage_status,
+        "runtime_ms": execution.get("runtime_ms"),
+    }
+    _write(PERMANENT_ROOT / "execution" / f"{stage}.json", result)
+    return result
 
 
 def _load_transparent_qa(path: Path) -> dict[str, Any]:
@@ -320,7 +458,34 @@ def _load_transparent_qa(path: Path) -> dict[str, Any]:
 
 
 def _failure_record(lane: str, seed: int, stage: str, error: Exception, *, technical: bool = False) -> dict[str, Any]:
-    return {"lane": lane, "seed": seed, "stage": stage, "status": "FAILED", "technical_pass": technical, "error": f"{type(error).__name__}: {error}", "absolute_pose_pass": False, "identity_pass": False, "weapon_present": False, "fresh_binding": False}
+    return {
+        "schema_version": UGAS_VERSION,
+        "lane": lane,
+        "seed": seed,
+        "stage": stage,
+        "status": "GENERATION_FAILED",
+        "final_stage_status": "GENERATION_FAILED",
+        "generation": {
+            "submitted": False,
+            "completed": False,
+            "prompt_id": None,
+            "history_record_key": None,
+            "history_key_matches_prompt_id": False,
+            "fresh_binding": False,
+            "raw_output_path": None,
+            "raw_output_sha256": None,
+        },
+        "raw_pose_qa": None,
+        "postprocess": {"attempted": False, "passed": False, "error": None},
+        "identity_qa": None,
+        "technical_pass": technical,
+        "error": f"{type(error).__name__}: {error}",
+        "absolute_pose_pass": False,
+        "identity_pass": False,
+        "weapon_present": False,
+        "fresh_binding": False,
+        "execution_evidence": {},
+    }
 
 
 def _release_runtime(client: ComfyUIClient) -> None:
@@ -535,17 +700,224 @@ def _visual_manifest(provider: dict[str, Any], records: list[dict[str, Any]]) ->
     return {"schema_version": UGAS_VERSION, "manifest_type": "review-visual-evidence", "review_state": "sdxl-provider-qualification", "images": entries, "required_current_visuals": sorted(set(required_current)), "renderer_version": "sdxl-provider-v0.6.0", "human_visual_review": "required", "production_approval": "not-granted", "provider_status": provider.get("status")}
 
 
+def _execution_v061(records: list[dict[str, Any]], status: str) -> dict[str, Any]:
+    generation_records = [{"lane": item.get("lane"), "seed": item.get("seed"), "generation": item.get("generation", {})} for item in records]
+    completed = [item for item in generation_records if item["generation"].get("completed") is True]
+    all_prompt_ids = bool(completed) and len(completed) == len(generation_records) and all(bool(item["generation"].get("prompt_id")) for item in completed)
+    all_history = bool(completed) and len(completed) == len(generation_records) and all(item["generation"].get("history_key_matches_prompt_id") is True for item in completed)
+    all_raw = bool(completed) and len(completed) == len(generation_records) and all(bool(item["generation"].get("raw_output_path")) and bool(item["generation"].get("raw_output_sha256")) and item["generation"].get("raw_output_hash_matches_comfy") is True for item in completed)
+    all_fresh = bool(completed) and len(completed) == len(generation_records) and all(item["generation"].get("target_existed_before_submission") is False and item["generation"].get("fresh_binding") is True for item in completed)
+    return {
+        "schema_version": UGAS_VERSION,
+        "status": status,
+        "prompt_id": PROMPT_ID,
+        "records": generation_records,
+        "attempted_record_count": len(records),
+        "generation_completed_count": len(completed),
+        "completed_execution_count": len(completed),
+        "all_prompt_ids_present": all_prompt_ids,
+        "all_history_bindings_exact": all_history,
+        "all_raw_outputs_hash_bound": all_raw,
+        "all_targets_fresh": all_fresh,
+        "stale_output_rejected": all_fresh,
+        "previous_frame_chaining": False,
+        "weights_in_git": False,
+        "custom_node_source_vendored": False,
+    }
+
+
+def _record_paths_v061(records: list[dict[str, Any]], key: str) -> list[tuple[Path, dict[str, Any]]]:
+    result = []
+    for item in records:
+        value = item.get(key)
+        if value:
+            path = REPO_ROOT / str(value)
+            if path.is_file():
+                result.append((path, item))
+    return result
+
+
+def _contact_v061(records: list[dict[str, Any]], path_key: str, filename: str, label: str) -> str | None:
+    items = _record_paths_v061(records, path_key)
+    if not items:
+        return None
+    destination = OUTPUT_ROOT / filename
+    labels = [f"{item.get('lane')} seed={item.get('seed')} {label}" for _, item in items]
+    _contact_sheet([path for path, _ in items], labels, destination, columns=3)
+    permanent = REPO_ROOT / "docs" / "evidence" / filename
+    permanent.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(destination, permanent)
+    return _relative(permanent)
+
+
+def _raw_pose_contact_v061(records: list[dict[str, Any]], filename: str) -> str | None:
+    items = []
+    for item in records:
+        raw_pose = item.get("raw_pose_qa") or {}
+        if raw_pose.get("overlay_path"):
+            items.append({**item, "raw_pose_overlay_path": raw_pose["overlay_path"]})
+    return _contact_v061(items, "raw_pose_overlay_path", filename, "raw pose")
+
+
+def _provider_status_v061(records: list[dict[str, Any]], *, smoke_green: bool) -> str:
+    errors = [str(item.get("error", "")) + " " + str((item.get("postprocess") or {}).get("error", "")) for item in records]
+    if any(_technical_error(RuntimeError(error)) for error in errors):
+        return "SDXL_CONTROL_PROVIDER_HARDWARE_GAP"
+    by_lane = {lane: next((item for item in records if item.get("lane") == lane), {}) for lane in WORKFLOWS}
+    p_pose = bool((by_lane["P"].get("raw_pose_qa") or {}).get("absolute_pose_pass"))
+    pi_pose = bool((by_lane["PI"].get("raw_pose_qa") or {}).get("absolute_pose_pass"))
+    p_post = (by_lane["P"].get("postprocess") or {}).get("passed") is True
+    if p_pose and not p_post:
+        return "SDXL_POSTPROCESS_GAP"
+    if not p_pose and not pi_pose:
+        return "SDXL_OPENPOSE_CONTROL_GAP"
+    if p_pose and not pi_pose:
+        return "SDXL_COMBINED_CONDITIONING_INTERFERENCE_GAP"
+    if (by_lane["I"].get("identity_qa") or {}).get("identity_pass") is False:
+        return "SDXL_IDENTITY_ADAPTER_GAP"
+    if (by_lane["PI"].get("identity_qa") or {}).get("identity_pass") is False:
+        return "SDXL_COMBINED_IDENTITY_GAP"
+    if smoke_green:
+        return "SDXL_SMOKE_GREEN_READY_FOR_BENCHMARK_PROMPT"
+    return "SDXL_OPENPOSE_CONTROL_GAP"
+
+
+def _run_v061(endpoint: str = ENDPOINT, *, smoke_only: bool = True, seed: int = SMOKE_SEED) -> dict[str, Any]:
+    if not smoke_only:
+        raise RuntimeError("v0.6.1 permits only the corrective smoke")
+    if seed != SMOKE_SEED:
+        raise RuntimeError(f"v0.6.1 corrective smoke requires seed {SMOKE_SEED}")
+    thresholds = _thresholds()
+    audit = _audit()
+    model_qualification = _model_qualification()
+    doctor = _runtime()
+    anchor = REPO_ROOT / ANCHOR_RELATIVE
+    guide = REPO_ROOT / GUIDE_RELATIVE
+    guide_value = _read(REPO_ROOT / GUIDE_JSON_RELATIVE)
+    guide_points = _guide_points(guide_value)
+    if not anchor.is_file() or sha256(anchor) != ANCHOR_SHA256:
+        raise RuntimeError("canonical R4 anchor hash mismatch")
+    if not guide.is_file():
+        raise RuntimeError("canonical direct guide is missing")
+    client = ComfyUIClient(endpoint, timeout=90.0)
+    identity_upload = client.upload_image(anchor)
+    guide_upload = client.upload_image(guide)
+    identity_name = identity_upload.get("name") or identity_upload.get("filename")
+    guide_name = guide_upload.get("name") or guide_upload.get("filename")
+    workflow_evidence = _workflow_qualification(client, str(guide_name), str(identity_name))
+    _replace_current_docs("SDXL_P_I_PI_SMOKE_REQUIRED", started=False, jobs=0)
+    _state_update("SDXL_P_I_PI_SMOKE_REQUIRED", started=False, jobs=0)
+    records: list[dict[str, Any]] = []
+    for lane in ("P", "I", "PI"):
+        stage = f"smoke-{lane.lower()}-seed-{seed}"
+        try:
+            item = _run_one(client, lane=lane, seed=seed, anchor=anchor, guide=guide, guide_value=guide_value, guide_points=guide_points, thresholds=thresholds, stage=stage)
+        except Exception as exc:
+            item = _failure_record(lane, seed, stage, exc)
+        records.append(item)
+        _write(EXECUTION_EVIDENCE_PATH, _execution_v061(records, "RUNNING"))
+        _release_runtime(client)
+
+    smoke_green = len(records) == 3 and all(item.get("technical_pass") is True for item in records)
+    status = _provider_status_v061(records, smoke_green=smoke_green)
+    raw_contact = _contact_v061(records, "raw_output_path", "sdxl-smoke-raw-p-i-pi-contact-sheet.png", "raw")
+    raw_pose_contact = _raw_pose_contact_v061(records, "sdxl-smoke-raw-pose-overlays-contact-sheet.png")
+    postprocessed_contact = _contact_v061(records, "output_path", "sdxl-smoke-postprocessed-contact-sheet.png", "processed")
+    _write(REPO_ROOT / "docs/evidence/sdxl-smoke-phase-table.json", {
+        "schema_version": UGAS_VERSION,
+        "status": status,
+        "lanes": [{"lane": item.get("lane"), "seed": item.get("seed"), "generation": item.get("generation"), "raw_pose_qa": item.get("raw_pose_qa"), "postprocess": item.get("postprocess"), "identity_qa": item.get("identity_qa"), "final_stage_status": item.get("final_stage_status")} for item in records],
+    })
+    _write(REPO_ROOT / "docs/evidence/sdxl-identity-hard-gates.json", {
+        "schema_version": UGAS_VERSION,
+        "status": "IDENTITY_HARD_GATES_RECORDED",
+        "canonical_anchor_sha256": ANCHOR_SHA256,
+        "records": [{"lane": item.get("lane"), "seed": item.get("seed"), "descriptor": item.get("identity"), "hard_gates": item.get("identity_qa"), "output_path": item.get("output_path")} for item in records if item.get("identity") is not None],
+        "hard_gate_policy": {"aggregate_score_cannot_compensate": True, "required": ["aggregate_score", "weapon", "head_face", "armor_palette", "black_cloth", "body_proportions", "single_subject"]},
+    })
+    p_record = next((item for item in records if item.get("lane") == "P"), {})
+    if (p_record.get("postprocess") or {}).get("passed") is False and (p_record.get("postprocess") or {}).get("attempted") is True:
+        _write(REPO_ROOT / "docs/evidence/sdxl-p-postprocess-diagnostics.json", {"schema_version": UGAS_VERSION, "lane": "P", "status": "POSTPROCESS_GAP", "generation": p_record.get("generation"), "raw_pose_qa": p_record.get("raw_pose_qa"), "postprocess": p_record.get("postprocess")})
+    execution = _execution_v061(records, status)
+    _write(EXECUTION_EVIDENCE_PATH, execution)
+    provider = {
+        "schema_version": UGAS_VERSION,
+        "status": status,
+        "prompt_id": PROMPT_ID,
+        "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+        "answer": "This release classifies only the corrected P/I/PI smoke. It does not authorize benchmark, confirmation, walk or animation.",
+        "audit": audit,
+        "model_qualification": model_qualification,
+        "runtime_doctor": doctor,
+        "workflow_qualification": workflow_evidence,
+        "anchor": {"path": ANCHOR_RELATIVE, "revision_id": ANCHOR_REVISION_ID, "sha256": ANCHOR_SHA256},
+        "guide": {"path": GUIDE_RELATIVE, "json_path": GUIDE_JSON_RELATIVE, "image_sha256": sha256(guide), "json_sha256": input_hashes_hash(guide_value)},
+        "thresholds": {"source": "docs/evidence/pose-thresholds-v054.json", "schema_version": thresholds["schema_version"], "changed": False, "absolute": thresholds["absolute_pose"], "causal": thresholds["causal"], "identity_weapon": thresholds["identity_weapon"]},
+        "seeds": {"smoke": seed, "paired": [], "benchmark": None, "confirmation": []},
+        "smoke": {"technical_green": smoke_green, "records": records, "raw_contact_sheet": raw_contact, "raw_pose_overlays_contact_sheet": raw_pose_contact, "postprocessed_contact_sheet": postprocessed_contact, "phase_table": "docs/evidence/sdxl-smoke-phase-table.json"},
+        "paired": {"status": "NOT_RUN", "records": []},
+        "benchmark": {"status": "NOT_RUN", "reason": "forbidden in v0.6.1"},
+        "confirmation": {"status": "NOT_RUN", "records": [], "green": False},
+        "identity_hard_gates": "docs/evidence/sdxl-identity-hard-gates.json",
+        "p_postprocess_diagnostics": "docs/evidence/sdxl-p-postprocess-diagnostics.json" if (REPO_ROOT / "docs/evidence/sdxl-p-postprocess-diagnostics.json").is_file() else None,
+        "execution_evidence": "docs/evidence/execution-evidence-v0.6.1.json",
+        "walk_authorized": False,
+        "anchors_authorized": False,
+        "animation_authorized": False,
+        "production_approval": "not-granted",
+        "external_approval": "not-claimed",
+        "new_generation_jobs": len(records),
+    }
+    _write(REPO_ROOT / "docs/evidence/sdxl-provider-qualification-v0.6.1.json", provider)
+    _write(REPO_ROOT / "docs/evidence/review-visuals-v0.6.1.json", _visual_manifest_v061(provider, records))
+    _replace_current_docs(status, started=bool(records), jobs=len(records))
+    _state_update(status, started=bool(records), jobs=len(records), stop_reason=status)
+    return provider
+
+
+def _visual_manifest_v061(provider: dict[str, Any], records: list[dict[str, Any]]) -> dict[str, Any]:
+    entries: list[dict[str, Any]] = []
+
+    def add(path: Path, archive_name: str | None = None, revision_id: str = "v0.6.1") -> None:
+        if path.is_file():
+            entries.append({"archive_name": archive_name or path.name, "source_path": _relative(path), "revision_id": revision_id, "sha256": _review_digest(path)})
+
+    historical = REPO_ROOT / "docs/evidence/review-visuals-v0.5.5.json"
+    if historical.is_file():
+        for item in _read(historical).get("images", []):
+            source = REPO_ROOT / str(item.get("source_path", ""))
+            if source.is_file():
+                add(source, str(item.get("archive_name") or source.name), str(item.get("revision_id") or "historical-v0.5.5"))
+    for name in ("sdxl-smoke-raw-p-i-pi-contact-sheet.png", "sdxl-smoke-raw-pose-overlays-contact-sheet.png", "sdxl-smoke-postprocessed-contact-sheet.png", "sdxl-smoke-phase-table.json", "sdxl-identity-hard-gates.json", "sdxl-p-postprocess-diagnostics.json", "execution-evidence-v0.6.1.json"):
+        add(REPO_ROOT / "docs/evidence" / name)
+    for item in records:
+        raw = item.get("raw_output_path")
+        output = item.get("output_path")
+        if raw:
+            add(REPO_ROOT / str(raw))
+        if output:
+            add(REPO_ROOT / str(output))
+    required = ["sdxl-smoke-raw-p-i-pi-contact-sheet.png", "sdxl-smoke-raw-pose-overlays-contact-sheet.png", "sdxl-smoke-phase-table.json", "sdxl-identity-hard-gates.json", "execution-evidence-v0.6.1.json"]
+    if any(item.get("output_path") for item in records):
+        required.append("sdxl-smoke-postprocessed-contact-sheet.png")
+    if provider.get("p_postprocess_diagnostics"):
+        required.append("sdxl-p-postprocess-diagnostics.json")
+    return {"schema_version": UGAS_VERSION, "manifest_type": "review-visual-evidence", "review_state": "sdxl-smoke-correction", "images": entries, "required_current_visuals": sorted(set(required)), "renderer_version": "sdxl-provider-v0.6.1", "human_visual_review": "required", "production_approval": "not-granted", "provider_status": provider.get("status")}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--endpoint", default=ENDPOINT)
+    parser.add_argument("--smoke-only", action="store_true")
+    parser.add_argument("--seed", type=int, default=SMOKE_SEED)
     args = parser.parse_args()
     try:
-        result = run(args.endpoint)
+        result = _run_v061(args.endpoint, smoke_only=True, seed=args.seed)
     except Exception as exc:
         print(f"SDXL_QUALIFICATION_BLOCKED: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 2
-    print(json.dumps({"status": result["status"], "new_generation_jobs": result["new_generation_jobs"], "smoke_technical_green": result["smoke"]["technical_green"], "confirmation_green": result["confirmation"]["green"]}, indent=2))
-    return 0 if result["status"] == "SDXL_CONTROL_POSE_PROVIDER_QUALIFIED" else 2
+    print(json.dumps({"status": result["status"], "new_generation_jobs": result["new_generation_jobs"], "smoke_technical_green": result["smoke"]["technical_green"], "benchmark": result["benchmark"]["status"]}, indent=2))
+    return 0 if result["status"] == "SDXL_SMOKE_GREEN_READY_FOR_BENCHMARK_PROMPT" else 2
 
 
 if __name__ == "__main__":

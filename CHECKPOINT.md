@@ -1,12 +1,12 @@
-# UGAS checkpoint - v0.6.0
+# UGAS checkpoint - v0.6.1
 
 **STATUS:** `SDXL_OPENPOSE_CONTROL_GAP`
-**VERSION:** `0.6.0`
+**VERSION:** `0.6.1`
 **PHASE:** `SDXL_CONTROL_POSE_PROVIDER_QUALIFICATION`
 
 ## Current state
 
-O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). A auditoria do `ComfyUI_IPAdapter_plus`, a qualificação dos quatro artefatos e o doctor/runtime passaram; o smoke factorial executou um seed novo em P/I/PI e encerrou no stop condition `SDXL_OPENPOSE_CONTROL_GAP`. `generation_provider_change_authorized=false`, `walk_authorized=false` e `new_generation_jobs=3` neste checkpoint.
+O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). Esta correção preserva a auditoria, modelos, hashes, workflows e thresholds do v0.6.0, materializa cada PNG bruto antes do BiRefNet e torna a identidade e o sujeito único hard gates. O smoke P/I/PI usa somente a seed 61701; `provider_smoke_status`, `generation_provider_change_authorized=false`, `walk_authorized=false` e `new_generation_jobs=0` ficam explícitos neste checkpoint antes da execução.
 
 O v0.5.5 é histórico e permanece preservado como `REVIEW_ARCHIVE_VERIFIED`; sua decisão de pose anterior também preserva `LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED` do v0.5.4. Os 9 outputs A/C/R, hashes e thresholds de [v054-provider-qualification.json](docs/evidence/v054-provider-qualification.json) não são reescritos.
 
