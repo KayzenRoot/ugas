@@ -55,6 +55,13 @@ def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def _canonical_visual_digest(name: str, data: bytes) -> str:
+    """Match the repository review digest while preserving archive copy bytes."""
+    if Path(name).suffix.casefold() in {".json", ".md", ".txt"}:
+        data = data.replace(b"\r\n", b"\n")
+    return _sha256(data)
+
+
 def _safe_archive_name(name: str) -> None:
     if not name or name.startswith(("/", "\\")) or re.match(r"^[A-Za-z]:", name):
         raise ReviewArchiveError(f"absolute archive path: {name}")
@@ -151,7 +158,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         if source_bytes != copy_bytes:
             raise ReviewArchiveError(f"review visual copy differs from canonical source: {source_path}")
         expected = str(item.get("sha256", ""))
-        if expected and _sha256(source_bytes) != expected:
+        if expected and _canonical_visual_digest(source_path, source_bytes) != expected:
             raise ReviewArchiveError(f"review visual manifest hash mismatch: {source_path}")
 
     table = _read_json(archive, "docs/evidence/v054-pose-error-table.json")
