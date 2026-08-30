@@ -1,4 +1,8 @@
-"""Source-controlled deterministic mannequin pose/view guides for UGAS v0.5.1."""
+"""Source-controlled deterministic mannequin pose/view guides for UGAS v0.5.1.
+
+This module remains the historical v2 renderer.  The active v0.5.2 escalation
+uses :mod:`ugas.openpose_guides` and does not rewrite the v0.5.1 artifacts.
+"""
 
 from __future__ import annotations
 
@@ -8,6 +12,8 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from .constants import UGAS_VERSION
+
+V051_SCHEMA_VERSION = "0.5.1"
 
 CANVAS = 512
 BASELINE_Y = 478
@@ -73,7 +79,7 @@ def view_guide(view: str) -> dict[str, Any]:
         raise PoseGuideError(f"unknown view: {view}")
     points = _profile_points(facing=view) if view in {"left", "right"} else _front_points()
     return {
-        "schema_version": UGAS_VERSION, "guide_type": "view", "guide_id": f"view-{view}", "view": view,
+        "schema_version": V051_SCHEMA_VERSION, "guide_type": "view", "guide_id": f"view-{view}", "view": view,
         "canvas": {"width": CANVAS, "height": CANVAS}, "baseline_y": BASELINE_Y, "centerline_x": CENTERLINE_X,
         "keypoints": points,
         "orientation_cue": {"facing": view, "camera": "orthographic gameplay reference", "mirror_allowed": False, "profile_strict": view in {"left", "right"}},
@@ -97,7 +103,7 @@ def walk_guide(index: int) -> dict[str, Any]:
         lifted_toe = "foot_right_toe" if index < 4 else "foot_left_toe"
         points[lifted][1] = 448; points[lifted_toe][1] = 448
     return {
-        "schema_version": UGAS_VERSION, "guide_type": "walk", "guide_id": f"walk-front-8-{name}",
+        "schema_version": V051_SCHEMA_VERSION, "guide_type": "walk", "guide_id": f"walk-front-8-{name}",
         "animation": "walk", "view": "front", "frame_index": index, "frame_name": name,
         "phase": ("contact", "down", "passing", "up", "contact", "down", "passing", "up")[index],
         "foot_contact": "left" if index < 4 else "right", "canvas": {"width": CANVAS, "height": CANVAS},
@@ -113,7 +119,7 @@ def walk_guide(index: int) -> dict[str, Any]:
 def challenge_guide() -> dict[str, Any]:
     points = _profile_points(facing="left", arm_up=True, stride=28)
     return {
-        "schema_version": UGAS_VERSION, "guide_type": "qualification-challenge", "guide_id": CHALLENGE_NAME,
+        "schema_version": V051_SCHEMA_VERSION, "guide_type": "qualification-challenge", "guide_id": CHALLENGE_NAME,
         "view": "left", "challenge": "strict-left-profile-arm-above-head-forward-leg", "canvas": {"width": CANVAS, "height": CANVAS},
         "baseline_y": BASELINE_Y, "centerline_x": CENTERLINE_X, "keypoints": points,
         "orientation_cue": {"facing": "left", "camera": "orthographic gameplay reference", "mirror_allowed": False, "profile_strict": True},
@@ -148,13 +154,16 @@ def _guide_items() -> list[tuple[str, dict[str, Any]]]:
 def ensure_pose_guides(repo_root: Path) -> dict[str, Any]:
     root = repo_root / "pose-guides"; paths: list[Path] = []
     expected = {relative for relative, _ in _guide_items()}
-    for stale in root.rglob("*.json"):
+    # Do not recurse into active v0.5.2 subtrees such as openpose-v3.  The
+    # historical v2 writer owns only the three directories it materializes.
+    owned_roots = [root / "views", root / "walk-front-8", root / "challenges"]
+    for stale in (path for owned in owned_roots for path in owned.glob("*.json")):
         if str(stale.relative_to(root)).replace("\\", "/") not in expected:
             stale.unlink()
     for relative, guide in _guide_items():
         path = root / relative; path.parent.mkdir(parents=True, exist_ok=True); path.write_text(json.dumps(guide, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"); paths.append(path)
     validations = [validate_pose_guide(json.loads(path.read_text(encoding="utf-8"))) for path in paths]
-    return {"schema_version": UGAS_VERSION, "renderer_version": POSE_GUIDE_RENDERER_VERSION, "status": "POSE_GUIDES_VALID" if all(item["status"] == "POSE_GUIDE_VALID" for item in validations) else "POSE_GUIDES_INVALID", "views": [str(path.relative_to(repo_root)).replace("\\", "/") for path in paths[:4]], "walk_frames": [str(path.relative_to(repo_root)).replace("\\", "/") for path in paths[4:12]], "challenge": str(paths[12].relative_to(repo_root)).replace("\\", "/"), "guides": validations}
+    return {"schema_version": V051_SCHEMA_VERSION, "renderer_version": POSE_GUIDE_RENDERER_VERSION, "status": "POSE_GUIDES_VALID" if all(item["status"] == "POSE_GUIDE_VALID" for item in validations) else "POSE_GUIDES_INVALID", "views": [str(path.relative_to(repo_root)).replace("\\", "/") for path in paths[:4]], "walk_frames": [str(path.relative_to(repo_root)).replace("\\", "/") for path in paths[4:12]], "challenge": str(paths[12].relative_to(repo_root)).replace("\\", "/"), "guides": validations}
 
 
 def _scaled(point: Iterable[float], size: int = CANVAS) -> tuple[float, float]:
@@ -205,7 +214,7 @@ def render_pose_guides(repo_root: Path, kind: str = "walk-front-8") -> dict[str,
     from .image_utils import compose_sheet
     controls = [Path(item["control"]["path"]) for item in rendered]; reviews = [Path(item["review"]["path"]) for item in rendered]
     control_sheet = compose_sheet(controls, root / "control-contact-sheet.png", 4); review_sheet = compose_sheet(reviews, root / "review-contact-sheet.png", 4)
-    return {"schema_version": UGAS_VERSION, "renderer_version": POSE_GUIDE_RENDERER_VERSION, "status": "POSE_GUIDES_RENDERED", "kind": kind, "guides": rendered, "contact_sheet": control_sheet, "review_contact_sheet": review_sheet}
+    return {"schema_version": V051_SCHEMA_VERSION, "renderer_version": POSE_GUIDE_RENDERER_VERSION, "status": "POSE_GUIDES_RENDERED", "kind": kind, "guides": rendered, "contact_sheet": control_sheet, "review_contact_sheet": review_sheet}
 
 
 def render_challenge_guide(repo_root: Path) -> dict[str, Any]:

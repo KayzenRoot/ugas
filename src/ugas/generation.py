@@ -75,6 +75,7 @@ def _model_names(model: dict) -> dict[str, str]:
         elif relative.parts and relative.parts[0] == "text_encoders": names["__CLIP__"] = relative.name
         elif relative.parts and relative.parts[0] == "vae": names["__VAE__"] = relative.name
         elif relative.parts and relative.parts[0] == "background_removal": names["__BG_MODEL__"] = relative.name
+        elif relative.parts and relative.parts[0] == "loras": names["__LORA__"] = relative.name
     return names
 
 

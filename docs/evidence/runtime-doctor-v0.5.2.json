@@ -1,0 +1,256 @@
+{
+  "schema_version": "0.5.2",
+  "endpoint": "http://127.0.0.1:8188",
+  "health": {
+    "status": "healthy",
+    "value": {
+      "system": {
+        "os": "win32",
+        "ram_total": 16964046848,
+        "ram_free": 936730624,
+        "comfyui_version": "0.34.0",
+        "required_frontend_version": "1.49.6",
+        "installed_templates_version": "0.11.48",
+        "required_templates_version": "0.11.48",
+        "comfy_package_versions": [
+          {
+            "name": "comfyui-frontend-package",
+            "installed": "1.49.6",
+            "required": "1.49.6"
+          },
+          {
+            "name": "comfyui-workflow-templates",
+            "installed": "0.11.48",
+            "required": "0.11.48"
+          },
+          {
+            "name": "comfyui-embedded-docs",
+            "installed": "0.5.10",
+            "required": "0.5.10"
+          },
+          {
+            "name": "comfy-kitchen",
+            "installed": "0.2.31",
+            "required": "0.2.31"
+          },
+          {
+            "name": "comfy-aimdo",
+            "installed": "0.4.15",
+            "required": "0.4.15"
+          }
+        ],
+        "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+        "pytorch_version": "2.13.0+cu130",
+        "embedded_python": false,
+        "deploy_environment": "local-git",
+        "argv": [
+          "main.py",
+          "--listen",
+          "127.0.0.1",
+          "--port",
+          "8188"
+        ]
+      },
+      "devices": [
+        {
+          "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+          "type": "cuda",
+          "index": 0,
+          "vram_total": 8546484224,
+          "vram_free": 7413432320,
+          "torch_vram_total": 0,
+          "torch_vram_free": 0
+        }
+      ]
+    }
+  },
+  "observed_at": "2026-08-30T11:08:57Z",
+  "custom_nodes_required": [],
+  "status": "READY",
+  "comfyui_version": "0.34.0",
+  "gpu": [
+    {
+      "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+      "type": "cuda",
+      "index": 0,
+      "vram_total": 8546484224,
+      "vram_free": 7413432320,
+      "torch_vram_total": 0,
+      "torch_vram_free": 0
+    }
+  ],
+  "node_info": {
+    "count": 900,
+    "sha256": "23bace0f699e7c30b8aab9236da65220d472bc5deca8bf7e873db5ad45f59a38",
+    "ReferenceLatent": true,
+    "required_native_nodes": [
+      "CFGGuider",
+      "CLIPLoader",
+      "CLIPTextEncode",
+      "EmptyFlux2LatentImage",
+      "Flux2Scheduler",
+      "GetImageSize",
+      "KSamplerSelect",
+      "LoadImage",
+      "RandomNoise",
+      "ReferenceLatent",
+      "SamplerCustomAdvanced",
+      "SaveImage",
+      "UNETLoader",
+      "VAEDecode",
+      "VAEEncode",
+      "VAELoader"
+    ]
+  },
+  "inventories": {
+    "checkpoints": [],
+    "configs": [
+      "anything_v3.yaml",
+      "v1-inference.yaml",
+      "v1-inference_clip_skip_2.yaml",
+      "v1-inference_clip_skip_2_fp16.yaml",
+      "v1-inference_fp16.yaml",
+      "v1-inpainting-inference.yaml",
+      "v2-inference-v.yaml",
+      "v2-inference-v_fp32.yaml",
+      "v2-inference.yaml",
+      "v2-inference_fp32.yaml",
+      "v2-inpainting-inference.yaml"
+    ],
+    "loras": [],
+    "vae": [
+      "flux2-vae.safetensors"
+    ],
+    "text_encoders": [
+      "qwen_3_4b_fp4_flux2.safetensors"
+    ],
+    "diffusion_models": [
+      "flux-2-klein-4b-nvfp4.safetensors",
+      "flux-2-klein-base-4b-nvfp4.safetensors"
+    ],
+    "clip_vision": [],
+    "style_models": [],
+    "embeddings": [],
+    "diffusers": [],
+    "vae_approx": [],
+    "controlnet": [],
+    "gligen": [],
+    "upscale_models": [],
+    "latent_upscale_models": [],
+    "custom_nodes": [
+      "__pycache__\\websocket_image_save.cpython-312.pyc",
+      "example_node.py.example",
+      "websocket_image_save.py"
+    ],
+    "datasets": [],
+    "hypernetworks": [],
+    "photomaker": [],
+    "classifiers": [],
+    "model_patches": [],
+    "audio_encoders": [],
+    "background_removal": [
+      "birefnet.safetensors"
+    ],
+    "frame_interpolation": [],
+    "geometry_estimation": [],
+    "optical_flow": [],
+    "detection": []
+  },
+  "model": {
+    "id": "flux2-klein-4b-base-nvfp4",
+    "exact_files": [
+      "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors",
+      "text_encoders/qwen_3_4b_fp4_flux2.safetensors",
+      "vae/flux2-vae.safetensors"
+    ],
+    "sha256": {
+      "diffusion_models/flux-2-klein-base-4b-nvfp4.safetensors": "F66FAEFE951B8EEFE0FF3D4082B393FB6DC76D9A34861BD9F4AC54DC3EF381AB",
+      "text_encoders/qwen_3_4b_fp4_flux2.safetensors": "3EAB03A77ADB0EE5304A4E677D5C10AC22F9049C1D7C894ADCA4F8BB39206CA8",
+      "vae/flux2-vae.safetensors": "D64F3A68E1CC4F9F4E29B6E0DA38A0204FE9A49F2D4053F0EC1FA1CA02F9C4B5"
+    },
+    "status": "qualified",
+    "license": "Apache-2.0"
+  },
+  "workflows": {
+    "A": {
+      "id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "template_sha256": "9efa45ad05f3993906a44afd4e7068bf6834d76985d17541b655fe0e4e52e594",
+      "graph": {
+        "valid_graph": true,
+        "node_count": 18,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "reference_order": [
+        "identity-anchor"
+      ],
+      "custom_nodes_required": [],
+      "compatibility": {
+        "compatible": true,
+        "model_id": "flux2-klein-4b-base-nvfp4",
+        "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-a",
+        "family": "flux2-klein-4b",
+        "variant": "base",
+        "steps": 20,
+        "guidance": 5.0,
+        "mismatches": [],
+        "experimental_override": false
+      }
+    },
+    "B": {
+      "id": "flux2-klein-base-4b-quality-native-reference-order-b",
+      "template_sha256": "6465a749a29d9df5c5f2d492151230f22a69101c88fcf3cf06cf34d89589e74c",
+      "graph": {
+        "valid_graph": true,
+        "node_count": 22,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "reference_order": [
+        "identity-anchor",
+        "openpose-coco18-pose-guide"
+      ],
+      "custom_nodes_required": [],
+      "compatibility": {
+        "compatible": true,
+        "model_id": "flux2-klein-4b-base-nvfp4",
+        "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-b",
+        "family": "flux2-klein-4b",
+        "variant": "base",
+        "steps": 20,
+        "guidance": 5.0,
+        "mismatches": [],
+        "experimental_override": false
+      }
+    },
+    "C": {
+      "id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "template_sha256": "e637682c098cdd872a98682f8c5e4f8da720c5dc6349b1f99a3ad4d461bd509c",
+      "graph": {
+        "valid_graph": true,
+        "node_count": 22,
+        "missing_nodes": [],
+        "missing_models": [],
+        "live_valid": true
+      },
+      "reference_order": [
+        "openpose-coco18-pose-guide",
+        "identity-anchor"
+      ],
+      "custom_nodes_required": [],
+      "compatibility": {
+        "compatible": true,
+        "model_id": "flux2-klein-4b-base-nvfp4",
+        "workflow_id": "flux2-klein-base-4b-quality-native-reference-order-c",
+        "family": "flux2-klein-4b",
+        "variant": "base",
+        "steps": 20,
+        "guidance": 5.0,
+        "mismatches": [],
+        "experimental_override": false
+      }
+    }
+  }
+}

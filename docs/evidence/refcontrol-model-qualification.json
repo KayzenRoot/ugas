@@ -1,0 +1,102 @@
+{
+  "schema_version": "0.5.2",
+  "status": "MODEL_HASH_AND_LICENSE_VERIFIED",
+  "stop_reason": null,
+  "native_gap_status": "NATIVE_REFERENCE_ORDER_POSE_CONTROL_GAP",
+  "model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+  "base_model_id": "flux2-klein-4b-base-nvfp4",
+  "source": "https://huggingface.co/xocialize/refcontrol-FLUX.2-klein-4B-pose-lora",
+  "source_revision": "b2b0edf2622f2abd980bf868441149d71b3eb7b0",
+  "file": "C:\\Users\\csn19\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\UGAS\\comfyui\\models\\loras\\refcontrol-pose-klein-4b.safetensors",
+  "filename": "refcontrol-pose-klein-4b.safetensors",
+  "expected_sha256": "F9880F9070576FF1603C0988ED2AFC9957DEB0D7DD7C52CF15DECBD4087F1339",
+  "actual_sha256": "f9880f9070576ff1603c0988ed2afc9957deb0d7dd7c52cf15decbd4087f1339",
+  "bytes": 92426792,
+  "approx_size": "92.4 MB",
+  "license": {
+    "status": "LICENSE_REVERIFIED",
+    "source": "https://huggingface.co/xocialize/refcontrol-FLUX.2-klein-4B-pose-lora",
+    "revision": "b2b0edf2622f2abd980bf868441149d71b3eb7b0",
+    "card_url": "https://huggingface.co/xocialize/refcontrol-FLUX.2-klein-4B-pose-lora/raw/b2b0edf2622f2abd980bf868441149d71b3eb7b0/README.md",
+    "license": "Apache-2.0",
+    "checked_at": "2026-08-30T11:29:23Z",
+    "card_sha256": "b381db8c50e81ed644b5b3dad2ff04ba3827093824bb3fde96ece77354a87954"
+  },
+  "download": {
+    "path": "C:\\Users\\csn19\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\UGAS\\comfyui\\models\\loras\\refcontrol-pose-klein-4b.safetensors",
+    "sha256": "f9880f9070576ff1603c0988ed2afc9957deb0d7dd7c52cf15decbd4087f1339",
+    "verified": true
+  },
+  "verification": {
+    "model_id": "xocialize-refcontrol-flux2-klein-4b-pose-lora",
+    "files": [
+      {
+        "file": "loras/refcontrol-pose-klein-4b.safetensors",
+        "present": true,
+        "expected_sha256": "F9880F9070576FF1603C0988ED2AFC9957DEB0D7DD7C52CF15DECBD4087F1339",
+        "actual_sha256": "f9880f9070576ff1603c0988ed2afc9957deb0d7dd7c52cf15decbd4087f1339",
+        "ok": true
+      }
+    ],
+    "hashes_verified": true,
+    "license_approved": true,
+    "qualified": true
+  },
+  "weights_outside_git": true,
+  "verified_at": "2026-08-30T11:30:09Z",
+  "native_loader": {
+    "status": "REFCONTROL_NATIVE_LORA_LOADER_FOUND",
+    "selected": {
+      "node": "LoraLoaderModelOnly",
+      "present": true,
+      "python_module": "nodes",
+      "required_inputs": [
+        "lora_name",
+        "model",
+        "strength_model"
+      ],
+      "outputs": [
+        "MODEL"
+      ],
+      "native": true,
+      "compatible": true
+    },
+    "candidates": [
+      {
+        "node": "LoraLoaderModelOnly",
+        "present": true,
+        "python_module": "nodes",
+        "required_inputs": [
+          "lora_name",
+          "model",
+          "strength_model"
+        ],
+        "outputs": [
+          "MODEL"
+        ],
+        "native": true,
+        "compatible": true
+      },
+      {
+        "node": "LoraLoader",
+        "present": true,
+        "python_module": "nodes",
+        "required_inputs": [
+          "clip",
+          "lora_name",
+          "model",
+          "strength_clip",
+          "strength_model"
+        ],
+        "outputs": [
+          "MODEL",
+          "CLIP"
+        ],
+        "native": true,
+        "compatible": true
+      }
+    ],
+    "object_info_sha256": "f0733b4692e95e86b90dab5b7fee912d9413ea3d379cff36cceabe8877285dc3",
+    "custom_nodes_required": []
+  }
+}

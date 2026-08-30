@@ -1,0 +1,457 @@
+{
+  "schema_version": "0.5.2",
+  "guide_type": "walk",
+  "guide_id": "openpose-v3-walk-front-8-frame-00-contact-left",
+  "source_guide_id": "walk-front-8-frame-00-contact-left",
+  "source_guide_sha256": "b8788a1474a9ff416dcca5bea0518f04eb6c5a7af406fbe15860cd5e1a12728f",
+  "view": "front",
+  "animation": "walk",
+  "frame_index": 0,
+  "frame_name": "frame-00-contact-left",
+  "phase": "contact",
+  "foot_contact": "left",
+  "canvas": {
+    "width": 512,
+    "height": 512
+  },
+  "baseline_y": 478,
+  "joint_schema": "COCO-18",
+  "joints": {
+    "nose": {
+      "x": 248.0,
+      "y": 98.0,
+      "visible": true,
+      "source": "nose"
+    },
+    "neck": {
+      "x": 248.0,
+      "y": 158.0,
+      "visible": true,
+      "source": "neck"
+    },
+    "shoulder_right": {
+      "x": 296.0,
+      "y": 172.0,
+      "visible": true,
+      "source": "shoulder_right"
+    },
+    "elbow_right": {
+      "x": 346.0,
+      "y": 224.0,
+      "visible": true,
+      "source": "elbow_right"
+    },
+    "wrist_right": {
+      "x": 336.0,
+      "y": 286.0,
+      "visible": true,
+      "source": "hand_right"
+    },
+    "shoulder_left": {
+      "x": 200.0,
+      "y": 172.0,
+      "visible": true,
+      "source": "shoulder_left"
+    },
+    "elbow_left": {
+      "x": 150.0,
+      "y": 224.0,
+      "visible": true,
+      "source": "elbow_left"
+    },
+    "wrist_left": {
+      "x": 160.0,
+      "y": 286.0,
+      "visible": true,
+      "source": "hand_left"
+    },
+    "hip_right": {
+      "x": 248.0,
+      "y": 286.0,
+      "visible": true,
+      "source": "pelvis"
+    },
+    "knee_right": {
+      "x": 312.0,
+      "y": 366.0,
+      "visible": true,
+      "source": "knee_right"
+    },
+    "ankle_right": {
+      "x": 320.0,
+      "y": 478.0,
+      "visible": true,
+      "source": "foot_right"
+    },
+    "hip_left": {
+      "x": 248.0,
+      "y": 286.0,
+      "visible": true,
+      "source": "pelvis"
+    },
+    "knee_left": {
+      "x": 184.0,
+      "y": 372.0,
+      "visible": true,
+      "source": "knee_left"
+    },
+    "ankle_left": {
+      "x": 176.0,
+      "y": 478.0,
+      "visible": true,
+      "source": "foot_left"
+    },
+    "eye_right": {
+      "x": 0.0,
+      "y": 0.0,
+      "visible": false,
+      "source": null
+    },
+    "eye_left": {
+      "x": 0.0,
+      "y": 0.0,
+      "visible": false,
+      "source": null
+    },
+    "ear_right": {
+      "x": 0.0,
+      "y": 0.0,
+      "visible": false,
+      "source": null
+    },
+    "ear_left": {
+      "x": 0.0,
+      "y": 0.0,
+      "visible": false,
+      "source": null
+    }
+  },
+  "limbs": [
+    {
+      "from": "neck",
+      "to": "shoulder_right",
+      "color": [
+        255,
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "from": "shoulder_right",
+      "to": "elbow_right",
+      "color": [
+        255,
+        85,
+        0,
+        255
+      ]
+    },
+    {
+      "from": "elbow_right",
+      "to": "wrist_right",
+      "color": [
+        255,
+        170,
+        0,
+        255
+      ]
+    },
+    {
+      "from": "neck",
+      "to": "shoulder_left",
+      "color": [
+        255,
+        255,
+        0,
+        255
+      ]
+    },
+    {
+      "from": "shoulder_left",
+      "to": "elbow_left",
+      "color": [
+        170,
+        255,
+        0,
+        255
+      ]
+    },
+    {
+      "from": "elbow_left",
+      "to": "wrist_left",
+      "color": [
+        85,
+        255,
+        0,
+        255
+      ]
+    },
+    {
+      "from": "neck",
+      "to": "hip_right",
+      "color": [
+        0,
+        255,
+        0,
+        255
+      ]
+    },
+    {
+      "from": "hip_right",
+      "to": "knee_right",
+      "color": [
+        0,
+        255,
+        85,
+        255
+      ]
+    },
+    {
+      "from": "knee_right",
+      "to": "ankle_right",
+      "color": [
+        0,
+        255,
+        170,
+        255
+      ]
+    },
+    {
+      "from": "neck",
+      "to": "hip_left",
+      "color": [
+        0,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "from": "hip_left",
+      "to": "knee_left",
+      "color": [
+        0,
+        170,
+        255,
+        255
+      ]
+    },
+    {
+      "from": "knee_left",
+      "to": "ankle_left",
+      "color": [
+        0,
+        85,
+        255,
+        255
+      ]
+    },
+    {
+      "from": "nose",
+      "to": "neck",
+      "color": [
+        0,
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "from": "nose",
+      "to": "eye_right",
+      "color": [
+        85,
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "from": "eye_right",
+      "to": "ear_right",
+      "color": [
+        170,
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "from": "nose",
+      "to": "eye_left",
+      "color": [
+        255,
+        0,
+        255,
+        255
+      ]
+    },
+    {
+      "from": "eye_left",
+      "to": "ear_left",
+      "color": [
+        255,
+        0,
+        170,
+        255
+      ]
+    }
+  ],
+  "weapon": {
+    "grip": {
+      "x": 290.0,
+      "y": 270.0,
+      "visible": true
+    },
+    "tip": {
+      "x": 380.0,
+      "y": 180.0,
+      "visible": true
+    }
+  },
+  "orientation_cue": {
+    "facing": "front",
+    "camera": "orthographic gameplay reference",
+    "mirror_allowed": false,
+    "profile_strict": false
+  },
+  "ground_policy": "contact foot is on baseline_y; no guide pixels below baseline_y",
+  "pivot_policy": "pelvis centerline remains stable; x pivot is centerline_x and y pivot is baseline_y",
+  "source_controlled": true,
+  "generated_ai_content": false,
+  "deterministic": true,
+  "renderer": {
+    "version": "3.0.0",
+    "control_background": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "limb_colors": [
+      [
+        255,
+        0,
+        0,
+        255
+      ],
+      [
+        255,
+        85,
+        0,
+        255
+      ],
+      [
+        255,
+        170,
+        0,
+        255
+      ],
+      [
+        255,
+        255,
+        0,
+        255
+      ],
+      [
+        170,
+        255,
+        0,
+        255
+      ],
+      [
+        85,
+        255,
+        0,
+        255
+      ],
+      [
+        0,
+        255,
+        0,
+        255
+      ],
+      [
+        0,
+        255,
+        85,
+        255
+      ],
+      [
+        0,
+        255,
+        170,
+        255
+      ],
+      [
+        0,
+        255,
+        255,
+        255
+      ],
+      [
+        0,
+        170,
+        255,
+        255
+      ],
+      [
+        0,
+        85,
+        255,
+        255
+      ],
+      [
+        0,
+        0,
+        255,
+        255
+      ],
+      [
+        85,
+        0,
+        255,
+        255
+      ],
+      [
+        170,
+        0,
+        255,
+        255
+      ],
+      [
+        255,
+        0,
+        255,
+        255
+      ],
+      [
+        255,
+        0,
+        170,
+        255
+      ]
+    ],
+    "joint_color": [
+      255,
+      255,
+      255,
+      255
+    ],
+    "hidden_joint_color": [
+      58,
+      58,
+      58,
+      255
+    ],
+    "limb_thickness": 8,
+    "joint_radius": 9,
+    "weapon_color": [
+      255,
+      255,
+      255,
+      255
+    ]
+  }
+}

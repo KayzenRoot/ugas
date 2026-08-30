@@ -58,6 +58,14 @@ REQUIRED_V051_WALK_REVIEW_EVIDENCE = REQUIRED_V051_ANCHOR_REVIEW_EVIDENCE | {
     "walk-v2-spritesheet.png",
     "walk-v2-preview.gif",
 }
+REQUIRED_V052_REVIEW_EVIDENCE = {
+    "v051-gap-baseline.png",
+    "openpose-guide-v3-control-example.png",
+    "openpose-guides-v3-contact-sheet.png",
+    "native-reference-order-abc-contact-sheet.png",
+    "refcontrol-strength-benchmark-contact-sheet.png",
+    "refcontrol-pose-overlay-contact.png",
+}
 
 
 def _digest(path: Path) -> str:
@@ -82,6 +90,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
     elif schema_version == "0.5.1":
         state = str(manifest.get("review_state", "multiref-gap"))
         required = REQUIRED_V051_WALK_REVIEW_EVIDENCE if state == "walk" else REQUIRED_V051_ANCHOR_REVIEW_EVIDENCE if state == "anchors" else REQUIRED_V051_BASE_REVIEW_EVIDENCE
+    elif schema_version == "0.5.2":
+        required = REQUIRED_V052_REVIEW_EVIDENCE
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

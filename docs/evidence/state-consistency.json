@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.5.2",
+  "validator": "src/ugas/state_consistency.py",
+  "status": "STATE_CONSISTENCY_PASSED",
+  "failures": [],
+  "checked": {
+    "current_gate": "LOCAL_POSE_CONTROL_PROVIDER_GAP",
+    "previous_release_status": "MULTI_REFERENCE_POSE_CONTROL_GAP",
+    "contradictory_promotion_scan": true
+  }
+}

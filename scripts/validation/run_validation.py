@@ -1,4 +1,4 @@
-"""Objective UGAS v0.5.1 validation, including immutable historical gates."""
+"""Objective UGAS v0.5.2 validation, including immutable historical gates."""
 
 from __future__ import annotations
 
@@ -24,6 +24,8 @@ from ugas.model_registry import load_model, load_registry, validate_model_workfl
 from ugas.reference_edit import validate_edit_contract, validate_execution_evidence
 from ugas.review import validate_review_visual_manifest
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
+from ugas.openpose_guides import COCO18_JOINTS, OPENPOSE_GUIDE_RENDERER_VERSION, validate_openpose_guide
+from ugas.state_consistency import validate_state_consistency
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
 from ugas.pose_guides import CHALLENGE_NAME, POSE_GUIDE_RENDERER_VERSION, WALK_NAMES, validate_pose_guide
@@ -251,7 +253,7 @@ def _v051_checks() -> None:
     identity_path = ROOT / "docs/evidence/identity-manifest.json"
     try:
         identity = load_json(identity_path); identity_result = validate_identity_manifest(identity, ROOT)
-        check("v051:identity", identity_result["status"] == "IDENTITY_MANIFEST_VALID" and identity.get("schema_version") == UGAS_VERSION and identity.get("canonical_revision", {}).get("sha256") == ANCHOR_SHA256, "current identity manifest binds exact immutable R4")
+        check("v051:identity", identity_result["status"] == "IDENTITY_MANIFEST_VALID" and identity.get("schema_version") == "0.5.1" and identity.get("canonical_revision", {}).get("sha256") == ANCHOR_SHA256, "historical identity manifest binds exact immutable R4")
         validate_instance(identity, load_json(ROOT / "schemas/character-identity-manifest.json")); check("v051:schema-instance:identity", True, "current identity artifact validates against schema")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError) as exc:
         check("v051:identity", False, str(exc)); check("v051:schema-instance:identity", False, str(exc))
@@ -263,7 +265,7 @@ def _v051_checks() -> None:
         challenge = load_json(ROOT / f"pose-guides/challenges/{CHALLENGE_NAME}.json"); validate_instance(challenge, load_json(ROOT / "schemas/pose-guide.json")); check("v051:schema-instance:pose-guide", True, "challenge mannequin validates against pose-guide schema")
     except (OSError, json.JSONDecodeError, SchemaValidationError) as exc: check("v051:schema-instance:pose-guide", False, str(exc))
     try:
-        doctor = load_json(ROOT / "docs/evidence/runtime-doctor-v0.5.1.json"); check("v051:doctor", doctor.get("schema_version") == UGAS_VERSION and doctor.get("model_hashes", {}).get("expected_sha256") and doctor.get("reference_latent_node", {}).get("present") is True, "runtime, ReferenceLatent and model hash evidence recorded")
+        doctor = load_json(ROOT / "docs/evidence/runtime-doctor-v0.5.1.json"); check("v051:doctor", doctor.get("schema_version") == "0.5.1" and doctor.get("model_hashes", {}).get("expected_sha256") and doctor.get("reference_latent_node", {}).get("present") is True, "historical runtime, ReferenceLatent and model hash evidence recorded")
     except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:doctor", False, str(exc))
     try:
         multiref = load_json(ROOT / "docs/evidence/multiref-v2-qualification.json"); status = multiref.get("status"); comparison = multiref.get("comparison", {}); records = multiref.get("records", []); strict_rule = comparison.get("qualification_rule", "")
@@ -277,7 +279,7 @@ def _v051_checks() -> None:
         check("v051:ab-records", len(records) in {0, 6} and "seed" in json.dumps(records), "A/B pair count is zero before runtime gap or six after execution")
     except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:multiref-status", False, str(exc))
     try:
-        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.5.1.json"); check("v051:execution-evidence", execution.get("schema_version") == UGAS_VERSION and execution.get("fresh_binding_required") is True and execution.get("previous_frame_chaining") is False and execution.get("all_prompt_ids_present") is True and execution.get("all_history_bindings_exact") is True and execution.get("stale_output_rejected") is True, "fresh prompt/history/output binding evidence is explicit")
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.5.1.json"); check("v051:execution-evidence", execution.get("schema_version") == "0.5.1" and execution.get("fresh_binding_required") is True and execution.get("previous_frame_chaining") is False and execution.get("all_prompt_ids_present") is True and execution.get("all_history_bindings_exact") is True and execution.get("stale_output_rejected") is True, "historical fresh prompt/history/output binding evidence is explicit")
     except (OSError, json.JSONDecodeError, KeyError) as exc: check("v051:execution-evidence", False, str(exc))
     try:
         manifest = load_json(ROOT / "docs/evidence/review-visuals-v0.5.1.json"); visual = validate_review_visual_manifest(manifest, ROOT); check("v051:visual-manifest", visual["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(visual.get("failures", [])) or f"visual roles bound for {manifest.get('review_state')}")
@@ -306,9 +308,89 @@ def _v051_checks() -> None:
     check("v051:no-automatic-approval", "PRODUCTION_READY" not in review or "not" in review.casefold(), "visual and production approval remain external")
 
 
+def _v052_checks() -> None:
+    """Validate the active escalation without converting a gap into approval."""
+    state_path = ROOT / "docs/evidence/current-state.json"
+    checkpoint_path = ROOT / "CHECKPOINT.md"
+    review_path = ROOT / "REVIEW-v0.5.2.md"
+    try:
+        state = load_json(state_path)
+        state_schema = load_json(ROOT / "schemas/current-state.json")
+        validate_instance(state, state_schema)
+        consistency = validate_state_consistency(state, checkpoint_path.read_text(encoding="utf-8"), review_path.read_text(encoding="utf-8"))
+        check("v052:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state and documents are consistent")
+        check("v052:final-stop", state.get("current_gate") == "LOCAL_POSE_CONTROL_PROVIDER_GAP" and state.get("stop_reason") == "LOCAL_POSE_CONTROL_PROVIDER_GAP", "pose-control escalation ends at an explicit provider gap")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError) as exc:
+        check("v052:state-consistency", False, str(exc)); check("v052:final-stop", False, str(exc))
+
+    review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""
+    headings = [
+        "STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.5.1 AUDIT RESULT", "STATE CONSISTENCY FIX",
+        "CURRENT STATE", "OPENPOSE GUIDE V3", "NATIVE REFERENCE ORDER BENCHMARK", "NATIVE POSE QUALIFICATION",
+        "REFCONTROL MODEL / LICENSE / HASH", "REFCONTROL NATIVE LOADER QUALIFICATION", "REFCONTROL STRENGTH BENCHMARK",
+        "POSE CONTROL FINAL GATE", "IDENTITY FIDELITY", "DIRECTIONAL ANCHORS V3", "WALK FRONT 8 V3", "FRAME QA",
+        "TEMPORAL QA", "PACKING", "EXECUTION EVIDENCE", "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB",
+        "SECURITY", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP",
+    ]
+    check("v052:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.5.2 review headings present")
+    check("v052:review-stop-language", "LOCAL_POSE_CONTROL_PROVIDER_GAP" in review and "não" in review.casefold() and "production_approval" not in review.casefold(), "review records the explicit stop and keeps approval external")
+
+    try:
+        manifest = load_json(ROOT / "docs/evidence/openpose-guide-v3-manifest.json")
+        check("v052:openpose-manifest", manifest.get("status") == "OPENPOSE_EVIDENCE_RENDERED" and manifest.get("renderer_version") == OPENPOSE_GUIDE_RENDERER_VERSION and manifest.get("joint_schema") == "COCO-18", "OpenPose v3 renderer and schema evidence are present")
+        guide_paths = sorted((ROOT / "pose-guides/openpose-v3").glob("**/*.json"))
+        results = [validate_openpose_guide(load_json(path)) for path in guide_paths]
+        check("v052:openpose-guides", len(guide_paths) == 13 and all(item["status"] == "OPENPOSE_GUIDE_VALID" and tuple(load_json(path)["joints"]) == COCO18_JOINTS for path, item in zip(guide_paths, results)), f"validated COCO-18 guides={len(guide_paths)}")
+        check("v052:openpose-images", all((ROOT / path).is_file() for path in ("docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png")), "control image and review contact sheet are present")
+        validate_instance(load_json(ROOT / "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json"), load_json(ROOT / "schemas/openpose-pose-guide.json"))
+        check("v052:openpose-schema-instance", True, "challenge guide validates against openpose-pose-guide schema")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError) as exc:
+        check("v052:openpose-manifest", False, str(exc)); check("v052:openpose-guides", False, str(exc)); check("v052:openpose-schema-instance", False, str(exc))
+
+    try:
+        native = load_json(ROOT / "docs/evidence/native-reference-order-qualification.json")
+        lanes = native.get("lanes", {})
+        check("v052:native-gap", native.get("status") == "NATIVE_REFERENCE_ORDER_POSE_CONTROL_GAP" and not native.get("qualified_lanes") and len(native.get("records", [])) == 9, "native A/B/C benchmark is complete but fail-closed")
+        check("v052:native-criteria", lanes.get("A", {}).get("records") == 3 and lanes.get("B", {}).get("records") == 3 and lanes.get("C", {}).get("records") == 3 and lanes.get("A", {}).get("pose_mean") == 0.894403 and native.get("benchmark_contract", {}).get("gain_threshold") == 0.15, "native seeds, baseline and immutable gain threshold are recorded")
+        check("v052:native-contact", (ROOT / "docs/evidence/native-reference-order-abc-contact-sheet.png").is_file() and (ROOT / "docs/evidence/v051-gap-baseline.png").is_file(), "native and historical baseline visuals are present")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v052:native-gap", False, str(exc)); check("v052:native-criteria", False, str(exc)); check("v052:native-contact", False, str(exc))
+
+    try:
+        model = load_json(ROOT / "docs/evidence/refcontrol-model-qualification.json")
+        loader = model.get("native_loader", {})
+        check("v052:refcontrol-model", model.get("status") == "MODEL_HASH_AND_LICENSE_VERIFIED" and model.get("actual_sha256", "").casefold() == "f9880f9070576ff1603c0988ed2afc9957deb0d7dd7c52cf15decbd4087f1339" and model.get("bytes") == 92426792 and model.get("license", {}).get("license") == "Apache-2.0", "RefControl file hash, byte count and license are verified")
+        check("v052:refcontrol-loader", loader.get("status") == "REFCONTROL_NATIVE_LORA_LOADER_FOUND" and loader.get("selected", {}).get("node") == "LoraLoaderModelOnly" and loader.get("selected", {}).get("native") is True and not loader.get("custom_nodes_required"), "native LoRA loader is selected without custom nodes")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v052:refcontrol-model", False, str(exc)); check("v052:refcontrol-loader", False, str(exc))
+    try:
+        refcontrol = load_json(ROOT / "docs/evidence/refcontrol-pose-qualification.json")
+        triage = {str(item["strength"]): item for item in refcontrol.get("triage", [])}
+        best = max((item.get("pose_gain_over_A", 0.0) for item in triage.values()), default=0.0)
+        check("v052:refcontrol-gap", refcontrol.get("status") == "LOCAL_POSE_CONTROL_PROVIDER_GAP" and refcontrol.get("stop_reason") == "LOCAL_POSE_CONTROL_PROVIDER_GAP" and len(refcontrol.get("records", [])) == 7 and best < 0.15, "RefControl strength and confirmation benchmark stays below the promotion threshold")
+        check("v052:refcontrol-strengths", set(triage) == {"0.8", "0.9", "1.0"} and refcontrol.get("confirmation_strength") == 0.8 and (ROOT / "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png").is_file() and (ROOT / "docs/evidence/refcontrol-pose-overlay-contact.png").is_file(), "all authorized strengths and confirmation evidence are present")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v052:refcontrol-gap", False, str(exc)); check("v052:refcontrol-strengths", False, str(exc))
+
+    try:
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.5.2.json")
+        native_cycle = execution.get("native_benchmark", {})
+        check("v052:execution-evidence", execution.get("schema_version") == "0.5.2" and execution.get("previous_frame_chaining") is False and native_cycle.get("record_count") == 9 and execution.get("record_count") == 7, "native and RefControl execution evidence are retained as separate cycles")
+        check("v052:execution-fail-closed", execution.get("all_prompt_ids_present") is False and execution.get("all_history_bindings_exact") is False and execution.get("stale_output_rejected") is False, "incomplete technical records remain an explicit failure")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v052:execution-evidence", False, str(exc)); check("v052:execution-fail-closed", False, str(exc))
+
+    try:
+        visual = load_json(ROOT / "docs/evidence/review-visuals-v0.5.2.json")
+        result = validate_review_visual_manifest(visual, ROOT)
+        check("v052:visual-manifest", result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "v0.5.2 visual roles are hash-bound")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v052:visual-manifest", False, str(exc))
+
+
 def main() -> int:
     required = [
-        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
+        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
     ]
     for item in required:
         path = ROOT / item; check(f"path:{item}", path.exists(), "present" if path.exists() else "missing")
@@ -327,15 +409,15 @@ def main() -> int:
         workflows = load_workflows(ROOT); check("registry:workflows", len(workflows) >= 6, "four historical FLUX lanes, native multi-reference and BiRefNet")
         for item in workflows:
             record = load_workflow(ROOT, item["id"]); graph = validate_api_workflow(record["api"]); model = load_model(ROOT, item["required_models"][0]); compatible = validate_model_workflow_compatibility(model, record)["compatible"]
-            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", UGAS_VERSION}, "native graph and capability compatibility valid")
+            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", UGAS_VERSION}, "native graph and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
     docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.1")
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.2")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

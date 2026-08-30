@@ -1,4 +1,4 @@
-"""UGAS v0.5.1 machine-readable CLI."""
+"""UGAS v0.5.2 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -29,6 +29,9 @@ from .workflow_registry import load_workflows, load_workflow, validate_api_workf
 from .identity import ANCHOR_ASSET_ID
 from .pose_guides import ensure_pose_guides, render_pose_guides
 from .multiview import qualify_multiref, generate_directional_anchors, generate_walk_pilot, identity_inspect
+from .openpose_guides import ensure_openpose_guides, render_openpose_evidence
+from .pose_control import qualify_native_reference_order
+from .refcontrol import qualify_refcontrol
 
 
 def _repo_root() -> Path:
@@ -52,7 +55,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.5.1")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.5.2")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -85,6 +88,8 @@ def build_parser() -> argparse.ArgumentParser:
     asset = sub.add_parser("asset"); asset_sub = asset.add_subparsers(dest="asset_action", required=True); status = asset_sub.add_parser("status"); status.add_argument("asset_id"); _json_flag(status); verify_integrity = asset_sub.add_parser("verify-integrity"); verify_integrity.add_argument("asset_id"); _json_flag(verify_integrity)
     identity = sub.add_parser("identity"); identity_sub = identity.add_subparsers(dest="identity_action", required=True); identity_inspect_parser = identity_sub.add_parser("inspect"); identity_inspect_parser.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); identity_inspect_parser.add_argument("--output", type=Path); _json_flag(identity_inspect_parser)
     guides = sub.add_parser("pose-guides"); guides_sub = guides.add_subparsers(dest="guides_action", required=True); guide_validate = guides_sub.add_parser("validate"); _json_flag(guide_validate); guide_render = guides_sub.add_parser("render"); guide_render.add_argument("kind", choices=["views", "walk-front-8"]); _json_flag(guide_render)
+    openpose = sub.add_parser("openpose"); openpose_sub = openpose.add_subparsers(dest="openpose_action", required=True); openpose_validate = openpose_sub.add_parser("validate"); _json_flag(openpose_validate); openpose_render = openpose_sub.add_parser("render"); openpose_render.add_argument("kind", choices=["challenge", "views", "walk-front-8"]); _json_flag(openpose_render)
+    pose_control = sub.add_parser("pose-control"); pose_control_sub = pose_control.add_subparsers(dest="pose_control_action", required=True); pose_benchmark = pose_control_sub.add_parser("benchmark"); pose_benchmark.add_argument("--url", default="http://127.0.0.1:8188"); pose_benchmark.add_argument("--seed-base", type=int, default=52701); _json_flag(pose_benchmark); refcontrol_parser = pose_control_sub.add_parser("refcontrol"); refcontrol_parser.add_argument("--url", default="http://127.0.0.1:8188"); refcontrol_parser.add_argument("--model-root", type=Path); _json_flag(refcontrol_parser)
     multiref = sub.add_parser("multiref"); multiref_sub = multiref.add_subparsers(dest="multiref_action", required=True); multiref_qualify = multiref_sub.add_parser("qualify"); multiref_qualify.add_argument("--asset-id", default=ANCHOR_ASSET_ID); multiref_qualify.add_argument("--url", default="http://127.0.0.1:8188"); multiref_qualify.add_argument("--seed-base", type=int, default=50501); _json_flag(multiref_qualify)
     anchors = sub.add_parser("anchors"); anchors_sub = anchors.add_subparsers(dest="anchors_action", required=True); anchors_generate = anchors_sub.add_parser("generate"); anchors_generate.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); anchors_generate.add_argument("--directions", nargs="+", default=["front", "left", "right", "back"]); anchors_generate.add_argument("--url", default="http://127.0.0.1:8188"); anchors_generate.add_argument("--seed-base", type=int, default=50601); _json_flag(anchors_generate); anchors_status = anchors_sub.add_parser("status"); anchors_status.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); _json_flag(anchors_status)
     animation = sub.add_parser("animation"); animation_sub = animation.add_subparsers(dest="animation_action", required=True); animation_generate = animation_sub.add_parser("generate"); animation_generate.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); animation_generate.add_argument("--animation", default="walk", choices=["walk"]); animation_generate.add_argument("--view", default="front", choices=["front"]); animation_generate.add_argument("--frames", type=int, default=8); animation_generate.add_argument("--url", default="http://127.0.0.1:8188"); animation_generate.add_argument("--seed-base", type=int, default=50701); _json_flag(animation_generate); animation_status = animation_sub.add_parser("status"); animation_status.add_argument("animation_id", nargs="?", default="walk-front-8"); _json_flag(animation_status); animation_preview = animation_sub.add_parser("preview"); animation_preview.add_argument("animation_id", nargs="?", default="walk-front-8"); _json_flag(animation_preview)
@@ -144,6 +149,13 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "pose-guides":
             value = ensure_pose_guides(root) if args.guides_action == "validate" else render_pose_guides(root, args.kind)
             _json(value); return 0 if value.get("status") in {"POSE_GUIDES_VALID", "POSE_GUIDES_RENDERED"} else 2
+        if args.command == "openpose":
+            value = ensure_openpose_guides(root) if args.openpose_action == "validate" else render_openpose_evidence(root) if args.kind == "challenge" else __import__("ugas.openpose_guides", fromlist=["render_openpose_guides"]).render_openpose_guides(root, args.kind)
+            _json(value); return 0 if value.get("status") in {"OPENPOSE_GUIDES_VALID", "OPENPOSE_EVIDENCE_RENDERED", "OPENPOSE_GUIDES_RENDERED"} else 2
+        if args.command == "pose-control":
+            if args.pose_control_action == "benchmark":
+                value = qualify_native_reference_order(root, endpoint=args.url, seed_base=args.seed_base); _json(value); return 0 if value.get("status") == "NATIVE_REFERENCE_ORDER_QUALIFIED" else 2
+            value = qualify_refcontrol(root, endpoint=args.url, model_root=args.model_root); _json(value); return 0 if value.get("status") == "REFCONTROL_POSE_QUALIFIED" else 2
         if args.command == "multiref":
             value = qualify_multiref(root, endpoint=args.url, asset_id=args.asset_id, seed_base=args.seed_base); _json(value); return 0 if value.get("status") == "MULTI_REFERENCE_QUALIFIED" else 2
         if args.command == "anchors":

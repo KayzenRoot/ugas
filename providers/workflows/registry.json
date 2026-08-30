@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.5.1",
+  "schema_version": "0.5.2",
   "workflows": [
     {
       "schema_version": "0.5.1",
@@ -62,6 +62,58 @@
       "required_models": ["flux2-klein-4b-base-nvfp4"], "inputs": ["prompt", "negative_prompt", "reference[0]:identity-anchor", "reference[1]:pose-view-guide", "seed"], "outputs": ["SaveImage"], "custom_nodes_required": [], "deterministic_seed": true,
       "qualification": {"capability": "multi-reference-edit", "status": "verified-pending-visual-review", "native_node": "ReferenceLatent", "official_template": "templates/image_flux2_klein_image_edit_4b_base.json", "evidence": "docs/evidence/multiref-qualification.json"},
       "validation": {"status": "verified-pending-visual-review", "smoke_status": "passed-with-human-review-pending"}
+    },
+    {
+      "schema_version": "0.5.2",
+      "id": "flux2-klein-base-4b-quality-native-reference-order-a",
+      "purpose": "fresh identity-only baseline for native pose-control order benchmark",
+      "capability": "native-reference-order-benchmark", "qualified_capabilities": [], "provider": "provider-comfyui", "version": "0.5.2",
+      "source": "UGAS v0.5.2 benchmark graph derived from the native FLUX.2 Klein image-edit topology", "api_json": "providers/workflows/flux2-klein-base-4b-quality-native-reference-order-a.api.json",
+      "model_family": "flux2-klein-4b", "model_variant": "base", "quality_tier": "quality",
+      "parameters": {"steps": 20, "guidance": 5.0, "sampler": "euler", "scheduler": "Flux2Scheduler", "reference_order": ["identity-only"]},
+      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "LoadImage", "VAEEncode", "ReferenceLatent", "GetImageSize", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"],
+      "required_models": ["flux2-klein-4b-base-nvfp4"], "inputs": ["prompt", "negative_prompt", "reference[0]:identity-anchor", "seed"], "outputs": ["SaveImage"], "custom_nodes_required": [], "deterministic_seed": true,
+      "qualification": {"capability": "native-reference-order-benchmark", "status": "benchmark-required", "reference_order": ["identity-only"], "evidence": "docs/evidence/native-reference-order-qualification.json"},
+      "validation": {"status": "benchmark-required", "smoke_status": "fresh-pilot-required"}
+    },
+    {
+      "schema_version": "0.5.2",
+      "id": "flux2-klein-base-4b-quality-native-reference-order-b",
+      "purpose": "native A/B/C benchmark: identity first, OpenPose skeleton second",
+      "capability": "native-reference-order-benchmark", "qualified_capabilities": [], "provider": "provider-comfyui", "version": "0.5.2",
+      "source": "UGAS v0.5.2 benchmark graph derived from the native FLUX.2 Klein image-edit topology", "api_json": "providers/workflows/flux2-klein-base-4b-quality-native-reference-order-b.api.json",
+      "model_family": "flux2-klein-4b", "model_variant": "base", "quality_tier": "quality",
+      "parameters": {"steps": 20, "guidance": 5.0, "sampler": "euler", "scheduler": "Flux2Scheduler", "reference_order": ["identity-anchor", "openpose-coco18-pose-guide"]},
+      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "LoadImage", "VAEEncode", "ReferenceLatent", "GetImageSize", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"],
+      "required_models": ["flux2-klein-4b-base-nvfp4"], "inputs": ["prompt", "negative_prompt", "reference[0]:identity-anchor", "reference[1]:openpose-coco18-pose-guide", "seed"], "outputs": ["SaveImage"], "custom_nodes_required": [], "deterministic_seed": true,
+      "qualification": {"capability": "native-reference-order-benchmark", "status": "benchmark-required", "reference_order": ["identity-anchor", "openpose-coco18-pose-guide"], "evidence": "docs/evidence/native-reference-order-qualification.json"},
+      "validation": {"status": "benchmark-required", "smoke_status": "fresh-pilot-required"}
+    },
+    {
+      "schema_version": "0.5.2",
+      "id": "flux2-klein-base-4b-quality-native-reference-order-c",
+      "purpose": "native A/B/C benchmark: OpenPose skeleton first, identity second",
+      "capability": "native-reference-order-benchmark", "qualified_capabilities": [], "provider": "provider-comfyui", "version": "0.5.2",
+      "source": "UGAS v0.5.2 benchmark graph derived from the native FLUX.2 Klein image-edit topology", "api_json": "providers/workflows/flux2-klein-base-4b-quality-native-reference-order-c.api.json",
+      "model_family": "flux2-klein-4b", "model_variant": "base", "quality_tier": "quality",
+      "parameters": {"steps": 20, "guidance": 5.0, "sampler": "euler", "scheduler": "Flux2Scheduler", "reference_order": ["openpose-coco18-pose-guide", "identity-anchor"]},
+      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "LoadImage", "VAEEncode", "ReferenceLatent", "GetImageSize", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"],
+      "required_models": ["flux2-klein-4b-base-nvfp4"], "inputs": ["prompt", "negative_prompt", "reference[0]:openpose-coco18-pose-guide", "reference[1]:identity-anchor", "seed"], "outputs": ["SaveImage"], "custom_nodes_required": [], "deterministic_seed": true,
+      "qualification": {"capability": "native-reference-order-benchmark", "status": "benchmark-required", "reference_order": ["openpose-coco18-pose-guide", "identity-anchor"], "evidence": "docs/evidence/native-reference-order-qualification.json"},
+      "validation": {"status": "benchmark-required", "smoke_status": "fresh-pilot-required"}
+    },
+    {
+      "schema_version": "0.5.2",
+      "id": "flux2-klein-base-4b-quality-refcontrol-pose",
+      "purpose": "RefControl fallback: OpenPose skeleton first and canonical R4 identity second",
+      "capability": "refcontrol-pose-edit", "qualified_capabilities": [], "provider": "provider-comfyui", "version": "0.5.2",
+      "source": "UGAS v0.5.2 native LoRA loader graph; model card contract is xocialize RefControl", "api_json": "providers/workflows/flux2-klein-base-4b-quality-refcontrol-pose.api.json",
+      "model_family": "flux2-klein-4b", "model_variant": "base", "quality_tier": "quality",
+      "parameters": {"steps": 20, "guidance": 5.0, "sampler": "euler", "scheduler": "Flux2Scheduler", "reference_order": ["openpose-coco18-pose-guide", "identity-anchor"], "lora_strength_range": [0.8, 0.9, 1.0]},
+      "required_nodes": ["UNETLoader", "CLIPLoader", "VAELoader", "CLIPTextEncode", "LoadImage", "VAEEncode", "ReferenceLatent", "GetImageSize", "EmptyFlux2LatentImage", "RandomNoise", "KSamplerSelect", "Flux2Scheduler", "LoraLoaderModelOnly", "CFGGuider", "SamplerCustomAdvanced", "VAEDecode", "SaveImage"],
+      "required_models": ["xocialize-refcontrol-flux2-klein-4b-pose-lora"], "inputs": ["prompt", "negative_prompt", "reference[0]:openpose-coco18-pose-guide", "reference[1]:identity-anchor", "lora_strength", "seed"], "outputs": ["SaveImage"], "custom_nodes_required": [], "deterministic_seed": true,
+      "qualification": {"capability": "refcontrol-pose-edit", "status": "native-loader-and-model-verification-required", "reference_order": ["openpose-coco18-pose-guide", "identity-anchor"], "prompt_core": "refcontrol, apply pose from image 1 with reference from image 2", "evidence": "docs/evidence/refcontrol-pose-qualification.json"},
+      "validation": {"status": "native-loader-and-model-verification-required", "smoke_status": "fresh-pilot-required"}
     },
     {
       "schema_version": "0.5.1",

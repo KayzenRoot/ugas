@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS OpenPose COCO-18 pose guide v3",
+  "type": "object",
+  "required": ["schema_version", "guide_type", "guide_id", "canvas", "baseline_y", "joint_schema", "joints", "limbs", "weapon", "renderer", "source_controlled", "generated_ai_content", "deterministic"],
+  "properties": {
+    "schema_version": {"const": "0.5.2"},
+    "guide_type": {"enum": ["view", "walk", "qualification-challenge"]},
+    "guide_id": {"type": "string"},
+    "canvas": {"type": "object", "required": ["width", "height"], "properties": {"width": {"const": 512}, "height": {"const": 512}}},
+    "baseline_y": {"const": 478},
+    "joint_schema": {"const": "COCO-18"},
+    "joints": {
+      "type": "object",
+      "required": ["nose", "neck", "shoulder_right", "elbow_right", "wrist_right", "shoulder_left", "elbow_left", "wrist_left", "hip_right", "knee_right", "ankle_right", "hip_left", "knee_left", "ankle_left", "eye_right", "eye_left", "ear_right", "ear_left"],
+      "minProperties": 18,
+      "maxProperties": 18,
+      "patternProperties": {".*": {"type": "object", "required": ["x", "y", "visible", "source"], "properties": {"x": {"type": "number"}, "y": {"type": "number"}, "visible": {"type": "boolean"}, "source": {"type": ["string", "null"]}}, "additionalProperties": false}}
+    },
+    "limbs": {"type": "array", "minItems": 17, "maxItems": 17},
+    "renderer": {"type": "object", "required": ["version", "control_background", "limb_colors", "limb_thickness", "joint_radius"], "properties": {"version": {"const": "3.0.0"}, "control_background": {"const": [0, 0, 0, 255]}, "limb_thickness": {"const": 8}, "joint_radius": {"const": 9}}},
+    "source_controlled": {"const": true},
+    "generated_ai_content": {"const": false},
+    "deterministic": {"const": true}
+  }
+}

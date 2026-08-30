@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.5.2",
+  "version": "0.5.2",
+  "phase": "POSE_CONTROL_ESCALATION",
+  "previous_release": {
+    "version": "0.5.1",
+    "status": "MULTI_REFERENCE_POSE_CONTROL_GAP",
+    "anchors_passed": false,
+    "walk_passed": false,
+    "evidence": "docs/evidence/multiref-v2-qualification.json",
+    "historical_review": "REVIEW-v0.5.1.md"
+  },
+  "current_gate": "LOCAL_POSE_CONTROL_PROVIDER_GAP",
+  "stop_reason": "LOCAL_POSE_CONTROL_PROVIDER_GAP",
+  "canonical_anchor": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "allowed_next_actions": [
+    "provide_or_approve_a_native_pose_control_provider",
+    "rerun_the_full_native_or_refcontrol_gate_only_after_provider_change"
+  ],
+  "forbidden_actions": [
+    "download_unverified_weights",
+    "submit_new_comfyui_job_before_phase_zero_pass",
+    "use_dwpose_or_controlnet_aux",
+    "use_custom_nodes_or_custom_lora_loader",
+    "lower_pose_gain_threshold_below_0.15",
+    "generate_v3_anchors_or_walk_before_pose_lane_qualification",
+    "create_spritesheet_before_frame_qa"
+  ],
+  "state_consistency": {
+    "status": "NATIVE_REFERENCE_ORDER_POSE_CONTROL_GAP",
+    "validator": "src/ugas/state_consistency.py",
+    "contradictory_walk_or_anchor_promotion": false,
+    "new_generation_started": true,
+    "native_reference_order_evidence": "docs/evidence/native-reference-order-qualification.json",
+    "refcontrol_evidence": "docs/evidence/refcontrol-pose-qualification.json",
+    "refcontrol_model_evidence": "docs/evidence/refcontrol-model-qualification.json"
+  }
+}

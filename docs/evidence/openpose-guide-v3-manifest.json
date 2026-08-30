@@ -1,0 +1,305 @@
+{
+  "schema_version": "0.5.2",
+  "status": "OPENPOSE_EVIDENCE_RENDERED",
+  "renderer_version": "3.0.0",
+  "joint_schema": "COCO-18",
+  "control_contract": {
+    "background": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "text": false,
+    "limb_thickness": 8,
+    "joint_radius": 9
+  },
+  "guide_manifest": {
+    "schema_version": "0.5.2",
+    "renderer_version": "3.0.0",
+    "joint_schema": "COCO-18",
+    "status": "OPENPOSE_GUIDES_VALID",
+    "views": [
+      "pose-guides/openpose-v3/views/front.json",
+      "pose-guides/openpose-v3/views/left.json",
+      "pose-guides/openpose-v3/views/right.json",
+      "pose-guides/openpose-v3/views/back.json"
+    ],
+    "walk_frames": [
+      "pose-guides/openpose-v3/walk-front-8/frame-00-contact-left.json",
+      "pose-guides/openpose-v3/walk-front-8/frame-01-down-left.json",
+      "pose-guides/openpose-v3/walk-front-8/frame-02-passing-left.json",
+      "pose-guides/openpose-v3/walk-front-8/frame-03-up-left.json",
+      "pose-guides/openpose-v3/walk-front-8/frame-04-contact-right.json",
+      "pose-guides/openpose-v3/walk-front-8/frame-05-down-right.json",
+      "pose-guides/openpose-v3/walk-front-8/frame-06-passing-right.json",
+      "pose-guides/openpose-v3/walk-front-8/frame-07-up-right.json"
+    ],
+    "challenge": "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json",
+    "guides": [
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-view-front",
+        "sha256": "2aee45ccd90501cc1131e6c7d7b3efece7ea3fe116651f183f32fc5587ba552b",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-view-left",
+        "sha256": "c4c1b81523a0edd53590642d0d52682f2449fa385fe0b95ed6e4552ab584a819",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-view-right",
+        "sha256": "f03c4bc27602f2ac4e91d18e4edd90825df53dec7dd4237ed3a0f4077cda1024",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-view-back",
+        "sha256": "5639e99f5eaf08efc216bbfa20f7d5ba08ab9b8c5541091cc0d56056f8a32205",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-00-contact-left",
+        "sha256": "a55bbd4f0e172e8d1ddb25f4d837ffb73b3f8f0f099655ab573b27ded5e8058e",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-01-down-left",
+        "sha256": "8624d658ec91e77e6ecc5a9ca2dfe2bcb2909d8e933e20aa29a246a5b00ffe44",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-02-passing-left",
+        "sha256": "72ddf991c7f5b16a9cedad88a506ffd2a3d8b24505c4402166533b456d0a8784",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-03-up-left",
+        "sha256": "6cb616d2313f08cf4db10f980c28b56253cd086b9d543bca09f03ec9deb6db92",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-04-contact-right",
+        "sha256": "17b2447d07bb90c3f1385e634a46d45acabf89ebe44ecc4d8a759fb7abcd109d",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-05-down-right",
+        "sha256": "750c0d10b465e1bc001eef58ea6530409ef6d0bdedf2b48436351e8ff7206fb5",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-06-passing-right",
+        "sha256": "de59d3094f361c00f858685c626e60b25e79358a7a88e6ddbad2cd59eec4908e",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-walk-front-8-frame-07-up-right",
+        "sha256": "01aeb765015110521c4132d81fcdcf7b63a78b87ca94f62779fa25d9dfe2f4e6",
+        "failures": []
+      },
+      {
+        "status": "OPENPOSE_GUIDE_VALID",
+        "guide_id": "openpose-v3-multiref-strong-left-arm-up",
+        "sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+        "failures": []
+      }
+    ]
+  },
+  "control_example": {
+    "schema_version": "0.5.2",
+    "renderer_version": "3.0.0",
+    "joint_schema": "COCO-18",
+    "status": "OPENPOSE_GUIDES_RENDERED",
+    "kind": "challenge",
+    "guides": [
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\v3\\challenge\\multiref-strong-left-arm-up-control.png",
+        "sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+        "guide_id": "openpose-v3-multiref-strong-left-arm-up",
+        "guide_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+        "renderer_version": "3.0.0",
+        "control_image": true,
+        "review_overlay": false,
+        "render_parameters": {
+          "size": 512,
+          "background": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "limb_thickness": 8,
+          "joint_radius": 9
+        }
+      }
+    ],
+    "contact_sheet": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\openpose-guide-v3-control-example.png",
+      "sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d"
+    }
+  },
+  "contact_sheet": {
+    "schema_version": "0.5.2",
+    "renderer_version": "3.0.0",
+    "joint_schema": "COCO-18",
+    "status": "OPENPOSE_GUIDES_RENDERED",
+    "kind": "views",
+    "guides": [
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\v3\\views\\front-control.png",
+        "sha256": "345013f755bdc4f13de268cc4c87b6c54c152a8c4ce7f79bdf4067502ff4bc5e",
+        "guide_id": "openpose-v3-view-front",
+        "guide_sha256": "2aee45ccd90501cc1131e6c7d7b3efece7ea3fe116651f183f32fc5587ba552b",
+        "renderer_version": "3.0.0",
+        "control_image": true,
+        "review_overlay": false,
+        "render_parameters": {
+          "size": 512,
+          "background": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "limb_thickness": 8,
+          "joint_radius": 9
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\v3\\views\\left-control.png",
+        "sha256": "cb2b651085d1c4ac7977c713a9b8987202b66c652814b5dc1d8193749bb02539",
+        "guide_id": "openpose-v3-view-left",
+        "guide_sha256": "c4c1b81523a0edd53590642d0d52682f2449fa385fe0b95ed6e4552ab584a819",
+        "renderer_version": "3.0.0",
+        "control_image": true,
+        "review_overlay": false,
+        "render_parameters": {
+          "size": 512,
+          "background": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "limb_thickness": 8,
+          "joint_radius": 9
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\v3\\views\\right-control.png",
+        "sha256": "aac82af33ecdc98710a8899489a71f19d5d5bf944338881e3b379bf042d86c29",
+        "guide_id": "openpose-v3-view-right",
+        "guide_sha256": "f03c4bc27602f2ac4e91d18e4edd90825df53dec7dd4237ed3a0f4077cda1024",
+        "renderer_version": "3.0.0",
+        "control_image": true,
+        "review_overlay": false,
+        "render_parameters": {
+          "size": 512,
+          "background": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "limb_thickness": 8,
+          "joint_radius": 9
+        }
+      },
+      {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\v3\\views\\back-control.png",
+        "sha256": "345013f755bdc4f13de268cc4c87b6c54c152a8c4ce7f79bdf4067502ff4bc5e",
+        "guide_id": "openpose-v3-view-back",
+        "guide_sha256": "5639e99f5eaf08efc216bbfa20f7d5ba08ab9b8c5541091cc0d56056f8a32205",
+        "renderer_version": "3.0.0",
+        "control_image": true,
+        "review_overlay": false,
+        "render_parameters": {
+          "size": 512,
+          "background": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "limb_thickness": 8,
+          "joint_radius": 9
+        }
+      }
+    ],
+    "contact_sheet": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\openpose-guides-v3-contact-sheet.png",
+      "sha256": "cdafdae7824aa1be068c5b5377d0dbec5734345a51949cd7840e66b11adc3f1d",
+      "source": {
+        "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\v3\\views\\control-contact-sheet.png",
+        "format": "PNG",
+        "width": 2048,
+        "height": 512,
+        "mode": "RGBA",
+        "source_mode": "RGBA",
+        "bytes": 11863,
+        "sha256": "cdafdae7824aa1be068c5b5377d0dbec5734345a51949cd7840e66b11adc3f1d",
+        "has_alpha": true,
+        "has_alpha_channel": true,
+        "has_transparent_pixels": false,
+        "alpha_min": 255,
+        "alpha_max": 255,
+        "opaque_fraction": 1.0,
+        "transparent_fraction": 0.0,
+        "alpha_zero_fraction": 0.0,
+        "alpha_opaque_fraction": 1.0,
+        "alpha_partial_fraction": 0.0,
+        "foreground_coverage": 1.0,
+        "near_opaque_threshold": 250,
+        "near_opaque_foreground_fraction": 1.0,
+        "soft_edge_foreground_fraction": 0.0,
+        "alpha_bbox": [
+          0,
+          0,
+          2048,
+          512
+        ],
+        "alpha_centroid": [
+          0.499755859375,
+          0.4990234375
+        ],
+        "border_contact": true,
+        "non_empty_content": true,
+        "columns": 4,
+        "rows": 1,
+        "frame_count": 4
+      }
+    }
+  },
+  "review_overlay": {
+    "path": "D:\\Projeto Codexx\\ugas\\tmp\\pose-guides\\v3\\challenge\\multiref-strong-left-arm-up-review.png",
+    "sha256": "50e3c8b986e8404dc3e58ee7c4bc07379919ca54cba9baaf86f6a388821a1871",
+    "guide_id": "openpose-v3-multiref-strong-left-arm-up",
+    "guide_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+    "renderer_version": "3.0.0",
+    "control_image": false,
+    "review_overlay": true,
+    "render_parameters": {
+      "size": 512,
+      "background": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "limb_thickness": 8,
+      "joint_radius": 9
+    }
+  }
+}

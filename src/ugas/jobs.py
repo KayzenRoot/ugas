@@ -21,7 +21,7 @@ class JobError(RuntimeError):
 
 def new_job(*, consumer_project_id: str | None, asset_request_id: str, profile: str, provider: str, capability: str, workflow: dict, models: list[dict], prompts: dict, seed: int, dimensions: dict, parameters: dict, input_hashes: dict | None = None) -> dict:
     stamp = now()
-    return {"schema_version": "0.5.1", "job_id": f"job-{uuid.uuid4().hex}", "state": "planned", "consumer_project_id": consumer_project_id, "asset_request_id": asset_request_id, "profile": profile, "provider": provider, "capability": capability, "workflow": workflow, "models": models, "prompts": prompts, "seed": int(seed), "dimensions": dimensions, "parameters": parameters, "timestamps": {"created": stamp, "updated": stamp}, "retry_count": 0, "input_hashes": input_hashes or {}, "output_hashes": {}, "execution_evidence": {}, "validation": {}, "provenance_event": {}, "history": [{"state": "planned", "at": stamp}], "error": None}
+    return {"schema_version": "0.5.2", "job_id": f"job-{uuid.uuid4().hex}", "state": "planned", "consumer_project_id": consumer_project_id, "asset_request_id": asset_request_id, "profile": profile, "provider": provider, "capability": capability, "workflow": workflow, "models": models, "prompts": prompts, "seed": int(seed), "dimensions": dimensions, "parameters": parameters, "timestamps": {"created": stamp, "updated": stamp}, "retry_count": 0, "input_hashes": input_hashes or {}, "output_hashes": {}, "execution_evidence": {}, "validation": {}, "provenance_event": {}, "history": [{"state": "planned", "at": stamp}], "error": None}
 
 
 def transition(job: dict, state: str, *, error: str | None = None, max_retries: int = 2) -> dict:
