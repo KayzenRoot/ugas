@@ -80,11 +80,11 @@ The v0.5.3 regression suite covers impossible gates, headroom gain, synthetic ta
 
 ## VALIDATION
 
-The final validation must pass compileall, the full unit suite, schema checks, historical evidence checks, v0.5.3 calibration/estimator/state checks, tracked snapshot, and no-Git review snapshot. The exact final counts and public commit are filled after the final validation run.
+The final validation passed compileall, the full unit suite, schema checks, historical evidence checks, v0.5.3 calibration/estimator/state checks, tracked snapshot, and no-Git review snapshot. The top-level result is 365/365 checks passed. The tracked repository snapshot and no-Git review snapshot each passed 360/360 nested checks. The unit suite ran 121 tests with `OK`; only pre-existing Pillow deprecation warnings were emitted.
 
 ## TRACKED SNAPSHOT / GITHUB
 
-The repository is github.com/csn1985-ship-it/ugas. Publication status is limited to the pushed commit and reproducible local validation; GitHub review, human visual approval, deployment, and production approval are not inferred.
+The repository is github.com/csn1985-ship-it/ugas. Public `main` was verified at commit `0b9d5cba5f36c51d60e239bae4aa51ca6e4b2ebe`. Publication status is limited to this pushed commit and reproducible local validation; GitHub review, human visual approval, deployment, and production approval are not inferred.
 
 ## SECURITY
 
