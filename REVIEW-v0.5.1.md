@@ -72,11 +72,11 @@ The 89 existing tests are preserved and 10 v0.5.1 tests were added; the full sui
 
 ## VALIDATION
 
-Compileall and the complete unittest suite passed after the final corrective changes. Checkout validation, exact `git archive HEAD` snapshot validation and no-Git snapshot validation are the remaining finalization checks before publication.
+Compileall passed and the complete suite passed with 99 tests. `scripts/validation/run_validation.py` passed with 248/248 checks, including the exact `git archive HEAD` snapshot and the no-Git snapshot; each snapshot also passed compileall and all 99 tests.
 
 ## TRACKED SNAPSHOT / GITHUB
 
-Baseline is `10d201f39c23386fdd5e4aae3daebe88ec6e07fa`. Final publication must prove clean working tree, `main` pushed, and `origin/main == HEAD`. No external approval is inferred from local readiness.
+Baseline is `10d201f39c23386fdd5e4aae3daebe88ec6e07fa`. The v0.5.1 implementation/evidence commit is `5e16706`; final publication must prove clean working tree, `main` pushed, and `origin/main == HEAD`. No external approval is inferred from local readiness.
 
 ## SECURITY / LICENSES
 
@@ -100,7 +100,7 @@ Do not loosen thresholds, use seed-based selection, reuse v0.5.0 outputs as succ
 
 ## NEXT STEP
 
-Run final checkout/no-Git validation, commit and push the tracked implementation, verify `origin/main == HEAD`, then create the safe review ZIP as the final filesystem write.
+Push the tracked implementation, verify `origin/main == HEAD` and a clean working tree, then create `review/UGAS-REVIEW-v0.5.1.zip` as the final filesystem write.
 
 ## DEFINITION OF DONE
 
@@ -108,4 +108,4 @@ v0.5.1 is done only when code, tests, docs, evidence, version surfaces, snapshot
 
 ## REVIEW ZIP
 
-Final path and SHA-256 are filled in the delivery report after push and read-only archive verification. The ZIP is not created before all other filesystem changes finish.
+The final archive is `review/UGAS-REVIEW-v0.5.1.zip`; its SHA-256 is computed after creation and reported with the read-only archive verification. The ZIP is not created before all other filesystem changes finish.
