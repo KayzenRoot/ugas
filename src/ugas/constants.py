@@ -85,9 +85,10 @@ SCHEMAS = [
     "openpose-pose-guide",
     "pose-metric-calibration",
     "pose-qa-estimator",
+    "cutout-rig",
 ]
 
-UGAS_VERSION = "0.6.2"
+UGAS_VERSION = "0.7.0"
 
 CONSUMER_FILES = [
     "studio.json",
@@ -102,4 +103,4 @@ CONSUMER_FILES = [
     "CHECKPOINT.md",
 ]
 
-PROVIDERS = ["provider-comfyui", "provider-remote-render-node", "provider-huggingface"]
+PROVIDERS = ["provider-comfyui", "provider-remote-render-node", "provider-huggingface", "deterministic-cutout-rig-2d"]

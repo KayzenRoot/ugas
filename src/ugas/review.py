@@ -106,6 +106,29 @@ REQUIRED_V062_REVIEW_EVIDENCE = REQUIRED_V061_REVIEW_EVIDENCE | {
     "sdxl-openpose-guide-768.png",
     "sdxl-openpose-guide-1024.png",
 }
+REQUIRED_V070_REVIEW_EVIDENCE = {
+    "sam2-provider-qualification.json",
+    "sam2-checkpoint-provenance.json",
+    "r4-source-skeleton.json",
+    "r4-cutout-part-prompts.json",
+    "r4-cutout-part-masks.json",
+    "r4-cutout-rig.json",
+    "r4-cutout-parts-contact-sheet.png",
+    "r4-cutout-mask-overlay-contact-sheet.png",
+    "r4-cutout-rig-hierarchy.png",
+    "cutout-q0-reconstruction.png",
+    "cutout-q0-diff-heatmap.png",
+    "cutout-q0-qa.json",
+    "cutout-q1-contact-left.png",
+    "cutout-q2-passing-left.png",
+    "cutout-q0-q1-q2-contact-sheet.png",
+    "cutout-q1-q2-pose-overlays.png",
+    "cutout-rig-pose-qa.json",
+    "cutout-rig-seam-qa.json",
+    "cutout-rig-pixel-provenance.json",
+    "cutout-rig-provider-qualification.json",
+    "execution-evidence-v0.7.0.json",
+}
 
 
 def _digest(path: Path) -> str:
@@ -145,6 +168,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V061_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     elif schema_version == "0.6.2":
         required = REQUIRED_V062_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.7.0":
+        required = REQUIRED_V070_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

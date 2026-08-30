@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.6.2",
+  "validator": "src/ugas/state_consistency.py (historical snapshot)",
+  "status": "STATE_CONSISTENCY_PASSED",
+  "failures": [],
+  "checked": {
+    "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+    "current_gate": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+    "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+    "historical_pose_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "historical_review_status": "REVIEW_ARCHIVE_VERIFIED",
+    "contradictory_walk_or_anchor_scan": true,
+    "new_generation_started": true,
+    "new_generation_jobs": 3
+  }
+}

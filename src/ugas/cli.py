@@ -1,9 +1,13 @@
-"""UGAS v0.5.3 machine-readable CLI."""
+"""UGAS v0.7.0 machine-readable CLI."""
 
 from __future__ import annotations
 
 import argparse
+import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 
 from .capabilities import probe_comfy_capability
 from .comfyui_client import ComfyUIClient
@@ -47,6 +51,47 @@ def _json_flag(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
 
 
+def _run_cutout_rig_phase(root: Path, phase: str) -> dict[str, object]:
+    """Run the isolated SAM2 adapter without importing its GPU stack here."""
+    helper = root / "scripts" / "validation" / "run_cutout_rig_v070.py"
+    local_appdata = Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData" / "Local"))
+    candidates = [
+        os.environ.get("UGAS_SAM2_PYTHON"),
+        str(local_appdata / "UGAS" / "comfyui" / ".venv" / "Scripts" / "python.exe"),
+        sys.executable,
+    ]
+    selected = next((Path(value) for value in candidates if value and Path(value).is_file()), None)
+    if selected is None:
+        return {"status": "SAM2_RUNTIME_GAP", "reason": "no isolated SAM2 Python runtime was found"}
+    environment = os.environ.copy()
+    source_path = str(root / "src")
+    environment["PYTHONPATH"] = source_path + os.pathsep + environment.get("PYTHONPATH", "")
+    completed = subprocess.run(
+        [str(selected), str(helper), "--phase", phase],
+        cwd=root,
+        env=environment,
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=900,
+    )
+    output = completed.stdout.strip()
+    try:
+        result = json.loads(output)
+    except json.JSONDecodeError:
+        result = {
+            "status": "SAM2_RUNTIME_GAP" if phase == "sam2" else "CUTOUT_RIG_SEGMENTATION_RUNTIME_GAP",
+            "reason": "isolated provider did not return JSON",
+            "exit_code": completed.returncode,
+            "stdout_tail": output[-1000:],
+            "stderr_tail": completed.stderr[-1000:],
+        }
+    if isinstance(result, dict):
+        result.setdefault("runtime_exit_code", completed.returncode)
+        return result
+    return {"status": "SAM2_RUNTIME_GAP", "reason": "isolated provider returned a non-object JSON value"}
+
+
 def _common_generation(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--url", default="http://127.0.0.1:8188")
     parser.add_argument("--profile", default="generic-2d")
@@ -55,7 +100,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.5.3")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.7.0")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -93,6 +138,10 @@ def build_parser() -> argparse.ArgumentParser:
     multiref = sub.add_parser("multiref"); multiref_sub = multiref.add_subparsers(dest="multiref_action", required=True); multiref_qualify = multiref_sub.add_parser("qualify"); multiref_qualify.add_argument("--asset-id", default=ANCHOR_ASSET_ID); multiref_qualify.add_argument("--url", default="http://127.0.0.1:8188"); multiref_qualify.add_argument("--seed-base", type=int, default=50501); _json_flag(multiref_qualify)
     anchors = sub.add_parser("anchors"); anchors_sub = anchors.add_subparsers(dest="anchors_action", required=True); anchors_generate = anchors_sub.add_parser("generate"); anchors_generate.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); anchors_generate.add_argument("--directions", nargs="+", default=["front", "left", "right", "back"]); anchors_generate.add_argument("--url", default="http://127.0.0.1:8188"); anchors_generate.add_argument("--seed-base", type=int, default=50601); _json_flag(anchors_generate); anchors_status = anchors_sub.add_parser("status"); anchors_status.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); _json_flag(anchors_status)
     animation = sub.add_parser("animation"); animation_sub = animation.add_subparsers(dest="animation_action", required=True); animation_generate = animation_sub.add_parser("generate"); animation_generate.add_argument("asset_id", nargs="?", default=ANCHOR_ASSET_ID); animation_generate.add_argument("--animation", default="walk", choices=["walk"]); animation_generate.add_argument("--view", default="front", choices=["front"]); animation_generate.add_argument("--frames", type=int, default=8); animation_generate.add_argument("--url", default="http://127.0.0.1:8188"); animation_generate.add_argument("--seed-base", type=int, default=50701); _json_flag(animation_generate); animation_status = animation_sub.add_parser("status"); animation_status.add_argument("animation_id", nargs="?", default="walk-front-8"); _json_flag(animation_status); animation_preview = animation_sub.add_parser("preview"); animation_preview.add_argument("animation_id", nargs="?", default="walk-front-8"); _json_flag(animation_preview)
+    cutout = sub.add_parser("cutout-rig"); cutout_sub = cutout.add_subparsers(dest="cutout_action", required=True)
+    cutout_qualify = cutout_sub.add_parser("qualify-sam2"); _json_flag(cutout_qualify)
+    cutout_build = cutout_sub.add_parser("build"); cutout_build.add_argument("--asset-id", required=True); _json_flag(cutout_build)
+    cutout_pose = cutout_sub.add_parser("pose-pilot"); cutout_pose.add_argument("--poses", default="q0,q1,q2"); _json_flag(cutout_pose)
     return parser
 
 
@@ -168,6 +217,16 @@ def main(argv: list[str] | None = None) -> int:
             if args.animation_action == "preview":
                 path = root / "docs/evidence/walk-front-8-preview.gif"; value = {"status": "PREVIEW_READY" if path.is_file() else "NOT_AVAILABLE", "animation_id": args.animation_id, "preview": str(path)}; _json(value); return 0 if path.is_file() else 2
             value = generate_walk_pilot(root, args.asset_id, endpoint=args.url, frames=args.frames, seed_base=args.seed_base); _json(value); return 0 if value.get("status") == "WALK_CYCLE_VISUAL_REVIEW_REQUIRED" else 2
+        if args.command == "cutout-rig":
+            if args.cutout_action == "build" and args.asset_id != ANCHOR_ASSET_ID:
+                value = {"status": "CUTOUT_RIG_SOURCE_SKELETON_GAP", "reason": "v0.7.0 is bound to canonical R4", "expected_asset_id": ANCHOR_ASSET_ID, "received_asset_id": args.asset_id}
+            else:
+                phase = "sam2" if args.cutout_action == "qualify-sam2" else "pose-pilot" if args.cutout_action == "pose-pilot" else "build"
+                value = _run_cutout_rig_phase(root, phase)
+                if args.cutout_action == "pose-pilot":
+                    value["requested_poses"] = [item for item in args.poses.split(",") if item]
+            _json(value)
+            return 0 if value.get("status") in {"SAM2_RUNTIME_QUALIFIED", "CUTOUT_RIG_POSE_PROVIDER_QUALIFIED"} else 2
     except Exception as exc:
         _json({"status": "error", "error_type": type(exc).__name__, "error": str(exc)})
         return 2

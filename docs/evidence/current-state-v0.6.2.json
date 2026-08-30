@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.6.2",
+  "version": "0.6.2",
+  "phase": "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION",
+  "previous_release": {
+    "version": "0.6.1",
+    "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP",
+    "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
+    "historical_review": "REVIEW-v0.5.5.md",
+    "pose_evidence": "docs/evidence/v054-provider-qualification.json",
+    "nine_outputs_preserved": true,
+    "review_manifest": "docs/evidence/review-visuals-v0.5.5.json"
+  },
+  "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP",
+  "current_gate": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+  "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+  "provider_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+  "historical_pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "previous_review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
+  "canonical_anchor": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "generation_provider_change_authorized": false,
+  "walk_authorized": false,
+  "allowed_next_actions": ["preserve_sdxl_openpose_model_card_calibration_evidence"],
+  "forbidden_actions": [
+    "download_models_before_state_consistency_pass",
+    "install_unpinned_custom_node_or_vendor_its_source",
+    "change_pose_thresholds_or_reinterpret_the_v054_pose_decision",
+    "generate_v3_anchors_or_walk_or_spritesheet_or_gif",
+    "execute_ipadapter_or_identity_lane",
+    "execute_benchmark_or_new_provider",
+    "route_unqualified_sdxl_capabilities",
+    "publish_the_local_pose_landmarker_bundle_or_generation_weights"
+  ],
+  "state_consistency": {
+    "status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+    "validator": "src/ugas/state_consistency.py",
+    "contradictory_walk_or_anchor_promotion": false,
+    "new_generation_started": true,
+    "new_generation_jobs": 3,
+    "previous_pose_decision_evidence": "docs/evidence/v054-provider-qualification.json",
+    "previous_review_visual_manifest": "docs/evidence/review-visuals-v0.5.5.json",
+    "review_verifier": "scripts/validation/verify_review_archive.py",
+    "review_zip_self_validation_required": true,
+    "phase_zero_no_download_or_install": true,
+    "calibration_scope": "P-only-P0-P1-P2-completed-no-stage-a-pass",
+    "custom_node_audit": "docs/evidence/custom-node-audit-ipadapter-plus.json"
+  }
+}

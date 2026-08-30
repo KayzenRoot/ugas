@@ -86,11 +86,11 @@ class PoseQAV054Tests(unittest.TestCase):
         schema = load("schemas/current-state.json")
         validate_schema_document(schema)
         validate_instance(state, schema)
-        result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.6.2.md").read_text(encoding="utf-8"))
+        result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.7.0.md").read_text(encoding="utf-8"))
         self.assertEqual("STATE_CONSISTENCY_PASSED", result["status"], result)
-        self.assertEqual("0.6.2", state["version"])
+        self.assertEqual("0.7.0", state["version"])
         self.assertEqual(state["current_gate"], state["state_consistency"]["status"])
-        self.assertEqual("LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", state["pose_lane_status"])
+        self.assertEqual("CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP", state["pose_lane_status"])
         self.assertGreaterEqual(state["state_consistency"]["new_generation_jobs"], 0)
 
     def test_nine_individual_pngs_and_contacts_are_present(self):

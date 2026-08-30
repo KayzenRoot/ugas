@@ -1,0 +1,180 @@
+{
+  "schema_version": "0.7.0",
+  "manifest_type": "review-visual-evidence",
+  "review_state": "deterministic-cutout-rig-visual-or-estimator-gap",
+  "required_current_visuals": [
+    "sam2-provider-qualification.json",
+    "sam2-checkpoint-provenance.json",
+    "r4-source-skeleton.json",
+    "r4-cutout-part-prompts.json",
+    "r4-cutout-part-masks.json",
+    "r4-cutout-rig.json",
+    "r4-cutout-parts-contact-sheet.png",
+    "r4-cutout-mask-overlay-contact-sheet.png",
+    "r4-cutout-rig-hierarchy.png",
+    "cutout-q0-reconstruction.png",
+    "cutout-q0-diff-heatmap.png",
+    "cutout-q0-qa.json",
+    "cutout-q1-contact-left.png",
+    "cutout-q2-passing-left.png",
+    "cutout-q0-q1-q2-contact-sheet.png",
+    "cutout-q1-q2-pose-overlays.png",
+    "cutout-rig-pose-qa.json",
+    "cutout-rig-seam-qa.json",
+    "cutout-rig-pixel-provenance.json",
+    "cutout-rig-provider-qualification.json",
+    "execution-evidence-v0.7.0.json"
+  ],
+  "images": [
+    {
+      "archive_name": "sam2-provider-qualification.json",
+      "source_path": "docs/evidence/sam2-provider-qualification.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "1b50f2b0ac91f01dd92c00406315d418b5f549709f328e0bdc492a0a06b328aa",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "sam2-checkpoint-provenance.json",
+      "source_path": "docs/evidence/sam2-checkpoint-provenance.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "ed7f260b351db25c5664e4804281fbe792fd021ec0b0c75ea90b2630162f0e33",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "r4-source-skeleton.json",
+      "source_path": "docs/evidence/r4-source-skeleton.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "9f166ee866d710fc0fc9a911fac49c0c6334f93c4cd6ed6f3c609d03f0cea2b0",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "r4-cutout-part-prompts.json",
+      "source_path": "docs/evidence/r4-cutout-part-prompts.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "b6aae9a28c592b5d7b6d60518faa271835fd062f60d7a5a6e577c1b8e4dff862",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "r4-cutout-part-masks.json",
+      "source_path": "docs/evidence/r4-cutout-part-masks.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "55d71bdba413e311581ee9aa02e29c05cde9e450bb8a7387ee37fe7f8c24d6ad",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "r4-cutout-rig.json",
+      "source_path": "docs/evidence/r4-cutout-rig.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "441e4bf69ebe198b3f3ae13d87cd9595850da5a1f769b50da2b7188c0ecf75a6",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "r4-cutout-parts-contact-sheet.png",
+      "source_path": "docs/evidence/r4-cutout-parts-contact-sheet.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "7db86d94835a46c8dfa08cefb9458cd5e744ffcbcc59c283e48eaec0ab123397",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "r4-cutout-mask-overlay-contact-sheet.png",
+      "source_path": "docs/evidence/r4-cutout-mask-overlay-contact-sheet.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "8d920c3b5e1acee4a7c41064352a24cfd5d672e10a5bfb33df6e4e5229c49318",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "r4-cutout-rig-hierarchy.png",
+      "source_path": "docs/evidence/r4-cutout-rig-hierarchy.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "23844276e8153f72dea3de5f049e377f078cb9ece576459120acfe285167a614",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-q0-reconstruction.png",
+      "source_path": "docs/evidence/cutout-q0-reconstruction.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "60b31f1f30cfb73c266b8e9a438a86561d1cb7f8df789ad71a781b767f4ccdd7",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-q0-diff-heatmap.png",
+      "source_path": "docs/evidence/cutout-q0-diff-heatmap.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "05d228e73dd7a8e12aa3ff704fd1d518c9e3ab4a1fc57ee805503c41414a81fd",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-q0-qa.json",
+      "source_path": "docs/evidence/cutout-q0-qa.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "528854d2eaa6ae3e71e703bb1b844c1c743e73aa9d3158be0e990417ada8a5bd",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-q1-contact-left.png",
+      "source_path": "docs/evidence/cutout-q1-contact-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "8f0bdb009470e5cf730d5697e5155060567af82c0fbb5d7f196b96362484033a",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-q2-passing-left.png",
+      "source_path": "docs/evidence/cutout-q2-passing-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "eda2e8b20271329f25cab2b7a167d8ec3ba67d7fe24adc13d5541b997685f2c7",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-q0-q1-q2-contact-sheet.png",
+      "source_path": "docs/evidence/cutout-q0-q1-q2-contact-sheet.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "963854712530b248f903376b4c46e0a2d2efda06257bfd546a01fca54fc1990a",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-q1-q2-pose-overlays.png",
+      "source_path": "docs/evidence/cutout-q1-q2-pose-overlays.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "f8722fb1a77b8bd5ccc310d3d613382c19982b54de0d7568e9e2933caa5795a6",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-rig-pose-qa.json",
+      "source_path": "docs/evidence/cutout-rig-pose-qa.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "973ac4def0141ce5e6de754315b7dfa90a31727f2e25e2d349226230d94ba418",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-rig-seam-qa.json",
+      "source_path": "docs/evidence/cutout-rig-seam-qa.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "a0e235763521af631d9c6047ac1ca2a28fbb8b2105563a2af057340255553ef9",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-rig-pixel-provenance.json",
+      "source_path": "docs/evidence/cutout-rig-pixel-provenance.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "22e4bb3ea7da5b0dc0b3bd737006b12f5075c9e3ed8a54fcde9e6beff519e5ea",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "cutout-rig-provider-qualification.json",
+      "source_path": "docs/evidence/cutout-rig-provider-qualification.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "dc4a317c694d21f1b65a6b07db568e058f712390e88227bb7dd99cf5693cd3f6",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    },
+    {
+      "archive_name": "execution-evidence-v0.7.0.json",
+      "source_path": "docs/evidence/execution-evidence-v0.7.0.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "c8ba73e6e4f71eaa0d9bce374e4b23c324d526769d0c8be6e4bda7e0b57f94a0",
+      "role": "v0.7.0 deterministic cutout-rig evidence"
+    }
+  ],
+  "human_visual_review": "required",
+  "production_approval": "not-granted",
+  "external_approval": "not-claimed"
+}

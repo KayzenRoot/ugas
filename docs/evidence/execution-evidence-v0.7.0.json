@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.7.0",
+  "status": "EXECUTION_EVIDENCE_RECORDED",
+  "comfyui_generation_jobs": 0,
+  "comfyui_jobs": [],
+  "sam2_calls": {
+    "runtime_smoke": 1,
+    "rig_revision_segmentation": 1,
+    "per_frame_segmentation": 0
+  },
+  "renderer_calls": {
+    "q0": 1,
+    "q1": 1,
+    "q2": 1
+  },
+  "provider": "deterministic-cutout-rig-2d",
+  "sam2_checkpoint": "sam2.1_hiera_small.pt",
+  "sam2_commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+  "fallback_to_diffusion": false,
+  "sam3_used": false,
+  "walk": "NOT_RUN"
+}

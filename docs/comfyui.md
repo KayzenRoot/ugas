@@ -1,8 +1,8 @@
-# ComfyUI integration notes - UGAS v0.6.2
+# ComfyUI integration notes - UGAS v0.7.0
 
-The active release is v0.6.2 and only executes the bounded P-only OpenPose model-card calibration. The v0.6.1 and v0.6.0 runtime/model/custom-node records below remain historical.
+The active release is v0.7.0 and the deterministic cutout-rig lane executes without ComfyUI generation. The v0.6.2 and earlier runtime/model/custom-node records below remain historical.
 
-The v0.6.0 release records the bounded SDXL ControlNet/IP-Adapter runtime qualification. The ComfyUI/RTX 5050 and A/C/R evidence below is historical v0.5.4 evidence and remains unchanged; the v0.6.2 model-card calibration executed P0/P1/P2 and remains stopped at `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`.
+The v0.6.0 release records the bounded SDXL ControlNet/IP-Adapter runtime qualification. The ComfyUI/RTX 5050 and A/C/R evidence below is historical and remains unchanged. v0.7.0 uses an isolated SAM2 runtime and Pillow renderer; its ComfyUI generation count is zero and it remains stopped at `CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP`.
 
 O alvo local é ComfyUI `0.34.0` com NVIDIA GeForce RTX 5050. O runtime e o grafo nativo foram verificados para as lanes A, C e R. Não houve custom node nem troca de provider.
 

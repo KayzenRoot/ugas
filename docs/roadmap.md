@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.6.2 - SDXL OpenPose model-card calibration
+## v0.7.0 - deterministic cutout-rig pose provider
+
+Build the R4 front-facing deterministic cutout rig with SAM2.1 Hiera Small masks, hash-bound hierarchy, source-only pixel provenance and static Q0/Q1/Q2 QA. The implementation is complete locally, but the provider remains at `CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP` because Q1/Q2 do not pass the unchanged pose thresholds.
+
+## v0.6.2 - historical SDXL OpenPose model-card calibration
 
 Preserve raw generation evidence before BiRefNet, render the model-card guides directly at 512/768/1024, and run raw pose QA for P0/P1/P2. The completed calibration stopped at `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`; confirmation, identity R4, benchmark, walk and anchors were not run.
 
@@ -26,4 +30,4 @@ Incluem a escalada OpenPose/RefControl, multi-reference nativo, âncoras e o pil
 
 ## Next gate
 
-Somente uma nova decisão governada pode definir estratégia de correção do provider. Walk/front/8, âncoras v3, novos providers, DWPose, ControlNet, custom nodes e novos strengths estão fora do slice atual. O próximo passo autorizado após `REVIEW_ARCHIVE_VERIFIED` é `design_next_pose_control_provider_strategy`.
+Somente uma nova decisão governada pode definir a correção do cutout-rig. Walk/front/8, âncoras v3, novos providers, DWPose, ControlNet, custom nodes e novos strengths estão fora do slice atual. O próximo passo autorizado é revisar/reparar Q1/Q2 e repetir a qualificação estática.

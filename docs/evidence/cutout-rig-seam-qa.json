@@ -1,0 +1,189 @@
+{
+  "schema_version": "0.7.0",
+  "status": "SEAM_QA_PASSED",
+  "poses": {
+    "q0": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 0,
+      "component_sizes_desc": [
+        49803
+      ],
+      "body_component_threshold": 2490,
+      "background_hole_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "safe_margin": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true
+      },
+      "status": "SEAM_QA_PASSED"
+    },
+    "q1-contact-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 25,
+      "component_sizes_desc": [
+        45804,
+        54,
+        25,
+        21,
+        21,
+        14,
+        11,
+        11,
+        11,
+        8,
+        8,
+        5
+      ],
+      "body_component_threshold": 2290,
+      "background_hole_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "safe_margin": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true
+      },
+      "status": "SEAM_QA_PASSED"
+    },
+    "q2-passing-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 18,
+      "component_sizes_desc": [
+        45237,
+        223,
+        38,
+        20,
+        18,
+        10,
+        8,
+        7,
+        7,
+        6,
+        4,
+        3
+      ],
+      "body_component_threshold": 2261,
+      "background_hole_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "safe_margin": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true
+      },
+      "status": "SEAM_QA_PASSED"
+    }
+  },
+  "thresholds": {
+    "disconnect_count": 0,
+    "joint_gap_fraction_max": 0.02,
+    "duplicate_body_components": 0,
+    "gross_overlap": false,
+    "clipping": false,
+    "safe_margin": true
+  }
+}

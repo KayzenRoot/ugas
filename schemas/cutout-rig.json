@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS deterministic cutout rig v0.7.0",
+  "type": "object",
+  "required": ["schema_version", "rig_id", "provider_id", "source", "root_joint", "parts", "renderer", "provenance"],
+  "properties": {
+    "schema_version": {"const": "0.7.0"},
+    "rig_id": {"type": "string", "minLength": 1},
+    "provider_id": {"const": "deterministic-cutout-rig-2d"},
+    "source": {"type": "object", "required": ["asset_id", "revision_id", "sha256", "width", "height"], "properties": {"asset_id": {"type": "string"}, "revision_id": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}, "width": {"type": "integer", "minimum": 1}, "height": {"type": "integer", "minimum": 1}}},
+    "root_joint": {"const": "pelvis"},
+    "parts": {"type": "array", "minItems": 11, "items": {"type": "object", "required": ["name", "parent", "source_joints", "pivot_joint", "mask_sha256", "rgba_sha256", "z_group", "nonuniform_scale"], "properties": {"name": {"type": "string"}, "parent": {"type": "string"}, "source_joints": {"type": "array", "minItems": 2, "items": {"type": "string"}}, "pivot_joint": {"type": "string"}, "mask_sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}, "rgba_sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"}, "z_group": {"type": "integer"}, "nonuniform_scale": {"const": false}}}},
+    "weapon_attachment": {"type": "object", "properties": {"part": {"const": "sword"}, "joint": {"type": "string"}, "inferred": {"type": "boolean"}}},
+    "renderer": {"type": "object", "required": ["version", "resampling", "transform", "comfyui_jobs"], "properties": {"version": {"type": "string"}, "resampling": {"type": "string"}, "transform": {"const": "translation_rotation_bounded_uniform_scale"}, "comfyui_jobs": {"const": 0}}},
+    "provenance": {"type": "object", "required": ["generated_pixel_fraction", "source_pixel_provenance_fraction", "recolor_count", "nonuniform_scale_count"], "properties": {"generated_pixel_fraction": {"const": 0.0}, "source_pixel_provenance_fraction": {"type": "number", "minimum": 0.98}, "recolor_count": {"const": 0}, "nonuniform_scale_count": {"const": 0}}}
+  }
+}

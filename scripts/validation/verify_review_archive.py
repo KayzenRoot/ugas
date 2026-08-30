@@ -95,6 +95,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         (
             name
             for name in (
+                "docs/evidence/review-visuals-v0.7.0.json",
                 "docs/evidence/review-visuals-v0.6.2.json",
                 "docs/evidence/review-visuals-v0.6.1.json",
                 "docs/evidence/review-visuals-v0.6.0.json",
@@ -108,7 +109,34 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if active_visual_name is None:
         raise ReviewArchiveError("no supported active review visual manifest is present")
     required_metadata = set(REQUIRED_ARCHIVE_METADATA)
-    if active_visual_name.endswith("v0.6.2.json"):
+    if active_visual_name.endswith("v0.7.0.json"):
+        required_metadata.update(
+            {
+                "docs/evidence/review-visuals-v0.7.0.json",
+                "REVIEW-v0.7.0.md",
+                "docs/test-coverage-matrix-v0.7.0.md",
+                "docs/evidence/current-state.json",
+                "docs/evidence/current-state-v0.6.2.json",
+                "docs/evidence/state-consistency.json",
+                "docs/evidence/state-consistency-v0.6.2.json",
+                "docs/evidence/sam2-provider-qualification.json",
+                "docs/evidence/sam2-checkpoint-provenance.json",
+                "docs/evidence/r4-source-skeleton.json",
+                "docs/evidence/r4-cutout-part-prompts.json",
+                "docs/evidence/r4-cutout-part-masks.json",
+                "docs/evidence/r4-cutout-rig.json",
+                "docs/evidence/cutout-q0-qa.json",
+                "docs/evidence/cutout-rig-pose-qa.json",
+                "docs/evidence/cutout-rig-seam-qa.json",
+                "docs/evidence/cutout-rig-pixel-provenance.json",
+                "docs/evidence/cutout-rig-provider-qualification.json",
+                "docs/evidence/execution-evidence-v0.7.0.json",
+                "docs/evidence/review-visuals-v0.6.2.json",
+                "docs/evidence/sdxl-openpose-p-qualification.json",
+                "REVIEW-v0.6.2.md",
+            }
+        )
+    elif active_visual_name.endswith("v0.6.2.json"):
         required_metadata.update(
             {
                 "docs/evidence/review-visuals-v0.6.2.json",
@@ -273,8 +301,8 @@ def _self_validate_extracted(extraction: Path) -> dict[str, Any]:
     } if summary_match else None
     if compile_result["exit_code"] != 0:
         raise ReviewArchiveError("extracted compileall failed")
-    if unit_result["exit_code"] != 0 or exact_test_count is None or exact_test_count < 129:
-        raise ReviewArchiveError(f"extracted unittest failed or count is below 129: {exact_test_count}")
+    if unit_result["exit_code"] != 0 or exact_test_count is None or exact_test_count < 161:
+        raise ReviewArchiveError(f"extracted unittest failed or count is below 161: {exact_test_count}")
     if validation_result["exit_code"] != 0 or not summary or summary["failed"] != 0:
         raise ReviewArchiveError(f"extracted repository validation failed: {summary}")
     return {

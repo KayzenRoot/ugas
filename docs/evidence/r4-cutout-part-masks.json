@@ -1,0 +1,567 @@
+{
+  "schema_version": "0.7.0",
+  "status": "CUTOUT_RIG_MASKS_QUALIFIED",
+  "source": {
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "alpha_sha256": "4a6dd99cd2f52c6b5710373f8f5c5203a2946a40249c513d21431e90d4d33b21"
+  },
+  "parts": {
+    "head": {
+      "part": "head",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.827255,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 2216,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            245,
+            43,
+            291,
+            111
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 1.0,
+          "connected_components": 1,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 2216,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          245,
+          43,
+          291,
+          111
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": false,
+        "pivot_distance_to_bbox": 1.0,
+        "connected_components": 1,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/head.png",
+      "mask_sha256": "869bab871b552e3495dc24a93da7ba43e8373bb0447e66d366f820275bac8fec",
+      "rgba_path": "docs/evidence/r4-cutout-parts/head.png",
+      "rgba_sha256": "097003d696d3a60d296ba755006743ebbca24b2c9039e5fa7b4c504bebe7398c"
+    },
+    "torso_pelvis": {
+      "part": "torso_pelvis",
+      "selected": {
+        "index": "multimask_union",
+        "sam_score": 0.667607,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 32231,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            181,
+            42,
+            358,
+            352
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 2,
+          "nonempty": true
+        },
+        "candidate_count": 3
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 10758,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          183,
+          42,
+          352,
+          330
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": false,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 93,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/torso_pelvis.png",
+      "mask_sha256": "cea20bb46e38efb5dc4211d125ef28c201b16ab01c01b7d9ea4920f842ea1535",
+      "rgba_path": "docs/evidence/r4-cutout-parts/torso_pelvis.png",
+      "rgba_sha256": "3286efd6eba7b9476dbcd26224e6465573eacd00a53ecf9ab71e641d8be98ccb"
+    },
+    "left_upper_arm": {
+      "part": "left_upper_arm",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.906844,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 3127,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            299,
+            107,
+            347,
+            216
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 1,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 3081,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          299,
+          107,
+          346,
+          214
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": true,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 1,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/left_upper_arm.png",
+      "mask_sha256": "5c6f5a5a79bd8b84988c774b8a99634b23d4add972b3ed77df0d61e2f8fa880d",
+      "rgba_path": "docs/evidence/r4-cutout-parts/left_upper_arm.png",
+      "rgba_sha256": "8e106edf228b45fb7108993214fc35c39cab5f69604becad3b23e80c4a412eb2"
+    },
+    "left_forearm_hand": {
+      "part": "left_forearm_hand",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.801549,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 2173,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            323,
+            198,
+            359,
+            303
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 5.0,
+          "connected_components": 1,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 2173,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          323,
+          198,
+          359,
+          303
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": false,
+        "pivot_distance_to_bbox": 5.0,
+        "connected_components": 1,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/left_forearm_hand.png",
+      "mask_sha256": "bf56583089af30824a23404e465e708cf932849020b49f9004b8f8adc29a0995",
+      "rgba_path": "docs/evidence/r4-cutout-parts/left_forearm_hand.png",
+      "rgba_sha256": "7482d497d14a2c54ac85c4feb5da1dbee19287326cde954d328c5f2c12288199"
+    },
+    "right_upper_arm": {
+      "part": "right_upper_arm",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.832848,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 3043,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            191,
+            108,
+            238,
+            215
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 1,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 3039,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          191,
+          108,
+          238,
+          215
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": true,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 1,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/right_upper_arm.png",
+      "mask_sha256": "2d9b16103edd9614a331b2794a1e19344607c992f7ef18e58e4a17e0c95e5ba7",
+      "rgba_path": "docs/evidence/r4-cutout-parts/right_upper_arm.png",
+      "rgba_sha256": "bef6a01d5860d71ed3119578d865d2af5ebe05f2e3cc092b3781482b82d863cb"
+    },
+    "right_forearm_hand": {
+      "part": "right_forearm_hand",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.884585,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 1822,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            180,
+            198,
+            224,
+            283
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 6.0,
+          "connected_components": 3,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 1775,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          180,
+          198,
+          222,
+          283
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": false,
+        "pivot_distance_to_bbox": 6.0,
+        "connected_components": 4,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/right_forearm_hand.png",
+      "mask_sha256": "fcfc846e66761ff2378a72e8104690f89ee7832aa4fc1afd7bec8c0173337631",
+      "rgba_path": "docs/evidence/r4-cutout-parts/right_forearm_hand.png",
+      "rgba_sha256": "97d0e176345d6a9e6ccd449a3e0de3ec7c5ccaf44aba5a83fc37ffe580b66fc3"
+    },
+    "left_thigh": {
+      "part": "left_thigh",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.759288,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 5823,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            267,
+            233,
+            324,
+            386
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 5,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 5368,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          267,
+          233,
+          324,
+          386
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": true,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 4,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/left_thigh.png",
+      "mask_sha256": "ac61868f34224a39acfbe100a297dc022cc1b83979f1509b3fb1c0950c3c8d9a",
+      "rgba_path": "docs/evidence/r4-cutout-parts/left_thigh.png",
+      "rgba_sha256": "b22cb6f48a93e713616c9d34403cf231a9eea918cdb83171018a69aeabb78cc2"
+    },
+    "left_shin_foot": {
+      "part": "left_shin_foot",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.898944,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 3942,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            283,
+            346,
+            342,
+            485
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 3,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 3942,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          283,
+          346,
+          342,
+          485
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": true,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 3,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/left_shin_foot.png",
+      "mask_sha256": "aa411be965b93b479e04cf43096838b9f2512441b8ab12c0d2d110896922e97b",
+      "rgba_path": "docs/evidence/r4-cutout-parts/left_shin_foot.png",
+      "rgba_sha256": "22acca5329c2fb9210267fb8befdfe85cf78d547beb07a7605f7e676fafb51bb"
+    },
+    "right_thigh": {
+      "part": "right_thigh",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.878509,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 5634,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            212,
+            234,
+            275,
+            387
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 5,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 5251,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          212,
+          234,
+          274,
+          387
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": true,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 9,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/right_thigh.png",
+      "mask_sha256": "ee4dd76ba9c77eb922bc813a1df1282dff90045bc0c4d3e46d6c24f798c6aa5c",
+      "rgba_path": "docs/evidence/r4-cutout-parts/right_thigh.png",
+      "rgba_sha256": "e80b85f3aa24aeef946fda6ae211b19d9d2e5db9348f24873b27daf7e21063f6"
+    },
+    "right_shin_foot": {
+      "part": "right_shin_foot",
+      "selected": {
+        "index": 1,
+        "sam_score": 0.901171,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 3701,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            203,
+            347,
+            253,
+            484
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 2,
+          "nonempty": true
+        }
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 3528,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          203,
+          347,
+          253,
+          484
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": true,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 2,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/right_shin_foot.png",
+      "mask_sha256": "7850982362e222cf7661ed099857d3eeec467775a9b9dd6df24a49dfb643545a",
+      "rgba_path": "docs/evidence/r4-cutout-parts/right_shin_foot.png",
+      "rgba_sha256": "1d2fa224a1eeacecb234447e1261f4a088510885f640b4d22016031823ffe2b6"
+    },
+    "sword": {
+      "part": "sword",
+      "selected": {
+        "index": "multimask_union",
+        "sam_score": 0.525958,
+        "selected_candidate_valid": true,
+        "stats": {
+          "mask_pixels": 3885,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            159,
+            186,
+            300,
+            486
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 105,
+          "nonempty": true
+        },
+        "candidate_count": 3
+      },
+      "source_pixels_only": true,
+      "manual_prompt": false,
+      "final_stats": {
+        "mask_pixels": 3885,
+        "source_alpha_pixels": 49131,
+        "foreground_purity": 1.0,
+        "outside_source_alpha_pixels": 0,
+        "bbox": [
+          159,
+          186,
+          300,
+          486
+        ],
+        "expected_corridor_intersects": true,
+        "pivot_in_mask": false,
+        "pivot_distance_to_bbox": 0.0,
+        "connected_components": 105,
+        "nonempty": true
+      },
+      "mask_path": "docs/evidence/r4-cutout-masks/sword.png",
+      "mask_sha256": "ab7d7d50f03d5ca98e87a77cfe57186c3963f44cd4c7e4fdc4985b93bba6327a",
+      "rgba_path": "docs/evidence/r4-cutout-parts/sword.png",
+      "rgba_sha256": "b6d6c6e70b139bfd140c84e4789e0d8a911b500e1d712f54b1174769f1e9b847"
+    }
+  },
+  "global": {
+    "source_alpha_pixels": 46451,
+    "strict_source_alpha_pixels": 49131,
+    "alpha_foreground_threshold": 64,
+    "union_foreground_pixels": 44475,
+    "union_coverage": 0.957461,
+    "unassigned_fraction": 0.042539,
+    "overlap_pixels": 0,
+    "unresolved_overlap_fraction": 0.0
+  },
+  "foreground_policy": {
+    "semantic_alpha_threshold": 64,
+    "strict_alpha_is_reported_separately": true,
+    "threshold_role": "antialias edge pixels are measured but not required as opaque semantic mask coverage"
+  },
+  "postprocess": {
+    "ownership_partition": true,
+    "policy": "selected SAM2 masks intersected with immutable R4 alpha; overlapping pixels assigned once by deterministic z-order",
+    "pixels_invented": 0
+  },
+  "runtime": {
+    "device": "cuda",
+    "runtime_ms": 4478.377,
+    "peak_vram_bytes": 680435200,
+    "sam2_once_per_rig_revision": true
+  }
+}

@@ -1,23 +1,23 @@
-# UGAS checkpoint - v0.6.2
+# UGAS checkpoint - v0.7.0
 
-**STATUS:** `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`
-**VERSION:** `0.6.2`
-**PHASE:** `SDXL_OPENPOSE_MODEL_CARD_CALIBRATION`
+**STATUS:** `CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP`
+**VERSION:** `0.7.0`
+**PHASE:** `DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER`
 
 ## Current state
 
-O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). A calibração P-only foi concluída: P0, P1 e P2 executaram com geração fresca, sem OOM, e nenhum passou o Stage A. O resultado corrente é `SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS`. O review v0.6.1 permanece imutável; os modelos, hashes, pin do IP-Adapter, R4, MediaPipe QA e thresholds permanecem preservados.
+O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). O cutout-rig R4 foi construído com SAM2.1 Hiera Small isolado, onze máscaras, manifest de hierarquia, Q0/Q1/Q2 estáticos e proveniência source-only. O resultado corrente é `CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP`; o review v0.6.2 permanece imutável.
 
-O escopo de geração é somente P-only: SDXL Base 1.0 + xinsir OpenPose ControlNet. A matriz autorizada é P0/P1/P2 com a seed 62701. IP-Adapter, I/PI, benchmark, anchors, walk, spritesheet, GIF e novo provider permanecem proibidos.
+O escopo atual não é geração: `deterministic-cutout-rig-2d` recebe somente o R4 RGBA canônico. Não houve job ComfyUI, fallback diffusion, SAM3 ou segmentação por frame. O provider não é roteado para produção enquanto Q1/Q2 não qualificarem.
 
 ## Scope and gate
 
-P0 reproduz o baseline 512x512, 20 steps, Euler/normal e strength 0.9. P1 usa 768x768, 30 steps, Euler Ancestral semanticamente mapeado para os valores válidos do `object_info` real e strength 1.0. P2 usa 1024x1024, 30 steps, a mesma equivalência e strength 1.0.
+SAM2 passou runtime/import/checkpoint/inference smoke. A segmentação alcançou cobertura semântica `0.957461`, overlap não resolvido `0.0` e pureza `1.0`. Q0 passou alpha IoU `1.0`, RGB MAE `0.373763` e drift de bbox `0.0` px.
 
-O PNG de controle é renderizado diretamente do JSON COCO-18 em cada resolução, sem upscale raster. Raw pose QA ocorreu antes de qualquer diagnóstico opcional de pós-processamento. P2 completou normalmente e não exigiu retry. Os três outputs e overlays estão hash-bound em `docs/evidence/sdxl-openpose-calibration/`.
+Q1 passou a geometria interna e seam, mas falhou lower-body PCK (`0.666667`). Q2 falhou PCK (`0.692308`), NME (`0.100930`) e lower-body PCK (`0.5`). Os outputs e overlays estão hash-bound em `docs/evidence/`.
 
 ## Evidence boundary
 
-Pesos, bundle MediaPipe e source GPL continuam fora do Git e do review ZIP. A aprovação de produção e a aprovação externa não são inferidas. `walk_authorized=false` e `generation_provider_change_authorized=false` permanecem obrigatórios.
+Pesos, bundle MediaPipe, source SAM2 e checkpoint continuam fora do Git e do review ZIP. A aprovação de produção e a aprovação externa não são inferidas. `walk_authorized=false` e `generation_provider_change_authorized=false` permanecem obrigatórios.
 
-Animação genérica não autoriza execução nesta fase; walk, spritesheet e GIF continuam fora do escopo e não foram executados. Confirmation também permaneceu `NOT_RUN`, pois nenhuma configuração passou Stage A.
+Animação genérica não autoriza execução nesta fase; walk, spritesheet e GIF continuam fora do escopo e não foram executados. O próximo passo autorizado é revisão/reparo dos gates Q1/Q2, não um walk.

@@ -1,8 +1,8 @@
-"""Fatal consistency checks for the active UGAS v0.6.2 calibration.
+"""Fatal consistency checks for the active UGAS v0.7.0 cutout-rig provider.
 
-The v0.6.1 smoke result, v0.5.4 pose decision and v0.5.5 review-snapshot
-result are immutable historical inputs. This validator only permits the
-P-only model-card calibration slice; it never grants external approval or
+The v0.6.2 calibration result, earlier pose decision and review-snapshot
+result are immutable historical inputs. This validator permits only the
+deterministic R4 cutout-rig slice; it never grants external approval or
 animation authorization.
 """
 
@@ -12,18 +12,23 @@ import re
 from typing import Any, Mapping
 
 
-CURRENT_SCHEMA_VERSION = "0.6.2"
+CURRENT_SCHEMA_VERSION = "0.7.0"
 CANONICAL_R4_SHA256 = "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
 CANONICAL_R4_REVISION = "revision-3a425d184b1a49be9f6d6c8d52d04b96"
-CURRENT_PHASE = "SDXL_OPENPOSE_MODEL_CARD_CALIBRATION"
+CURRENT_PHASE = "DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER"
 CURRENT_GATES = {
-    "SDXL_OPENPOSE_CONFIG_CALIBRATION_REQUIRED",
-    "SDXL_OPENPOSE_P_LANE_QUALIFIED",
-    "SDXL_OPENPOSE_P_LANE_QUALIFIED_768",
-    "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
-    "SDXL_OPENPOSE_1024_HARDWARE_GAP",
+    "CUTOUT_RIG_SAM2_QUALIFICATION_REQUIRED",
+    "SAM2_RUNTIME_GAP",
+    "CUTOUT_RIG_SEGMENTATION_RUNTIME_GAP",
+    "CUTOUT_RIG_SOURCE_SKELETON_GAP",
+    "CUTOUT_RIG_SEGMENTATION_GAP",
+    "CUTOUT_RIG_RECONSTRUCTION_GAP",
+    "CUTOUT_RIG_RENDERER_GAP",
+    "CUTOUT_RIG_SEAM_GAP",
+    "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
+    "CUTOUT_RIG_POSE_PROVIDER_QUALIFIED",
 }
-HISTORICAL_SMOKE_STATUS = "SDXL_OPENPOSE_CONTROL_GAP"
+HISTORICAL_SMOKE_STATUS = "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS"
 POSE_LANE_STATUS = "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"
 HISTORICAL_REVIEW_STATUS = "REVIEW_ARCHIVE_VERIFIED"
 
@@ -51,33 +56,35 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     }
     failures.extend(f"missing:{key}" for key in sorted(required - set(state)))
     if state.get("schema_version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_schema_version_must_be_0.6.2")
+        failures.append("state_schema_version_must_be_0.7.0")
     if state.get("version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_version_must_be_0.6.2")
+        failures.append("state_version_must_be_0.7.0")
     if state.get("phase") != CURRENT_PHASE:
-        failures.append("state_phase_invalid_for_v062")
+        failures.append("state_phase_invalid_for_v070")
     if state.get("current_gate") not in CURRENT_GATES:
         failures.append("state_current_gate_invalid")
     if state.get("provider_smoke_status") != state.get("current_gate"):
         failures.append("provider_smoke_status_must_equal_current_gate")
     if state.get("walk_authorized") is not False:
         failures.append("walk_must_be_false")
-    if state.get("historical_pose_lane_status") != POSE_LANE_STATUS or state.get("pose_lane_status") != POSE_LANE_STATUS:
+    if state.get("historical_pose_lane_status") != POSE_LANE_STATUS:
         failures.append("historical_pose_lane_status_must_preserve_v0.5.4_decision")
     if state.get("previous_review_snapshot_status") != HISTORICAL_REVIEW_STATUS:
         failures.append("previous_review_snapshot_status_must_preserve_v0.5.5")
 
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
     if state.get("historical_smoke_status") != HISTORICAL_SMOKE_STATUS:
-        failures.append("historical_smoke_status_must_preserve_v0.6.1")
-    if previous.get("version") != "0.6.1":
-        failures.append("previous_release_must_be_0.6.1")
+        failures.append("historical_smoke_status_must_preserve_v0.6.2")
+    if previous.get("version") != "0.6.2":
+        failures.append("previous_release_must_be_0.6.2")
     if previous.get("historical_smoke_status") != HISTORICAL_SMOKE_STATUS:
         failures.append("previous_release_historical_smoke_status_missing")
     if previous.get("review_snapshot_status") != HISTORICAL_REVIEW_STATUS:
         failures.append("previous_release_review_snapshot_missing")
     if previous.get("pose_lane_status") != POSE_LANE_STATUS:
         failures.append("previous_release_pose_status_missing")
+    if state.get("pose_lane_status") not in CURRENT_GATES:
+        failures.append("pose_lane_status_must_identify_current_cutout_rig_gate")
 
     anchor = state.get("canonical_anchor") if isinstance(state.get("canonical_anchor"), Mapping) else {}
     if anchor.get("revision_id") != CANONICAL_R4_REVISION:
@@ -103,7 +110,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         failures.append("new_generation_started_must_be_boolean")
     if not isinstance(jobs, int) or jobs < 0:
         failures.append("new_generation_jobs_must_be_nonnegative_integer")
-    if gate == "SDXL_OPENPOSE_CONFIG_CALIBRATION_REQUIRED":
+    if gate == "CUTOUT_RIG_SAM2_QUALIFICATION_REQUIRED":
         if started is not False or jobs != 0:
             failures.append("audit_gate_must_record_no_generation")
         if state.get("generation_provider_change_authorized") is not False:
@@ -113,11 +120,11 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
 
     combined = f"{checkpoint_text}\n{review_text}"
     for required_text, failure in (
-        (CURRENT_SCHEMA_VERSION, "active_documents_must_identify_0.6.2"),
-        (CURRENT_PHASE, "active_documents_must_identify_sdxl_model_card_calibration"),
+        (CURRENT_SCHEMA_VERSION, "active_documents_must_identify_0.7.0"),
+        (CURRENT_PHASE, "active_documents_must_identify_cutout_rig_provider"),
+        ("0.6.2", "active_documents_must_preserve_v0.6.2_history"),
+        (HISTORICAL_SMOKE_STATUS, "active_documents_must_preserve_v0.6.2_smoke_status"),
         ("0.6.1", "active_documents_must_preserve_v0.6.1_history"),
-        (HISTORICAL_SMOKE_STATUS, "active_documents_must_preserve_v0.6.1_smoke_status"),
-        ("0.6.0", "active_documents_must_preserve_v0.6.0_history"),
         (POSE_LANE_STATUS, "active_documents_must_preserve_pose_decision"),
         (HISTORICAL_REVIEW_STATUS, "active_documents_must_preserve_review_snapshot"),
         (gate, "active_gate_missing_from_documents"),
@@ -127,10 +134,10 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     combined_lower = combined.casefold()
     if "walk_authorized=false" not in combined_lower and "walk permanece não autorizado" not in combined_lower:
         failures.append("active_documents_must_keep_walk_blocked")
-    if "v054-provider-qualification.json" not in combined:
-        failures.append("historical_pose_evidence_missing_from_documents")
-    if "review-visuals-v0.6.0.json" not in combined:
-        failures.append("historical_v060_review_manifest_missing_from_documents")
+    if "sdxl-openpose-p-qualification.json" not in combined:
+        failures.append("historical_v062_evidence_missing_from_documents")
+    if "review-visuals-v0.6.1.json" not in combined:
+        failures.append("historical_v061_review_manifest_missing_from_documents")
     if "provider_smoke_status" not in combined:
         failures.append("active_documents_must_distinguish_provider_smoke_status")
     if re.search(r"verificar\s+o\s+RefControl", combined, re.IGNORECASE):

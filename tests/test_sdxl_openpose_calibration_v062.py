@@ -98,7 +98,7 @@ class SdxlOpenPoseCalibrationV062Tests(unittest.TestCase):
         self.assertFalse(is_oom_error("workflow validation failed"))
 
     def test_active_state_keeps_non_p_lanes_blocked(self):
-        state = load("docs/evidence/current-state.json")
+        state = load("docs/evidence/current-state-v0.6.2.json")
         self.assertEqual("0.6.2", state["version"])
         self.assertEqual("SDXL_OPENPOSE_MODEL_CARD_CALIBRATION", state["phase"])
         self.assertFalse(state["walk_authorized"])

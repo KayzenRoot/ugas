@@ -1,0 +1,1193 @@
+{
+  "schema_version": "0.7.0",
+  "status": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
+  "provider_id": "deterministic-cutout-rig-2d",
+  "capability": "pose_character_front_2d",
+  "source": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "architecture": "R4_RGBA -> MediaPipe source skeleton -> SAM2.1 Hiera Small masks -> cutout rig -> deterministic transforms -> RGBA",
+  "sam2": {
+    "schema_version": "0.7.0",
+    "provider_id": "deterministic-cutout-rig-2d",
+    "capability": "pose_character_front_2d",
+    "status": "SAM2_RUNTIME_QUALIFIED",
+    "official_source": "https://github.com/facebookresearch/sam2",
+    "license": "Apache-2.0",
+    "repository_commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+    "checkpoint": {
+      "filename": "sam2.1_hiera_small.pt",
+      "url": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt",
+      "path_not_published": true,
+      "outside_git": true,
+      "outside_review_zip": true,
+      "bytes": 184416285,
+      "sha256": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38"
+    },
+    "python": {
+      "version": "3.12.10",
+      "executable": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\.venv\\Scripts\\python.exe"
+    },
+    "torch": {
+      "version": "2.13.0+cu130",
+      "cuda_available": true,
+      "device": "cuda"
+    },
+    "torchvision": {
+      "version": "0.28.0+cu130"
+    },
+    "runtime_policy": {
+      "isolated_external_tool": true,
+      "comfyui_custom_node": false,
+      "comfyui_generation_jobs": 0,
+      "sam3_forbidden": true
+    },
+    "smoke": {
+      "status": "SAM2_SMOKE_PASSED",
+      "mask_shape": [
+        3,
+        512,
+        512
+      ],
+      "scores": [
+        0.858013,
+        0.94735,
+        0.950793
+      ],
+      "valid_mask": true,
+      "mask_intersects_r4_foreground": true,
+      "runtime_ms": 1864.65,
+      "peak_vram_bytes": 678731264,
+      "image_mutated": false
+    },
+    "timestamp": "2026-08-30T23:16:12Z",
+    "imports": {
+      "sam2": "importable",
+      "build_sam2": true,
+      "SAM2ImagePredictor": true
+    },
+    "model": {
+      "params": 46000000,
+      "family": "SAM 2.1 Hiera Small",
+      "config": "configs/sam2.1/sam2.1_hiera_s.yaml"
+    },
+    "failures": []
+  },
+  "skeleton": "docs/evidence/r4-source-skeleton.json",
+  "masks": {
+    "schema_version": "0.7.0",
+    "status": "CUTOUT_RIG_MASKS_QUALIFIED",
+    "source": {
+      "path": "docs/evidence/reference-edit-selected-transparent.png",
+      "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "alpha_sha256": "4a6dd99cd2f52c6b5710373f8f5c5203a2946a40249c513d21431e90d4d33b21"
+    },
+    "parts": {
+      "head": {
+        "part": "head",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.827255,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 2216,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              245,
+              43,
+              291,
+              111
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": false,
+            "pivot_distance_to_bbox": 1.0,
+            "connected_components": 1,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 2216,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            245,
+            43,
+            291,
+            111
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 1.0,
+          "connected_components": 1,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/head.png",
+        "mask_sha256": "869bab871b552e3495dc24a93da7ba43e8373bb0447e66d366f820275bac8fec",
+        "rgba_path": "docs/evidence/r4-cutout-parts/head.png",
+        "rgba_sha256": "097003d696d3a60d296ba755006743ebbca24b2c9039e5fa7b4c504bebe7398c"
+      },
+      "torso_pelvis": {
+        "part": "torso_pelvis",
+        "selected": {
+          "index": "multimask_union",
+          "sam_score": 0.667607,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 32231,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              181,
+              42,
+              358,
+              352
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": true,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 2,
+            "nonempty": true
+          },
+          "candidate_count": 3
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 10758,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            183,
+            42,
+            352,
+            330
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 93,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/torso_pelvis.png",
+        "mask_sha256": "cea20bb46e38efb5dc4211d125ef28c201b16ab01c01b7d9ea4920f842ea1535",
+        "rgba_path": "docs/evidence/r4-cutout-parts/torso_pelvis.png",
+        "rgba_sha256": "3286efd6eba7b9476dbcd26224e6465573eacd00a53ecf9ab71e641d8be98ccb"
+      },
+      "left_upper_arm": {
+        "part": "left_upper_arm",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.906844,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 3127,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              299,
+              107,
+              347,
+              216
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": true,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 1,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 3081,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            299,
+            107,
+            346,
+            214
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 1,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/left_upper_arm.png",
+        "mask_sha256": "5c6f5a5a79bd8b84988c774b8a99634b23d4add972b3ed77df0d61e2f8fa880d",
+        "rgba_path": "docs/evidence/r4-cutout-parts/left_upper_arm.png",
+        "rgba_sha256": "8e106edf228b45fb7108993214fc35c39cab5f69604becad3b23e80c4a412eb2"
+      },
+      "left_forearm_hand": {
+        "part": "left_forearm_hand",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.801549,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 2173,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              323,
+              198,
+              359,
+              303
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": false,
+            "pivot_distance_to_bbox": 5.0,
+            "connected_components": 1,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 2173,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            323,
+            198,
+            359,
+            303
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 5.0,
+          "connected_components": 1,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/left_forearm_hand.png",
+        "mask_sha256": "bf56583089af30824a23404e465e708cf932849020b49f9004b8f8adc29a0995",
+        "rgba_path": "docs/evidence/r4-cutout-parts/left_forearm_hand.png",
+        "rgba_sha256": "7482d497d14a2c54ac85c4feb5da1dbee19287326cde954d328c5f2c12288199"
+      },
+      "right_upper_arm": {
+        "part": "right_upper_arm",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.832848,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 3043,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              191,
+              108,
+              238,
+              215
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": true,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 1,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 3039,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            191,
+            108,
+            238,
+            215
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 1,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/right_upper_arm.png",
+        "mask_sha256": "2d9b16103edd9614a331b2794a1e19344607c992f7ef18e58e4a17e0c95e5ba7",
+        "rgba_path": "docs/evidence/r4-cutout-parts/right_upper_arm.png",
+        "rgba_sha256": "bef6a01d5860d71ed3119578d865d2af5ebe05f2e3cc092b3781482b82d863cb"
+      },
+      "right_forearm_hand": {
+        "part": "right_forearm_hand",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.884585,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 1822,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              180,
+              198,
+              224,
+              283
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": false,
+            "pivot_distance_to_bbox": 6.0,
+            "connected_components": 3,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 1775,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            180,
+            198,
+            222,
+            283
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 6.0,
+          "connected_components": 4,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/right_forearm_hand.png",
+        "mask_sha256": "fcfc846e66761ff2378a72e8104690f89ee7832aa4fc1afd7bec8c0173337631",
+        "rgba_path": "docs/evidence/r4-cutout-parts/right_forearm_hand.png",
+        "rgba_sha256": "97d0e176345d6a9e6ccd449a3e0de3ec7c5ccaf44aba5a83fc37ffe580b66fc3"
+      },
+      "left_thigh": {
+        "part": "left_thigh",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.759288,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 5823,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              267,
+              233,
+              324,
+              386
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": true,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 5,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 5368,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            267,
+            233,
+            324,
+            386
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 4,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/left_thigh.png",
+        "mask_sha256": "ac61868f34224a39acfbe100a297dc022cc1b83979f1509b3fb1c0950c3c8d9a",
+        "rgba_path": "docs/evidence/r4-cutout-parts/left_thigh.png",
+        "rgba_sha256": "b22cb6f48a93e713616c9d34403cf231a9eea918cdb83171018a69aeabb78cc2"
+      },
+      "left_shin_foot": {
+        "part": "left_shin_foot",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.898944,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 3942,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              283,
+              346,
+              342,
+              485
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": true,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 3,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 3942,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            283,
+            346,
+            342,
+            485
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 3,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/left_shin_foot.png",
+        "mask_sha256": "aa411be965b93b479e04cf43096838b9f2512441b8ab12c0d2d110896922e97b",
+        "rgba_path": "docs/evidence/r4-cutout-parts/left_shin_foot.png",
+        "rgba_sha256": "22acca5329c2fb9210267fb8befdfe85cf78d547beb07a7605f7e676fafb51bb"
+      },
+      "right_thigh": {
+        "part": "right_thigh",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.878509,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 5634,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              212,
+              234,
+              275,
+              387
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": true,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 5,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 5251,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            212,
+            234,
+            274,
+            387
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 9,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/right_thigh.png",
+        "mask_sha256": "ee4dd76ba9c77eb922bc813a1df1282dff90045bc0c4d3e46d6c24f798c6aa5c",
+        "rgba_path": "docs/evidence/r4-cutout-parts/right_thigh.png",
+        "rgba_sha256": "e80b85f3aa24aeef946fda6ae211b19d9d2e5db9348f24873b27daf7e21063f6"
+      },
+      "right_shin_foot": {
+        "part": "right_shin_foot",
+        "selected": {
+          "index": 1,
+          "sam_score": 0.901171,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 3701,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              203,
+              347,
+              253,
+              484
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": true,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 2,
+            "nonempty": true
+          }
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 3528,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            203,
+            347,
+            253,
+            484
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": true,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 2,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/right_shin_foot.png",
+        "mask_sha256": "7850982362e222cf7661ed099857d3eeec467775a9b9dd6df24a49dfb643545a",
+        "rgba_path": "docs/evidence/r4-cutout-parts/right_shin_foot.png",
+        "rgba_sha256": "1d2fa224a1eeacecb234447e1261f4a088510885f640b4d22016031823ffe2b6"
+      },
+      "sword": {
+        "part": "sword",
+        "selected": {
+          "index": "multimask_union",
+          "sam_score": 0.525958,
+          "selected_candidate_valid": true,
+          "stats": {
+            "mask_pixels": 3885,
+            "source_alpha_pixels": 49131,
+            "foreground_purity": 1.0,
+            "outside_source_alpha_pixels": 0,
+            "bbox": [
+              159,
+              186,
+              300,
+              486
+            ],
+            "expected_corridor_intersects": true,
+            "pivot_in_mask": false,
+            "pivot_distance_to_bbox": 0.0,
+            "connected_components": 105,
+            "nonempty": true
+          },
+          "candidate_count": 3
+        },
+        "source_pixels_only": true,
+        "manual_prompt": false,
+        "final_stats": {
+          "mask_pixels": 3885,
+          "source_alpha_pixels": 49131,
+          "foreground_purity": 1.0,
+          "outside_source_alpha_pixels": 0,
+          "bbox": [
+            159,
+            186,
+            300,
+            486
+          ],
+          "expected_corridor_intersects": true,
+          "pivot_in_mask": false,
+          "pivot_distance_to_bbox": 0.0,
+          "connected_components": 105,
+          "nonempty": true
+        },
+        "mask_path": "docs/evidence/r4-cutout-masks/sword.png",
+        "mask_sha256": "ab7d7d50f03d5ca98e87a77cfe57186c3963f44cd4c7e4fdc4985b93bba6327a",
+        "rgba_path": "docs/evidence/r4-cutout-parts/sword.png",
+        "rgba_sha256": "b6d6c6e70b139bfd140c84e4789e0d8a911b500e1d712f54b1174769f1e9b847"
+      }
+    },
+    "global": {
+      "source_alpha_pixels": 46451,
+      "strict_source_alpha_pixels": 49131,
+      "alpha_foreground_threshold": 64,
+      "union_foreground_pixels": 44475,
+      "union_coverage": 0.957461,
+      "unassigned_fraction": 0.042539,
+      "overlap_pixels": 0,
+      "unresolved_overlap_fraction": 0.0
+    },
+    "foreground_policy": {
+      "semantic_alpha_threshold": 64,
+      "strict_alpha_is_reported_separately": true,
+      "threshold_role": "antialias edge pixels are measured but not required as opaque semantic mask coverage"
+    },
+    "postprocess": {
+      "ownership_partition": true,
+      "policy": "selected SAM2 masks intersected with immutable R4 alpha; overlapping pixels assigned once by deterministic z-order",
+      "pixels_invented": 0
+    },
+    "runtime": {
+      "device": "cuda",
+      "runtime_ms": 4478.377,
+      "peak_vram_bytes": 680435200,
+      "sam2_once_per_rig_revision": true
+    }
+  },
+  "rig": "docs/evidence/r4-cutout-rig.json",
+  "q0": {
+    "schema_version": "0.7.0",
+    "pose": "q0",
+    "metrics": {
+      "alpha_iou": 1.0,
+      "rgb_mae": 0.373763,
+      "bbox_drift_px": 0.0,
+      "source_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "rendered_bbox": [
+        159,
+        40,
+        361,
+        487
+      ]
+    },
+    "internal": {
+      "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+      "root_target_error_px": 0.0,
+      "joint_pivot_error_px_median": 0.0,
+      "joint_pivot_error_px_max": 0.0,
+      "angle_error_degrees_median": 0.0,
+      "bone_length_drift_fraction_max": 0.0,
+      "disconnect_count": 0,
+      "uniform_scale": {
+        "min": 1.0,
+        "max": 1.0,
+        "preferred": 1.0,
+        "hard_range": [
+          0.92,
+          1.08
+        ],
+        "nonuniform_scale_count": 0
+      },
+      "scale_failures": [],
+      "required_thresholds": {
+        "root_target_error_px_max": 2.0,
+        "joint_pivot_error_px_median_max": 3.0,
+        "joint_pivot_error_px_max": 6.0,
+        "angle_error_degrees_median_max": 3.0,
+        "bone_length_drift_fraction_max": 0.08,
+        "disconnect_count": 0
+      }
+    },
+    "hard_gates": {
+      "alpha_iou": true,
+      "rgb_mae": true,
+      "bbox_drift": true,
+      "provenance": true,
+      "no_missing_or_duplicate_limb": true
+    },
+    "status": "CUTOUT_RIG_RECONSTRUCTION_PASSED"
+  },
+  "q1": {
+    "pose": "q1-contact-left",
+    "guide": "pose-guides/openpose-v3/walk-front-8/frame-00-contact-left.json",
+    "output_path": "docs/evidence/cutout-q1-contact-left.png",
+    "output_sha256": "8f0bdb009470e5cf730d5697e5155060567af82c0fbb5d7f196b96362484033a",
+    "media_pipe": {
+      "metric_version": "detected-joint-pose-error-1.0",
+      "measurement_status": "MEASURABLE",
+      "measurable_body_joints": 13,
+      "required_core_present": true,
+      "pck_at_010": 0.846154,
+      "nme": 0.072054,
+      "limb_angle_mae_degrees": 13.821105,
+      "lower_body_pck": 0.666667,
+      "orientation_match": true,
+      "orientation_score": 1.0,
+      "pose_score": 0.864093,
+      "qualifies": false,
+      "failure_reasons": [
+        "lower_body_pck_below_075"
+      ]
+    },
+    "target": {
+      "joints": {
+        "nose": {
+          "x": 248.0,
+          "y": 125.63468217474143
+        },
+        "neck": {
+          "x": 248.0,
+          "y": 158.0
+        },
+        "shoulder_right": {
+          "x": 200.7428052866815,
+          "y": 159.4931708238247
+        },
+        "shoulder_left": {
+          "x": 295.25719471331854,
+          "y": 159.4931708238247
+        },
+        "elbow_right": {
+          "x": 158.75931338951298,
+          "y": 212.86471630163885
+        },
+        "elbow_left": {
+          "x": 337.9717317778317,
+          "y": 213.79405801744554
+        },
+        "wrist_right": {
+          "x": 159.87641213469618,
+          "y": 278.7148133023534
+        },
+        "wrist_left": {
+          "x": 336.13228758524264,
+          "y": 281.15555319824114
+        },
+        "hip_right": {
+          "x": 248.0,
+          "y": 286.0
+        },
+        "hip_left": {
+          "x": 248.0,
+          "y": 286.0
+        },
+        "knee_right": {
+          "x": 189.5314858826897,
+          "y": 364.5670658451357
+        },
+        "knee_left": {
+          "x": 310.83144866062054,
+          "y": 364.53931082577566
+        },
+        "ankle_right": {
+          "x": 178.1086508053768,
+          "y": 460.3234159178411
+        },
+        "ankle_left": {
+          "x": 318.5784519683539,
+          "y": 460.40836383038175
+        },
+        "pelvis": {
+          "x": 248.0,
+          "y": 286.0
+        },
+        "shoulder_center": {
+          "x": 248.0,
+          "y": 159.4931708238247
+        },
+        "weapon_tip": {
+          "x": 304.01218749246436,
+          "y": 134.57903794458522
+        }
+      },
+      "neck": {
+        "x": 248.0,
+        "y": 158.0
+      },
+      "weapon_tip": {
+        "x": 304.01218749246436,
+        "y": 134.57903794458522
+      },
+      "view": "front",
+      "orientation": "front",
+      "guide_id": "openpose-v3-walk-front-8-frame-00-contact-left",
+      "normalization": "target angles from OpenPose guide; every source bone length restored deterministically"
+    },
+    "orientation": "front",
+    "transparent_rgba": true
+  },
+  "q2": {
+    "pose": "q2-passing-left",
+    "guide": "pose-guides/openpose-v3/walk-front-8/frame-02-passing-left.json",
+    "output_path": "docs/evidence/cutout-q2-passing-left.png",
+    "output_sha256": "eda2e8b20271329f25cab2b7a167d8ec3ba67d7fe24adc13d5541b997685f2c7",
+    "media_pipe": {
+      "metric_version": "detected-joint-pose-error-1.0",
+      "measurement_status": "MEASURABLE",
+      "measurable_body_joints": 13,
+      "required_core_present": true,
+      "pck_at_010": 0.692308,
+      "nme": 0.10093,
+      "limb_angle_mae_degrees": 13.789934,
+      "lower_body_pck": 0.5,
+      "orientation_match": true,
+      "orientation_score": 1.0,
+      "pose_score": 0.786431,
+      "qualifies": false,
+      "failure_reasons": [
+        "pck_below_080",
+        "nme_above_010",
+        "lower_body_pck_below_075"
+      ]
+    },
+    "target": {
+      "joints": {
+        "nose": {
+          "x": 254.0,
+          "y": 125.63468217474143
+        },
+        "neck": {
+          "x": 254.0,
+          "y": 158.0
+        },
+        "shoulder_right": {
+          "x": 206.7428052866815,
+          "y": 159.4931708238247
+        },
+        "shoulder_left": {
+          "x": 301.25719471331854,
+          "y": 159.4931708238247
+        },
+        "elbow_right": {
+          "x": 180.73729923708527,
+          "y": 222.22154648966205
+        },
+        "elbow_left": {
+          "x": 327.71552635370824,
+          "y": 223.313815708197
+        },
+        "wrist_right": {
+          "x": 190.20293996367042,
+          "y": 287.3973459112665
+        },
+        "wrist_left": {
+          "x": 317.3947190075318,
+          "y": 289.90537315847075
+        },
+        "hip_right": {
+          "x": 254.0,
+          "y": 286.0
+        },
+        "hip_left": {
+          "x": 254.0,
+          "y": 286.0
+        },
+        "knee_right": {
+          "x": 211.02247067497677,
+          "y": 374.00160766552375
+        },
+        "knee_left": {
+          "x": 300.7527113820392,
+          "y": 375.05278358483656
+        },
+        "ankle_right": {
+          "x": 204.5254938292165,
+          "y": 470.2177655201983
+        },
+        "ankle_left": {
+          "x": 305.03005435971255,
+          "y": 471.13918075582717
+        },
+        "pelvis": {
+          "x": 254.0,
+          "y": 286.0
+        },
+        "shoulder_center": {
+          "x": 254.0,
+          "y": 159.4931708238247
+        },
+        "weapon_tip": {
+          "x": 334.3387153214386,
+          "y": 143.26157055349833
+        }
+      },
+      "neck": {
+        "x": 254.0,
+        "y": 158.0
+      },
+      "weapon_tip": {
+        "x": 334.3387153214386,
+        "y": 143.26157055349833
+      },
+      "view": "front",
+      "orientation": "front",
+      "guide_id": "openpose-v3-walk-front-8-frame-02-passing-left",
+      "normalization": "target angles from OpenPose guide; every source bone length restored deterministically"
+    },
+    "orientation": "front",
+    "transparent_rgba": true
+  },
+  "internal": {
+    "q0": {
+      "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+      "root_target_error_px": 0.0,
+      "joint_pivot_error_px_median": 0.0,
+      "joint_pivot_error_px_max": 0.0,
+      "angle_error_degrees_median": 0.0,
+      "bone_length_drift_fraction_max": 0.0,
+      "disconnect_count": 0,
+      "uniform_scale": {
+        "min": 1.0,
+        "max": 1.0,
+        "preferred": 1.0,
+        "hard_range": [
+          0.92,
+          1.08
+        ],
+        "nonuniform_scale_count": 0
+      },
+      "scale_failures": [],
+      "required_thresholds": {
+        "root_target_error_px_max": 2.0,
+        "joint_pivot_error_px_median_max": 3.0,
+        "joint_pivot_error_px_max": 6.0,
+        "angle_error_degrees_median_max": 3.0,
+        "bone_length_drift_fraction_max": 0.08,
+        "disconnect_count": 0
+      }
+    },
+    "q1-contact-left": {
+      "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+      "root_target_error_px": 0.0,
+      "joint_pivot_error_px_median": 0.0,
+      "joint_pivot_error_px_max": 0.0,
+      "angle_error_degrees_median": 0.0,
+      "bone_length_drift_fraction_max": 0.0,
+      "disconnect_count": 0,
+      "uniform_scale": {
+        "min": 1.0,
+        "max": 1.0,
+        "preferred": 1.0,
+        "hard_range": [
+          0.92,
+          1.08
+        ],
+        "nonuniform_scale_count": 0
+      },
+      "scale_failures": [],
+      "required_thresholds": {
+        "root_target_error_px_max": 2.0,
+        "joint_pivot_error_px_median_max": 3.0,
+        "joint_pivot_error_px_max": 6.0,
+        "angle_error_degrees_median_max": 3.0,
+        "bone_length_drift_fraction_max": 0.08,
+        "disconnect_count": 0
+      }
+    },
+    "q2-passing-left": {
+      "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+      "root_target_error_px": 0.0,
+      "joint_pivot_error_px_median": 0.0,
+      "joint_pivot_error_px_max": 0.0,
+      "angle_error_degrees_median": 0.0,
+      "bone_length_drift_fraction_max": 0.0,
+      "disconnect_count": 0,
+      "uniform_scale": {
+        "min": 1.0,
+        "max": 1.0,
+        "preferred": 1.0,
+        "hard_range": [
+          0.92,
+          1.08
+        ],
+        "nonuniform_scale_count": 0
+      },
+      "scale_failures": [],
+      "required_thresholds": {
+        "root_target_error_px_max": 2.0,
+        "joint_pivot_error_px_median_max": 3.0,
+        "joint_pivot_error_px_max": 6.0,
+        "angle_error_degrees_median_max": 3.0,
+        "bone_length_drift_fraction_max": 0.08,
+        "disconnect_count": 0
+      }
+    }
+  },
+  "seam": {
+    "q0": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 0,
+      "component_sizes_desc": [
+        49803
+      ],
+      "body_component_threshold": 2490,
+      "background_hole_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "safe_margin": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true
+      },
+      "status": "SEAM_QA_PASSED"
+    },
+    "q1-contact-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 25,
+      "component_sizes_desc": [
+        45804,
+        54,
+        25,
+        21,
+        21,
+        14,
+        11,
+        11,
+        11,
+        8,
+        8,
+        5
+      ],
+      "body_component_threshold": 2290,
+      "background_hole_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "safe_margin": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true
+      },
+      "status": "SEAM_QA_PASSED"
+    },
+    "q2-passing-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 18,
+      "component_sizes_desc": [
+        45237,
+        223,
+        38,
+        20,
+        18,
+        10,
+        8,
+        7,
+        7,
+        6,
+        4,
+        3
+      ],
+      "body_component_threshold": 2261,
+      "background_hole_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "safe_margin": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true
+      },
+      "status": "SEAM_QA_PASSED"
+    }
+  },
+  "pixel_provenance": "docs/evidence/cutout-rig-pixel-provenance.json",
+  "execution": "docs/evidence/execution-evidence-v0.7.0.json",
+  "walk_authorized": false,
+  "allowed_next": [],
+  "production_routing_changed": false,
+  "external_approval": "not-claimed"
+}

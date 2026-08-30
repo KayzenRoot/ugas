@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.7.0",
+  "pose": "q0",
+  "metrics": {
+    "alpha_iou": 1.0,
+    "rgb_mae": 0.373763,
+    "bbox_drift_px": 0.0,
+    "source_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "rendered_bbox": [
+      159,
+      40,
+      361,
+      487
+    ]
+  },
+  "internal": {
+    "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+    "root_target_error_px": 0.0,
+    "joint_pivot_error_px_median": 0.0,
+    "joint_pivot_error_px_max": 0.0,
+    "angle_error_degrees_median": 0.0,
+    "bone_length_drift_fraction_max": 0.0,
+    "disconnect_count": 0,
+    "uniform_scale": {
+      "min": 1.0,
+      "max": 1.0,
+      "preferred": 1.0,
+      "hard_range": [
+        0.92,
+        1.08
+      ],
+      "nonuniform_scale_count": 0
+    },
+    "scale_failures": [],
+    "required_thresholds": {
+      "root_target_error_px_max": 2.0,
+      "joint_pivot_error_px_median_max": 3.0,
+      "joint_pivot_error_px_max": 6.0,
+      "angle_error_degrees_median_max": 3.0,
+      "bone_length_drift_fraction_max": 0.08,
+      "disconnect_count": 0
+    }
+  },
+  "hard_gates": {
+    "alpha_iou": true,
+    "rgb_mae": true,
+    "bbox_drift": true,
+    "provenance": true,
+    "no_missing_or_duplicate_limb": true
+  },
+  "status": "CUTOUT_RIG_RECONSTRUCTION_PASSED"
+}
