@@ -5,12 +5,12 @@
   "failures": [],
   "checked": {
     "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
-    "current_gate": "SDXL_P_I_PI_SMOKE_REQUIRED",
-    "stop_reason": null,
+    "current_gate": "SDXL_OPENPOSE_CONTROL_GAP",
+    "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP",
     "historical_pose_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
     "historical_review_status": "REVIEW_ARCHIVE_VERIFIED",
     "contradictory_walk_or_anchor_scan": true,
-    "new_generation_started": false,
-    "new_generation_jobs": 0
+    "new_generation_started": true,
+    "new_generation_jobs": 3
   }
 }

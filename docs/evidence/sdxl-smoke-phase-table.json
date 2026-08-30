@@ -1,0 +1,1462 @@
+{
+  "schema_version": "0.6.1",
+  "status": "SDXL_OPENPOSE_CONTROL_GAP",
+  "lanes": [
+    {
+      "lane": "P",
+      "seed": 61701,
+      "generation": {
+        "submitted": true,
+        "completed": true,
+        "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+        "history_record_key": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+        "history_key_matches_prompt_id": true,
+        "fresh_binding": true,
+        "target_existed_before_submission": false,
+        "previous_frame_chaining": false,
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-p-seed-61701.png",
+        "raw_output_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+        "raw_output_bytes": 190212,
+        "raw_output_hash_matches_comfy": true,
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-f51981f525b241339cbb879a1d552bdf",
+          "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "submitted_at": "2026-08-30T19:48:17+00:00",
+          "first_poll_at": "2026-08-30T19:48:17+00:00",
+          "completed_at": "2026-08-30T19:49:21+00:00",
+          "runtime_ms": 64702.805,
+          "history_record_key": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": null,
+            "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "d0f75dcd2a3b892fe998e25929d1559e88039f08773e97d7d86090feb4a673f0",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119297262
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119297270
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119357229
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "P",
+            "controlnet_strength": 0.9,
+            "ipadapter_weight": null,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-p_00003_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "10",
+              "data_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+              "sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+              "filename": "ugas-sdxl-p_00003_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      },
+      "raw_pose_qa": {
+        "status": "RAW_POSE_FAILED",
+        "preprocess_policy": "raw_rgb_neutral_gray",
+        "preprocess": {
+          "policy": "raw_rgb_neutral_gray",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\raw-pose-preprocess.png",
+          "sha256": "b5a5a728f5715321e6ec5a4a9493ecf7b81c3eccfcf9d3d7e1a9c9e002cd2097",
+          "source_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+          "source_scale": 1,
+          "alpha_bbox_normalized": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "background": [
+            128,
+            128,
+            128
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "uniform_scale_only": true
+        },
+        "detection": {
+          "detected": true,
+          "measurable_body_joints": 12,
+          "core_coverage": 0.916667,
+          "mean_confidence": 0.903783,
+          "min_confidence": 0.667559
+        },
+        "detected_orientation": "front",
+        "pose": {
+          "metric_version": "detected-joint-pose-error-1.0",
+          "measurement_status": "UNMEASURABLE",
+          "measurable_body_joints": 12,
+          "required_core_present": false,
+          "pck_at_010": 0.333333,
+          "nme": 0.550885,
+          "limb_angle_mae_degrees": 15.698582,
+          "lower_body_pck": 0.333333,
+          "orientation_match": false,
+          "orientation_score": 0.0,
+          "pose_score": 0.0,
+          "qualifies": false,
+          "failure_reasons": [
+            "required_core_joint_missing",
+            "pck_below_080",
+            "nme_above_010",
+            "lower_body_pck_below_075",
+            "orientation_mismatch"
+          ]
+        },
+        "absolute_pose_pass": false,
+        "overlay_path": "docs/evidence/sdxl-qualification/overlays/smoke-p-seed-61701-raw.png",
+        "raw_output_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a"
+      },
+      "postprocess": {
+        "attempted": true,
+        "passed": false,
+        "error": "GenerationError: BiRefNet output failed transparency or RGB-preservation QA",
+        "status": "POSTPROCESS_FAILED"
+      },
+      "identity_qa": null,
+      "final_stage_status": "POSTPROCESS_FAILED"
+    },
+    {
+      "lane": "I",
+      "seed": 61701,
+      "generation": {
+        "submitted": true,
+        "completed": true,
+        "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+        "history_record_key": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+        "history_key_matches_prompt_id": true,
+        "fresh_binding": true,
+        "target_existed_before_submission": false,
+        "previous_frame_chaining": false,
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-i-seed-61701.png",
+        "raw_output_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+        "raw_output_bytes": 221485,
+        "raw_output_hash_matches_comfy": true,
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-0c9aabc9a18b4639a1719aaaf01c6bfb",
+          "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "submitted_at": "2026-08-30T19:49:35+00:00",
+          "first_poll_at": "2026-08-30T19:49:35+00:00",
+          "completed_at": "2026-08-30T19:50:35+00:00",
+          "runtime_ms": 59689.53,
+          "history_record_key": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "openpose_guide_image_sha256": null,
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "9d1a8f73f5fd4717aa3f35eace61099d571567f57047579292c7f829e788f68a",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119375906
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119375921
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119434676
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "I",
+            "controlnet_strength": null,
+            "ipadapter_weight": 0.8,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-i_00002_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "12",
+              "data_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+              "sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+              "filename": "ugas-sdxl-i_00002_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      },
+      "raw_pose_qa": null,
+      "postprocess": {
+        "attempted": true,
+        "passed": true,
+        "error": null,
+        "status": "POSTPROCESS_PASSED",
+        "birefnet": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 50566,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 243757,
+              "sha256": "bc6cb29a6a5af2f126d01c2dcf4fbf0a881774757f2b5872cf3c55894bb206ea",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.0033416748046875,
+              "transparent_fraction": 0.78466796875,
+              "alpha_zero_fraction": 0.78466796875,
+              "alpha_opaque_fraction": 0.0033416748046875,
+              "alpha_partial_fraction": 0.2119903564453125,
+              "foreground_coverage": 0.21533203125,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8957979024943311,
+              "soft_edge_foreground_fraction": 0.10420209750566893,
+              "alpha_bbox": [
+                84,
+                38,
+                333,
+                496
+              ],
+              "alpha_centroid": [
+                0.42735283607258007,
+                0.5437528995159262
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.78466796875,
+              "alpha_opaque_fraction": 0.0033416748046875,
+              "alpha_partial_fraction": 0.2119903564453125,
+              "foreground_coverage": 0.21533203125,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8957979024943311,
+              "soft_edge_foreground_fraction": 0.10420209750566893,
+              "alpha_bbox": [
+                84,
+                38,
+                333,
+                496
+              ],
+              "alpha_centroid": [
+                0.42735283607258007,
+                0.5437528995159262
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 50566,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.6.1",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 1243233530,
+                "torch_vram_total": 905969664,
+                "torch_vram_free": 22375674
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.5.1",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 243757,
+                "sha256": "bc6cb29a6a5af2f126d01c2dcf4fbf0a881774757f2b5872cf3c55894bb206ea",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.0033416748046875,
+                "transparent_fraction": 0.78466796875,
+                "alpha_zero_fraction": 0.78466796875,
+                "alpha_opaque_fraction": 0.0033416748046875,
+                "alpha_partial_fraction": 0.2119903564453125,
+                "foreground_coverage": 0.21533203125,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8957979024943311,
+                "soft_edge_foreground_fraction": 0.10420209750566893,
+                "alpha_bbox": [
+                  84,
+                  38,
+                  333,
+                  496
+                ],
+                "alpha_centroid": [
+                  0.42735283607258007,
+                  0.5437528995159262
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 26370,
+                "sha256": "b2a6870fcbbd2d5cac29b32974c698d01da7a7e449963b4e5d624ebbdc262db2",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 50566,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 9869,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-30T19:50:38+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.6.1",
+            "client_job_id": "job-042dccb411bd48bc9303cd85f95bb469",
+            "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+            "submitted_at": "2026-08-30T19:50:39+00:00",
+            "first_poll_at": "2026-08-30T19:50:39+00:00",
+            "completed_at": "2026-08-30T19:50:49+00:00",
+            "runtime_ms": 9514.597,
+            "history_record_key": "a98bc108-9d5e-471d-af56-efd81a17f774",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+                      "timestamp": 1788119439648
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+                      "timestamp": 1788119439666
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+                      "timestamp": 1788119445278
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00093_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "b2a6870fcbbd2d5cac29b32974c698d01da7a7e449963b4e5d624ebbdc262db2"
+              },
+              {
+                "filename": "ugas-master-transparent_00093_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "cf4cb79d0bfed1b2d6de7b9c203b6a3fe22857fa93019e05476abbe3cb9a0e05"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\birefnet-output.png",
+                "sha256": "b2a6870fcbbd2d5cac29b32974c698d01da7a7e449963b4e5d624ebbdc262db2",
+                "filename": "ugas-foreground-mask_00093_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\birefnet-output-1.png",
+                "sha256": "cf4cb79d0bfed1b2d6de7b9c203b6a3fe22857fa93019e05476abbe3cb9a0e05",
+                "filename": "ugas-master-transparent_00093_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        }
+      },
+      "identity_qa": {
+        "aggregate_score_pass": true,
+        "weapon_pass": true,
+        "head_face_pass": true,
+        "armor_palette_pass": true,
+        "black_cloth_pass": true,
+        "body_proportions_pass": true,
+        "single_subject_pass": true,
+        "failure_reasons": [],
+        "identity_pass": true,
+        "hard_gate_policy": {
+          "region_threshold": 0.45,
+          "body_proportion_threshold": 0.55,
+          "score_cannot_compensate_for_component_failure": true
+        },
+        "foreground": {
+          "alpha_threshold": 48,
+          "minimum_component_area": 32,
+          "secondary_body_area_ratio_threshold": 0.25,
+          "secondary_body_height_ratio_threshold": 0.35,
+          "secondary_body_width_ratio_threshold": 0.35,
+          "large_foreground_components": 1,
+          "components": [
+            {
+              "area": 53931,
+              "relative_area": 0.20573,
+              "bbox": [
+                85,
+                39,
+                332,
+                495
+              ],
+              "width": 247,
+              "height": 456
+            }
+          ],
+          "secondary_body_components": [],
+          "accessory_or_weapon_components": [],
+          "secondary_to_primary_area_ratio": 0.0,
+          "multiple_subjects_detected": false,
+          "single_subject_pass": true,
+          "classification": "SINGLE_BODY_SUBJECT"
+        }
+      },
+      "final_stage_status": "SMOKE_PASSED"
+    },
+    {
+      "lane": "PI",
+      "seed": 61701,
+      "generation": {
+        "submitted": true,
+        "completed": true,
+        "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+        "history_record_key": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+        "history_key_matches_prompt_id": true,
+        "fresh_binding": true,
+        "target_existed_before_submission": false,
+        "previous_frame_chaining": false,
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-pi-seed-61701.png",
+        "raw_output_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+        "raw_output_bytes": 267036,
+        "raw_output_hash_matches_comfy": true,
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-0c195d0cfe754ec4ba25aa4a192472bd",
+          "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "submitted_at": "2026-08-30T19:50:53+00:00",
+          "first_poll_at": "2026-08-30T19:50:53+00:00",
+          "completed_at": "2026-08-30T19:52:28+00:00",
+          "runtime_ms": 94750.247,
+          "history_record_key": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "4c2127cc8f922c59849504b2a50bcde3243f7c9498afc005abf3bc96de467ae1",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119453642
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119453660
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119544785
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "PI",
+            "controlnet_strength": 0.9,
+            "ipadapter_weight": 0.8,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-pi_00002_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "14",
+              "data_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+              "sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+              "filename": "ugas-sdxl-pi_00002_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      },
+      "raw_pose_qa": {
+        "status": "RAW_POSE_FAILED",
+        "preprocess_policy": "raw_rgb_neutral_gray",
+        "preprocess": {
+          "policy": "raw_rgb_neutral_gray",
+          "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\raw-pose-preprocess.png",
+          "sha256": "90055a4356ed95526b1f82b1ef639be9e7a5b373100f1f999c78414a237695e0",
+          "source_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+          "source_scale": 1,
+          "alpha_bbox_normalized": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "background": [
+            128,
+            128,
+            128
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "uniform_scale_only": true
+        },
+        "detection": {
+          "detected": true,
+          "measurable_body_joints": 12,
+          "core_coverage": 0.916667,
+          "mean_confidence": 0.969109,
+          "min_confidence": 0.769252
+        },
+        "detected_orientation": "front",
+        "pose": {
+          "metric_version": "detected-joint-pose-error-1.0",
+          "measurement_status": "UNMEASURABLE",
+          "measurable_body_joints": 12,
+          "required_core_present": false,
+          "pck_at_010": 0.0,
+          "nme": 0.82712,
+          "limb_angle_mae_degrees": 10.370672,
+          "lower_body_pck": 0.0,
+          "orientation_match": false,
+          "orientation_score": 0.0,
+          "pose_score": 0.0,
+          "qualifies": false,
+          "failure_reasons": [
+            "required_core_joint_missing",
+            "pck_below_080",
+            "nme_above_010",
+            "lower_body_pck_below_075",
+            "orientation_mismatch"
+          ]
+        },
+        "absolute_pose_pass": false,
+        "overlay_path": "docs/evidence/sdxl-qualification/overlays/smoke-pi-seed-61701-raw.png",
+        "raw_output_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+      },
+      "postprocess": {
+        "attempted": true,
+        "passed": true,
+        "error": null,
+        "status": "POSTPROCESS_PASSED",
+        "birefnet": {
+          "status": "TRANSPARENCY_VALID",
+          "output": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\output.png",
+          "mask": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\mask.png",
+          "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\checkerboard.png",
+          "revision_id": null,
+          "qa": {
+            "status": "TECHNICAL_VALID",
+            "checks": {
+              "exists": true,
+              "format": true,
+              "dimensions": true,
+              "size": true,
+              "non_empty_content": true,
+              "transparency_requirement": true,
+              "rgb_preservation": {
+                "compared_pixels": 54120,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              }
+            },
+            "requirements": {
+              "requires_transparency": true,
+              "transparency_profile": {
+                "min_transparent_fraction": 0.01,
+                "max_foreground_coverage": 0.98,
+                "allow_border_contact": false,
+                "near_opaque_threshold": 250,
+                "min_near_opaque_foreground_fraction": 0.85,
+                "high_alpha_threshold": 250,
+                "max_mean_abs_rgb_error": 2.0
+              }
+            },
+            "technical": {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\output.png",
+              "format": "PNG",
+              "width": 512,
+              "height": 512,
+              "mode": "RGBA",
+              "source_mode": "RGBA",
+              "bytes": 298261,
+              "sha256": "0eaa8a8ef9f986c98bccb4c1dc2489e89d9eb4b2158aa1b25f502cf2bd31989a",
+              "has_alpha": true,
+              "has_alpha_channel": true,
+              "has_transparent_pixels": true,
+              "alpha_min": 0,
+              "alpha_max": 255,
+              "opaque_fraction": 0.001117706298828125,
+              "transparent_fraction": 0.7658462524414062,
+              "alpha_zero_fraction": 0.7658462524414062,
+              "alpha_opaque_fraction": 0.001117706298828125,
+              "alpha_partial_fraction": 0.23303604125976562,
+              "foreground_coverage": 0.23415374755859375,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8816917011501744,
+              "soft_edge_foreground_fraction": 0.11830829884982569,
+              "alpha_bbox": [
+                107,
+                6,
+                359,
+                511
+              ],
+              "alpha_centroid": [
+                0.45159020177943043,
+                0.5726336138342674
+              ],
+              "border_contact": false,
+              "non_empty_content": true
+            },
+            "alpha_metrics": {
+              "alpha_zero_fraction": 0.7658462524414062,
+              "alpha_opaque_fraction": 0.001117706298828125,
+              "alpha_partial_fraction": 0.23303604125976562,
+              "foreground_coverage": 0.23415374755859375,
+              "near_opaque_threshold": 250,
+              "near_opaque_foreground_fraction": 0.8816917011501744,
+              "soft_edge_foreground_fraction": 0.11830829884982569,
+              "alpha_bbox": [
+                107,
+                6,
+                359,
+                511
+              ],
+              "alpha_centroid": [
+                0.45159020177943043,
+                0.5726336138342674
+              ],
+              "border_contact": false
+            },
+            "rgb_preservation": {
+              "compared_pixels": 54120,
+              "high_alpha_threshold": 250,
+              "mae_r": 0.0,
+              "mae_g": 0.0,
+              "mae_b": 0.0,
+              "mae_total": 0.0,
+              "max_mean_abs_error": 2.0,
+              "passed": true
+            },
+            "visual_review": "required",
+            "production_ready": false
+          },
+          "halo": {
+            "checked": true,
+            "border_semi_transparent_fraction": 0.0,
+            "halo_detected": false
+          },
+          "reference_edit_qa": null,
+          "integrity": null,
+          "capability_evidence": {
+            "schema_version": "0.6.1",
+            "provider": "provider-comfyui",
+            "capability": "background-removal",
+            "state": "verified",
+            "endpoint": "http://127.0.0.1:8188",
+            "server_version": "0.34.0",
+            "devices": [
+              {
+                "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                "type": "cuda",
+                "index": 0,
+                "vram_total": 8546484224,
+                "vram_free": 1239508506,
+                "torch_vram_total": 905969664,
+                "torch_vram_free": 21796378
+              }
+            ],
+            "required_nodes": [
+              {
+                "class_type": "LoadImage",
+                "present": true
+              },
+              {
+                "class_type": "LoadBackgroundRemovalModel",
+                "present": true
+              },
+              {
+                "class_type": "RemoveBackground",
+                "present": true
+              },
+              {
+                "class_type": "InvertMask",
+                "present": true
+              },
+              {
+                "class_type": "JoinImageWithAlpha",
+                "present": true
+              },
+              {
+                "class_type": "MaskToImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              },
+              {
+                "class_type": "SaveImage",
+                "present": true
+              }
+            ],
+            "required_models": [
+              {
+                "file": "background_removal/birefnet.safetensors",
+                "folder": "background_removal",
+                "present": true
+              }
+            ],
+            "workflow": {
+              "id": "birefnet-background-removal",
+              "version": "0.5.1",
+              "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "validation": {
+                "valid_graph": true,
+                "node_count": 8,
+                "missing_nodes": [],
+                "missing_models": [],
+                "live_valid": true
+              },
+              "compatibility": {
+                "compatible": true,
+                "model_id": "birefnet",
+                "workflow_id": "birefnet-background-removal",
+                "family": "birefnet",
+                "variant": "native",
+                "steps": null,
+                "guidance": null,
+                "mismatches": [],
+                "experimental_override": false
+              },
+              "qualified_capabilities": [
+                "background-removal",
+                "transparent-sprite-master"
+              ]
+            },
+            "model": {
+              "id": "birefnet",
+              "family": "birefnet",
+              "variant": "native",
+              "license": "MIT",
+              "sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "qualification_evidence": {
+                "status": "qualified",
+                "hashes_verified": true,
+                "files_verified_at": "2026-08-29",
+                "live_smoke_evidence": "docs/evidence/birefnet.json"
+              },
+              "inventory": {
+                "model_id": "birefnet",
+                "files": [
+                  {
+                    "file": "background_removal/birefnet.safetensors",
+                    "folder": "background_removal",
+                    "present": true
+                  }
+                ],
+                "inventory_complete": true
+              }
+            },
+            "transport_capabilities": [
+              "workflow-submit",
+              "polling",
+              "output-retrieval",
+              "system-stats"
+            ],
+            "asset_capabilities_declared": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "asset_capabilities_qualified": [
+              "background-removal",
+              "transparent-sprite-master"
+            ],
+            "smoke_test": {
+              "status": "passed",
+              "source_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+              "output": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 298261,
+                "sha256": "0eaa8a8ef9f986c98bccb4c1dc2489e89d9eb4b2158aa1b25f502cf2bd31989a",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.001117706298828125,
+                "transparent_fraction": 0.7658462524414062,
+                "alpha_zero_fraction": 0.7658462524414062,
+                "alpha_opaque_fraction": 0.001117706298828125,
+                "alpha_partial_fraction": 0.23303604125976562,
+                "foreground_coverage": 0.23415374755859375,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8816917011501744,
+                "soft_edge_foreground_fraction": 0.11830829884982569,
+                "alpha_bbox": [
+                  107,
+                  6,
+                  359,
+                  511
+                ],
+                "alpha_centroid": [
+                  0.45159020177943043,
+                  0.5726336138342674
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "mask": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\mask.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGB",
+                "source_mode": "RGB",
+                "bytes": 30340,
+                "sha256": "00e60042344b4660757dfe038d3ea6768ab9c8b75473ef37d9278ec4ff27d0ef",
+                "has_alpha": false,
+                "has_alpha_channel": false,
+                "has_transparent_pixels": false,
+                "alpha_min": null,
+                "alpha_max": null,
+                "opaque_fraction": 1.0,
+                "transparent_fraction": 0.0,
+                "alpha_zero_fraction": 0.0,
+                "alpha_opaque_fraction": 1.0,
+                "alpha_partial_fraction": 0.0,
+                "foreground_coverage": 1.0,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 1.0,
+                "soft_edge_foreground_fraction": 0.0,
+                "alpha_bbox": null,
+                "alpha_centroid": null,
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": null,
+              "rgb_preservation": {
+                "compared_pixels": 54120,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "halo": {
+                "checked": true,
+                "border_semi_transparent_fraction": 0.0,
+                "halo_detected": false
+              },
+              "runtime_ms": 5698,
+              "revision_id": null
+            },
+            "failure_reason": null,
+            "observed_at": "2026-08-30T19:52:32+00:00",
+            "features": {
+              "supports_preview_metadata": true,
+              "supports_model_type_tags": true,
+              "max_upload_size": 104857600,
+              "extension": {
+                "manager": {
+                  "supports_v4": true
+                }
+              },
+              "node_replacements": true,
+              "assets": false
+            }
+          },
+          "execution_evidence": {
+            "schema_version": "0.6.1",
+            "client_job_id": "job-4e3d8923a8514155be756f59ecd418a5",
+            "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+            "submitted_at": "2026-08-30T19:52:33+00:00",
+            "first_poll_at": "2026-08-30T19:52:33+00:00",
+            "completed_at": "2026-08-30T19:52:39+00:00",
+            "runtime_ms": 5299.224,
+            "history_record_key": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "reference_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+            "model_ids": [
+              "birefnet"
+            ],
+            "model_file_sha256": {
+              "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+            },
+            "seed": 0,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\birefnet-output.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+                      "timestamp": 1788119553807
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+                      "timestamp": 1788119553821
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+                      "timestamp": 1788119558056
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {},
+            "outputs": [
+              {
+                "filename": "ugas-foreground-mask_00094_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "8",
+                "data_sha256": "00e60042344b4660757dfe038d3ea6768ab9c8b75473ef37d9278ec4ff27d0ef"
+              },
+              {
+                "filename": "ugas-master-transparent_00094_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "7",
+                "data_sha256": "88f50fd03949060b0b0bd6ce4f76da4dfb658fe00d66ab3386b80140110e217a"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\birefnet-output.png",
+                "sha256": "00e60042344b4660757dfe038d3ea6768ab9c8b75473ef37d9278ec4ff27d0ef",
+                "filename": "ugas-foreground-mask_00094_.png",
+                "subfolder": "",
+                "type": "output"
+              },
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\birefnet-output-1.png",
+                "sha256": "88f50fd03949060b0b0bd6ce4f76da4dfb658fe00d66ab3386b80140110e217a",
+                "filename": "ugas-master-transparent_00094_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          },
+          "promoted": false
+        }
+      },
+      "identity_qa": {
+        "aggregate_score_pass": true,
+        "weapon_pass": true,
+        "head_face_pass": true,
+        "armor_palette_pass": true,
+        "black_cloth_pass": true,
+        "body_proportions_pass": true,
+        "single_subject_pass": true,
+        "failure_reasons": [],
+        "identity_pass": true,
+        "hard_gate_policy": {
+          "region_threshold": 0.45,
+          "body_proportion_threshold": 0.55,
+          "score_cannot_compensate_for_component_failure": true
+        },
+        "foreground": {
+          "alpha_threshold": 48,
+          "minimum_component_area": 32,
+          "secondary_body_area_ratio_threshold": 0.25,
+          "secondary_body_height_ratio_threshold": 0.35,
+          "secondary_body_width_ratio_threshold": 0.35,
+          "large_foreground_components": 1,
+          "components": [
+            {
+              "area": 58484,
+              "relative_area": 0.223099,
+              "bbox": [
+                109,
+                7,
+                359,
+                510
+              ],
+              "width": 250,
+              "height": 503
+            }
+          ],
+          "secondary_body_components": [],
+          "accessory_or_weapon_components": [],
+          "secondary_to_primary_area_ratio": 0.0,
+          "multiple_subjects_detected": false,
+          "single_subject_pass": true,
+          "classification": "SINGLE_BODY_SUBJECT"
+        }
+      },
+      "final_stage_status": "RAW_POSE_FAILED"
+    }
+  ]
+}

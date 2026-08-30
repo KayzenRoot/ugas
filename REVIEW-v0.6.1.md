@@ -2,9 +2,9 @@
 
 ## STATUS
 
-`SDXL_P_I_PI_SMOKE_REQUIRED` — smoke corretivo P/I/PI pendente de execução. Esta release não autoriza benchmark, confirmation, walk, anchors ou novo provider.
+`SDXL_OPENPOSE_CONTROL_GAP` — smoke corretivo P/I/PI concluído: P e PI falharam no raw pose QA; P também falhou no pós-processamento. Esta release não autoriza benchmark, confirmation, walk, anchors ou novo provider.
 
-O estado atual é `SDXL_P_I_PI_SMOKE_REQUIRED`; o manifesto histórico `docs/evidence/review-visuals-v0.6.0.json` e a evidência v0.6.0 permanecem preservados.
+O estado atual é `SDXL_OPENPOSE_CONTROL_GAP`; o manifesto histórico `docs/evidence/review-visuals-v0.6.0.json` e a evidência v0.6.0 permanecem preservados.
 
 ## VERSION
 
@@ -32,11 +32,11 @@ Cada lane deve registrar `submitted`, `completed`, `prompt_id`, `history_record_
 
 ## RAW POSE QA
 
-P e PI usam o PNG bruto, com a política fixa e versionada `raw_rgb_neutral_gray`, antes do BiRefNet. Os thresholds são os congelados em `docs/evidence/pose-thresholds-v054.json`; o legado de silhueta não é gate.
+P e PI usam o PNG bruto, com a política fixa e versionada `raw_rgb_neutral_gray`, antes do BiRefNet. Os thresholds são os congelados em `docs/evidence/pose-thresholds-v054.json`; o legado de silhueta não é gate. No smoke, P registrou PCK@.10=0.333/NME=0.551 e PI PCK@.10=0.000/NME=0.827; ambos falharam o gate absoluto.
 
 ## POSTPROCESS QA
 
-BiRefNet valida transparência, preservação RGB, halo e asset alpha. Falha de pós-processamento é `POSTPROCESS_FAILED`/`SDXL_POSTPROCESS_GAP` e não é confundida com falha de pose.
+BiRefNet valida transparência, preservação RGB, halo e asset alpha. I e PI passaram o pós-processamento; P registrou `POSTPROCESS_FAILED` com diagnóstico preservado. Falha de pós-processamento é `POSTPROCESS_FAILED`/`SDXL_POSTPROCESS_GAP` e não é confundida com falha de pose.
 
 ## IDENTITY HARD GATES
 
@@ -44,11 +44,13 @@ BiRefNet valida transparência, preservação RGB, halo e asset alpha. Falha de 
 
 ## SINGLE SUBJECT GATE
 
-Connected components determinístico sobre alpha/foreground calcula `large_foreground_components` e `secondary_to_primary_area_ratio`. Um segundo componente body-sized falha com `multiple_subjects_detected`; componentes pequenos de arma/acessório são classificados separadamente. A fixture I histórica v0.6.0 com duas figuras deve falhar.
+Connected components determinístico sobre alpha/foreground calcula `large_foreground_components` e `secondary_to_primary_area_ratio`. Um segundo componente body-sized falha com `multiple_subjects_detected`; componentes pequenos de arma/acessório são classificados separadamente. A fixture I histórica v0.6.0 com duas figuras falha com `large_foreground_components=2` e `multiple_subjects_detected`.
 
 ## P / I / PI CORRECTIVE SMOKE
 
 Executar exatamente três jobs, um por lane, todos com a seed `61701`, mesmo Base SDXL, ControlNet, IP-Adapter, ViT-H, prompt, negative prompt, 512x512 e strengths congelados do v0.6.0. A ordem é P geração → raw pose → BiRefNet; I geração → BiRefNet → identity; PI geração → raw pose → BiRefNet → identity.
+
+Resultado observado: os três jobs completaram com prompt/history/raw SHA-256 preservados; P e PI falharam no raw pose QA, P falhou também no BiRefNet, e I passou identidade/sujeito único.
 
 ## FINAL SMOKE CLASSIFICATION
 
@@ -64,11 +66,11 @@ O agregado deve distinguir `attempted_record_count` de `generation_completed_cou
 
 ## TESTS
 
-Preservar os 143 testes atuais e adicionar regressões para preservação pós-exceção, raw pose pré-BiRefNet, validação de bindings, todos os hard gates, multi-subject, espada pequena, fixture I histórica e bloqueio de benchmark/walk.
+Os 143 testes históricos foram preservados e a suíte v0.6.1 totalizou 151 testes, incluindo regressões para preservação pós-exceção, raw pose pré-BiRefNet, bindings, hard gates, multi-subject, espada pequena, fixture I histórica e bloqueio de benchmark/walk.
 
 ## VALIDATION
 
-Executar compileall, unittest, `scripts/validation/run_validation.py`, o smoke com `--smoke-only --seed 61701` e o verificador do ZIP final. Falhas devem interromper a promoção.
+Compileall, unittest, state-consistency, `scripts/validation/run_validation.py` e o smoke `--smoke-only --seed 61701` passaram nos gates aplicáveis; o ZIP final ainda será auto-validado após o push. Falhas interrompem a promoção.
 
 ## REVIEW ARCHIVE SELF-TEST
 
@@ -96,7 +98,7 @@ Esta release corrige instrumentação e classificação; não tenta provar a cap
 
 ## NEXT STEP
 
-Executar somente o smoke corretivo P/I/PI com seed 61701. Após o resultado, revisar o estado e manter `walk_authorized=false` e `generation_provider_change_authorized=false`.
+Revisar a classificação `SDXL_OPENPOSE_CONTROL_GAP`, manter `walk_authorized=false` e `generation_provider_change_authorized=false`, publicar o commit final e criar o ZIP de review por último.
 
 ## DEFINITION OF DONE
 

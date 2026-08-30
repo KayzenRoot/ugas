@@ -1,0 +1,369 @@
+{
+  "schema_version": "0.6.1",
+  "status": "SDXL_OPENPOSE_CONTROL_GAP",
+  "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+  "records": [
+    {
+      "lane": "P",
+      "seed": 61701,
+      "generation": {
+        "submitted": true,
+        "completed": true,
+        "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+        "history_record_key": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+        "history_key_matches_prompt_id": true,
+        "fresh_binding": true,
+        "target_existed_before_submission": false,
+        "previous_frame_chaining": false,
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-p-seed-61701.png",
+        "raw_output_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+        "raw_output_bytes": 190212,
+        "raw_output_hash_matches_comfy": true,
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-f51981f525b241339cbb879a1d552bdf",
+          "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "submitted_at": "2026-08-30T19:48:17+00:00",
+          "first_poll_at": "2026-08-30T19:48:17+00:00",
+          "completed_at": "2026-08-30T19:49:21+00:00",
+          "runtime_ms": 64702.805,
+          "history_record_key": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": null,
+            "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "d0f75dcd2a3b892fe998e25929d1559e88039f08773e97d7d86090feb4a673f0",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119297262
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119297270
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119357229
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "P",
+            "controlnet_strength": 0.9,
+            "ipadapter_weight": null,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-p_00003_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "10",
+              "data_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+              "sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+              "filename": "ugas-sdxl-p_00003_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lane": "I",
+      "seed": 61701,
+      "generation": {
+        "submitted": true,
+        "completed": true,
+        "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+        "history_record_key": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+        "history_key_matches_prompt_id": true,
+        "fresh_binding": true,
+        "target_existed_before_submission": false,
+        "previous_frame_chaining": false,
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-i-seed-61701.png",
+        "raw_output_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+        "raw_output_bytes": 221485,
+        "raw_output_hash_matches_comfy": true,
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-0c9aabc9a18b4639a1719aaaf01c6bfb",
+          "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "submitted_at": "2026-08-30T19:49:35+00:00",
+          "first_poll_at": "2026-08-30T19:49:35+00:00",
+          "completed_at": "2026-08-30T19:50:35+00:00",
+          "runtime_ms": 59689.53,
+          "history_record_key": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "openpose_guide_image_sha256": null,
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "9d1a8f73f5fd4717aa3f35eace61099d571567f57047579292c7f829e788f68a",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119375906
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119375921
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119434676
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "I",
+            "controlnet_strength": null,
+            "ipadapter_weight": 0.8,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-i_00002_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "12",
+              "data_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+              "sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+              "filename": "ugas-sdxl-i_00002_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "lane": "PI",
+      "seed": 61701,
+      "generation": {
+        "submitted": true,
+        "completed": true,
+        "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+        "history_record_key": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+        "history_key_matches_prompt_id": true,
+        "fresh_binding": true,
+        "target_existed_before_submission": false,
+        "previous_frame_chaining": false,
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-pi-seed-61701.png",
+        "raw_output_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+        "raw_output_bytes": 267036,
+        "raw_output_hash_matches_comfy": true,
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-0c195d0cfe754ec4ba25aa4a192472bd",
+          "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "submitted_at": "2026-08-30T19:50:53+00:00",
+          "first_poll_at": "2026-08-30T19:50:53+00:00",
+          "completed_at": "2026-08-30T19:52:28+00:00",
+          "runtime_ms": 94750.247,
+          "history_record_key": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "4c2127cc8f922c59849504b2a50bcde3243f7c9498afc005abf3bc96de467ae1",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119453642
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119453660
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119544785
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "PI",
+            "controlnet_strength": 0.9,
+            "ipadapter_weight": 0.8,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-pi_00002_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "14",
+              "data_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+              "sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+              "filename": "ugas-sdxl-pi_00002_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "attempted_record_count": 3,
+  "generation_completed_count": 3,
+  "completed_execution_count": 3,
+  "all_prompt_ids_present": true,
+  "all_history_bindings_exact": true,
+  "all_raw_outputs_hash_bound": true,
+  "all_targets_fresh": true,
+  "stale_output_rejected": true,
+  "previous_frame_chaining": false,
+  "weights_in_git": false,
+  "custom_node_source_vendored": false
+}

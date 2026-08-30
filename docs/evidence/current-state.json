@@ -11,9 +11,9 @@
     "nine_outputs_preserved": true,
     "review_manifest": "docs/evidence/review-visuals-v0.5.5.json"
   },
-  "current_gate": "SDXL_P_I_PI_SMOKE_REQUIRED",
-  "stop_reason": null,
-  "provider_smoke_status": "SDXL_P_I_PI_SMOKE_REQUIRED",
+  "current_gate": "SDXL_OPENPOSE_CONTROL_GAP",
+  "stop_reason": "SDXL_OPENPOSE_CONTROL_GAP",
+  "provider_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP",
   "historical_pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
   "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
   "previous_review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
@@ -25,8 +25,8 @@
   "generation_provider_change_authorized": false,
   "walk_authorized": false,
   "allowed_next_actions": [
-    "review_sdxl_provider_gap",
-    "preserve_previous_pose_lane"
+    "review_sdxl_provider_smoke_classification",
+    "preserve_v060_provider_lane"
   ],
   "forbidden_actions": [
     "download_models_before_state_consistency_pass",
@@ -37,11 +37,11 @@
     "publish_the_local_pose_landmarker_bundle_or_generation_weights"
   ],
   "state_consistency": {
-    "status": "SDXL_P_I_PI_SMOKE_REQUIRED",
+    "status": "SDXL_OPENPOSE_CONTROL_GAP",
     "validator": "src/ugas/state_consistency.py",
     "contradictory_walk_or_anchor_promotion": false,
-    "new_generation_started": false,
-    "new_generation_jobs": 0,
+    "new_generation_started": true,
+    "new_generation_jobs": 3,
     "previous_pose_decision_evidence": "docs/evidence/v054-provider-qualification.json",
     "previous_review_visual_manifest": "docs/evidence/review-visuals-v0.5.5.json",
     "review_verifier": "scripts/validation/verify_review_archive.py",

@@ -721,7 +721,9 @@ def _v061_checks() -> None:
             generation = item.get("generation", {})
             lane = item.get("lane")
             raw_path = ROOT / str(generation.get("raw_output_path", ""))
-            check(f"v061:raw:{lane}", generation.get("completed") is True and generation.get("prompt_id") == "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1" and generation.get("history_key_matches_prompt_id") is True and generation.get("target_existed_before_submission") is False and generation.get("previous_frame_chaining") is False and raw_path.is_file() and digest(raw_path) == generation.get("raw_output_sha256") and generation.get("raw_output_hash_matches_comfy") is True, f"{lane} preserves completed prompt/history/raw evidence with matching SHA-256")
+            execution_record = generation.get("execution_evidence") or {}
+            qualification_context = execution_record.get("qualification_context") or {}
+            check(f"v061:raw:{lane}", generation.get("completed") is True and bool(generation.get("prompt_id")) and execution_record.get("prompt_id") == generation.get("prompt_id") and qualification_context.get("prompt_id") == "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1" and generation.get("history_record_key") == generation.get("prompt_id") and generation.get("history_key_matches_prompt_id") is True and generation.get("target_existed_before_submission") is False and generation.get("previous_frame_chaining") is False and raw_path.is_file() and digest(raw_path) == generation.get("raw_output_sha256") and generation.get("raw_output_hash_matches_comfy") is True, f"{lane} preserves completed prompt/history/raw evidence with matching SHA-256")
     except (OSError, json.JSONDecodeError, KeyError) as exc:
         check("v061:execution-exact-count", False, str(exc)); check("v061:execution-bindings", False, str(exc))
 

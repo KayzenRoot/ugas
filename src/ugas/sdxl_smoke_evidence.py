@@ -38,8 +38,15 @@ def validate_execution_evidence_v061(evidence: Mapping[str, Any], root: Path) ->
             failures.append(f"{lane}:seed")
         if generation.get("completed") is not True:
             failures.append(f"{lane}:generation_completed")
-        if generation.get("prompt_id") != PROMPT_ID:
+        prompt_id = generation.get("prompt_id")
+        if not isinstance(prompt_id, str) or not prompt_id:
             failures.append(f"{lane}:prompt_id")
+        execution = generation.get("execution_evidence") if isinstance(generation.get("execution_evidence"), Mapping) else {}
+        if execution.get("prompt_id") != prompt_id or generation.get("history_record_key") != prompt_id:
+            failures.append(f"{lane}:prompt_history_identity")
+        qualification_context = execution.get("qualification_context") if isinstance(execution.get("qualification_context"), Mapping) else {}
+        if qualification_context.get("prompt_id") != PROMPT_ID:
+            failures.append(f"{lane}:qualification_prompt_id")
         if generation.get("history_key_matches_prompt_id") is not True:
             failures.append(f"{lane}:history_binding")
         if generation.get("target_existed_before_submission") is not False:

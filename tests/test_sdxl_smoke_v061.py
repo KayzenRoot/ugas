@@ -91,14 +91,15 @@ class SdxlSmokeV061Tests(unittest.TestCase):
                 raw.write_bytes(f"{lane}-raw".encode())
                 raw_paths.append(raw)
                 raw_hash = hashlib.sha256(raw.read_bytes()).hexdigest()
-                records.append({"lane": lane, "seed": 61701, "generation": {"completed": True, "prompt_id": provider.PROMPT_ID, "history_key_matches_prompt_id": True, "target_existed_before_submission": False, "fresh_binding": True, "previous_frame_chaining": False, "raw_output_path": raw.name, "raw_output_sha256": raw_hash, "raw_output_hash_matches_comfy": True}})
+                prompt_id = f"comfy-{lane.lower()}"
+                records.append({"lane": lane, "seed": 61701, "generation": {"completed": True, "prompt_id": prompt_id, "history_record_key": prompt_id, "history_key_matches_prompt_id": True, "target_existed_before_submission": False, "fresh_binding": True, "previous_frame_chaining": False, "raw_output_path": raw.name, "raw_output_sha256": raw_hash, "raw_output_hash_matches_comfy": True, "execution_evidence": {"prompt_id": prompt_id, "qualification_context": {"prompt_id": provider.PROMPT_ID}}}})
             evidence = {"schema_version": "0.6.1", "attempted_record_count": 3, "generation_completed_count": 3, "completed_execution_count": 3, "records": records, "all_prompt_ids_present": True, "all_history_bindings_exact": True, "all_raw_outputs_hash_bound": True, "all_targets_fresh": True, "previous_frame_chaining": False, "weights_in_git": False, "custom_node_source_vendored": False}
             self.assertEqual("SDXL_V061_EXECUTION_EVIDENCE_PASSED", validate_execution_evidence_v061(evidence, root)["status"])
             evidence["generation_completed_count"] = 2
             self.assertEqual("SDXL_V061_EXECUTION_EVIDENCE_FAILED", validate_execution_evidence_v061(evidence, root)["status"])
 
     def test_postprocess_exception_preserves_generation_evidence(self):
-        with tempfile.TemporaryDirectory(dir=ROOT / "tmp") as directory:
+        with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             permanent = root / "permanent"
             output_root = root / "output"
@@ -116,7 +117,7 @@ class SdxlSmokeV061Tests(unittest.TestCase):
             def fake_job_dir(*_args, **_kwargs):
                 return job_dir
 
-            with patch.object(provider, "PERMANENT_ROOT", permanent), patch.object(provider, "RAW_ROOT", permanent / "raw"), patch.object(provider, "OUTPUT_ROOT", output_root), patch.object(provider, "_unique_job_dir", fake_job_dir), patch.object(provider, "_run_job", fake_job), patch.object(provider, "validate_api_workflow", return_value={"live_valid": True}), patch.object(provider, "_raw_pose_qa", return_value={"absolute_pose_pass": True, "status": "RAW_POSE_PASS"}), patch.object(provider, "background_remove", side_effect=RuntimeError("BiRefNet failure")):
+            with patch.object(provider, "PERMANENT_ROOT", permanent), patch.object(provider, "RAW_ROOT", permanent / "raw"), patch.object(provider, "OUTPUT_ROOT", output_root), patch.object(provider, "_relative", return_value="test/raw.png"), patch.object(provider, "_unique_job_dir", fake_job_dir), patch.object(provider, "_run_job", fake_job), patch.object(provider, "validate_api_workflow", return_value={"live_valid": True}), patch.object(provider, "_raw_pose_qa", return_value={"absolute_pose_pass": True, "status": "RAW_POSE_PASS"}), patch.object(provider, "background_remove", side_effect=RuntimeError("BiRefNet failure")):
                 result = provider._run_one(_FakeComfy(), lane="P", seed=61701, anchor=ROOT / "docs/evidence/reference-edit-selected-transparent.png", guide=ROOT / "docs/evidence/openpose-guide-v3-control-example.png", guide_value={}, guide_points={}, thresholds={"absolute_pose": {}}, stage="test-postprocess-preservation")
             self.assertTrue(result["generation"]["completed"])
             self.assertTrue((permanent / "raw" / "test-postprocess-preservation.png").is_file())

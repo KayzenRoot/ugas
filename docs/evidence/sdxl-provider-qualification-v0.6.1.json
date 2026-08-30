@@ -1,0 +1,2830 @@
+{
+  "schema_version": "0.6.1",
+  "status": "SDXL_OPENPOSE_CONTROL_GAP",
+  "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+  "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+  "answer": "This release classifies only the corrected P/I/PI smoke. It does not authorize benchmark, confirmation, walk or animation.",
+  "audit": {
+    "schema_version": "0.6.0",
+    "audit_status": "CUSTOM_NODE_AUDIT_PASSED",
+    "audited_at": "2026-08-30T15:48:24Z",
+    "source": "https://github.com/cubiq/ComfyUI_IPAdapter_plus.git",
+    "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+    "actual_commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+    "license": "GPL-3.0-only",
+    "distribution_boundary": "local-only",
+    "source_vendored_in_ugas": false,
+    "required_source_files": [
+      "CrossAttentionPatch.py",
+      "IPAdapterPlus.py",
+      "LICENSE",
+      "__init__.py",
+      "image_proj_models.py",
+      "pyproject.toml",
+      "utils.py"
+    ],
+    "missing_source_files": [],
+    "source_file_sha256": {
+      "CrossAttentionPatch.py": "8511ea6f6495d408275893bf199d1db0529b746b0167d55d962e95898d281d0c",
+      "IPAdapterPlus.py": "a0424207242ddda05640b4c32d79a095f0cf7016969bf3dd118065e17b27898b",
+      "LICENSE": "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809",
+      "__init__.py": "b11b6feced87e43ebcc4a2665737f94680bebf7f5ddcc5840a7d0ecbd570df41",
+      "image_proj_models.py": "bdd2a890e0c53749e1c9863bc3021859a0ffb7fdcfea7e3505c18e34a1a4c132",
+      "pyproject.toml": "1f7db239f494a9190078d6eda7f9ec11bbf93091455877d6d98b95caeffda0c0",
+      "utils.py": "5a9f113767a149dc2593f7e06d9efe1572fa9f66a8b95586127bb705cc2a83fd"
+    },
+    "python_static_audit": {
+      "python_files": 5,
+      "syntax_failures": [],
+      "imports": [
+        "CrossAttentionPatch",
+        "IPAdapterPlus",
+        "PIL",
+        "comfy.clip_vision",
+        "comfy.ldm.modules.attention",
+        "comfy.model_management",
+        "comfy.sd",
+        "comfy.utils",
+        "copy",
+        "einops",
+        "einops.layers.torch",
+        "folder_paths",
+        "image_proj_models",
+        "insightface.app",
+        "insightface.utils",
+        "math",
+        "node_helpers",
+        "os",
+        "random",
+        "re",
+        "torch",
+        "torch.nn",
+        "torch.nn.functional",
+        "torchvision.transforms",
+        "torchvision.transforms.v2",
+        "utils"
+      ],
+      "blocked_network_or_process_imports": [],
+      "blocked_dynamic_or_process_calls": [],
+      "local_serialization_load_calls": [
+        "load"
+      ]
+    },
+    "network_access": "not detected in Python source",
+    "subprocess_access": "not detected in Python source",
+    "credential_access": "not detected in Python source",
+    "dynamic_download": "not detected in Python source",
+    "local_file_io": "model path registration, local model loading and optional local output/embed files",
+    "residual_risks": [
+      "IPAdapterLoadEmbeds uses torch.load on a local .ipadpt file; this optional node is not used by the qualified workflow and untrusted embed files must not be loaded.",
+      "The GPL-3.0 source remains outside UGAS distribution and is locally removable."
+    ],
+    "failures": [],
+    "install_allowed": true,
+    "install_path": "<ComfyUI>/custom_nodes/ComfyUI_IPAdapter_plus",
+    "required_nodes": [
+      "IPAdapterModelLoader",
+      "IPAdapterAdvanced",
+      "IPAdapterApply",
+      "IPAdapterUnifiedLoader"
+    ],
+    "installation": {
+      "status": "INSTALLED_PINNED",
+      "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\custom_nodes\\ComfyUI_IPAdapter_plus",
+      "commit": "a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+    }
+  },
+  "model_qualification": {
+    "schema_version": "0.6.0",
+    "qualified_at": "2026-08-30T18:33:44Z",
+    "status": "MODEL_ARTIFACTS_VERIFIED",
+    "download_requested": false,
+    "weights_outside_git": true,
+    "artifacts": [
+      {
+        "id": "sdxl-base-1.0",
+        "source": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+        "source_revision": "462165984030d82259a11f4367a4eed129e94a7b",
+        "filename": "sd_xl_base_1.0.safetensors",
+        "folder": "checkpoints",
+        "bytes": 6938078334,
+        "sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+        "license": "CreativeML Open RAIL++-M",
+        "commercial_use_status": "conditional-license-review-required",
+        "evidence": "sdxl-base-model-qualification.json",
+        "download_url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/462165984030d82259a11f4367a4eed129e94a7b/sd_xl_base_1.0.safetensors",
+        "verification": {
+          "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\checkpoints\\sd_xl_base_1.0.safetensors",
+          "filename": "sd_xl_base_1.0.safetensors",
+          "expected_bytes": 6938078334,
+          "actual_bytes": 6938078334,
+          "expected_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+          "actual_sha256": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b",
+          "present": true,
+          "bytes_match": true,
+          "hash_match": true,
+          "verified": true
+        }
+      },
+      {
+        "id": "xinsir-controlnet-openpose-sdxl-1.0",
+        "source": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0",
+        "source_revision": "23f966cd5cfdd3f7729c903e243d87152162d2b7",
+        "filename": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+        "folder": "controlnet",
+        "bytes": 2502139104,
+        "sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+        "license": "Apache-2.0",
+        "commercial_use_status": "approved",
+        "evidence": "sdxl-openpose-controlnet-qualification.json",
+        "download_url": "https://huggingface.co/xinsir/controlnet-openpose-sdxl-1.0/resolve/23f966cd5cfdd3f7729c903e243d87152162d2b7/diffusion_pytorch_model.safetensors",
+        "verification": {
+          "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\controlnet\\xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+          "filename": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+          "expected_bytes": 2502139104,
+          "actual_bytes": 2502139104,
+          "expected_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+          "actual_sha256": "b8524e557a7df60d081f5d4a0eb109967d107df217943bf88c2d99b9ebcc06c5",
+          "present": true,
+          "bytes_match": true,
+          "hash_match": true,
+          "verified": true
+        }
+      },
+      {
+        "id": "ipadapter-plus-sdxl-vit-h",
+        "source": "https://huggingface.co/h94/IP-Adapter",
+        "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+        "filename": "ip-adapter-plus_sdxl_vit-h.safetensors",
+        "folder": "ipadapter",
+        "bytes": 847517512,
+        "sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+        "license": "Apache-2.0",
+        "commercial_use_status": "approved",
+        "evidence": "ipadapter-sdxl-model-qualification.json",
+        "download_url": "https://huggingface.co/h94/IP-Adapter/resolve/018e402774aeeddd60609b4ecdb7e298259dc729/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors",
+        "verification": {
+          "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\ipadapter\\ip-adapter-plus_sdxl_vit-h.safetensors",
+          "filename": "ip-adapter-plus_sdxl_vit-h.safetensors",
+          "expected_bytes": 847517512,
+          "actual_bytes": 847517512,
+          "expected_sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+          "actual_sha256": "3f5062b8400c94b7159665b21ba5c62acdcd7682262743d7f2aefedef00e6581",
+          "present": true,
+          "bytes_match": true,
+          "hash_match": true,
+          "verified": true
+        }
+      },
+      {
+        "id": "clip-vision-vit-h",
+        "source": "https://huggingface.co/h94/IP-Adapter",
+        "source_revision": "018e402774aeeddd60609b4ecdb7e298259dc729",
+        "filename": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+        "folder": "clip_vision",
+        "bytes": 2528373448,
+        "sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+        "license": "Apache-2.0",
+        "commercial_use_status": "approved",
+        "evidence": "clip-vision-qualification.json",
+        "variant": "OpenCLIP-ViT-H-14",
+        "pairing": "ip-adapter-plus_sdxl_vit-h.safetensors",
+        "download_url": "https://huggingface.co/h94/IP-Adapter/resolve/018e402774aeeddd60609b4ecdb7e298259dc729/models/image_encoder/model.safetensors",
+        "verification": {
+          "path": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\models\\clip_vision\\CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+          "filename": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors",
+          "expected_bytes": 2528373448,
+          "actual_bytes": 2528373448,
+          "expected_sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+          "actual_sha256": "6ca9667da1ca9e0b0f75e46bb030f7e011f44f86cbfb8d5a36590fcd7507b030",
+          "present": true,
+          "bytes_match": true,
+          "hash_match": true,
+          "verified": true
+        }
+      }
+    ],
+    "failures": []
+  },
+  "runtime_doctor": {
+    "schema_version": "0.6.0",
+    "status": "RUNTIME_DOCTOR_PASSED",
+    "checked_at": "2026-08-30T18:33:49Z",
+    "endpoint": "http://127.0.0.1:8188",
+    "comfyui": {
+      "version": "0.34.0",
+      "git_revision": "12d5279438bfefc058a269eae805ceab6047777f",
+      "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "pytorch": "2.13.0+cu130"
+    },
+    "gpu": {
+      "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+      "type": "cuda",
+      "index": 0,
+      "vram_total": 8546484224,
+      "vram_free": 7335837696,
+      "torch_vram_total": 67108864,
+      "torch_vram_free": 33554432
+    },
+    "nvidia_smi": {
+      "status": "available",
+      "gpus": [
+        {
+          "name": "NVIDIA GeForce RTX 5050",
+          "driver": "610.74",
+          "memory_total_mb": "8151",
+          "memory_free_mb": "6632"
+        }
+      ],
+      "stderr": ""
+    },
+    "required_nodes": {
+      "CheckpointLoaderSimple": true,
+      "CLIPTextEncode": true,
+      "ControlNetLoader": true,
+      "ControlNetApplyAdvanced": true,
+      "CLIPVisionLoader": true,
+      "CLIPVisionEncode": true,
+      "IPAdapterModelLoader": true,
+      "IPAdapterAdvanced": true,
+      "KSampler": true,
+      "VAEDecode": true,
+      "SaveImage": true
+    },
+    "inventory": {
+      "checkpoints": [
+        "sd_xl_base_1.0.safetensors"
+      ],
+      "controlnet": [
+        "xinsir-controlnet-openpose-sdxl-1.0.safetensors"
+      ],
+      "ipadapter": [
+        "ip-adapter-plus_sdxl_vit-h.safetensors"
+      ],
+      "clip_vision": [
+        "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      ]
+    },
+    "runtime_strategy": [
+      "512x512 FP16-compatible attempt",
+      "low-VRAM/offload fallback",
+      "sequential model unload/offload"
+    ],
+    "resolution_minimum": [
+      512,
+      512
+    ],
+    "failures": [],
+    "smoke_generation_run": false
+  },
+  "workflow_qualification": {
+    "schema_version": "0.6.1",
+    "status": "SDXL_PROVIDER_WORKFLOW_VALID",
+    "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+    "resolution": [
+      512,
+      512
+    ],
+    "prompt_sha256": "b7dd93c9383533014a17955efa229e9197a3c18d1705a4290207a18106a88cc0",
+    "negative_prompt_sha256": "7a5a7d4c29f153c8ce09a917b86dd3565a1649bca33225d37f44c6b282940aad",
+    "anchor": {
+      "path": "docs/evidence/reference-edit-selected-transparent.png",
+      "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96"
+    },
+    "guide": {
+      "path": "docs/evidence/openpose-guide-v3-control-example.png",
+      "uploaded_name": "openpose-guide-v3-control-example.png"
+    },
+    "lanes": [
+      {
+        "lane": "P",
+        "workflow_id": "sdxl-openpose-controlnet-p",
+        "template_sha256": "ef5f736da409c9719886206d73832b5fdb3b27433c97e6c92ac06a6c76fceea7",
+        "bound_sha256": "d0f75dcd2a3b892fe998e25929d1559e88039f08773e97d7d86090feb4a673f0",
+        "graph": {
+          "valid_graph": true,
+          "node_count": 10,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true
+        },
+        "required_custom_nodes": [],
+        "model_names": {
+          "__SDXL_CHECKPOINT__": "sd_xl_base_1.0.safetensors",
+          "__CONTROLNET__": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+          "__IPADAPTER__": "ip-adapter-plus_sdxl_vit-h.safetensors",
+          "__CLIP_VISION__": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+        },
+        "direct_guide": true,
+        "r4_identity_only": false,
+        "previous_outputs": false
+      },
+      {
+        "lane": "I",
+        "workflow_id": "sdxl-ipadapter-i",
+        "template_sha256": "31f30d5420072e217f0cd36b64e30debdee7a54f3234aa2335c3ee721d6e5580",
+        "bound_sha256": "9d1a8f73f5fd4717aa3f35eace61099d571567f57047579292c7f829e788f68a",
+        "graph": {
+          "valid_graph": true,
+          "node_count": 12,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true
+        },
+        "required_custom_nodes": [
+          "comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+        ],
+        "model_names": {
+          "__SDXL_CHECKPOINT__": "sd_xl_base_1.0.safetensors",
+          "__CONTROLNET__": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+          "__IPADAPTER__": "ip-adapter-plus_sdxl_vit-h.safetensors",
+          "__CLIP_VISION__": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+        },
+        "direct_guide": false,
+        "r4_identity_only": true,
+        "previous_outputs": false
+      },
+      {
+        "lane": "PI",
+        "workflow_id": "sdxl-openpose-ipadapter-character",
+        "template_sha256": "56c23d4bbc83a3182bcd849d8ab08d2184674efee78bc68fb4fbb31f1309aa20",
+        "bound_sha256": "4c2127cc8f922c59849504b2a50bcde3243f7c9498afc005abf3bc96de467ae1",
+        "graph": {
+          "valid_graph": true,
+          "node_count": 14,
+          "missing_nodes": [],
+          "missing_models": [],
+          "live_valid": true
+        },
+        "required_custom_nodes": [
+          "comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef"
+        ],
+        "model_names": {
+          "__SDXL_CHECKPOINT__": "sd_xl_base_1.0.safetensors",
+          "__CONTROLNET__": "xinsir-controlnet-openpose-sdxl-1.0.safetensors",
+          "__IPADAPTER__": "ip-adapter-plus_sdxl_vit-h.safetensors",
+          "__CLIP_VISION__": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+        },
+        "direct_guide": true,
+        "r4_identity_only": true,
+        "previous_outputs": false
+      }
+    ],
+    "ipadapter_never_receives_skeleton": true,
+    "controlnet_never_receives_r4_identity": true
+  },
+  "anchor": {
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "guide": {
+    "path": "docs/evidence/openpose-guide-v3-control-example.png",
+    "json_path": "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json",
+    "image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+    "json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+  },
+  "thresholds": {
+    "source": "docs/evidence/pose-thresholds-v054.json",
+    "schema_version": "0.5.4",
+    "changed": false,
+    "absolute": {
+      "measurable_body_joints_min": 10,
+      "pck_at_010_min": 0.8,
+      "nme_max": 0.1,
+      "limb_angle_mae_max_degrees": 18.0,
+      "lower_body_pck_min": 0.75,
+      "orientation_match_required": true,
+      "sanity_required": true
+    },
+    "causal": {
+      "relative_joint_error_reduction_min": 0.35,
+      "normalized_score_gain_min": 0.5,
+      "absolute_pose_pass_required_for_each_fresh_output": true,
+      "identity_and_weapon_pass_required_for_each_fresh_output": true,
+      "fresh_execution_pass_required_for_each_fresh_output": true,
+      "additive_only_gate": true,
+      "alternative_estimator_forbidden": true
+    },
+    "identity_weapon": {
+      "identity_score_min": 0.58,
+      "weapon_presence_required": true,
+      "all_three_outputs_per_lane_required": true
+    }
+  },
+  "seeds": {
+    "smoke": 61701,
+    "paired": [],
+    "benchmark": null,
+    "confirmation": []
+  },
+  "smoke": {
+    "technical_green": false,
+    "records": [
+      {
+        "schema_version": "0.6.1",
+        "lane": "P",
+        "seed": 61701,
+        "stage": "smoke-p-seed-61701",
+        "workflow_id": "sdxl-openpose-controlnet-p",
+        "workflow_template_sha256": "ef5f736da409c9719886206d73832b5fdb3b27433c97e6c92ac06a6c76fceea7",
+        "workflow_bound_sha256": "d0f75dcd2a3b892fe998e25929d1559e88039f08773e97d7d86090feb4a673f0",
+        "controlnet_strength": 0.9,
+        "ipadapter_weight": null,
+        "generation": {
+          "submitted": true,
+          "completed": true,
+          "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "history_record_key": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "history_key_matches_prompt_id": true,
+          "fresh_binding": true,
+          "target_existed_before_submission": false,
+          "previous_frame_chaining": false,
+          "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-p-seed-61701.png",
+          "raw_output_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+          "raw_output_bytes": 190212,
+          "raw_output_hash_matches_comfy": true,
+          "execution_evidence": {
+            "schema_version": "0.6.1",
+            "client_job_id": "job-f51981f525b241339cbb879a1d552bdf",
+            "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+            "submitted_at": "2026-08-30T19:48:17+00:00",
+            "first_poll_at": "2026-08-30T19:48:17+00:00",
+            "completed_at": "2026-08-30T19:49:21+00:00",
+            "runtime_ms": 64702.805,
+            "history_record_key": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "canonical_anchor_sha256": null,
+              "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+              "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "d0f75dcd2a3b892fe998e25929d1559e88039f08773e97d7d86090feb4a673f0",
+            "model_ids": [
+              "sdxl-base-1.0"
+            ],
+            "model_file_sha256": {
+              "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+            },
+            "seed": 61701,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                      "timestamp": 1788119297262
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                      "timestamp": 1788119297270
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                      "timestamp": 1788119357229
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+              "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+              "factorial_lane": "P",
+              "controlnet_strength": 0.9,
+              "ipadapter_weight": null,
+              "controlnet_start": 0.0,
+              "controlnet_end": 1.0,
+              "ipadapter_start": 0.0,
+              "ipadapter_end": 1.0,
+              "ipadapter_weight_type": "linear",
+              "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+              "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+              "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "previous_frame_chaining": false,
+              "previous_outputs": false
+            },
+            "outputs": [
+              {
+                "filename": "ugas-sdxl-p_00003_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "10",
+                "data_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+                "sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+                "filename": "ugas-sdxl-p_00003_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          }
+        },
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-p-seed-61701.png",
+        "raw_output_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+        "raw_pose_qa": {
+          "status": "RAW_POSE_FAILED",
+          "preprocess_policy": "raw_rgb_neutral_gray",
+          "preprocess": {
+            "policy": "raw_rgb_neutral_gray",
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\raw-pose-preprocess.png",
+            "sha256": "b5a5a728f5715321e6ec5a4a9493ecf7b81c3eccfcf9d3d7e1a9c9e002cd2097",
+            "source_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+            "source_scale": 1,
+            "alpha_bbox_normalized": [
+              0.0,
+              0.0,
+              1.0,
+              1.0
+            ],
+            "background": [
+              128,
+              128,
+              128
+            ],
+            "size": [
+              512,
+              512
+            ],
+            "uniform_scale_only": true
+          },
+          "detection": {
+            "detected": true,
+            "measurable_body_joints": 12,
+            "core_coverage": 0.916667,
+            "mean_confidence": 0.903783,
+            "min_confidence": 0.667559
+          },
+          "detected_orientation": "front",
+          "pose": {
+            "metric_version": "detected-joint-pose-error-1.0",
+            "measurement_status": "UNMEASURABLE",
+            "measurable_body_joints": 12,
+            "required_core_present": false,
+            "pck_at_010": 0.333333,
+            "nme": 0.550885,
+            "limb_angle_mae_degrees": 15.698582,
+            "lower_body_pck": 0.333333,
+            "orientation_match": false,
+            "orientation_score": 0.0,
+            "pose_score": 0.0,
+            "qualifies": false,
+            "failure_reasons": [
+              "required_core_joint_missing",
+              "pck_below_080",
+              "nme_above_010",
+              "lower_body_pck_below_075",
+              "orientation_mismatch"
+            ]
+          },
+          "absolute_pose_pass": false,
+          "overlay_path": "docs/evidence/sdxl-qualification/overlays/smoke-p-seed-61701-raw.png",
+          "raw_output_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a"
+        },
+        "postprocess": {
+          "attempted": true,
+          "passed": false,
+          "error": "GenerationError: BiRefNet output failed transparency or RGB-preservation QA",
+          "status": "POSTPROCESS_FAILED"
+        },
+        "identity_qa": null,
+        "output_path": null,
+        "output_sha256": null,
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-f51981f525b241339cbb879a1d552bdf",
+          "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "submitted_at": "2026-08-30T19:48:17+00:00",
+          "first_poll_at": "2026-08-30T19:48:17+00:00",
+          "completed_at": "2026-08-30T19:49:21+00:00",
+          "runtime_ms": 64702.805,
+          "history_record_key": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": null,
+            "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "d0f75dcd2a3b892fe998e25929d1559e88039f08773e97d7d86090feb4a673f0",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119297262
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119297270
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "9715f58a-c05f-4ad1-9ccc-ae056ac97261",
+                    "timestamp": 1788119357229
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "P",
+            "controlnet_strength": 0.9,
+            "ipadapter_weight": null,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-p_00003_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "10",
+              "data_sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-f3565d2333114e08ba64a4a6485b619f\\smoke-p-seed-61701.png",
+              "sha256": "d363dde5b75c4242740f37c0c143955777ef31d874ca4cb83002ba4b42eb948a",
+              "filename": "ugas-sdxl-p_00003_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        },
+        "fresh_binding": true,
+        "technical_pass": false,
+        "final_stage_status": "POSTPROCESS_FAILED",
+        "status": "POSTPROCESS_FAILED"
+      },
+      {
+        "schema_version": "0.6.1",
+        "lane": "I",
+        "seed": 61701,
+        "stage": "smoke-i-seed-61701",
+        "workflow_id": "sdxl-ipadapter-i",
+        "workflow_template_sha256": "31f30d5420072e217f0cd36b64e30debdee7a54f3234aa2335c3ee721d6e5580",
+        "workflow_bound_sha256": "9d1a8f73f5fd4717aa3f35eace61099d571567f57047579292c7f829e788f68a",
+        "controlnet_strength": null,
+        "ipadapter_weight": 0.8,
+        "generation": {
+          "submitted": true,
+          "completed": true,
+          "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "history_record_key": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "history_key_matches_prompt_id": true,
+          "fresh_binding": true,
+          "target_existed_before_submission": false,
+          "previous_frame_chaining": false,
+          "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-i-seed-61701.png",
+          "raw_output_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+          "raw_output_bytes": 221485,
+          "raw_output_hash_matches_comfy": true,
+          "execution_evidence": {
+            "schema_version": "0.6.1",
+            "client_job_id": "job-0c9aabc9a18b4639a1719aaaf01c6bfb",
+            "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+            "submitted_at": "2026-08-30T19:49:35+00:00",
+            "first_poll_at": "2026-08-30T19:49:35+00:00",
+            "completed_at": "2026-08-30T19:50:35+00:00",
+            "runtime_ms": 59689.53,
+            "history_record_key": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+              "openpose_guide_image_sha256": null,
+              "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "9d1a8f73f5fd4717aa3f35eace61099d571567f57047579292c7f829e788f68a",
+            "model_ids": [
+              "sdxl-base-1.0"
+            ],
+            "model_file_sha256": {
+              "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+            },
+            "seed": 61701,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                      "timestamp": 1788119375906
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                      "timestamp": 1788119375921
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                      "timestamp": 1788119434676
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+              "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+              "factorial_lane": "I",
+              "controlnet_strength": null,
+              "ipadapter_weight": 0.8,
+              "controlnet_start": 0.0,
+              "controlnet_end": 1.0,
+              "ipadapter_start": 0.0,
+              "ipadapter_end": 1.0,
+              "ipadapter_weight_type": "linear",
+              "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+              "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+              "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "previous_frame_chaining": false,
+              "previous_outputs": false
+            },
+            "outputs": [
+              {
+                "filename": "ugas-sdxl-i_00002_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "12",
+                "data_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+                "sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+                "filename": "ugas-sdxl-i_00002_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          }
+        },
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-i-seed-61701.png",
+        "raw_output_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+        "raw_pose_qa": null,
+        "postprocess": {
+          "attempted": true,
+          "passed": true,
+          "error": null,
+          "status": "POSTPROCESS_PASSED",
+          "birefnet": {
+            "status": "TRANSPARENCY_VALID",
+            "output": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\output.png",
+            "mask": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\mask.png",
+            "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\checkerboard.png",
+            "revision_id": null,
+            "qa": {
+              "status": "TECHNICAL_VALID",
+              "checks": {
+                "exists": true,
+                "format": true,
+                "dimensions": true,
+                "size": true,
+                "non_empty_content": true,
+                "transparency_requirement": true,
+                "rgb_preservation": {
+                  "compared_pixels": 50566,
+                  "high_alpha_threshold": 250,
+                  "mae_r": 0.0,
+                  "mae_g": 0.0,
+                  "mae_b": 0.0,
+                  "mae_total": 0.0,
+                  "max_mean_abs_error": 2.0,
+                  "passed": true
+                }
+              },
+              "requirements": {
+                "requires_transparency": true,
+                "transparency_profile": {
+                  "min_transparent_fraction": 0.01,
+                  "max_foreground_coverage": 0.98,
+                  "allow_border_contact": false,
+                  "near_opaque_threshold": 250,
+                  "min_near_opaque_foreground_fraction": 0.85,
+                  "high_alpha_threshold": 250,
+                  "max_mean_abs_rgb_error": 2.0
+                }
+              },
+              "technical": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 243757,
+                "sha256": "bc6cb29a6a5af2f126d01c2dcf4fbf0a881774757f2b5872cf3c55894bb206ea",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.0033416748046875,
+                "transparent_fraction": 0.78466796875,
+                "alpha_zero_fraction": 0.78466796875,
+                "alpha_opaque_fraction": 0.0033416748046875,
+                "alpha_partial_fraction": 0.2119903564453125,
+                "foreground_coverage": 0.21533203125,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8957979024943311,
+                "soft_edge_foreground_fraction": 0.10420209750566893,
+                "alpha_bbox": [
+                  84,
+                  38,
+                  333,
+                  496
+                ],
+                "alpha_centroid": [
+                  0.42735283607258007,
+                  0.5437528995159262
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": {
+                "alpha_zero_fraction": 0.78466796875,
+                "alpha_opaque_fraction": 0.0033416748046875,
+                "alpha_partial_fraction": 0.2119903564453125,
+                "foreground_coverage": 0.21533203125,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8957979024943311,
+                "soft_edge_foreground_fraction": 0.10420209750566893,
+                "alpha_bbox": [
+                  84,
+                  38,
+                  333,
+                  496
+                ],
+                "alpha_centroid": [
+                  0.42735283607258007,
+                  0.5437528995159262
+                ],
+                "border_contact": false
+              },
+              "rgb_preservation": {
+                "compared_pixels": 50566,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "visual_review": "required",
+              "production_ready": false
+            },
+            "halo": {
+              "checked": true,
+              "border_semi_transparent_fraction": 0.0,
+              "halo_detected": false
+            },
+            "reference_edit_qa": null,
+            "integrity": null,
+            "capability_evidence": {
+              "schema_version": "0.6.1",
+              "provider": "provider-comfyui",
+              "capability": "background-removal",
+              "state": "verified",
+              "endpoint": "http://127.0.0.1:8188",
+              "server_version": "0.34.0",
+              "devices": [
+                {
+                  "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                  "type": "cuda",
+                  "index": 0,
+                  "vram_total": 8546484224,
+                  "vram_free": 1243233530,
+                  "torch_vram_total": 905969664,
+                  "torch_vram_free": 22375674
+                }
+              ],
+              "required_nodes": [
+                {
+                  "class_type": "LoadImage",
+                  "present": true
+                },
+                {
+                  "class_type": "LoadBackgroundRemovalModel",
+                  "present": true
+                },
+                {
+                  "class_type": "RemoveBackground",
+                  "present": true
+                },
+                {
+                  "class_type": "InvertMask",
+                  "present": true
+                },
+                {
+                  "class_type": "JoinImageWithAlpha",
+                  "present": true
+                },
+                {
+                  "class_type": "MaskToImage",
+                  "present": true
+                },
+                {
+                  "class_type": "SaveImage",
+                  "present": true
+                },
+                {
+                  "class_type": "SaveImage",
+                  "present": true
+                }
+              ],
+              "required_models": [
+                {
+                  "file": "background_removal/birefnet.safetensors",
+                  "folder": "background_removal",
+                  "present": true
+                }
+              ],
+              "workflow": {
+                "id": "birefnet-background-removal",
+                "version": "0.5.1",
+                "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+                "validation": {
+                  "valid_graph": true,
+                  "node_count": 8,
+                  "missing_nodes": [],
+                  "missing_models": [],
+                  "live_valid": true
+                },
+                "compatibility": {
+                  "compatible": true,
+                  "model_id": "birefnet",
+                  "workflow_id": "birefnet-background-removal",
+                  "family": "birefnet",
+                  "variant": "native",
+                  "steps": null,
+                  "guidance": null,
+                  "mismatches": [],
+                  "experimental_override": false
+                },
+                "qualified_capabilities": [
+                  "background-removal",
+                  "transparent-sprite-master"
+                ]
+              },
+              "model": {
+                "id": "birefnet",
+                "family": "birefnet",
+                "variant": "native",
+                "license": "MIT",
+                "sha256": {
+                  "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+                },
+                "qualification_evidence": {
+                  "status": "qualified",
+                  "hashes_verified": true,
+                  "files_verified_at": "2026-08-29",
+                  "live_smoke_evidence": "docs/evidence/birefnet.json"
+                },
+                "inventory": {
+                  "model_id": "birefnet",
+                  "files": [
+                    {
+                      "file": "background_removal/birefnet.safetensors",
+                      "folder": "background_removal",
+                      "present": true
+                    }
+                  ],
+                  "inventory_complete": true
+                }
+              },
+              "transport_capabilities": [
+                "workflow-submit",
+                "polling",
+                "output-retrieval",
+                "system-stats"
+              ],
+              "asset_capabilities_declared": [
+                "background-removal",
+                "transparent-sprite-master"
+              ],
+              "asset_capabilities_qualified": [
+                "background-removal",
+                "transparent-sprite-master"
+              ],
+              "smoke_test": {
+                "status": "passed",
+                "source_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+                "output": {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\output.png",
+                  "format": "PNG",
+                  "width": 512,
+                  "height": 512,
+                  "mode": "RGBA",
+                  "source_mode": "RGBA",
+                  "bytes": 243757,
+                  "sha256": "bc6cb29a6a5af2f126d01c2dcf4fbf0a881774757f2b5872cf3c55894bb206ea",
+                  "has_alpha": true,
+                  "has_alpha_channel": true,
+                  "has_transparent_pixels": true,
+                  "alpha_min": 0,
+                  "alpha_max": 255,
+                  "opaque_fraction": 0.0033416748046875,
+                  "transparent_fraction": 0.78466796875,
+                  "alpha_zero_fraction": 0.78466796875,
+                  "alpha_opaque_fraction": 0.0033416748046875,
+                  "alpha_partial_fraction": 0.2119903564453125,
+                  "foreground_coverage": 0.21533203125,
+                  "near_opaque_threshold": 250,
+                  "near_opaque_foreground_fraction": 0.8957979024943311,
+                  "soft_edge_foreground_fraction": 0.10420209750566893,
+                  "alpha_bbox": [
+                    84,
+                    38,
+                    333,
+                    496
+                  ],
+                  "alpha_centroid": [
+                    0.42735283607258007,
+                    0.5437528995159262
+                  ],
+                  "border_contact": false,
+                  "non_empty_content": true
+                },
+                "mask": {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\mask.png",
+                  "format": "PNG",
+                  "width": 512,
+                  "height": 512,
+                  "mode": "RGB",
+                  "source_mode": "RGB",
+                  "bytes": 26370,
+                  "sha256": "b2a6870fcbbd2d5cac29b32974c698d01da7a7e449963b4e5d624ebbdc262db2",
+                  "has_alpha": false,
+                  "has_alpha_channel": false,
+                  "has_transparent_pixels": false,
+                  "alpha_min": null,
+                  "alpha_max": null,
+                  "opaque_fraction": 1.0,
+                  "transparent_fraction": 0.0,
+                  "alpha_zero_fraction": 0.0,
+                  "alpha_opaque_fraction": 1.0,
+                  "alpha_partial_fraction": 0.0,
+                  "foreground_coverage": 1.0,
+                  "near_opaque_threshold": 250,
+                  "near_opaque_foreground_fraction": 1.0,
+                  "soft_edge_foreground_fraction": 0.0,
+                  "alpha_bbox": null,
+                  "alpha_centroid": null,
+                  "border_contact": false,
+                  "non_empty_content": true
+                },
+                "alpha_metrics": null,
+                "rgb_preservation": {
+                  "compared_pixels": 50566,
+                  "high_alpha_threshold": 250,
+                  "mae_r": 0.0,
+                  "mae_g": 0.0,
+                  "mae_b": 0.0,
+                  "mae_total": 0.0,
+                  "max_mean_abs_error": 2.0,
+                  "passed": true
+                },
+                "halo": {
+                  "checked": true,
+                  "border_semi_transparent_fraction": 0.0,
+                  "halo_detected": false
+                },
+                "runtime_ms": 9869,
+                "revision_id": null
+              },
+              "failure_reason": null,
+              "observed_at": "2026-08-30T19:50:38+00:00",
+              "features": {
+                "supports_preview_metadata": true,
+                "supports_model_type_tags": true,
+                "max_upload_size": 104857600,
+                "extension": {
+                  "manager": {
+                    "supports_v4": true
+                  }
+                },
+                "node_replacements": true,
+                "assets": false
+              }
+            },
+            "execution_evidence": {
+              "schema_version": "0.6.1",
+              "client_job_id": "job-042dccb411bd48bc9303cd85f95bb469",
+              "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+              "submitted_at": "2026-08-30T19:50:39+00:00",
+              "first_poll_at": "2026-08-30T19:50:39+00:00",
+              "completed_at": "2026-08-30T19:50:49+00:00",
+              "runtime_ms": 9514.597,
+              "history_record_key": "a98bc108-9d5e-471d-af56-efd81a17f774",
+              "history_key_matches_prompt_id": true,
+              "source_hashes": {
+                "reference_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8"
+              },
+              "instruction_sha256": null,
+              "edit_contract_sha256": null,
+              "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "model_ids": [
+                "birefnet"
+              ],
+              "model_file_sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "seed": 0,
+              "seed_was_used_before": false,
+              "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\birefnet-output.png",
+              "target_existed_before_submission": false,
+              "cache": {
+                "authoritative_history_status": {
+                  "status_str": "success",
+                  "completed": true,
+                  "messages": [
+                    [
+                      "execution_start",
+                      {
+                        "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+                        "timestamp": 1788119439648
+                      }
+                    ],
+                    [
+                      "execution_cached",
+                      {
+                        "nodes": [],
+                        "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+                        "timestamp": 1788119439666
+                      }
+                    ],
+                    [
+                      "execution_success",
+                      {
+                        "prompt_id": "a98bc108-9d5e-471d-af56-efd81a17f774",
+                        "timestamp": 1788119445278
+                      }
+                    ]
+                  ]
+                },
+                "cache_hit_declared": null
+              },
+              "qualification_context": {},
+              "outputs": [
+                {
+                  "filename": "ugas-foreground-mask_00093_.png",
+                  "subfolder": "",
+                  "type": "output",
+                  "node_id": "8",
+                  "data_sha256": "b2a6870fcbbd2d5cac29b32974c698d01da7a7e449963b4e5d624ebbdc262db2"
+                },
+                {
+                  "filename": "ugas-master-transparent_00093_.png",
+                  "subfolder": "",
+                  "type": "output",
+                  "node_id": "7",
+                  "data_sha256": "cf4cb79d0bfed1b2d6de7b9c203b6a3fe22857fa93019e05476abbe3cb9a0e05"
+                }
+              ],
+              "runtime_plausibility": {
+                "status": "NOT_RUN"
+              },
+              "fresh_binding": true,
+              "output_paths": [
+                {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\birefnet-output.png",
+                  "sha256": "b2a6870fcbbd2d5cac29b32974c698d01da7a7e449963b4e5d624ebbdc262db2",
+                  "filename": "ugas-foreground-mask_00093_.png",
+                  "subfolder": "",
+                  "type": "output"
+                },
+                {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\background-removal\\job-ec507698e67743b6b0911c53ab1579ba\\birefnet-output-1.png",
+                  "sha256": "cf4cb79d0bfed1b2d6de7b9c203b6a3fe22857fa93019e05476abbe3cb9a0e05",
+                  "filename": "ugas-master-transparent_00093_.png",
+                  "subfolder": "",
+                  "type": "output"
+                }
+              ]
+            },
+            "promoted": false
+          }
+        },
+        "identity_qa": {
+          "aggregate_score_pass": true,
+          "weapon_pass": true,
+          "head_face_pass": true,
+          "armor_palette_pass": true,
+          "black_cloth_pass": true,
+          "body_proportions_pass": true,
+          "single_subject_pass": true,
+          "failure_reasons": [],
+          "identity_pass": true,
+          "hard_gate_policy": {
+            "region_threshold": 0.45,
+            "body_proportion_threshold": 0.55,
+            "score_cannot_compensate_for_component_failure": true
+          },
+          "foreground": {
+            "alpha_threshold": 48,
+            "minimum_component_area": 32,
+            "secondary_body_area_ratio_threshold": 0.25,
+            "secondary_body_height_ratio_threshold": 0.35,
+            "secondary_body_width_ratio_threshold": 0.35,
+            "large_foreground_components": 1,
+            "components": [
+              {
+                "area": 53931,
+                "relative_area": 0.20573,
+                "bbox": [
+                  85,
+                  39,
+                  332,
+                  495
+                ],
+                "width": 247,
+                "height": 456
+              }
+            ],
+            "secondary_body_components": [],
+            "accessory_or_weapon_components": [],
+            "secondary_to_primary_area_ratio": 0.0,
+            "multiple_subjects_detected": false,
+            "single_subject_pass": true,
+            "classification": "SINGLE_BODY_SUBJECT"
+          }
+        },
+        "output_path": "docs/evidence/sdxl-qualification/outputs/smoke-i-seed-61701.png",
+        "output_sha256": "bc6cb29a6a5af2f126d01c2dcf4fbf0a881774757f2b5872cf3c55894bb206ea",
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-0c9aabc9a18b4639a1719aaaf01c6bfb",
+          "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "submitted_at": "2026-08-30T19:49:35+00:00",
+          "first_poll_at": "2026-08-30T19:49:35+00:00",
+          "completed_at": "2026-08-30T19:50:35+00:00",
+          "runtime_ms": 59689.53,
+          "history_record_key": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "openpose_guide_image_sha256": null,
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "9d1a8f73f5fd4717aa3f35eace61099d571567f57047579292c7f829e788f68a",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119375906
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119375921
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "b8e42e61-4b63-40a5-a10a-b8cfcd3fe594",
+                    "timestamp": 1788119434676
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "I",
+            "controlnet_strength": null,
+            "ipadapter_weight": 0.8,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-i_00002_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "12",
+              "data_sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-64e0e1c03c2d4376bab131246e38a267\\smoke-i-seed-61701.png",
+              "sha256": "a56f452a5ce54b3a41496955a8392a539916518d9e9fb3e81cb0f9bc0d1fa2c8",
+              "filename": "ugas-sdxl-i_00002_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        },
+        "fresh_binding": true,
+        "technical_pass": true,
+        "output_png": {
+          "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\sdxl-qualification\\outputs\\smoke-i-seed-61701.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA",
+          "source_mode": "RGBA",
+          "bytes": 243757,
+          "sha256": "bc6cb29a6a5af2f126d01c2dcf4fbf0a881774757f2b5872cf3c55894bb206ea",
+          "has_alpha": true,
+          "has_alpha_channel": true,
+          "has_transparent_pixels": true,
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "opaque_fraction": 0.0033416748046875,
+          "transparent_fraction": 0.78466796875,
+          "alpha_zero_fraction": 0.78466796875,
+          "alpha_opaque_fraction": 0.0033416748046875,
+          "alpha_partial_fraction": 0.2119903564453125,
+          "foreground_coverage": 0.21533203125,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 0.8957979024943311,
+          "soft_edge_foreground_fraction": 0.10420209750566893,
+          "alpha_bbox": [
+            84,
+            38,
+            333,
+            496
+          ],
+          "alpha_centroid": [
+            0.42735283607258007,
+            0.5437528995159262
+          ],
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "pose": null,
+        "identity": {
+          "metrics_version": "2.0.0",
+          "identity_descriptor_score": 0.93854,
+          "threshold": 0.58,
+          "weapon_present": true,
+          "components": {
+            "armor_palette_material": 0.957398,
+            "head_face": 0.925218,
+            "black_cloth": 0.946462,
+            "body_proportions": 0.874758,
+            "weapon_presence": 1.0
+          },
+          "candidate_descriptor": {
+            "bbox": [
+              84,
+              38,
+              333,
+              496
+            ],
+            "regions": {
+              "whole": {
+                "count": 53931,
+                "mean_rgb": [
+                  24.739,
+                  48.861,
+                  84.819
+                ],
+                "mean_hsv": [
+                  0.59975,
+                  0.708333,
+                  0.332625
+                ],
+                "luma_histogram": [
+                  0.526413,
+                  0.16803,
+                  0.120061,
+                  0.086629,
+                  0.061838,
+                  0.029037,
+                  0.006137,
+                  0.001854
+                ]
+              },
+              "head_face": {
+                "count": 8315,
+                "mean_rgb": [
+                  54.225,
+                  87.76,
+                  128.379
+                ],
+                "mean_hsv": [
+                  0.591296,
+                  0.577618,
+                  0.503449
+                ],
+                "luma_histogram": [
+                  0.315574,
+                  0.085027,
+                  0.126037,
+                  0.176308,
+                  0.156825,
+                  0.123512,
+                  0.015634,
+                  0.001082
+                ]
+              },
+              "armor_palette_material": {
+                "count": 25312,
+                "mean_rgb": [
+                  23.287,
+                  46.195,
+                  77.517
+                ],
+                "mean_hsv": [
+                  0.596264,
+                  0.699586,
+                  0.303988
+                ],
+                "luma_histogram": [
+                  0.550332,
+                  0.186552,
+                  0.087626,
+                  0.082846,
+                  0.062381,
+                  0.0224,
+                  0.004504,
+                  0.003358
+                ]
+              },
+              "black_cloth": {
+                "count": 21650,
+                "mean_rgb": [
+                  17.644,
+                  40.065,
+                  77.116
+                ],
+                "mean_hsv": [
+                  0.603831,
+                  0.771203,
+                  0.302414
+                ],
+                "luma_histogram": [
+                  0.59746,
+                  0.1503,
+                  0.132148,
+                  0.067021,
+                  0.031778,
+                  0.012471,
+                  0.00485,
+                  0.003972
+                ]
+              }
+            },
+            "body_proportions": {
+              "bbox_width": 0.486328,
+              "bbox_height": 0.894531,
+              "bbox_ratio": 0.543668,
+              "head_area_fraction": 0.072912,
+              "armor_area_fraction": 0.221953,
+              "cloth_area_fraction": 0.189842
+            },
+            "weapon_outer_fraction": 0.374163,
+            "weapon_metallic_outer_fraction": 0.064969,
+            "weapon_present": true
+          },
+          "anchor_descriptor": {
+            "bbox": [
+              159,
+              40,
+              361,
+              487
+            ],
+            "regions": {
+              "whole": {
+                "count": 46683,
+                "mean_rgb": [
+                  30.021,
+                  45.952,
+                  80.122
+                ],
+                "mean_hsv": [
+                  0.613672,
+                  0.625304,
+                  0.314204
+                ],
+                "luma_histogram": [
+                  0.485594,
+                  0.234325,
+                  0.167213,
+                  0.07703,
+                  0.026691,
+                  0.008697,
+                  0.00045,
+                  0.0
+                ]
+              },
+              "head_face": {
+                "count": 7843,
+                "mean_rgb": [
+                  56.02,
+                  77.278,
+                  133.607
+                ],
+                "mean_hsv": [
+                  0.621001,
+                  0.580715,
+                  0.52395
+                ],
+                "luma_histogram": [
+                  0.189978,
+                  0.204514,
+                  0.28382,
+                  0.187811,
+                  0.088614,
+                  0.043351,
+                  0.001913,
+                  0.0
+                ]
+              },
+              "armor_palette_material": {
+                "count": 22641,
+                "mean_rgb": [
+                  21.693,
+                  37.067,
+                  67.864
+                ],
+                "mean_hsv": [
+                  0.61117,
+                  0.68035,
+                  0.266132
+                ],
+                "luma_histogram": [
+                  0.596749,
+                  0.208869,
+                  0.12866,
+                  0.045493,
+                  0.018639,
+                  0.001458,
+                  0.000133,
+                  0.0
+                ]
+              },
+              "black_cloth": {
+                "count": 16877,
+                "mean_rgb": [
+                  23.824,
+                  36.507,
+                  61.554
+                ],
+                "mean_hsv": [
+                  0.610641,
+                  0.612952,
+                  0.241388
+                ],
+                "luma_histogram": [
+                  0.607098,
+                  0.223203,
+                  0.092611,
+                  0.057178,
+                  0.016709,
+                  0.003022,
+                  0.000178,
+                  0.0
+                ]
+              }
+            },
+            "body_proportions": {
+              "bbox_width": 0.394531,
+              "bbox_height": 0.873047,
+              "bbox_ratio": 0.451902,
+              "head_area_fraction": 0.086861,
+              "armor_area_fraction": 0.250748,
+              "cloth_area_fraction": 0.186912
+            },
+            "weapon_outer_fraction": 0.384508,
+            "weapon_metallic_outer_fraction": 0.13961,
+            "weapon_present": true
+          },
+          "failure_reasons": []
+        },
+        "absolute_pose_pass": true,
+        "identity_pass": true,
+        "weapon_present": true,
+        "final_stage_status": "SMOKE_PASSED",
+        "status": "SMOKE_PASSED",
+        "runtime_ms": 59689.53
+      },
+      {
+        "schema_version": "0.6.1",
+        "lane": "PI",
+        "seed": 61701,
+        "stage": "smoke-pi-seed-61701",
+        "workflow_id": "sdxl-openpose-ipadapter-character",
+        "workflow_template_sha256": "56c23d4bbc83a3182bcd849d8ab08d2184674efee78bc68fb4fbb31f1309aa20",
+        "workflow_bound_sha256": "4c2127cc8f922c59849504b2a50bcde3243f7c9498afc005abf3bc96de467ae1",
+        "controlnet_strength": 0.9,
+        "ipadapter_weight": 0.8,
+        "generation": {
+          "submitted": true,
+          "completed": true,
+          "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "history_record_key": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "history_key_matches_prompt_id": true,
+          "fresh_binding": true,
+          "target_existed_before_submission": false,
+          "previous_frame_chaining": false,
+          "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-pi-seed-61701.png",
+          "raw_output_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+          "raw_output_bytes": 267036,
+          "raw_output_hash_matches_comfy": true,
+          "execution_evidence": {
+            "schema_version": "0.6.1",
+            "client_job_id": "job-0c195d0cfe754ec4ba25aa4a192472bd",
+            "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+            "submitted_at": "2026-08-30T19:50:53+00:00",
+            "first_poll_at": "2026-08-30T19:50:53+00:00",
+            "completed_at": "2026-08-30T19:52:28+00:00",
+            "runtime_ms": 94750.247,
+            "history_record_key": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+            "history_key_matches_prompt_id": true,
+            "source_hashes": {
+              "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+              "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+              "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+            },
+            "instruction_sha256": null,
+            "edit_contract_sha256": null,
+            "workflow_sha256": "4c2127cc8f922c59849504b2a50bcde3243f7c9498afc005abf3bc96de467ae1",
+            "model_ids": [
+              "sdxl-base-1.0"
+            ],
+            "model_file_sha256": {
+              "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+            },
+            "seed": 61701,
+            "seed_was_used_before": false,
+            "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+            "target_existed_before_submission": false,
+            "cache": {
+              "authoritative_history_status": {
+                "status_str": "success",
+                "completed": true,
+                "messages": [
+                  [
+                    "execution_start",
+                    {
+                      "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                      "timestamp": 1788119453642
+                    }
+                  ],
+                  [
+                    "execution_cached",
+                    {
+                      "nodes": [],
+                      "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                      "timestamp": 1788119453660
+                    }
+                  ],
+                  [
+                    "execution_success",
+                    {
+                      "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                      "timestamp": 1788119544785
+                    }
+                  ]
+                ]
+              },
+              "cache_hit_declared": null
+            },
+            "qualification_context": {
+              "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+              "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+              "factorial_lane": "PI",
+              "controlnet_strength": 0.9,
+              "ipadapter_weight": 0.8,
+              "controlnet_start": 0.0,
+              "controlnet_end": 1.0,
+              "ipadapter_start": 0.0,
+              "ipadapter_end": 1.0,
+              "ipadapter_weight_type": "linear",
+              "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+              "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+              "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+              "previous_frame_chaining": false,
+              "previous_outputs": false
+            },
+            "outputs": [
+              {
+                "filename": "ugas-sdxl-pi_00002_.png",
+                "subfolder": "",
+                "type": "output",
+                "node_id": "14",
+                "data_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+              }
+            ],
+            "runtime_plausibility": {
+              "status": "NOT_RUN"
+            },
+            "fresh_binding": true,
+            "output_paths": [
+              {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+                "sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+                "filename": "ugas-sdxl-pi_00002_.png",
+                "subfolder": "",
+                "type": "output"
+              }
+            ]
+          }
+        },
+        "raw_output_path": "docs/evidence/sdxl-qualification/raw/smoke-pi-seed-61701.png",
+        "raw_output_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+        "raw_pose_qa": {
+          "status": "RAW_POSE_FAILED",
+          "preprocess_policy": "raw_rgb_neutral_gray",
+          "preprocess": {
+            "policy": "raw_rgb_neutral_gray",
+            "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\raw-pose-preprocess.png",
+            "sha256": "90055a4356ed95526b1f82b1ef639be9e7a5b373100f1f999c78414a237695e0",
+            "source_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+            "source_scale": 1,
+            "alpha_bbox_normalized": [
+              0.0,
+              0.0,
+              1.0,
+              1.0
+            ],
+            "background": [
+              128,
+              128,
+              128
+            ],
+            "size": [
+              512,
+              512
+            ],
+            "uniform_scale_only": true
+          },
+          "detection": {
+            "detected": true,
+            "measurable_body_joints": 12,
+            "core_coverage": 0.916667,
+            "mean_confidence": 0.969109,
+            "min_confidence": 0.769252
+          },
+          "detected_orientation": "front",
+          "pose": {
+            "metric_version": "detected-joint-pose-error-1.0",
+            "measurement_status": "UNMEASURABLE",
+            "measurable_body_joints": 12,
+            "required_core_present": false,
+            "pck_at_010": 0.0,
+            "nme": 0.82712,
+            "limb_angle_mae_degrees": 10.370672,
+            "lower_body_pck": 0.0,
+            "orientation_match": false,
+            "orientation_score": 0.0,
+            "pose_score": 0.0,
+            "qualifies": false,
+            "failure_reasons": [
+              "required_core_joint_missing",
+              "pck_below_080",
+              "nme_above_010",
+              "lower_body_pck_below_075",
+              "orientation_mismatch"
+            ]
+          },
+          "absolute_pose_pass": false,
+          "overlay_path": "docs/evidence/sdxl-qualification/overlays/smoke-pi-seed-61701-raw.png",
+          "raw_output_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+        },
+        "postprocess": {
+          "attempted": true,
+          "passed": true,
+          "error": null,
+          "status": "POSTPROCESS_PASSED",
+          "birefnet": {
+            "status": "TRANSPARENCY_VALID",
+            "output": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\output.png",
+            "mask": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\mask.png",
+            "checkerboard": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\checkerboard.png",
+            "revision_id": null,
+            "qa": {
+              "status": "TECHNICAL_VALID",
+              "checks": {
+                "exists": true,
+                "format": true,
+                "dimensions": true,
+                "size": true,
+                "non_empty_content": true,
+                "transparency_requirement": true,
+                "rgb_preservation": {
+                  "compared_pixels": 54120,
+                  "high_alpha_threshold": 250,
+                  "mae_r": 0.0,
+                  "mae_g": 0.0,
+                  "mae_b": 0.0,
+                  "mae_total": 0.0,
+                  "max_mean_abs_error": 2.0,
+                  "passed": true
+                }
+              },
+              "requirements": {
+                "requires_transparency": true,
+                "transparency_profile": {
+                  "min_transparent_fraction": 0.01,
+                  "max_foreground_coverage": 0.98,
+                  "allow_border_contact": false,
+                  "near_opaque_threshold": 250,
+                  "min_near_opaque_foreground_fraction": 0.85,
+                  "high_alpha_threshold": 250,
+                  "max_mean_abs_rgb_error": 2.0
+                }
+              },
+              "technical": {
+                "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\output.png",
+                "format": "PNG",
+                "width": 512,
+                "height": 512,
+                "mode": "RGBA",
+                "source_mode": "RGBA",
+                "bytes": 298261,
+                "sha256": "0eaa8a8ef9f986c98bccb4c1dc2489e89d9eb4b2158aa1b25f502cf2bd31989a",
+                "has_alpha": true,
+                "has_alpha_channel": true,
+                "has_transparent_pixels": true,
+                "alpha_min": 0,
+                "alpha_max": 255,
+                "opaque_fraction": 0.001117706298828125,
+                "transparent_fraction": 0.7658462524414062,
+                "alpha_zero_fraction": 0.7658462524414062,
+                "alpha_opaque_fraction": 0.001117706298828125,
+                "alpha_partial_fraction": 0.23303604125976562,
+                "foreground_coverage": 0.23415374755859375,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8816917011501744,
+                "soft_edge_foreground_fraction": 0.11830829884982569,
+                "alpha_bbox": [
+                  107,
+                  6,
+                  359,
+                  511
+                ],
+                "alpha_centroid": [
+                  0.45159020177943043,
+                  0.5726336138342674
+                ],
+                "border_contact": false,
+                "non_empty_content": true
+              },
+              "alpha_metrics": {
+                "alpha_zero_fraction": 0.7658462524414062,
+                "alpha_opaque_fraction": 0.001117706298828125,
+                "alpha_partial_fraction": 0.23303604125976562,
+                "foreground_coverage": 0.23415374755859375,
+                "near_opaque_threshold": 250,
+                "near_opaque_foreground_fraction": 0.8816917011501744,
+                "soft_edge_foreground_fraction": 0.11830829884982569,
+                "alpha_bbox": [
+                  107,
+                  6,
+                  359,
+                  511
+                ],
+                "alpha_centroid": [
+                  0.45159020177943043,
+                  0.5726336138342674
+                ],
+                "border_contact": false
+              },
+              "rgb_preservation": {
+                "compared_pixels": 54120,
+                "high_alpha_threshold": 250,
+                "mae_r": 0.0,
+                "mae_g": 0.0,
+                "mae_b": 0.0,
+                "mae_total": 0.0,
+                "max_mean_abs_error": 2.0,
+                "passed": true
+              },
+              "visual_review": "required",
+              "production_ready": false
+            },
+            "halo": {
+              "checked": true,
+              "border_semi_transparent_fraction": 0.0,
+              "halo_detected": false
+            },
+            "reference_edit_qa": null,
+            "integrity": null,
+            "capability_evidence": {
+              "schema_version": "0.6.1",
+              "provider": "provider-comfyui",
+              "capability": "background-removal",
+              "state": "verified",
+              "endpoint": "http://127.0.0.1:8188",
+              "server_version": "0.34.0",
+              "devices": [
+                {
+                  "name": "cuda:0 NVIDIA GeForce RTX 5050 : cudaMallocAsync",
+                  "type": "cuda",
+                  "index": 0,
+                  "vram_total": 8546484224,
+                  "vram_free": 1239508506,
+                  "torch_vram_total": 905969664,
+                  "torch_vram_free": 21796378
+                }
+              ],
+              "required_nodes": [
+                {
+                  "class_type": "LoadImage",
+                  "present": true
+                },
+                {
+                  "class_type": "LoadBackgroundRemovalModel",
+                  "present": true
+                },
+                {
+                  "class_type": "RemoveBackground",
+                  "present": true
+                },
+                {
+                  "class_type": "InvertMask",
+                  "present": true
+                },
+                {
+                  "class_type": "JoinImageWithAlpha",
+                  "present": true
+                },
+                {
+                  "class_type": "MaskToImage",
+                  "present": true
+                },
+                {
+                  "class_type": "SaveImage",
+                  "present": true
+                },
+                {
+                  "class_type": "SaveImage",
+                  "present": true
+                }
+              ],
+              "required_models": [
+                {
+                  "file": "background_removal/birefnet.safetensors",
+                  "folder": "background_removal",
+                  "present": true
+                }
+              ],
+              "workflow": {
+                "id": "birefnet-background-removal",
+                "version": "0.5.1",
+                "sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+                "validation": {
+                  "valid_graph": true,
+                  "node_count": 8,
+                  "missing_nodes": [],
+                  "missing_models": [],
+                  "live_valid": true
+                },
+                "compatibility": {
+                  "compatible": true,
+                  "model_id": "birefnet",
+                  "workflow_id": "birefnet-background-removal",
+                  "family": "birefnet",
+                  "variant": "native",
+                  "steps": null,
+                  "guidance": null,
+                  "mismatches": [],
+                  "experimental_override": false
+                },
+                "qualified_capabilities": [
+                  "background-removal",
+                  "transparent-sprite-master"
+                ]
+              },
+              "model": {
+                "id": "birefnet",
+                "family": "birefnet",
+                "variant": "native",
+                "license": "MIT",
+                "sha256": {
+                  "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+                },
+                "qualification_evidence": {
+                  "status": "qualified",
+                  "hashes_verified": true,
+                  "files_verified_at": "2026-08-29",
+                  "live_smoke_evidence": "docs/evidence/birefnet.json"
+                },
+                "inventory": {
+                  "model_id": "birefnet",
+                  "files": [
+                    {
+                      "file": "background_removal/birefnet.safetensors",
+                      "folder": "background_removal",
+                      "present": true
+                    }
+                  ],
+                  "inventory_complete": true
+                }
+              },
+              "transport_capabilities": [
+                "workflow-submit",
+                "polling",
+                "output-retrieval",
+                "system-stats"
+              ],
+              "asset_capabilities_declared": [
+                "background-removal",
+                "transparent-sprite-master"
+              ],
+              "asset_capabilities_qualified": [
+                "background-removal",
+                "transparent-sprite-master"
+              ],
+              "smoke_test": {
+                "status": "passed",
+                "source_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+                "output": {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\output.png",
+                  "format": "PNG",
+                  "width": 512,
+                  "height": 512,
+                  "mode": "RGBA",
+                  "source_mode": "RGBA",
+                  "bytes": 298261,
+                  "sha256": "0eaa8a8ef9f986c98bccb4c1dc2489e89d9eb4b2158aa1b25f502cf2bd31989a",
+                  "has_alpha": true,
+                  "has_alpha_channel": true,
+                  "has_transparent_pixels": true,
+                  "alpha_min": 0,
+                  "alpha_max": 255,
+                  "opaque_fraction": 0.001117706298828125,
+                  "transparent_fraction": 0.7658462524414062,
+                  "alpha_zero_fraction": 0.7658462524414062,
+                  "alpha_opaque_fraction": 0.001117706298828125,
+                  "alpha_partial_fraction": 0.23303604125976562,
+                  "foreground_coverage": 0.23415374755859375,
+                  "near_opaque_threshold": 250,
+                  "near_opaque_foreground_fraction": 0.8816917011501744,
+                  "soft_edge_foreground_fraction": 0.11830829884982569,
+                  "alpha_bbox": [
+                    107,
+                    6,
+                    359,
+                    511
+                  ],
+                  "alpha_centroid": [
+                    0.45159020177943043,
+                    0.5726336138342674
+                  ],
+                  "border_contact": false,
+                  "non_empty_content": true
+                },
+                "mask": {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\mask.png",
+                  "format": "PNG",
+                  "width": 512,
+                  "height": 512,
+                  "mode": "RGB",
+                  "source_mode": "RGB",
+                  "bytes": 30340,
+                  "sha256": "00e60042344b4660757dfe038d3ea6768ab9c8b75473ef37d9278ec4ff27d0ef",
+                  "has_alpha": false,
+                  "has_alpha_channel": false,
+                  "has_transparent_pixels": false,
+                  "alpha_min": null,
+                  "alpha_max": null,
+                  "opaque_fraction": 1.0,
+                  "transparent_fraction": 0.0,
+                  "alpha_zero_fraction": 0.0,
+                  "alpha_opaque_fraction": 1.0,
+                  "alpha_partial_fraction": 0.0,
+                  "foreground_coverage": 1.0,
+                  "near_opaque_threshold": 250,
+                  "near_opaque_foreground_fraction": 1.0,
+                  "soft_edge_foreground_fraction": 0.0,
+                  "alpha_bbox": null,
+                  "alpha_centroid": null,
+                  "border_contact": false,
+                  "non_empty_content": true
+                },
+                "alpha_metrics": null,
+                "rgb_preservation": {
+                  "compared_pixels": 54120,
+                  "high_alpha_threshold": 250,
+                  "mae_r": 0.0,
+                  "mae_g": 0.0,
+                  "mae_b": 0.0,
+                  "mae_total": 0.0,
+                  "max_mean_abs_error": 2.0,
+                  "passed": true
+                },
+                "halo": {
+                  "checked": true,
+                  "border_semi_transparent_fraction": 0.0,
+                  "halo_detected": false
+                },
+                "runtime_ms": 5698,
+                "revision_id": null
+              },
+              "failure_reason": null,
+              "observed_at": "2026-08-30T19:52:32+00:00",
+              "features": {
+                "supports_preview_metadata": true,
+                "supports_model_type_tags": true,
+                "max_upload_size": 104857600,
+                "extension": {
+                  "manager": {
+                    "supports_v4": true
+                  }
+                },
+                "node_replacements": true,
+                "assets": false
+              }
+            },
+            "execution_evidence": {
+              "schema_version": "0.6.1",
+              "client_job_id": "job-4e3d8923a8514155be756f59ecd418a5",
+              "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+              "submitted_at": "2026-08-30T19:52:33+00:00",
+              "first_poll_at": "2026-08-30T19:52:33+00:00",
+              "completed_at": "2026-08-30T19:52:39+00:00",
+              "runtime_ms": 5299.224,
+              "history_record_key": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+              "history_key_matches_prompt_id": true,
+              "source_hashes": {
+                "reference_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+              },
+              "instruction_sha256": null,
+              "edit_contract_sha256": null,
+              "workflow_sha256": "5b387299466b98b3ce7073cee43adb87970bc2a858fc1e87e414261cc09a02d8",
+              "model_ids": [
+                "birefnet"
+              ],
+              "model_file_sha256": {
+                "background_removal/birefnet.safetensors": "9AB37426BF4DE0567AF6B5D21B16151357149139362E6E8992021B8CE356A154"
+              },
+              "seed": 0,
+              "seed_was_used_before": false,
+              "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\birefnet-output.png",
+              "target_existed_before_submission": false,
+              "cache": {
+                "authoritative_history_status": {
+                  "status_str": "success",
+                  "completed": true,
+                  "messages": [
+                    [
+                      "execution_start",
+                      {
+                        "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+                        "timestamp": 1788119553807
+                      }
+                    ],
+                    [
+                      "execution_cached",
+                      {
+                        "nodes": [],
+                        "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+                        "timestamp": 1788119553821
+                      }
+                    ],
+                    [
+                      "execution_success",
+                      {
+                        "prompt_id": "5e37c651-154e-4b8f-ae0d-2985dc467ae8",
+                        "timestamp": 1788119558056
+                      }
+                    ]
+                  ]
+                },
+                "cache_hit_declared": null
+              },
+              "qualification_context": {},
+              "outputs": [
+                {
+                  "filename": "ugas-foreground-mask_00094_.png",
+                  "subfolder": "",
+                  "type": "output",
+                  "node_id": "8",
+                  "data_sha256": "00e60042344b4660757dfe038d3ea6768ab9c8b75473ef37d9278ec4ff27d0ef"
+                },
+                {
+                  "filename": "ugas-master-transparent_00094_.png",
+                  "subfolder": "",
+                  "type": "output",
+                  "node_id": "7",
+                  "data_sha256": "88f50fd03949060b0b0bd6ce4f76da4dfb658fe00d66ab3386b80140110e217a"
+                }
+              ],
+              "runtime_plausibility": {
+                "status": "NOT_RUN"
+              },
+              "fresh_binding": true,
+              "output_paths": [
+                {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\birefnet-output.png",
+                  "sha256": "00e60042344b4660757dfe038d3ea6768ab9c8b75473ef37d9278ec4ff27d0ef",
+                  "filename": "ugas-foreground-mask_00094_.png",
+                  "subfolder": "",
+                  "type": "output"
+                },
+                {
+                  "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\background-removal\\job-487386ac2ee844d0af291ee961edc4b5\\birefnet-output-1.png",
+                  "sha256": "88f50fd03949060b0b0bd6ce4f76da4dfb658fe00d66ab3386b80140110e217a",
+                  "filename": "ugas-master-transparent_00094_.png",
+                  "subfolder": "",
+                  "type": "output"
+                }
+              ]
+            },
+            "promoted": false
+          }
+        },
+        "identity_qa": {
+          "aggregate_score_pass": true,
+          "weapon_pass": true,
+          "head_face_pass": true,
+          "armor_palette_pass": true,
+          "black_cloth_pass": true,
+          "body_proportions_pass": true,
+          "single_subject_pass": true,
+          "failure_reasons": [],
+          "identity_pass": true,
+          "hard_gate_policy": {
+            "region_threshold": 0.45,
+            "body_proportion_threshold": 0.55,
+            "score_cannot_compensate_for_component_failure": true
+          },
+          "foreground": {
+            "alpha_threshold": 48,
+            "minimum_component_area": 32,
+            "secondary_body_area_ratio_threshold": 0.25,
+            "secondary_body_height_ratio_threshold": 0.35,
+            "secondary_body_width_ratio_threshold": 0.35,
+            "large_foreground_components": 1,
+            "components": [
+              {
+                "area": 58484,
+                "relative_area": 0.223099,
+                "bbox": [
+                  109,
+                  7,
+                  359,
+                  510
+                ],
+                "width": 250,
+                "height": 503
+              }
+            ],
+            "secondary_body_components": [],
+            "accessory_or_weapon_components": [],
+            "secondary_to_primary_area_ratio": 0.0,
+            "multiple_subjects_detected": false,
+            "single_subject_pass": true,
+            "classification": "SINGLE_BODY_SUBJECT"
+          }
+        },
+        "output_path": "docs/evidence/sdxl-qualification/outputs/smoke-pi-seed-61701.png",
+        "output_sha256": "0eaa8a8ef9f986c98bccb4c1dc2489e89d9eb4b2158aa1b25f502cf2bd31989a",
+        "execution_evidence": {
+          "schema_version": "0.6.1",
+          "client_job_id": "job-0c195d0cfe754ec4ba25aa4a192472bd",
+          "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "submitted_at": "2026-08-30T19:50:53+00:00",
+          "first_poll_at": "2026-08-30T19:50:53+00:00",
+          "completed_at": "2026-08-30T19:52:28+00:00",
+          "runtime_ms": 94750.247,
+          "history_record_key": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+          "history_key_matches_prompt_id": true,
+          "source_hashes": {
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "openpose_guide_image_sha256": "004c2154239b7c8f2681dbb7b81f5277cfd7602dc3dcad55764a84d0c08c4f7d",
+            "openpose_guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07"
+          },
+          "instruction_sha256": null,
+          "edit_contract_sha256": null,
+          "workflow_sha256": "4c2127cc8f922c59849504b2a50bcde3243f7c9498afc005abf3bc96de467ae1",
+          "model_ids": [
+            "sdxl-base-1.0"
+          ],
+          "model_file_sha256": {
+            "checkpoints/sd_xl_base_1.0.safetensors": "31e35c80fc4829d14f90153f4c74cd59c90b779f6afe05a74cd6120b893f7e5b"
+          },
+          "seed": 61701,
+          "seed_was_used_before": false,
+          "target_path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+          "target_existed_before_submission": false,
+          "cache": {
+            "authoritative_history_status": {
+              "status_str": "success",
+              "completed": true,
+              "messages": [
+                [
+                  "execution_start",
+                  {
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119453642
+                  }
+                ],
+                [
+                  "execution_cached",
+                  {
+                    "nodes": [],
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119453660
+                  }
+                ],
+                [
+                  "execution_success",
+                  {
+                    "prompt_id": "4999f0e3-54be-49c0-b3d3-38f8231b4480",
+                    "timestamp": 1788119544785
+                  }
+                ]
+              ]
+            },
+            "cache_hit_declared": null
+          },
+          "qualification_context": {
+            "prompt_id": "PROMPT-05C-UGAS-SDXL-SMOKE-EVIDENCE-HARD-GATES-v0.6.1",
+            "phase": "SDXL_CONTROL_POSE_PROVIDER_SMOKE_CORRECTION",
+            "factorial_lane": "PI",
+            "controlnet_strength": 0.9,
+            "ipadapter_weight": 0.8,
+            "controlnet_start": 0.0,
+            "controlnet_end": 1.0,
+            "ipadapter_start": 0.0,
+            "ipadapter_end": 1.0,
+            "ipadapter_weight_type": "linear",
+            "canonical_anchor_revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+            "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+            "guide_json_sha256": "ca62dbda783fd022c18dfab3d06d4566053569a1d2c36e11ec63cbc71e51ce07",
+            "previous_frame_chaining": false,
+            "previous_outputs": false
+          },
+          "outputs": [
+            {
+              "filename": "ugas-sdxl-pi_00002_.png",
+              "subfolder": "",
+              "type": "output",
+              "node_id": "14",
+              "data_sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b"
+            }
+          ],
+          "runtime_plausibility": {
+            "status": "NOT_RUN"
+          },
+          "fresh_binding": true,
+          "output_paths": [
+            {
+              "path": "D:\\Projeto Codexx\\ugas\\tmp\\sdxl-provider-v061\\job-e247dbc5da1f47abb228c26eae2c5da5\\smoke-pi-seed-61701.png",
+              "sha256": "b8ea0c43bf97dd0aa885c199385f6a77c09fee3321dc33b5e4fc5629e45ad88b",
+              "filename": "ugas-sdxl-pi_00002_.png",
+              "subfolder": "",
+              "type": "output"
+            }
+          ]
+        },
+        "fresh_binding": true,
+        "technical_pass": false,
+        "output_png": {
+          "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\sdxl-qualification\\outputs\\smoke-pi-seed-61701.png",
+          "format": "PNG",
+          "width": 512,
+          "height": 512,
+          "mode": "RGBA",
+          "source_mode": "RGBA",
+          "bytes": 298261,
+          "sha256": "0eaa8a8ef9f986c98bccb4c1dc2489e89d9eb4b2158aa1b25f502cf2bd31989a",
+          "has_alpha": true,
+          "has_alpha_channel": true,
+          "has_transparent_pixels": true,
+          "alpha_min": 0,
+          "alpha_max": 255,
+          "opaque_fraction": 0.001117706298828125,
+          "transparent_fraction": 0.7658462524414062,
+          "alpha_zero_fraction": 0.7658462524414062,
+          "alpha_opaque_fraction": 0.001117706298828125,
+          "alpha_partial_fraction": 0.23303604125976562,
+          "foreground_coverage": 0.23415374755859375,
+          "near_opaque_threshold": 250,
+          "near_opaque_foreground_fraction": 0.8816917011501744,
+          "soft_edge_foreground_fraction": 0.11830829884982569,
+          "alpha_bbox": [
+            107,
+            6,
+            359,
+            511
+          ],
+          "alpha_centroid": [
+            0.45159020177943043,
+            0.5726336138342674
+          ],
+          "border_contact": false,
+          "non_empty_content": true
+        },
+        "pose": {
+          "metric_version": "detected-joint-pose-error-1.0",
+          "measurement_status": "UNMEASURABLE",
+          "measurable_body_joints": 12,
+          "required_core_present": false,
+          "pck_at_010": 0.0,
+          "nme": 0.82712,
+          "limb_angle_mae_degrees": 10.370672,
+          "lower_body_pck": 0.0,
+          "orientation_match": false,
+          "orientation_score": 0.0,
+          "pose_score": 0.0,
+          "qualifies": false,
+          "failure_reasons": [
+            "required_core_joint_missing",
+            "pck_below_080",
+            "nme_above_010",
+            "lower_body_pck_below_075",
+            "orientation_mismatch"
+          ]
+        },
+        "identity": {
+          "metrics_version": "2.0.0",
+          "identity_descriptor_score": 0.865759,
+          "threshold": 0.58,
+          "weapon_present": true,
+          "components": {
+            "armor_palette_material": 0.905156,
+            "head_face": 0.734464,
+            "black_cloth": 0.953641,
+            "body_proportions": 0.788433,
+            "weapon_presence": 1.0
+          },
+          "candidate_descriptor": {
+            "bbox": [
+              107,
+              6,
+              359,
+              511
+            ],
+            "regions": {
+              "whole": {
+                "count": 58484,
+                "mean_rgb": [
+                  20.773,
+                  46.01,
+                  84.128
+                ],
+                "mean_hsv": [
+                  0.600275,
+                  0.753081,
+                  0.329914
+                ],
+                "luma_histogram": [
+                  0.544781,
+                  0.19118,
+                  0.111586,
+                  0.084211,
+                  0.040541,
+                  0.023254,
+                  0.003386,
+                  0.00106
+                ]
+              },
+              "head_face": {
+                "count": 4049,
+                "mean_rgb": [
+                  74.097,
+                  55.625,
+                  47.936
+                ],
+                "mean_hsv": [
+                  0.048984,
+                  0.353065,
+                  0.290576
+                ],
+                "luma_histogram": [
+                  0.534947,
+                  0.08249,
+                  0.07187,
+                  0.075327,
+                  0.089652,
+                  0.130897,
+                  0.014818,
+                  0.0
+                ]
+              },
+              "armor_palette_material": {
+                "count": 28785,
+                "mean_rgb": [
+                  25.188,
+                  57.655,
+                  102.83
+                ],
+                "mean_hsv": [
+                  0.596972,
+                  0.755051,
+                  0.403254
+                ],
+                "luma_histogram": [
+                  0.428973,
+                  0.211152,
+                  0.147542,
+                  0.112142,
+                  0.054125,
+                  0.038562,
+                  0.00535,
+                  0.002154
+                ]
+              },
+              "black_cloth": {
+                "count": 25124,
+                "mean_rgb": [
+                  14.867,
+                  31.162,
+                  60.489
+                ],
+                "mean_hsv": [
+                  0.607138,
+                  0.754224,
+                  0.237213
+                ],
+                "luma_histogram": [
+                  0.708964,
+                  0.147071,
+                  0.072162,
+                  0.042231,
+                  0.029335,
+                  0.000239,
+                  0.0,
+                  0.0
+                ]
+              }
+            },
+            "body_proportions": {
+              "bbox_width": 0.492188,
+              "bbox_height": 0.986328,
+              "bbox_ratio": 0.49901,
+              "head_area_fraction": 0.031817,
+              "armor_area_fraction": 0.22619,
+              "cloth_area_fraction": 0.197423
+            },
+            "weapon_outer_fraction": 0.448157,
+            "weapon_metallic_outer_fraction": 0.074781,
+            "weapon_present": true
+          },
+          "anchor_descriptor": {
+            "bbox": [
+              159,
+              40,
+              361,
+              487
+            ],
+            "regions": {
+              "whole": {
+                "count": 46683,
+                "mean_rgb": [
+                  30.021,
+                  45.952,
+                  80.122
+                ],
+                "mean_hsv": [
+                  0.613672,
+                  0.625304,
+                  0.314204
+                ],
+                "luma_histogram": [
+                  0.485594,
+                  0.234325,
+                  0.167213,
+                  0.07703,
+                  0.026691,
+                  0.008697,
+                  0.00045,
+                  0.0
+                ]
+              },
+              "head_face": {
+                "count": 7843,
+                "mean_rgb": [
+                  56.02,
+                  77.278,
+                  133.607
+                ],
+                "mean_hsv": [
+                  0.621001,
+                  0.580715,
+                  0.52395
+                ],
+                "luma_histogram": [
+                  0.189978,
+                  0.204514,
+                  0.28382,
+                  0.187811,
+                  0.088614,
+                  0.043351,
+                  0.001913,
+                  0.0
+                ]
+              },
+              "armor_palette_material": {
+                "count": 22641,
+                "mean_rgb": [
+                  21.693,
+                  37.067,
+                  67.864
+                ],
+                "mean_hsv": [
+                  0.61117,
+                  0.68035,
+                  0.266132
+                ],
+                "luma_histogram": [
+                  0.596749,
+                  0.208869,
+                  0.12866,
+                  0.045493,
+                  0.018639,
+                  0.001458,
+                  0.000133,
+                  0.0
+                ]
+              },
+              "black_cloth": {
+                "count": 16877,
+                "mean_rgb": [
+                  23.824,
+                  36.507,
+                  61.554
+                ],
+                "mean_hsv": [
+                  0.610641,
+                  0.612952,
+                  0.241388
+                ],
+                "luma_histogram": [
+                  0.607098,
+                  0.223203,
+                  0.092611,
+                  0.057178,
+                  0.016709,
+                  0.003022,
+                  0.000178,
+                  0.0
+                ]
+              }
+            },
+            "body_proportions": {
+              "bbox_width": 0.394531,
+              "bbox_height": 0.873047,
+              "bbox_ratio": 0.451902,
+              "head_area_fraction": 0.086861,
+              "armor_area_fraction": 0.250748,
+              "cloth_area_fraction": 0.186912
+            },
+            "weapon_outer_fraction": 0.384508,
+            "weapon_metallic_outer_fraction": 0.13961,
+            "weapon_present": true
+          },
+          "failure_reasons": []
+        },
+        "absolute_pose_pass": false,
+        "identity_pass": true,
+        "weapon_present": true,
+        "final_stage_status": "RAW_POSE_FAILED",
+        "status": "RAW_POSE_FAILED",
+        "runtime_ms": 94750.247
+      }
+    ],
+    "raw_contact_sheet": "docs/evidence/sdxl-smoke-raw-p-i-pi-contact-sheet.png",
+    "raw_pose_overlays_contact_sheet": "docs/evidence/sdxl-smoke-raw-pose-overlays-contact-sheet.png",
+    "postprocessed_contact_sheet": "docs/evidence/sdxl-smoke-postprocessed-contact-sheet.png",
+    "phase_table": "docs/evidence/sdxl-smoke-phase-table.json"
+  },
+  "paired": {
+    "status": "NOT_RUN",
+    "records": []
+  },
+  "benchmark": {
+    "status": "NOT_RUN",
+    "reason": "forbidden in v0.6.1"
+  },
+  "confirmation": {
+    "status": "NOT_RUN",
+    "records": [],
+    "green": false
+  },
+  "identity_hard_gates": "docs/evidence/sdxl-identity-hard-gates.json",
+  "p_postprocess_diagnostics": "docs/evidence/sdxl-p-postprocess-diagnostics.json",
+  "execution_evidence": "docs/evidence/execution-evidence-v0.6.1.json",
+  "walk_authorized": false,
+  "anchors_authorized": false,
+  "animation_authorized": false,
+  "production_approval": "not-granted",
+  "external_approval": "not-claimed",
+  "new_generation_jobs": 3
+}

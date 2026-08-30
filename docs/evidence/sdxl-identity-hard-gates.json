@@ -1,0 +1,597 @@
+{
+  "schema_version": "0.6.1",
+  "status": "IDENTITY_HARD_GATES_RECORDED",
+  "canonical_anchor_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "records": [
+    {
+      "lane": "I",
+      "seed": 61701,
+      "descriptor": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.93854,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.957398,
+          "head_face": 0.925218,
+          "black_cloth": 0.946462,
+          "body_proportions": 0.874758,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            84,
+            38,
+            333,
+            496
+          ],
+          "regions": {
+            "whole": {
+              "count": 53931,
+              "mean_rgb": [
+                24.739,
+                48.861,
+                84.819
+              ],
+              "mean_hsv": [
+                0.59975,
+                0.708333,
+                0.332625
+              ],
+              "luma_histogram": [
+                0.526413,
+                0.16803,
+                0.120061,
+                0.086629,
+                0.061838,
+                0.029037,
+                0.006137,
+                0.001854
+              ]
+            },
+            "head_face": {
+              "count": 8315,
+              "mean_rgb": [
+                54.225,
+                87.76,
+                128.379
+              ],
+              "mean_hsv": [
+                0.591296,
+                0.577618,
+                0.503449
+              ],
+              "luma_histogram": [
+                0.315574,
+                0.085027,
+                0.126037,
+                0.176308,
+                0.156825,
+                0.123512,
+                0.015634,
+                0.001082
+              ]
+            },
+            "armor_palette_material": {
+              "count": 25312,
+              "mean_rgb": [
+                23.287,
+                46.195,
+                77.517
+              ],
+              "mean_hsv": [
+                0.596264,
+                0.699586,
+                0.303988
+              ],
+              "luma_histogram": [
+                0.550332,
+                0.186552,
+                0.087626,
+                0.082846,
+                0.062381,
+                0.0224,
+                0.004504,
+                0.003358
+              ]
+            },
+            "black_cloth": {
+              "count": 21650,
+              "mean_rgb": [
+                17.644,
+                40.065,
+                77.116
+              ],
+              "mean_hsv": [
+                0.603831,
+                0.771203,
+                0.302414
+              ],
+              "luma_histogram": [
+                0.59746,
+                0.1503,
+                0.132148,
+                0.067021,
+                0.031778,
+                0.012471,
+                0.00485,
+                0.003972
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.486328,
+            "bbox_height": 0.894531,
+            "bbox_ratio": 0.543668,
+            "head_area_fraction": 0.072912,
+            "armor_area_fraction": 0.221953,
+            "cloth_area_fraction": 0.189842
+          },
+          "weapon_outer_fraction": 0.374163,
+          "weapon_metallic_outer_fraction": 0.064969,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "aggregate_score_pass": true,
+        "weapon_pass": true,
+        "head_face_pass": true,
+        "armor_palette_pass": true,
+        "black_cloth_pass": true,
+        "body_proportions_pass": true,
+        "single_subject_pass": true,
+        "failure_reasons": [],
+        "identity_pass": true,
+        "hard_gate_policy": {
+          "region_threshold": 0.45,
+          "body_proportion_threshold": 0.55,
+          "score_cannot_compensate_for_component_failure": true
+        },
+        "foreground": {
+          "alpha_threshold": 48,
+          "minimum_component_area": 32,
+          "secondary_body_area_ratio_threshold": 0.25,
+          "secondary_body_height_ratio_threshold": 0.35,
+          "secondary_body_width_ratio_threshold": 0.35,
+          "large_foreground_components": 1,
+          "components": [
+            {
+              "area": 53931,
+              "relative_area": 0.20573,
+              "bbox": [
+                85,
+                39,
+                332,
+                495
+              ],
+              "width": 247,
+              "height": 456
+            }
+          ],
+          "secondary_body_components": [],
+          "accessory_or_weapon_components": [],
+          "secondary_to_primary_area_ratio": 0.0,
+          "multiple_subjects_detected": false,
+          "single_subject_pass": true,
+          "classification": "SINGLE_BODY_SUBJECT"
+        }
+      },
+      "output_path": "docs/evidence/sdxl-qualification/outputs/smoke-i-seed-61701.png"
+    },
+    {
+      "lane": "PI",
+      "seed": 61701,
+      "descriptor": {
+        "metrics_version": "2.0.0",
+        "identity_descriptor_score": 0.865759,
+        "threshold": 0.58,
+        "weapon_present": true,
+        "components": {
+          "armor_palette_material": 0.905156,
+          "head_face": 0.734464,
+          "black_cloth": 0.953641,
+          "body_proportions": 0.788433,
+          "weapon_presence": 1.0
+        },
+        "candidate_descriptor": {
+          "bbox": [
+            107,
+            6,
+            359,
+            511
+          ],
+          "regions": {
+            "whole": {
+              "count": 58484,
+              "mean_rgb": [
+                20.773,
+                46.01,
+                84.128
+              ],
+              "mean_hsv": [
+                0.600275,
+                0.753081,
+                0.329914
+              ],
+              "luma_histogram": [
+                0.544781,
+                0.19118,
+                0.111586,
+                0.084211,
+                0.040541,
+                0.023254,
+                0.003386,
+                0.00106
+              ]
+            },
+            "head_face": {
+              "count": 4049,
+              "mean_rgb": [
+                74.097,
+                55.625,
+                47.936
+              ],
+              "mean_hsv": [
+                0.048984,
+                0.353065,
+                0.290576
+              ],
+              "luma_histogram": [
+                0.534947,
+                0.08249,
+                0.07187,
+                0.075327,
+                0.089652,
+                0.130897,
+                0.014818,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 28785,
+              "mean_rgb": [
+                25.188,
+                57.655,
+                102.83
+              ],
+              "mean_hsv": [
+                0.596972,
+                0.755051,
+                0.403254
+              ],
+              "luma_histogram": [
+                0.428973,
+                0.211152,
+                0.147542,
+                0.112142,
+                0.054125,
+                0.038562,
+                0.00535,
+                0.002154
+              ]
+            },
+            "black_cloth": {
+              "count": 25124,
+              "mean_rgb": [
+                14.867,
+                31.162,
+                60.489
+              ],
+              "mean_hsv": [
+                0.607138,
+                0.754224,
+                0.237213
+              ],
+              "luma_histogram": [
+                0.708964,
+                0.147071,
+                0.072162,
+                0.042231,
+                0.029335,
+                0.000239,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.492188,
+            "bbox_height": 0.986328,
+            "bbox_ratio": 0.49901,
+            "head_area_fraction": 0.031817,
+            "armor_area_fraction": 0.22619,
+            "cloth_area_fraction": 0.197423
+          },
+          "weapon_outer_fraction": 0.448157,
+          "weapon_metallic_outer_fraction": 0.074781,
+          "weapon_present": true
+        },
+        "anchor_descriptor": {
+          "bbox": [
+            159,
+            40,
+            361,
+            487
+          ],
+          "regions": {
+            "whole": {
+              "count": 46683,
+              "mean_rgb": [
+                30.021,
+                45.952,
+                80.122
+              ],
+              "mean_hsv": [
+                0.613672,
+                0.625304,
+                0.314204
+              ],
+              "luma_histogram": [
+                0.485594,
+                0.234325,
+                0.167213,
+                0.07703,
+                0.026691,
+                0.008697,
+                0.00045,
+                0.0
+              ]
+            },
+            "head_face": {
+              "count": 7843,
+              "mean_rgb": [
+                56.02,
+                77.278,
+                133.607
+              ],
+              "mean_hsv": [
+                0.621001,
+                0.580715,
+                0.52395
+              ],
+              "luma_histogram": [
+                0.189978,
+                0.204514,
+                0.28382,
+                0.187811,
+                0.088614,
+                0.043351,
+                0.001913,
+                0.0
+              ]
+            },
+            "armor_palette_material": {
+              "count": 22641,
+              "mean_rgb": [
+                21.693,
+                37.067,
+                67.864
+              ],
+              "mean_hsv": [
+                0.61117,
+                0.68035,
+                0.266132
+              ],
+              "luma_histogram": [
+                0.596749,
+                0.208869,
+                0.12866,
+                0.045493,
+                0.018639,
+                0.001458,
+                0.000133,
+                0.0
+              ]
+            },
+            "black_cloth": {
+              "count": 16877,
+              "mean_rgb": [
+                23.824,
+                36.507,
+                61.554
+              ],
+              "mean_hsv": [
+                0.610641,
+                0.612952,
+                0.241388
+              ],
+              "luma_histogram": [
+                0.607098,
+                0.223203,
+                0.092611,
+                0.057178,
+                0.016709,
+                0.003022,
+                0.000178,
+                0.0
+              ]
+            }
+          },
+          "body_proportions": {
+            "bbox_width": 0.394531,
+            "bbox_height": 0.873047,
+            "bbox_ratio": 0.451902,
+            "head_area_fraction": 0.086861,
+            "armor_area_fraction": 0.250748,
+            "cloth_area_fraction": 0.186912
+          },
+          "weapon_outer_fraction": 0.384508,
+          "weapon_metallic_outer_fraction": 0.13961,
+          "weapon_present": true
+        },
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "aggregate_score_pass": true,
+        "weapon_pass": true,
+        "head_face_pass": true,
+        "armor_palette_pass": true,
+        "black_cloth_pass": true,
+        "body_proportions_pass": true,
+        "single_subject_pass": true,
+        "failure_reasons": [],
+        "identity_pass": true,
+        "hard_gate_policy": {
+          "region_threshold": 0.45,
+          "body_proportion_threshold": 0.55,
+          "score_cannot_compensate_for_component_failure": true
+        },
+        "foreground": {
+          "alpha_threshold": 48,
+          "minimum_component_area": 32,
+          "secondary_body_area_ratio_threshold": 0.25,
+          "secondary_body_height_ratio_threshold": 0.35,
+          "secondary_body_width_ratio_threshold": 0.35,
+          "large_foreground_components": 1,
+          "components": [
+            {
+              "area": 58484,
+              "relative_area": 0.223099,
+              "bbox": [
+                109,
+                7,
+                359,
+                510
+              ],
+              "width": 250,
+              "height": 503
+            }
+          ],
+          "secondary_body_components": [],
+          "accessory_or_weapon_components": [],
+          "secondary_to_primary_area_ratio": 0.0,
+          "multiple_subjects_detected": false,
+          "single_subject_pass": true,
+          "classification": "SINGLE_BODY_SUBJECT"
+        }
+      },
+      "output_path": "docs/evidence/sdxl-qualification/outputs/smoke-pi-seed-61701.png"
+    }
+  ],
+  "hard_gate_policy": {
+    "aggregate_score_cannot_compensate": true,
+    "required": [
+      "aggregate_score",
+      "weapon",
+      "head_face",
+      "armor_palette",
+      "black_cloth",
+      "body_proportions",
+      "single_subject"
+    ]
+  }
+}
