@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.5.3",
+  "status": "POSE_QA_MODEL_LICENSE_GAP",
+  "calibration_status": "METRIC_CALIBRATION_PASSED",
+  "estimator_status": "POSE_QA_MODEL_LICENSE_GAP",
+  "provider_gap_emission_authorized": false,
+  "lanes": {
+    "A": {
+      "status": "NOT_RUN"
+    },
+    "C": {
+      "status": "NOT_RUN"
+    },
+    "R": {
+      "status": "NOT_RUN"
+    }
+  },
+  "seeds": [
+    53701,
+    53702,
+    53703
+  ],
+  "decision": "NO_PROVIDER_DECISION_AUTHORIZED",
+  "reason": "provider recheck requires qualified metric and independent estimator; current estimator is blocked by task-bundle license gap",
+  "new_generation_jobs_submitted": false,
+  "walk_authorized": false,
+  "outputs": []
+}

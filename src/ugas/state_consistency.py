@@ -1,8 +1,9 @@
-"""Fatal consistency checks for the active UGAS release state.
+"""Fatal consistency checks for the active UGAS v0.5.3 release state.
 
-Historical review files are evidence of what happened in an earlier slice.  The
-active checkpoint and review must describe the same current gate and must never
-promote a result that the current-state record marks as blocked.
+The v0.5.2 provider-gap conclusion is historical evidence only. v0.5.3
+reclassifies that conclusion because the old additive gate could require a
+score above the metric's maximum. This module is independent from provider
+routing so a contradictory state cannot authorize generation.
 """
 
 from __future__ import annotations
@@ -11,15 +12,24 @@ import re
 from typing import Any, Mapping
 
 
-CURRENT_SCHEMA_VERSION = "0.5.2"
+CURRENT_SCHEMA_VERSION = "0.5.3"
 CANONICAL_R4_SHA256 = "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
 CANONICAL_R4_REVISION = "revision-3a425d184b1a49be9f6d6c8d52d04b96"
-CURRENT_PHASE = "POSE_CONTROL_ESCALATION"
-GAP_STATUS = "MULTI_REFERENCE_POSE_CONTROL_GAP"
+CURRENT_PHASE = "POSE_METRIC_CALIBRATION"
+PREVIOUS_REPORTED_STATUS = "LOCAL_POSE_CONTROL_PROVIDER_GAP"
+AUDIT_RECLASSIFICATION = "POSE_METRIC_GATE_DESIGN_GAP"
 
 
 class StateConsistencyError(ValueError):
     """Raised when a release state is contradictory or incomplete."""
+
+
+def _expected_nested_status(state: Mapping[str, Any]) -> str | None:
+    stop_reason = state.get("stop_reason")
+    if stop_reason is not None:
+        return str(stop_reason)
+    gate = state.get("current_gate")
+    return str(gate) if gate else None
 
 
 def validate_state_consistency(
@@ -31,24 +41,27 @@ def validate_state_consistency(
     required = {
         "schema_version", "version", "phase", "previous_release", "current_gate",
         "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions",
+        "generation_provider_change_authorized", "walk_authorized", "state_consistency",
     }
     failures.extend(f"missing:{key}" for key in sorted(required - set(state)))
     if state.get("schema_version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_schema_version_must_be_0.5.2")
+        failures.append("state_schema_version_must_be_0.5.3")
     if state.get("version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_version_must_be_0.5.2")
+        failures.append("state_version_must_be_0.5.3")
     if state.get("phase") != CURRENT_PHASE:
         failures.append("state_phase_invalid")
+    if state.get("generation_provider_change_authorized") is not False:
+        failures.append("generation_provider_change_must_be_false")
+    if state.get("walk_authorized") is not False:
+        failures.append("walk_must_be_false")
 
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
-    if previous.get("version") != "0.5.1":
-        failures.append("previous_release_must_be_0.5.1")
-    if previous.get("status") != GAP_STATUS:
-        failures.append("previous_release_gap_status_missing")
-    if previous.get("anchors_passed") is not False:
-        failures.append("previous_release_anchors_must_be_false")
-    if previous.get("walk_passed") is not False:
-        failures.append("previous_release_walk_must_be_false")
+    if previous.get("version") != "0.5.2":
+        failures.append("previous_release_must_be_0.5.2")
+    if previous.get("reported_status") != PREVIOUS_REPORTED_STATUS:
+        failures.append("previous_release_reported_status_missing")
+    if previous.get("audit_reclassification") != AUDIT_RECLASSIFICATION:
+        failures.append("previous_release_audit_reclassification_missing")
 
     anchor = state.get("canonical_anchor") if isinstance(state.get("canonical_anchor"), Mapping) else {}
     if anchor.get("revision_id") != CANONICAL_R4_REVISION:
@@ -61,14 +74,28 @@ def validate_state_consistency(
     if not isinstance(state.get("forbidden_actions"), list) or not state.get("forbidden_actions"):
         failures.append("forbidden_actions_required")
 
+    nested = state.get("state_consistency") if isinstance(state.get("state_consistency"), Mapping) else {}
+    expected_nested = _expected_nested_status(state)
+    if nested.get("status") != expected_nested:
+        failures.append("nested_status_must_equal_current_gate_or_stop_reason")
+    if nested.get("contradictory_walk_or_anchor_promotion") is not False:
+        failures.append("nested_promotion_flag_must_be_false")
+    if nested.get("new_generation_started") is not False:
+        failures.append("new_generation_must_be_false")
+
     combined = f"{checkpoint_text}\n{review_text}"
     if CURRENT_SCHEMA_VERSION not in combined:
-        failures.append("active_documents_must_identify_0.5.2")
-    if GAP_STATUS not in combined:
-        failures.append("active_documents_must_record_v0.5.1_gap")
+        failures.append("active_documents_must_identify_0.5.3")
+    if AUDIT_RECLASSIFICATION not in combined:
+        failures.append("active_documents_must_record_pose_metric_design_gap")
     gate = str(state.get("current_gate", ""))
     if gate and gate not in combined:
         failures.append("active_gate_missing_from_documents")
+    if "A próxima ação autorizada é verificar o RefControl" in combined or re.search(
+        r"pr[oó]xima\s+a[cç][aã]o[^\n]{0,100}verificar\s+o?\s*RefControl", combined, re.IGNORECASE
+    ):
+        failures.append("active_documents_have_stale_refcontrol_pending_action")
+
     contradictory = re.compile(
         r"(?:WALK(?:/FRONT/8|\s+FRONT\s*[/ ]\s*8|\s+V[23])?[^\n.]{0,80}\b(?:PASSED|PASSOU|PASSARAM|PASSADO|QUALIFIED|QUALIFICADO)|"
         r"(?:DIRECTIONAL\s+ANCHOR|ÂNCORAS?)[^\n.]{0,80}\b(?:PASSED|PASSOU|PASSARAM|PASSADO|QUALIFIED|QUALIFICADO))",
@@ -91,8 +118,10 @@ def validate_state_consistency(
         "failures": failures,
         "checked": {
             "current_gate": state.get("current_gate"),
-            "previous_release_status": previous.get("status"),
+            "stop_reason": state.get("stop_reason"),
+            "nested_status": nested.get("status"),
             "contradictory_promotion_scan": True,
+            "stale_refcontrol_action_scan": True,
         },
     }
 

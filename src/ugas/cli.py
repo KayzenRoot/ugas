@@ -1,4 +1,4 @@
-"""UGAS v0.5.2 machine-readable CLI."""
+"""UGAS v0.5.3 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -55,7 +55,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.5.2")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.5.3")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)

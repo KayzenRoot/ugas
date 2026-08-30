@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.5.3",
+  "manifest_type": "review-visual-evidence",
+  "review_state": "pose-qa-model-license-gap",
+  "images": [
+    {
+      "archive_name": "pose-metric-calibration-contact-sheet.png",
+      "source_path": "docs/evidence/pose-metric-calibration-contact-sheet.png",
+      "revision_id": "v0.5.3-metric",
+      "sha256": "28e5307d0b1348c518794a4bafccbfe462f1329881fe562ed1ecf6d1f4c3b3b4"
+    },
+    {
+      "archive_name": "pose-metric-negative-controls-contact-sheet.png",
+      "source_path": "docs/evidence/pose-metric-negative-controls-contact-sheet.png",
+      "revision_id": "v0.5.3-metric",
+      "sha256": "4f7c9731bc111b6f21129335f13b593ae3f9463a7a5c17edaf65af8391f94bb1"
+    },
+    {
+      "archive_name": "v052-refcontrol-baseline-contact.png",
+      "source_path": "docs/evidence/v052-refcontrol-baseline-contact.png",
+      "revision_id": "v0.5.2-historical",
+      "sha256": "d7953457ecf055f49683aaceebc464292e4aa3344c4e54bb84bb2cae52a18443"
+    },
+    {
+      "archive_name": "v053-pose-detection-overlay-contact.png",
+      "source_path": "docs/evidence/v053-pose-detection-overlay-contact.png",
+      "revision_id": "v0.5.3-estimator",
+      "sha256": "324c7302e6cc507ea10fd6c6568441b0f8070e6cfa366779b9554cdf7d59a8e7"
+    }
+  ],
+  "human_visual_review": "required",
+  "production_approval": "not-granted"
+}

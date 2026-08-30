@@ -1,0 +1,321 @@
+{
+  "schema_version": "0.5.3",
+  "metric_version": "detected-joint-pose-error-1.0",
+  "status": "METRIC_CALIBRATION_PASSED",
+  "primary_metric": "detected_joint_pose_error",
+  "legacy_pose_score": {
+    "status": "DIAGNOSTIC_ONLY",
+    "metric": "v0.5.2 guide keypoint/segment/silhouette score",
+    "primary_gate_uses_it": false,
+    "reason": "foreground/silhouette evidence can be satisfied by a torso, cape, or weapon and is not a detected-joint measurement",
+    "weapon_contamination_test": "sword fixture is intentionally present only as a primary-metric invariance control"
+  },
+  "normalization": {
+    "translation": "pelvis/root subtraction",
+    "scale": "max torso, shoulder width, half body height",
+    "rotation_invariant": false,
+    "left_right_preserved": true
+  },
+  "thresholds": {
+    "target_min": 0.9,
+    "negative_margin": 0.2,
+    "negative_max": 0.65,
+    "pck_at_010": 0.8,
+    "nme_max": 0.1,
+    "limb_angle_mae_max_degrees": 18.0,
+    "lower_body_pck_min": 0.75,
+    "sword_delta_max": 0.05
+  },
+  "criteria": {
+    "target_at_least_090": true,
+    "every_negative_at_least_020_below_target": true,
+    "neutral_front_at_most_065": true,
+    "wrong_side_at_most_065": true,
+    "t_pose_at_most_065": true,
+    "sword_target_delta_at_most_005": true,
+    "sword_neutral_delta_at_most_005": true,
+    "mirrored_wrong_side_not_accepted": true,
+    "limb_ablation_detected": true
+  },
+  "target_score": 1.0,
+  "negative_scores": {
+    "NEUTRAL_FRONT": 0.531149,
+    "MIRRORED_WRONG_SIDE": 0.278094,
+    "T_POSE": 0.599312,
+    "ARMS_DOWN": 0.531149,
+    "LEGS_WRONG": 0.620541,
+    "ARM_WRONG": 0.714028
+  },
+  "sword_score_deltas": {
+    "target_plus_sword": 0.0,
+    "neutral_plus_sword": 0.0
+  },
+  "limb_ablation": {
+    "metric_version": "detected-joint-pose-error-1.0",
+    "measurement_status": "UNMEASURABLE",
+    "measurable_body_joints": 12,
+    "required_core_present": false,
+    "pck_at_010": 1.0,
+    "nme": 0.0,
+    "limb_angle_mae_degrees": 0.0,
+    "lower_body_pck": 1.0,
+    "orientation_match": true,
+    "orientation_score": 1.0,
+    "pose_score": 0.0,
+    "qualifies": false,
+    "failure_reasons": [
+      "required_core_joint_missing"
+    ]
+  },
+  "fixtures": {
+    "TARGET": {
+      "fixture": "TARGET",
+      "kind": "positive",
+      "image": "docs/evidence/pose-metric-fixtures/target.png",
+      "image_sha256": "5378b8ae84632902dc1f493edccae16ec522d9b0625f81c9b3ad4e70a4874860",
+      "sword_present": false,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.0,
+        "limb_angle_mae_degrees": 0.0,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 1.0,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    "NEUTRAL_FRONT": {
+      "fixture": "NEUTRAL_FRONT",
+      "kind": "negative",
+      "image": "docs/evidence/pose-metric-fixtures/neutral_front.png",
+      "image_sha256": "99ba166bf93dca5cba3c765dffe220727699979db6c462b4ee5ffc009639c253",
+      "sword_present": false,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.384615,
+        "nme": 0.30223,
+        "limb_angle_mae_degrees": 5.058805,
+        "lower_body_pck": 0.333333,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.531149,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      }
+    },
+    "MIRRORED_WRONG_SIDE": {
+      "fixture": "MIRRORED_WRONG_SIDE",
+      "kind": "negative",
+      "image": "docs/evidence/pose-metric-fixtures/mirrored_wrong_side.png",
+      "image_sha256": "f4c2892c291beef8ff0e3101c792adaf8f3696578f27834333faedab9b5204f6",
+      "sword_present": false,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.076923,
+        "nme": 0.795317,
+        "limb_angle_mae_degrees": 0.0,
+        "lower_body_pck": 0.0,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.278094,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      }
+    },
+    "T_POSE": {
+      "fixture": "T_POSE",
+      "kind": "negative",
+      "image": "docs/evidence/pose-metric-fixtures/t_pose.png",
+      "image_sha256": "5e39b16100eda74bdfdace11a4826770afc25b586a0a8a1be208af2ed7042e3d",
+      "sword_present": false,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.307692,
+        "nme": 0.290453,
+        "limb_angle_mae_degrees": 8.595321,
+        "lower_body_pck": 0.333333,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.599312,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075"
+        ]
+      }
+    },
+    "ARMS_DOWN": {
+      "fixture": "ARMS_DOWN",
+      "kind": "negative",
+      "image": "docs/evidence/pose-metric-fixtures/arms_down.png",
+      "image_sha256": "b9e7f32c2810ff78deb16164cacc1af92ff92c3e2681fd7e3c7938c3bd155442",
+      "sword_present": false,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.384615,
+        "nme": 0.30223,
+        "limb_angle_mae_degrees": 5.058805,
+        "lower_body_pck": 0.333333,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.531149,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      }
+    },
+    "LEGS_WRONG": {
+      "fixture": "LEGS_WRONG",
+      "kind": "negative",
+      "image": "docs/evidence/pose-metric-fixtures/legs_wrong.png",
+      "image_sha256": "bd3b1980d0ba309ac112bff41d441df96fbb7c39bd1c6655ee82bd9c423839df",
+      "sword_present": false,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.307692,
+        "nme": 0.203777,
+        "limb_angle_mae_degrees": 8.792955,
+        "lower_body_pck": 0.333333,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.620541,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075"
+        ]
+      }
+    },
+    "ARM_WRONG": {
+      "fixture": "ARM_WRONG",
+      "kind": "negative",
+      "image": "docs/evidence/pose-metric-fixtures/arm_wrong.png",
+      "image_sha256": "077ca3dd900f8bf1b5f93b3af106797c8a37bc587109d0b87b01ceb91389a76a",
+      "sword_present": false,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.692308,
+        "nme": 0.366612,
+        "limb_angle_mae_degrees": 38.98182,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.714028,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "limb_angle_mae_above_18_degrees"
+        ]
+      }
+    },
+    "TARGET_PLUS_LONG_VERTICAL_SWORD": {
+      "fixture": "TARGET_PLUS_LONG_VERTICAL_SWORD",
+      "kind": "weapon-negative-control",
+      "image": "docs/evidence/pose-metric-fixtures/target_plus_long_vertical_sword.png",
+      "image_sha256": "1859111ed8b37b6c9f58f85b5e6a0709d1588a22c96867d9e0b6bb719f2ceed7",
+      "sword_present": true,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.0,
+        "limb_angle_mae_degrees": 0.0,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 1.0,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    "NEUTRAL_FRONT_PLUS_VERTICAL_SWORD": {
+      "fixture": "NEUTRAL_FRONT_PLUS_VERTICAL_SWORD",
+      "kind": "weapon-negative-control",
+      "image": "docs/evidence/pose-metric-fixtures/neutral_front_plus_vertical_sword.png",
+      "image_sha256": "ad37146ad5ab55db3cad6351f47853885cf5bf59ab157101c0b2eaac2123a7a4",
+      "sword_present": true,
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.384615,
+        "nme": 0.30223,
+        "limb_angle_mae_degrees": 5.058805,
+        "lower_body_pck": 0.333333,
+        "orientation_match": false,
+        "orientation_score": 0.0,
+        "pose_score": 0.531149,
+        "qualifies": false,
+        "failure_reasons": [
+          "pck_below_080",
+          "nme_above_010",
+          "lower_body_pck_below_075",
+          "orientation_mismatch"
+        ]
+      }
+    }
+  },
+  "contact_sheets": {
+    "calibration": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\pose-metric-calibration-contact-sheet.png",
+      "sha256": "28e5307d0b1348c518794a4bafccbfe462f1329881fe562ed1ecf6d1f4c3b3b4",
+      "columns": 3,
+      "rows": 2,
+      "frame_count": 5
+    },
+    "negative_controls": {
+      "path": "D:\\Projeto Codexx\\ugas\\docs\\evidence\\pose-metric-negative-controls-contact-sheet.png",
+      "sha256": "4f7c9731bc111b6f21129335f13b593ae3f9463a7a5c17edaf65af8391f94bb1",
+      "columns": 3,
+      "rows": 2,
+      "frame_count": 4
+    }
+  },
+  "deterministic": true,
+  "ai_generated": false,
+  "provider_routing_used": false
+}

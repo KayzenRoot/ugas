@@ -30,6 +30,7 @@ from ugas.workflow_registry import load_workflow, load_workflows, validate_api_w
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
 from ugas.pose_guides import CHALLENGE_NAME, POSE_GUIDE_RENDERER_VERSION, WALK_NAMES, validate_pose_guide
 from ugas.multiview import AB_POSE_GAIN, AB_POSE_THRESHOLD, AB_POSE_FLOOR, FRAME_POSE_THRESHOLD, IDENTITY_THRESHOLD
+from ugas.pose_metric_calibration import normalized_headroom_gain, provider_gap_emission_authorized, validate_causal_gate_configuration
 
 
 RESULTS: list[tuple[str, bool, str]] = []
@@ -309,21 +310,11 @@ def _v051_checks() -> None:
 
 
 def _v052_checks() -> None:
-    """Validate the active escalation without converting a gap into approval."""
-    state_path = ROOT / "docs/evidence/current-state.json"
-    checkpoint_path = ROOT / "CHECKPOINT.md"
+    """Validate immutable v0.5.2 evidence without treating it as active state."""
     review_path = ROOT / "REVIEW-v0.5.2.md"
-    try:
-        state = load_json(state_path)
-        state_schema = load_json(ROOT / "schemas/current-state.json")
-        validate_instance(state, state_schema)
-        consistency = validate_state_consistency(state, checkpoint_path.read_text(encoding="utf-8"), review_path.read_text(encoding="utf-8"))
-        check("v052:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state and documents are consistent")
-        check("v052:final-stop", state.get("current_gate") == "LOCAL_POSE_CONTROL_PROVIDER_GAP" and state.get("stop_reason") == "LOCAL_POSE_CONTROL_PROVIDER_GAP", "pose-control escalation ends at an explicit provider gap")
-    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError) as exc:
-        check("v052:state-consistency", False, str(exc)); check("v052:final-stop", False, str(exc))
-
     review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""
+    check("v052:historical-review-present", review_path.is_file() and "0.5.2" in review, "v0.5.2 review remains an immutable historical artifact")
+    check("v052:historical-state-separated", "docs/evidence/current-state.json" not in review or "0.5.3" not in review, "historical review is not treated as the active state record")
     headings = [
         "STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.5.1 AUDIT RESULT", "STATE CONSISTENCY FIX",
         "CURRENT STATE", "OPENPOSE GUIDE V3", "NATIVE REFERENCE ORDER BENCHMARK", "NATIVE POSE QUALIFICATION",
@@ -388,9 +379,87 @@ def _v052_checks() -> None:
         check("v052:visual-manifest", False, str(exc))
 
 
+def _v053_checks() -> None:
+    """Validate the active metric-calibration slice and its fail-closed stop."""
+    state_path = ROOT / "docs/evidence/current-state.json"
+    review_path = ROOT / "REVIEW-v0.5.3.md"
+    checkpoint_path = ROOT / "CHECKPOINT.md"
+    try:
+        state = load_json(state_path)
+        consistency = validate_state_consistency(state, checkpoint_path.read_text(encoding="utf-8"), review_path.read_text(encoding="utf-8"))
+        check("v053:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state and documents are consistent")
+        check("v053:state-schema", state.get("schema_version") == "0.5.3" and state.get("version") == "0.5.3" and state.get("phase") == "POSE_METRIC_CALIBRATION", "active state is v0.5.3 metric calibration")
+        check("v053:state-stop", state.get("current_gate") == state.get("stop_reason") == state.get("state_consistency", {}).get("status") == "POSE_QA_MODEL_LICENSE_GAP", "active gate, stop reason and nested status agree")
+        check("v053:no-generation-authorized", state.get("generation_provider_change_authorized") is False and state.get("walk_authorized") is False and state.get("state_consistency", {}).get("new_generation_started") is False, "provider and walk remain unauthorized")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v053:state-consistency", False, str(exc)); check("v053:state-schema", False, str(exc)); check("v053:state-stop", False, str(exc))
+
+    try:
+        impossible = validate_causal_gate_configuration(0.894403, 0.15)
+        check("v053:impossibility-guard", impossible["status"] == "INVALID_CAUSAL_GATE_CONFIGURATION" and impossible["required_score"] == 1.044403, "A plus delta cannot exceed metric maximum")
+        check("v053:headroom", abs(normalized_headroom_gain(0.894403, 0.992258) - 0.9266835232061514) < 1e-9, "normalized headroom gain is computed from remaining room")
+    except (TypeError, ValueError, KeyError) as exc:
+        check("v053:impossibility-guard", False, str(exc)); check("v053:headroom", False, str(exc))
+
+    try:
+        calibration = load_json(ROOT / "docs/evidence/pose-metric-calibration.json")
+        criteria = calibration.get("criteria", {})
+        fixtures = calibration.get("fixtures", {})
+        check("v053:calibration-pass", calibration.get("status") == "METRIC_CALIBRATION_PASSED" and calibration.get("primary_metric") == "detected_joint_pose_error" and all(criteria.values()), "detected-joint metric calibration passed all criteria")
+        check("v053:calibration-fixtures", set(fixtures) == {"TARGET", "NEUTRAL_FRONT", "MIRRORED_WRONG_SIDE", "T_POSE", "ARMS_DOWN", "LEGS_WRONG", "ARM_WRONG", "TARGET_PLUS_LONG_VERTICAL_SWORD", "NEUTRAL_FRONT_PLUS_VERTICAL_SWORD"} and calibration.get("deterministic") is True and calibration.get("provider_routing_used") is False, "all nine deterministic fixtures are present")
+        check("v053:legacy-diagnostic-only", calibration.get("legacy_pose_score", {}).get("status") == "DIAGNOSTIC_ONLY" and calibration.get("legacy_pose_score", {}).get("primary_gate_uses_it") is False, "legacy silhouette score is diagnostic-only")
+        check("v053:calibration-contacts", all((ROOT / path).is_file() for path in ("docs/evidence/pose-metric-calibration-contact-sheet.png", "docs/evidence/pose-metric-negative-controls-contact-sheet.png")), "calibration contact sheets are present")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v053:calibration-pass", False, str(exc)); check("v053:calibration-fixtures", False, str(exc)); check("v053:calibration-contacts", False, str(exc))
+
+    try:
+        estimator = load_json(ROOT / "docs/evidence/pose-qa-estimator-qualification.json")
+        model = load_json(ROOT / "docs/evidence/pose-qa-estimator-model.json")
+        status = estimator.get("status")
+        check("v053:estimator-status", status in {"POSE_QA_ESTIMATOR_QUALIFIED", "POSE_QA_ESTIMATOR_GAP", "POSE_QA_MODEL_LICENSE_GAP"} and estimator.get("qa_only") is True and estimator.get("provider_routing_used") is False, f"independent estimator status={status}")
+        check("v053:estimator-mapping", "MEDIAPIPE_TO_UGAS" in str(estimator.get("detected_joint_mapping")) and estimator.get("generation_graph_unchanged") is True, "MediaPipe mapping is explicit and generation graph is unchanged")
+        check("v053:model-bound", model.get("schema_version") == "0.5.3" and model.get("model", {}).get("url") and model.get("model", {}).get("sha256") and model.get("model", {}).get("bytes", 0) > 0 and model.get("model", {}).get("outside_git") is True and model.get("model", {}).get("outside_review_zip") is True, "model URL, bytes, hash and exclusion boundary are recorded")
+        check("v053:model-license-gap", status == "POSE_QA_MODEL_LICENSE_GAP" and model.get("model", {}).get("license_status") == "UNDETERMINED", "undetermined bundle terms stop qualification explicitly")
+        check("v053:estimator-overlay", (ROOT / "docs/evidence/v053-pose-detection-overlay-contact.png").is_file(), "estimator blocked overlay is present")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v053:estimator-status", False, str(exc)); check("v053:model-bound", False, str(exc)); check("v053:model-license-gap", False, str(exc))
+
+    try:
+        provider = load_json(ROOT / "docs/evidence/v053-provider-qualification.json")
+        execution = load_json(ROOT / "docs/evidence/execution-evidence-v0.5.3.json")
+        check("v053:provider-blocked", provider.get("status") == "POSE_QA_MODEL_LICENSE_GAP" and provider.get("provider_gap_emission_authorized") is False and provider.get("new_generation_jobs_submitted") is False and provider.get("outputs") == [], "provider recheck is blocked before estimator qualification")
+        check("v053:execution-blocked", execution.get("record_count") == 0 and execution.get("generation_jobs_authorized") is False and execution.get("previous_frame_chaining") is False and execution.get("provider_routing_used") is False, "no new generation execution is recorded")
+        check("v053:reserved-seeds", execution.get("seeds_reserved_but_not_used") == [53701, 53702, 53703], "new seeds are recorded as unused")
+        check("v053:baseline-contact", (ROOT / "docs/evidence/v052-refcontrol-baseline-contact.png").is_file(), "historical RefControl baseline contact is materialized")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v053:provider-blocked", False, str(exc)); check("v053:execution-blocked", False, str(exc))
+
+    try:
+        table = load_json(ROOT / "docs/evidence/v053-pose-error-table.json")
+        check("v053:error-table", table.get("schema_version") == "0.5.3" and len(table.get("rows", [])) == 9 and table.get("status") == "METRIC_CALIBRATION_PASSED", "nine-row pose error table is bound to calibration")
+        visual = load_json(ROOT / "docs/evidence/review-visuals-v0.5.3.json")
+        result = validate_review_visual_manifest(visual, ROOT)
+        check("v053:visual-manifest", result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "v0.5.3 visual roles are hash-bound")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v053:error-table", False, str(exc)); check("v053:visual-manifest", False, str(exc))
+
+    review = review_path.read_text(encoding="utf-8") if review_path.is_file() else ""
+    headings = [
+        "STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.5.2 AUDIT RESULT", "GATE IMPOSSIBILITY FINDING",
+        "STATE CONSISTENCY FIX", "POSE METRIC CALIBRATION", "SYNTHETIC NEGATIVE CONTROLS", "POSE QA ESTIMATOR",
+        "POSE QA MODEL / LICENSE / HASH", "DETECTED-JOINT METRIC", "CAUSAL EFFECT METRIC", "NATIVE LANE RECHECK",
+        "REFCONTROL LANE RECHECK", "IDENTITY / WEAPON QA", "FINAL POSE PROVIDER DECISION", "EXECUTION EVIDENCE",
+        "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB", "SECURITY", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS",
+        "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP",
+    ]
+    check("v053:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.5.3 review headings present")
+    check("v053:review-no-stale-action", "verificar o RefControl" not in (checkpoint_path.read_text(encoding="utf-8") + review), "stale RefControl pending action is absent")
+    check("v053:no-v053-provider-output", not any((ROOT / "docs/evidence/v053").glob("*.png")) if (ROOT / "docs/evidence/v053").is_dir() else True, "no provider output directory was created")
+
+
 def main() -> int:
     required = [
-        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
+        "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.5.3.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "docs/test-coverage-matrix-v0.5.3.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/pose-metric-calibration.json", "docs/evidence/pose-metric-calibration-contact-sheet.png", "docs/evidence/pose-metric-negative-controls-contact-sheet.png", "docs/evidence/pose-qa-estimator-qualification.json", "docs/evidence/pose-qa-estimator-model.json", "docs/evidence/v052-refcontrol-baseline-contact.png", "docs/evidence/v053-pose-detection-overlay-contact.png", "docs/evidence/v053-pose-error-table.json", "docs/evidence/v053-provider-qualification.json", "docs/evidence/execution-evidence-v0.5.3.json", "docs/evidence/review-visuals-v0.5.3.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
     ]
     for item in required:
         path = ROOT / item; check(f"path:{item}", path.exists(), "present" if path.exists() else "missing")
@@ -409,15 +478,15 @@ def main() -> int:
         workflows = load_workflows(ROOT); check("registry:workflows", len(workflows) >= 6, "four historical FLUX lanes, native multi-reference and BiRefNet")
         for item in workflows:
             record = load_workflow(ROOT, item["id"]); graph = validate_api_workflow(record["api"]); model = load_model(ROOT, item["required_models"][0]); compatible = validate_model_workflow_compatibility(model, record)["compatible"]
-            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", UGAS_VERSION}, "native graph and capability compatibility valid")
+            check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and not item["custom_nodes_required"] and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", UGAS_VERSION}, "native graph and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v053_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.2")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.5.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.5.3")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

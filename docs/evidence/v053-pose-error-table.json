@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.5.3",
+  "source": "docs/evidence/pose-metric-calibration.json",
+  "status": "METRIC_CALIBRATION_PASSED",
+  "rows": [
+    {
+      "fixture": "TARGET",
+      "pose_score": 1.0,
+      "pck_at_010": 1.0,
+      "nme": 0.0,
+      "limb_angle_mae_degrees": 0.0,
+      "lower_body_pck": 1.0,
+      "orientation_match": true,
+      "qualifies": true
+    },
+    {
+      "fixture": "NEUTRAL_FRONT",
+      "pose_score": 0.531149,
+      "pck_at_010": 0.384615,
+      "nme": 0.30223,
+      "limb_angle_mae_degrees": 5.058805,
+      "lower_body_pck": 0.333333,
+      "orientation_match": false,
+      "qualifies": false
+    },
+    {
+      "fixture": "MIRRORED_WRONG_SIDE",
+      "pose_score": 0.278094,
+      "pck_at_010": 0.076923,
+      "nme": 0.795317,
+      "limb_angle_mae_degrees": 0.0,
+      "lower_body_pck": 0.0,
+      "orientation_match": false,
+      "qualifies": false
+    },
+    {
+      "fixture": "T_POSE",
+      "pose_score": 0.599312,
+      "pck_at_010": 0.307692,
+      "nme": 0.290453,
+      "limb_angle_mae_degrees": 8.595321,
+      "lower_body_pck": 0.333333,
+      "orientation_match": true,
+      "qualifies": false
+    },
+    {
+      "fixture": "ARMS_DOWN",
+      "pose_score": 0.531149,
+      "pck_at_010": 0.384615,
+      "nme": 0.30223,
+      "limb_angle_mae_degrees": 5.058805,
+      "lower_body_pck": 0.333333,
+      "orientation_match": false,
+      "qualifies": false
+    },
+    {
+      "fixture": "LEGS_WRONG",
+      "pose_score": 0.620541,
+      "pck_at_010": 0.307692,
+      "nme": 0.203777,
+      "limb_angle_mae_degrees": 8.792955,
+      "lower_body_pck": 0.333333,
+      "orientation_match": true,
+      "qualifies": false
+    },
+    {
+      "fixture": "ARM_WRONG",
+      "pose_score": 0.714028,
+      "pck_at_010": 0.692308,
+      "nme": 0.366612,
+      "limb_angle_mae_degrees": 38.98182,
+      "lower_body_pck": 1.0,
+      "orientation_match": true,
+      "qualifies": false
+    },
+    {
+      "fixture": "TARGET_PLUS_LONG_VERTICAL_SWORD",
+      "pose_score": 1.0,
+      "pck_at_010": 1.0,
+      "nme": 0.0,
+      "limb_angle_mae_degrees": 0.0,
+      "lower_body_pck": 1.0,
+      "orientation_match": true,
+      "qualifies": true
+    },
+    {
+      "fixture": "NEUTRAL_FRONT_PLUS_VERTICAL_SWORD",
+      "pose_score": 0.531149,
+      "pck_at_010": 0.384615,
+      "nme": 0.30223,
+      "limb_angle_mae_degrees": 5.058805,
+      "lower_body_pck": 0.333333,
+      "orientation_match": false,
+      "qualifies": false
+    }
+  ]
+}

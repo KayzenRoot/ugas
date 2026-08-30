@@ -143,7 +143,7 @@ def challenge_openpose_guide() -> dict[str, Any]:
 
 def validate_openpose_guide(guide: dict[str, Any]) -> dict[str, Any]:
     failures: list[str] = []
-    if guide.get("schema_version") != UGAS_VERSION:
+    if guide.get("schema_version") not in {"0.5.2", UGAS_VERSION}:
         failures.append("schema_version_invalid")
     if guide.get("guide_type") not in {"view", "walk", "qualification-challenge"}:
         failures.append("guide_type_invalid")

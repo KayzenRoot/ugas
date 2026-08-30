@@ -66,6 +66,12 @@ REQUIRED_V052_REVIEW_EVIDENCE = {
     "refcontrol-strength-benchmark-contact-sheet.png",
     "refcontrol-pose-overlay-contact.png",
 }
+REQUIRED_V053_REVIEW_EVIDENCE = {
+    "pose-metric-calibration-contact-sheet.png",
+    "pose-metric-negative-controls-contact-sheet.png",
+    "v052-refcontrol-baseline-contact.png",
+    "v053-pose-detection-overlay-contact.png",
+}
 
 
 def _digest(path: Path) -> str:
@@ -92,6 +98,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V051_WALK_REVIEW_EVIDENCE if state == "walk" else REQUIRED_V051_ANCHOR_REVIEW_EVIDENCE if state == "anchors" else REQUIRED_V051_BASE_REVIEW_EVIDENCE
     elif schema_version == "0.5.2":
         required = REQUIRED_V052_REVIEW_EVIDENCE
+    elif schema_version == "0.5.3":
+        required = REQUIRED_V053_REVIEW_EVIDENCE
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

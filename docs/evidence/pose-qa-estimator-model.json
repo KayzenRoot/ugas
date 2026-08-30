@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.5.3",
+  "library": {
+    "name": "mediapipe",
+    "installed": true,
+    "version": "0.10.35",
+    "import_status": "importable",
+    "repository": "https://github.com/google-ai-edge/mediapipe",
+    "api": "https://ai.google.dev/edge/api/mediapipe/python/mp/tasks/vision/PoseLandmarker",
+    "license": "Apache-2.0 (library repository)"
+  },
+  "model": {
+    "filename": "pose_landmarker_full.task",
+    "path_not_published": true,
+    "url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task",
+    "status": "DOWNLOADED_FOR_LOCAL_QUALIFICATION",
+    "bytes": 9398198,
+    "sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "license_status": "UNDETERMINED",
+    "license_gap": "The official library is Apache-2.0, but the versioned .task bundle terms for commercial use and redistribution are not authoritatively determined.",
+    "license_evidence_url": "https://github.com/google-ai-edge/mediapipe/issues/6306",
+    "outside_git": true,
+    "outside_review_zip": true
+  },
+  "official_sources": {
+    "repository": "https://github.com/google-ai-edge/mediapipe",
+    "python_api": "https://ai.google.dev/edge/api/mediapipe/python/mp/tasks/vision/PoseLandmarker",
+    "model_bundle": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task",
+    "license_gap": "https://github.com/google-ai-edge/mediapipe/issues/6306"
+  }
+}

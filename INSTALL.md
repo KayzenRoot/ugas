@@ -1,4 +1,4 @@
-# Installing UGAS 0.5.2
+# Installing UGAS 0.5.3
 
 ## Requirements
 
@@ -16,8 +16,8 @@ python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
 ```
 
-## v0.5.2 pose-control escalation
+## v0.5.3 pose-metric calibration
 
-Leia `docs/evidence/current-state.json` antes de iniciar qualquer execução. O fluxo é: consistência de estado, guia OpenPose COCO-18 v3, benchmark nativo A/B/C com seeds frescas 52701–52703 e, somente se houver gap nativo, verificação estrita do RefControl LoRA e de um loader LoRA nativo compatível. A ordem das referências, prompt, histórico, seed, workflow e hashes são evidências obrigatórias.
+Leia `docs/evidence/current-state.json` antes de iniciar qualquer execução. O fluxo é: consistência de estado, guard de impossibilidade, calibração sintética de joints, qualificação do estimador QA e só então uma eventual rechecagem A/C/R com seeds 53701–53703. A métrica antiga de silhueta é diagnóstica. O estimador não é provider nem nó de geração.
 
-Os pesos não são publicados. Âncoras v3, walk/front/8 v3 e spritesheet são proibidos enquanto a pose não estiver qualificada. A aprovação visual humana é independente dos gates automatizados.
+Os pesos e bundles não são publicados. Âncoras v3, walk/front/8 v3 e spritesheet são proibidos enquanto a pose não estiver qualificada. O estado atual é `POSE_QA_MODEL_LICENSE_GAP`; resolver os termos do bundle é pré-requisito. A aprovação visual humana é independente dos gates automatizados.

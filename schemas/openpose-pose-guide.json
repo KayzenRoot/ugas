@@ -4,7 +4,7 @@
   "type": "object",
   "required": ["schema_version", "guide_type", "guide_id", "canvas", "baseline_y", "joint_schema", "joints", "limbs", "weapon", "renderer", "source_controlled", "generated_ai_content", "deterministic"],
   "properties": {
-    "schema_version": {"const": "0.5.2"},
+    "schema_version": {"enum": ["0.5.2", "0.5.3"]},
     "guide_type": {"enum": ["view", "walk", "qualification-challenge"]},
     "guide_id": {"type": "string"},
     "canvas": {"type": "object", "required": ["width", "height"], "properties": {"width": {"const": 512}, "height": {"const": 512}}},

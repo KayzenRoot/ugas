@@ -83,9 +83,11 @@ SCHEMAS = [
     "animation-qa",
     "current-state",
     "openpose-pose-guide",
+    "pose-metric-calibration",
+    "pose-qa-estimator",
 ]
 
-UGAS_VERSION = "0.5.2"
+UGAS_VERSION = "0.5.3"
 
 CONSUMER_FILES = [
     "studio.json",

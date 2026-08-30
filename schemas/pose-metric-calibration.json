@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.5.3 pose metric calibration",
+  "type": "object",
+  "required": ["schema_version", "metric_version", "status", "primary_metric", "criteria", "fixtures", "deterministic", "provider_routing_used"],
+  "properties": {
+    "schema_version": {"const": "0.5.3"},
+    "metric_version": {"type": "string", "minLength": 1},
+    "status": {"enum": ["METRIC_CALIBRATION_PASSED", "METRIC_CALIBRATION_FAILED"]},
+    "primary_metric": {"const": "detected_joint_pose_error"},
+    "criteria": {"type": "object"},
+    "fixtures": {"type": "object"},
+    "deterministic": {"const": true},
+    "ai_generated": {"const": false},
+    "provider_routing_used": {"const": false}
+  }
+}

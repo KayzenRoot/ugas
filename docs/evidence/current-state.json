@@ -1,42 +1,44 @@
 {
-  "schema_version": "0.5.2",
-  "version": "0.5.2",
-  "phase": "POSE_CONTROL_ESCALATION",
+  "schema_version": "0.5.3",
+  "version": "0.5.3",
+  "phase": "POSE_METRIC_CALIBRATION",
   "previous_release": {
-    "version": "0.5.1",
-    "status": "MULTI_REFERENCE_POSE_CONTROL_GAP",
-    "anchors_passed": false,
-    "walk_passed": false,
-    "evidence": "docs/evidence/multiref-v2-qualification.json",
-    "historical_review": "REVIEW-v0.5.1.md"
+    "version": "0.5.2",
+    "reported_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP",
+    "audit_reclassification": "POSE_METRIC_GATE_DESIGN_GAP",
+    "historical_review": "REVIEW-v0.5.2.md",
+    "evidence": "docs/evidence/refcontrol-pose-qualification.json"
   },
-  "current_gate": "LOCAL_POSE_CONTROL_PROVIDER_GAP",
-  "stop_reason": "LOCAL_POSE_CONTROL_PROVIDER_GAP",
+  "current_gate": "POSE_QA_MODEL_LICENSE_GAP",
+  "stop_reason": "POSE_QA_MODEL_LICENSE_GAP",
   "canonical_anchor": {
     "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
     "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
     "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
   },
+  "generation_provider_change_authorized": false,
+  "walk_authorized": false,
   "allowed_next_actions": [
-    "provide_or_approve_a_native_pose_control_provider",
-    "rerun_the_full_native_or_refcontrol_gate_only_after_provider_change"
+    "resolve_or_document_authoritative_license_terms_for_the_versioned_pose_qa_bundle",
+    "rerun_pose_qa_estimator_qualification_after_license_resolution",
+    "continue_only_with_a_fresh_v053_measurement_gate"
   ],
   "forbidden_actions": [
-    "download_unverified_weights",
-    "submit_new_comfyui_job_before_phase_zero_pass",
+    "download_or_publish_unverified_generation_weights",
+    "submit_new_comfyui_generation_job_before_metric_and_estimator_qualification",
     "use_dwpose_or_controlnet_aux",
     "use_custom_nodes_or_custom_lora_loader",
-    "lower_pose_gain_threshold_below_0.15",
+    "use_additive_pose_gate_above_metric_maximum",
     "generate_v3_anchors_or_walk_before_pose_lane_qualification",
-    "create_spritesheet_before_frame_qa"
+    "create_spritesheet_or_gif_before_frame_qa"
   ],
   "state_consistency": {
-    "status": "NATIVE_REFERENCE_ORDER_POSE_CONTROL_GAP",
+    "status": "POSE_QA_MODEL_LICENSE_GAP",
     "validator": "src/ugas/state_consistency.py",
     "contradictory_walk_or_anchor_promotion": false,
-    "new_generation_started": true,
-    "native_reference_order_evidence": "docs/evidence/native-reference-order-qualification.json",
-    "refcontrol_evidence": "docs/evidence/refcontrol-pose-qualification.json",
-    "refcontrol_model_evidence": "docs/evidence/refcontrol-model-qualification.json"
+    "new_generation_started": false,
+    "metric_calibration_evidence": "docs/evidence/pose-metric-calibration.json",
+    "estimator_evidence": "docs/evidence/pose-qa-estimator-qualification.json",
+    "model_evidence": "docs/evidence/pose-qa-estimator-model.json"
   }
 }

@@ -1,22 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.5.2 state",
+  "title": "UGAS active v0.5.3 state",
   "type": "object",
-  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions"],
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "state_consistency"],
   "properties": {
-    "schema_version": {"const": "0.5.2"},
-    "version": {"const": "0.5.2"},
-    "phase": {"const": "POSE_CONTROL_ESCALATION"},
+    "schema_version": {"const": "0.5.3"},
+    "version": {"const": "0.5.3"},
+    "phase": {"const": "POSE_METRIC_CALIBRATION"},
     "current_gate": {"type": "string", "minLength": 1},
     "stop_reason": {"type": ["string", "null"]},
+    "generation_provider_change_authorized": {"const": false},
+    "walk_authorized": {"const": false},
     "previous_release": {
       "type": "object",
-      "required": ["version", "status", "anchors_passed", "walk_passed"],
+      "required": ["version", "reported_status", "audit_reclassification"],
       "properties": {
-        "version": {"const": "0.5.1"},
-        "status": {"const": "MULTI_REFERENCE_POSE_CONTROL_GAP"},
-        "anchors_passed": {"const": false},
-        "walk_passed": {"const": false}
+        "version": {"const": "0.5.2"},
+        "reported_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP"},
+        "audit_reclassification": {"const": "POSE_METRIC_GATE_DESIGN_GAP"}
       }
     },
     "canonical_anchor": {
@@ -25,6 +26,15 @@
       "properties": {"asset_id": {"type": "string"}, "revision_id": {"type": "string"}, "sha256": {"pattern": "^[0-9a-fA-F]{64}$"}}
     },
     "allowed_next_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-    "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+    "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "state_consistency": {
+      "type": "object",
+      "required": ["status", "contradictory_walk_or_anchor_promotion", "new_generation_started"],
+      "properties": {
+        "status": {"type": "string", "minLength": 1},
+        "contradictory_walk_or_anchor_promotion": {"const": false},
+        "new_generation_started": {"const": false}
+      }
+    }
   }
 }

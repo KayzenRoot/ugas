@@ -1,32 +1,30 @@
-# UGAS checkpoint - v0.5.2
+# UGAS checkpoint - v0.5.3
 
-**STATUS:** LOCAL_POSE_CONTROL_PROVIDER_GAP. A execução v0.5.2 parou fail-closed: nenhum lane de controle de pose foi qualificado e a revisão visual humana permanece separada.
-**VERSION:** 0.5.2
-**PHASE:** PROMPT-04D / POSE_CONTROL_ESCALATION
+**STATUS:** POSE_QA_MODEL_LICENSE_GAP. A calibração de métrica passou, a biblioteca MediaPipe foi importada localmente, mas o bundle Pose Landmarker .task não possui termos autoritativos determinados para uso comercial e redistribuição. O processo parou fail-closed antes de qualquer novo job de geração.
+**VERSION:** 0.5.3
+**PHASE:** PROMPT-04E / POSE_METRIC_CALIBRATION
 
 ## Current state
 
-O estado machine-authoritative é [`docs/evidence/current-state.json`](docs/evidence/current-state.json). O release v0.5.1 terminou corretamente em `MULTI_REFERENCE_POSE_CONTROL_GAP`: o ganho causal B-A foi 0.140250, abaixo do limiar fixo de 0.15. No v0.5.2, A/B/C também não qualificaram; o RefControl verificou hash/licença/loader, mas seu melhor ganho foi 0.097855. Portanto, os resultados positivos antigos ou parciais não autorizam uma lane atual de âncoras ou walk.
+O estado machine-authoritative é [docs/evidence/current-state.json](docs/evidence/current-state.json). O resultado reportado no v0.5.2 como POSE CONTROL PROVIDER GAP foi reclassificado no v0.5.3 como POSE_METRIC_GATE_DESIGN_GAP: a baseline histórica A=0.894403 somada ao delta fixo 0.15 exigia B=1.044403, acima do máximo do score [0,1]. O v0.5.2 permanece histórico e não foi reescrito.
 
-## Canonical anchor
+## State consistency correction
 
-Asset `asset-2fec6fed1d714d0cb58ad75b56d7ba71`, revisão R4 `revision-3a425d184b1a49be9f6d6c8d52d04b96`, SHA-256 `7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798`. A aprovação histórica é somente `external-pipeline-anchor`; `PRODUCTION_READY` continua falso até aprovação separada.
+- O gate ativo é POSE_QA_MODEL_LICENSE_GAP e o nested state_consistency.status é exatamente igual ao stop reason.
+- generation_provider_change_authorized e walk_authorized permanecem falsos.
+- O checkpoint não afirma que RefControl está pendente: o artifact histórico já contém hash, licença e loader nativo qualificados.
+- Âncoras direcionais v3, walk v3, spritesheet e GIF não foram promovidos.
 
-## Phase 0 correction
+## Pose metric calibration
 
-- A contradição do checkpoint anterior foi corrigida: não há afirmação ativa de que âncoras ou walk v2 tenham passado.
-- `REVIEW-v0.5.1.md` permanece histórico e separado; não é reescrito para alterar o resultado auditado.
-- O validador fatal compara este checkpoint, o review v0.5.2 e `current-state.json`; uma fixture com promoção contraditória deve falhar.
-- `LOCAL_POSE_CONTROL_PROVIDER_GAP` é o stop final desta execução: o melhor RefControl foi força 0.8, média 0.992258, piso 0.991656 e ganho +0.097855 sobre A=0.894403; o limiar causal +0.15 não foi atingido.
-- Nenhum novo download, workflow ou job ComfyUI é permitido antes do resultado verde dessa consistência.
+A métrica primária detected_joint_pose_error foi calibrada com nove fixtures determinísticos, sem IA: alvo, neutral frontal, lado espelhado, T-pose, braços para baixo, pernas erradas, braço errado e dois controles com espada vertical longa. Ela usa raiz/pelve, escala de torso/corpo, PCK@0.10, NME, erro angular de membros, PCK de lower body e orientação esquerda/direita. A métrica antiga de silhueta/keypoint ficou somente diagnóstica.
 
-## Current gate and boundaries
+O alvo obteve 1.000; os negativos ficaram entre 0.278 e 0.714; neutral, mirror e T-pose ficaram abaixo de 0.65; a espada não alterou o score; a ablação de membro foi detectada. A evidência está em [docs/evidence/pose-metric-calibration.json](docs/evidence/pose-metric-calibration.json).
 
-O guia determinístico OpenPose COCO-18 v3 e o benchmark nativo A/B/C foram executados. A baseline A ficou em 0.894403; B e C não tiveram 3/3 tecnicamente válidos por falhas de QA BiRefNet, portanto nenhuma lane qualificou. A próxima ação autorizada é verificar o RefControl, seu hash/licença e um loader LoRA nativo. O limiar de ganho de pose permanece `0.15` e não pode ser reduzido. DWPose, `controlnet_aux`, ControlNet, nós customizados, loaders LoRA customizados, cloud, serviços pagos e pesos fora do contrato estão proibidos.
+## Estimator boundary
 
-Âncoras v3, walk/front/8 v3 e qualquer spritesheet permanecem bloqueados até existir uma lane de controle de pose qualificada e a QA correspondente.
+MediaPipe Pose Landmarker foi selecionado apenas como estimador independente QA. A versão local importável é registrada, o bundle foi baixado somente fora do repositório, e sua hash/bytes estão registradas. Como os termos do bundle não foram determinados de fonte autoritativa, nenhuma detecção em outputs estilizados foi usada para qualificação e nenhum provider foi medido nesta execução.
 
-## Evidence and publication
+## Execution and publication
 
-O review ativo é [`REVIEW-v0.5.2.md`](REVIEW-v0.5.2.md). O review ZIP v0.5.2 só será criado depois de commit, push, verificação pública do `main` e validação final; será a última escrita do processo. Reviews anteriores permanecem históricos.
-Animação genérica permanece fora deste slice e não autoriza qualquer promoção de walk sem uma lane de pose qualificada e QA correspondente.
+Não houve novo job ComfyUI, mudança de provider, âncora, walk ou spritesheet no v0.5.3. Animação genérica permanece fora deste slice e não autoriza promoção de walk. O review ativo é [REVIEW-v0.5.3.md](REVIEW-v0.5.3.md); reviews v0.5.2 e anteriores são históricos. A aprovação visual humana e qualquer aprovação de produção continuam separadas.
