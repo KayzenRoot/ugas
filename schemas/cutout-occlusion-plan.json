@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.2 cutout occlusion plan",
+  "type": "object",
+  "required": ["schema_version", "plan_id", "source_sha256", "rig_reference", "topology_adjacency", "phase_plans", "overlap_classes", "thresholds", "plan_sha256"],
+  "properties": {
+    "schema_version": {"const": "0.7.2"},
+    "plan_id": {"const": "cutout-occlusion-plan-v072"},
+    "provider_id": {"const": "deterministic-cutout-rig-2d"},
+    "source_sha256": {"pattern": "^[0-9a-f]{64}$"},
+    "rig_reference": {"const": "docs/evidence/r4-cutout-rig-v071.json"},
+    "topology_adjacency": {"type": "array", "minItems": 10},
+    "phase_plans": {"type": "object", "required": ["K1-contact-left", "K2-passing-left", "K3-contact-right", "K4-passing-right"]},
+    "overlap_classes": {"type": "array", "contains": {"const": "CRITICAL_COLLISION"}},
+    "thresholds": {"type": "object", "required": ["unexpected_overlap_fraction", "critical_collision_pixels", "seam_min_distance_px", "safe_margin_px"]},
+    "plan_sha256": {"pattern": "^[0-9a-f]{64}$"}
+  }
+}

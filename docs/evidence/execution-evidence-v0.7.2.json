@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.7.2",
+  "status": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED",
+  "baseline_commit": "d42c34f8140c27428e21d21ffabeb4b7ca778577",
+  "source": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "sam2_runs": 0,
+  "sam2_calls": {
+    "runtime_smoke": 0,
+    "rig_revision_segmentation": 0,
+    "per_frame_segmentation": 0
+  },
+  "comfyui_generation_jobs": 0,
+  "walk": "NOT_RUN",
+  "spritesheet": "NOT_RUN",
+  "gif": "NOT_RUN",
+  "key_poses": [
+    "K1-contact-left",
+    "K2-passing-left",
+    "K3-contact-right",
+    "K4-passing-right"
+  ],
+  "external_visual_review": "REQUIRED",
+  "external_approval": "not-claimed",
+  "source_masks_unchanged": true
+}

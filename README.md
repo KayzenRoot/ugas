@@ -1,8 +1,8 @@
-# UGAS 0.7.1
+# UGAS 0.7.2
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão.
 
-O prompt v0.7.1 corrige falsos verdes de fidelidade do cutout-rig R4: hips anatômicos distintos, mapeamento explícito de lados, anexo de arma limitado, ownership source-only, QA de componentes, reconstrução Q0 sem residual, matrizes affine forward e métricas reais de seam/retention. O provider permanece fail-closed por sobreposição/seam e retenção de Q2.
+O prompt v0.7.2 qualifica a correção v0.7.1 com plano hash-bound de oclusão, QA topológico de juntas, retenção explicada por profundidade e quatro poses estruturais front-walk. O provider permanece fail-closed: `walk_authorized=false`, sem ComfyUI, sem nova execução SAM2 e com revisão visual externa obrigatória.
 
 ## Quick start
 
@@ -12,12 +12,11 @@ python -m unittest discover -s tests -q
 python scripts/validation/validate_state_consistency.py
 python scripts/validation/run_validation.py
 python scripts/validation/verify_review_archive.py <FINAL_REVIEW_ZIP>
-python -m ugas.cli cutout-rig qualify-sam2 --json
-python -m ugas.cli cutout-rig build --asset-id asset-2fec6fed1d714d0cb58ad75b56d7ba71 --json
-python -m ugas.cli cutout-rig pose-pilot --poses q0,q1,q2 --json
+python scripts/validation/run_cutout_rig_v072.py --json
+python -m ugas.cli --version
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.7.1.md](REVIEW-v0.7.1.md). O runtime SAM2 e o checkpoint são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.7.2.md](REVIEW-v0.7.2.md). O runtime SAM2 e o checkpoint histórico são externos; nenhum peso é distribuído com o repositório.
 
 ## Boundaries
 
@@ -25,4 +24,4 @@ O provider `deterministic-cutout-rig-2d` aceita somente humanoide frontal com RG
 
 Não são autorizados neste slice walk de 8 frames, âncoras, spritesheet, GIF, animação genérica, provider alternativo, geração ComfyUI ou pesos dentro do Git/ZIP. `REVIEW_ARCHIVE_VERIFIED` é verificação local do artefato, não aprovação externa.
 
-Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.7.1.md](REVIEW-v0.7.1.md) e [docs/evidence/current-state.json](docs/evidence/current-state.json). O review v0.7.0, v0.6.2 e as releases anteriores continuam disponíveis como histórico.
+Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.7.2.md](REVIEW-v0.7.2.md) e [docs/evidence/current-state.json](docs/evidence/current-state.json). O review v0.7.1, v0.7.0, v0.6.2 e as releases anteriores continuam disponíveis como histórico.

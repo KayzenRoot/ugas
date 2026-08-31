@@ -1,0 +1,584 @@
+{
+  "schema_version": "0.7.2",
+  "status": "CUTOUT_RIG_RECONSTRUCTION_PASSED",
+  "baseline_reference": "docs/evidence/cutout-q0-reconstruction-qa-v071.json",
+  "metrics": {
+    "alpha_iou": 1.0,
+    "rgb_mae": 1.147443,
+    "bbox_drift_px": 0.0,
+    "source_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "rendered_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "diff": null
+  },
+  "hard_gates": {
+    "alpha_iou": true,
+    "rgb_mae": true,
+    "bbox_drift_px": true,
+    "source_residual_fallback_absent": true,
+    "no_generated_pixels": true
+  },
+  "transforms": [
+    {
+      "part": "left_thigh",
+      "source_pivot": [
+        296.1561,
+        252.2711
+      ],
+      "target_pivot": [
+        296.1561,
+        252.2711
+      ],
+      "source_end": [
+        304.6358,
+        352.4924
+      ],
+      "target_end": [
+        304.6358,
+        352.4924
+      ],
+      "source_bone_length": 100.579393,
+      "target_bone_length": 100.579393,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        296.1561,
+        252.2711
+      ],
+      "forward_source_end": [
+        304.6358,
+        352.4924
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 10
+    },
+    {
+      "part": "right_thigh",
+      "source_pivot": [
+        242.9306,
+        253.2929
+      ],
+      "target_pivot": [
+        242.9306,
+        253.2929
+      ],
+      "source_end": [
+        236.19,
+        350.9961
+      ],
+      "target_end": [
+        236.19,
+        350.9961
+      ],
+      "source_bone_length": 97.935443,
+      "target_bone_length": 97.935443,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        242.9306,
+        253.2929
+      ],
+      "forward_source_end": [
+        236.19,
+        350.9961
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 10
+    },
+    {
+      "part": "left_shin_foot",
+      "source_pivot": [
+        304.6358,
+        352.4924
+      ],
+      "target_pivot": [
+        304.6358,
+        352.4924
+      ],
+      "source_end": [
+        309.4539,
+        448.5532
+      ],
+      "target_end": [
+        309.4539,
+        448.5532
+      ],
+      "source_bone_length": 96.181554,
+      "target_bone_length": 96.181554,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        304.6358,
+        352.4924
+      ],
+      "forward_source_end": [
+        309.4539,
+        448.5532
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 11
+    },
+    {
+      "part": "right_shin_foot",
+      "source_pivot": [
+        236.19,
+        350.9961
+      ],
+      "target_pivot": [
+        236.19,
+        350.9961
+      ],
+      "source_end": [
+        234.1367,
+        447.4095
+      ],
+      "target_end": [
+        234.1367,
+        447.4095
+      ],
+      "source_bone_length": 96.435262,
+      "target_bone_length": 96.435262,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        236.19,
+        350.9961
+      ],
+      "forward_source_end": [
+        234.1367,
+        447.4095
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 11
+    },
+    {
+      "part": "torso_pelvis",
+      "source_pivot": [
+        267.01195,
+        126.3005
+      ],
+      "target_pivot": [
+        267.01195,
+        126.3005
+      ],
+      "source_end": [
+        269.54335,
+        252.78199999999998
+      ],
+      "target_end": [
+        269.54335,
+        252.78199999999998
+      ],
+      "source_bone_length": 126.506829,
+      "target_bone_length": 126.506829,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        267.01195,
+        126.3005
+      ],
+      "forward_source_end": [
+        269.54335,
+        252.782
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 20
+    },
+    {
+      "part": "left_upper_arm",
+      "source_pivot": [
+        314.2688,
+        126.481
+      ],
+      "target_pivot": [
+        314.2688,
+        126.481
+      ],
+      "source_end": [
+        332.4109,
+        193.1442
+      ],
+      "target_end": [
+        332.4109,
+        193.1442
+      ],
+      "source_bone_length": 69.087756,
+      "target_bone_length": 69.087756,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        314.2688,
+        126.481
+      ],
+      "forward_source_end": [
+        332.4109,
+        193.1442
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 30
+    },
+    {
+      "part": "right_upper_arm",
+      "source_pivot": [
+        219.7551,
+        126.12
+      ],
+      "target_pivot": [
+        219.7551,
+        126.12
+      ],
+      "source_end": [
+        203.5855,
+        192.0721
+      ],
+      "target_end": [
+        203.5855,
+        192.0721
+      ],
+      "source_bone_length": 67.905342,
+      "target_bone_length": 67.905342,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        219.7551,
+        126.12
+      ],
+      "forward_source_end": [
+        203.5855,
+        192.0721
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 30
+    },
+    {
+      "part": "left_forearm_hand",
+      "source_pivot": [
+        332.4109,
+        193.1442
+      ],
+      "target_pivot": [
+        332.4109,
+        193.1442
+      ],
+      "source_end": [
+        348.8077,
+        258.5055
+      ],
+      "target_end": [
+        348.8077,
+        258.5055
+      ],
+      "source_bone_length": 67.386605,
+      "target_bone_length": 67.386605,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        332.4109,
+        193.1442
+      ],
+      "forward_source_end": [
+        348.8077,
+        258.5055
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 31
+    },
+    {
+      "part": "right_forearm_hand",
+      "source_pivot": [
+        203.5855,
+        192.0721
+      ],
+      "target_pivot": [
+        203.5855,
+        192.0721
+      ],
+      "source_end": [
+        195.0874,
+        257.3811
+      ],
+      "target_end": [
+        195.0874,
+        257.3811
+      ],
+      "source_bone_length": 65.859572,
+      "target_bone_length": 65.859572,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        203.5855,
+        192.0721
+      ],
+      "forward_source_end": [
+        195.0874,
+        257.3811
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 31
+    },
+    {
+      "part": "head",
+      "source_pivot": [
+        269.8312,
+        78.8774
+      ],
+      "target_pivot": [
+        269.8312,
+        78.8774
+      ],
+      "source_end": [
+        267.012,
+        111.1197
+      ],
+      "target_end": [
+        267.012,
+        111.1197
+      ],
+      "source_bone_length": 32.365318,
+      "target_bone_length": 32.365318,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        269.8312,
+        78.8774
+      ],
+      "forward_source_end": [
+        267.012,
+        111.1197
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 40
+    },
+    {
+      "part": "sword",
+      "source_pivot": [
+        195.0874,
+        257.3811
+      ],
+      "target_pivot": [
+        195.0874,
+        257.3811
+      ],
+      "source_end": [
+        160.0,
+        459.0
+      ],
+      "target_end": [
+        160.0,
+        459.0
+      ],
+      "source_bone_length": 204.649228,
+      "target_bone_length": 204.649228,
+      "uniform_scale": 1.0,
+      "rotation_delta_degrees": 0.0,
+      "forward_affine_matrix": [
+        [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      "forward_source_pivot": [
+        195.0874,
+        257.3811
+      ],
+      "forward_source_end": [
+        160.0,
+        459.0
+      ],
+      "forward_pivot_error_px": 0.0,
+      "forward_end_error_px": 0.0,
+      "forward_angle_error_degrees": 0.0,
+      "forward_bone_length_drift_fraction": 0.0,
+      "nonuniform_scale": false,
+      "scale_gate": true,
+      "z_group": 50
+    }
+  ],
+  "source_residual_fallback_used": false,
+  "sam2_runs": 0
+}

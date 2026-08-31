@@ -1,8 +1,8 @@
-# ComfyUI integration notes - UGAS v0.7.1
+# ComfyUI integration notes - UGAS v0.7.2
 
-The active release is v0.7.1 and the deterministic cutout-rig lane executes without ComfyUI generation. The v0.6.2 and earlier runtime/model/custom-node records below remain historical.
+The active release is v0.7.2 and the deterministic cutout-rig lane executes without ComfyUI generation. The v0.7.1, v0.6.2 and earlier runtime/model/custom-node records below remain historical.
 
-The v0.6.0 release records the bounded SDXL ControlNet/IP-Adapter runtime qualification. The ComfyUI/RTX 5050 and A/C/R evidence below is historical and remains unchanged. v0.7.1 uses an isolated SAM2 runtime and Pillow renderer; its ComfyUI generation count is zero and it remains stopped at `CUTOUT_RIG_SEAM_GAP`.
+The v0.6.0 release records the bounded SDXL ControlNet/IP-Adapter runtime qualification. The ComfyUI/RTX 5050 and A/C/R evidence below is historical and remains unchanged. v0.7.2 reuses v0.7.1 SAM2 outputs as immutable inputs, uses a Pillow renderer, and has zero ComfyUI generation jobs; it remains blocked from walk until external visual review.
 
 O alvo local é ComfyUI `0.34.0` com NVIDIA GeForce RTX 5050. O runtime e o grafo nativo foram verificados para as lanes A, C e R. Não houve custom node nem troca de provider.
 

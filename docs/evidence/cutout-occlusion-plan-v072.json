@@ -1,0 +1,288 @@
+{
+  "schema_version": "0.7.2",
+  "plan_id": "cutout-occlusion-plan-v072",
+  "provider_id": "deterministic-cutout-rig-2d",
+  "adapter_id": "front-walk-cutout-gait-v2",
+  "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "rig_reference": "docs/evidence/r4-cutout-rig-v071.json",
+  "topology_adjacency": [
+    {
+      "parent": "head",
+      "child": "torso_pelvis",
+      "joint": "neck",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "torso_pelvis",
+      "child": "left_upper_arm",
+      "joint": "shoulder_left",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "torso_pelvis",
+      "child": "right_upper_arm",
+      "joint": "shoulder_right",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "torso_pelvis",
+      "child": "left_thigh",
+      "joint": "hip_left",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "torso_pelvis",
+      "child": "right_thigh",
+      "joint": "hip_right",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "left_upper_arm",
+      "child": "left_forearm_hand",
+      "joint": "elbow_left",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "right_upper_arm",
+      "child": "right_forearm_hand",
+      "joint": "elbow_right",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "left_thigh",
+      "child": "left_shin_foot",
+      "joint": "knee_left",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "right_thigh",
+      "child": "right_shin_foot",
+      "joint": "knee_right",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    },
+    {
+      "parent": "right_forearm_hand",
+      "child": "sword",
+      "joint": "wrist_right",
+      "allowed_overlap_class": "JOINT_OVERLAP"
+    }
+  ],
+  "phase_plans": {
+    "K1-contact-left": {
+      "phase": "K1-contact-left",
+      "z_order": [
+        "right_shin_foot",
+        "right_thigh",
+        "left_forearm_hand",
+        "left_upper_arm",
+        "torso_pelvis",
+        "left_thigh",
+        "left_shin_foot",
+        "right_upper_arm",
+        "right_forearm_hand",
+        "head",
+        "sword"
+      ],
+      "depth_role": {
+        "left_leg": "front_lead",
+        "right_leg": "back_trail",
+        "right_arm": "front_counter_swing",
+        "left_arm": "back"
+      },
+      "front_parts": [
+        "left_thigh",
+        "left_shin_foot",
+        "right_upper_arm",
+        "right_forearm_hand"
+      ],
+      "back_parts": [
+        "right_thigh",
+        "right_shin_foot",
+        "left_upper_arm",
+        "left_forearm_hand"
+      ]
+    },
+    "K2-passing-left": {
+      "phase": "K2-passing-left",
+      "z_order": [
+        "right_shin_foot",
+        "right_thigh",
+        "left_forearm_hand",
+        "left_upper_arm",
+        "torso_pelvis",
+        "left_thigh",
+        "left_shin_foot",
+        "right_upper_arm",
+        "right_forearm_hand",
+        "head",
+        "sword"
+      ],
+      "depth_role": {
+        "left_leg": "front_swing_to_center",
+        "right_leg": "back_support",
+        "right_arm": "front_counter_swing",
+        "left_arm": "back"
+      },
+      "front_parts": [
+        "left_thigh",
+        "left_shin_foot",
+        "right_upper_arm",
+        "right_forearm_hand"
+      ],
+      "back_parts": [
+        "right_thigh",
+        "right_shin_foot",
+        "left_upper_arm",
+        "left_forearm_hand"
+      ]
+    },
+    "K3-contact-right": {
+      "phase": "K3-contact-right",
+      "z_order": [
+        "left_shin_foot",
+        "left_thigh",
+        "right_forearm_hand",
+        "right_upper_arm",
+        "torso_pelvis",
+        "right_thigh",
+        "right_shin_foot",
+        "left_upper_arm",
+        "left_forearm_hand",
+        "head",
+        "sword"
+      ],
+      "depth_role": {
+        "right_leg": "front_lead",
+        "left_leg": "back_trail",
+        "left_arm": "front_counter_swing",
+        "right_arm": "back"
+      },
+      "front_parts": [
+        "right_thigh",
+        "right_shin_foot",
+        "left_upper_arm",
+        "left_forearm_hand"
+      ],
+      "back_parts": [
+        "left_thigh",
+        "left_shin_foot",
+        "right_upper_arm",
+        "right_forearm_hand"
+      ]
+    },
+    "K4-passing-right": {
+      "phase": "K4-passing-right",
+      "z_order": [
+        "left_shin_foot",
+        "left_thigh",
+        "right_forearm_hand",
+        "right_upper_arm",
+        "torso_pelvis",
+        "right_thigh",
+        "right_shin_foot",
+        "left_upper_arm",
+        "left_forearm_hand",
+        "head",
+        "sword"
+      ],
+      "depth_role": {
+        "right_leg": "front_swing_to_center",
+        "left_leg": "back_support",
+        "left_arm": "front_counter_swing",
+        "right_arm": "back"
+      },
+      "front_parts": [
+        "right_thigh",
+        "right_shin_foot",
+        "left_upper_arm",
+        "left_forearm_hand"
+      ],
+      "back_parts": [
+        "left_thigh",
+        "left_shin_foot",
+        "right_upper_arm",
+        "right_forearm_hand"
+      ]
+    }
+  },
+  "overlap_classes": [
+    "JOINT_OVERLAP",
+    "EXPECTED_OCCLUSION",
+    "UNEXPECTED_OVERLAP",
+    "CRITICAL_COLLISION"
+  ],
+  "thresholds": {
+    "unexpected_overlap_fraction": 0.015,
+    "meaningful_overlap_pixels": 16,
+    "critical_collision_pixels": 0,
+    "seam_min_distance_px": 1.5,
+    "seam_max_hole_pixels": 1,
+    "safe_margin_px": 24,
+    "member_scale_min": 0.92,
+    "member_scale_max": 1.08,
+    "front_limb_visible_fraction": 0.85,
+    "back_limb_visible_fraction": 0.55,
+    "back_occlusion_explained_fraction": 0.95,
+    "unexplained_missing_fraction": 0.02,
+    "head_retention_fraction": 0.97,
+    "sword_retention_fraction": 0.95
+  },
+  "critical_pairs": [
+    [
+      "sword",
+      "torso_pelvis"
+    ],
+    [
+      "sword",
+      "head"
+    ],
+    [
+      "left_upper_arm",
+      "right_upper_arm"
+    ],
+    [
+      "left_forearm_hand",
+      "right_forearm_hand"
+    ],
+    [
+      "left_thigh",
+      "right_thigh"
+    ],
+    [
+      "left_shin_foot",
+      "right_shin_foot"
+    ]
+  ],
+  "allowed_expected_occlusion_pairs": [
+    [
+      "head",
+      "left_upper_arm"
+    ],
+    [
+      "head",
+      "right_upper_arm"
+    ],
+    [
+      "torso_pelvis",
+      "left_forearm_hand"
+    ],
+    [
+      "torso_pelvis",
+      "right_forearm_hand"
+    ],
+    [
+      "left_forearm_hand",
+      "left_thigh"
+    ],
+    [
+      "right_forearm_hand",
+      "right_thigh"
+    ],
+    [
+      "right_thigh",
+      "sword"
+    ]
+  ],
+  "render_and_qa_share_plan_hash": true,
+  "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.7.2",
+  "adapter_id": "front-walk-cutout-gait-v2",
+  "source_skeleton": "docs/evidence/r4-source-skeleton-v071.json",
+  "guide_coordinates_used": false,
+  "phase_metrics": {
+    "K1-contact-left": {
+      "ankle_lateral_separation_px": 75.4974,
+      "ankle_euclidean_separation_px": 76.049094,
+      "source_separation_px": 75.325883,
+      "contact_separation_ratio": 1.002277,
+      "left_foot_centerline_distance_px": 41.507,
+      "right_foot_centerline_distance_px": 33.9904,
+      "hip_width_ratio": 1.0,
+      "weapon_attached_to": "wrist_right"
+    },
+    "K2-passing-left": {
+      "ankle_lateral_separation_px": 37.9815,
+      "ankle_euclidean_separation_px": 41.671343,
+      "source_separation_px": 75.325883,
+      "contact_separation_ratio": 0.504229,
+      "left_foot_centerline_distance_px": 3.9911,
+      "right_foot_centerline_distance_px": 33.9904,
+      "hip_width_ratio": 1.0,
+      "weapon_attached_to": "wrist_right"
+    },
+    "K3-contact-right": {
+      "ankle_lateral_separation_px": 75.137,
+      "ankle_euclidean_separation_px": 75.449172,
+      "source_separation_px": 75.325883,
+      "contact_separation_ratio": 0.997492,
+      "left_foot_centerline_distance_px": 38.3141,
+      "right_foot_centerline_distance_px": 36.8229,
+      "hip_width_ratio": 1.0,
+      "weapon_attached_to": "wrist_right"
+    },
+    "K4-passing-right": {
+      "ankle_lateral_separation_px": 41.8548,
+      "ankle_euclidean_separation_px": 44.413218,
+      "source_separation_px": 75.325883,
+      "contact_separation_ratio": 0.55565,
+      "left_foot_centerline_distance_px": 38.3141,
+      "right_foot_centerline_distance_px": 3.5407,
+      "hip_width_ratio": 1.0,
+      "weapon_attached_to": "wrist_right"
+    }
+  },
+  "synthetic_fixtures": {
+    "contact_lateral_separation_within_1_35_source": true,
+    "passing_foot_approaches_centerline": true,
+    "depth_proxy_calibration": "PASSED",
+    "smooth_root_bob": true,
+    "no_jumping_jack": true
+  },
+  "calibration_status": "GAIT_CALIBRATION_PASSED"
+}

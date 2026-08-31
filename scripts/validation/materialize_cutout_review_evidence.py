@@ -1,4 +1,4 @@
-"""Bind v0.7.1 cutout-rig review roles to canonical evidence files."""
+"""Bind v0.7.2 cutout-rig review roles to canonical evidence files."""
 
 from __future__ import annotations
 
@@ -40,6 +40,29 @@ REQUIRED_CURRENT_VISUALS = (
     "execution-evidence-v0.7.1.json",
 )
 
+REQUIRED_V072_CURRENT_VISUALS = (
+    "cutout-occlusion-plan-v072.json",
+    "cutout-pairwise-overlap-matrix-v072.json",
+    "cutout-seam-topology-qa-v072.json",
+    "cutout-retention-occlusion-v072.json",
+    "cutout-front-walk-gait-v2.json",
+    "cutout-front-walk-targets-v072-contact-sheet.png",
+    "cutout-q0-regression-v072.png",
+    "cutout-q0-regression-v072-qa.json",
+    "cutout-k1-contact-left-v072.png",
+    "cutout-k2-passing-left-v072.png",
+    "cutout-k3-contact-right-v072.png",
+    "cutout-k4-passing-right-v072.png",
+    "cutout-key-poses-contact-sheet-v072.png",
+    "cutout-key-poses-checkerboard-v072.png",
+    "cutout-key-poses-target-detected-overlays-v072.png",
+    "cutout-occlusion-classification-v072.png",
+    "cutout-retention-heatmap-v072.png",
+    "cutout-half-cycle-structure-v072.json",
+    "cutout-rig-provider-qualification-v072.json",
+    "execution-evidence-v0.7.2.json",
+)
+
 
 def digest(path: Path) -> str:
     data = path.read_bytes()
@@ -50,32 +73,32 @@ def digest(path: Path) -> str:
 
 def main() -> int:
     evidence = ROOT / "docs" / "evidence"
-    missing = [name for name in REQUIRED_CURRENT_VISUALS if not (evidence / name).is_file()]
+    missing = [name for name in REQUIRED_V072_CURRENT_VISUALS if not (evidence / name).is_file()]
     if missing:
         print(json.dumps({"status": "REVIEW_VISUAL_MANIFEST_FAILED", "missing": missing}, indent=2))
         return 2
     manifest = {
-        "schema_version": "0.7.1",
+        "schema_version": "0.7.2",
         "manifest_type": "review-visual-evidence",
-        "review_state": "deterministic-cutout-rig-fidelity-qa-correction-gap",
-        "required_current_visuals": list(REQUIRED_CURRENT_VISUALS),
+        "review_state": "deterministic-cutout-rig-key-poses-technically-qualified",
+        "required_current_visuals": list(REQUIRED_V072_CURRENT_VISUALS),
         "images": [
             {
                 "archive_name": name,
                 "source_path": f"docs/evidence/{name}",
                 "revision_id": ANCHOR_REVISION_ID,
                 "sha256": digest(evidence / name),
-                "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence",
+                "role": "v0.7.2 deterministic cutout-rig occlusion/gait technical qualification evidence",
             }
-            for name in REQUIRED_CURRENT_VISUALS
+            for name in REQUIRED_V072_CURRENT_VISUALS
         ],
         "human_visual_review": "required",
         "production_approval": "not-granted",
         "external_approval": "not-claimed",
     }
-    path = evidence / "review-visuals-v0.7.1.json"
+    path = evidence / "review-visuals-v0.7.2.json"
     path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(json.dumps({"status": "REVIEW_VISUAL_MANIFEST_MATERIALIZED", "path": str(path), "count": len(REQUIRED_CURRENT_VISUALS)}, indent=2))
+    print(json.dumps({"status": "REVIEW_VISUAL_MANIFEST_MATERIALIZED", "path": str(path), "count": len(REQUIRED_V072_CURRENT_VISUALS)}, indent=2))
     return 0
 
 

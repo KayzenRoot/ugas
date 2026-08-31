@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.7.2",
+  "pairs": [
+    {
+      "first": "K1-contact-left",
+      "second": "K3-contact-right",
+      "max_reflected_joint_error_px": 32.151427,
+      "mean_reflected_joint_error_px": 24.308845,
+      "sword_right_wrist_present": true
+    },
+    {
+      "first": "K2-passing-left",
+      "second": "K4-passing-right",
+      "max_reflected_joint_error_px": 32.151427,
+      "mean_reflected_joint_error_px": 25.410194,
+      "sword_right_wrist_present": true
+    }
+  ],
+  "normalized_tolerance_px": 40.0,
+  "arm_swing_inverts": true,
+  "bbox_height_head_torso_stable": true,
+  "status": "HALF_CYCLE_STRUCTURE_PASSED"
+}

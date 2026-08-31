@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.2 topological seam QA",
+  "type": "object",
+  "required": ["schema_version", "plan_sha256", "poses", "status"],
+  "properties": {"schema_version": {"const": "0.7.2"}, "plan_sha256": {"pattern": "^[0-9a-f]{64}$"}, "poses": {"type": "object", "minProperties": 4}, "status": {"enum": ["SEAM_TOPOLOGY_PASSED", "CUTOUT_RIG_TOPOLOGY_SEAM_GAP"]}}
+}

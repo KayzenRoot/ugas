@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.2 front-walk cutout gait adapter",
+  "type": "object",
+  "required": ["schema_version", "adapter_id", "source_skeleton", "guide_coordinates_used", "phase_metrics", "synthetic_fixtures", "calibration_status"],
+  "properties": {"schema_version": {"const": "0.7.2"}, "adapter_id": {"const": "front-walk-cutout-gait-v2"}, "guide_coordinates_used": {"const": false}, "phase_metrics": {"type": "object", "minProperties": 4}, "calibration_status": {"const": "GAIT_CALIBRATION_PASSED"}}
+}

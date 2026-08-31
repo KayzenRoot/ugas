@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.2 half-cycle structure",
+  "type": "object",
+  "required": ["schema_version", "pairs", "normalized_tolerance_px", "arm_swing_inverts", "status"],
+  "properties": {"schema_version": {"const": "0.7.2"}, "pairs": {"type": "array", "minItems": 2}, "normalized_tolerance_px": {"type": "number", "maximum": 40}, "arm_swing_inverts": {"const": true}, "status": {"enum": ["HALF_CYCLE_STRUCTURE_PASSED", "CUTOUT_RIG_GAIT_STRUCTURE_GAP"]}}
+}

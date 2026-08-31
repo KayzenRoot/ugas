@@ -1,8 +1,12 @@
 # UGAS roadmap
 
-## v0.7.1 - deterministic cutout-rig fidelity QA correction
+## v0.7.2 - deterministic cutout-rig occlusion/gait qualification
 
-Correct the v0.7.0 false-green anatomy, segmentation, residual fallback, component, affine-geometry and seam QA paths. The implementation is complete locally and evidence is reproducible, but the provider remains at `CUTOUT_RIG_SEAM_GAP` because Q1/Q2 still expose measured overlap/continuity issues and Q2 retention loss.
+Qualify the v0.7.1 correction with a hash-bound pairwise occlusion plan, topological seam continuity, retention/occlusion provenance, four front-walk key poses, MediaPipe QA and half-cycle structure. The technical gate is `CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED`; external visual review remains required and walk is not authorized.
+
+## v0.7.1 - historical deterministic cutout-rig fidelity QA correction
+
+Corrected the v0.7.0 false-green anatomy, segmentation, residual fallback, component, affine-geometry and seam QA paths. Its measured `CUTOUT_RIG_SEAM_GAP` result is preserved as immutable history.
 
 ## v0.6.2 - historical SDXL OpenPose model-card calibration
 
@@ -30,4 +34,4 @@ Incluem a escalada OpenPose/RefControl, multi-reference nativo, âncoras e o pil
 
 ## Next gate
 
-Somente uma nova decisão governada pode definir a correção do cutout-rig. Walk/front/8, âncoras v3, novos providers, DWPose, ControlNet, custom nodes e novos strengths estão fora do slice atual. O próximo passo autorizado é revisar/reparar Q1/Q2 e repetir a qualificação estática.
+Somente a revisão visual externa pode liberar o próximo prompt. Walk/front/8, âncoras v3, novos providers, DWPose, ControlNet, custom nodes e novos strengths estão fora do slice atual. O próximo passo autorizado é `external_review_then_run_8_frame_walk_prompt`.

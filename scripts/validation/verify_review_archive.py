@@ -95,6 +95,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         (
             name
             for name in (
+                "docs/evidence/review-visuals-v0.7.2.json",
                 "docs/evidence/review-visuals-v0.7.1.json",
                 "docs/evidence/review-visuals-v0.7.0.json",
                 "docs/evidence/review-visuals-v0.6.2.json",
@@ -110,7 +111,21 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if active_visual_name is None:
         raise ReviewArchiveError("no supported active review visual manifest is present")
     required_metadata = set(REQUIRED_ARCHIVE_METADATA)
-    if active_visual_name.endswith("v0.7.1.json"):
+    if active_visual_name.endswith("v0.7.2.json"):
+        required_metadata.update(
+            {
+                "REVIEW-v0.7.2.md", "docs/test-coverage-matrix-v0.7.2.md",
+                "docs/evidence/review-visuals-v0.7.2.json", "docs/evidence/current-state.json",
+                "docs/evidence/current-state-v0.7.1.json", "docs/evidence/state-consistency.json", "docs/evidence/state-consistency-v0.7.1.json",
+                "REVIEW-v0.7.1.md", "docs/evidence/review-visuals-v0.7.1.json",
+                "providers/manifests/deterministic-cutout-rig-2d.json", "providers/manifests/deterministic-cutout-rig-2d-v0.7.1.json",
+                "schemas/cutout-occlusion-plan.json", "schemas/cutout-pairwise-overlap.json", "schemas/cutout-seam-topology-qa.json", "schemas/cutout-retention-occlusion.json", "schemas/front-walk-gait-v2.json", "schemas/cutout-half-cycle-structure.json",
+                "src/ugas/cutout_occlusion.py", "scripts/validation/run_cutout_rig_v072.py",
+                "docs/evidence/cutout-occlusion-plan-v072.json", "docs/evidence/cutout-pairwise-overlap-matrix-v072.json", "docs/evidence/cutout-seam-topology-qa-v072.json", "docs/evidence/cutout-retention-occlusion-v072.json", "docs/evidence/cutout-front-walk-gait-v2.json", "docs/evidence/cutout-front-walk-targets-v072-contact-sheet.png", "docs/evidence/cutout-q0-regression-v072.png", "docs/evidence/cutout-q0-regression-v072-qa.json", "docs/evidence/cutout-k1-contact-left-v072.png", "docs/evidence/cutout-k2-passing-left-v072.png", "docs/evidence/cutout-k3-contact-right-v072.png", "docs/evidence/cutout-k4-passing-right-v072.png", "docs/evidence/cutout-key-poses-contact-sheet-v072.png", "docs/evidence/cutout-key-poses-checkerboard-v072.png", "docs/evidence/cutout-key-poses-target-detected-overlays-v072.png", "docs/evidence/cutout-occlusion-classification-v072.png", "docs/evidence/cutout-retention-heatmap-v072.png", "docs/evidence/cutout-half-cycle-structure-v072.json", "docs/evidence/cutout-rig-provider-qualification-v072.json", "docs/evidence/execution-evidence-v0.7.2.json",
+                "docs/evidence/sdxl-openpose-p-qualification.json", "docs/evidence/review-visuals-v0.6.2.json",
+            }
+        )
+    elif active_visual_name.endswith("v0.7.1.json"):
         required_metadata.update(
             {
                 "docs/evidence/review-visuals-v0.7.1.json",
@@ -397,7 +412,7 @@ def verify_archive(archive_path: Path | str) -> dict[str, Any]:
                 archive.extractall(extraction)
                 if (extraction / ".git").exists():
                     raise ReviewArchiveError("extracted review archive unexpectedly contains .git")
-                minimum_test_count = 203 if content.get("visual_schema_version") == "0.7.1" else 161
+                minimum_test_count = 203 if content.get("visual_schema_version") in {"0.7.1", "0.7.2"} else 161
                 execution = _self_validate_extracted(extraction, minimum_test_count=minimum_test_count)
     except zipfile.BadZipFile as exc:
         raise ReviewArchiveError(f"invalid ZIP: {exc}") from exc

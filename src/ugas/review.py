@@ -155,6 +155,28 @@ REQUIRED_V071_REVIEW_EVIDENCE = {
     "cutout-rig-provider-qualification-v071.json",
     "execution-evidence-v0.7.1.json",
 }
+REQUIRED_V072_REVIEW_EVIDENCE = {
+    "cutout-occlusion-plan-v072.json",
+    "cutout-pairwise-overlap-matrix-v072.json",
+    "cutout-seam-topology-qa-v072.json",
+    "cutout-retention-occlusion-v072.json",
+    "cutout-front-walk-gait-v2.json",
+    "cutout-front-walk-targets-v072-contact-sheet.png",
+    "cutout-q0-regression-v072.png",
+    "cutout-q0-regression-v072-qa.json",
+    "cutout-k1-contact-left-v072.png",
+    "cutout-k2-passing-left-v072.png",
+    "cutout-k3-contact-right-v072.png",
+    "cutout-k4-passing-right-v072.png",
+    "cutout-key-poses-contact-sheet-v072.png",
+    "cutout-key-poses-checkerboard-v072.png",
+    "cutout-key-poses-target-detected-overlays-v072.png",
+    "cutout-occlusion-classification-v072.png",
+    "cutout-retention-heatmap-v072.png",
+    "cutout-half-cycle-structure-v072.json",
+    "cutout-rig-provider-qualification-v072.json",
+    "execution-evidence-v0.7.2.json",
+}
 
 
 def _digest(path: Path) -> str:
@@ -198,6 +220,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V070_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     elif schema_version == "0.7.1":
         required = REQUIRED_V071_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.7.2":
+        required = REQUIRED_V072_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

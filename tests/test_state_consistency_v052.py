@@ -16,14 +16,14 @@ class StateConsistencyV052Tests(unittest.TestCase):
     def test_current_state_and_documents_are_consistent(self):
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
-        review = (ROOT / "REVIEW-v0.7.1.md").read_text(encoding="utf-8")
+        review = (ROOT / "REVIEW-v0.7.2.md").read_text(encoding="utf-8")
         result = validate_state_consistency(state, checkpoint, review)
         self.assertEqual("STATE_CONSISTENCY_PASSED", result["status"], result)
 
     def test_contradictory_walk_promotion_fixture_fails(self):
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8") + "\nWALK FRONT 8 PASSED."
-        review = (ROOT / "REVIEW-v0.7.1.md").read_text(encoding="utf-8")
+        review = (ROOT / "REVIEW-v0.7.2.md").read_text(encoding="utf-8")
         result = validate_state_consistency(state, checkpoint, review)
         self.assertEqual("STATE_CONSISTENCY_FAILED", result["status"])
         self.assertIn("active_documents_promote_blocked_walk_or_anchor_result", result["failures"])

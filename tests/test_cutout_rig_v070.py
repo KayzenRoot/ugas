@@ -197,7 +197,7 @@ class CutoutRigContractTests(unittest.TestCase):
     def test_historical_state_is_separate(self):
         current = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         historical = json.loads((ROOT / "docs/evidence/current-state-v0.6.2.json").read_text(encoding="utf-8"))
-        self.assertEqual("0.7.1", current["version"])
+        self.assertEqual("0.7.2", current["version"])
         self.assertEqual("0.6.2", historical["version"])
         self.assertNotEqual(current["current_gate"], historical["current_gate"])
 

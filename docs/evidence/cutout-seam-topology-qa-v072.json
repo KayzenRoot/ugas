@@ -1,0 +1,651 @@
+{
+  "schema_version": "0.7.2",
+  "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+  "poses": {
+    "K1-contact-left": {
+      "schema_version": "0.7.2",
+      "phase": "K1-contact-left",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "pairs": [
+        {
+          "parent": "head",
+          "child": "torso_pelvis",
+          "joint": "neck",
+          "min_alpha_to_alpha_distance_px": 1.0,
+          "overlap_area_pixels": 0,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_upper_arm",
+          "joint": "shoulder_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 73,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_upper_arm",
+          "joint": "shoulder_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 57,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_thigh",
+          "joint": "hip_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 87,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_thigh",
+          "joint": "hip_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 129,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_upper_arm",
+          "child": "left_forearm_hand",
+          "joint": "elbow_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 77,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_upper_arm",
+          "child": "right_forearm_hand",
+          "joint": "elbow_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 123,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_thigh",
+          "child": "left_shin_foot",
+          "joint": "knee_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 57,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_thigh",
+          "child": "right_shin_foot",
+          "joint": "knee_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 125,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_forearm_hand",
+          "child": "sword",
+          "joint": "wrist_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 57,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        }
+      ],
+      "hard_gates": {
+        "all_topology_edges_pass": true
+      },
+      "status": "SEAM_TOPOLOGY_PASSED"
+    },
+    "K2-passing-left": {
+      "schema_version": "0.7.2",
+      "phase": "K2-passing-left",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "pairs": [
+        {
+          "parent": "head",
+          "child": "torso_pelvis",
+          "joint": "neck",
+          "min_alpha_to_alpha_distance_px": 1.0,
+          "overlap_area_pixels": 0,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_upper_arm",
+          "joint": "shoulder_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 73,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_upper_arm",
+          "joint": "shoulder_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 57,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_thigh",
+          "joint": "hip_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 121,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_thigh",
+          "joint": "hip_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 154,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_upper_arm",
+          "child": "left_forearm_hand",
+          "joint": "elbow_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 77,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_upper_arm",
+          "child": "right_forearm_hand",
+          "joint": "elbow_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 123,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_thigh",
+          "child": "left_shin_foot",
+          "joint": "knee_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 62,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_thigh",
+          "child": "right_shin_foot",
+          "joint": "knee_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 182,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_forearm_hand",
+          "child": "sword",
+          "joint": "wrist_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 57,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        }
+      ],
+      "hard_gates": {
+        "all_topology_edges_pass": true
+      },
+      "status": "SEAM_TOPOLOGY_PASSED"
+    },
+    "K3-contact-right": {
+      "schema_version": "0.7.2",
+      "phase": "K3-contact-right",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "pairs": [
+        {
+          "parent": "head",
+          "child": "torso_pelvis",
+          "joint": "neck",
+          "min_alpha_to_alpha_distance_px": 1.0,
+          "overlap_area_pixels": 0,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_upper_arm",
+          "joint": "shoulder_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 62,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_upper_arm",
+          "joint": "shoulder_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 94,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_thigh",
+          "joint": "hip_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 118,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_thigh",
+          "joint": "hip_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 110,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_upper_arm",
+          "child": "left_forearm_hand",
+          "joint": "elbow_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 177,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_upper_arm",
+          "child": "right_forearm_hand",
+          "joint": "elbow_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 83,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_thigh",
+          "child": "left_shin_foot",
+          "joint": "knee_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 54,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_thigh",
+          "child": "right_shin_foot",
+          "joint": "knee_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 81,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_forearm_hand",
+          "child": "sword",
+          "joint": "wrist_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 57,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        }
+      ],
+      "hard_gates": {
+        "all_topology_edges_pass": true
+      },
+      "status": "SEAM_TOPOLOGY_PASSED"
+    },
+    "K4-passing-right": {
+      "schema_version": "0.7.2",
+      "phase": "K4-passing-right",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "pairs": [
+        {
+          "parent": "head",
+          "child": "torso_pelvis",
+          "joint": "neck",
+          "min_alpha_to_alpha_distance_px": 1.0,
+          "overlap_area_pixels": 0,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_upper_arm",
+          "joint": "shoulder_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 62,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_upper_arm",
+          "joint": "shoulder_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 94,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "left_thigh",
+          "joint": "hip_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 149,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "torso_pelvis",
+          "child": "right_thigh",
+          "joint": "hip_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 126,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_upper_arm",
+          "child": "left_forearm_hand",
+          "joint": "elbow_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 177,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_upper_arm",
+          "child": "right_forearm_hand",
+          "joint": "elbow_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 83,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "left_thigh",
+          "child": "left_shin_foot",
+          "joint": "knee_left",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 54,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_thigh",
+          "child": "right_shin_foot",
+          "joint": "knee_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 91,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        },
+        {
+          "parent": "right_forearm_hand",
+          "child": "sword",
+          "joint": "wrist_right",
+          "min_alpha_to_alpha_distance_px": 0.0,
+          "overlap_area_pixels": 57,
+          "connected_path": true,
+          "composite_alpha_hole_pixels": 0,
+          "hard_gates": {
+            "connected_path": true,
+            "min_distance_px": true,
+            "hole_area_limit": true
+          },
+          "status": "SEAM_TOPOLOGY_PASSED"
+        }
+      ],
+      "hard_gates": {
+        "all_topology_edges_pass": true
+      },
+      "status": "SEAM_TOPOLOGY_PASSED"
+    }
+  },
+  "status": "SEAM_TOPOLOGY_PASSED"
+}

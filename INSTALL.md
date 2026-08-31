@@ -1,4 +1,4 @@
-# Installing UGAS 0.7.1
+# Installing UGAS 0.7.2
 
 ## Requirements
 
@@ -17,11 +17,11 @@ python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
 ```
 
-## v0.7.1 deterministic cutout-rig fidelity QA correction
+## v0.7.2 deterministic cutout-rig occlusion/gait qualification
 
 Leia [docs/evidence/current-state.json](docs/evidence/current-state.json) antes de iniciar. O provider é uma lane isolada e não altera o routing de produção. A origem SAM2 oficial é fixada por commit; source, checkpoint e runtime ficam fora do Git e do review ZIP.
 
-Depois, use os scripts e gates descritos em [REVIEW-v0.7.1.md](REVIEW-v0.7.1.md). A correção requer `facebookresearch/sam2` pinado, somente `sam2.1_hiera_small`, inferência isolada, skeleton de origem completo, máscaras raw/refined hash-bound e QA Q0/Q1/Q2 estático. O renderer usa somente Pillow/NumPy.
+Depois, use os scripts e gates descritos em [REVIEW-v0.7.2.md](REVIEW-v0.7.2.md). A qualificação reutiliza a revisão, skeleton, máscaras e partes v0.7.1 hash-bound, executa somente Q0/K1/K2/K3/K4, e usa o plano topológico de oclusão com QA MediaPipe. O renderer usa somente Pillow; não há nova execução SAM2, ComfyUI ou walk.
 
 ### Runtime SAM2 externo
 
