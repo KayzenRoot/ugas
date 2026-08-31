@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.3 independent cutout layer integrity",
+  "type": "object",
+  "required": ["schema_version", "calibration", "poses", "status"],
+  "properties": {"schema_version": {"const": "0.7.3"}, "calibration": {"type": "object"}, "poses": {"type": "object", "minProperties": 4}, "status": {"enum": ["LAYER_INTEGRITY_PASSED", "CUTOUT_RIG_LAYER_INTEGRITY_GAP"]}}
+}

@@ -23,7 +23,7 @@ from ugas.constants import UGAS_VERSION
 from ugas.master_assets import verify_asset_integrity
 from ugas.model_registry import load_model, load_registry, validate_model_workflow_compatibility
 from ugas.reference_edit import validate_edit_contract, validate_execution_evidence
-from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, REQUIRED_V070_REVIEW_EVIDENCE, REQUIRED_V071_REVIEW_EVIDENCE, REQUIRED_V072_REVIEW_EVIDENCE, validate_review_visual_manifest
+from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, REQUIRED_V070_REVIEW_EVIDENCE, REQUIRED_V071_REVIEW_EVIDENCE, REQUIRED_V072_REVIEW_EVIDENCE, REQUIRED_V073_REVIEW_EVIDENCE, validate_review_visual_manifest
 from ugas.review_snapshot import self_test_sensitive_matcher
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.openpose_guides import COCO18_JOINTS, OPENPOSE_GUIDE_RENDERER_VERSION, validate_openpose_guide
@@ -1081,16 +1081,16 @@ def _v071_checks() -> None:
 
 
 def _v072_checks() -> None:
-    """Validate the active v0.7.2 technical qualification and its boundaries."""
+    """Validate the immutable v0.7.2 qualification and its boundaries."""
     evidence = ROOT / "docs" / "evidence"
     required = {
         "REVIEW-v0.7.2.md", "docs/test-coverage-matrix-v0.7.2.md",
-        "providers/manifests/deterministic-cutout-rig-2d.json", "schemas/current-state.json",
+        "providers/manifests/deterministic-cutout-rig-2d-v0.7.2.json", "schemas/current-state-v0.7.2.json",
         "schemas/cutout-occlusion-plan.json", "schemas/cutout-pairwise-overlap.json",
         "schemas/cutout-seam-topology-qa.json", "schemas/cutout-retention-occlusion.json",
         "schemas/front-walk-gait-v2.json", "schemas/cutout-half-cycle-structure.json",
         "src/ugas/cutout_occlusion.py", "scripts/validation/run_cutout_rig_v072.py",
-        "docs/evidence/current-state.json", "docs/evidence/state-consistency.json",
+        "docs/evidence/current-state-v0.7.2.json", "docs/evidence/state-consistency-v0.7.2.json",
         "docs/evidence/current-state-v0.7.1.json", "docs/evidence/state-consistency-v0.7.1.json",
         "docs/evidence/review-visuals-v0.7.2.json",
         *{f"docs/evidence/{name}" for name in REQUIRED_V072_REVIEW_EVIDENCE},
@@ -1101,11 +1101,11 @@ def _v072_checks() -> None:
         if path.is_file():
             check(f"v072:tracked:{relative}", tracked(relative), "tracked or present in review snapshot")
     try:
-        state = load_json(evidence / "current-state.json")
-        schema = load_json(ROOT / "schemas/current-state.json")
+        state = load_json(evidence / "current-state-v0.7.2.json")
+        schema = load_json(ROOT / "schemas/current-state-v0.7.2.json")
         validate_instance(state, schema)
         review = (ROOT / "REVIEW-v0.7.2.md").read_text(encoding="utf-8")
-        consistency = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
+        consistency = load_json(evidence / "state-consistency-v0.7.2.json")
         check("v072:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.7.2 state is consistent")
         check("v072:state-gate", state.get("current_gate") == "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED" and state.get("provider_smoke_status") == state.get("current_gate"), "active v0.7.2 gate is synchronized")
         check("v072:state-history", state.get("previous_release", {}).get("version") == "0.7.1" and state.get("previous_release", {}).get("review_manifest") == "docs/evidence/review-visuals-v0.7.1.json", "v0.7.1 state and review remain the previous release")
@@ -1159,6 +1159,115 @@ def _v072_checks() -> None:
     except (OSError, json.JSONDecodeError, KeyError) as exc:
         check("v072:visual-manifest", False, str(exc)); check("v072:review-headings", False, str(exc)); check("v072:external-boundary", False, str(exc))
 
+
+
+def _v073_checks() -> None:
+    """Validate the active v0.7.3 structural-coverage correction."""
+    evidence = ROOT / "docs" / "evidence"
+    required = {
+        "REVIEW-v0.7.3.md", "docs/test-coverage-matrix-v0.7.3.md",
+        "providers/manifests/deterministic-cutout-rig-2d.json", "schemas/current-state.json",
+        "schemas/current-state-v0.7.2.json", "schemas/cutout-structural-core-v073.json",
+        "schemas/cutout-authorized-occlusion-regions-v073.json", "schemas/cutout-layer-integrity-v073.json",
+        "schemas/cutout-structural-coverage-v073.json", "schemas/cutout-structural-hole-owner-diagnostics-v073.json",
+        "schemas/cutout-pairwise-overlap-v073.json", "schemas/cutout-seam-topology-qa-v073.json",
+        "schemas/cutout-retention-occlusion-v073.json", "schemas/cutout-rig-provider-qualification-v073.json",
+        "schemas/execution-evidence-v073.json", "src/ugas/cutout_structural.py",
+        "scripts/validation/run_cutout_rig_v073.py", "scripts/validation/validate_state_consistency.py",
+        "scripts/validation/materialize_cutout_review_evidence.py", "docs/evidence/current-state.json",
+        "docs/evidence/state-consistency.json", "docs/evidence/current-state-v0.7.2.json",
+        "docs/evidence/state-consistency-v0.7.2.json", "docs/evidence/review-visuals-v0.7.3.json",
+        *{f"docs/evidence/{name}" for name in REQUIRED_V073_REVIEW_EVIDENCE},
+    }
+    for relative in sorted(required):
+        path = ROOT / relative
+        check(f"v073:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+        if path.is_file():
+            check(f"v073:tracked:{relative}", tracked(relative), "tracked or present in review snapshot")
+
+    try:
+        state = load_json(evidence / "current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        review = (ROOT / "REVIEW-v0.7.3.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
+        check("v073:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active v0.7.3 state is consistent")
+        check("v073:state-gate", state.get("current_gate") == "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED" and state.get("provider_smoke_status") == state.get("current_gate"), "active v0.7.3 gate is synchronized")
+        check("v073:state-history", state.get("previous_release", {}).get("version") == "0.7.2" and state.get("previous_release", {}).get("pose_lane_status") == "TECHNICALLY_QUALIFIED_BUT_EXTERNAL_VISUAL_REJECTED" and state.get("previous_release", {}).get("review_manifest") == "docs/evidence/review-visuals-v0.7.2.json", "v0.7.2 external rejection and review remain immutable history")
+        check("v073:state-boundary", state.get("walk_authorized") is False and state.get("generation_provider_change_authorized") is False and state.get("state_consistency", {}).get("new_generation_jobs") == 0 and state.get("state_consistency", {}).get("sam2_runs") == 0, "walk, routing change and new generation remain blocked")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError) as exc:
+        for name in ("v073:state-consistency", "v073:state-gate", "v073:state-history", "v073:state-boundary"):
+            check(name, False, str(exc))
+
+    try:
+        provider = load_json(ROOT / "providers/manifests/deterministic-cutout-rig-2d.json")
+        validate_instance(provider, load_json(ROOT / "schemas/provider-manifest.json"))
+        check("v073:provider-contract", provider.get("schema_version") == "0.7.3" and provider.get("qualification_evidence") == "docs/evidence/cutout-rig-provider-qualification-v073.json" and provider.get("generation_model") == "none", "provider is bound to v0.7.3 deterministic structural evidence")
+        check("v073:provider-boundary", provider.get("runtime_policy", {}).get("comfyui_jobs") == 0 and provider.get("runtime_policy", {}).get("walk_frames") is False and provider.get("runtime_policy", {}).get("manual_mask_edits") is False, "provider remains deterministic and walk-free")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError) as exc:
+        check("v073:provider-contract", False, str(exc)); check("v073:provider-boundary", False, str(exc))
+
+    try:
+        schema_map = {
+            "cutout-structural-core-v073.json": "cutout-structural-core-v073.json",
+            "cutout-authorized-occlusion-regions-v073.json": "cutout-authorized-occlusion-regions-v073.json",
+            "cutout-layer-integrity-v073.json": "cutout-layer-integrity-v073.json",
+            "cutout-structural-coverage-v073.json": "cutout-structural-coverage-v073.json",
+            "cutout-structural-hole-owner-diagnostics-v073.json": "cutout-structural-hole-owner-diagnostics-v073.json",
+            "cutout-pairwise-overlap-v073.json": "cutout-pairwise-overlap-matrix-v073.json",
+            "cutout-seam-topology-qa-v073.json": "cutout-seam-topology-qa-v073.json",
+            "cutout-retention-occlusion-v073.json": "cutout-retention-occlusion-v073.json",
+            "cutout-rig-provider-qualification-v073.json": "cutout-rig-provider-qualification-v073.json",
+            "execution-evidence-v073.json": "execution-evidence-v0.7.3.json",
+        }
+        expected_status = {
+            "cutout-structural-core-v073.json": "STRUCTURAL_CORE_DERIVED",
+            "cutout-authorized-occlusion-regions-v073.json": "AUTHORIZED_OCCLUSION_REGIONS_DERIVED",
+            "cutout-layer-integrity-v073.json": "LAYER_INTEGRITY_PASSED",
+            "cutout-structural-coverage-v073.json": "STRUCTURAL_COVERAGE_PASSED",
+            "cutout-structural-hole-owner-diagnostics-v073.json": "STRUCTURAL_HOLE_OWNER_DIAGNOSTICS_PASSED",
+            "cutout-pairwise-overlap-v073.json": "OCCLUSION_QA_PASSED",
+            "cutout-seam-topology-qa-v073.json": "SEAM_TOPOLOGY_PASSED",
+            "cutout-retention-occlusion-v073.json": "RETENTION_OCCLUSION_PASSED",
+            "cutout-rig-provider-qualification-v073.json": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED",
+        }
+        for schema_name, artifact_name in schema_map.items():
+            schema = load_json(ROOT / "schemas" / schema_name)
+            artifact = load_json(evidence / artifact_name)
+            validate_schema_document(schema)
+            validate_instance(artifact, schema)
+            if schema_name in expected_status:
+                check(f"v073:evidence:{artifact_name}", artifact.get("status") == expected_status[schema_name], f"{artifact_name} status is qualified")
+        coverage = load_json(evidence / "cutout-structural-coverage-v073.json")
+        check("v073:coverage-gates", all(pose.get("structural_hole_pixels") == 0 and pose.get("structural_hole_fraction", 1) <= 0.0025 and pose.get("largest_structural_hole_component_pixels", 99) <= 12 and pose.get("belt_core_coverage", 0) >= 0.995 and pose.get("torso_core_coverage", 0) >= 0.995 for pose in coverage.get("poses", {}).values()), "K1-K4 structural coverage gates pass")
+        integrity = load_json(evidence / "cutout-layer-integrity-v073.json")
+        check("v073:integrity-gates", all(part.get("predicted_outside_canvas_area") == 0 and part.get("raster_area_error", 1) <= 0.03 and part.get("unexpected_layer_loss_fraction", 1) <= 0.02 and part.get("unexpected_layer_gain_fraction", 1) <= 0.02 for pose in integrity.get("poses", {}).values() for part in pose.get("parts", {}).values()), "all rendered layers pass independent integrity gates")
+        pair = load_json(evidence / "cutout-pairwise-overlap-matrix-v073.json")
+        check("v073:pairwise-gates", all(pose.get("critical_collision_pixels") == 0 and not pose.get("forbidden_meaningful_overlap") and not pose.get("z_order_mismatches") and pose.get("unexpected_overlap_fraction", 1) <= 0.015 for pose in pair.get("poses", {}).values()), "pairwise V3 geometry and depth gates pass")
+        retention = load_json(evidence / "cutout-retention-occlusion-v073.json")
+        check("v073:retention-gates", all(part.get("status") == "RETENTION_OCCLUSION_PASSED" and part.get("hidden_by_unexpected_occluder") == 0 for pose in retention.get("poses", {}).values() for part in pose.get("parts", {}).values()), "retention and unexpected-occluder gates pass")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, TypeError, ValueError) as exc:
+        check("v073:evidence-schemas", False, str(exc)); check("v073:coverage-gates", False, str(exc)); check("v073:integrity-gates", False, str(exc)); check("v073:pairwise-gates", False, str(exc)); check("v073:retention-gates", False, str(exc))
+
+    try:
+        execution = load_json(evidence / "execution-evidence-v0.7.3.json")
+        qualification = load_json(evidence / "cutout-rig-provider-qualification-v073.json")
+        check("v073:execution-boundary", execution.get("sam2_runs") == 0 and execution.get("comfyui_generation_jobs") == 0 and execution.get("walk") == "NOT_RUN" and execution.get("spritesheet") == "NOT_RUN" and execution.get("gif") == "NOT_RUN" and execution.get("external_approval") == "not-claimed", "SAM2, ComfyUI, walk, spritesheet and GIF remain outside this slice")
+        check("v073:provider-decision", qualification.get("status") == "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED" and qualification.get("walk_authorized") is False and qualification.get("external_visual_review") == "REQUIRED" and qualification.get("external_approval") == "not-claimed", "provider is technically qualified without external approval")
+        check("v073:q0", qualification.get("q0", {}).get("status") == "CUTOUT_RIG_RECONSTRUCTION_PASSED" and qualification.get("q0", {}).get("alpha_iou", 0) >= 0.995 and qualification.get("q0", {}).get("rgb_mae", 99) <= 1.5, "Q0 identity remains inside strict regression gates")
+        check("v073:media-pipe", all(pose.get("metrics", {}).get("qualifies") is True for pose in qualification.get("poses", {}).values()), "all four frozen target poses pass MediaPipe QA")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v073:execution-boundary", False, str(exc)); check("v073:provider-decision", False, str(exc)); check("v073:q0", False, str(exc)); check("v073:media-pipe", False, str(exc))
+
+    try:
+        visual = load_json(evidence / "review-visuals-v0.7.3.json")
+        result = validate_review_visual_manifest(visual, ROOT)
+        check("v073:visual-manifest", result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "v0.7.3 visual roles are hash-bound")
+        headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.7.2 EXTERNAL AUDIT RESULT", "VISUAL REJECTION EVIDENCE", "RETENTION TAUTOLOGY FINDING", "STRUCTURAL CORE", "STRUCTURAL COVERAGE QA", "SOURCE OWNER DISPLACEMENT", "TRUE LAYER INTEGRITY", "AUTHORIZED OCCLUSION REGIONS", "PAIRWISE OVERLAP V3", "TOPOLOGICAL SEAM", "RETENTION / OCCLUSION V3", "Q0 REGRESSION", "K1 CONTACT-LEFT", "K2 PASSING-LEFT", "K3 CONTACT-RIGHT", "K4 PASSING-RIGHT", "CHECKERBOARD / WAIST ZOOM", "MEDIAPIPE POSE QA", "FINAL PROVIDER DECISION", "NO SAM2 / NO COMFYUI / NO WALK", "TESTS", "VALIDATION", "REVIEW ARCHIVE SELF-TEST", "TRACKED SNAPSHOT / GITHUB", "SECURITY / LICENSES", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+        review = (ROOT / "REVIEW-v0.7.3.md").read_text(encoding="utf-8")
+        check("v073:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.7.3 review headings present")
+        check("v073:external-boundary", "not-claimed" in review and "walk_authorized=false" in review and "REQUIRED" in review, "external review and walk authorization remain separate")
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        check("v073:visual-manifest", False, str(exc)); check("v073:review-headings", False, str(exc)); check("v073:external-boundary", False, str(exc))
 
 
 def main() -> int:
@@ -1259,18 +1368,18 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.7.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.7.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.7.2")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.7.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.7.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.7.3")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
     compile_run = _run([sys.executable, "-m", "compileall", "-q", "src", "scripts", "tests"], ROOT); check("tests:compileall", compile_run.returncode == 0, (compile_run.stdout + compile_run.stderr).strip()[-500:])
-    test_run = _run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"], ROOT, timeout=360); test_text = test_run.stdout + test_run.stderr; match = re.search(r"Ran (\d+) tests", test_text); check("tests:unit", test_run.returncode == 0 and match is not None and int(match.group(1)) >= 203, test_text.strip()[-800:])
+    test_run = _run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"], ROOT, timeout=360); test_text = test_run.stdout + test_run.stderr; match = re.search(r"Ran (\d+) tests", test_text); check("tests:unit", test_run.returncode == 0 and match is not None and int(match.group(1)) >= 245, test_text.strip()[-800:])
     snapshot_check()
     failures = 0
     for name, ok, detail in RESULTS: print(f"{'PASS' if ok else 'FAIL'} {name} - {detail}"); failures += not ok

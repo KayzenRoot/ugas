@@ -1,4 +1,4 @@
-"""Fatal consistency checks for the active UGAS v0.7.2 cutout-rig provider.
+"""Fatal consistency checks for the active UGAS v0.7.3 cutout-rig provider.
 
 The v0.6.2 calibration result, earlier pose decision and review-snapshot
 result are immutable historical inputs. This validator permits only the
@@ -12,7 +12,7 @@ import re
 from typing import Any, Mapping
 
 
-CURRENT_SCHEMA_VERSION = "0.7.2"
+CURRENT_SCHEMA_VERSION = "0.7.3"
 CANONICAL_R4_SHA256 = "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
 CANONICAL_R4_REVISION = "revision-3a425d184b1a49be9f6d6c8d52d04b96"
 CURRENT_PHASE = "DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER"
@@ -31,6 +31,11 @@ CURRENT_GATES = {
     "CUTOUT_RIG_RETENTION_GAP",
     "CUTOUT_RIG_GAIT_STRUCTURE_GAP",
     "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED",
+    "CUTOUT_RIG_CORE_RECONSTRUCTION_GAP",
+    "CUTOUT_RIG_STRUCTURAL_COVERAGE_GAP",
+    "CUTOUT_RIG_LAYER_INTEGRITY_GAP",
+    "CUTOUT_RIG_OCCLUSION_REGION_GAP",
+    "CUTOUT_RIG_EXTERNAL_POSE_QA_GAP",
     "CUTOUT_RIG_EXTERNAL_POSE_QA_GAP",
     "CUTOUT_RIG_VISUAL_REVIEW_REQUIRED",
     "CUTOUT_RIG_POSE_PROVIDER_QUALIFIED",
@@ -63,11 +68,11 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     }
     failures.extend(f"missing:{key}" for key in sorted(required - set(state)))
     if state.get("schema_version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_schema_version_must_be_0.7.2")
+        failures.append("state_schema_version_must_be_0.7.3")
     if state.get("version") != CURRENT_SCHEMA_VERSION:
-        failures.append("state_version_must_be_0.7.2")
+        failures.append("state_version_must_be_0.7.3")
     if state.get("phase") != CURRENT_PHASE:
-        failures.append("state_phase_invalid_for_v072")
+        failures.append("state_phase_invalid_for_v073")
     if state.get("current_gate") not in CURRENT_GATES:
         failures.append("state_current_gate_invalid")
     if state.get("provider_smoke_status") != state.get("current_gate"):
@@ -82,13 +87,13 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
     if state.get("historical_smoke_status") != HISTORICAL_SMOKE_STATUS:
         failures.append("historical_smoke_status_must_preserve_v0.6.2")
-    if previous.get("version") != "0.7.1":
-        failures.append("previous_release_must_be_0.7.1")
+    if previous.get("version") != "0.7.2":
+        failures.append("previous_release_must_be_0.7.2")
     if previous.get("historical_smoke_status") not in {HISTORICAL_SMOKE_STATUS, "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP"}:
         failures.append("previous_release_historical_smoke_status_missing")
     if previous.get("review_snapshot_status") != HISTORICAL_REVIEW_STATUS:
         failures.append("previous_release_review_snapshot_missing")
-    if previous.get("pose_lane_status") not in {POSE_LANE_STATUS, "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP", "CUTOUT_RIG_SEAM_GAP", "CUTOUT_RIG_POSE_PROVIDER_QUALIFIED"}:
+    if previous.get("pose_lane_status") not in {POSE_LANE_STATUS, "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP", "CUTOUT_RIG_SEAM_GAP", "CUTOUT_RIG_POSE_PROVIDER_QUALIFIED", "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED", "TECHNICALLY_QUALIFIED_BUT_EXTERNAL_VISUAL_REJECTED"}:
         failures.append("previous_release_pose_status_missing")
     if state.get("pose_lane_status") not in CURRENT_GATES:
         failures.append("pose_lane_status_must_identify_current_cutout_rig_gate")
@@ -127,7 +132,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
 
     combined = f"{checkpoint_text}\n{review_text}"
     for required_text, failure in (
-        (CURRENT_SCHEMA_VERSION, "active_documents_must_identify_0.7.2"),
+        (CURRENT_SCHEMA_VERSION, "active_documents_must_identify_0.7.3"),
         (CURRENT_PHASE, "active_documents_must_identify_cutout_rig_provider"),
         ("0.6.2", "active_documents_must_preserve_v0.6.2_history"),
         (HISTORICAL_SMOKE_STATUS, "active_documents_must_preserve_v0.6.2_smoke_status"),

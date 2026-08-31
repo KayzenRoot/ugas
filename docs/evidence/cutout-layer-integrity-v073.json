@@ -1,0 +1,1536 @@
+{
+  "schema_version": "0.7.3",
+  "calibration": {
+    "schema_version": "0.7.3",
+    "calibrated_tolerance": {
+      "raster_area_error_max": 0.03,
+      "active_alpha_threshold": 64
+    },
+    "identity_fixture": {
+      "source_active_pixels": 9600,
+      "actual_uniform_scale": 1.0,
+      "predicted_transformed_area": 9600.0,
+      "actual_layer_area": 9600,
+      "raster_area_error": 0.0,
+      "predicted_outside_canvas_area": 0.0,
+      "forward_source_bbox": [
+        60,
+        40,
+        140,
+        160
+      ],
+      "forward_transformed_bbox": [
+        60.0,
+        40.0,
+        139.0,
+        159.0
+      ],
+      "forward_active_source_pixels_outside_canvas": 0,
+      "actual_border_clipped_pixels": 0,
+      "unexpected_layer_loss_fraction": 0.0,
+      "unexpected_layer_gain_fraction": 0.0,
+      "hard_gates": {
+        "raster_area_error": true,
+        "predicted_outside_canvas_area_zero": true,
+        "unexpected_layer_loss_fraction": true,
+        "unexpected_layer_gain_fraction": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "scaled_fixture": {
+      "source_active_pixels": 9600,
+      "actual_uniform_scale": 1.019778,
+      "predicted_transformed_area": 9983.4846,
+      "actual_layer_area": 10079,
+      "raster_area_error": 0.009567,
+      "predicted_outside_canvas_area": 0.0,
+      "forward_source_bbox": [
+        60,
+        40,
+        140,
+        160
+      ],
+      "forward_transformed_bbox": [
+        58.0,
+        37.4075,
+        139.45275,
+        159.35025
+      ],
+      "forward_active_source_pixels_outside_canvas": 0,
+      "actual_border_clipped_pixels": 0,
+      "unexpected_layer_loss_fraction": 0.0,
+      "unexpected_layer_gain_fraction": 0.009567,
+      "hard_gates": {
+        "raster_area_error": true,
+        "predicted_outside_canvas_area_zero": true,
+        "unexpected_layer_loss_fraction": true,
+        "unexpected_layer_gain_fraction": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "deliberate_crop_fixture": {
+      "source_active_pixels": 9600,
+      "actual_uniform_scale": 1.0,
+      "predicted_transformed_area": 9600.0,
+      "actual_layer_area": 4560,
+      "raster_area_error": 0.525,
+      "predicted_outside_canvas_area": 5040.0,
+      "forward_source_bbox": [
+        60,
+        40,
+        140,
+        160
+      ],
+      "forward_transformed_bbox": [
+        -42.0,
+        40.0,
+        37.0,
+        159.0
+      ],
+      "forward_active_source_pixels_outside_canvas": 5040,
+      "actual_border_clipped_pixels": 120,
+      "unexpected_layer_loss_fraction": 0.525,
+      "unexpected_layer_gain_fraction": 0.0,
+      "hard_gates": {
+        "raster_area_error": false,
+        "predicted_outside_canvas_area_zero": false,
+        "unexpected_layer_loss_fraction": false,
+        "unexpected_layer_gain_fraction": true
+      },
+      "status": "CUTOUT_RIG_LAYER_INTEGRITY_GAP"
+    },
+    "hard_gates": {
+      "identity_passes": true,
+      "scaled_passes": true,
+      "deliberate_crop_fails": true
+    },
+    "status": "LAYER_INTEGRITY_CALIBRATION_PASSED"
+  },
+  "poses": {
+    "K1-contact-left": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 4245.0,
+          "actual_layer_area": 4297,
+          "raster_area_error": 0.01225,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            185.495308,
+            320.070874,
+            232.897244,
+            460.567933
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.01225,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 5650.0113,
+          "actual_layer_area": 5706,
+          "raster_area_error": 0.009909,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            183.618202,
+            193.403521,
+            249.99124,
+            329.790824
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009909,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.058649,
+          "predicted_transformed_area": 2620.284755,
+          "actual_layer_area": 2643,
+          "raster_area_error": 0.008669,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            309.079767,
+            165.784874,
+            349.93684,
+            286.076768
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008669,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3242,
+          "raster_area_error": 0.019178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            285.460152,
+            82.999385,
+            336.482184,
+            193.997151
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 6250.0,
+          "actual_layer_area": 6291,
+          "raster_area_error": 0.00656,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            255.968439,
+            195.071967,
+            308.842535,
+            362.042632
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00656,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.041022,
+          "predicted_transformed_area": 3423.492975,
+          "actual_layer_area": 3465,
+          "raster_area_error": 0.012124,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            267.685386,
+            324.936846,
+            329.536724,
+            466.421173
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012124,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2792.005584,
+          "actual_layer_area": 2825,
+          "raster_area_error": 0.011817,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            167.583496,
+            84.11956,
+            221.940108,
+            168.967439
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011817,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 2897.994204,
+          "actual_layer_area": 2926,
+          "raster_area_error": 0.009664,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            161.896472,
+            161.4525,
+            197.715519,
+            276.080726
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009664,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            101.512412,
+            226.847801,
+            191.217861,
+            419.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "K2-passing-left": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 4245.0,
+          "actual_layer_area": 4284,
+          "raster_area_error": 0.009187,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            173.064738,
+            315.559686,
+            237.084202,
+            455.503645
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009187,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 5650.0,
+          "actual_layer_area": 5712,
+          "raster_area_error": 0.010973,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            174.444824,
+            192.984662,
+            245.127774,
+            327.221209
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010973,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.058649,
+          "predicted_transformed_area": 2620.284755,
+          "actual_layer_area": 2643,
+          "raster_area_error": 0.008669,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            309.079767,
+            165.784874,
+            349.93684,
+            286.076768
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008669,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3242,
+          "raster_area_error": 0.019178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            285.460152,
+            82.999385,
+            336.482184,
+            193.997151
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 6250.0125,
+          "actual_layer_area": 6302,
+          "raster_area_error": 0.008318,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            244.567935,
+            196.916671,
+            302.962606,
+            361.012659
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008318,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.051143,
+          "predicted_transformed_area": 3490.384175,
+          "actual_layer_area": 3525,
+          "raster_area_error": 0.009917,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            242.978204,
+            324.352747,
+            287.576202,
+            470.629098
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009917,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2792.005584,
+          "actual_layer_area": 2825,
+          "raster_area_error": 0.011817,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            167.583496,
+            84.11956,
+            221.940108,
+            168.967439
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011817,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 2897.994204,
+          "actual_layer_area": 2926,
+          "raster_area_error": 0.009664,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            161.896472,
+            161.4525,
+            197.715519,
+            276.080726
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009664,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            101.512412,
+            226.847801,
+            191.217861,
+            419.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "K3-contact-right": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3159.0,
+          "actual_layer_area": 3188,
+          "raster_area_error": 0.00918,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            280.91934,
+            321.51594,
+            323.244053,
+            460.715318
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00918,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 6250.0,
+          "actual_layer_area": 6311,
+          "raster_area_error": 0.00976,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            262.336442,
+            194.126534,
+            329.60299,
+            360.320735
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00976,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 1.031696,
+          "predicted_transformed_area": 3084.621452,
+          "actual_layer_area": 3115,
+          "raster_area_error": 0.009848,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            168.707309,
+            165.917732,
+            214.082363,
+            283.418585
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009848,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 2792.0,
+          "actual_layer_area": 2826,
+          "raster_area_error": 0.012178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            178.709827,
+            84.033321,
+            224.305226,
+            172.144852
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 5650.0,
+          "actual_layer_area": 5698,
+          "raster_area_error": 0.008496,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            195.630695,
+            195.177938,
+            256.213107,
+            329.844406
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008496,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.040708,
+          "predicted_transformed_area": 4597.645485,
+          "actual_layer_area": 4636,
+          "raster_area_error": 0.008342,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            187.36314,
+            322.927289,
+            241.551305,
+            465.389577
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008342,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3216,
+          "raster_area_error": 0.011005,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            287.687598,
+            83.050698,
+            349.931441,
+            190.565683
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011005,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2338.004676,
+          "actual_layer_area": 2363,
+          "raster_area_error": 0.010691,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            307.798289,
+            160.723328,
+            347.716082,
+            274.053436
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010691,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            109.512412,
+            232.847801,
+            199.217861,
+            425.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "K4-passing-right": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3159.0,
+          "actual_layer_area": 3178,
+          "raster_area_error": 0.006015,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            277.008323,
+            316.580933,
+            327.525741,
+            455.571265
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.006015,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 6250.0,
+          "actual_layer_area": 6299,
+          "raster_area_error": 0.00784,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            267.426792,
+            194.24667,
+            346.65095,
+            357.216853
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00784,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 1.031696,
+          "predicted_transformed_area": 3084.621452,
+          "actual_layer_area": 3115,
+          "raster_area_error": 0.009848,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            168.707309,
+            165.917732,
+            214.082363,
+            283.418585
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009848,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 2792.0,
+          "actual_layer_area": 2826,
+          "raster_area_error": 0.012178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            178.709827,
+            84.033321,
+            224.305226,
+            172.144852
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 5650.0,
+          "actual_layer_area": 5716,
+          "raster_area_error": 0.011681,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            197.738489,
+            197.327578,
+            262.849913,
+            328.811648
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011681,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.054054,
+          "predicted_transformed_area": 4716.321649,
+          "actual_layer_area": 4755,
+          "raster_area_error": 0.008201,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            219.504129,
+            322.334503,
+            266.456785,
+            470.181023
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008201,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3216,
+          "raster_area_error": 0.011005,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            287.687598,
+            83.050698,
+            349.931441,
+            190.565683
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011005,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2338.004676,
+          "actual_layer_area": 2363,
+          "raster_area_error": 0.010691,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            307.798289,
+            160.723328,
+            347.716082,
+            274.053436
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010691,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            109.512412,
+            232.847801,
+            199.217861,
+            425.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    }
+  },
+  "status": "LAYER_INTEGRITY_PASSED"
+}

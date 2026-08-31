@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.3 authorized geometric occlusion regions",
+  "type": "object",
+  "required": ["schema_version", "plan_sha256", "poses", "status"],
+  "properties": {"schema_version": {"const": "0.7.3"}, "plan_sha256": {"pattern": "^[0-9a-f]{64}$"}, "poses": {"type": "object", "minProperties": 4}, "status": {"const": "AUTHORIZED_OCCLUSION_REGIONS_DERIVED"}}
+}

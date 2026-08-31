@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.3 structural hole source-owner diagnostics",
+  "type": "object",
+  "required": ["schema_version", "poses", "status"],
+  "properties": {"schema_version": {"const": "0.7.3"}, "poses": {"type": "object", "minProperties": 4}, "status": {"enum": ["STRUCTURAL_HOLE_OWNER_DIAGNOSTICS_PASSED", "CUTOUT_RIG_STRUCTURAL_COVERAGE_GAP"]}}
+}

@@ -1,4 +1,4 @@
-"""UGAS v0.7.2 machine-readable CLI."""
+"""UGAS v0.7.3 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -100,7 +100,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.7.2")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.7.3")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -219,7 +219,7 @@ def main(argv: list[str] | None = None) -> int:
             value = generate_walk_pilot(root, args.asset_id, endpoint=args.url, frames=args.frames, seed_base=args.seed_base); _json(value); return 0 if value.get("status") == "WALK_CYCLE_VISUAL_REVIEW_REQUIRED" else 2
         if args.command == "cutout-rig":
             if args.cutout_action == "build" and args.asset_id != ANCHOR_ASSET_ID:
-                value = {"status": "CUTOUT_RIG_SOURCE_SKELETON_GAP", "reason": "v0.7.2 is bound to canonical R4", "expected_asset_id": ANCHOR_ASSET_ID, "received_asset_id": args.asset_id}
+                value = {"status": "CUTOUT_RIG_SOURCE_SKELETON_GAP", "reason": "v0.7.3 is bound to canonical R4", "expected_asset_id": ANCHOR_ASSET_ID, "received_asset_id": args.asset_id}
             else:
                 phase = "sam2" if args.cutout_action == "qualify-sam2" else "pose-pilot" if args.cutout_action == "pose-pilot" else "build"
                 value = _run_cutout_rig_phase(root, phase)

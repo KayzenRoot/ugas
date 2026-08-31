@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.7.3",
+  "status": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED",
+  "baseline_commit": "4fd860319d01d04c7da2562431c1d522c1fd2890",
+  "source": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "sam2_runs": 0,
+  "sam2_calls": {
+    "runtime_smoke": 0,
+    "rig_revision_segmentation": 0,
+    "per_frame_segmentation": 0
+  },
+  "comfyui_generation_jobs": 0,
+  "walk": "NOT_RUN",
+  "spritesheet": "NOT_RUN",
+  "gif": "NOT_RUN",
+  "key_poses": [
+    "K1-contact-left",
+    "K2-passing-left",
+    "K3-contact-right",
+    "K4-passing-right"
+  ],
+  "historical_v072_target_joint_hashes": {
+    "K1-contact-left": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8",
+    "K2-passing-left": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6",
+    "K3-contact-right": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648",
+    "K4-passing-right": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4"
+  },
+  "external_visual_review": "REQUIRED",
+  "external_approval": "not-claimed",
+  "source_masks_unchanged": true
+}

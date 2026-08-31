@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.3 execution boundary evidence",
+  "type": "object",
+  "required": ["schema_version", "sam2_runs", "comfyui_generation_jobs", "walk", "spritesheet", "gif", "status"],
+  "properties": {"schema_version": {"const": "0.7.3"}, "sam2_runs": {"const": 0}, "comfyui_generation_jobs": {"const": 0}, "walk": {"const": "NOT_RUN"}, "spritesheet": {"const": "NOT_RUN"}, "gif": {"const": "NOT_RUN"}, "status": {"type": "string", "minLength": 1}}
+}

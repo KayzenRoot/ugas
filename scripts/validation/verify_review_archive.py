@@ -95,6 +95,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         (
             name
             for name in (
+                "docs/evidence/review-visuals-v0.7.3.json",
                 "docs/evidence/review-visuals-v0.7.2.json",
                 "docs/evidence/review-visuals-v0.7.1.json",
                 "docs/evidence/review-visuals-v0.7.0.json",
@@ -111,7 +112,38 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if active_visual_name is None:
         raise ReviewArchiveError("no supported active review visual manifest is present")
     required_metadata = set(REQUIRED_ARCHIVE_METADATA)
-    if active_visual_name.endswith("v0.7.2.json"):
+    if active_visual_name.endswith("v0.7.3.json"):
+        required_metadata.update(
+            {
+                "REVIEW-v0.7.3.md", "docs/test-coverage-matrix-v0.7.3.md",
+                "docs/evidence/review-visuals-v0.7.3.json", "docs/evidence/current-state.json",
+                "docs/evidence/current-state-v0.7.2.json", "docs/evidence/state-consistency.json",
+                "docs/evidence/state-consistency-v0.7.2.json", "docs/evidence/review-visuals-v0.7.2.json",
+                "REVIEW-v0.7.2.md", "docs/test-coverage-matrix-v0.7.2.md",
+                "providers/manifests/deterministic-cutout-rig-2d.json", "providers/manifests/deterministic-cutout-rig-2d-v0.7.2.json",
+                "schemas/current-state.json", "schemas/current-state-v0.7.2.json",
+                "schemas/cutout-structural-core-v073.json", "schemas/cutout-authorized-occlusion-regions-v073.json",
+                "schemas/cutout-layer-integrity-v073.json", "schemas/cutout-structural-coverage-v073.json",
+                "schemas/cutout-structural-hole-owner-diagnostics-v073.json", "schemas/cutout-pairwise-overlap-v073.json",
+                "schemas/cutout-seam-topology-qa-v073.json", "schemas/cutout-retention-occlusion-v073.json",
+                "schemas/cutout-rig-provider-qualification-v073.json", "schemas/execution-evidence-v073.json",
+                "src/ugas/cutout_structural.py", "scripts/validation/run_cutout_rig_v073.py",
+                "scripts/validation/validate_state_consistency.py", "scripts/validation/run_validation.py",
+                "tests/test_cutout_structural_v073.py",
+                "docs/evidence/cutout-structural-core-v073.json", "docs/evidence/cutout-structural-core-mask-v073.png",
+                "docs/evidence/cutout-authorized-occlusion-regions-v073.json", "docs/evidence/cutout-layer-integrity-v073.json",
+                "docs/evidence/cutout-layer-integrity-calibration-v073.json", "docs/evidence/cutout-structural-coverage-v073.json",
+                "docs/evidence/cutout-structural-hole-owner-diagnostics-v073.json", "docs/evidence/cutout-pairwise-overlap-matrix-v073.json",
+                "docs/evidence/cutout-seam-topology-qa-v073.json", "docs/evidence/cutout-retention-occlusion-v073.json",
+                "docs/evidence/cutout-q0-regression-v073.png", "docs/evidence/cutout-q0-regression-v073-qa.json",
+                "docs/evidence/cutout-k1-contact-left-v073.png", "docs/evidence/cutout-k2-passing-left-v073.png",
+                "docs/evidence/cutout-k3-contact-right-v073.png", "docs/evidence/cutout-k4-passing-right-v073.png",
+                "docs/evidence/cutout-key-poses-checkerboard-v073.png", "docs/evidence/cutout-key-poses-waist-zoom-v073.png",
+                "docs/evidence/cutout-structural-hole-overlay-v073.png", "docs/evidence/cutout-key-poses-target-detected-overlays-v073.png",
+                "docs/evidence/cutout-rig-provider-qualification-v073.json", "docs/evidence/execution-evidence-v0.7.3.json",
+            }
+        )
+    elif active_visual_name.endswith("v0.7.2.json"):
         required_metadata.update(
             {
                 "REVIEW-v0.7.2.md", "docs/test-coverage-matrix-v0.7.2.md",
@@ -412,7 +444,12 @@ def verify_archive(archive_path: Path | str) -> dict[str, Any]:
                 archive.extractall(extraction)
                 if (extraction / ".git").exists():
                     raise ReviewArchiveError("extracted review archive unexpectedly contains .git")
-                minimum_test_count = 203 if content.get("visual_schema_version") in {"0.7.1", "0.7.2"} else 161
+                if content.get("visual_schema_version") == "0.7.3":
+                    minimum_test_count = 245
+                elif content.get("visual_schema_version") in {"0.7.1", "0.7.2"}:
+                    minimum_test_count = 203
+                else:
+                    minimum_test_count = 161
                 execution = _self_validate_extracted(extraction, minimum_test_count=minimum_test_count)
     except zipfile.BadZipFile as exc:
         raise ReviewArchiveError(f"invalid ZIP: {exc}") from exc

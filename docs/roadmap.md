@@ -1,8 +1,12 @@
 # UGAS roadmap
 
-## v0.7.2 - deterministic cutout-rig occlusion/gait qualification
+## v0.7.3 - deterministic cutout-rig structural coverage correction
 
-Qualify the v0.7.1 correction with a hash-bound pairwise occlusion plan, topological seam continuity, retention/occlusion provenance, four front-walk key poses, MediaPipe QA and half-cycle structure. The technical gate is `CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED`; external visual review remains required and walk is not authorized.
+Correct the v0.7.2 externally rejected transparent waist/belt/pelvis holes with a source-derived structural core, independent layer-integrity area, explicit phase geometry, pairwise overlap V3, owner displacement diagnostics and Q0/K1–K4 requalification. The technical gate is `CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED`; external visual review remains required and walk is not authorized.
+
+## v0.7.2 - historical deterministic cutout-rig occlusion/gait qualification
+
+Qualified the v0.7.1 correction with a hash-bound pairwise occlusion plan, topological seam continuity, retention/occlusion provenance, four front-walk key poses, MediaPipe QA and half-cycle structure. External visual review later rejected real structural transparency holes; that result is immutable history and v0.7.3 corrects it.
 
 ## v0.7.1 - historical deterministic cutout-rig fidelity QA correction
 

@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.7.2 deterministic cutout-rig provider state",
+  "title": "UGAS active v0.7.3 deterministic cutout-rig provider state",
   "type": "object",
   "required": ["schema_version", "version", "phase", "previous_release", "historical_smoke_status", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "provider_smoke_status", "historical_pose_lane_status", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"],
   "properties": {
-    "schema_version": {"const": "0.7.2"},
-    "version": {"const": "0.7.2"},
+    "schema_version": {"const": "0.7.3"},
+    "version": {"const": "0.7.3"},
     "phase": {"const": "DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER"},
-    "current_gate": {"enum": ["CUTOUT_RIG_SAM2_QUALIFICATION_REQUIRED", "SAM2_RUNTIME_GAP", "CUTOUT_RIG_SEGMENTATION_RUNTIME_GAP", "CUTOUT_RIG_SOURCE_SKELETON_GAP", "CUTOUT_RIG_SEGMENTATION_GAP", "CUTOUT_RIG_RECONSTRUCTION_GAP", "CUTOUT_RIG_RECONSTRUCTION_REGRESSION", "CUTOUT_RIG_TARGET_ADAPTER_GAP", "CUTOUT_RIG_RENDERER_GAP", "CUTOUT_RIG_SEAM_GAP", "CUTOUT_RIG_TOPOLOGY_SEAM_GAP", "CUTOUT_RIG_OCCLUSION_GAP", "CUTOUT_RIG_RETENTION_GAP", "CUTOUT_RIG_GAIT_STRUCTURE_GAP", "CUTOUT_RIG_EXTERNAL_POSE_QA_GAP", "CUTOUT_RIG_VISUAL_REVIEW_REQUIRED", "CUTOUT_RIG_POSE_PROVIDER_QUALIFIED", "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED"]},
+    "current_gate": {"enum": ["CUTOUT_RIG_SAM2_QUALIFICATION_REQUIRED", "SAM2_RUNTIME_GAP", "CUTOUT_RIG_SEGMENTATION_RUNTIME_GAP", "CUTOUT_RIG_SOURCE_SKELETON_GAP", "CUTOUT_RIG_SEGMENTATION_GAP", "CUTOUT_RIG_CORE_RECONSTRUCTION_GAP", "CUTOUT_RIG_RECONSTRUCTION_GAP", "CUTOUT_RIG_RECONSTRUCTION_REGRESSION", "CUTOUT_RIG_TARGET_ADAPTER_GAP", "CUTOUT_RIG_RENDERER_GAP", "CUTOUT_RIG_SEAM_GAP", "CUTOUT_RIG_TOPOLOGY_SEAM_GAP", "CUTOUT_RIG_STRUCTURAL_COVERAGE_GAP", "CUTOUT_RIG_LAYER_INTEGRITY_GAP", "CUTOUT_RIG_OCCLUSION_REGION_GAP", "CUTOUT_RIG_OCCLUSION_GAP", "CUTOUT_RIG_RETENTION_GAP", "CUTOUT_RIG_GAIT_STRUCTURE_GAP", "CUTOUT_RIG_EXTERNAL_POSE_QA_GAP", "CUTOUT_RIG_VISUAL_REVIEW_REQUIRED", "CUTOUT_RIG_POSE_PROVIDER_QUALIFIED", "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED"]},
     "stop_reason": {"type": ["string", "null"]},
     "generation_provider_change_authorized": {"type": "boolean"},
     "walk_authorized": {"const": false},
@@ -18,7 +18,7 @@
       "type": "object",
       "required": ["version", "historical_smoke_status", "pose_lane_status", "review_snapshot_status"],
       "properties": {
-        "version": {"const": "0.7.1"},
+        "version": {"const": "0.7.2"},
         "historical_smoke_status": {"const": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS"},
         "pose_lane_status": {"type": "string", "minLength": 1},
         "review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"}

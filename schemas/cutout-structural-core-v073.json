@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.7.3 source-derived cutout structural core",
+  "type": "object",
+  "required": ["schema_version", "core_id", "source_only", "manual_click", "sam2", "derivation_parameters", "status"],
+  "properties": {
+    "schema_version": {"const": "0.7.3"},
+    "core_id": {"const": "cutout-structural-core-v073"},
+    "source_only": {"const": true},
+    "manual_click": {"const": false},
+    "sam2": {"const": false},
+    "derivation_parameters": {"type": "object"},
+    "status": {"enum": ["STRUCTURAL_CORE_DERIVED", "CUTOUT_RIG_CORE_RECONSTRUCTION_GAP"]}
+  }
+}

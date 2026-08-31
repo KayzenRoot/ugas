@@ -1,20 +1,20 @@
-# UGAS checkpoint - v0.7.2
+# UGAS checkpoint - v0.7.3
 
 **STATUS:** `CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED`
-**VERSION:** `0.7.2`
+**VERSION:** `0.7.3`
 **PHASE:** `DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER`
 
 ## Current state
 
-O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). O cutout-rig R4 v0.7.1 é reutilizado como input imutável para o plano v0.7.2 de oclusão, dez conexões topológicas, retenção por profundidade e quatro poses key. O review v0.7.1 e o review v0.6.2 permanecem imutáveis.
+O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). O cutout-rig R4 v0.7.1 e os targets v0.7.2 são reutilizados como inputs imutáveis para o core estrutural v0.7.3, dez conexões topológicas, retenção por profundidade e quatro poses key. Os reviews v0.7.2, v0.7.1 e v0.6.2 permanecem imutáveis.
 
 O escopo atual não é geração: `deterministic-cutout-rig-2d` recebe somente o R4 RGBA canônico e as partes v0.7.1. Não houve job ComfyUI, fallback diffusion, nova execução SAM2, SAM3 ou segmentação por frame. O provider continua fora do routing de produção até revisão visual externa.
 
 ## Scope and gate
 
-O baseline SAM2/runtime/checkpoint é histórico e hash-bound; a execução v0.7.2 fez `sam2_runs=0`. Q0 passa alpha IoU `1.0`, RGB MAE `1.147443` e drift de bbox `0.0` px; K1–K4 passam QA affine, pairwise, topológica, retenção e MediaPipe.
+O baseline SAM2/runtime/checkpoint é histórico e hash-bound; a execução v0.7.3 fez `sam2_runs=0`. Q0 passa alpha IoU `1.0`, RGB MAE `1.147443` e zero alteração visível; K1–K4 passam core estrutural, integridade de camadas, pairwise, topológica, retenção e MediaPipe.
 
-O plano pairwise distingue sobreposição de junta, oclusão esperada, oclusão inesperada e colisão crítica. As quatro poses preservam hips distintos, arma no punho anatômico direito, margem segura de 24 px, overlays target/detected e evidência hash-bound em `docs/evidence/`.
+O plano pairwise distingue sobreposição de junta, oclusão esperada, oclusão inesperada e colisão crítica, sempre contra regiões geométricas explícitas. As quatro poses preservam hips distintos, arma no punho anatômico direito, overlays target/detected e evidência hash-bound em `docs/evidence/`. Os buracos cintura/cinto/pelve rejeitados na auditoria v0.7.2 não reaparecem.
 
 ## Evidence boundary
 

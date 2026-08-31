@@ -1,0 +1,2103 @@
+{
+  "schema_version": "0.7.3",
+  "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+  "poses": {
+    "K1-contact-left": {
+      "schema_version": "0.7.3",
+      "phase": "K1-contact-left",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "regions": {
+        "head|torso_pelvis": null,
+        "left_upper_arm|torso_pelvis": null,
+        "right_upper_arm|torso_pelvis": null,
+        "left_thigh|torso_pelvis": null,
+        "right_thigh|torso_pelvis": null,
+        "left_forearm_hand|left_upper_arm": null,
+        "right_forearm_hand|right_upper_arm": null,
+        "left_shin_foot|left_thigh": null,
+        "right_shin_foot|right_thigh": null,
+        "right_forearm_hand|sword": null,
+        "head|left_upper_arm": null,
+        "head|right_upper_arm": null,
+        "left_forearm_hand|torso_pelvis": null,
+        "right_forearm_hand|torso_pelvis": null,
+        "left_forearm_hand|left_thigh": null,
+        "right_forearm_hand|right_thigh": null,
+        "right_thigh|sword": null
+      },
+      "records": [
+        {
+          "pair": [
+            "head",
+            "torso_pelvis"
+          ],
+          "pair_key": "head|torso_pelvis",
+          "phase": "K1-contact-left",
+          "expected_front_part": "head",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "none"
+          },
+          "region_pixels": 0,
+          "region_sha256": "8a39d2abd3999ab73c34db2476849cddf303ce389b35826850f9a700589b4a90",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_upper_arm"
+          ],
+          "pair_key": "left_upper_arm|torso_pelvis",
+          "phase": "K1-contact-left",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                300.7255,
+                102.481
+              ],
+              [
+                318.8917,
+                169.1376
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10839,
+          "region_sha256": "ae6da07113411ba44656d415168a43b5e146e31097c973deadf7dd470f1a2e23",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_upper_arm"
+          ],
+          "pair_key": "right_upper_arm|torso_pelvis",
+          "phase": "K1-contact-left",
+          "expected_front_part": "right_upper_arm",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                206.2118,
+                102.12
+              ],
+              [
+                179.4992,
+                164.5506
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10685,
+          "region_sha256": "34347ab513416d7c166c4b4415225eb70aa57563a3824514bef70069101e5258",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_thigh"
+          ],
+          "pair_key": "left_thigh|torso_pelvis",
+          "phase": "K1-contact-left",
+          "expected_front_part": "left_thigh",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_left",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                282.6128,
+                228.2711
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8915,
+          "region_sha256": "6c745b29656eb1baeaac18f79a46a6a2c41384e0afe5766a9e258d240bf057cd",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_thigh"
+          ],
+          "pair_key": "right_thigh|torso_pelvis",
+          "phase": "K1-contact-left",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_right",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                229.3873,
+                229.2929
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8972,
+          "region_sha256": "3f789b95674c7985fbedd82cdd5a257116d87c612ce0d0d0768ca38cea176f9d",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_upper_arm",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|left_upper_arm",
+          "phase": "K1-contact-left",
+          "expected_front_part": "left_upper_arm",
+          "expected_back_part": "left_forearm_hand",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_left",
+            "segment": [
+              [
+                318.8917,
+                169.1376
+              ],
+              [
+                339.2644,
+                237.5055
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 7298,
+          "region_sha256": "481a2dac9911eea00451b908a25fab95744fa37ee1f22945a32d6e4526287421",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_upper_arm",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|right_upper_arm",
+          "phase": "K1-contact-left",
+          "expected_front_part": "right_forearm_hand",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_right",
+            "segment": [
+              [
+                179.4992,
+                164.5506
+              ],
+              [
+                177.5441,
+                230.3811
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 6939,
+          "region_sha256": "0b1a9be30153c83ac47d49cf0f2a2b33c88af897869c36461c104ac946907dfe",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_thigh",
+            "left_shin_foot"
+          ],
+          "pair_key": "left_shin_foot|left_thigh",
+          "phase": "K1-contact-left",
+          "expected_front_part": "left_shin_foot",
+          "expected_back_part": "left_thigh",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_left",
+            "segment": [
+              [
+                290.0639,
+                328.5741
+              ],
+              [
+                295.507,
+                428.5532
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 14168,
+          "region_sha256": "1c9c5186e73233479c3a8dcfc48daf525bc578e1719a7937516a04644d8ad216",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "right_shin_foot"
+          ],
+          "pair_key": "right_shin_foot|right_thigh",
+          "phase": "K1-contact-left",
+          "expected_front_part": "right_thigh",
+          "expected_back_part": "right_shin_foot",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_right",
+            "segment": [
+              [
+                205.0147,
+                324.1472
+              ],
+              [
+                220.0096,
+                419.4095
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 13756,
+          "region_sha256": "46202eb99067bc4922b79d6493a8e472173b69c24f51a24b0c346fdee254d0e1",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "sword"
+          ],
+          "pair_key": "right_forearm_hand|sword",
+          "phase": "K1-contact-left",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "grip_wrist_corridor",
+            "joint": "wrist_right",
+            "radius_x_px": 46,
+            "radius_y_px": 58
+          },
+          "region_pixels": 8537,
+          "region_sha256": "229fee573a3b918fd5282a867b3e0f87650dabee427a5544ff3283bf62689fb9",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "left_upper_arm"
+          ],
+          "pair_key": "head|left_upper_arm",
+          "phase": "K1-contact-left",
+          "expected_front_part": "head",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                300.7255,
+                102.481
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "ed28b8d479ecff21d9cd5a39a467587ee1cabe67b924e7b7fe6115e84a3f3961",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "right_upper_arm"
+          ],
+          "pair_key": "head|right_upper_arm",
+          "phase": "K1-contact-left",
+          "expected_front_part": "head",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                206.2118,
+                102.12
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "8ab8ad37b4478ba211fdaac49efc15d0b4239cf6aaf71e7ab2c936c32040f82b",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|torso_pelvis",
+          "phase": "K1-contact-left",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "left_forearm_hand",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_left",
+            "segment": [
+              [
+                318.8917,
+                169.1376
+              ],
+              [
+                339.2644,
+                237.5055
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5366,
+          "region_sha256": "8d7f873dd04519eb944ac0e3d7e48e6feae6042f515221859319de08b6b88c45",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|torso_pelvis",
+          "phase": "K1-contact-left",
+          "expected_front_part": "right_forearm_hand",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_right",
+            "segment": [
+              [
+                179.4992,
+                164.5506
+              ],
+              [
+                177.5441,
+                230.3811
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5115,
+          "region_sha256": "74d4726b45ad4b214ad76d2db558f2c40190ae5207095e7977f22a17cdda1752",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_forearm_hand",
+            "left_thigh"
+          ],
+          "pair_key": "left_forearm_hand|left_thigh",
+          "phase": "K1-contact-left",
+          "expected_front_part": "left_thigh",
+          "expected_back_part": "left_forearm_hand",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_left",
+            "segments": [
+              [
+                [
+                  339.2644,
+                  237.5055
+                ],
+                [
+                  282.6128,
+                  228.2711
+                ]
+              ],
+              [
+                [
+                  282.6128,
+                  228.2711
+                ],
+                [
+                  290.0639,
+                  328.5741
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15871,
+          "region_sha256": "8835b3530c62cd8dfee6f08663cf1810a52959cfe023b5ed776fd9671e4157f6",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "right_thigh"
+          ],
+          "pair_key": "right_forearm_hand|right_thigh",
+          "phase": "K1-contact-left",
+          "expected_front_part": "right_forearm_hand",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_right",
+            "segments": [
+              [
+                [
+                  177.5441,
+                  230.3811
+                ],
+                [
+                  229.3873,
+                  229.2929
+                ]
+              ],
+              [
+                [
+                  229.3873,
+                  229.2929
+                ],
+                [
+                  205.0147,
+                  324.1472
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15543,
+          "region_sha256": "3e226bc33bb4457be4b33dd7b56a48ba78d13451fad285c4cdc6057ff4f96c2e",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "sword"
+          ],
+          "pair_key": "right_thigh|sword",
+          "phase": "K1-contact-left",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "blade_over_trail_thigh",
+            "joint": "wrist_right",
+            "blade_segment": [
+              [
+                177.5441,
+                230.3811
+              ],
+              [
+                101.3045,
+                420.2991
+              ]
+            ],
+            "trail_thigh_segment": [
+              [
+                181.39787064782698,
+                230.30020851917
+              ],
+              [
+                157.02527064782697,
+                325.15450851917
+              ]
+            ],
+            "trail_side_offset_px": 48,
+            "thigh_corridor_radius_px": 38,
+            "blade_radius_px": 44
+          },
+          "region_pixels": 11544,
+          "region_sha256": "4d505648017fd393f83f047e2a7b409f76130288e1a3c2d6bc6205bcb283ce21",
+          "text_label_is_not_authorization": true
+        }
+      ],
+      "status": "AUTHORIZED_OCCLUSION_REGIONS_DERIVED"
+    },
+    "K2-passing-left": {
+      "schema_version": "0.7.3",
+      "phase": "K2-passing-left",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "regions": {
+        "head|torso_pelvis": null,
+        "left_upper_arm|torso_pelvis": null,
+        "right_upper_arm|torso_pelvis": null,
+        "left_thigh|torso_pelvis": null,
+        "right_thigh|torso_pelvis": null,
+        "left_forearm_hand|left_upper_arm": null,
+        "right_forearm_hand|right_upper_arm": null,
+        "left_shin_foot|left_thigh": null,
+        "right_shin_foot|right_thigh": null,
+        "right_forearm_hand|sword": null,
+        "head|left_upper_arm": null,
+        "head|right_upper_arm": null,
+        "left_forearm_hand|torso_pelvis": null,
+        "right_forearm_hand|torso_pelvis": null,
+        "left_forearm_hand|left_thigh": null,
+        "right_forearm_hand|right_thigh": null,
+        "right_thigh|sword": null
+      },
+      "records": [
+        {
+          "pair": [
+            "head",
+            "torso_pelvis"
+          ],
+          "pair_key": "head|torso_pelvis",
+          "phase": "K2-passing-left",
+          "expected_front_part": "head",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "none"
+          },
+          "region_pixels": 0,
+          "region_sha256": "8a39d2abd3999ab73c34db2476849cddf303ce389b35826850f9a700589b4a90",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_upper_arm"
+          ],
+          "pair_key": "left_upper_arm|torso_pelvis",
+          "phase": "K2-passing-left",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                300.7255,
+                102.481
+              ],
+              [
+                318.8917,
+                169.1376
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10839,
+          "region_sha256": "ae6da07113411ba44656d415168a43b5e146e31097c973deadf7dd470f1a2e23",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_upper_arm"
+          ],
+          "pair_key": "right_upper_arm|torso_pelvis",
+          "phase": "K2-passing-left",
+          "expected_front_part": "right_upper_arm",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                206.2118,
+                102.12
+              ],
+              [
+                179.4992,
+                164.5506
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10685,
+          "region_sha256": "34347ab513416d7c166c4b4415225eb70aa57563a3824514bef70069101e5258",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_thigh"
+          ],
+          "pair_key": "left_thigh|torso_pelvis",
+          "phase": "K2-passing-left",
+          "expected_front_part": "left_thigh",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_left",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                282.6128,
+                228.2711
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8915,
+          "region_sha256": "6c745b29656eb1baeaac18f79a46a6a2c41384e0afe5766a9e258d240bf057cd",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_thigh"
+          ],
+          "pair_key": "right_thigh|torso_pelvis",
+          "phase": "K2-passing-left",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_right",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                229.3873,
+                229.2929
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8972,
+          "region_sha256": "3f789b95674c7985fbedd82cdd5a257116d87c612ce0d0d0768ca38cea176f9d",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_upper_arm",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|left_upper_arm",
+          "phase": "K2-passing-left",
+          "expected_front_part": "left_upper_arm",
+          "expected_back_part": "left_forearm_hand",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_left",
+            "segment": [
+              [
+                318.8917,
+                169.1376
+              ],
+              [
+                339.2644,
+                237.5055
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 7298,
+          "region_sha256": "481a2dac9911eea00451b908a25fab95744fa37ee1f22945a32d6e4526287421",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_upper_arm",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|right_upper_arm",
+          "phase": "K2-passing-left",
+          "expected_front_part": "right_forearm_hand",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_right",
+            "segment": [
+              [
+                179.4992,
+                164.5506
+              ],
+              [
+                177.5441,
+                230.3811
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 6939,
+          "region_sha256": "0b1a9be30153c83ac47d49cf0f2a2b33c88af897869c36461c104ac946907dfe",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_thigh",
+            "left_shin_foot"
+          ],
+          "pair_key": "left_shin_foot|left_thigh",
+          "phase": "K2-passing-left",
+          "expected_front_part": "left_shin_foot",
+          "expected_back_part": "left_thigh",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_left",
+            "segment": [
+              [
+                271.8172,
+                328.2695
+              ],
+              [
+                258.9911,
+                428.5532
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 14282,
+          "region_sha256": "df27d90173492fc3501322eddb2b01484511058334512c27c8174839c076e9fc",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "right_shin_foot"
+          ],
+          "pair_key": "right_shin_foot|right_thigh",
+          "phase": "K2-passing-left",
+          "expected_front_part": "right_thigh",
+          "expected_back_part": "right_shin_foot",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_right",
+            "segment": [
+              [
+                191.4963,
+                319.6014
+              ],
+              [
+                221.0096,
+                411.4095
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 13883,
+          "region_sha256": "370955cf72fbf1ee237a48e730c6797d380635c4a776d8642cb045cc9a5123bb",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "sword"
+          ],
+          "pair_key": "right_forearm_hand|sword",
+          "phase": "K2-passing-left",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "grip_wrist_corridor",
+            "joint": "wrist_right",
+            "radius_x_px": 46,
+            "radius_y_px": 58
+          },
+          "region_pixels": 8537,
+          "region_sha256": "229fee573a3b918fd5282a867b3e0f87650dabee427a5544ff3283bf62689fb9",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "left_upper_arm"
+          ],
+          "pair_key": "head|left_upper_arm",
+          "phase": "K2-passing-left",
+          "expected_front_part": "head",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                300.7255,
+                102.481
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "ed28b8d479ecff21d9cd5a39a467587ee1cabe67b924e7b7fe6115e84a3f3961",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "right_upper_arm"
+          ],
+          "pair_key": "head|right_upper_arm",
+          "phase": "K2-passing-left",
+          "expected_front_part": "head",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                206.2118,
+                102.12
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "8ab8ad37b4478ba211fdaac49efc15d0b4239cf6aaf71e7ab2c936c32040f82b",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|torso_pelvis",
+          "phase": "K2-passing-left",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "left_forearm_hand",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_left",
+            "segment": [
+              [
+                318.8917,
+                169.1376
+              ],
+              [
+                339.2644,
+                237.5055
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5366,
+          "region_sha256": "8d7f873dd04519eb944ac0e3d7e48e6feae6042f515221859319de08b6b88c45",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|torso_pelvis",
+          "phase": "K2-passing-left",
+          "expected_front_part": "right_forearm_hand",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_right",
+            "segment": [
+              [
+                179.4992,
+                164.5506
+              ],
+              [
+                177.5441,
+                230.3811
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5115,
+          "region_sha256": "74d4726b45ad4b214ad76d2db558f2c40190ae5207095e7977f22a17cdda1752",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_forearm_hand",
+            "left_thigh"
+          ],
+          "pair_key": "left_forearm_hand|left_thigh",
+          "phase": "K2-passing-left",
+          "expected_front_part": "left_thigh",
+          "expected_back_part": "left_forearm_hand",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_left",
+            "segments": [
+              [
+                [
+                  339.2644,
+                  237.5055
+                ],
+                [
+                  282.6128,
+                  228.2711
+                ]
+              ],
+              [
+                [
+                  282.6128,
+                  228.2711
+                ],
+                [
+                  271.8172,
+                  328.2695
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15889,
+          "region_sha256": "9c5c73eb1b1c79e40117d18755cb08102f2647e721f75fc5fbba9e3aa9b1b7f3",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "right_thigh"
+          ],
+          "pair_key": "right_forearm_hand|right_thigh",
+          "phase": "K2-passing-left",
+          "expected_front_part": "right_forearm_hand",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_right",
+            "segments": [
+              [
+                [
+                  177.5441,
+                  230.3811
+                ],
+                [
+                  229.3873,
+                  229.2929
+                ]
+              ],
+              [
+                [
+                  229.3873,
+                  229.2929
+                ],
+                [
+                  191.4963,
+                  319.6014
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15631,
+          "region_sha256": "d18ff604007d8fd6c88cb3969184fbaa1ed43ccb0a455dedfe11f6f1e21fa27b",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "sword"
+          ],
+          "pair_key": "right_thigh|sword",
+          "phase": "K2-passing-left",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "blade_over_trail_thigh",
+            "joint": "wrist_right",
+            "blade_segment": [
+              [
+                177.5441,
+                230.3811
+              ],
+              [
+                101.3045,
+                420.2991
+              ]
+            ],
+            "trail_thigh_segment": [
+              [
+                181.39787064782698,
+                230.30020851917
+              ],
+              [
+                143.50687064782696,
+                320.60870851917
+              ]
+            ],
+            "trail_side_offset_px": 48,
+            "thigh_corridor_radius_px": 38,
+            "blade_radius_px": 44
+          },
+          "region_pixels": 12175,
+          "region_sha256": "7341b3b12f75643869f3307a3aa64b8fd6e788f746e290f34e23d1ce9ee5e3e8",
+          "text_label_is_not_authorization": true
+        }
+      ],
+      "status": "AUTHORIZED_OCCLUSION_REGIONS_DERIVED"
+    },
+    "K3-contact-right": {
+      "schema_version": "0.7.3",
+      "phase": "K3-contact-right",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "regions": {
+        "head|torso_pelvis": null,
+        "left_upper_arm|torso_pelvis": null,
+        "right_upper_arm|torso_pelvis": null,
+        "left_thigh|torso_pelvis": null,
+        "right_thigh|torso_pelvis": null,
+        "left_forearm_hand|left_upper_arm": null,
+        "right_forearm_hand|right_upper_arm": null,
+        "left_shin_foot|left_thigh": null,
+        "right_shin_foot|right_thigh": null,
+        "right_forearm_hand|sword": null,
+        "head|left_upper_arm": null,
+        "head|right_upper_arm": null,
+        "left_forearm_hand|torso_pelvis": null,
+        "right_forearm_hand|torso_pelvis": null,
+        "left_forearm_hand|left_thigh": null,
+        "right_forearm_hand|right_thigh": null,
+        "right_thigh|sword": null
+      },
+      "records": [
+        {
+          "pair": [
+            "head",
+            "torso_pelvis"
+          ],
+          "pair_key": "head|torso_pelvis",
+          "phase": "K3-contact-right",
+          "expected_front_part": "head",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "none"
+          },
+          "region_pixels": 0,
+          "region_sha256": "8a39d2abd3999ab73c34db2476849cddf303ce389b35826850f9a700589b4a90",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_upper_arm"
+          ],
+          "pair_key": "left_upper_arm|torso_pelvis",
+          "phase": "K3-contact-right",
+          "expected_front_part": "left_upper_arm",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                300.7255,
+                102.481
+              ],
+              [
+                331.9262,
+                164.1221
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10777,
+          "region_sha256": "da8e3ef546b8a2f369de737b7c9165553bdc58502d0f289b93a2f694f8cfef1e",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_upper_arm"
+          ],
+          "pair_key": "right_upper_arm|torso_pelvis",
+          "phase": "K3-contact-right",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                206.2118,
+                102.12
+              ],
+              [
+                195.0729,
+                169.1055
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10759,
+          "region_sha256": "bb6e94914f86f2f803ee166efe1b2bbde41a2e40c273e12a1e90f41316f29729",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_thigh"
+          ],
+          "pair_key": "left_thigh|torso_pelvis",
+          "phase": "K3-contact-right",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "left_thigh",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_left",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                282.6128,
+                228.2711
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8915,
+          "region_sha256": "6c745b29656eb1baeaac18f79a46a6a2c41384e0afe5766a9e258d240bf057cd",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_thigh"
+          ],
+          "pair_key": "right_thigh|torso_pelvis",
+          "phase": "K3-contact-right",
+          "expected_front_part": "right_thigh",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_right",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                229.3873,
+                229.2929
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8972,
+          "region_sha256": "3f789b95674c7985fbedd82cdd5a257116d87c612ce0d0d0768ca38cea176f9d",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_upper_arm",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|left_upper_arm",
+          "phase": "K3-contact-right",
+          "expected_front_part": "left_forearm_hand",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_left",
+            "segment": [
+              [
+                331.9262,
+                164.1221
+              ],
+              [
+                331.2644,
+                231.5055
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 6996,
+          "region_sha256": "09f035b1ab672955a15b341fa756856c77b84f5ec800549fb6abee0488af196f",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_upper_arm",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|right_upper_arm",
+          "phase": "K3-contact-right",
+          "expected_front_part": "right_upper_arm",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_right",
+            "segment": [
+              [
+                195.0729,
+                169.1055
+              ],
+              [
+                185.5441,
+                236.3811
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 7076,
+          "region_sha256": "5b1de5c26c8b93d29fb16055efba9c0b42217ace81774f8c81f4ea751e07712c",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_thigh",
+            "left_shin_foot"
+          ],
+          "pair_key": "left_shin_foot|left_thigh",
+          "phase": "K3-contact-right",
+          "expected_front_part": "left_thigh",
+          "expected_back_part": "left_shin_foot",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_left",
+            "segment": [
+              [
+                309.2831,
+                325.25
+              ],
+              [
+                296.3141,
+                420.5532
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 13884,
+          "region_sha256": "1c4278fa7947795ef67c97043550d4a21f019f271187d70985b978090356b2f0",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "right_shin_foot"
+          ],
+          "pair_key": "right_shin_foot|right_thigh",
+          "phase": "K3-contact-right",
+          "expected_front_part": "right_shin_foot",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_right",
+            "segment": [
+              [
+                224.3474,
+                327.0986
+              ],
+              [
+                221.1771,
+                427.4095
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 14158,
+          "region_sha256": "6055467b270418f7aa916e475de3876cc051b3870ff54267804fdc681ca97cdd",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "sword"
+          ],
+          "pair_key": "right_forearm_hand|sword",
+          "phase": "K3-contact-right",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "grip_wrist_corridor",
+            "joint": "wrist_right",
+            "radius_x_px": 46,
+            "radius_y_px": 58
+          },
+          "region_pixels": 8537,
+          "region_sha256": "2844b71edaa28c6e6c46a1ccbbfe0a0a1c0ae5c39dbfcb750c2140a89e1d7a24",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "left_upper_arm"
+          ],
+          "pair_key": "head|left_upper_arm",
+          "phase": "K3-contact-right",
+          "expected_front_part": "head",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                300.7255,
+                102.481
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "ed28b8d479ecff21d9cd5a39a467587ee1cabe67b924e7b7fe6115e84a3f3961",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "right_upper_arm"
+          ],
+          "pair_key": "head|right_upper_arm",
+          "phase": "K3-contact-right",
+          "expected_front_part": "head",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                206.2118,
+                102.12
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "8ab8ad37b4478ba211fdaac49efc15d0b4239cf6aaf71e7ab2c936c32040f82b",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|torso_pelvis",
+          "phase": "K3-contact-right",
+          "expected_front_part": "left_forearm_hand",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_left",
+            "segment": [
+              [
+                331.9262,
+                164.1221
+              ],
+              [
+                331.2644,
+                231.5055
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5160,
+          "region_sha256": "9787145136b1cf5d89be0bb1634ba28230e3c787e9e33fbddd41101d05884206",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|torso_pelvis",
+          "phase": "K3-contact-right",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_right",
+            "segment": [
+              [
+                195.0729,
+                169.1055
+              ],
+              [
+                185.5441,
+                236.3811
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5240,
+          "region_sha256": "da9f81bdf365d42d6e8e0851437c0bbd320748bd63e8bcbbcdfba16f3c969ae0",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_forearm_hand",
+            "left_thigh"
+          ],
+          "pair_key": "left_forearm_hand|left_thigh",
+          "phase": "K3-contact-right",
+          "expected_front_part": "left_forearm_hand",
+          "expected_back_part": "left_thigh",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_left",
+            "segments": [
+              [
+                [
+                  331.2644,
+                  231.5055
+                ],
+                [
+                  282.6128,
+                  228.2711
+                ]
+              ],
+              [
+                [
+                  282.6128,
+                  228.2711
+                ],
+                [
+                  309.2831,
+                  325.25
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15558,
+          "region_sha256": "c92989c7334639c6bfa96535b801045d941aa00b7ef2170bd51be95f848374a2",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "right_thigh"
+          ],
+          "pair_key": "right_forearm_hand|right_thigh",
+          "phase": "K3-contact-right",
+          "expected_front_part": "right_thigh",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_right",
+            "segments": [
+              [
+                [
+                  185.5441,
+                  236.3811
+                ],
+                [
+                  229.3873,
+                  229.2929
+                ]
+              ],
+              [
+                [
+                  229.3873,
+                  229.2929
+                ],
+                [
+                  224.3474,
+                  327.0986
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15188,
+          "region_sha256": "dd60c43b04dd2de6627a711741d9ac956aec5e76f9d2cfb18cf56deed2dcd45f",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "sword"
+          ],
+          "pair_key": "right_thigh|sword",
+          "phase": "K3-contact-right",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "blade_over_trail_thigh",
+            "joint": "wrist_right",
+            "blade_segment": [
+              [
+                185.5441,
+                236.3811
+              ],
+              [
+                109.3045,
+                426.2991
+              ]
+            ],
+            "trail_thigh_segment": [
+              [
+                182.00256953171788,
+                236.9536648735785
+              ],
+              [
+                176.96266953171786,
+                334.7593648735785
+              ]
+            ],
+            "trail_side_offset_px": 48,
+            "thigh_corridor_radius_px": 38,
+            "blade_radius_px": 44
+          },
+          "region_pixels": 10793,
+          "region_sha256": "6081a9eb2ffd40ff273fa2cf6e99864baad9d98504af6aa38e529cefb2bf5859",
+          "text_label_is_not_authorization": true
+        }
+      ],
+      "status": "AUTHORIZED_OCCLUSION_REGIONS_DERIVED"
+    },
+    "K4-passing-right": {
+      "schema_version": "0.7.3",
+      "phase": "K4-passing-right",
+      "plan_sha256": "55d96402964e4c3362922186f6aa3c5ffdd6c85e19bebbfee5ed8bbb777a3375",
+      "regions": {
+        "head|torso_pelvis": null,
+        "left_upper_arm|torso_pelvis": null,
+        "right_upper_arm|torso_pelvis": null,
+        "left_thigh|torso_pelvis": null,
+        "right_thigh|torso_pelvis": null,
+        "left_forearm_hand|left_upper_arm": null,
+        "right_forearm_hand|right_upper_arm": null,
+        "left_shin_foot|left_thigh": null,
+        "right_shin_foot|right_thigh": null,
+        "right_forearm_hand|sword": null,
+        "head|left_upper_arm": null,
+        "head|right_upper_arm": null,
+        "left_forearm_hand|torso_pelvis": null,
+        "right_forearm_hand|torso_pelvis": null,
+        "left_forearm_hand|left_thigh": null,
+        "right_forearm_hand|right_thigh": null,
+        "right_thigh|sword": null
+      },
+      "records": [
+        {
+          "pair": [
+            "head",
+            "torso_pelvis"
+          ],
+          "pair_key": "head|torso_pelvis",
+          "phase": "K4-passing-right",
+          "expected_front_part": "head",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "none"
+          },
+          "region_pixels": 0,
+          "region_sha256": "8a39d2abd3999ab73c34db2476849cddf303ce389b35826850f9a700589b4a90",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_upper_arm"
+          ],
+          "pair_key": "left_upper_arm|torso_pelvis",
+          "phase": "K4-passing-right",
+          "expected_front_part": "left_upper_arm",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                300.7255,
+                102.481
+              ],
+              [
+                331.9262,
+                164.1221
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10777,
+          "region_sha256": "da8e3ef546b8a2f369de737b7c9165553bdc58502d0f289b93a2f694f8cfef1e",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_upper_arm"
+          ],
+          "pair_key": "right_upper_arm|torso_pelvis",
+          "phase": "K4-passing-right",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "shoulder_attachment_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                206.2118,
+                102.12
+              ],
+              [
+                195.0729,
+                169.1055
+              ]
+            ],
+            "radius_px": 36
+          },
+          "region_pixels": 10759,
+          "region_sha256": "bb6e94914f86f2f803ee166efe1b2bbde41a2e40c273e12a1e90f41316f29729",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_thigh"
+          ],
+          "pair_key": "left_thigh|torso_pelvis",
+          "phase": "K4-passing-right",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "left_thigh",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_left",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                282.6128,
+                228.2711
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8915,
+          "region_sha256": "6c745b29656eb1baeaac18f79a46a6a2c41384e0afe5766a9e258d240bf057cd",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_thigh"
+          ],
+          "pair_key": "right_thigh|torso_pelvis",
+          "phase": "K4-passing-right",
+          "expected_front_part": "right_thigh",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "hip_socket_corridor",
+            "joint": "hip_right",
+            "segment": [
+              [
+                256.00005,
+                228.78199999999998
+              ],
+              [
+                229.3873,
+                229.2929
+              ]
+            ],
+            "radius_px": 42,
+            "vertical_radius_px": 62
+          },
+          "region_pixels": 8972,
+          "region_sha256": "3f789b95674c7985fbedd82cdd5a257116d87c612ce0d0d0768ca38cea176f9d",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_upper_arm",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|left_upper_arm",
+          "phase": "K4-passing-right",
+          "expected_front_part": "left_forearm_hand",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_left",
+            "segment": [
+              [
+                331.9262,
+                164.1221
+              ],
+              [
+                331.2644,
+                231.5055
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 6996,
+          "region_sha256": "09f035b1ab672955a15b341fa756856c77b84f5ec800549fb6abee0488af196f",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_upper_arm",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|right_upper_arm",
+          "phase": "K4-passing-right",
+          "expected_front_part": "right_upper_arm",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "elbow_corridor",
+            "joint": "elbow_right",
+            "segment": [
+              [
+                195.0729,
+                169.1055
+              ],
+              [
+                185.5441,
+                236.3811
+              ]
+            ],
+            "radius_px": 30
+          },
+          "region_pixels": 7076,
+          "region_sha256": "5b1de5c26c8b93d29fb16055efba9c0b42217ace81774f8c81f4ea751e07712c",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_thigh",
+            "left_shin_foot"
+          ],
+          "pair_key": "left_shin_foot|left_thigh",
+          "phase": "K4-passing-right",
+          "expected_front_part": "left_thigh",
+          "expected_back_part": "left_shin_foot",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_left",
+            "segment": [
+              [
+                322.923,
+                320.4194
+              ],
+              [
+                295.3141,
+                412.5532
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 13756,
+          "region_sha256": "749cf8d676a1acb6f92e34f3714da6d4db59d6cc2dfc50e667bbd2ea6b7dc179",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "right_shin_foot"
+          ],
+          "pair_key": "right_shin_foot|right_thigh",
+          "phase": "K4-passing-right",
+          "expected_front_part": "right_shin_foot",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "knee_corridor",
+            "joint": "knee_right",
+            "segment": [
+              [
+                240.2208,
+                326.6273
+              ],
+              [
+                253.4593,
+                427.4095
+              ]
+            ],
+            "radius_px": 42
+          },
+          "region_pixels": 14368,
+          "region_sha256": "5d8278d716ae9ae94ef251693da92040597658f071777a0cdcacccd7d23311d6",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "sword"
+          ],
+          "pair_key": "right_forearm_hand|sword",
+          "phase": "K4-passing-right",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "grip_wrist_corridor",
+            "joint": "wrist_right",
+            "radius_x_px": 46,
+            "radius_y_px": 58
+          },
+          "region_pixels": 8537,
+          "region_sha256": "2844b71edaa28c6e6c46a1ccbbfe0a0a1c0ae5c39dbfcb750c2140a89e1d7a24",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "left_upper_arm"
+          ],
+          "pair_key": "head|left_upper_arm",
+          "phase": "K4-passing-right",
+          "expected_front_part": "head",
+          "expected_back_part": "left_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_left",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                300.7255,
+                102.481
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "ed28b8d479ecff21d9cd5a39a467587ee1cabe67b924e7b7fe6115e84a3f3961",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "head",
+            "right_upper_arm"
+          ],
+          "pair_key": "head|right_upper_arm",
+          "phase": "K4-passing-right",
+          "expected_front_part": "head",
+          "expected_back_part": "right_upper_arm",
+          "geometry": {
+            "kind": "head_shoulder_wedge",
+            "joint": "shoulder_right",
+            "segment": [
+              [
+                253.4687,
+                87.1197
+              ],
+              [
+                206.2118,
+                102.12
+              ]
+            ],
+            "radius_px": 44
+          },
+          "region_pixels": 7499,
+          "region_sha256": "8ab8ad37b4478ba211fdaac49efc15d0b4239cf6aaf71e7ab2c936c32040f82b",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "left_forearm_hand"
+          ],
+          "pair_key": "left_forearm_hand|torso_pelvis",
+          "phase": "K4-passing-right",
+          "expected_front_part": "left_forearm_hand",
+          "expected_back_part": "torso_pelvis",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_left",
+            "segment": [
+              [
+                331.9262,
+                164.1221
+              ],
+              [
+                331.2644,
+                231.5055
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5160,
+          "region_sha256": "9787145136b1cf5d89be0bb1634ba28230e3c787e9e33fbddd41101d05884206",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "torso_pelvis",
+            "right_forearm_hand"
+          ],
+          "pair_key": "right_forearm_hand|torso_pelvis",
+          "phase": "K4-passing-right",
+          "expected_front_part": "torso_pelvis",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "forearm_crossing_corridor",
+            "joint": "wrist_right",
+            "segment": [
+              [
+                195.0729,
+                169.1055
+              ],
+              [
+                185.5441,
+                236.3811
+              ]
+            ],
+            "radius_px": 24
+          },
+          "region_pixels": 5240,
+          "region_sha256": "da9f81bdf365d42d6e8e0851437c0bbd320748bd63e8bcbbcdfba16f3c969ae0",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "left_forearm_hand",
+            "left_thigh"
+          ],
+          "pair_key": "left_forearm_hand|left_thigh",
+          "phase": "K4-passing-right",
+          "expected_front_part": "left_forearm_hand",
+          "expected_back_part": "left_thigh",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_left",
+            "segments": [
+              [
+                [
+                  331.2644,
+                  231.5055
+                ],
+                [
+                  282.6128,
+                  228.2711
+                ]
+              ],
+              [
+                [
+                  282.6128,
+                  228.2711
+                ],
+                [
+                  322.923,
+                  320.4194
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15624,
+          "region_sha256": "dc5c589a3b99d5d93d5c135dbdd294f18de89818962e66798530d3a5957bd222",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_forearm_hand",
+            "right_thigh"
+          ],
+          "pair_key": "right_forearm_hand|right_thigh",
+          "phase": "K4-passing-right",
+          "expected_front_part": "right_thigh",
+          "expected_back_part": "right_forearm_hand",
+          "geometry": {
+            "kind": "hand_hip_crossing_corridor",
+            "joint": "hip_right",
+            "segments": [
+              [
+                [
+                  185.5441,
+                  236.3811
+                ],
+                [
+                  229.3873,
+                  229.2929
+                ]
+              ],
+              [
+                [
+                  229.3873,
+                  229.2929
+                ],
+                [
+                  240.2208,
+                  326.6273
+                ]
+              ]
+            ],
+            "hip_radius_x_px": 56,
+            "hip_radius_y_px": 72,
+            "thigh_radius_px": 22
+          },
+          "region_pixels": 15179,
+          "region_sha256": "eecfbd2265e29da151b6e36d8108c81bec3c39af5d45d5bb5098e7654c7c07de",
+          "text_label_is_not_authorization": true
+        },
+        {
+          "pair": [
+            "right_thigh",
+            "sword"
+          ],
+          "pair_key": "right_thigh|sword",
+          "phase": "K4-passing-right",
+          "expected_front_part": "sword",
+          "expected_back_part": "right_thigh",
+          "geometry": {
+            "kind": "blade_over_trail_thigh",
+            "joint": "wrist_right",
+            "blade_segment": [
+              [
+                185.5441,
+                236.3811
+              ],
+              [
+                109.3045,
+                426.2991
+              ]
+            ],
+            "trail_thigh_segment": [
+              [
+                182.00256953171788,
+                236.9536648735785
+              ],
+              [
+                192.83606953171787,
+                334.2880648735785
+              ]
+            ],
+            "trail_side_offset_px": 48,
+            "thigh_corridor_radius_px": 38,
+            "blade_radius_px": 44
+          },
+          "region_pixels": 9511,
+          "region_sha256": "a19b034a6567bb3e1eeed137e60753006902f9a305556073be6335f749d2c3e3",
+          "text_label_is_not_authorization": true
+        }
+      ],
+      "status": "AUTHORIZED_OCCLUSION_REGIONS_DERIVED"
+    }
+  },
+  "status": "AUTHORIZED_OCCLUSION_REGIONS_DERIVED"
+}
