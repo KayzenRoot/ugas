@@ -1,0 +1,296 @@
+{
+  "schema_version": "0.7.1",
+  "source": {
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "source_skeleton": "docs/evidence/r4-source-skeleton-v071.json",
+  "guides": [
+    "pose-guides/openpose-v3/walk-front-8/frame-00-contact-left.json",
+    "pose-guides/openpose-v3/walk-front-8/frame-02-passing-left.json"
+  ],
+  "q1": {
+    "joints": {
+      "nose": {
+        "x": 248.0,
+        "y": 85.63468217474144
+      },
+      "neck": {
+        "x": 248.0,
+        "y": 118.0
+      },
+      "shoulder_left": {
+        "x": 295.25719471331854,
+        "y": 119.4931708238247
+      },
+      "shoulder_right": {
+        "x": 200.7428052866815,
+        "y": 119.4931708238247
+      },
+      "elbow_left": {
+        "x": 337.9717317778317,
+        "y": 173.79405801744554
+      },
+      "elbow_right": {
+        "x": 158.75931338951298,
+        "y": 172.86471630163885
+      },
+      "wrist_left": {
+        "x": 336.13228758524264,
+        "y": 241.15555319824114
+      },
+      "wrist_right": {
+        "x": 159.87641213469618,
+        "y": 238.71481330235338
+      },
+      "hip_left": {
+        "x": 274.61765356624244,
+        "y": 246.0
+      },
+      "hip_right": {
+        "x": 221.38234643375756,
+        "y": 246.0
+      },
+      "knee_left": {
+        "x": 317.19705500768174,
+        "y": 337.1219449894961
+      },
+      "knee_right": {
+        "x": 182.34079640722376,
+        "y": 335.81708272998884
+      },
+      "ankle_left": {
+        "x": 319.86847446893256,
+        "y": 433.26639309916106
+      },
+      "ankle_right": {
+        "x": 176.36814965640363,
+        "y": 432.0672112038767
+      },
+      "pelvis": {
+        "x": 248.0,
+        "y": 246.0
+      },
+      "shoulder_center": {
+        "x": 248.0,
+        "y": 119.4931708238247
+      },
+      "weapon_tip": {
+        "x": 111.21364923059105,
+        "y": 436.65970205300755
+      }
+    },
+    "neck": {
+      "x": 248.0,
+      "y": 118.0
+    },
+    "weapon_tip": {
+      "x": 111.21364923059105,
+      "y": 436.65970205300755
+    },
+    "view": "front",
+    "orientation": "front",
+    "guide_id": "openpose-v3-walk-front-8-frame-00-contact-left",
+    "adapter_version": "target-skeleton-adapter-2.0-v0.7.1",
+    "side_mapping": {
+      "anatomical_left": "guide_right",
+      "anatomical_right": "guide_left"
+    },
+    "hip_invariant": {
+      "source_hip_width_px": 53.235307,
+      "target_hip_width_px": 53.235307,
+      "ratio": 1.0,
+      "distinct": true,
+      "bounded": true,
+      "axis": [
+        1.0,
+        0.0
+      ]
+    },
+    "weapon_attachment": {
+      "anatomical_wrist": "wrist_right",
+      "source_relative_forearm_angle_degrees": 2.78358,
+      "selected_swing_degrees": 12.0,
+      "bounded_swing_degrees": [
+        -12.0,
+        12.0
+      ],
+      "protected_torso_corridor": [
+        182.7428,
+        147.4932,
+        292.6177,
+        304.0
+      ],
+      "tip_crosses_protected_torso": false,
+      "source_length_px": 203.838768
+    },
+    "normalization": "guide angles with source bone lengths, source hip width and source weapon local angle preserved",
+    "global_fit": {
+      "applied": true,
+      "scale": 1.0,
+      "translation": [
+        0.0,
+        -40.0
+      ],
+      "preview_bbox": [
+        111,
+        87,
+        358,
+        512
+      ],
+      "preview_margins_px": {
+        "left": 111,
+        "top": 87,
+        "right": 154,
+        "bottom": 0
+      }
+    }
+  },
+  "q2": {
+    "joints": {
+      "nose": {
+        "x": 254.0,
+        "y": 85.63468217474144
+      },
+      "neck": {
+        "x": 254.0,
+        "y": 118.0
+      },
+      "shoulder_left": {
+        "x": 301.25719471331854,
+        "y": 119.4931708238247
+      },
+      "shoulder_right": {
+        "x": 206.7428052866815,
+        "y": 119.4931708238247
+      },
+      "elbow_left": {
+        "x": 327.71552635370824,
+        "y": 183.313815708197
+      },
+      "elbow_right": {
+        "x": 180.73729923708527,
+        "y": 182.22154648966205
+      },
+      "wrist_left": {
+        "x": 317.3947190075318,
+        "y": 249.90537315847075
+      },
+      "wrist_right": {
+        "x": 190.20293996367042,
+        "y": 247.39734591126648
+      },
+      "hip_left": {
+        "x": 280.61765356624244,
+        "y": 246.0
+      },
+      "hip_right": {
+        "x": 227.38234643375756,
+        "y": 246.0
+      },
+      "knee_left": {
+        "x": 299.6091083690472,
+        "y": 344.7701317719736
+      },
+      "knee_right": {
+        "x": 210.13883312336048,
+        "y": 342.40545745607017
+      },
+      "ankle_left": {
+        "x": 306.2722275972946,
+        "y": 440.720609761404
+      },
+      "ankle_right": {
+        "x": 203.9587410386196,
+        "y": 438.6424888019825
+      },
+      "pelvis": {
+        "x": 254.0,
+        "y": 246.0
+      },
+      "shoulder_center": {
+        "x": 254.0,
+        "y": 119.4931708238247
+      },
+      "weapon_tip": {
+        "x": 167.05651260697186,
+        "y": 449.9176816225009
+      }
+    },
+    "neck": {
+      "x": 254.0,
+      "y": 118.0
+    },
+    "weapon_tip": {
+      "x": 167.05651260697186,
+      "y": 449.9176816225009
+    },
+    "view": "front",
+    "orientation": "front",
+    "guide_id": "openpose-v3-walk-front-8-frame-02-passing-left",
+    "adapter_version": "target-skeleton-adapter-2.0-v0.7.1",
+    "side_mapping": {
+      "anatomical_left": "guide_right",
+      "anatomical_right": "guide_left"
+    },
+    "hip_invariant": {
+      "source_hip_width_px": 53.235307,
+      "target_hip_width_px": 53.235307,
+      "ratio": 1.0,
+      "distinct": true,
+      "bounded": true,
+      "axis": [
+        1.0,
+        0.0
+      ]
+    },
+    "weapon_attachment": {
+      "anatomical_wrist": "wrist_right",
+      "source_relative_forearm_angle_degrees": 2.78358,
+      "selected_swing_degrees": 12.0,
+      "bounded_swing_degrees": [
+        -12.0,
+        12.0
+      ],
+      "protected_torso_corridor": [
+        188.7428,
+        147.4932,
+        298.6177,
+        304.0
+      ],
+      "tip_crosses_protected_torso": false,
+      "source_length_px": 203.838768
+    },
+    "normalization": "guide angles with source bone lengths, source hip width and source weapon local angle preserved",
+    "global_fit": {
+      "applied": true,
+      "scale": 1.0,
+      "translation": [
+        0.0,
+        -40.0
+      ],
+      "preview_bbox": [
+        164,
+        87,
+        348,
+        512
+      ],
+      "preview_margins_px": {
+        "left": 164,
+        "top": 87,
+        "right": 164,
+        "bottom": 0
+      }
+    }
+  },
+  "gait_semantics": {
+    "phase_distance_px": 103.615889,
+    "documented_floor_px": 8.0,
+    "distinct": true,
+    "q1_contact_opposed_extension_delta_degrees": 48.539258,
+    "q1_contact_semantics": true,
+    "q2_passing_centerline_distance_px": 50.041259,
+    "q2_passing_semantics": true
+  },
+  "policy": "derived targets only; immutable historical guides; explicit side mapping"
+}

@@ -1,0 +1,461 @@
+{
+  "schema_version": "0.7.1",
+  "status": "CUTOUT_RIG_SEAM_GAP",
+  "before_blend": {
+    "q0": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 0,
+      "component_sizes_desc": [
+        49131
+      ],
+      "meaningful_component_threshold": 122,
+      "body_component_threshold": 122,
+      "background_hole_pixels": 0,
+      "torso_corridor_hole_pixels": 0,
+      "overlap_pixels": 0,
+      "overlap_outside_joint_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "border_contact": false,
+      "bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "margins_px": {
+        "left": 159,
+        "top": 40,
+        "right": 151,
+        "bottom": 25
+      },
+      "safe_margin": true,
+      "occupancy_measured": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true,
+        "background_holes_measured": true
+      },
+      "status": "SEAM_QA_PASSED"
+    },
+    "q1-contact-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.157025,
+        "shoulder_right": 0.024793,
+        "elbow_left": 0.198347,
+        "elbow_right": 0.231405,
+        "wrist_left": 0.0,
+        "wrist_right": 0.198347,
+        "hip_left": 0.206612,
+        "hip_right": 0.22314,
+        "knee_left": 0.198347,
+        "knee_right": 0.190083,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.231405,
+      "disconnect_count": 1,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 10,
+      "component_sizes_desc": [
+        46514,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "meaningful_component_threshold": 116,
+      "body_component_threshold": 116,
+      "background_hole_pixels": 0,
+      "torso_corridor_hole_pixels": 0,
+      "overlap_pixels": 2418,
+      "overlap_outside_joint_pixels": 2222,
+      "overlap_excess": true,
+      "clipping": false,
+      "border_contact": false,
+      "bbox": [
+        111,
+        47,
+        358,
+        472
+      ],
+      "margins_px": {
+        "left": 111,
+        "top": 47,
+        "right": 154,
+        "bottom": 40
+      },
+      "safe_margin": true,
+      "occupancy_measured": true,
+      "hard_gates": {
+        "disconnect_zero": false,
+        "gap_at_most_002": false,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": false,
+        "clipping_false": true,
+        "safe_margin_true": true,
+        "background_holes_measured": true
+      },
+      "status": "CUTOUT_RIG_SEAM_GAP"
+    },
+    "q2-passing-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.239669,
+        "shoulder_right": 0.033058,
+        "elbow_left": 0.190083,
+        "elbow_right": 0.214876,
+        "wrist_left": 0.0,
+        "wrist_right": 0.198347,
+        "hip_left": 0.165289,
+        "hip_right": 0.157025,
+        "knee_left": 0.206612,
+        "knee_right": 0.198347,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.239669,
+      "disconnect_count": 1,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 3,
+      "component_sizes_desc": [
+        44138,
+        1,
+        1,
+        1
+      ],
+      "meaningful_component_threshold": 110,
+      "body_component_threshold": 110,
+      "background_hole_pixels": 0,
+      "torso_corridor_hole_pixels": 0,
+      "overlap_pixels": 4694,
+      "overlap_outside_joint_pixels": 4477,
+      "overlap_excess": true,
+      "clipping": false,
+      "border_contact": false,
+      "bbox": [
+        164,
+        47,
+        348,
+        478
+      ],
+      "margins_px": {
+        "left": 164,
+        "top": 47,
+        "right": 164,
+        "bottom": 34
+      },
+      "safe_margin": true,
+      "occupancy_measured": true,
+      "hard_gates": {
+        "disconnect_zero": false,
+        "gap_at_most_002": false,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": false,
+        "clipping_false": true,
+        "safe_margin_true": true,
+        "background_holes_measured": true
+      },
+      "status": "CUTOUT_RIG_SEAM_GAP"
+    }
+  },
+  "final": {
+    "q0": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.0,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.0,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 0,
+      "component_sizes_desc": [
+        49131
+      ],
+      "meaningful_component_threshold": 122,
+      "body_component_threshold": 122,
+      "background_hole_pixels": 0,
+      "torso_corridor_hole_pixels": 0,
+      "overlap_pixels": 333,
+      "overlap_outside_joint_pixels": 0,
+      "overlap_excess": false,
+      "clipping": false,
+      "border_contact": false,
+      "bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "margins_px": {
+        "left": 159,
+        "top": 40,
+        "right": 151,
+        "bottom": 25
+      },
+      "safe_margin": true,
+      "occupancy_measured": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": true,
+        "clipping_false": true,
+        "safe_margin_true": true,
+        "background_holes_measured": true
+      },
+      "status": "SEAM_QA_PASSED"
+    },
+    "q1-contact-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.024793,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.024793,
+      "disconnect_count": 1,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 9,
+      "component_sizes_desc": [
+        46709,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "meaningful_component_threshold": 116,
+      "body_component_threshold": 116,
+      "background_hole_pixels": 0,
+      "torso_corridor_hole_pixels": 0,
+      "overlap_pixels": 2897,
+      "overlap_outside_joint_pixels": 2222,
+      "overlap_excess": true,
+      "clipping": false,
+      "border_contact": false,
+      "bbox": [
+        111,
+        47,
+        358,
+        472
+      ],
+      "margins_px": {
+        "left": 111,
+        "top": 47,
+        "right": 154,
+        "bottom": 40
+      },
+      "safe_margin": true,
+      "occupancy_measured": true,
+      "hard_gates": {
+        "disconnect_zero": false,
+        "gap_at_most_002": false,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": false,
+        "clipping_false": true,
+        "safe_margin_true": true,
+        "background_holes_measured": true
+      },
+      "status": "CUTOUT_RIG_SEAM_GAP"
+    },
+    "q2-passing-left": {
+      "required_joints": [
+        "shoulder_left",
+        "shoulder_right",
+        "elbow_left",
+        "elbow_right",
+        "wrist_left",
+        "wrist_right",
+        "hip_left",
+        "hip_right",
+        "knee_left",
+        "knee_right",
+        "ankle_left",
+        "ankle_right"
+      ],
+      "joint_gap_fraction": {
+        "shoulder_left": 0.0,
+        "shoulder_right": 0.0,
+        "elbow_left": 0.0,
+        "elbow_right": 0.016529,
+        "wrist_left": 0.0,
+        "wrist_right": 0.0,
+        "hip_left": 0.0,
+        "hip_right": 0.0,
+        "knee_left": 0.0,
+        "knee_right": 0.0,
+        "ankle_left": 0.0,
+        "ankle_right": 0.0
+      },
+      "max_joint_gap_fraction": 0.016529,
+      "disconnect_count": 0,
+      "duplicate_body_components": 0,
+      "fragment_component_count": 3,
+      "component_sizes_desc": [
+        44330,
+        1,
+        1,
+        1
+      ],
+      "meaningful_component_threshold": 110,
+      "body_component_threshold": 110,
+      "background_hole_pixels": 0,
+      "torso_corridor_hole_pixels": 0,
+      "overlap_pixels": 5159,
+      "overlap_outside_joint_pixels": 4477,
+      "overlap_excess": true,
+      "clipping": false,
+      "border_contact": false,
+      "bbox": [
+        164,
+        47,
+        348,
+        478
+      ],
+      "margins_px": {
+        "left": 164,
+        "top": 47,
+        "right": 164,
+        "bottom": 34
+      },
+      "safe_margin": true,
+      "occupancy_measured": true,
+      "hard_gates": {
+        "disconnect_zero": true,
+        "gap_at_most_002": true,
+        "duplicate_components_zero": true,
+        "gross_overlap_false": false,
+        "clipping_false": true,
+        "safe_margin_true": true,
+        "background_holes_measured": true
+      },
+      "status": "CUTOUT_RIG_SEAM_GAP"
+    }
+  },
+  "thresholds": {
+    "disconnect_count": 0,
+    "joint_gap_fraction_max": 0.02,
+    "duplicate_body_components": 0,
+    "safe_margin_px": 24,
+    "gross_overlap_fraction": 0.01,
+    "border_contact": false
+  }
+}

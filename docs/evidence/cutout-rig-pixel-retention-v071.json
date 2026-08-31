@@ -1,0 +1,345 @@
+{
+  "schema_version": "0.7.1",
+  "status": "CUTOUT_RIG_EXTERNAL_POSE_QA_GAP",
+  "poses": {
+    "q0": {
+      "status": "PIXEL_RETENTION_PASSED",
+      "source_owned_pixel_fraction": 1.0,
+      "source_visible_retention_fraction": 0.931164,
+      "critical_part_retention": {
+        "head": 1.0,
+        "torso_pelvis": 0.992212,
+        "sword": 1.0
+      },
+      "required_limb_retention": {
+        "left_upper_arm": 0.988194,
+        "left_forearm_hand": 1.0,
+        "right_upper_arm": 0.986584,
+        "right_forearm_hand": 0.986917,
+        "left_thigh": 0.98802,
+        "left_shin_foot": 1.0,
+        "right_thigh": 0.986781,
+        "right_shin_foot": 1.0
+      },
+      "parts": {
+        "left_thigh": {
+          "expected_transformed_pixels": 6177,
+          "visible_pixels_after_z_order": 6103,
+          "source_visible_retention_fraction": 0.98802,
+          "occluded_source_fraction": 0.01198,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "right_thigh": {
+          "expected_transformed_pixels": 5598,
+          "visible_pixels_after_z_order": 5524,
+          "source_visible_retention_fraction": 0.986781,
+          "occluded_source_fraction": 0.013219,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "left_shin_foot": {
+          "expected_transformed_pixels": 3085,
+          "visible_pixels_after_z_order": 3085,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "right_shin_foot": {
+          "expected_transformed_pixels": 4158,
+          "visible_pixels_after_z_order": 4158,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "torso_pelvis": {
+          "expected_transformed_pixels": 9502,
+          "visible_pixels_after_z_order": 9428,
+          "source_visible_retention_fraction": 0.992212,
+          "occluded_source_fraction": 0.007788,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "left_upper_arm": {
+          "expected_transformed_pixels": 3134,
+          "visible_pixels_after_z_order": 3097,
+          "source_visible_retention_fraction": 0.988194,
+          "occluded_source_fraction": 0.011806,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "right_upper_arm": {
+          "expected_transformed_pixels": 2758,
+          "visible_pixels_after_z_order": 2721,
+          "source_visible_retention_fraction": 0.986584,
+          "occluded_source_fraction": 0.013416,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "left_forearm_hand": {
+          "expected_transformed_pixels": 2260,
+          "visible_pixels_after_z_order": 2260,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "right_forearm_hand": {
+          "expected_transformed_pixels": 2828,
+          "visible_pixels_after_z_order": 2791,
+          "source_visible_retention_fraction": 0.986917,
+          "occluded_source_fraction": 0.013083,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "head": {
+          "expected_transformed_pixels": 3480,
+          "visible_pixels_after_z_order": 3480,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "sword": {
+          "expected_transformed_pixels": 3102,
+          "visible_pixels_after_z_order": 3102,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 1.0
+        }
+      },
+      "gates": {
+        "source_owned_pixel_fraction": true,
+        "critical_head": true,
+        "critical_sword": true,
+        "total_visible_retention": true,
+        "required_limb_min": true
+      },
+      "thresholds": {
+        "source_owned_pixel_fraction": 0.99,
+        "critical_head": 0.97,
+        "critical_sword": 0.95,
+        "total_visible_retention": 0.88,
+        "required_limb": 0.8
+      }
+    },
+    "q1-contact-left": {
+      "status": "PIXEL_RETENTION_PASSED",
+      "source_owned_pixel_fraction": 1.0,
+      "source_visible_retention_fraction": 0.893977,
+      "critical_part_retention": {
+        "head": 1.0,
+        "torso_pelvis": 0.896239,
+        "sword": 1.0
+      },
+      "required_limb_retention": {
+        "left_upper_arm": 0.94535,
+        "left_forearm_hand": 1.0,
+        "right_upper_arm": 0.929039,
+        "right_forearm_hand": 0.960868,
+        "left_thigh": 0.955804,
+        "left_shin_foot": 1.0,
+        "right_thigh": 0.937277,
+        "right_shin_foot": 1.0
+      },
+      "parts": {
+        "left_thigh": {
+          "expected_transformed_pixels": 6177,
+          "visible_pixels_after_z_order": 5904,
+          "source_visible_retention_fraction": 0.955804,
+          "occluded_source_fraction": 0.044196,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "right_thigh": {
+          "expected_transformed_pixels": 5596,
+          "visible_pixels_after_z_order": 5245,
+          "source_visible_retention_fraction": 0.937277,
+          "occluded_source_fraction": 0.062723,
+          "part_area_ratio_after_transform": 0.999643
+        },
+        "left_shin_foot": {
+          "expected_transformed_pixels": 3077,
+          "visible_pixels_after_z_order": 3077,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.997407
+        },
+        "right_shin_foot": {
+          "expected_transformed_pixels": 4146,
+          "visible_pixels_after_z_order": 4146,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.997114
+        },
+        "torso_pelvis": {
+          "expected_transformed_pixels": 9493,
+          "visible_pixels_after_z_order": 8508,
+          "source_visible_retention_fraction": 0.896239,
+          "occluded_source_fraction": 0.103761,
+          "part_area_ratio_after_transform": 0.999053
+        },
+        "left_upper_arm": {
+          "expected_transformed_pixels": 3129,
+          "visible_pixels_after_z_order": 2958,
+          "source_visible_retention_fraction": 0.94535,
+          "occluded_source_fraction": 0.05465,
+          "part_area_ratio_after_transform": 0.998405
+        },
+        "right_upper_arm": {
+          "expected_transformed_pixels": 2748,
+          "visible_pixels_after_z_order": 2553,
+          "source_visible_retention_fraction": 0.929039,
+          "occluded_source_fraction": 0.070961,
+          "part_area_ratio_after_transform": 0.996374
+        },
+        "left_forearm_hand": {
+          "expected_transformed_pixels": 2260,
+          "visible_pixels_after_z_order": 2260,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 1.0
+        },
+        "right_forearm_hand": {
+          "expected_transformed_pixels": 2811,
+          "visible_pixels_after_z_order": 2701,
+          "source_visible_retention_fraction": 0.960868,
+          "occluded_source_fraction": 0.039132,
+          "part_area_ratio_after_transform": 0.993989
+        },
+        "head": {
+          "expected_transformed_pixels": 3476,
+          "visible_pixels_after_z_order": 3476,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.998851
+        },
+        "sword": {
+          "expected_transformed_pixels": 3094,
+          "visible_pixels_after_z_order": 3094,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.997421
+        }
+      },
+      "gates": {
+        "source_owned_pixel_fraction": true,
+        "critical_head": true,
+        "critical_sword": true,
+        "total_visible_retention": true,
+        "required_limb_min": true
+      },
+      "thresholds": {
+        "source_owned_pixel_fraction": 0.99,
+        "critical_head": 0.97,
+        "critical_sword": 0.95,
+        "total_visible_retention": 0.88,
+        "required_limb": 0.8
+      }
+    },
+    "q2-passing-left": {
+      "status": "CUTOUT_RIG_EXTERNAL_POSE_QA_GAP",
+      "source_owned_pixel_fraction": 1.0,
+      "source_visible_retention_fraction": 0.854145,
+      "critical_part_retention": {
+        "head": 1.0,
+        "torso_pelvis": 0.896977,
+        "sword": 1.0
+      },
+      "required_limb_retention": {
+        "left_upper_arm": 0.952153,
+        "left_forearm_hand": 1.0,
+        "right_upper_arm": 0.930495,
+        "right_forearm_hand": 0.96061,
+        "left_thigh": 0.905972,
+        "left_shin_foot": 1.0,
+        "right_thigh": 0.710917,
+        "right_shin_foot": 0.900653
+      },
+      "parts": {
+        "left_thigh": {
+          "expected_transformed_pixels": 6179,
+          "visible_pixels_after_z_order": 5598,
+          "source_visible_retention_fraction": 0.905972,
+          "occluded_source_fraction": 0.094028,
+          "part_area_ratio_after_transform": 1.000324
+        },
+        "right_thigh": {
+          "expected_transformed_pixels": 5597,
+          "visible_pixels_after_z_order": 3979,
+          "source_visible_retention_fraction": 0.710917,
+          "occluded_source_fraction": 0.289083,
+          "part_area_ratio_after_transform": 0.999821
+        },
+        "left_shin_foot": {
+          "expected_transformed_pixels": 3069,
+          "visible_pixels_after_z_order": 3069,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.994814
+        },
+        "right_shin_foot": {
+          "expected_transformed_pixels": 4137,
+          "visible_pixels_after_z_order": 3726,
+          "source_visible_retention_fraction": 0.900653,
+          "occluded_source_fraction": 0.099347,
+          "part_area_ratio_after_transform": 0.994949
+        },
+        "torso_pelvis": {
+          "expected_transformed_pixels": 9493,
+          "visible_pixels_after_z_order": 8515,
+          "source_visible_retention_fraction": 0.896977,
+          "occluded_source_fraction": 0.103023,
+          "part_area_ratio_after_transform": 0.999053
+        },
+        "left_upper_arm": {
+          "expected_transformed_pixels": 3135,
+          "visible_pixels_after_z_order": 2985,
+          "source_visible_retention_fraction": 0.952153,
+          "occluded_source_fraction": 0.047847,
+          "part_area_ratio_after_transform": 1.000319
+        },
+        "right_upper_arm": {
+          "expected_transformed_pixels": 2748,
+          "visible_pixels_after_z_order": 2557,
+          "source_visible_retention_fraction": 0.930495,
+          "occluded_source_fraction": 0.069505,
+          "part_area_ratio_after_transform": 0.996374
+        },
+        "left_forearm_hand": {
+          "expected_transformed_pixels": 2259,
+          "visible_pixels_after_z_order": 2259,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.999558
+        },
+        "right_forearm_hand": {
+          "expected_transformed_pixels": 2818,
+          "visible_pixels_after_z_order": 2707,
+          "source_visible_retention_fraction": 0.96061,
+          "occluded_source_fraction": 0.03939,
+          "part_area_ratio_after_transform": 0.996464
+        },
+        "head": {
+          "expected_transformed_pixels": 3476,
+          "visible_pixels_after_z_order": 3476,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.998851
+        },
+        "sword": {
+          "expected_transformed_pixels": 3094,
+          "visible_pixels_after_z_order": 3094,
+          "source_visible_retention_fraction": 1.0,
+          "occluded_source_fraction": 0.0,
+          "part_area_ratio_after_transform": 0.997421
+        }
+      },
+      "gates": {
+        "source_owned_pixel_fraction": true,
+        "critical_head": true,
+        "critical_sword": true,
+        "total_visible_retention": false,
+        "required_limb_min": false
+      },
+      "thresholds": {
+        "source_owned_pixel_fraction": 0.99,
+        "critical_head": 0.97,
+        "critical_sword": 0.95,
+        "total_visible_retention": 0.88,
+        "required_limb": 0.8
+      }
+    }
+  }
+}

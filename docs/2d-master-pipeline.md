@@ -1,8 +1,8 @@
-# 2D master pipeline v0.7.0
+# 2D master pipeline v0.7.1
 
-The active release is the v0.7.0 deterministic R4 cutout-rig provider. The v0.6.2 SDXL/OpenPose calibration remains historical and immutable; only static Q0/Q1/Q2 cutout-rig qualification is in scope.
+The active release is the v0.7.1 deterministic R4 cutout-rig fidelity/QA correction. The v0.7.0 result, v0.6.2 SDXL/OpenPose calibration and earlier records remain historical and immutable; only static Q0/Q1/Q2 cutout-rig qualification is in scope.
 
-This release does not run diffusion. It binds R4 RGBA pixels to an eleven-part rig through an isolated SAM2.1 Hiera Small pass and deterministic Pillow transforms. The current lane stopped at its explicit visual/estimator gap.
+This release does not run diffusion. It binds R4 RGBA pixels to an eleven-part rig through an isolated SAM2.1 Hiera Small pass and deterministic Pillow transforms. The current lane stops at its measured seam/retention gap.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 

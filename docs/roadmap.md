@@ -1,8 +1,8 @@
 # UGAS roadmap
 
-## v0.7.0 - deterministic cutout-rig pose provider
+## v0.7.1 - deterministic cutout-rig fidelity QA correction
 
-Build the R4 front-facing deterministic cutout rig with SAM2.1 Hiera Small masks, hash-bound hierarchy, source-only pixel provenance and static Q0/Q1/Q2 QA. The implementation is complete locally, but the provider remains at `CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP` because Q1/Q2 do not pass the unchanged pose thresholds.
+Correct the v0.7.0 false-green anatomy, segmentation, residual fallback, component, affine-geometry and seam QA paths. The implementation is complete locally and evidence is reproducible, but the provider remains at `CUTOUT_RIG_SEAM_GAP` because Q1/Q2 still expose measured overlap/continuity issues and Q2 retention loss.
 
 ## v0.6.2 - historical SDXL OpenPose model-card calibration
 

@@ -1,0 +1,268 @@
+{
+  "schema_version": "0.7.1",
+  "source": {
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96"
+  },
+  "media_pipe": {
+    "model": "pose_landmarker_full.task",
+    "version": "0.10.35",
+    "detected": true,
+    "pose_count": 1,
+    "measurable_body_joints": 13,
+    "core_coverage": 1.0,
+    "mean_confidence": 0.99463,
+    "min_confidence": 0.983706
+  },
+  "skeleton": {
+    "schema_version": "0.7.1",
+    "joint_schema": "UGAS-COCO-18-compatible",
+    "coordinate_space": {
+      "width": 512,
+      "height": 512,
+      "origin": "top-left",
+      "normalized": "x/width,y/height"
+    },
+    "joints": {
+      "nose": {
+        "x": 269.8312,
+        "y": 78.8774,
+        "normalized_x": 0.52701414,
+        "normalized_y": 0.15405747,
+        "confidence": 0.99999,
+        "visibility": 0.999995,
+        "presence": 0.99999,
+        "source_index": 0,
+        "visible": true
+      },
+      "eye_left": {
+        "x": 277.4685,
+        "y": 69.9533,
+        "normalized_x": 0.54193068,
+        "normalized_y": 0.13662755,
+        "confidence": 0.999957,
+        "visibility": 0.999972,
+        "presence": 0.999957,
+        "source_index": 2,
+        "visible": true
+      },
+      "eye_right": {
+        "x": 261.3032,
+        "y": 69.3405,
+        "normalized_x": 0.51035786,
+        "normalized_y": 0.13543057,
+        "confidence": 0.999965,
+        "visibility": 0.999981,
+        "presence": 0.999965,
+        "source_index": 5,
+        "visible": true
+      },
+      "ear_left": {
+        "x": 284.3575,
+        "y": 73.8849,
+        "normalized_x": 0.55538565,
+        "normalized_y": 0.14430642,
+        "confidence": 0.999924,
+        "visibility": 0.999924,
+        "presence": 0.99994,
+        "source_index": 7,
+        "visible": true
+      },
+      "ear_right": {
+        "x": 251.7816,
+        "y": 72.6581,
+        "normalized_x": 0.491761,
+        "normalized_y": 0.14191031,
+        "confidence": 0.999954,
+        "visibility": 0.999954,
+        "presence": 0.999963,
+        "source_index": 8,
+        "visible": true
+      },
+      "shoulder_left": {
+        "x": 314.2688,
+        "y": 126.481,
+        "normalized_x": 0.61380631,
+        "normalized_y": 0.24703318,
+        "confidence": 0.999962,
+        "visibility": 0.999962,
+        "presence": 0.999972,
+        "source_index": 11,
+        "visible": true
+      },
+      "shoulder_right": {
+        "x": 219.7551,
+        "y": 126.12,
+        "normalized_x": 0.42920926,
+        "normalized_y": 0.2463282,
+        "confidence": 0.999976,
+        "visibility": 0.999983,
+        "presence": 0.999976,
+        "source_index": 12,
+        "visible": true
+      },
+      "elbow_left": {
+        "x": 332.4109,
+        "y": 193.1442,
+        "normalized_x": 0.64924014,
+        "normalized_y": 0.3772347,
+        "confidence": 0.995326,
+        "visibility": 0.995326,
+        "presence": 0.999932,
+        "source_index": 13,
+        "visible": true
+      },
+      "elbow_right": {
+        "x": 203.5855,
+        "y": 192.0721,
+        "normalized_x": 0.39762789,
+        "normalized_y": 0.37514085,
+        "confidence": 0.993178,
+        "visibility": 0.993178,
+        "presence": 0.999907,
+        "source_index": 14,
+        "visible": true
+      },
+      "wrist_left": {
+        "x": 348.8077,
+        "y": 258.5055,
+        "normalized_x": 0.681265,
+        "normalized_y": 0.50489354,
+        "confidence": 0.988709,
+        "visibility": 0.988709,
+        "presence": 0.999848,
+        "source_index": 15,
+        "visible": true
+      },
+      "wrist_right": {
+        "x": 195.0874,
+        "y": 257.3811,
+        "normalized_x": 0.38103014,
+        "normalized_y": 0.50269753,
+        "confidence": 0.983706,
+        "visibility": 0.983706,
+        "presence": 0.99983,
+        "source_index": 16,
+        "visible": true
+      },
+      "hip_left": {
+        "x": 296.1561,
+        "y": 252.2711,
+        "normalized_x": 0.57842988,
+        "normalized_y": 0.49271691,
+        "confidence": 0.999639,
+        "visibility": 0.999639,
+        "presence": 0.99982,
+        "source_index": 23,
+        "visible": true
+      },
+      "hip_right": {
+        "x": 242.9306,
+        "y": 253.2929,
+        "normalized_x": 0.47447392,
+        "normalized_y": 0.49471274,
+        "confidence": 0.999804,
+        "visibility": 0.999804,
+        "presence": 0.999911,
+        "source_index": 24,
+        "visible": true
+      },
+      "knee_left": {
+        "x": 304.6358,
+        "y": 352.4924,
+        "normalized_x": 0.59499174,
+        "normalized_y": 0.68846172,
+        "confidence": 0.989711,
+        "visibility": 0.989711,
+        "presence": 0.99994,
+        "source_index": 25,
+        "visible": true
+      },
+      "knee_right": {
+        "x": 236.19,
+        "y": 350.9961,
+        "normalized_x": 0.46130854,
+        "normalized_y": 0.68553925,
+        "confidence": 0.994406,
+        "visibility": 0.994406,
+        "presence": 0.999967,
+        "source_index": 26,
+        "visible": true
+      },
+      "ankle_left": {
+        "x": 309.4539,
+        "y": 448.5532,
+        "normalized_x": 0.60440207,
+        "normalized_y": 0.87608051,
+        "confidence": 0.991245,
+        "visibility": 0.991245,
+        "presence": 0.999845,
+        "source_index": 27,
+        "visible": true
+      },
+      "ankle_right": {
+        "x": 234.1367,
+        "y": 447.4095,
+        "normalized_x": 0.45729822,
+        "normalized_y": 0.87384659,
+        "confidence": 0.994537,
+        "visibility": 0.994537,
+        "presence": 0.999827,
+        "source_index": 28,
+        "visible": true
+      }
+    },
+    "required_joints": [
+      "shoulder_left",
+      "shoulder_right",
+      "elbow_left",
+      "elbow_right",
+      "wrist_left",
+      "wrist_right",
+      "hip_left",
+      "hip_right",
+      "knee_left",
+      "knee_right",
+      "ankle_left",
+      "ankle_right"
+    ],
+    "required_present": [
+      "shoulder_left",
+      "shoulder_right",
+      "elbow_left",
+      "elbow_right",
+      "wrist_left",
+      "wrist_right",
+      "hip_left",
+      "hip_right",
+      "knee_left",
+      "knee_right",
+      "ankle_left",
+      "ankle_right"
+    ],
+    "required_count": 12,
+    "auxiliary_present": [
+      "nose"
+    ],
+    "enough_joints": true,
+    "policy": "MediaPipe Pose Landmarker full v0.10.35; same qualified visibility policy as v0.5.4-v0.6.x",
+    "status": "SOURCE_SKELETON_QUALIFIED",
+    "neck": {
+      "x": 267.012,
+      "y": 111.1197,
+      "inferred": true
+    },
+    "pelvis": {
+      "x": 269.5433,
+      "y": 252.782,
+      "inferred": true
+    },
+    "shoulder_center": {
+      "x": 267.012,
+      "y": 126.3005,
+      "inferred": true
+    }
+  }
+}

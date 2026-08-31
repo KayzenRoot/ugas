@@ -1,0 +1,503 @@
+{
+  "schema_version": "0.7.1",
+  "prompt_policy": "deterministic; derived solely from R4 alpha and source skeleton; no human clicks",
+  "source_alpha_sha256": "4a6dd99cd2f52c6b5710373f8f5c5203a2946a40249c513d21431e90d4d33b21",
+  "parts": {
+    "head": {
+      "part": "head",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          269.8312,
+          78.8774
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        208.3371,
+        17.3833,
+        331.3253,
+        140.3715
+      ],
+      "expected_corridor": [
+        208.3371,
+        17.3833,
+        331.3253,
+        140.3715
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "nose",
+        "neck"
+      ],
+      "manual_click": false
+    },
+    "torso_pelvis": {
+      "part": "torso_pelvis",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          268.2776,
+          189.5412
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        196.0839,
+        55.3724,
+        340.4714,
+        323.7101
+      ],
+      "expected_corridor": [
+        196.0839,
+        55.3724,
+        340.4714,
+        323.7101
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "shoulder_center",
+        "pelvis"
+      ],
+      "manual_click": false
+    },
+    "left_upper_arm": {
+      "part": "left_upper_arm",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          323.3399,
+          159.8126
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        291.7604,
+        103.9726,
+        354.9193,
+        215.6526
+      ],
+      "expected_corridor": [
+        291.7604,
+        103.9726,
+        354.9193,
+        215.6526
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "shoulder_left",
+        "elbow_left"
+      ],
+      "manual_click": false
+    },
+    "left_forearm_hand": {
+      "part": "left_forearm_hand",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          340.6093,
+          225.8248
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        310.2597,
+        170.993,
+        370.9589,
+        280.6567
+      ],
+      "expected_corridor": [
+        310.2597,
+        170.993,
+        370.9589,
+        280.6567
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "elbow_left",
+        "wrist_left"
+      ],
+      "manual_click": false
+    },
+    "right_upper_arm": {
+      "part": "right_upper_arm",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          211.6703,
+          159.096
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        181.3254,
+        103.8599,
+        242.0152,
+        214.3322
+      ],
+      "expected_corridor": [
+        181.3254,
+        103.8599,
+        242.0152,
+        214.3322
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "shoulder_right",
+        "elbow_right"
+      ],
+      "manual_click": false
+    },
+    "right_forearm_hand": {
+      "part": "right_forearm_hand",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          199.3365,
+          224.7266
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        173.2569,
+        170.2416,
+        225.416,
+        279.2116
+      ],
+      "expected_corridor": [
+        173.2569,
+        170.2416,
+        225.416,
+        279.2116
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "elbow_right",
+        "wrist_right"
+      ],
+      "manual_click": false
+    },
+    "left_thigh": {
+      "part": "left_thigh",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          300.3959,
+          302.3818
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        267.0344,
+        223.1494,
+        333.7575,
+        381.6141
+      ],
+      "expected_corridor": [
+        267.0344,
+        223.1494,
+        333.7575,
+        381.6141
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "hip_left",
+        "knee_left"
+      ],
+      "manual_click": false
+    },
+    "left_shin_foot": {
+      "part": "left_shin_foot",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          307.0448,
+          400.5228
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        276.4377,
+        324.2943,
+        337.652,
+        476.7513
+      ],
+      "expected_corridor": [
+        276.4377,
+        324.2943,
+        337.652,
+        476.7513
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "knee_left",
+        "ankle_left"
+      ],
+      "manual_click": false
+    },
+    "right_thigh": {
+      "part": "right_thigh",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          239.5603,
+          302.1445
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        207.6236,
+        224.7265,
+        271.497,
+        379.5625
+      ],
+      "expected_corridor": [
+        207.6236,
+        224.7265,
+        271.497,
+        379.5625
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "hip_right",
+        "knee_right"
+      ],
+      "manual_click": false
+    },
+    "right_shin_foot": {
+      "part": "right_shin_foot",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          235.1633,
+          399.2028
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        205.8853,
+        322.7447,
+        264.4414,
+        475.6609
+      ],
+      "expected_corridor": [
+        205.8853,
+        322.7447,
+        264.4414,
+        475.6609
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "knee_right",
+        "ankle_right"
+      ],
+      "manual_click": false
+    },
+    "sword": {
+      "part": "sword",
+      "prompt_policy": "auto_geometry_midpoint_alpha_interior_box_corridor_background_negative",
+      "positive_points": [
+        [
+          180.0,
+          361.0
+        ]
+      ],
+      "positive_labels": [
+        1
+      ],
+      "negative_points": [
+        [
+          4.0,
+          4.0
+        ]
+      ],
+      "negative_labels": [
+        0
+      ],
+      "box_xyxy": [
+        80.7524,
+        179.1335,
+        273.335,
+        512.0
+      ],
+      "expected_corridor": [
+        80.7524,
+        179.1335,
+        273.335,
+        512.0
+      ],
+      "alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "source_joints": [
+        "wrist_right",
+        "weapon_tip"
+      ],
+      "manual_click": false
+    }
+  },
+  "prompts_sha256": "023a39d5691192c7a5ae609e7c92c6ac944afbfb5ef753008b46159fc53575db"
+}

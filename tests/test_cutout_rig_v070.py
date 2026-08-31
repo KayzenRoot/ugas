@@ -1,4 +1,4 @@
-"""Contract tests for the v0.7.0 deterministic cutout-rig provider."""
+"""Historical contract tests retained while the active cutout-rig is v0.7.1."""
 
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ def skeleton_input() -> dict[str, dict[str, float]]:
 
 class CutoutRigContractTests(unittest.TestCase):
     def test_constants_bind_provider_contract(self):
-        self.assertEqual("0.7.0", SCHEMA_VERSION)
+        self.assertEqual("0.7.1", SCHEMA_VERSION)
         self.assertEqual("deterministic-cutout-rig-2d", PROVIDER_ID)
         self.assertEqual("pose_character_front_2d", CAPABILITY_ID)
 
@@ -120,7 +120,7 @@ class CutoutRigContractTests(unittest.TestCase):
         self.assertTrue(result["scale_gate"])
         self.assertTrue(MIN_MEMBER_SCALE <= result["uniform_scale"] <= MAX_MEMBER_SCALE)
 
-    def test_q0_source_residual_reconstructs_alpha(self):
+    def test_q0_does_not_use_source_residual_fallback(self):
         source_image = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
         for x in range(8, 24):
             for y in range(4, 28):
@@ -130,8 +130,8 @@ class CutoutRigContractTests(unittest.TestCase):
         source["neck"] = {"x": 16, "y": 7}
         target = {"joints": {name: {"x": value["x"], "y": value["y"]} for name, value in source["joints"].items()}, "neck": {"x": 16, "y": 7}, "weapon_tip": {"x": 24, "y": 8}}
         parts = {name: Image.new("RGBA", (32, 32), (0, 0, 0, 0)) for name in PART_NAMES}
-        output, _ = compose_rig(parts, source, target, (32, 32), source_image=source_image, preserve_source_residual=True)
-        self.assertEqual(1.0, image_metrics(source_image, output)["alpha_iou"])
+        output, _ = compose_rig(parts, source, target, (32, 32))
+        self.assertEqual(0.0, image_metrics(source_image, output)["alpha_iou"])
 
     def test_compose_rig_returns_all_part_transforms(self):
         source = source_skeleton(skeleton_input(), 100, 100)
@@ -155,7 +155,8 @@ class CutoutRigContractTests(unittest.TestCase):
         source = source_skeleton(skeleton_input(), 32, 32)
         target = {"joints": {name: {"x": value["x"], "y": value["y"]} for name, value in source["joints"].items()}, "weapon_tip": {"x": 24, "y": 8}}
         result = seam_metrics(image, target)
-        self.assertEqual("SEAM_QA_PASSED", result["status"])
+        self.assertEqual("CUTOUT_RIG_SEAM_GAP", result["status"])
+        self.assertFalse(result["safe_margin"])
         self.assertEqual(0, result["duplicate_body_components"])
 
     def test_manifest_validator_rejects_wrong_provider(self):
@@ -196,7 +197,7 @@ class CutoutRigContractTests(unittest.TestCase):
     def test_historical_state_is_separate(self):
         current = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         historical = json.loads((ROOT / "docs/evidence/current-state-v0.6.2.json").read_text(encoding="utf-8"))
-        self.assertEqual("0.7.0", current["version"])
+        self.assertEqual("0.7.1", current["version"])
         self.assertEqual("0.6.2", historical["version"])
         self.assertNotEqual(current["current_gate"], historical["current_gate"])
 

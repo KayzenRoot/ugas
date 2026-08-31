@@ -1,0 +1,1830 @@
+{
+  "schema_version": "0.7.1",
+  "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+  "poses": {
+    "q0": {
+      "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+      "measured": {
+        "root_target_error_px": 0.0,
+        "joint_pivot_error_px_median": 0.0,
+        "joint_pivot_error_px_max": 0.0,
+        "angle_error_degrees_median": 0.0,
+        "bone_length_drift_fraction_max": 0.0,
+        "output_alpha_bbox": [
+          159,
+          40,
+          361,
+          487
+        ],
+        "transform_count": 11
+      },
+      "hard_gates": {
+        "root": true,
+        "pivot_median": true,
+        "pivot_max": true,
+        "angle_median": true,
+        "bone_drift": true,
+        "bounded_scale": true,
+        "uniform_scale": true
+      },
+      "uniform_scale": {
+        "min": 1.0,
+        "max": 1.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "nonuniform_scale_count": 0
+      },
+      "scale_failures": [],
+      "thresholds": {
+        "root_target_error_px_max": 2.0,
+        "joint_pivot_error_px_median_max": 3.0,
+        "joint_pivot_error_px_max": 6.0,
+        "angle_error_degrees_median_max": 3.0,
+        "bone_length_drift_fraction_max": 0.08,
+        "member_scale_min": 0.92,
+        "member_scale_max": 1.08,
+        "nonuniform_scale_count": 0
+      },
+      "evidence": "forward affine matrices and output alpha bbox",
+      "transforms": [
+        {
+          "part": "left_thigh",
+          "source_pivot": [
+            296.1561,
+            252.2711
+          ],
+          "target_pivot": [
+            296.1561,
+            252.2711
+          ],
+          "source_end": [
+            304.6358,
+            352.4924
+          ],
+          "target_end": [
+            304.6358,
+            352.4924
+          ],
+          "source_bone_length": 100.579393,
+          "target_bone_length": 100.579393,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            296.1561,
+            252.2711
+          ],
+          "forward_source_end": [
+            304.6358,
+            352.4924
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 10
+        },
+        {
+          "part": "right_thigh",
+          "source_pivot": [
+            242.9306,
+            253.2929
+          ],
+          "target_pivot": [
+            242.9306,
+            253.2929
+          ],
+          "source_end": [
+            236.19,
+            350.9961
+          ],
+          "target_end": [
+            236.19,
+            350.9961
+          ],
+          "source_bone_length": 97.935443,
+          "target_bone_length": 97.935443,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            242.9306,
+            253.2929
+          ],
+          "forward_source_end": [
+            236.19,
+            350.9961
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 10
+        },
+        {
+          "part": "left_shin_foot",
+          "source_pivot": [
+            304.6358,
+            352.4924
+          ],
+          "target_pivot": [
+            304.6358,
+            352.4924
+          ],
+          "source_end": [
+            309.4539,
+            448.5532
+          ],
+          "target_end": [
+            309.4539,
+            448.5532
+          ],
+          "source_bone_length": 96.181554,
+          "target_bone_length": 96.181554,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            304.6358,
+            352.4924
+          ],
+          "forward_source_end": [
+            309.4539,
+            448.5532
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 11
+        },
+        {
+          "part": "right_shin_foot",
+          "source_pivot": [
+            236.19,
+            350.9961
+          ],
+          "target_pivot": [
+            236.19,
+            350.9961
+          ],
+          "source_end": [
+            234.1367,
+            447.4095
+          ],
+          "target_end": [
+            234.1367,
+            447.4095
+          ],
+          "source_bone_length": 96.435262,
+          "target_bone_length": 96.435262,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            236.19,
+            350.9961
+          ],
+          "forward_source_end": [
+            234.1367,
+            447.4095
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 11
+        },
+        {
+          "part": "torso_pelvis",
+          "source_pivot": [
+            267.01195,
+            126.3005
+          ],
+          "target_pivot": [
+            267.01195,
+            126.3005
+          ],
+          "source_end": [
+            269.54335,
+            252.78199999999998
+          ],
+          "target_end": [
+            269.54335,
+            252.78199999999998
+          ],
+          "source_bone_length": 126.506829,
+          "target_bone_length": 126.506829,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            267.01195,
+            126.3005
+          ],
+          "forward_source_end": [
+            269.54335,
+            252.782
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 20
+        },
+        {
+          "part": "left_upper_arm",
+          "source_pivot": [
+            314.2688,
+            126.481
+          ],
+          "target_pivot": [
+            314.2688,
+            126.481
+          ],
+          "source_end": [
+            332.4109,
+            193.1442
+          ],
+          "target_end": [
+            332.4109,
+            193.1442
+          ],
+          "source_bone_length": 69.087756,
+          "target_bone_length": 69.087756,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            314.2688,
+            126.481
+          ],
+          "forward_source_end": [
+            332.4109,
+            193.1442
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 30
+        },
+        {
+          "part": "right_upper_arm",
+          "source_pivot": [
+            219.7551,
+            126.12
+          ],
+          "target_pivot": [
+            219.7551,
+            126.12
+          ],
+          "source_end": [
+            203.5855,
+            192.0721
+          ],
+          "target_end": [
+            203.5855,
+            192.0721
+          ],
+          "source_bone_length": 67.905342,
+          "target_bone_length": 67.905342,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            219.7551,
+            126.12
+          ],
+          "forward_source_end": [
+            203.5855,
+            192.0721
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 30
+        },
+        {
+          "part": "left_forearm_hand",
+          "source_pivot": [
+            332.4109,
+            193.1442
+          ],
+          "target_pivot": [
+            332.4109,
+            193.1442
+          ],
+          "source_end": [
+            348.8077,
+            258.5055
+          ],
+          "target_end": [
+            348.8077,
+            258.5055
+          ],
+          "source_bone_length": 67.386605,
+          "target_bone_length": 67.386605,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            332.4109,
+            193.1442
+          ],
+          "forward_source_end": [
+            348.8077,
+            258.5055
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 31
+        },
+        {
+          "part": "right_forearm_hand",
+          "source_pivot": [
+            203.5855,
+            192.0721
+          ],
+          "target_pivot": [
+            203.5855,
+            192.0721
+          ],
+          "source_end": [
+            195.0874,
+            257.3811
+          ],
+          "target_end": [
+            195.0874,
+            257.3811
+          ],
+          "source_bone_length": 65.859572,
+          "target_bone_length": 65.859572,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            203.5855,
+            192.0721
+          ],
+          "forward_source_end": [
+            195.0874,
+            257.3811
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 31
+        },
+        {
+          "part": "head",
+          "source_pivot": [
+            269.8312,
+            78.8774
+          ],
+          "target_pivot": [
+            269.8312,
+            78.8774
+          ],
+          "source_end": [
+            267.012,
+            111.1197
+          ],
+          "target_end": [
+            267.012,
+            111.1197
+          ],
+          "source_bone_length": 32.365318,
+          "target_bone_length": 32.365318,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            269.8312,
+            78.8774
+          ],
+          "forward_source_end": [
+            267.012,
+            111.1197
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 40
+        },
+        {
+          "part": "sword",
+          "source_pivot": [
+            195.0874,
+            257.3811
+          ],
+          "target_pivot": [
+            195.0874,
+            257.3811
+          ],
+          "source_end": [
+            159.0,
+            458.0
+          ],
+          "target_end": [
+            159.0,
+            458.0
+          ],
+          "source_bone_length": 203.838768,
+          "target_bone_length": 203.838768,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 0.0,
+          "forward_affine_matrix": [
+            [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "forward_source_pivot": [
+            195.0874,
+            257.3811
+          ],
+          "forward_source_end": [
+            159.0,
+            458.0
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 50
+        }
+      ]
+    },
+    "q1-contact-left": {
+      "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+      "measured": {
+        "root_target_error_px": 0.0,
+        "joint_pivot_error_px_median": 0.0,
+        "joint_pivot_error_px_max": 0.0,
+        "angle_error_degrees_median": 0.0,
+        "bone_length_drift_fraction_max": 0.0,
+        "output_alpha_bbox": [
+          111,
+          47,
+          358,
+          472
+        ],
+        "transform_count": 11
+      },
+      "hard_gates": {
+        "root": true,
+        "pivot_median": true,
+        "pivot_max": true,
+        "angle_median": true,
+        "bone_drift": true,
+        "bounded_scale": true,
+        "uniform_scale": true
+      },
+      "uniform_scale": {
+        "min": 1.0,
+        "max": 1.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "nonuniform_scale_count": 0
+      },
+      "scale_failures": [],
+      "thresholds": {
+        "root_target_error_px_max": 2.0,
+        "joint_pivot_error_px_median_max": 3.0,
+        "joint_pivot_error_px_max": 6.0,
+        "angle_error_degrees_median_max": 3.0,
+        "bone_length_drift_fraction_max": 0.08,
+        "member_scale_min": 0.92,
+        "member_scale_max": 1.08,
+        "nonuniform_scale_count": 0
+      },
+      "evidence": "forward affine matrices and output alpha bbox",
+      "transforms": [
+        {
+          "part": "left_thigh",
+          "source_pivot": [
+            296.1561,
+            252.2711
+          ],
+          "target_pivot": [
+            274.61765356624244,
+            246.0
+          ],
+          "source_end": [
+            304.6358,
+            352.4924
+          ],
+          "target_end": [
+            317.19705500768174,
+            337.1219449894961
+          ],
+          "source_bone_length": 100.579393,
+          "target_bone_length": 100.579393,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 20.209449,
+          "forward_affine_matrix": [
+            [
+              0.938436066,
+              0.345452964,
+              -90.453711008
+            ],
+            [
+              -0.345452964,
+              0.938436066,
+              111.567703915
+            ]
+          ],
+          "forward_source_pivot": [
+            274.617654,
+            246.0
+          ],
+          "forward_source_end": [
+            317.197055,
+            337.121945
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 10
+        },
+        {
+          "part": "right_thigh",
+          "source_pivot": [
+            242.9306,
+            253.2929
+          ],
+          "target_pivot": [
+            221.38234643375756,
+            246.0
+          ],
+          "source_end": [
+            236.19,
+            350.9961
+          ],
+          "target_end": [
+            182.34079640722376,
+            335.81708272998884
+          ],
+          "source_bone_length": 97.935443,
+          "target_bone_length": 97.935443,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -19.546931,
+          "forward_affine_matrix": [
+            [
+              0.942367753,
+              -0.334578867,
+              77.19883427
+            ],
+            [
+              0.334578867,
+              0.942367753,
+              -73.974505902
+            ]
+          ],
+          "forward_source_pivot": [
+            221.382346,
+            246.0
+          ],
+          "forward_source_end": [
+            182.340796,
+            335.817083
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 10
+        },
+        {
+          "part": "left_shin_foot",
+          "source_pivot": [
+            304.6358,
+            352.4924
+          ],
+          "target_pivot": [
+            317.19705500768174,
+            337.1219449894961
+          ],
+          "source_end": [
+            309.4539,
+            448.5532
+          ],
+          "target_end": [
+            319.86847446893256,
+            433.26639309916106
+          ],
+          "source_bone_length": 96.181554,
+          "target_bone_length": 96.181554,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -1.279784,
+          "forward_affine_matrix": [
+            [
+              0.999750552,
+              -0.022334591,
+              20.510019387
+            ],
+            [
+              0.022334591,
+              0.999750552,
+              -22.086442432
+            ]
+          ],
+          "forward_source_pivot": [
+            317.197055,
+            337.121945
+          ],
+          "forward_source_end": [
+            319.868474,
+            433.266393
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 11
+        },
+        {
+          "part": "right_shin_foot",
+          "source_pivot": [
+            236.19,
+            350.9961
+          ],
+          "target_pivot": [
+            182.34079640722376,
+            335.81708272998884
+          ],
+          "source_end": [
+            234.1367,
+            447.4095
+          ],
+          "target_end": [
+            176.36814965640363,
+            432.0672112038767
+          ],
+          "source_bone_length": 96.435262,
+          "target_bone_length": 96.435262,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -2.33081,
+          "forward_affine_matrix": [
+            [
+              0.99917267,
+              -0.040669093,
+              -39.379103623
+            ],
+            [
+              0.040669093,
+              0.99917267,
+              -24.494260757
+            ]
+          ],
+          "forward_source_pivot": [
+            182.340796,
+            335.817083
+          ],
+          "forward_source_end": [
+            176.368149,
+            432.067211
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 11
+        },
+        {
+          "part": "torso_pelvis",
+          "source_pivot": [
+            267.01195,
+            126.3005
+          ],
+          "target_pivot": [
+            248.0,
+            119.4931708238247
+          ],
+          "source_end": [
+            269.54335,
+            252.78199999999998
+          ],
+          "target_end": [
+            248.0,
+            246.0
+          ],
+          "source_bone_length": 126.506829,
+          "target_bone_length": 126.506829,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -1.146564,
+          "forward_affine_matrix": [
+            [
+              0.99979978,
+              -0.020009987,
+              -16.431217556
+            ],
+            [
+              0.020009987,
+              0.99979978,
+              -12.124946944
+            ]
+          ],
+          "forward_source_pivot": [
+            248.0,
+            119.493171
+          ],
+          "forward_source_end": [
+            248.0,
+            246.0
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 20
+        },
+        {
+          "part": "left_upper_arm",
+          "source_pivot": [
+            314.2688,
+            126.481
+          ],
+          "target_pivot": [
+            295.25719471331854,
+            119.4931708238247
+          ],
+          "source_end": [
+            332.4109,
+            193.1442
+          ],
+          "target_end": [
+            337.9717317778317,
+            173.79405801744554
+          ],
+          "source_bone_length": 69.087756,
+          "target_bone_length": 69.087756,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 22.965445,
+          "forward_affine_matrix": [
+            [
+              0.920740338,
+              0.390175896,
+              -43.452603952
+            ],
+            [
+              -0.390175896,
+              0.920740338,
+              125.657122664
+            ]
+          ],
+          "forward_source_pivot": [
+            295.257195,
+            119.493171
+          ],
+          "forward_source_end": [
+            337.971732,
+            173.794058
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 30
+        },
+        {
+          "part": "right_upper_arm",
+          "source_pivot": [
+            219.7551,
+            126.12
+          ],
+          "target_pivot": [
+            200.7428052866815,
+            119.4931708238247
+          ],
+          "source_end": [
+            203.5855,
+            192.0721
+          ],
+          "target_end": [
+            158.75931338951298,
+            172.86471630163885
+          ],
+          "source_bone_length": 67.905342,
+          "target_bone_length": 67.905342,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -24.413951,
+          "forward_affine_matrix": [
+            [
+              0.910583047,
+              -0.41332616,
+              52.766232128
+            ],
+            [
+              0.41332616,
+              0.910583047,
+              -86.180094751
+            ]
+          ],
+          "forward_source_pivot": [
+            200.742805,
+            119.493171
+          ],
+          "forward_source_end": [
+            158.759314,
+            172.864716
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 30
+        },
+        {
+          "part": "left_forearm_hand",
+          "source_pivot": [
+            332.4109,
+            193.1442
+          ],
+          "target_pivot": [
+            337.9717317778317,
+            173.79405801744554
+          ],
+          "source_end": [
+            348.8077,
+            258.5055
+          ],
+          "target_end": [
+            336.13228758524264,
+            241.15555319824114
+          ],
+          "source_bone_length": 67.386605,
+          "target_bone_length": 67.386605,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -15.647018,
+          "forward_affine_matrix": [
+            [
+              0.96294156,
+              -0.269710125,
+              69.972407306
+            ],
+            [
+              0.269710125,
+              0.96294156,
+              -101.847104575
+            ]
+          ],
+          "forward_source_pivot": [
+            337.971732,
+            173.794058
+          ],
+          "forward_source_end": [
+            336.132287,
+            241.155553
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 31
+        },
+        {
+          "part": "right_forearm_hand",
+          "source_pivot": [
+            203.5855,
+            192.0721
+          ],
+          "target_pivot": [
+            158.75931338951298,
+            172.86471630163885
+          ],
+          "source_end": [
+            195.0874,
+            257.3811
+          ],
+          "target_end": [
+            159.87641213469618,
+            238.71481330235338
+          ],
+          "source_bone_length": 65.859572,
+          "target_bone_length": 65.859572,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 8.385641,
+          "forward_affine_matrix": [
+            [
+              0.989308912,
+              0.145835104,
+              -70.660490697
+            ],
+            [
+              -0.145835104,
+              0.989308912,
+              12.535988677
+            ]
+          ],
+          "forward_source_pivot": [
+            158.759313,
+            172.864716
+          ],
+          "forward_source_end": [
+            159.876412,
+            238.714813
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 31
+        },
+        {
+          "part": "head",
+          "source_pivot": [
+            269.8312,
+            78.8774
+          ],
+          "target_pivot": [
+            248.0,
+            85.63468217474144
+          ],
+          "source_end": [
+            267.012,
+            111.1197
+          ],
+          "target_end": [
+            248.0,
+            118.0
+          ],
+          "source_bone_length": 32.365318,
+          "target_bone_length": 32.365318,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 4.997115,
+          "forward_affine_matrix": [
+            [
+              0.996199085,
+              0.087105587,
+              -27.676256727
+            ],
+            [
+              -0.087105587,
+              0.996199085,
+              30.560893479
+            ]
+          ],
+          "forward_source_pivot": [
+            248.0,
+            85.634682
+          ],
+          "forward_source_end": [
+            248.0,
+            118.0
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 40
+        },
+        {
+          "part": "sword",
+          "source_pivot": [
+            195.0874,
+            257.3811
+          ],
+          "target_pivot": [
+            159.87641213469618,
+            238.71481330235338
+          ],
+          "source_end": [
+            159.0,
+            458.0
+          ],
+          "target_end": [
+            111.21364923059105,
+            436.65970205300755
+          ],
+          "source_bone_length": 203.838768,
+          "target_bone_length": 203.838768,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -3.614359,
+          "forward_affine_matrix": [
+            [
+              0.998010961,
+              -0.063040631,
+              -18.597484395
+            ],
+            [
+              0.063040631,
+              0.998010961,
+              -30.452778605
+            ]
+          ],
+          "forward_source_pivot": [
+            159.876412,
+            238.714813
+          ],
+          "forward_source_end": [
+            111.213649,
+            436.659702
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 50
+        }
+      ]
+    },
+    "q2-passing-left": {
+      "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+      "measured": {
+        "root_target_error_px": 0.0,
+        "joint_pivot_error_px_median": 0.0,
+        "joint_pivot_error_px_max": 0.0,
+        "angle_error_degrees_median": 0.0,
+        "bone_length_drift_fraction_max": 0.0,
+        "output_alpha_bbox": [
+          164,
+          47,
+          348,
+          478
+        ],
+        "transform_count": 11
+      },
+      "hard_gates": {
+        "root": true,
+        "pivot_median": true,
+        "pivot_max": true,
+        "angle_median": true,
+        "bone_drift": true,
+        "bounded_scale": true,
+        "uniform_scale": true
+      },
+      "uniform_scale": {
+        "min": 1.0,
+        "max": 1.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "nonuniform_scale_count": 0
+      },
+      "scale_failures": [],
+      "thresholds": {
+        "root_target_error_px_max": 2.0,
+        "joint_pivot_error_px_median_max": 3.0,
+        "joint_pivot_error_px_max": 6.0,
+        "angle_error_degrees_median_max": 3.0,
+        "bone_length_drift_fraction_max": 0.08,
+        "member_scale_min": 0.92,
+        "member_scale_max": 1.08,
+        "nonuniform_scale_count": 0
+      },
+      "evidence": "forward affine matrices and output alpha bbox",
+      "transforms": [
+        {
+          "part": "left_thigh",
+          "source_pivot": [
+            296.1561,
+            252.2711
+          ],
+          "target_pivot": [
+            280.61765356624244,
+            246.0
+          ],
+          "source_end": [
+            304.6358,
+            352.4924
+          ],
+          "target_end": [
+            299.6091083690472,
+            344.7701317719736
+          ],
+          "source_bone_length": 100.579393,
+          "target_bone_length": 100.579393,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 6.047697,
+          "forward_affine_matrix": [
+            [
+              0.994434535,
+              0.105356329,
+              -40.468557015
+            ],
+            [
+              -0.105356329,
+              0.994434535,
+              26.334825617
+            ]
+          ],
+          "forward_source_pivot": [
+            280.617654,
+            246.0
+          ],
+          "forward_source_end": [
+            299.609108,
+            344.770132
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 10
+        },
+        {
+          "part": "right_thigh",
+          "source_pivot": [
+            242.9306,
+            253.2929
+          ],
+          "target_pivot": [
+            227.38234643375756,
+            246.0
+          ],
+          "source_end": [
+            236.19,
+            350.9961
+          ],
+          "target_end": [
+            210.13883312336048,
+            342.40545745607017
+          ],
+          "source_bone_length": 97.935443,
+          "target_bone_length": 97.935443,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -6.194328,
+          "forward_affine_matrix": [
+            [
+              0.99416165,
+              -0.107900942,
+              13.200602694
+            ],
+            [
+              0.107900942,
+              0.99416165,
+              -32.026527971
+            ]
+          ],
+          "forward_source_pivot": [
+            227.382346,
+            246.0
+          ],
+          "forward_source_end": [
+            210.138833,
+            342.405457
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 10
+        },
+        {
+          "part": "left_shin_foot",
+          "source_pivot": [
+            304.6358,
+            352.4924
+          ],
+          "target_pivot": [
+            299.6091083690472,
+            344.7701317719736
+          ],
+          "source_end": [
+            309.4539,
+            448.5532
+          ],
+          "target_end": [
+            306.2722275972946,
+            440.720609761404
+          ],
+          "source_bone_length": 96.181554,
+          "target_bone_length": 96.181554,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 1.101066,
+          "forward_affine_matrix": [
+            [
+              0.999815355,
+              0.019216047,
+              -11.743952667
+            ],
+            [
+              -0.019216047,
+              0.999815355,
+              -1.803286255
+            ]
+          ],
+          "forward_source_pivot": [
+            299.609108,
+            344.770132
+          ],
+          "forward_source_end": [
+            306.272228,
+            440.72061
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 11
+        },
+        {
+          "part": "right_shin_foot",
+          "source_pivot": [
+            236.19,
+            350.9961
+          ],
+          "target_pivot": [
+            210.13883312336048,
+            342.40545745607017
+          ],
+          "source_end": [
+            234.1367,
+            447.4095
+          ],
+          "target_end": [
+            203.9587410386196,
+            438.6424888019825
+          ],
+          "source_bone_length": 96.435262,
+          "target_bone_length": 96.435262,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -2.454307,
+          "forward_affine_matrix": [
+            [
+              0.99908269,
+              -0.042822633,
+              -10.803930508
+            ],
+            [
+              0.042822633,
+              0.99908269,
+              -18.382948003
+            ]
+          ],
+          "forward_source_pivot": [
+            210.138833,
+            342.405457
+          ],
+          "forward_source_end": [
+            203.958741,
+            438.642489
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 11
+        },
+        {
+          "part": "torso_pelvis",
+          "source_pivot": [
+            267.01195,
+            126.3005
+          ],
+          "target_pivot": [
+            254.0,
+            119.4931708238247
+          ],
+          "source_end": [
+            269.54335,
+            252.78199999999998
+          ],
+          "target_end": [
+            254.0,
+            246.0
+          ],
+          "source_bone_length": 126.506829,
+          "target_bone_length": 126.506829,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -1.146564,
+          "forward_affine_matrix": [
+            [
+              0.99979978,
+              -0.020009987,
+              -10.431217556
+            ],
+            [
+              0.020009987,
+              0.99979978,
+              -12.124946944
+            ]
+          ],
+          "forward_source_pivot": [
+            254.0,
+            119.493171
+          ],
+          "forward_source_end": [
+            254.0,
+            246.0
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 20
+        },
+        {
+          "part": "left_upper_arm",
+          "source_pivot": [
+            314.2688,
+            126.481
+          ],
+          "target_pivot": [
+            301.25719471331854,
+            119.4931708238247
+          ],
+          "source_end": [
+            332.4109,
+            193.1442
+          ],
+          "target_end": [
+            327.71552635370824,
+            183.313815708197
+          ],
+          "source_bone_length": 69.087756,
+          "target_bone_length": 69.087756,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 7.293491,
+          "forward_affine_matrix": [
+            [
+              0.991908871,
+              0.126951927,
+              -26.52582256
+            ],
+            [
+              -0.126951927,
+              0.991908871,
+              33.932574743
+            ]
+          ],
+          "forward_source_pivot": [
+            301.257195,
+            119.493171
+          ],
+          "forward_source_end": [
+            327.715526,
+            183.313816
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 30
+        },
+        {
+          "part": "right_upper_arm",
+          "source_pivot": [
+            219.7551,
+            126.12
+          ],
+          "target_pivot": [
+            206.7428052866815,
+            119.4931708238247
+          ],
+          "source_end": [
+            203.5855,
+            192.0721
+          ],
+          "target_end": [
+            180.73729923708527,
+            182.22154648966205
+          ],
+          "source_bone_length": 67.905342,
+          "target_bone_length": 67.905342,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -8.741998,
+          "forward_affine_matrix": [
+            [
+              0.988382748,
+              -0.15198534,
+              8.709046822
+            ],
+            [
+              0.15198534,
+              0.988382748,
+              -38.56121502
+            ]
+          ],
+          "forward_source_pivot": [
+            206.742805,
+            119.493171
+          ],
+          "forward_source_end": [
+            180.737299,
+            182.221546
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 30
+        },
+        {
+          "part": "left_forearm_hand",
+          "source_pivot": [
+            332.4109,
+            193.1442
+          ],
+          "target_pivot": [
+            327.71552635370824,
+            183.313815708197
+          ],
+          "source_end": [
+            348.8077,
+            258.5055
+          ],
+          "target_end": [
+            317.3947190075318,
+            249.90537315847075
+          ],
+          "source_bone_length": 67.386605,
+          "target_bone_length": 67.386605,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": -22.892818,
+          "forward_affine_matrix": [
+            [
+              0.921234174,
+              -0.389008478,
+              96.621976723
+            ],
+            [
+              0.389008478,
+              0.921234174,
+              -123.927880276
+            ]
+          ],
+          "forward_source_pivot": [
+            327.715526,
+            183.313816
+          ],
+          "forward_source_end": [
+            317.394719,
+            249.905373
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 31
+        },
+        {
+          "part": "right_forearm_hand",
+          "source_pivot": [
+            203.5855,
+            192.0721
+          ],
+          "target_pivot": [
+            180.73729923708527,
+            182.22154648966205
+          ],
+          "source_end": [
+            195.0874,
+            257.3811
+          ],
+          "target_end": [
+            190.20293996367042,
+            247.39734591126648
+          ],
+          "source_bone_length": 65.859572,
+          "target_bone_length": 65.859572,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 15.677184,
+          "forward_affine_matrix": [
+            [
+              0.962799427,
+              0.270217069,
+              -67.175863247
+            ],
+            [
+              -0.270217069,
+              0.962799427,
+              52.306915767
+            ]
+          ],
+          "forward_source_pivot": [
+            180.737299,
+            182.221546
+          ],
+          "forward_source_end": [
+            190.20294,
+            247.397346
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 31
+        },
+        {
+          "part": "head",
+          "source_pivot": [
+            269.8312,
+            78.8774
+          ],
+          "target_pivot": [
+            254.0,
+            85.63468217474144
+          ],
+          "source_end": [
+            267.012,
+            111.1197
+          ],
+          "target_end": [
+            254.0,
+            118.0
+          ],
+          "source_bone_length": 32.365318,
+          "target_bone_length": 32.365318,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 4.997115,
+          "forward_affine_matrix": [
+            [
+              0.996199085,
+              0.087105587,
+              -21.676256727
+            ],
+            [
+              -0.087105587,
+              0.996199085,
+              30.560893479
+            ]
+          ],
+          "forward_source_pivot": [
+            254.0,
+            85.634682
+          ],
+          "forward_source_end": [
+            254.0,
+            118.0
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 40
+        },
+        {
+          "part": "sword",
+          "source_pivot": [
+            195.0874,
+            257.3811
+          ],
+          "target_pivot": [
+            190.20293996367042,
+            247.39734591126648
+          ],
+          "source_end": [
+            159.0,
+            458.0
+          ],
+          "target_end": [
+            167.05651260697186,
+            449.9176816225009
+          ],
+          "source_bone_length": 203.838768,
+          "target_bone_length": 203.838768,
+          "uniform_scale": 1.0,
+          "rotation_delta_degrees": 3.677184,
+          "forward_affine_matrix": [
+            [
+              0.997941237,
+              0.064134921,
+              -20.989937683
+            ],
+            [
+              -0.064134921,
+              0.997941237,
+              3.058047584
+            ]
+          ],
+          "forward_source_pivot": [
+            190.20294,
+            247.397346
+          ],
+          "forward_source_end": [
+            167.056513,
+            449.917682
+          ],
+          "forward_pivot_error_px": 0.0,
+          "forward_end_error_px": 0.0,
+          "forward_angle_error_degrees": 0.0,
+          "forward_bone_length_drift_fraction": 0.0,
+          "nonuniform_scale": false,
+          "scale_gate": true,
+          "z_group": 50
+        }
+      ]
+    }
+  }
+}

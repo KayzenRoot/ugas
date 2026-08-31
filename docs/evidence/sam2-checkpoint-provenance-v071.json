@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.7.1",
+  "status": "SAM2_RUNTIME_QUALIFIED",
+  "official_source": "https://github.com/facebookresearch/sam2",
+  "license": "Apache-2.0",
+  "repository_commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+  "checkpoint": {
+    "filename": "sam2.1_hiera_small.pt",
+    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt",
+    "path_not_published": true,
+    "outside_git": true,
+    "outside_review_zip": true,
+    "bytes": 184416285,
+    "sha256": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38"
+  },
+  "model": {
+    "params": 46000000,
+    "family": "SAM 2.1 Hiera Small",
+    "config": "configs/sam2.1/sam2.1_hiera_s.yaml"
+  },
+  "source_not_vendored": true,
+  "outside_git": true,
+  "outside_review_zip": true
+}

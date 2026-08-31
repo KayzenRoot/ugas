@@ -1,4 +1,4 @@
-"""Deterministic cutout-rig contracts for UGAS v0.7.0.
+"""Deterministic cutout-rig contracts for UGAS v0.7.1.
 
 This module deliberately contains no diffusion, ComfyUI, SAM or MediaPipe
 imports.  The isolated runtime adapter supplies masks and source landmarks;
@@ -17,7 +17,7 @@ from typing import Any, Iterable, Mapping, Sequence
 from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 
-SCHEMA_VERSION = "0.7.0"
+SCHEMA_VERSION = "0.7.1"
 PROVIDER_ID = "deterministic-cutout-rig-2d"
 CAPABILITY_ID = "pose_character_front_2d"
 RENDERER_VERSION = "cutout-rig-renderer-1.0.0"
@@ -29,6 +29,9 @@ MASK_MAX_UNRESOLVED_OVERLAP = 0.03
 PREFERRED_SCALE = 1.0
 MIN_MEMBER_SCALE = 0.92
 MAX_MEMBER_SCALE = 1.08
+MIN_SAFE_MARGIN = 24
+MAX_GROSS_OVERLAP_FRACTION = 0.01
+JOINT_BLEND_RADIUS = 3
 REQUIRED_JOINTS = (
     "shoulder_left", "shoulder_right", "elbow_left", "elbow_right",
     "wrist_left", "wrist_right", "hip_left", "hip_right", "knee_left",
@@ -144,6 +147,29 @@ def skeleton_point(skeleton: Mapping[str, Any], name: str) -> tuple[float, float
     if point is None:
         raise KeyError(name)
     return point
+
+
+def map_guide_sides(raw_points: Mapping[str, Mapping[str, Any]]) -> tuple[dict[str, dict[str, float]], dict[str, str]]:
+    """Map image-side labels to anatomical sides without assuming symmetry."""
+    result: dict[str, dict[str, float]] = {}
+    mapping = {"anatomical_left": "guide_right", "anatomical_right": "guide_left"}
+    for name, value in raw_points.items():
+        if name.endswith("_left") or name.endswith("_right"):
+            continue
+        result[name] = {"x": float(value["x"]), "y": float(value["y"])}
+    for base in ("shoulder", "elbow", "wrist", "hip", "knee", "ankle"):
+        result[f"{base}_left"] = {"x": float(raw_points[f"{base}_right"]["x"]), "y": float(raw_points[f"{base}_right"]["y"])}
+        result[f"{base}_right"] = {"x": float(raw_points[f"{base}_left"]["x"]), "y": float(raw_points[f"{base}_left"]["y"])}
+    return result, mapping
+
+
+def component_gate(component_sizes: Iterable[int], max_meaningful_components: int) -> dict[str, Any]:
+    """Measure meaningful connected components with the v0.7.1 policy."""
+    sizes = sorted((int(size) for size in component_sizes if int(size) > 0), reverse=True)
+    primary = sizes[0] if sizes else 0
+    threshold = max(16, int(primary * 0.0025))
+    meaningful = sum(size >= threshold for size in sizes)
+    return {"primary_area": primary, "meaningful_component_threshold": threshold, "meaningful_component_count": meaningful, "max_meaningful_components": int(max_meaningful_components), "passed": meaningful <= int(max_meaningful_components)}
 
 
 def _alpha_bbox(alpha: Image.Image) -> tuple[int, int, int, int]:
@@ -354,14 +380,49 @@ def transform_parameters(source: Mapping[str, Any], target: Mapping[str, Any], p
     source_length = math.dist(source_first, source_second)
     target_length = math.dist(target_first, target_second)
     scale = target_length / max(1e-6, source_length)
+    source_angle = _angle(_vector(source_first, source_second))
+    target_angle = _angle(_vector(target_first, target_second))
+    theta = target_angle - source_angle
+    cos_value, sin_value = math.cos(theta), math.sin(theta)
+    matrix = [
+        [round(scale * cos_value, 9), round(-scale * sin_value, 9), round(target_first[0] - scale * cos_value * source_first[0] + scale * sin_value * source_first[1], 9)],
+        [round(scale * sin_value, 9), round(scale * cos_value, 9), round(target_first[1] - scale * sin_value * source_first[0] - scale * cos_value * source_first[1], 9)],
+    ]
+    forward_pivot = (matrix[0][0] * source_first[0] + matrix[0][1] * source_first[1] + matrix[0][2], matrix[1][0] * source_first[0] + matrix[1][1] * source_first[1] + matrix[1][2])
+    forward_end = (matrix[0][0] * source_second[0] + matrix[0][1] * source_second[1] + matrix[0][2], matrix[1][0] * source_second[0] + matrix[1][1] * source_second[1] + matrix[1][2])
+    pivot_error = math.dist(forward_pivot, target_first)
+    end_error = math.dist(forward_end, target_second)
+    transformed_vector = _vector(forward_pivot, forward_end)
+    angle_error = abs(math.degrees(_angle(transformed_vector) - target_angle))
+    while angle_error > 180.0:
+        angle_error -= 360.0
+    bone_drift = abs(math.dist(forward_pivot, forward_end) / max(1e-6, target_length) - 1.0)
     return {
         "source_pivot": list(source_first), "target_pivot": list(target_first),
         "source_end": list(source_second), "target_end": list(target_second),
         "source_bone_length": round(source_length, 6), "target_bone_length": round(target_length, 6),
         "uniform_scale": round(scale, 6),
-        "rotation_delta_degrees": round(math.degrees(_angle(_vector(source_first, source_second)) - _angle(_vector(target_first, target_second))), 6),
+        "rotation_delta_degrees": round(math.degrees(source_angle - target_angle), 6),
+        "forward_affine_matrix": matrix,
+        "forward_source_pivot": [round(forward_pivot[0], 6), round(forward_pivot[1], 6)],
+        "forward_source_end": [round(forward_end[0], 6), round(forward_end[1], 6)],
+        "forward_pivot_error_px": round(pivot_error, 6),
+        "forward_end_error_px": round(end_error, 6),
+        "forward_angle_error_degrees": round(abs(angle_error), 6),
+        "forward_bone_length_drift_fraction": round(bone_drift, 6),
         "nonuniform_scale": False,
         "scale_gate": MIN_MEMBER_SCALE <= scale <= MAX_MEMBER_SCALE,
+    }
+
+
+def transform_metric_gates(transform: Mapping[str, Any]) -> dict[str, bool]:
+    """Evaluate forward affine evidence against the immutable v0.7.1 limits."""
+    scale = float(transform.get("uniform_scale", 0.0))
+    return {
+        "pivot_max": float(transform.get("forward_pivot_error_px", 999.0)) <= 6.0,
+        "angle_median": float(transform.get("forward_angle_error_degrees", 999.0)) <= 3.0,
+        "bone_drift": float(transform.get("forward_bone_length_drift_fraction", 999.0)) <= 0.08,
+        "bounded_scale": MIN_MEMBER_SCALE <= scale <= MAX_MEMBER_SCALE,
     }
 
 
@@ -382,35 +443,23 @@ def render_part(part_image: Image.Image, source_pivot: tuple[float, float], targ
     return part_image.transform(canvas_size, Image.Transform.AFFINE, (a, b, c, d, e, f), resample=Image.Resampling.BICUBIC)
 
 
-def compose_rig(parts: Mapping[str, Image.Image], source: Mapping[str, Any], target: Mapping[str, Any], canvas_size: tuple[int, int], *, source_image: Image.Image | None = None, preserve_source_residual: bool = False) -> tuple[Image.Image, list[dict[str, Any]]]:
-    output = Image.new("RGBA", canvas_size, (0, 0, 0, 0))
+def render_part_layers(parts: Mapping[str, Image.Image], source: Mapping[str, Any], target: Mapping[str, Any], canvas_size: tuple[int, int]) -> tuple[list[Image.Image], list[dict[str, Any]]]:
+    layers: list[Image.Image] = []
     transforms: list[dict[str, Any]] = []
     for name in sorted(PART_NAMES, key=lambda item: (PART_SPECS[item]["z_group"], item)):
         image = parts[name]
         params = transform_parameters(source, target, name)
         transformed = render_part(image, tuple(params["source_pivot"]), tuple(params["target_pivot"]), tuple(params["source_end"]), tuple(params["target_end"]), canvas_size)
-        output.alpha_composite(transformed)
+        layers.append(transformed)
         transforms.append({"part": name, **params, "z_group": PART_SPECS[name]["z_group"]})
-    # Small deterministic joint patches are copied from the canonical source;
-    # they bridge alpha gaps without inventing pixels or changing colour.
-    if source_image is not None:
-        source_image = source_image.convert("RGBA")
-        radius = 7
-        for name in REQUIRED_JOINTS:
-            source_point = skeleton_point(source, name)
-            target_point = _target_point(target, name)
-            sx, sy = int(round(source_point[0])), int(round(source_point[1]))
-            patch = source_image.crop((max(0, sx - radius), max(0, sy - radius), min(source_image.width, sx + radius + 1), min(source_image.height, sy + radius + 1)))
-            output.alpha_composite(patch, (int(round(target_point[0])) - (sx - max(0, sx - radius)), int(round(target_point[1])) - (sy - max(0, sy - radius))))
-        if preserve_source_residual:
-            # Q0 is an identity reconstruction.  Any pixels not claimed by a
-            # part remain the original R4 pixels, recorded as source residual
-            # provenance rather than generated content.
-            source_alpha = source_image.getchannel("A")
-            residual = ImageChops.subtract(source_alpha, output.getchannel("A"))
-            residual_source = source_image.copy()
-            residual_source.putalpha(residual)
-            output.alpha_composite(residual_source)
+    return layers, transforms
+
+
+def compose_rig(parts: Mapping[str, Image.Image], source: Mapping[str, Any], target: Mapping[str, Any], canvas_size: tuple[int, int]) -> tuple[Image.Image, list[dict[str, Any]]]:
+    output = Image.new("RGBA", canvas_size, (0, 0, 0, 0))
+    layers, transforms = render_part_layers(parts, source, target, canvas_size)
+    for transformed in layers:
+        output.alpha_composite(transformed)
     return output, transforms
 
 
@@ -476,9 +525,9 @@ def render_hierarchy_diagram(destination: Path) -> None:
     image.save(destination, format="PNG", optimize=False)
 
 
-def validate_rig_manifest(manifest: Mapping[str, Any]) -> dict[str, Any]:
+def validate_rig_manifest(manifest: Mapping[str, Any], *, expected_schema_version: str = SCHEMA_VERSION) -> dict[str, Any]:
     failures: list[str] = []
-    if manifest.get("schema_version") != SCHEMA_VERSION:
+    if manifest.get("schema_version") != expected_schema_version:
         failures.append("schema_version")
     if manifest.get("provider_id") != PROVIDER_ID:
         failures.append("provider_id")
@@ -503,7 +552,7 @@ def validate_rig_manifest(manifest: Mapping[str, Any]) -> dict[str, Any]:
     return {"status": "CUTOUT_RIG_MANIFEST_VALID" if not failures else "CUTOUT_RIG_MANIFEST_INVALID", "failures": failures}
 
 
-def seam_metrics(image: Image.Image, target: Mapping[str, Any]) -> dict[str, Any]:
+def seam_metrics(image: Image.Image, target: Mapping[str, Any], *, layers: Sequence[Image.Image] | None = None, min_safe_margin: int = MIN_SAFE_MARGIN) -> dict[str, Any]:
     alpha = image.getchannel("A")
     required = list(REQUIRED_JOINTS)
     gaps: dict[str, float] = {}
@@ -518,15 +567,57 @@ def seam_metrics(image: Image.Image, target: Mapping[str, Any]) -> dict[str, Any
                 if alpha.getpixel((ix, iy)) > 0:
                     filled += 1
         gaps[name] = round(1.0 - filled / max(1, total), 6)
-    closed_alpha = alpha.point(lambda value: 255 if value > 0 else 0).filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.MinFilter(9))
-    component_sizes = _component_sizes(closed_alpha)
+    binary_alpha = alpha.point(lambda value: 255 if value > 0 else 0)
+    bbox = binary_alpha.getbbox()
+    width, height = binary_alpha.size
+    margins = {
+        "left": bbox[0] if bbox else 0,
+        "top": bbox[1] if bbox else 0,
+        "right": width - bbox[2] if bbox else 0,
+        "bottom": height - bbox[3] if bbox else 0,
+    }
+    border_contact = any(binary_alpha.getpixel((x, y)) > 0 for x, y in [(x, 0) for x in range(width)] + [(x, height - 1) for x in range(width)] + [(0, y) for y in range(height)] + [(width - 1, y) for y in range(height)])
+    component_sizes = _component_sizes(binary_alpha)
     largest_component = max(component_sizes, default=0)
-    # Tiny disconnected fragments are reported separately.  The hard gate is
-    # specifically about duplicate body components, so it only counts pieces
-    # at least 5% of the dominant silhouette; this avoids classifying isolated
-    # antialias/sword fragments as a second body.
-    body_component_threshold = max(256, int(largest_component * 0.05))
+    meaningful_threshold = max(16, int(largest_component * 0.0025))
+    body_component_threshold = meaningful_threshold
     body_components = [size for size in component_sizes if size >= body_component_threshold]
     duplicate_body_components = max(0, len(body_components) - 1)
+    background_hole_pixels = sum(1 for value in binary_alpha.crop((0, 0, width, height)).getdata() if value == 0) if not layers else 0
+    occupancy_overlap_pixels = None
+    gross_overlap_pixels = None
+    overlap_outside_joint_pixels = None
+    if layers:
+        occupancy = [layer.getchannel("A").point(lambda value: 255 if value > 0 else 0) for layer in layers]
+        counts = [0] * (width * height)
+        for layer in occupancy:
+            for index, value in enumerate(layer.getdata()):
+                if value > 0:
+                    counts[index] += 1
+        occupancy_overlap_pixels = sum(value >= 2 for value in counts)
+        joint_zone = Image.new("L", (width, height), 0)
+        overlap_joints = required + (["neck"] if "neck" in (target.get("joints") or {}) or "neck" in target else [])
+        for name in overlap_joints:
+            x, y = _target_point(target, name)
+            draw = ImageDraw.Draw(joint_zone)
+            draw.ellipse((x - JOINT_BLEND_RADIUS * 2, y - JOINT_BLEND_RADIUS * 2, x + JOINT_BLEND_RADIUS * 2, y + JOINT_BLEND_RADIUS * 2), fill=255)
+        overlap_outside_joint_pixels = sum(value >= 2 and joint_zone.getdata()[index] == 0 for index, value in enumerate(counts))
+        gross_overlap_pixels = overlap_outside_joint_pixels
+    torso_hole_pixels = 0
+    torso_first, torso_second = _target_point(target, "shoulder_center"), _target_point(target, "pelvis")
+    for step in range(0, 101):
+        fraction = step / 100.0
+        x = int(round(torso_first[0] + (torso_second[0] - torso_first[0]) * fraction))
+        y = int(round(torso_first[1] + (torso_second[1] - torso_first[1]) * fraction))
+        for iy in range(max(0, y - 3), min(height, y + 4)):
+            for ix in range(max(0, x - 3), min(width, x + 4)):
+                if binary_alpha.getpixel((ix, iy)) == 0:
+                    torso_hole_pixels += 1
+    background_hole_pixels = torso_hole_pixels
     max_gap = max(gaps.values()) if gaps else 1.0
-    return {"required_joints": required, "joint_gap_fraction": gaps, "max_joint_gap_fraction": round(max_gap, 6), "disconnect_count": 0 if max_gap <= 0.02 else 1, "duplicate_body_components": duplicate_body_components, "fragment_component_count": max(0, len(component_sizes) - len(body_components)), "component_sizes_desc": sorted(component_sizes, reverse=True)[:12], "body_component_threshold": body_component_threshold, "background_hole_pixels": 0, "overlap_excess": False, "clipping": False, "safe_margin": True, "hard_gates": {"disconnect_zero": max_gap <= 0.02, "gap_at_most_002": max_gap <= 0.02, "duplicate_components_zero": duplicate_body_components == 0, "gross_overlap_false": True, "clipping_false": True, "safe_margin_true": True}, "status": "SEAM_QA_PASSED" if max_gap <= 0.02 and duplicate_body_components == 0 else "CUTOUT_RIG_SEAM_GAP"}
+    safe_margin = all(value >= min_safe_margin for value in margins.values())
+    clipping = border_contact
+    overlap_excess = None if gross_overlap_pixels is None else gross_overlap_pixels > max(1, int(sum(value > 0 for value in binary_alpha.getdata()) * MAX_GROSS_OVERLAP_FRACTION))
+    occupancy_measured = layers is not None
+    hard_gates = {"disconnect_zero": max_gap <= 0.02, "gap_at_most_002": max_gap <= 0.02, "duplicate_components_zero": duplicate_body_components == 0, "gross_overlap_false": occupancy_measured and not overlap_excess, "clipping_false": not clipping, "safe_margin_true": safe_margin, "background_holes_measured": occupancy_measured and background_hole_pixels == 0}
+    return {"required_joints": required, "joint_gap_fraction": gaps, "max_joint_gap_fraction": round(max_gap, 6), "disconnect_count": 0 if max_gap <= 0.02 else 1, "duplicate_body_components": duplicate_body_components, "fragment_component_count": max(0, len(component_sizes) - len(body_components)), "component_sizes_desc": sorted(component_sizes, reverse=True)[:12], "meaningful_component_threshold": meaningful_threshold, "body_component_threshold": body_component_threshold, "background_hole_pixels": background_hole_pixels, "torso_corridor_hole_pixels": torso_hole_pixels, "overlap_pixels": occupancy_overlap_pixels, "overlap_outside_joint_pixels": overlap_outside_joint_pixels, "overlap_excess": overlap_excess, "clipping": clipping, "border_contact": border_contact, "bbox": list(bbox) if bbox else None, "margins_px": margins, "safe_margin": safe_margin, "occupancy_measured": occupancy_measured, "hard_gates": hard_gates, "status": "SEAM_QA_PASSED" if all(hard_gates.values()) else "CUTOUT_RIG_SEAM_GAP"}

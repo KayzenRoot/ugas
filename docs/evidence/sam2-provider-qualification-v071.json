@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.7.1",
+  "provider_id": "deterministic-cutout-rig-2d",
+  "capability": "pose_character_front_2d",
+  "status": "SAM2_RUNTIME_QUALIFIED",
+  "official_source": "https://github.com/facebookresearch/sam2",
+  "license": "Apache-2.0",
+  "repository_commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+  "checkpoint": {
+    "filename": "sam2.1_hiera_small.pt",
+    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt",
+    "path_not_published": true,
+    "outside_git": true,
+    "outside_review_zip": true,
+    "bytes": 184416285,
+    "sha256": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38"
+  },
+  "python": {
+    "version": "3.12.10",
+    "executable": "C:\\Users\\csn19\\AppData\\Local\\UGAS\\comfyui\\.venv\\Scripts\\python.exe"
+  },
+  "torch": {
+    "version": "2.13.0+cu130",
+    "cuda_available": true,
+    "device": "cuda"
+  },
+  "runtime_policy": {
+    "isolated_external_tool": true,
+    "comfyui_custom_node": false,
+    "comfyui_generation_jobs": 0,
+    "sam3_forbidden": true
+  },
+  "smoke": {
+    "status": "SAM2_SMOKE_PASSED",
+    "mask_shape": [
+      3,
+      512,
+      512
+    ],
+    "scores": [
+      0.858013,
+      0.94735,
+      0.950793
+    ],
+    "valid_mask": true,
+    "mask_intersects_r4_foreground": true,
+    "runtime_ms": 1963.627,
+    "peak_vram_bytes": 678731264,
+    "image_mutated": false
+  },
+  "timestamp": "2026-08-31T00:49:34Z",
+  "torchvision": {
+    "version": "0.28.0+cu130"
+  },
+  "imports": {
+    "sam2": "importable",
+    "build_sam2": true,
+    "SAM2ImagePredictor": true
+  },
+  "model": {
+    "params": 46000000,
+    "family": "SAM 2.1 Hiera Small",
+    "config": "configs/sam2.1/sam2.1_hiera_s.yaml"
+  },
+  "failures": []
+}

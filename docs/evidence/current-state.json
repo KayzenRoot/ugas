@@ -1,24 +1,25 @@
 {
-  "schema_version": "0.7.0",
-  "version": "0.7.0",
+  "schema_version": "0.7.1",
+  "version": "0.7.1",
   "phase": "DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER",
   "previous_release": {
-    "version": "0.6.2",
+    "version": "0.7.0",
     "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
-    "pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+    "pose_lane_status": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
     "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
-    "historical_review": "REVIEW-v0.6.2.md",
+    "historical_review": "REVIEW-v0.7.0.md",
     "pose_evidence": "docs/evidence/sdxl-openpose-p-qualification.json",
-    "tests_audited": 161,
-    "snapshot_checks": 550,
-    "review_manifest": "docs/evidence/review-visuals-v0.6.2.json"
+    "tests_audited": 183,
+    "snapshot_checks": 701,
+    "review_manifest": "docs/evidence/review-visuals-v0.7.0.json",
+    "audit_finding": "v0.7.0 QA false-positive paths corrected in v0.7.1"
   },
   "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
-  "current_gate": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
-  "stop_reason": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
-  "provider_smoke_status": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
+  "current_gate": "CUTOUT_RIG_SEAM_GAP",
+  "stop_reason": "CUTOUT_RIG_SEAM_GAP",
+  "provider_smoke_status": "CUTOUT_RIG_SEAM_GAP",
   "historical_pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
-  "pose_lane_status": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
+  "pose_lane_status": "CUTOUT_RIG_SEAM_GAP",
   "previous_review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
   "canonical_anchor": {
     "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
@@ -28,8 +29,8 @@
   "generation_provider_change_authorized": false,
   "walk_authorized": false,
   "allowed_next_actions": [
-    "review_cutout_rig_visual_or_estimator_gap",
-    "repair_pose_or_seam_gate_then_rerun_q0_q1_q2"
+    "review_cutout_rig_seam_and_retention_gap",
+    "repair_continuity_then_rerun_q0_q1_q2"
   ],
   "forbidden_actions": [
     "promote_unqualified_provider_to_production_routing",
@@ -41,7 +42,7 @@
     "claim_external_approval"
   ],
   "state_consistency": {
-    "status": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
+    "status": "CUTOUT_RIG_SEAM_GAP",
     "validator": "src/ugas/state_consistency.py",
     "contradictory_walk_or_anchor_promotion": false,
     "new_generation_started": false,
@@ -53,6 +54,9 @@
     "review_verifier": "scripts/validation/verify_review_archive.py",
     "review_zip_self_validation_required": true,
     "deterministic_only": true,
-    "walk_frames": "NOT_RUN"
+    "walk_frames": "NOT_RUN",
+    "audit_false_positive_fixed": true,
+    "seam_evidence": "docs/evidence/cutout-rig-seam-qa-v071.json",
+    "retention_evidence": "docs/evidence/cutout-rig-pixel-retention-v071.json"
   }
 }

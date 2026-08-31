@@ -95,6 +95,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         (
             name
             for name in (
+                "docs/evidence/review-visuals-v0.7.1.json",
                 "docs/evidence/review-visuals-v0.7.0.json",
                 "docs/evidence/review-visuals-v0.6.2.json",
                 "docs/evidence/review-visuals-v0.6.1.json",
@@ -109,7 +110,39 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if active_visual_name is None:
         raise ReviewArchiveError("no supported active review visual manifest is present")
     required_metadata = set(REQUIRED_ARCHIVE_METADATA)
-    if active_visual_name.endswith("v0.7.0.json"):
+    if active_visual_name.endswith("v0.7.1.json"):
+        required_metadata.update(
+            {
+                "docs/evidence/review-visuals-v0.7.1.json",
+                "REVIEW-v0.7.1.md",
+                "docs/test-coverage-matrix-v0.7.1.md",
+                "docs/evidence/current-state.json",
+                "docs/evidence/current-state-v0.7.0.json",
+                "docs/evidence/state-consistency.json",
+                "docs/evidence/state-consistency-v0.7.0.json",
+                "docs/evidence/sam2-provider-qualification-v071.json",
+                "docs/evidence/sam2-checkpoint-provenance-v071.json",
+                "docs/evidence/r4-source-skeleton-v071.json",
+                "docs/evidence/r4-cutout-part-prompts-v071.json",
+                "docs/evidence/r4-cutout-raw-masks-v071-manifest.json",
+                "docs/evidence/r4-cutout-refined-masks-v071-manifest.json",
+                "docs/evidence/r4-cutout-component-diagnostics-v071.json",
+                "docs/evidence/r4-cutout-rig-v071.json",
+                "docs/evidence/cutout-q0-reconstruction-qa-v071.json",
+                "docs/evidence/cutout-rig-pose-qa-v071.json",
+                "docs/evidence/cutout-rig-seam-qa-v071.json",
+                "docs/evidence/cutout-rig-pixel-provenance-v071.json",
+                "docs/evidence/cutout-rig-pixel-retention-v071.json",
+                "docs/evidence/cutout-rig-internal-qa-v071.json",
+                "docs/evidence/cutout-rig-provider-qualification-v071.json",
+                "docs/evidence/execution-evidence-v0.7.1.json",
+                "docs/evidence/review-visuals-v0.7.0.json",
+                "docs/evidence/review-visuals-v0.6.2.json",
+                "sdxl-openpose-p-qualification.json",
+                "REVIEW-v0.7.0.md",
+            }
+        )
+    elif active_visual_name.endswith("v0.7.0.json"):
         required_metadata.update(
             {
                 "docs/evidence/review-visuals-v0.7.0.json",
@@ -202,6 +235,37 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
                 "docs/evidence/sdxl-identity-drift-contact.json",
             }
         )
+    if active_visual_name.endswith("v0.7.1.json"):
+        parts = (
+            "head", "torso_pelvis", "left_upper_arm", "left_forearm_hand", "right_upper_arm", "right_forearm_hand",
+            "left_thigh", "left_shin_foot", "right_thigh", "right_shin_foot", "sword",
+        )
+        required_metadata.update(
+            {
+                f"docs/evidence/r4-cutout-raw-masks-v071/{part}.png"
+                for part in parts
+            }
+            | {
+                f"docs/evidence/r4-cutout-refined-masks-v071/{part}.png"
+                for part in parts
+            }
+            | {
+                f"docs/evidence/r4-cutout-parts-v071/{part}.png"
+                for part in parts
+            }
+            | {
+                "docs/evidence/cutout-q0-reconstruction-v071.png",
+                "docs/evidence/cutout-q0-alpha-aware-diff-v071.png",
+                "docs/evidence/cutout-q1-contact-left-v071.png",
+                "docs/evidence/cutout-q2-passing-left-v071.png",
+                "docs/evidence/cutout-q0-q1-q2-contact-sheet-v071.png",
+                "docs/evidence/cutout-q1-q2-target-detected-overlays-v071.png",
+                "docs/evidence/overlay-q1-contact-left-target-detected-v071.png",
+                "docs/evidence/overlay-q2-passing-left-target-detected-v071.png",
+                "docs/evidence/r4-cutout-parts-contact-sheet-v071.png",
+                "docs/evidence/r4-cutout-mask-overlay-v071.png",
+            }
+        )
     missing = sorted(required_metadata - names)
     if missing:
         raise ReviewArchiveError("archive metadata missing: " + ", ".join(missing))
@@ -270,6 +334,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     return {
         "head_commit": head_commit,
         "canonical_output_count": len(CANONICAL_LANE_OUTPUTS),
+        "visual_schema_version": schema_version,
         "visual_manifest": visual_result,
         "included_file_count": included_count,
     }
@@ -285,7 +350,7 @@ def _run(command: list[str], cwd: Path, timeout: int) -> dict[str, Any]:
     }
 
 
-def _self_validate_extracted(extraction: Path) -> dict[str, Any]:
+def _self_validate_extracted(extraction: Path, *, minimum_test_count: int = 161) -> dict[str, Any]:
     compile_result = _run([sys.executable, "-m", "compileall", "-q", "src", "scripts", "tests"], extraction, 180)
     unit_result = _run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"], extraction, 480)
     validation_result = _run([sys.executable, "scripts/validation/run_validation.py"], extraction, 480)
@@ -301,8 +366,8 @@ def _self_validate_extracted(extraction: Path) -> dict[str, Any]:
     } if summary_match else None
     if compile_result["exit_code"] != 0:
         raise ReviewArchiveError("extracted compileall failed")
-    if unit_result["exit_code"] != 0 or exact_test_count is None or exact_test_count < 161:
-        raise ReviewArchiveError(f"extracted unittest failed or count is below 161: {exact_test_count}")
+    if unit_result["exit_code"] != 0 or exact_test_count is None or exact_test_count < minimum_test_count:
+        raise ReviewArchiveError(f"extracted unittest failed or count is below {minimum_test_count}: {exact_test_count}")
     if validation_result["exit_code"] != 0 or not summary or summary["failed"] != 0:
         raise ReviewArchiveError(f"extracted repository validation failed: {summary}")
     return {
@@ -331,7 +396,8 @@ def verify_archive(archive_path: Path | str) -> dict[str, Any]:
                 archive.extractall(extraction)
                 if (extraction / ".git").exists():
                     raise ReviewArchiveError("extracted review archive unexpectedly contains .git")
-                execution = _self_validate_extracted(extraction)
+                minimum_test_count = 203 if content.get("visual_schema_version") == "0.7.1" else 161
+                execution = _self_validate_extracted(extraction, minimum_test_count=minimum_test_count)
     except zipfile.BadZipFile as exc:
         raise ReviewArchiveError(f"invalid ZIP: {exc}") from exc
     return {

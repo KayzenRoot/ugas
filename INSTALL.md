@@ -1,4 +1,4 @@
-# Installing UGAS 0.7.0
+# Installing UGAS 0.7.1
 
 ## Requirements
 
@@ -17,11 +17,11 @@ python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
 ```
 
-## v0.7.0 deterministic cutout-rig provider
+## v0.7.1 deterministic cutout-rig fidelity QA correction
 
 Leia [docs/evidence/current-state.json](docs/evidence/current-state.json) antes de iniciar. O provider é uma lane isolada e não altera o routing de produção. A origem SAM2 oficial é fixada por commit; source, checkpoint e runtime ficam fora do Git e do review ZIP.
 
-Depois, use os scripts e gates descritos em [REVIEW-v0.7.0.md](REVIEW-v0.7.0.md). A qualificação requer `facebookresearch/sam2` pinado, somente `sam2.1_hiera_small`, inferência isolada, skeleton de origem completo e máscaras reproduzíveis. O renderer usa somente Pillow/NumPy e executa Q0/Q1/Q2 estáticos.
+Depois, use os scripts e gates descritos em [REVIEW-v0.7.1.md](REVIEW-v0.7.1.md). A correção requer `facebookresearch/sam2` pinado, somente `sam2.1_hiera_small`, inferência isolada, skeleton de origem completo, máscaras raw/refined hash-bound e QA Q0/Q1/Q2 estático. O renderer usa somente Pillow/NumPy.
 
 ### Runtime SAM2 externo
 
@@ -37,6 +37,6 @@ $env:PYTHONPATH = "src"
 python -m ugas.cli cutout-rig qualify-sam2 --json
 ```
 
-O checkpoint oficial `sam2.1_hiera_small.pt` deve ficar em `%LOCALAPPDATA%/UGAS/models/sam2/` e ser conferido pelo SHA-256 registrado em `docs/evidence/sam2-checkpoint-provenance.json`. A instalação não usa custom node ComfyUI nem executa jobs ComfyUI.
+O checkpoint oficial `sam2.1_hiera_small.pt` deve ficar em `%LOCALAPPDATA%/UGAS/models/sam2/` e ser conferido pelo SHA-256 registrado em `docs/evidence/sam2-checkpoint-provenance-v071.json`. A instalação não usa custom node ComfyUI nem executa jobs ComfyUI.
 
-O v0.6.2 permanece histórico como `REVIEW_ARCHIVE_VERIFIED`, e o v0.5.4 permanece a fonte dos thresholds de pose. O estado atual é `CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP`; walk permanece não autorizado e nenhum resultado local equivale a aprovação externa.
+O v0.7.0 permanece preservado em `current-state-v0.7.0.json` e `REVIEW-v0.7.0.md`; o v0.6.2 permanece histórico como `REVIEW_ARCHIVE_VERIFIED`, e o v0.5.4 permanece a fonte dos thresholds de pose. O estado atual é `CUTOUT_RIG_SEAM_GAP`; walk permanece não autorizado e nenhum resultado local equivale a aprovação externa.

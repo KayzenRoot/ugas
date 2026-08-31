@@ -129,6 +129,32 @@ REQUIRED_V070_REVIEW_EVIDENCE = {
     "cutout-rig-provider-qualification.json",
     "execution-evidence-v0.7.0.json",
 }
+REQUIRED_V071_REVIEW_EVIDENCE = {
+    "sam2-provider-qualification-v071.json",
+    "sam2-checkpoint-provenance-v071.json",
+    "r4-source-skeleton-v071.json",
+    "r4-cutout-part-prompts-v071.json",
+    "r4-cutout-raw-masks-v071-manifest.json",
+    "r4-cutout-refined-masks-v071-manifest.json",
+    "r4-cutout-component-diagnostics-v071.json",
+    "r4-cutout-rig-v071.json",
+    "r4-cutout-parts-contact-sheet-v071.png",
+    "r4-cutout-mask-overlay-v071.png",
+    "cutout-q0-reconstruction-v071.png",
+    "cutout-q0-alpha-aware-diff-v071.png",
+    "cutout-q0-reconstruction-qa-v071.json",
+    "cutout-q1-contact-left-v071.png",
+    "cutout-q2-passing-left-v071.png",
+    "cutout-q0-q1-q2-contact-sheet-v071.png",
+    "cutout-q1-q2-target-detected-overlays-v071.png",
+    "cutout-rig-pose-qa-v071.json",
+    "cutout-rig-internal-qa-v071.json",
+    "cutout-rig-seam-qa-v071.json",
+    "cutout-rig-pixel-retention-v071.json",
+    "cutout-rig-pixel-provenance-v071.json",
+    "cutout-rig-provider-qualification-v071.json",
+    "execution-evidence-v0.7.1.json",
+}
 
 
 def _digest(path: Path) -> str:
@@ -170,6 +196,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V062_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     elif schema_version == "0.7.0":
         required = REQUIRED_V070_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.7.1":
+        required = REQUIRED_V071_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

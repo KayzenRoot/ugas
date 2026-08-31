@@ -1,0 +1,260 @@
+{
+  "schema_version": "0.7.1",
+  "rig_id": "r4-cutout-rig-v071-revision-3a425d184b1a49be9f6d6c8d52d04b96",
+  "provider_id": "deterministic-cutout-rig-2d",
+  "capability": "pose_character_front_2d",
+  "source": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "path": "docs/evidence/reference-edit-selected-transparent.png",
+    "width": 512,
+    "height": 512,
+    "immutable": true
+  },
+  "root_joint": "pelvis",
+  "hierarchy": {
+    "root": "pelvis",
+    "edges": [
+      [
+        "pelvis",
+        "torso_pelvis"
+      ],
+      [
+        "torso_pelvis",
+        "head"
+      ],
+      [
+        "torso_pelvis",
+        "left_upper_arm"
+      ],
+      [
+        "left_upper_arm",
+        "left_forearm_hand"
+      ],
+      [
+        "torso_pelvis",
+        "right_upper_arm"
+      ],
+      [
+        "right_upper_arm",
+        "right_forearm_hand"
+      ],
+      [
+        "torso_pelvis",
+        "left_thigh"
+      ],
+      [
+        "left_thigh",
+        "left_shin_foot"
+      ],
+      [
+        "torso_pelvis",
+        "right_thigh"
+      ],
+      [
+        "right_thigh",
+        "right_shin_foot"
+      ],
+      [
+        "right_forearm_hand",
+        "sword"
+      ]
+    ]
+  },
+  "parts": [
+    {
+      "name": "head",
+      "parent": "torso_pelvis",
+      "source_joints": [
+        "nose",
+        "neck"
+      ],
+      "pivot_joint": "neck",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/head.png",
+      "mask_sha256": "1f7a0ed6d6575a5706f1bbddd4b0c3311e71493ccd82d48e6d481286fff5b870",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/head.png",
+      "rgba_sha256": "317d4b321b4642cdcbaf5523ef2f3ee57d3983a52470b0ffe82b5ef6bcbbf3fe",
+      "z_group": 40,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "torso_pelvis",
+      "parent": "root",
+      "source_joints": [
+        "shoulder_center",
+        "pelvis"
+      ],
+      "pivot_joint": "pelvis",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/torso_pelvis.png",
+      "mask_sha256": "bca2aa00cf5047e2cfd75ffc86bc8ddbcd73549c7be38714155707295ca015ed",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/torso_pelvis.png",
+      "rgba_sha256": "18e1dc5eae4f3092ed232c2ef32205f18003ac3e2a9d764f04acf63d568dd7e1",
+      "z_group": 20,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "left_upper_arm",
+      "parent": "torso_pelvis",
+      "source_joints": [
+        "shoulder_left",
+        "elbow_left"
+      ],
+      "pivot_joint": "shoulder_left",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/left_upper_arm.png",
+      "mask_sha256": "aaca8c0e9f2ca7f06bc11e52bcaae7f88f404c815f1f62c210c35704a48edd19",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/left_upper_arm.png",
+      "rgba_sha256": "1445f89e300efe180f6b7b4446270518b37c78297dd1ba9408d3c9f60c690717",
+      "z_group": 30,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "left_forearm_hand",
+      "parent": "left_upper_arm",
+      "source_joints": [
+        "elbow_left",
+        "wrist_left"
+      ],
+      "pivot_joint": "elbow_left",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/left_forearm_hand.png",
+      "mask_sha256": "7500446b0b78dd12dd1a1177f004144b1dbbc755e450d0cad9bc092075cfc4f7",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/left_forearm_hand.png",
+      "rgba_sha256": "5db6cc9ef7cb11f45713f03e86ffaf48752740412b1a9f83a268a8f745ecb662",
+      "z_group": 31,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "right_upper_arm",
+      "parent": "torso_pelvis",
+      "source_joints": [
+        "shoulder_right",
+        "elbow_right"
+      ],
+      "pivot_joint": "shoulder_right",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/right_upper_arm.png",
+      "mask_sha256": "a167da90cde8c2227b8c2acfa4c5cc375519802eb734e50a40edbe2a67e943cf",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/right_upper_arm.png",
+      "rgba_sha256": "039887270614e678781ecd9296fb82805106ca403b1679c251548feda15fb5d2",
+      "z_group": 30,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "right_forearm_hand",
+      "parent": "right_upper_arm",
+      "source_joints": [
+        "elbow_right",
+        "wrist_right"
+      ],
+      "pivot_joint": "elbow_right",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/right_forearm_hand.png",
+      "mask_sha256": "5edadc160eaaafb281e320921fcbfb8e15f43eec788bc0b82e141d7db33fdf09",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/right_forearm_hand.png",
+      "rgba_sha256": "e859af4aa39cdb9fb72129a04cb3d7ea8b83f61c69bd5d171c7ec56acf97ffe4",
+      "z_group": 31,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "left_thigh",
+      "parent": "torso_pelvis",
+      "source_joints": [
+        "hip_left",
+        "knee_left"
+      ],
+      "pivot_joint": "hip_left",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/left_thigh.png",
+      "mask_sha256": "1e0b17c624ce3c2eab88d545c5081e22174f07d110d69e53e663921f0d25485a",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/left_thigh.png",
+      "rgba_sha256": "ad9d24e72d9daa3469b8528e0242c69d94ae5e874c69a84a112cd842345bce2f",
+      "z_group": 10,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "left_shin_foot",
+      "parent": "left_thigh",
+      "source_joints": [
+        "knee_left",
+        "ankle_left"
+      ],
+      "pivot_joint": "knee_left",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/left_shin_foot.png",
+      "mask_sha256": "b68bd694c91e6b486518ca1799305ecfeccc7e0078478532ae8433c58618a1d9",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/left_shin_foot.png",
+      "rgba_sha256": "386ad16fff0737b64c24769c9bd4f93a1b0cbeb32bc5192f36846db1f76d3036",
+      "z_group": 11,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "right_thigh",
+      "parent": "torso_pelvis",
+      "source_joints": [
+        "hip_right",
+        "knee_right"
+      ],
+      "pivot_joint": "hip_right",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/right_thigh.png",
+      "mask_sha256": "79345d69f3686d6fc728a7f516770df4925df9e2e2c4eb019d274e214c9674b3",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/right_thigh.png",
+      "rgba_sha256": "d8620d94c5ef2d39e664108c8aeba93456c4478e3ebf7fb9c49544cc6ac75438",
+      "z_group": 10,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "right_shin_foot",
+      "parent": "right_thigh",
+      "source_joints": [
+        "knee_right",
+        "ankle_right"
+      ],
+      "pivot_joint": "knee_right",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/right_shin_foot.png",
+      "mask_sha256": "2c0769756a719b07f94b5a069d31e9bb3e3d7e6d68db35c8a058c6a25af3c072",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/right_shin_foot.png",
+      "rgba_sha256": "4f9d4a979b3a7480164358f9db00ddf1a7037c68e847ae82ef79c9a2a638cef8",
+      "z_group": 11,
+      "nonuniform_scale": false
+    },
+    {
+      "name": "sword",
+      "parent": "right_forearm_hand",
+      "source_joints": [
+        "wrist_right",
+        "weapon_tip"
+      ],
+      "pivot_joint": "wrist_right",
+      "mask_path": "docs/evidence/r4-cutout-refined-masks-v071/sword.png",
+      "mask_sha256": "b02a43fdcb6b449b62f377af1adca216c866591d81e43da9f3588cd9f4fb1a6b",
+      "rgba_path": "docs/evidence/r4-cutout-parts-v071/sword.png",
+      "rgba_sha256": "e21e45640e37ba8c03176645ca71661ef6da53eb1693c7622e8945bfb68a0ef9",
+      "z_group": 50,
+      "nonuniform_scale": false
+    }
+  ],
+  "weapon_attachment": {
+    "part": "sword",
+    "joint": "wrist_right",
+    "inferred": true,
+    "attachment_policy": "source local angle relative to anatomical wrist_right forearm; bounded swing; protected torso corridor"
+  },
+  "renderer": {
+    "version": "cutout-rig-renderer-1.1.0",
+    "resampling": "Pillow BICUBIC affine",
+    "transform": "translation_rotation_bounded_uniform_scale",
+    "comfyui_jobs": 0,
+    "no_inpainting": true,
+    "no_new_pixels": true,
+    "joint_patch_copy_count": 0,
+    "untransformed_joint_patch_pixels": 0
+  },
+  "provenance": {
+    "generated_pixel_fraction": 0.0,
+    "source_pixel_provenance_fraction": 1.0,
+    "source_residual_fallback_used": false,
+    "recolor_count": 0,
+    "nonuniform_scale_count": 0,
+    "identity_pixels_source_bound": true
+  },
+  "validation": {
+    "status": "CUTOUT_RIG_MANIFEST_VALID",
+    "failures": []
+  }
+}

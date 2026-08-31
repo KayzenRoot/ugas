@@ -1,0 +1,122 @@
+{
+  "schema_version": "0.7.1",
+  "pose": "q0",
+  "metrics": {
+    "alpha_iou": 1.0,
+    "rgb_mae": 1.147443,
+    "bbox_drift_px": 0.0,
+    "source_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "rendered_bbox": [
+      159,
+      40,
+      361,
+      487
+    ]
+  },
+  "source_coverage": {
+    "source_foreground_pixels": 49131,
+    "owned_foreground_pixels": 49131,
+    "source_owned_pixel_fraction": 1.0,
+    "semantic_alpha_union_coverage": 1.0,
+    "strict_alpha_ownership_coverage": 1.0,
+    "unassigned_semantic_fraction": 0.0,
+    "overlap_pixels": 333,
+    "overlap_fraction": 0.006778,
+    "outside_source_alpha_pixels": 0
+  },
+  "duplicate_over_composited_fraction": 0.006778,
+  "source_residual_fallback_used": false,
+  "internal": {
+    "status": "CUTOUT_RIG_INTERNAL_QA_PASSED",
+    "measured": {
+      "root_target_error_px": 0.0,
+      "joint_pivot_error_px_median": 0.0,
+      "joint_pivot_error_px_max": 0.0,
+      "angle_error_degrees_median": 0.0,
+      "bone_length_drift_fraction_max": 0.0,
+      "output_alpha_bbox": [
+        159,
+        40,
+        361,
+        487
+      ],
+      "transform_count": 11
+    },
+    "hard_gates": {
+      "root": true,
+      "pivot_median": true,
+      "pivot_max": true,
+      "angle_median": true,
+      "bone_drift": true,
+      "bounded_scale": true,
+      "uniform_scale": true
+    },
+    "uniform_scale": {
+      "min": 1.0,
+      "max": 1.0,
+      "values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "nonuniform_scale_count": 0
+    },
+    "scale_failures": [],
+    "thresholds": {
+      "root_target_error_px_max": 2.0,
+      "joint_pivot_error_px_median_max": 3.0,
+      "joint_pivot_error_px_max": 6.0,
+      "angle_error_degrees_median_max": 3.0,
+      "bone_length_drift_fraction_max": 0.08,
+      "member_scale_min": 0.92,
+      "member_scale_max": 1.08,
+      "nonuniform_scale_count": 0
+    },
+    "evidence": "forward affine matrices and output alpha bbox"
+  },
+  "global_fit": {
+    "applied": false,
+    "scale": 1.0,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "preview_bbox": [
+      159,
+      40,
+      361,
+      487
+    ],
+    "preview_margins_px": {
+      "left": 159,
+      "top": 40,
+      "right": 151,
+      "bottom": 25
+    }
+  },
+  "hard_gates": {
+    "alpha_iou": true,
+    "rgb_mae": true,
+    "bbox_drift": true,
+    "semantic_source_coverage": true,
+    "strict_source_coverage": true,
+    "missing_source_alpha_fraction": true,
+    "duplicate_over_composited_fraction": true,
+    "no_source_residual_fallback": true,
+    "same_compose_path": true
+  },
+  "status": "CUTOUT_RIG_RECONSTRUCTION_PASSED"
+}

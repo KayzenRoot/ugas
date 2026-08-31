@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS deterministic cutout rig part v0.7.0",
+  "title": "UGAS deterministic cutout rig part v0.7.1",
   "type": "object",
   "required": ["schema_version", "part", "mask_sha256", "rgba_sha256", "source_joints", "pivot_joint", "manual_prompt"],
   "properties": {
-    "schema_version": {"const": "0.7.0"},
+    "schema_version": {"const": "0.7.1"},
     "part": {"type": "string"},
     "mask_sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"},
     "rgba_sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"},

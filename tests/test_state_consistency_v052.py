@@ -16,20 +16,20 @@ class StateConsistencyV052Tests(unittest.TestCase):
     def test_current_state_and_documents_are_consistent(self):
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
-        review = (ROOT / "REVIEW-v0.7.0.md").read_text(encoding="utf-8")
+        review = (ROOT / "REVIEW-v0.7.1.md").read_text(encoding="utf-8")
         result = validate_state_consistency(state, checkpoint, review)
         self.assertEqual("STATE_CONSISTENCY_PASSED", result["status"], result)
 
     def test_contradictory_walk_promotion_fixture_fails(self):
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8") + "\nWALK FRONT 8 PASSED."
-        review = (ROOT / "REVIEW-v0.7.0.md").read_text(encoding="utf-8")
+        review = (ROOT / "REVIEW-v0.7.1.md").read_text(encoding="utf-8")
         result = validate_state_consistency(state, checkpoint, review)
         self.assertEqual("STATE_CONSISTENCY_FAILED", result["status"])
         self.assertIn("active_documents_promote_blocked_walk_or_anchor_result", result["failures"])
 
     def test_previous_release_flags_are_not_reclassified(self):
-        state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        state = json.loads((ROOT / "docs/evidence/current-state-v0.7.0.json").read_text(encoding="utf-8"))
         self.assertEqual("0.6.2", state["previous_release"]["version"])
         self.assertEqual("SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS", state["historical_smoke_status"])
         self.assertEqual("LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED", state["previous_release"]["pose_lane_status"])

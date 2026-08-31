@@ -1,0 +1,204 @@
+{
+  "schema_version": "0.7.1",
+  "manifest_type": "review-visual-evidence",
+  "review_state": "deterministic-cutout-rig-fidelity-qa-correction-gap",
+  "required_current_visuals": [
+    "sam2-provider-qualification-v071.json",
+    "sam2-checkpoint-provenance-v071.json",
+    "r4-source-skeleton-v071.json",
+    "r4-cutout-part-prompts-v071.json",
+    "r4-cutout-raw-masks-v071-manifest.json",
+    "r4-cutout-refined-masks-v071-manifest.json",
+    "r4-cutout-component-diagnostics-v071.json",
+    "r4-cutout-rig-v071.json",
+    "r4-cutout-parts-contact-sheet-v071.png",
+    "r4-cutout-mask-overlay-v071.png",
+    "cutout-q0-reconstruction-v071.png",
+    "cutout-q0-alpha-aware-diff-v071.png",
+    "cutout-q0-reconstruction-qa-v071.json",
+    "cutout-q1-contact-left-v071.png",
+    "cutout-q2-passing-left-v071.png",
+    "cutout-q0-q1-q2-contact-sheet-v071.png",
+    "cutout-q1-q2-target-detected-overlays-v071.png",
+    "cutout-rig-pose-qa-v071.json",
+    "cutout-rig-internal-qa-v071.json",
+    "cutout-rig-seam-qa-v071.json",
+    "cutout-rig-pixel-retention-v071.json",
+    "cutout-rig-pixel-provenance-v071.json",
+    "cutout-rig-provider-qualification-v071.json",
+    "execution-evidence-v0.7.1.json"
+  ],
+  "images": [
+    {
+      "archive_name": "sam2-provider-qualification-v071.json",
+      "source_path": "docs/evidence/sam2-provider-qualification-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "77d1e52851baea38fb2678e89ccb13c9d7ef7c2987652457f3ec5b905d007a0b",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "sam2-checkpoint-provenance-v071.json",
+      "source_path": "docs/evidence/sam2-checkpoint-provenance-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "334d8b68f189b58106a39cadaae3eb1a9a3425665a1893989fe2308eebbf5735",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-source-skeleton-v071.json",
+      "source_path": "docs/evidence/r4-source-skeleton-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "3955ba32d42ac45fc85f3d3ec782ad387172448aa1331a38f80be6d48d8c1941",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-cutout-part-prompts-v071.json",
+      "source_path": "docs/evidence/r4-cutout-part-prompts-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "54771f51540e8986de8f3c42d2d67fb35e569eb88a4e0d29df4e7f3a6ad873c9",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-cutout-raw-masks-v071-manifest.json",
+      "source_path": "docs/evidence/r4-cutout-raw-masks-v071-manifest.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "cad4cd120ab477b689684eb734ad9e3d31eac95ab289ba3381e7bc22bdbd6cdb",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-cutout-refined-masks-v071-manifest.json",
+      "source_path": "docs/evidence/r4-cutout-refined-masks-v071-manifest.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "037aeea211eee9ecf7071e3e30e47d81b8268b2b5c343938aa971dc57bd08f99",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-cutout-component-diagnostics-v071.json",
+      "source_path": "docs/evidence/r4-cutout-component-diagnostics-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "8b12cd97e5fc17ca48040a6aa5ede4a26a7da51a3525c2e37990b0ab2069bf69",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-cutout-rig-v071.json",
+      "source_path": "docs/evidence/r4-cutout-rig-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "ee7d460f545d40336002ef094afeb289d17243f01dee8de6f9e4d2d04f70b7e1",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-cutout-parts-contact-sheet-v071.png",
+      "source_path": "docs/evidence/r4-cutout-parts-contact-sheet-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "5b56a3a2136aba97d28ebce609541aabb3e05d61b8635706413b88e9ce311093",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "r4-cutout-mask-overlay-v071.png",
+      "source_path": "docs/evidence/r4-cutout-mask-overlay-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "013480539341b6b75acb88fc34d257b66c3d67be32b933e715fd75855e0c63e4",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-q0-reconstruction-v071.png",
+      "source_path": "docs/evidence/cutout-q0-reconstruction-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "c8e3c8734d8882ed2d803f44d90a147351f7b3c338af225aa8a2a8fb007783ae",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-q0-alpha-aware-diff-v071.png",
+      "source_path": "docs/evidence/cutout-q0-alpha-aware-diff-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "0c824375926702ac02583adba1ae1adaa5b65511a98f86c1f5319ce25848b68b",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-q0-reconstruction-qa-v071.json",
+      "source_path": "docs/evidence/cutout-q0-reconstruction-qa-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "acdcddb4f226a7acfec908c581edd4726497986d6e1fc20fe4bd7d7a046a4193",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-q1-contact-left-v071.png",
+      "source_path": "docs/evidence/cutout-q1-contact-left-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "3d06e70deb823dfd5775a082df332c479e73c6aae1d2982fb98717145dff77e8",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-q2-passing-left-v071.png",
+      "source_path": "docs/evidence/cutout-q2-passing-left-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "90e6fda75b9e398c37f74fe36e4fc653a9e562d623c1dbd6a7905ad8252fb475",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-q0-q1-q2-contact-sheet-v071.png",
+      "source_path": "docs/evidence/cutout-q0-q1-q2-contact-sheet-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "29975d3f342c24710b045bf9b14c2f50b28ef1490ea975c682f3a6721627e829",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-q1-q2-target-detected-overlays-v071.png",
+      "source_path": "docs/evidence/cutout-q1-q2-target-detected-overlays-v071.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "606aecc0fc3a3c135255776b18dff249e87cb8355a2aa248d82016f44aa6996c",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-rig-pose-qa-v071.json",
+      "source_path": "docs/evidence/cutout-rig-pose-qa-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "1fed70b7a115eb3f40380a17ed1f77b628564f6c27c699273bdd72a11ee08a97",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-rig-internal-qa-v071.json",
+      "source_path": "docs/evidence/cutout-rig-internal-qa-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "42b7b5bfa4db9978b9b69c14927e8228151cd80e0062d59fa90e589035651852",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-rig-seam-qa-v071.json",
+      "source_path": "docs/evidence/cutout-rig-seam-qa-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "07570a42ada19a2920bd13c623a6f2d40f9686cfeea78d291cfacefb649a4194",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-rig-pixel-retention-v071.json",
+      "source_path": "docs/evidence/cutout-rig-pixel-retention-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "f02619abe7fe1e55ef9b492dfdde8daa23f7fdf5077f730744f2f061a9d52ac5",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-rig-pixel-provenance-v071.json",
+      "source_path": "docs/evidence/cutout-rig-pixel-provenance-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "44c86f1f366de249d81b7d7b58f72224cc5af326b67ffe8f5fbc031081be4f62",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "cutout-rig-provider-qualification-v071.json",
+      "source_path": "docs/evidence/cutout-rig-provider-qualification-v071.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "afe2249b00a2bfe43081893fe52d1ab3e515ca6ed78ca3a92603798f15dab634",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    },
+    {
+      "archive_name": "execution-evidence-v0.7.1.json",
+      "source_path": "docs/evidence/execution-evidence-v0.7.1.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "b67ffeee5f1a7e56b5bc09532e55df42475ee8d017be1260c3d3a4aea0f79c98",
+      "role": "v0.7.1 deterministic cutout-rig fidelity QA correction evidence"
+    }
+  ],
+  "human_visual_review": "required",
+  "production_approval": "not-granted",
+  "external_approval": "not-claimed"
+}

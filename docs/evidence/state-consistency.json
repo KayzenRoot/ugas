@@ -1,13 +1,13 @@
 {
-  "schema_version": "0.7.0",
+  "schema_version": "0.7.1",
   "validator": "src/ugas/state_consistency.py",
   "status": "STATE_CONSISTENCY_PASSED",
   "failures": [],
   "checked": {
     "phase": "DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER",
-    "current_gate": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
-    "stop_reason": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
-    "historical_pose_status": "CUTOUT_RIG_VISUAL_OR_ESTIMATOR_GAP",
+    "current_gate": "CUTOUT_RIG_SEAM_GAP",
+    "stop_reason": "CUTOUT_RIG_SEAM_GAP",
+    "historical_pose_status": "CUTOUT_RIG_SEAM_GAP",
     "historical_review_status": "REVIEW_ARCHIVE_VERIFIED",
     "contradictory_walk_or_anchor_scan": true,
     "new_generation_started": false,
