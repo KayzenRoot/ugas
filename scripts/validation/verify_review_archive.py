@@ -280,6 +280,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         raise ReviewArchiveError("canonical v0.5.4 lane directory is missing")
 
     visual_manifest = _read_json(archive, active_visual_name)
+    schema_version = str(visual_manifest.get("schema_version"))
     expected_visual_schema = active_visual_name.split("review-visuals-v", 1)[1].removesuffix(".json")
     if visual_manifest.get("schema_version") != expected_visual_schema:
         raise ReviewArchiveError(f"active review visual manifest is not {expected_visual_schema}")
