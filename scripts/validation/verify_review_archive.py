@@ -138,7 +138,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
                 "docs/evidence/execution-evidence-v0.7.1.json",
                 "docs/evidence/review-visuals-v0.7.0.json",
                 "docs/evidence/review-visuals-v0.6.2.json",
-                "sdxl-openpose-p-qualification.json",
+                "docs/evidence/sdxl-openpose-p-qualification.json",
                 "REVIEW-v0.7.0.md",
             }
         )
