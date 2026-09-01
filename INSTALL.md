@@ -1,4 +1,4 @@
-# Installing UGAS 0.10.0
+# Installing UGAS 0.11.0
 
 ## Requirements
 
@@ -16,6 +16,10 @@ python scripts/validation/validate_state_consistency.py
 python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
 ```
+
+## v0.11.0 deterministic motion-quality attack
+
+Use `python -m ugas.animation validate-spec profiles/animation/attack-front-v2.json`, ou o runner completo `python scripts/validation/run_animation_runtime_v0110.py`. Ele executa o contrato de curvas, replay histórico, QA estrutural/pose, package e evidências em `docs/evidence/animation-runtime-v0110/`. A lane é source-only: não baixa pesos, não executa ComfyUI/SAM2/diffusion e não autoriza produção.
 
 ## v0.8.1 deterministic front-walk QA correction
 

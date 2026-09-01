@@ -1,0 +1,49 @@
+{
+  "schema_version": "animation-spec-1.0",
+  "animation_id": "attack-front-v2",
+  "asset_revision_id": "r4-cutout-rig-v071",
+  "direction": "front",
+  "frame_count": 12,
+  "fps": 12,
+  "loop": false,
+  "event_markers": [
+    {"event_id": "windup_peak", "frame": 3, "kind": "phase"},
+    {"event_id": "active_start", "frame": 4, "kind": "combat_window"},
+    {"event_id": "hit_event", "frame": 6, "kind": "combat_hit"},
+    {"event_id": "active_end", "frame": 7, "kind": "combat_window"},
+    {"event_id": "recovery_complete", "frame": 11, "kind": "phase"}
+  ],
+  "motion_tracks": [
+    {"track_id": "root_shift_x", "value_type": "scalar", "interpolation": "smoothstep", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": 0.8}, {"frame": 6, "value": 3.5}, {"frame": 8, "value": 2.2}, {"frame": 11, "value": 0.05}]},
+    {"track_id": "root_shift_y", "value_type": "scalar", "interpolation": "smoothstep", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": -0.4}, {"frame": 6, "value": 2.0}, {"frame": 8, "value": 1.0}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "torso_rotation_deg", "value_type": "scalar", "interpolation": "cubic_hermite", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": -1.5}, {"frame": 6, "value": 4.0}, {"frame": 8, "value": 2.0}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "torso_lean_x", "value_type": "scalar", "interpolation": "smoothstep", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": -0.5}, {"frame": 6, "value": 1.3}, {"frame": 8, "value": 0.8}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "right_upper_arm_rotation_deg", "value_type": "scalar", "interpolation": "cubic_hermite", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": -1.0}, {"frame": 6, "value": -2.0}, {"frame": 8, "value": -1.0}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "right_forearm_rotation_deg", "value_type": "scalar", "interpolation": "cubic_hermite", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": 7.0}, {"frame": 6, "value": 25.0}, {"frame": 8, "value": 18.0}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "right_wrist/grip_rotation_deg", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": 1.0}, {"frame": 6, "value": 5.0}, {"frame": 8, "value": 3.0}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "sword_rotation_deg", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": 8.0}, {"frame": 6, "value": 38.0}, {"frame": 8, "value": 44.0}, {"frame": 11, "value": 20.0}]},
+    {"track_id": "left_upper_arm_counter_deg", "value_type": "scalar", "interpolation": "smoothstep", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": 1.0}, {"frame": 6, "value": 3.0}, {"frame": 8, "value": 1.0}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "left_forearm_counter_deg", "value_type": "scalar", "interpolation": "smoothstep", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": -0.5}, {"frame": 6, "value": -1.5}, {"frame": 8, "value": -0.8}, {"frame": 11, "value": 0.0}]},
+    {"track_id": "head_counter_rotation_deg", "value_type": "scalar", "interpolation": "smoothstep", "keyframes": [{"frame": 0, "value": 0.0}, {"frame": 3, "value": 0.5}, {"frame": 6, "value": 2.2}, {"frame": 8, "value": 1.3}, {"frame": 11, "value": 0.0}]}
+  ],
+  "source_rig_ref": "docs/evidence/r4-cutout-rig-v071.json",
+  "key_pose_bindings": [
+    {"frame": 0, "phase": "V0-ready", "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"},
+    {"frame": 3, "phase": "V3-windup-peak", "target_hash": "61a68e147712eaacc1e84c927ae827fb4b9c5647f811147660c50f3dc92451ea"},
+    {"frame": 4, "phase": "V4-strike-start", "target_hash": "63becf24a30c5535a7cf9eaf7b8d60a41b52407d878e27e9ec8cbade6df65091"},
+    {"frame": 6, "phase": "V6-strike-contact", "target_hash": "d802ccd7b42b58670040d23a59fbf2cfb4ec59bd8d9bfe4fa79fc3825b900764"},
+    {"frame": 7, "phase": "V7-follow-through", "target_hash": "9dc7c2458a847926f1be6b3bd3830b2fcf9d1806696ea71cebb9ee471fd6114d"},
+    {"frame": 11, "phase": "V11-ready-end", "target_hash": "55f5a03d4e9f1894e7384cc57bcee513748b78dd6d8b9f8806588893e0523d71"}
+  ],
+  "interpolation_profile": {"method": "generic-motion-quality-layer-v1", "parameters_frozen_before_render": true, "parameters": {"curve_formula": "linear/smoothstep/cubic-hermite-deterministic-frame-space", "cubic_tangent_policy": "one-sided-endpoints-centered-interior", "rounding_boundary": "target-skeleton-only", "track_ids_are_opaque_to_core": true}},
+  "root_motion_profile": {"method": "bounded-weight-shift-with-anchored-feet", "limits": {"root_horizontal_excursion_px": 6, "root_vertical_excursion_px": 5}},
+  "foot_policy": {"method": "dual-foot-planted-sequential-source-sole-anchor-with-balance-corridor", "both_feet_required": true, "limits": {"sole_error_px": 1.5, "ground_penetration_px": 1.5, "projected_sole_frame_to_frame_drift_px": 1.5, "ankle_horizontal_drift_from_A0_px": 2.0}},
+  "z_order_profile": {"method": "constant-attack-front-plan", "switches_allowed": false, "plan_ref": "animation-attack-front-motion-quality-v2", "constant_order": ["right_shin_foot", "right_thigh", "left_forearm_hand", "left_upper_arm", "torso_pelvis", "left_thigh", "left_shin_foot", "right_upper_arm", "right_forearm_hand", "head", "sword"]},
+  "presentation_transform": {"method": "single-global-uniform-scale-and-translation", "uniform_scale": 0.9, "anchor": {"x": 256, "y": 256}, "translation": {"x": 0, "y": 0}, "frozen_before_render": true},
+  "qa_profile": {"profile_id": "attack-front-v2-motion-quality-strict", "feature_flags": {"source_hashes": true, "key_bindings": true, "global_transform": true, "structural": true, "occlusion": true, "retention": true, "pose_metrics": true, "source_only_pixels": true, "sword_attachment": true, "weapon_arc": true, "dual_foot_ground": true, "balance_proxy": true, "temporal": true, "jerk": true, "non_loop": true, "event_markers": true, "motion_tracks": true}, "thresholds": {"max_joint_angle_delta_degrees": 28, "max_angular_acceleration_degrees_per_frame2": 24, "max_jerk_degrees_per_frame3": 36, "root_horizontal_excursion_px": 6, "root_vertical_excursion_px": 5, "head_adjacent_center_delta_px": 5, "torso_adjacent_rotation_delta_deg": 4, "alpha_safe_margin_px": 24, "bone_scale_min": 0.92, "bone_scale_max": 1.08, "active_window_frames": [4, 5, 6, 7], "hit_event_frame": 6, "projected_sole_frame_to_frame_drift_px": 1.5, "ankle_horizontal_drift_from_A0_px": 2.0, "balance_corridor_margin_px": 24, "pose_min_measurable_body_joints": 10, "pose_pck_at_010": 0.80, "pose_nme": 0.10, "pose_limb_angle_mae_degrees": 18, "pose_lower_body_pck": 0.75}},
+  "package_profile": {"cell_size": {"width": 512, "height": 512}, "columns": 6, "rows": 2, "format": "RGBA", "gif_review_only": true, "sprite_name": "attack-front-v2-spritesheet.png", "gif_name": "attack-front-v2-preview.gif"},
+  "provenance": {"source_image": "docs/evidence/reference-edit-selected-transparent.png", "source_parts_dir": "docs/evidence/r4-cutout-parts-v071", "source_masks_dir": "docs/evidence/r4-cutout-refined-masks-v071", "source_skeleton": "docs/evidence/r4-source-skeleton-v071.json", "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798", "source_manifests": ["docs/evidence/r4-cutout-rig-v071.json", "docs/evidence/r4-cutout-refined-masks-v071-manifest.json"], "sam2_used": false, "comfyui_generation_jobs": 0, "diffusion_used": false, "source_only_pixels": true},
+  "forbidden_operations": ["sam2_rerun", "comfyui_generation", "diffusion", "controlnet", "ip_adapter", "inpainting", "manual_pixel_edit", "per_frame_transform_tuning", "production_routing", "new_animation_direction", "new_character", "new_provider", "run_animation", "hit_animation", "death_animation"],
+  "runtime_adapter": "ugas.animation_profiles.attack_front_v2",
+  "adapter_parameters": {"contract": "12-frame-front-sword-attack-v2-motion-quality", "phases": ["V0-ready", "V1-anticipation-early", "V2-anticipation", "V3-windup-peak", "V4-strike-start", "V5-strike-mid", "V6-strike-contact", "V7-follow-through", "V8-follow-through-late", "V9-recovery-early", "V10-recovery-late", "V11-ready-end"], "weapon": "sword", "source_only_target_derivation": "R4 skeleton plus generic motion tracks", "motion_track_semantics": {"root_shift_x": "root horizontal weight shift", "root_shift_y": "root vertical weight shift", "torso_rotation_deg": "torso rotation", "torso_lean_x": "torso lean", "right_upper_arm_rotation_deg": "right upper arm", "right_forearm_rotation_deg": "right forearm", "right_wrist/grip_rotation_deg": "wrist and grip", "sword_rotation_deg": "sword arc", "left_upper_arm_counter_deg": "left upper-arm counter", "left_forearm_counter_deg": "left forearm counter", "head_counter_rotation_deg": "small frontal head counter"}}
+}

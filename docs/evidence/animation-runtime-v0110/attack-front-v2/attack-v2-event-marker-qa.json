@@ -1,0 +1,99 @@
+{
+  "schema_version": "0.11.0",
+  "animation_id": "attack-front-v2",
+  "status": "ATTACK_V2_EVENT_MARKER_CONTRACT_PASSED",
+  "markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 3,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 4,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 6,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 7,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 11,
+      "kind": "phase"
+    }
+  ],
+  "spec_event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+  "compiled_event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 3,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 4,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 6,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 7,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 11,
+      "kind": "phase"
+    }
+  ],
+  "compiled_event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+  "qa_event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 3,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 4,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 6,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 7,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 11,
+      "kind": "phase"
+    }
+  ],
+  "qa_event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+  "active_window": {
+    "frames": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "hit_event_frame": 6
+  },
+  "marker_gate": true
+}

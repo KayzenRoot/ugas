@@ -16,6 +16,7 @@ from typing import Any, Mapping
 
 from PIL import Image, ImageDraw
 
+from .motion_curves import motion_tracks_sha256, validate_motion_tracks
 from .schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 
 
@@ -68,10 +69,27 @@ def load_spec(path: Path, root: Path | None = None) -> dict[str, Any]:
     if value["provenance"]["sam2_used"] or value["provenance"]["comfyui_generation_jobs"] != 0 or value["provenance"]["diffusion_used"] or not value["provenance"]["source_only_pixels"]:
         raise AnimationContractError("forbidden_generation_or_non_source_pixels")
     _validate_event_markers(value)
+    validate_motion_tracks(value)
     adapter_name = str(value["runtime_adapter"])
     if any(part in adapter_name for part in ("__", "/", "\\")):
         raise AnimationContractError("runtime_adapter_import_invalid")
     return value
+
+
+def motion_track_fields(spec: Mapping[str, Any]) -> dict[str, Any]:
+    """Return optional hash-bound motion-track fields without changing legacy output."""
+    tracks = validate_motion_tracks(spec)
+    if not tracks:
+        return {}
+    return {"motion_tracks": tracks, "motion_tracks_sha256": motion_tracks_sha256(spec)}
+
+
+def _assert_motion_track_binding(value: Mapping[str, Any], expected: Mapping[str, Any], label: str) -> None:
+    for key in ("motion_tracks", "motion_tracks_sha256"):
+        if key in expected and value.get(key) != expected[key]:
+            raise AnimationContractError(f"{label}_motion_track_binding_mismatch")
+        if key not in expected and key in value:
+            raise AnimationContractError(f"{label}_unexpected_motion_track_fields")
 
 
 def normalized_timing(spec: Mapping[str, Any]) -> dict[str, float]:
@@ -200,6 +218,7 @@ def compile_spec(spec_path: Path, output_dir: Path, root: Path | None = None) ->
         "frames": frames, "event_markers": event_markers_for_spec(spec), "event_markers_sha256": event_markers_sha256(spec), "compile_status": "COMPILED", "runtime_adapter": spec["runtime_adapter"],
         "determinism": {"pixel_operation": "source-affine-resample-and-alpha-composite", "parameters_frozen_before_render": True, "source_only_pixels": True, "replay_rule": "same spec source hashes adapter and Pillow encoder produce same RGBA bytes"},
     }
+    manifest.update(motion_track_fields(spec))
     manifest_path = output_dir / "compiled-manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     validate_instance(manifest, _schema(root, "animation-compiled-manifest-v1.json"))
@@ -214,6 +233,7 @@ def qa_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     spec = load_spec(spec_path, root)
     if manifest["animation_id"] != spec["animation_id"] or manifest["spec_sha256"] != digest_file(spec_path):
         raise AnimationContractError("compiled_manifest_spec_binding_mismatch")
+    _assert_motion_track_binding(manifest, motion_track_fields(spec), "compiled_manifest")
     adapter = _adapter(spec)
     context = adapter.load_context(spec, root)
     result = adapter.qa(spec, context, manifest, root)
@@ -228,6 +248,7 @@ def qa_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     result["hard_gates"] = {**dict(result["hard_gates"]), "generic_lifecycle": lifecycle["status"] == "ANIMATION_LIFECYCLE_PASSED"}
     result["failures"] = [*list(result["failures"]), *[f"lifecycle_{name}" for name, passed in lifecycle["hard_gates"].items() if not passed]]
     result = {"schema_version": "animation-qa-result-1.1", **result, "event_markers": event_markers_for_spec(spec), "event_markers_sha256": event_markers_sha256(spec), "spec_sha256": digest_file(spec_path), "compiled_manifest_sha256": digest_file(manifest_path)}
+    result.update(motion_track_fields(spec))
     validate_instance(result, _schema(root, "animation-qa-result-v1.json"))
     output = manifest_path.parent / "qa-result.json"
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -252,6 +273,8 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     spec = load_spec(root / manifest["spec_path"], root)
     if manifest["animation_id"] != spec["animation_id"] or manifest["spec_sha256"] != digest_file(root / manifest["spec_path"]):
         raise AnimationContractError("compiled_manifest_spec_binding_mismatch")
+    expected_motion_tracks = motion_track_fields(spec)
+    _assert_motion_track_binding(manifest, expected_motion_tracks, "compiled_manifest")
     qa_path = manifest_path.parent / "qa-result.json"
     if not qa_path.is_file():
         raise AnimationContractError("package_requires_qa_result")
@@ -263,6 +286,7 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
         raise AnimationContractError("qa_spec_hash_mismatch")
     if qa.get("compiled_manifest_sha256") != digest_file(manifest_path):
         raise AnimationContractError("qa_compiled_manifest_hash_mismatch")
+    _assert_motion_track_binding(qa, expected_motion_tracks, "qa")
     expected_markers = event_markers_for_spec(spec)
     expected_marker_hash = event_markers_sha256(spec)
     if manifest.get("event_markers", expected_markers) != expected_markers or manifest.get("event_markers_sha256", expected_marker_hash) != expected_marker_hash:
@@ -288,8 +312,10 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=int(round(duration)), loop=0, disposal=2, optimize=False)
     metadata_path = manifest_path.parent / "metadata.json"
     metadata = {"schema_version": "animation-package-1.0", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "format": "RGBA", "frames": manifest["frames"], "parameters_frozen_before_render": True, "adapter_metadata": dict(qa.get("package_metadata", {}))}
+    metadata.update(expected_motion_tracks)
     metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     package = {"schema_version": "animation-package-1.0", "package_id": f"ugas-{spec['animation_id']}-package", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "format": "RGBA", "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "sprite_sheet": {"path": _relative(sprite_path, root), "sha256": digest_file(sprite_path)}, "metadata": {"path": _relative(metadata_path, root), "sha256": digest_file(metadata_path)}, "preview_gif": {"path": _relative(gif_path, root), "sha256": digest_file(gif_path)}, "registry_state": "pilot/technical-qualified", "production_approved": False, "production_routing": "BLOCKED", "qa_status": qa["status"], "qa_decision": qa["decision"], "adapter_metadata": dict(qa.get("package_metadata", {})), "source_rig_revision": spec["asset_revision_id"], "source_rig_sha256": digest_file(root / spec["source_rig_ref"]), "r4_source_sha256": spec["provenance"]["source_sha256"]}
+    package.update(expected_motion_tracks)
     package_path = manifest_path.parent / "package-manifest.json"
     package_path.write_text(json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     validate_instance(package, _schema(root, "animation-package-v1.json"))

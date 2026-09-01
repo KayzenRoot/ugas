@@ -1,0 +1,360 @@
+{
+  "schema_version": "0.11.0",
+  "animation_id": "attack-front-v2",
+  "status": "ATTACK_V2_TEMPORAL_QA_PASSED",
+  "decision": "QUALIFIED",
+  "metrics": {
+    "max_joint_angle_delta_degrees": 7.659259,
+    "max_angular_acceleration_degrees_per_frame2": 7.003703,
+    "max_jerk_degrees_per_frame3": 4.248148,
+    "root_horizontal_excursion_px": 4.8,
+    "root_vertical_excursion_px": 2.4,
+    "head_adjacent_center_delta_px": 4.988147,
+    "torso_adjacent_rotation_delta_deg": 2.344444,
+    "target_hash_count": 12,
+    "torso_rotation_range_deg": 5.518519,
+    "head_counter_rotation_range_deg": 2.2,
+    "track_ranges": {
+      "root_shift_x": 3.5,
+      "root_shift_y": 2.4,
+      "torso_rotation_deg": 5.518519,
+      "right_upper_arm_rotation_deg": 2.0,
+      "right_forearm_rotation_deg": 25.0,
+      "right_wrist/grip_rotation_deg": 5.0,
+      "sword_rotation_deg": 44.0,
+      "left_upper_arm_counter_deg": 3.0,
+      "left_forearm_counter_deg": 1.5,
+      "head_counter_rotation_deg": 2.2
+    },
+    "angle_delta_samples": [
+      0.388889,
+      2.25926,
+      0.038816,
+      0.034711,
+      0.722222,
+      2.259259,
+      0.08477,
+      0.07833,
+      0.388889,
+      3.481482,
+      0.05062,
+      0.054762,
+      0.777777,
+      6.437037,
+      0.304964,
+      0.319822,
+      1.444444,
+      7.659259,
+      0.576073,
+      0.621159,
+      0.777778,
+      4.903704,
+      0.303189,
+      0.334758,
+      1.349999,
+      2.1,
+      0.196637,
+      0.217616,
+      1.35,
+      5.899999,
+      0.177193,
+      0.203116,
+      0.466666,
+      5.918519,
+      0.160925,
+      0.172474,
+      0.866667,
+      6.540741,
+      0.310169,
+      0.335355,
+      0.466666,
+      6.54074,
+      0.159966,
+      0.173745
+    ],
+    "angular_acceleration_samples": [
+      0.333333,
+      1e-06,
+      0.045954,
+      0.043619,
+      0.333334,
+      1.222223,
+      0.03415,
+      0.023568,
+      0.388888,
+      2.955555,
+      0.355584,
+      0.374585,
+      0.666668,
+      1.222222,
+      0.271109,
+      0.301336,
+      0.666666,
+      2.755555,
+      0.272884,
+      0.2864,
+      2.127777,
+      7.003703,
+      0.499826,
+      0.552374,
+      1e-06,
+      3.8,
+      0.019444,
+      0.0145,
+      0.883334,
+      0.01852,
+      0.016268,
+      0.030643,
+      0.400001,
+      0.622222,
+      0.149244,
+      0.162881,
+      0.400001,
+      1e-06,
+      0.150202,
+      0.16161
+    ],
+    "jerk_samples": [
+      0.666667,
+      1.222225,
+      0.080104,
+      0.067187,
+      0.722222,
+      1.733332,
+      0.321434,
+      0.351017,
+      0.277779,
+      1.733333,
+      0.084475,
+      0.073248,
+      1.333334,
+      3.977777,
+      0.543993,
+      0.587737,
+      1.46111,
+      4.248148,
+      0.226942,
+      0.265974,
+      2.127775,
+      3.203704,
+      0.51927,
+      0.566874,
+      0.883335,
+      3.781479,
+      0.003176,
+      0.016143,
+      1.283335,
+      0.603702,
+      0.165513,
+      0.193524,
+      0.800002,
+      0.622223,
+      0.299447,
+      0.324492
+    ],
+    "frame_pairs_measured": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        10,
+        11
+      ]
+    ],
+    "closing_pair_measured": false,
+    "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:skeleton_series_before_render"
+  },
+  "hard_gates": {
+    "joint_angle_delta_le_28": true,
+    "angular_acceleration_le_24": true,
+    "jerk_le_36": true,
+    "root_horizontal_excursion_in_2_6": true,
+    "root_vertical_excursion_in_1_5": true,
+    "head_adjacent_center_delta_le_5": true,
+    "torso_adjacent_rotation_delta_le_4": true,
+    "target_hashes_exactly_12_distinct": true,
+    "weapon_arc_qa": true,
+    "foot_ground_qa": true
+  },
+  "lifecycle": {
+    "loop": false,
+    "frame_validity": [
+      {
+        "index": 0,
+        "valid": true
+      },
+      {
+        "index": 1,
+        "valid": true
+      },
+      {
+        "index": 2,
+        "valid": true
+      },
+      {
+        "index": 3,
+        "valid": true
+      },
+      {
+        "index": 4,
+        "valid": true
+      },
+      {
+        "index": 5,
+        "valid": true
+      },
+      {
+        "index": 6,
+        "valid": true
+      },
+      {
+        "index": 7,
+        "valid": true
+      },
+      {
+        "index": 8,
+        "valid": true
+      },
+      {
+        "index": 9,
+        "valid": true
+      },
+      {
+        "index": 10,
+        "valid": true
+      },
+      {
+        "index": 11,
+        "valid": true
+      }
+    ],
+    "transitions": [
+      {
+        "from_frame": 0,
+        "to_frame": 1
+      },
+      {
+        "from_frame": 1,
+        "to_frame": 2
+      },
+      {
+        "from_frame": 2,
+        "to_frame": 3
+      },
+      {
+        "from_frame": 3,
+        "to_frame": 4
+      },
+      {
+        "from_frame": 4,
+        "to_frame": 5
+      },
+      {
+        "from_frame": 5,
+        "to_frame": 6
+      },
+      {
+        "from_frame": 6,
+        "to_frame": 7
+      },
+      {
+        "from_frame": 7,
+        "to_frame": 8
+      },
+      {
+        "from_frame": 8,
+        "to_frame": 9
+      },
+      {
+        "from_frame": 9,
+        "to_frame": 10
+      },
+      {
+        "from_frame": 10,
+        "to_frame": 11
+      }
+    ],
+    "closing_transition_evaluated": false,
+    "closing_transition": {
+      "from_frame": 11,
+      "to_frame": 0,
+      "evaluated": false,
+      "valid": null
+    },
+    "event_markers": [
+      {
+        "event_id": "windup_peak",
+        "frame": 3,
+        "kind": "phase"
+      },
+      {
+        "event_id": "active_start",
+        "frame": 4,
+        "kind": "combat_window"
+      },
+      {
+        "event_id": "hit_event",
+        "frame": 6,
+        "kind": "combat_hit"
+      },
+      {
+        "event_id": "active_end",
+        "frame": 7,
+        "kind": "combat_window"
+      },
+      {
+        "event_id": "recovery_complete",
+        "frame": 11,
+        "kind": "phase"
+      }
+    ],
+    "event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+    "hard_gates": {
+      "frame_indices_are_sequential": true,
+      "all_frames_valid": true,
+      "final_frame_valid": true,
+      "event_markers_within_timeline": true,
+      "closing_transition_evaluated_for_loop": true,
+      "closing_transition_omitted_for_non_loop": true,
+      "closing_transition_valid": true
+    },
+    "status": "ANIMATION_LIFECYCLE_PASSED"
+  }
+}

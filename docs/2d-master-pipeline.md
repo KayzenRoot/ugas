@@ -1,8 +1,8 @@
-# 2D master pipeline v0.10.0
+# 2D master pipeline v0.11.0
 
-The active release is the v0.10.0 generic action-runtime attack-front slice over the immutable v0.9.1 runtime and v0.9.0 cutout-rig lane. The v0.8.0, v0.7.3, v0.9.0, and v0.9.1 records remain historical and immutable; only the front attack pilot is newly executed and production routing remains blocked.
+The active release is the v0.11.0 generic motion-quality runtime over the immutable v0.10.0 action lane and v0.9.0 cutout-rig lane. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; only front `attack-front-v2` is newly executed and production routing remains blocked.
 
-This release does not run diffusion or SAM2. It reuses the v0.7.1 eleven-part R4 rig, masks, structural core, walk replay and idle results, then adds the generic optional event-marker contract and a deterministic source-skeleton sword sweep for `attack-front-v1`. The 10 frames are non-looping, 12 fps, front-facing, RGBA, with fixed markers at windup peak, active start/end, hit, and recovery complete. The current lane requires external attack visual review before authorization.
+This release does not run diffusion or SAM2. It reuses the v0.7.1 eleven-part R4 rig, masks, structural core, walk/idle/attack-v1 fixtures, and adds the generic optional motion-track contract plus a deterministic source-skeleton sword sweep for `attack-front-v2`. The 12 frames are non-looping, 12 fps, front-facing, RGBA, with fixed markers at windup peak, active start/end, hit, and recovery complete. The current lane requires external attack-v2 visual review before authorization.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 

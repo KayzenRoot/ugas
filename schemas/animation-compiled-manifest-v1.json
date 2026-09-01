@@ -13,6 +13,34 @@
     "source": {"type": "object", "additionalProperties": false, "required": ["asset_revision_id", "direction", "source_sha256", "source_rig_ref"], "properties": {"asset_revision_id": {"type": "string"}, "direction": {"type": "string"}, "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "source_rig_ref": {"type": "string"}}},
     "frames": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["index", "phase", "path", "rgba_sha256", "target_hash"], "properties": {"index": {"type": "integer", "minimum": 0}, "phase": {"type": "string"}, "path": {"type": "string"}, "rgba_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "target_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "metadata": {"type": "object"}}}},
     "event_markers": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["event_id", "frame", "kind"], "properties": {"event_id": {"type": "string", "minLength": 1}, "frame": {"type": "integer", "minimum": 0}, "kind": {"type": "string", "minLength": 1}, "payload": {"type": "object"}}}},
+    "motion_tracks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["track_id", "value_type", "interpolation", "keyframes"],
+        "properties": {
+          "track_id": {"type": "string", "minLength": 1},
+          "value_type": {"enum": ["scalar", "vec2"]},
+          "interpolation": {"enum": ["linear", "smoothstep", "cubic_hermite"]},
+          "keyframes": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["frame", "value"],
+              "properties": {
+                "frame": {"type": "integer", "minimum": 0},
+                "value": {"oneOf": [{"type": "number"}, {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}}]}
+              }
+            }
+          },
+          "clamp_policy": {"enum": ["clamp"]}
+        }
+      }
+    },
+    "motion_tracks_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "event_markers_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "compile_status": {"const": "COMPILED"},
     "runtime_adapter": {"type": "string", "minLength": 1},

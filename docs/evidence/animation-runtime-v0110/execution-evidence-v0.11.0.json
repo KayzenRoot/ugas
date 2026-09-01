@@ -1,0 +1,103 @@
+{
+  "schema_version": "0.11.0",
+  "prompt": "PROMPT-10-UGAS-MOTION-QUALITY-LAYER-ATTACK-V2-v0.11.0",
+  "baseline_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+  "implementation_base_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+  "repository_ref": "https://github.com/csn1985-ship-it/ugas.git",
+  "animation_id": "attack-front-v2",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 12,
+  "fps": 12,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 3,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 4,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 6,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 7,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 11,
+      "kind": "phase"
+    }
+  ],
+  "event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+  "motion_tracks_sha256": "ba8ab5f4426052ff701471c1a692a2fa52c684e1ad9428626602c01564e2646a",
+  "active_window_frames": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "hit_event_frame": 6,
+  "target_hashes_distinct": true,
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "historical_replay_status": "HISTORICAL_ANIMATION_REPLAY_PASSED",
+  "generic_motion_curve_contract_status": "GENERIC_MOTION_CURVE_CONTRACT_PASSED",
+  "negative_controls": {
+    "controls": {
+      "body_mechanics_zero_root_torso_counter": {
+        "status": "REJECTED",
+        "observed": "ATTACK_V2_BODY_MECHANICS_GAP"
+      },
+      "weapon_zero_post_hit_follow_through": {
+        "status": "REJECTED",
+        "observed": "ATTACK_V2_WEAPON_ARC_GAP"
+      },
+      "foot_slide_over_threshold": {
+        "status": "REJECTED",
+        "observed": "ATTACK_V2_FOOT_GROUND_GAP"
+      }
+    },
+    "all_rejected": true,
+    "proof_source": "scripts/validation/run_animation_runtime_v0110.py:_v2_negative_controls"
+  },
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "external_visual_review": "REQUIRED",
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/package-manifest.json",
+    "qa_decision": "QUALIFIED",
+    "sprite_sheet_sha256": "6d3942761bdcfb336816470502ce4a40459ad67fc629f54e1600afcdadaf3377",
+    "preview_gif_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7"
+  },
+  "no_new_run_hit_death": true,
+  "forbidden_operations_not_used": [
+    "sam2_rerun",
+    "comfyui_generation",
+    "diffusion",
+    "controlnet",
+    "ip_adapter",
+    "inpainting",
+    "manual_pixel_edit",
+    "per_frame_transform_tuning",
+    "production_routing",
+    "new_animation_direction",
+    "new_character",
+    "new_provider",
+    "run_animation",
+    "hit_animation",
+    "death_animation"
+  ]
+}

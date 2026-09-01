@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.11.0 GitHub-first review index v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "branch", "review_subject", "publication", "review_file", "current_state", "tests", "validation", "artifact_set", "required_visual_sets", "forbidden_artifacts", "external_visual_review", "production_routing"],
+  "properties": {
+    "schema_version": {"const": "0.11.0"},
+    "version": {"const": "0.11.0"},
+    "branch": {"const": "main"},
+    "review_file": {"const": "REVIEW-v0.11.0.md"},
+    "current_state": {"const": "docs/evidence/current-state.json"},
+    "review_subject": {"type": "object", "required": ["baseline_commit", "implementation_base_commit", "repository_ref"], "properties": {"baseline_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "implementation_base_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "repository_ref": {"const": "https://github.com/csn1985-ship-it/ugas.git"}}},
+    "publication": {"type": "object", "required": ["index_build_git_head", "index_build_dirty_state", "final_head_must_be_resolved_by_external_reviewer", "executor_cannot_self_assert_final_head"], "properties": {"index_build_git_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "index_build_dirty_state": {"enum": ["dirty_before_publication_commit", "clean"]}, "final_head_must_be_resolved_by_external_reviewer": {"const": true}, "executor_cannot_self_assert_final_head": {"const": true}}},
+    "tests": {"type": "object", "required": ["command", "count", "passed", "failed", "status"], "properties": {"command": {"type": "string"}, "count": {"type": "integer", "minimum": 1}, "passed": {"type": "integer", "minimum": 1}, "failed": {"const": 0}, "status": {"const": "passed"}}},
+    "validation": {"type": "object", "required": ["command", "checks", "passed", "failed", "status"], "properties": {"command": {"type": "string"}, "checks": {"type": "integer", "minimum": 1}, "passed": {"type": "integer", "minimum": 1}, "failed": {"const": 0}, "status": {"const": "passed"}}},
+    "artifact_set": {"type": "object", "required": ["manifest_algorithm", "artifacts", "artifact_set_sha256", "evidence_count", "visual_count"], "properties": {"manifest_algorithm": {"const": "sha256-canonical-path-list-v1"}, "artifacts": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["path", "sha256", "media_type", "role"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "media_type": {"type": "string"}, "role": {"type": "string"}}}}, "artifact_set_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "evidence_count": {"type": "integer", "minimum": 1}, "visual_count": {"type": "integer", "minimum": 1}}},
+    "required_visual_sets": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "forbidden_artifacts": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "external_visual_review": {"type": "object", "required": ["status", "walk_pilot_approval", "idle_front_approval", "attack_front_v1_approval", "attack_front_v2_approval"], "properties": {"status": {"const": "REQUIRED"}, "walk_pilot_approval": {"const": "APPROVED_PILOT"}, "idle_front_approval": {"const": "APPROVED_PILOT"}, "attack_front_v1_approval": {"const": "APPROVED_PILOT"}, "attack_front_v2_approval": {"const": "REQUIRED"}}},
+    "production_routing": {"const": "BLOCKED"}
+  }
+}

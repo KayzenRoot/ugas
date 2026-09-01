@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.11.0",
+  "status": "GENERIC_MOTION_CURVE_CONTRACT_PASSED",
+  "contract": {
+    "optional_motion_tracks": true,
+    "opaque_track_ids": true,
+    "value_types": [
+      "scalar",
+      "vec2"
+    ],
+    "interpolations": [
+      "linear",
+      "smoothstep",
+      "cubic_hermite"
+    ],
+    "cubic_tangent_policy": "one-sided-endpoints-centered-interior",
+    "rounding_boundary": "target-skeleton-only",
+    "image_heuristics": false
+  },
+  "positive_fixtures": {
+    "linear_scalar_at_2_5": 5.0,
+    "smoothstep_vec2_at_2": [
+      4.0,
+      -2.0
+    ],
+    "hermite_replay_equal": true,
+    "exact_keyframe": true,
+    "track_hash": "5414514bb61f5fe0266ce8956f6b4833dbe2ccb7cbdac3344b9b286f45764280",
+    "hash_changes_when_track_mutates": true
+  },
+  "negative_controls": {
+    "duplicate_track_id": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_track_id_must_be_unique"
+    },
+    "strictly_ascending_keyframes": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_keyframes_must_be_strictly_increasing"
+    },
+    "keyframe_in_timeline": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_keyframe_frame_out_of_range"
+    },
+    "nan_or_inf_rejected": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_track_value_must_be_finite_scalar"
+    },
+    "unknown_interpolation_rejected": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_track_interpolation_invalid"
+    },
+    "out_of_range_sample_without_explicit_clamp": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_sample_out_of_range"
+    },
+    "out_of_range_sample_with_explicit_clamp": {
+      "status": "ACCEPTED",
+      "value": 1.0
+    }
+  },
+  "proof_source": "src/ugas/motion_curves.py"
+}

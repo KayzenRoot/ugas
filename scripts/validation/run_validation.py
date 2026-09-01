@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.10.0."""
+"""Objective UGAS validation, including immutable history and active v0.11.0."""
 
 from __future__ import annotations
 
@@ -34,6 +34,7 @@ from ugas.state_consistency_v080 import validate_state_consistency as validate_s
 from ugas.state_consistency_v081 import validate_state_consistency as validate_state_consistency_v081
 from ugas.state_consistency_v091 import validate_state_consistency as validate_state_consistency_v091
 from ugas.state_consistency_v0100 import validate_state_consistency as validate_state_consistency_v0100
+from ugas.state_consistency_v0110 import validate_state_consistency as validate_state_consistency_v0110
 from ugas.cutout_rig import validate_rig_manifest
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
@@ -1626,12 +1627,12 @@ def _v0100_checks() -> None:
     for relative in required:
         path = ROOT / relative; check(f"v0100:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(evidence / "current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        state = load_json(evidence / "current-state-v0.10.0.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.10.0.json"))
         consistency = validate_state_consistency_v0100(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.10.0.md").read_text(encoding="utf-8"))
         check("v0100:state-consistency", consistency["status"] == state["current_gate"], "; ".join(consistency.get("failures", [])) or "active v0.10.0 state is consistent")
         snapshot = load_json(evidence / "state-consistency-v0100.json")
-        check("v0100:state-snapshot", snapshot.get("schema_version") == "0.10.0" and snapshot.get("status") == state["current_gate"] and snapshot.get("failures") == [], "v0.10.0 state-consistency evidence is current")
+        check("v0100:state-snapshot", snapshot.get("schema_version") == "0.10.0" and snapshot.get("status") == state["current_gate"] and snapshot.get("failures") == [], "v0.10.0 state-consistency evidence is preserved")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0100:state-consistency", False, str(exc)); check("v0100:state-snapshot", False, str(exc))
     try:
@@ -1660,12 +1661,73 @@ def _v0100_checks() -> None:
         check("v0100:execution-boundary", execution.get("baseline_commit") == "d914d09d35ebfc5658d6c08e3502288c537fbf20" and execution.get("new_generation") == 0 and execution.get("sam2_runs") == 0 and execution.get("comfyui_generation_jobs") == 0 and execution.get("diffusion_runs") == 0 and execution.get("production_routing") == "BLOCKED" and execution.get("external_visual_review") == "REQUIRED", "execution evidence remains deterministic and external-review gated")
     except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
         for name in ("v0100:generic-events", "v0100:non-loop", "v0100:visual-evidence", "v0100:execution-boundary"): check(name, False, str(exc))
-    index_result = _run([sys.executable, "scripts/validation/validate_review_index_v0100.py"], ROOT)
-    check("v0100:review-index", index_result.returncode == 0, (index_result.stdout + index_result.stderr).strip()[-800:] or "v0.10.0 review index is hash-valid")
+    try:
+        historical_index = load_json(evidence / "review-index-v0.10.0.json")
+        publication = historical_index.get("publication", {})
+        subject = historical_index.get("review_subject", {})
+        index_ok = historical_index.get("schema_version") == "0.10.0" and historical_index.get("version") == "0.10.0" and subject.get("baseline_commit") == "d914d09d35ebfc5658d6c08e3502288c537fbf20" and subject.get("implementation_base_commit") == "d914d09d35ebfc5658d6c08e3502288c537fbf20" and publication.get("final_head_must_be_resolved_by_external_reviewer") is True and publication.get("executor_cannot_self_assert_final_head") is True and historical_index.get("external_visual_review", {}).get("attack_front_approval") == "REQUIRED" and historical_index.get("production_routing") == "BLOCKED"
+        check("v0100:review-index", index_ok, "immutable v0.10.0 review index metadata is preserved; mutable active paths are not re-hashed")
+    except (OSError, json.JSONDecodeError, TypeError, AttributeError) as exc:
+        check("v0100:review-index", False, str(exc))
     review = (ROOT / "REVIEW-v0.10.0.md").read_text(encoding="utf-8") if (ROOT / "REVIEW-v0.10.0.md").is_file() else ""
     headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "BASELINE AND IMMUTABILITY", "HISTORICAL EXTERNAL DECISIONS", "GENERIC EVENT-MARKER CONTRACT", "NON-LOOP LIFECYCLE", "ATTACK-FRONT-V1 SCOPE", "SOURCE-ONLY TARGET DERIVATION", "TEMPORAL POSE QA", "WEAPON SWEEP AND HIT TIMELINE", "FOOT-GROUND QA", "STRUCTURAL AND OCCLUSION QA", "INDEPENDENT MEDIAPIPE QA", "PACKAGE AND REVIEW EVIDENCE", "NO NEW GENERATION", "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB", "EXTERNAL VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE"]
     check("v0100:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.10.0 review headings present")
     check("v0100:no-forbidden-generation", "new_generation=0" in review and "sam2_runs=0" in review and "comfyui_generation_jobs=0" in review and "diffusion_runs=0" in review, "review records zero new-generation activity")
+
+
+def _v0110_checks() -> None:
+    """Validate the active v0.11.0 motion-quality attack-front-v2 slice."""
+    evidence = ROOT / "docs" / "evidence"
+    required = [
+        "REVIEW-v0.11.0.md", "docs/test-coverage-matrix-v0.11.0.md", "schemas/current-state.json", "schemas/current-state-v0.10.0.json",
+        "src/ugas/motion_curves.py", "src/ugas/animation.py", "src/ugas/animation_profiles/attack_front_v2.py", "src/ugas/state_consistency_v0110.py",
+        "profiles/animation/attack-front-v2.json", "scripts/validation/run_animation_runtime_v0110.py", "scripts/validation/validate_state_consistency.py",
+        "scripts/validation/build_review_index_v0110.py", "scripts/validation/validate_review_index_v0110.py", "tests/test_motion_curves_v0110.py",
+        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.10.0.json", "docs/evidence/state-consistency.json",
+        "docs/evidence/animation-runtime-v0110/generic-motion-curve-contract-v0110.json", "docs/evidence/animation-runtime-v0110/historical-replay-v0110.json", "docs/evidence/animation-runtime-v0110/execution-evidence-v0.11.0.json",
+        "docs/evidence/animation-runtime-v0110/attack-front-v2/compiled-manifest.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/qa-result.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/package-manifest.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/metadata.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-v2-body-mechanics-qa.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-v2-temporal-qa.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-v2-weapon-arc-qa.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-v2-foot-ground-qa.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-v2-event-marker-qa.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-v2-visual-manifest.json", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-spritesheet.png", "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-preview.gif",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0110:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(evidence / "current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        consistency = validate_state_consistency_v0110(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.11.0.md").read_text(encoding="utf-8"))
+        check("v0110:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.11.0 state is consistent")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0110:state-consistency", False, str(exc))
+    try:
+        spec = load_json(ROOT / "profiles/animation/attack-front-v2.json")
+        compiled = load_json(evidence / "animation-runtime-v0110/attack-front-v2/compiled-manifest.json")
+        qa = load_json(evidence / "animation-runtime-v0110/attack-front-v2/qa-result.json")
+        package = load_json(evidence / "animation-runtime-v0110/attack-front-v2/package-manifest.json")
+        for schema_name, artifact in (("animation-spec-v1.json", spec), ("animation-compiled-manifest-v1.json", compiled), ("animation-qa-result-v1.json", qa), ("animation-package-v1.json", package)):
+            validate_instance(artifact, load_json(ROOT / "schemas" / schema_name))
+        marker_frames = [(item["event_id"], item["frame"], item["kind"]) for item in spec["event_markers"]]
+        markers_ok = marker_frames == [("windup_peak", 3, "phase"), ("active_start", 4, "combat_window"), ("hit_event", 6, "combat_hit"), ("active_end", 7, "combat_window"), ("recovery_complete", 11, "phase")]
+        motion_hashes = {value for value in (spec.get("motion_tracks_sha256"), compiled.get("motion_tracks_sha256"), qa.get("motion_tracks_sha256"), package.get("motion_tracks_sha256")) if value}
+        check("v0110:attack-qualified", qa.get("decision") == "QUALIFIED" and qa.get("status") == "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED" and len(qa.get("frames", [])) == 12 and qa.get("failures") == [] and all(value is True for value in qa.get("hard_gates", {}).values()), "attack-front-v2 passes every generic and profile gate")
+        check("v0110:motion-contract", len(spec.get("motion_tracks", [])) == 11 and len(motion_hashes) == 1 and next(iter(motion_hashes)) not in {None, ""}, "eleven opaque motion tracks are hash-bound across artifacts")
+        check("v0110:markers", markers_ok and compiled.get("event_markers") == spec["event_markers"] and qa.get("event_markers") == spec["event_markers"] and package.get("event_markers") == spec["event_markers"], "frozen v2 event markers survive manifest, QA and package")
+        check("v0110:package", package.get("frame_count") == 12 and package.get("cell_size") == {"width": 512, "height": 512} and package.get("sheet_size") == {"width": 3072, "height": 1024} and package.get("format") == "RGBA" and package.get("production_approved") is False and package.get("production_routing") == "BLOCKED" and package.get("qa_decision") == "QUALIFIED", "6x2 RGBA package is pilot-only and production-blocked")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        for name in ("v0110:attack-qualified", "v0110:motion-contract", "v0110:markers", "v0110:package"): check(name, False, str(exc))
+    try:
+        generic = load_json(evidence / "animation-runtime-v0110/generic-motion-curve-contract-v0110.json")
+        replay = load_json(evidence / "animation-runtime-v0110/historical-replay-v0110.json")
+        execution = load_json(evidence / "animation-runtime-v0110/execution-evidence-v0.11.0.json")
+        visual = load_json(evidence / "animation-runtime-v0110/attack-front-v2/attack-v2-visual-manifest.json")
+        check("v0110:generic-curves", generic.get("status") == "GENERIC_MOTION_CURVE_CONTRACT_PASSED", "generic motion-curve positive and negative controls pass")
+        replay_ok = replay.get("status") == "HISTORICAL_ANIMATION_REPLAY_PASSED" and (not isinstance(replay.get("checks"), dict) or all(value is True for value in replay["checks"].values()))
+        check("v0110:historical-replay", replay_ok, "v0.10.0 attack, v0.8.1 walk and v0.9.0 idle remain byte-identical")
+        check("v0110:execution-boundary", execution.get("status") == "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED" and execution.get("decision") == "QUALIFIED" and execution.get("new_generation") == 0 and execution.get("sam2_runs") == 0 and execution.get("comfyui_generation_jobs") == 0 and execution.get("diffusion_runs") == 0 and execution.get("external_visual_review") == "REQUIRED" and execution.get("production_routing") == "BLOCKED", "execution evidence records deterministic source-only and external-review boundaries")
+        visual_ok = all((ROOT / item["source_path"]).is_file() and digest(ROOT / item["source_path"]) == item["sha256"] for item in visual.get("images", []))
+        check("v0110:visual-evidence", len(visual.get("images", [])) == 14 and visual_ok and visual.get("external_visual_review") == "REQUIRED", "twelve overlays plus spritesheet and GIF are hash-valid")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        for name in ("v0110:generic-curves", "v0110:historical-replay", "v0110:execution-boundary", "v0110:visual-evidence"): check(name, False, str(exc))
+    index_result = _run([sys.executable, "scripts/validation/validate_review_index_v0110.py"], ROOT)
+    check("v0110:review-index", index_result.returncode == 0, _result_detail(index_result) or "v0.11.0 review index is hash-valid")
 
 
 def main() -> int:
@@ -1766,13 +1828,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.10.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.10.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.10.0")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.11.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.11.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.11.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

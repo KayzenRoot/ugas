@@ -1,0 +1,379 @@
+{
+  "schema_version": "animation-package-1.0",
+  "package_id": "ugas-attack-front-v2-package",
+  "animation_id": "attack-front-v2",
+  "direction": "front",
+  "frame_count": 12,
+  "fps": 12.0,
+  "per_frame_duration_ms": 83.33333333333333,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 3,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 4,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 6,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 7,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 11,
+      "kind": "phase"
+    }
+  ],
+  "event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+  "format": "RGBA",
+  "cell_size": {
+    "width": 512,
+    "height": 512
+  },
+  "sheet_size": {
+    "width": 3072,
+    "height": 1024
+  },
+  "sprite_sheet": {
+    "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-spritesheet.png",
+    "sha256": "6d3942761bdcfb336816470502ce4a40459ad67fc629f54e1600afcdadaf3377"
+  },
+  "metadata": {
+    "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/metadata.json",
+    "sha256": "551ea3f2ca303037888ff95b7e0d69129e7a60df1ca0574dadc7e11735e56c50"
+  },
+  "preview_gif": {
+    "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-preview.gif",
+    "sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7"
+  },
+  "registry_state": "pilot/technical-qualified",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "qa_status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "qa_decision": "QUALIFIED",
+  "adapter_metadata": {
+    "active_window_frames": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "hit_event_frame": 6,
+    "event_timeline_authority": "spec.event_markers",
+    "motion_quality_layer": "generic.motion_tracks",
+    "weapon": "sword"
+  },
+  "source_rig_revision": "r4-cutout-rig-v071",
+  "source_rig_sha256": "f1faea6d9925572d062943434eeea25f48e6c7eef704022eaee331c0d3d5a851",
+  "r4_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "motion_tracks": [
+    {
+      "track_id": "root_shift_x",
+      "value_type": "scalar",
+      "interpolation": "smoothstep",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.8
+        },
+        {
+          "frame": 6,
+          "value": 3.5
+        },
+        {
+          "frame": 8,
+          "value": 2.2
+        },
+        {
+          "frame": 11,
+          "value": 0.05
+        }
+      ]
+    },
+    {
+      "track_id": "root_shift_y",
+      "value_type": "scalar",
+      "interpolation": "smoothstep",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": -0.4
+        },
+        {
+          "frame": 6,
+          "value": 2.0
+        },
+        {
+          "frame": 8,
+          "value": 1.0
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "torso_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "cubic_hermite",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": -1.5
+        },
+        {
+          "frame": 6,
+          "value": 4.0
+        },
+        {
+          "frame": 8,
+          "value": 2.0
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "torso_lean_x",
+      "value_type": "scalar",
+      "interpolation": "smoothstep",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": -0.5
+        },
+        {
+          "frame": 6,
+          "value": 1.3
+        },
+        {
+          "frame": 8,
+          "value": 0.8
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "right_upper_arm_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "cubic_hermite",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": -1.0
+        },
+        {
+          "frame": 6,
+          "value": -2.0
+        },
+        {
+          "frame": 8,
+          "value": -1.0
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "right_forearm_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "cubic_hermite",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 7.0
+        },
+        {
+          "frame": 6,
+          "value": 25.0
+        },
+        {
+          "frame": 8,
+          "value": 18.0
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "right_wrist/grip_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 1.0
+        },
+        {
+          "frame": 6,
+          "value": 5.0
+        },
+        {
+          "frame": 8,
+          "value": 3.0
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "sword_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 8.0
+        },
+        {
+          "frame": 6,
+          "value": 38.0
+        },
+        {
+          "frame": 8,
+          "value": 44.0
+        },
+        {
+          "frame": 11,
+          "value": 20.0
+        }
+      ]
+    },
+    {
+      "track_id": "left_upper_arm_counter_deg",
+      "value_type": "scalar",
+      "interpolation": "smoothstep",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 1.0
+        },
+        {
+          "frame": 6,
+          "value": 3.0
+        },
+        {
+          "frame": 8,
+          "value": 1.0
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "left_forearm_counter_deg",
+      "value_type": "scalar",
+      "interpolation": "smoothstep",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": -0.5
+        },
+        {
+          "frame": 6,
+          "value": -1.5
+        },
+        {
+          "frame": 8,
+          "value": -0.8
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "track_id": "head_counter_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "smoothstep",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.5
+        },
+        {
+          "frame": 6,
+          "value": 2.2
+        },
+        {
+          "frame": 8,
+          "value": 1.3
+        },
+        {
+          "frame": 11,
+          "value": 0.0
+        }
+      ]
+    }
+  ],
+  "motion_tracks_sha256": "ba8ab5f4426052ff701471c1a692a2fa52c684e1ad9428626602c01564e2646a"
+}

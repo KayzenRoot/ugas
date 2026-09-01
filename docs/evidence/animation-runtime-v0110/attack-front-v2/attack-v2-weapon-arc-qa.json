@@ -1,0 +1,332 @@
+{
+  "schema_version": "0.11.0",
+  "animation_id": "attack-front-v2",
+  "status": "ATTACK_V2_WEAPON_ARC_QA_PASSED",
+  "decision": "QUALIFIED",
+  "active_window_frames": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "hit_event_frame": 6,
+  "signed_sword_angle_degrees_by_frame": [
+    {
+      "frame": 0,
+      "degrees": 99.872218
+    },
+    {
+      "frame": 1,
+      "degrees": 102.112959
+    },
+    {
+      "frame": 2,
+      "degrees": 104.3537
+    },
+    {
+      "frame": 3,
+      "degrees": 107.372218
+    },
+    {
+      "frame": 4,
+      "degrees": 120.272218
+    },
+    {
+      "frame": 5,
+      "degrees": 133.949996
+    },
+    {
+      "frame": 6,
+      "degrees": 146.872218
+    },
+    {
+      "frame": 7,
+      "degrees": 148.247218
+    },
+    {
+      "frame": 8,
+      "degrees": 148.872218
+    },
+    {
+      "frame": 9,
+      "degrees": 139.146292
+    },
+    {
+      "frame": 10,
+      "degrees": 129.509256
+    },
+    {
+      "frame": 11,
+      "degrees": 119.872218
+    }
+  ],
+  "tip_xy_presented": [
+    {
+      "frame": 0,
+      "x": 169.6,
+      "y": 438.7
+    },
+    {
+      "frame": 1,
+      "x": 161.032126,
+      "y": 437.935823
+    },
+    {
+      "frame": 2,
+      "x": 152.600036,
+      "y": 436.790182
+    },
+    {
+      "frame": 3,
+      "x": 140.491102,
+      "y": 433.452429
+    },
+    {
+      "frame": 4,
+      "x": 98.055703,
+      "y": 413.522338
+    },
+    {
+      "frame": 5,
+      "x": 58.753884,
+      "y": 381.646112
+    },
+    {
+      "frame": 6,
+      "x": 29.714004,
+      "y": 345.231525
+    },
+    {
+      "frame": 7,
+      "x": 27.455823,
+      "y": 342.911994
+    },
+    {
+      "frame": 8,
+      "x": 29.543794,
+      "y": 345.438758
+    },
+    {
+      "frame": 9,
+      "x": 52.042156,
+      "y": 373.765899
+    },
+    {
+      "frame": 10,
+      "x": 78.708677,
+      "y": 397.671418
+    },
+    {
+      "frame": 11,
+      "x": 109.487474,
+      "y": 416.956265
+    }
+  ],
+  "path_lengths_px": {
+    "total": 288.558366,
+    "pre_hit": 173.734269,
+    "active": 100.416986,
+    "recovery": 111.586875,
+    "post_hit_follow_through": 6.51505
+  },
+  "angular_velocity": [
+    {
+      "from_frame": 0,
+      "to_frame": 1,
+      "tip_motion_px": 8.601885,
+      "angular_velocity_degrees_per_frame": 2.240741,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 1,
+      "to_frame": 2,
+      "tip_motion_px": 8.509561,
+      "angular_velocity_degrees_per_frame": 2.240741,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 2,
+      "to_frame": 3,
+      "tip_motion_px": 12.560529,
+      "angular_velocity_degrees_per_frame": 3.018518,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 3,
+      "to_frame": 4,
+      "tip_motion_px": 46.88253,
+      "angular_velocity_degrees_per_frame": 12.9,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 4,
+      "to_frame": 5,
+      "tip_motion_px": 50.603624,
+      "angular_velocity_degrees_per_frame": 13.677778,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 5,
+      "to_frame": 6,
+      "tip_motion_px": 46.57614,
+      "angular_velocity_degrees_per_frame": 12.922222,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 6,
+      "to_frame": 7,
+      "tip_motion_px": 3.237222,
+      "angular_velocity_degrees_per_frame": 1.375,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 7,
+      "to_frame": 8,
+      "tip_motion_px": 3.277828,
+      "angular_velocity_degrees_per_frame": 0.625,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 8,
+      "to_frame": 9,
+      "tip_motion_px": 36.174621,
+      "angular_velocity_degrees_per_frame": -9.725926,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 9,
+      "to_frame": 10,
+      "tip_motion_px": 35.813087,
+      "angular_velocity_degrees_per_frame": -9.637036,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 10,
+      "to_frame": 11,
+      "tip_motion_px": 36.321339,
+      "angular_velocity_degrees_per_frame": -9.637038,
+      "inside_or_near_active_window": false
+    }
+  ],
+  "angular_acceleration": [
+    {
+      "from_frame": 0,
+      "to_frame": 2,
+      "angular_acceleration_degrees_per_frame2": 0.0
+    },
+    {
+      "from_frame": 1,
+      "to_frame": 3,
+      "angular_acceleration_degrees_per_frame2": 0.777777
+    },
+    {
+      "from_frame": 2,
+      "to_frame": 4,
+      "angular_acceleration_degrees_per_frame2": 9.881482
+    },
+    {
+      "from_frame": 3,
+      "to_frame": 5,
+      "angular_acceleration_degrees_per_frame2": 0.777778
+    },
+    {
+      "from_frame": 4,
+      "to_frame": 6,
+      "angular_acceleration_degrees_per_frame2": -0.755556
+    },
+    {
+      "from_frame": 5,
+      "to_frame": 7,
+      "angular_acceleration_degrees_per_frame2": -11.547222
+    },
+    {
+      "from_frame": 6,
+      "to_frame": 8,
+      "angular_acceleration_degrees_per_frame2": -0.75
+    },
+    {
+      "from_frame": 7,
+      "to_frame": 9,
+      "angular_acceleration_degrees_per_frame2": -10.350926
+    },
+    {
+      "from_frame": 8,
+      "to_frame": 10,
+      "angular_acceleration_degrees_per_frame2": 0.08889
+    },
+    {
+      "from_frame": 9,
+      "to_frame": 11,
+      "angular_acceleration_degrees_per_frame2": -2e-06
+    }
+  ],
+  "angular_jerk": [
+    {
+      "from_frame": 0,
+      "to_frame": 3,
+      "angular_jerk_degrees_per_frame3": 0.777777
+    },
+    {
+      "from_frame": 1,
+      "to_frame": 4,
+      "angular_jerk_degrees_per_frame3": 9.103705
+    },
+    {
+      "from_frame": 2,
+      "to_frame": 5,
+      "angular_jerk_degrees_per_frame3": -9.103704
+    },
+    {
+      "from_frame": 3,
+      "to_frame": 6,
+      "angular_jerk_degrees_per_frame3": -1.533334
+    },
+    {
+      "from_frame": 4,
+      "to_frame": 7,
+      "angular_jerk_degrees_per_frame3": -10.791666
+    },
+    {
+      "from_frame": 5,
+      "to_frame": 8,
+      "angular_jerk_degrees_per_frame3": 10.797222
+    },
+    {
+      "from_frame": 6,
+      "to_frame": 9,
+      "angular_jerk_degrees_per_frame3": -9.600926
+    },
+    {
+      "from_frame": 7,
+      "to_frame": 10,
+      "angular_jerk_degrees_per_frame3": 10.439816
+    },
+    {
+      "from_frame": 8,
+      "to_frame": 11,
+      "angular_jerk_degrees_per_frame3": -0.088892
+    }
+  ],
+  "peak_speed": {
+    "from_frame": 4,
+    "to_frame": 5,
+    "tip_motion_px": 50.603624,
+    "angular_velocity_degrees_per_frame": 13.677778,
+    "inside_or_near_active_window": true
+  },
+  "sword_head_collision_pixels": 0,
+  "sword_torso_forbidden_penetration_pixels": 0,
+  "hard_gates": {
+    "sword_pivot_attached_all_frames": true,
+    "active_window_frames_exact": true,
+    "hit_event_frame_exact": true,
+    "weapon_tip_path_nonzero": true,
+    "peak_speed_inside_or_near_active_window": true,
+    "hit_event_inside_active_window": true,
+    "pre_hit_acceleration_pattern_exists": true,
+    "post_hit_follow_through_path_nonzero": true,
+    "sword_head_collision_zero": true,
+    "sword_torso_forbidden_penetration_zero": true
+  },
+  "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:measured_tip_and_angle_trajectory"
+}

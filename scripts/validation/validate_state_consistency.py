@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from ugas.state_consistency_v0100 import validate_state_consistency
+from ugas.state_consistency_v0110 import validate_state_consistency
 from ugas.schema_validation import validate_instance, validate_schema_document
 
 
@@ -21,12 +21,12 @@ def main() -> int:
     result = validate_state_consistency(
         state,
         (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-        (ROOT / "REVIEW-v0.10.0.md").read_text(encoding="utf-8"),
+        (ROOT / "REVIEW-v0.11.0.md").read_text(encoding="utf-8"),
     )
-    evidence = {"schema_version": "0.10.0", "validator": "src/ugas/state_consistency_v0100.py", **result}
+    evidence = {"schema_version": "0.11.0", "validator": "src/ugas/state_consistency_v0110.py", **result}
     (ROOT / "docs/evidence/state-consistency.json").write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(evidence, indent=2, ensure_ascii=False))
-    return 0 if result["status"] == "STATE_CONSISTENCY_PASSED" else 2
+    return 0 if result["status"] == "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED" else 2
 
 
 if __name__ == "__main__":

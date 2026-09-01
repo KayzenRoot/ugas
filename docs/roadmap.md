@@ -1,5 +1,9 @@
 # UGAS roadmap
 
+## v0.11.0 - generic motion quality layer and attack-front-v2
+
+Add optional opaque `motion_tracks[]` between the animation spec and adapter, deterministic scalar/vec2 interpolation, curve hashing, pre-render temporal/body mechanics, and a 12-frame source-only frontal sword attack. Preserve v0.10.0 attack-front-v1 plus v0.8.1 walk and v0.9.0 idle byte-identically. Technical qualification is local; external visual review is required and production routing remains blocked.
+
 ## v0.8.1 - front-walk QA integrity correction
 
 The same v0.8.0 front-walk cycle now has strict visible-sole/ground, actual-alpha, pre-render smoothing, temporal, z-order, and hash-bound review gates. Technical qualification is local and pilot-only; production routing remains blocked pending external visual review.

@@ -355,7 +355,20 @@ def _region_mask_for_pair(pair: tuple[str, str], target: Mapping[str, Any], phas
     names = {first, second}
     mask = Image.new("L", size, 0)
     geometry: dict[str, Any]
-    if names == {"torso_pelvis", "left_upper_arm"} or names == {"torso_pelvis", "right_upper_arm"}:
+    if names == {"head", "torso_pelvis"}:
+        neck = _point(target, "neck")
+        shoulder_center = _point(target, "shoulder_center")
+        mask = ImageChops.lighter(
+            _line_corridor(size, neck, shoulder_center, 28),
+            _ellipse(size, neck, 32, 28),
+        )
+        geometry = {
+            "kind": "head_neck_attachment_corridor",
+            "joint": "neck",
+            "segment": [list(neck), list(shoulder_center)],
+            "radius_px": 28,
+        }
+    elif names == {"torso_pelvis", "left_upper_arm"} or names == {"torso_pelvis", "right_upper_arm"}:
         side = "left" if "left_upper_arm" in names else "right"
         shoulder = _point(target, f"shoulder_{side}")
         elbow = _point(target, f"elbow_{side}")
