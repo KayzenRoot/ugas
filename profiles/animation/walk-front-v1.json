@@ -1,0 +1,27 @@
+{
+  "schema_version": "animation-spec-1.0",
+  "animation_id": "walk-front-v1",
+  "asset_revision_id": "r4-cutout-rig-v071",
+  "direction": "front",
+  "frame_count": 8,
+  "fps": 10,
+  "loop": true,
+  "source_rig_ref": "docs/evidence/r4-cutout-rig-v071.json",
+  "key_pose_bindings": [
+    {"frame": 0, "phase": "K1-contact-left", "target_hash": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8"},
+    {"frame": 2, "phase": "K2-passing-left", "target_hash": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6"},
+    {"frame": 4, "phase": "K3-contact-right", "target_hash": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648"},
+    {"frame": 6, "phase": "K4-passing-right", "target_hash": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4"}
+  ],
+  "interpolation_profile": {"method": "historical-v081-bounded-skeleton-only-adapter", "parameters_frozen_before_render": true, "parameters": {"pixel_interpolation": false, "image_inputs_used": false}},
+  "root_motion_profile": {"method": "historical-v081-source-calibrated-root", "limits": {"root_vertical_amplitude_px": 12, "root_step_px": 6}},
+  "foot_policy": {"method": "historical-v081-raster-aware-sole-and-ground", "both_feet_required": true, "limits": {"ground_penetration_px": 1.5}},
+  "z_order_profile": {"method": "hash-bound-phase-plan", "switches_allowed": true, "plan_ref": "docs/evidence/front-walk-z-order-v081.json"},
+  "presentation_transform": {"method": "single-global-uniform-scale-and-translation", "uniform_scale": 0.9, "anchor": {"x": 256, "y": 256}, "translation": {"x": 0, "y": 0}, "frozen_before_render": true},
+  "qa_profile": {"profile_id": "walk-front-v1-replay", "feature_flags": {"source_hashes": true, "key_bindings": true, "global_transform": true, "structural": true, "occlusion": true, "retention": true, "pose_metrics": true, "source_only_pixels": true, "sword_attachment": true, "duplicate_body": true}, "thresholds": {"media_pipe_measurable_joints": 10, "media_pipe_pck": 0.8, "media_pipe_nme": 0.1, "media_pipe_angle_mae_degrees": 18}},
+  "package_profile": {"cell_size": {"width": 512, "height": 512}, "columns": 4, "rows": 2, "format": "RGBA", "gif_review_only": true, "sprite_name": "walk-front-spritesheet-v090.png", "gif_name": "walk-front-preview-v090.gif"},
+  "provenance": {"source_image": "docs/evidence/reference-edit-selected-transparent.png", "source_parts_dir": "docs/evidence/r4-cutout-parts-v071", "source_masks_dir": "docs/evidence/r4-cutout-refined-masks-v071", "source_skeleton": "docs/evidence/r4-source-skeleton-v071.json", "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798", "source_manifests": ["docs/evidence/r4-cutout-rig-v071.json", "docs/evidence/r4-cutout-refined-masks-v071-manifest.json"], "sam2_used": false, "comfyui_generation_jobs": 0, "diffusion_used": false, "source_only_pixels": true},
+  "forbidden_operations": ["sam2_rerun", "comfyui_generation", "diffusion", "controlnet", "ip_adapter", "pixel_interpolation", "manual_pixel_edit", "production_routing"],
+  "runtime_adapter": "ugas.animation_profiles.walk_front_v1",
+  "adapter_parameters": {"config_ref": "docs/evidence/front-walk-cycle-v1-config-v081.json", "provider_ref": "docs/evidence/cutout-rig-provider-qualification-v073.json", "historical_frame_manifest": "docs/evidence/front-walk-per-frame-qa-v081.json", "historical_frame_hashes": {"0": "958107198299ea232fa52620123cf5e42070a0e55b11635a5dd25a05cf055e19", "1": "9bbd9aa307201910eee7cb9b904093444c3b9e8693ff9aed2b0c31e41ded04f7", "2": "a1c47ea72ebba400c498ff656c71ea3d277539833f615a187b5967b848ec5180", "3": "e20eeab6f3a319cd6c3a3c29fbf1990433e6b0e8406e52d94602dc182ae37960", "4": "ce37fa0e8d872c0be2e84b3bfc5642994082599c1b6535fbae1eb24504c02c2b", "5": "e9ac95b16378cd7c7d59641bbde080b2ba8eef8b1de5904f95ce718ed9e46668", "6": "5099e25edb5ac47b27c77b39e3d86a82347bfeeb9e88fc12f51c6bbe04a0f36d", "7": "16efb738e9e2afe6b441c17f5bc0f907e1e370983e4a45eab24dc7fc26757cb4"}, "historical_sprite": "docs/evidence/walk-front-v081/walk-front-spritesheet-v081.png"}
+}

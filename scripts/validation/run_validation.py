@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.8.1."""
+"""Objective UGAS validation, including immutable history and active v0.9.0."""
 
 from __future__ import annotations
 
@@ -25,12 +25,13 @@ from ugas.constants import UGAS_VERSION
 from ugas.master_assets import verify_asset_integrity
 from ugas.model_registry import load_model, load_registry, validate_model_workflow_compatibility
 from ugas.reference_edit import validate_edit_contract, validate_execution_evidence
-from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, REQUIRED_V070_REVIEW_EVIDENCE, REQUIRED_V071_REVIEW_EVIDENCE, REQUIRED_V072_REVIEW_EVIDENCE, REQUIRED_V073_REVIEW_EVIDENCE, REQUIRED_V080_REVIEW_EVIDENCE, REQUIRED_V081_REVIEW_EVIDENCE, validate_review_visual_manifest
+from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, REQUIRED_V070_REVIEW_EVIDENCE, REQUIRED_V071_REVIEW_EVIDENCE, REQUIRED_V072_REVIEW_EVIDENCE, REQUIRED_V073_REVIEW_EVIDENCE, REQUIRED_V080_REVIEW_EVIDENCE, REQUIRED_V081_REVIEW_EVIDENCE, REQUIRED_V090_REVIEW_EVIDENCE, validate_review_visual_manifest
 from ugas.review_snapshot import self_test_sensitive_matcher
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.openpose_guides import COCO18_JOINTS, OPENPOSE_GUIDE_RENDERER_VERSION, validate_openpose_guide
 from ugas.state_consistency import validate_state_consistency
 from ugas.state_consistency_v080 import validate_state_consistency as validate_state_consistency_v080
+from ugas.state_consistency_v081 import validate_state_consistency as validate_state_consistency_v081
 from ugas.cutout_rig import validate_rig_manifest
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
@@ -1353,12 +1354,12 @@ def _v080_checks() -> None:
 
 
 def _v081_checks() -> None:
-    """Validate the active v0.8.1 integrity-correction slice."""
+    """Validate the immutable v0.8.1 integrity-correction slice."""
     evidence = ROOT / "docs" / "evidence"
     required = [
-        "REVIEW-v0.8.1.md", "docs/test-coverage-matrix-v0.8.1.md", "docs/evidence/current-state.json",
-        "docs/evidence/state-consistency.json", "providers/manifests/deterministic-cutout-rig-2d.json",
-        "schemas/current-state.json", "schemas/review-index-v0.8.1.json", "scripts/validation/run_cutout_front_walk_v081.py",
+        "REVIEW-v0.8.1.md", "docs/test-coverage-matrix-v0.8.1.md", "docs/evidence/current-state-v0.8.1.json",
+        "docs/evidence/state-consistency-v0.8.1.json", "providers/manifests/deterministic-cutout-rig-2d.json",
+        "schemas/current-state-v0.8.1.json", "schemas/review-index-v0.8.1.json", "scripts/validation/run_cutout_front_walk_v081.py",
         "scripts/validation/build_review_visuals_v081.py", "scripts/validation/build_review_index_v081.py",
         "scripts/validation/validate_review_index.py", "src/ugas/cutout_temporal_v081.py",
         "docs/evidence/front-walk-cycle-v1-config-v081.json", "docs/evidence/front-walk-targets-v081.json",
@@ -1378,9 +1379,9 @@ def _v081_checks() -> None:
         path = ROOT / relative
         check(f"v081:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(evidence / "current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
-        consistency = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.8.1.md").read_text(encoding="utf-8"))
+        state = load_json(evidence / "current-state-v0.8.1.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.8.1.json"))
+        consistency = validate_state_consistency_v081(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.8.1.md").read_text(encoding="utf-8"))
         check("v081:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state is consistent")
         check("v081:state-boundary", state.get("current_gate") == "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED" and state.get("walk_authorized") == "pilot_only" and state.get("production_walk_authorized") is False and state.get("state_consistency", {}).get("production_routing") == "BLOCKED", "technical qualification and production block are synchronized")
         provider = load_json(ROOT / "providers/manifests/deterministic-cutout-rig-2d.json")
@@ -1444,11 +1445,98 @@ def _v081_checks() -> None:
     except (OSError, json.JSONDecodeError, KeyError, ValueError, TypeError) as exc:
         check("v081:decision", False, str(exc)); check("v081:no-generation", False, str(exc)); check("v081:package-boundary", False, str(exc)); check("v081:sprite-layout", False, str(exc)); check("v081:visual-manifest", False, str(exc)); check("v081:review-headings", False, str(exc))
     index_path = evidence / "review-index-v0.8.1.json"
-    if index_path.is_file():
-        result = subprocess.run([sys.executable, "scripts/validation/validate_review_index.py", str(index_path.relative_to(ROOT))], cwd=ROOT, capture_output=True, text=True, check=False)
-        check("v081:review-index", result.returncode == 0, (result.stdout + result.stderr).strip()[-800:])
+    if index_path.is_file() and (ROOT / ".git").exists():
+        try:
+            with tempfile.TemporaryDirectory(prefix="ugas-v081-index-") as directory:
+                snapshot = Path(directory) / "snapshot"; snapshot.mkdir()
+                archive = subprocess.run(["git", "archive", "46ba3ae87558ff26055e14aa8d9c6f3ee147333c"], cwd=ROOT, capture_output=True, check=False)
+                with tarfile.open(fileobj=io.BytesIO(archive.stdout), mode="r:") as tar:
+                    try: tar.extractall(snapshot, filter="data")
+                    except TypeError: tar.extractall(snapshot)
+                result = subprocess.run([sys.executable, "scripts/validation/validate_review_index.py"], cwd=snapshot, capture_output=True, text=True, check=False)
+            check("v081:review-index", archive.returncode == 0 and result.returncode == 0, (result.stdout + result.stderr).strip()[-800:])
+        except (OSError, tarfile.TarError) as exc:
+            check("v081:review-index", False, str(exc))
     else:
-        check("v081:review-index-tooling", (ROOT / "scripts/validation/validate_review_index.py").is_file(), "review index validator is present; index is built after the validation pass")
+        check("v081:review-index-tooling", (ROOT / "scripts/validation/validate_review_index.py").is_file(), "review index validator is present; immutable baseline validation requires the recorded baseline commit")
+
+
+def _v090_checks() -> None:
+    """Validate the active reusable runtime and the qualified idle-front pilot."""
+    evidence = ROOT / "docs" / "evidence"
+    required = [
+        "REVIEW-v0.9.0.md", "docs/test-coverage-matrix-v0.9.0.md", "schemas/current-state.json",
+        "schemas/current-state-v0.8.1.json", "schemas/animation-spec-v1.json", "schemas/animation-compiled-manifest-v1.json",
+        "schemas/animation-qa-result-v1.json", "schemas/animation-package-v1.json", "schemas/review-index-v0.9.0.json",
+        "profiles/animation/walk-front-v1.json", "profiles/animation/idle-front-v1.json", "src/ugas/animation.py",
+        "src/ugas/animation_profiles/common.py", "src/ugas/animation_profiles/walk_front_v1.py", "src/ugas/animation_profiles/idle_front_v1.py",
+        "src/ugas/state_consistency.py", "src/ugas/state_consistency_v081.py", "scripts/validation/run_animation_runtime_v090.py",
+        "scripts/validation/build_review_visuals_v090.py", "scripts/validation/build_review_index_v090.py", "scripts/validation/validate_review_index_v090.py",
+        "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/current-state-v0.8.1.json",
+        "docs/evidence/state-consistency-v0.8.1.json", "docs/evidence/front-walk-v081-external-decision-v090.json",
+        "docs/evidence/animation-runtime-v090/execution-evidence-v0.9.0.json",
+        "docs/evidence/animation-runtime-v090/replay/walk-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v090/replay/walk-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v090/replay/walk-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v090/idle-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v090/idle-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v090/idle-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v090/idle-front-v1/metadata.json",
+        "docs/evidence/animation-runtime-v090/repro/idle-front-v1-repeat/compiled-manifest.json",
+        "docs/evidence/review-visuals-v0.9.0.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v090:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(evidence / "current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        review = (ROOT / "REVIEW-v0.9.0.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
+        check("v090:state-consistency", consistency["status"] == state["current_gate"], "; ".join(consistency.get("failures", [])) or "active v0.9.0 state is consistent")
+        snapshot = load_json(evidence / "state-consistency.json")
+        check("v090:state-snapshot", snapshot.get("schema_version") == "0.9.0" and snapshot.get("status") == state["current_gate"], "active state-consistency evidence is current")
+        check("v090:state-boundary", state.get("current_gate") == "CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED" and state.get("production_walk_authorized") is False and state.get("state_consistency", {}).get("production_routing") == "BLOCKED", "idle technical qualification remains production-blocked")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v090:state-consistency", False, str(exc)); check("v090:state-snapshot", False, str(exc)); check("v090:state-boundary", False, str(exc))
+    for relative in ("profiles/animation/walk-front-v1.json", "profiles/animation/idle-front-v1.json"):
+        result = _run([sys.executable, "-m", "ugas.animation", "validate-spec", relative], ROOT, env={**os.environ, "PYTHONPATH": str(ROOT / "src")})
+        check(f"v090:spec:{relative}", result.returncode == 0, (result.stdout + result.stderr).strip()[-500:] or "spec validates")
+    try:
+        walk = load_json(evidence / "animation-runtime-v090/replay/walk-front-v1/qa-result.json")
+        walk_package = load_json(evidence / "animation-runtime-v090/replay/walk-front-v1/package-manifest.json")
+        walk_frames = walk.get("frames", [])
+        check("v090:walk-replay", walk.get("status") == "CUTOUT_ANIMATION_RUNTIME_V1_WALK_REPLAY_IDENTICAL" and len(walk_frames) == 8 and all(frame.get("passed") is True and frame.get("rgba_sha256") == frame.get("expected_rgba_sha256") for frame in walk_frames), "all eight historical RGBA frames replay identically")
+        check("v090:walk-package", walk_package.get("registry_state") == "pilot/technical-qualified" and walk_package.get("production_approved") is False and walk_package.get("production_routing") == "BLOCKED", "walk replay package remains pilot-only")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v090:walk-replay", False, str(exc)); check("v090:walk-package", False, str(exc))
+    try:
+        idle = load_json(evidence / "animation-runtime-v090/idle-front-v1/qa-result.json")
+        package = load_json(evidence / "animation-runtime-v090/idle-front-v1/package-manifest.json")
+        metadata = load_json(evidence / "animation-runtime-v090/idle-front-v1/metadata.json")
+        temporal = load_json(evidence / "animation-runtime-v090/idle-front-temporal-qa-v090.json")
+        check("v090:idle-frames", idle.get("status") == "CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED" and len(idle.get("frames", [])) == 12 and all(item.get("status") == "IDLE_FRAME_PASSED" and all(item.get("hard_gates", {}).values()) for item in idle["frames"]), "all twelve idle frame gates pass")
+        check("v090:idle-temporal", temporal.get("status") == "IDLE_TEMPORAL_LOOP_PASSED" and all(temporal.get("hard_gates", {}).values()), "idle temporal and loop gates pass")
+        check("v090:idle-package", package.get("frame_count") == 12 and package.get("fps") == 8.0 and package.get("per_frame_duration_ms") == 125.0 and package.get("registry_state") == "pilot/technical-qualified" and package.get("production_approved") is False and package.get("production_routing") == "BLOCKED" and metadata.get("sheet_size") == {"width": 3072, "height": 1024}, "idle package is 6x2 RGBA and production-blocked")
+        check("v090:idle-provenance", idle.get("provenance", {}).get("source_only_pixels") is True and idle.get("provenance", {}).get("sam2_runs") == 0 and idle.get("provenance", {}).get("comfyui_generation_jobs") == 0, "idle pixels are source-only with zero AI jobs")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v090:idle-frames", False, str(exc)); check("v090:idle-temporal", False, str(exc)); check("v090:idle-package", False, str(exc)); check("v090:idle-provenance", False, str(exc))
+    try:
+        visual = load_json(evidence / "review-visuals-v0.9.0.json")
+        result = validate_review_visual_manifest(visual, ROOT)
+        check("v090:visual-manifest", result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED" and len(visual.get("images", [])) == len(REQUIRED_V090_REVIEW_EVIDENCE), "; ".join(result.get("failures", [])) or "v0.9.0 visual roles are complete and hash-bound")
+        check("v090:no-zip", not any(path.suffix.casefold() == ".zip" and ("v090" in path.name.casefold() or "0.9.0" in path.name.casefold()) for path in ROOT.rglob("*.zip")), "no v0.9.0 review ZIP is generated; historical ZIPs remain outside this slice")
+        headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "BASELINE / EXTERNAL WALK APPROVAL", "IMMUTABILITY", "ANIMATION SPEC V1", "GENERIC RUNTIME ARCHITECTURE", "WALK V081 REPLAY", "IDLE FRONT SPEC", "IDLE FRAME QA", "DUAL FOOT PLANT QA", "IDLE TEMPORAL / LOOP QA", "PROVENANCE / STRUCTURAL / OCCLUSION", "VISUAL EVIDENCE", "SPRITESHEET / METADATA / GIF", "GITHUB-FIRST REVIEW INDEX V2", "NO SAM2 / NO COMFYUI / NO GENERATION", "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB", "SECURITY / LICENSES", "EXTERNAL VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE"]
+        review = (ROOT / "REVIEW-v0.9.0.md").read_text(encoding="utf-8")
+        check("v090:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.9.0 review headings present")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v090:visual-manifest", False, str(exc)); check("v090:no-zip", False, str(exc)); check("v090:review-headings", False, str(exc))
+    index_path = evidence / "review-index-v0.9.0.json"
+    if index_path.is_file():
+        result = _run([sys.executable, "scripts/validation/validate_review_index_v090.py"], ROOT)
+        check("v090:review-index", result.returncode == 0, (result.stdout + result.stderr).strip()[-800:])
+    else:
+        check("v090:review-index-tooling", (ROOT / "scripts/validation/validate_review_index_v090.py").is_file(), "review index is built after the validation pass")
 
 
 def main() -> int:
@@ -1549,13 +1637,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.8.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.8.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.8.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.9.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.9.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.9.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

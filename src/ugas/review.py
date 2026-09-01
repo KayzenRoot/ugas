@@ -236,6 +236,21 @@ REQUIRED_V081_REVIEW_EVIDENCE |= {f"frame-{index:02d}-alpha-bbox-{phase.split('-
 REQUIRED_V081_REVIEW_EVIDENCE |= {f"pairwise-frame-{index:02d}.json" for index in range(8)}
 REQUIRED_V081_REVIEW_EVIDENCE |= {f"retention-frame-{index:02d}.json" for index in range(8)}
 
+REQUIRED_V090_REVIEW_EVIDENCE = {
+    "idle-front-spritesheet-v090.png", "idle-front-preview-v090.gif",
+    "idle-front-evidence-contact-sheet-v090.png", "idle-front-checkerboard-contact-sheet-v090.png",
+    "idle-front-target-detected-overlays-v090.png", "idle-front-alpha-bbox-overlays-v090.png",
+    "idle-front-feet-ground-sheet-v090.png", "idle-front-structural-maps-v090.png",
+    "idle-front-waist-hip-sheet-v090.png", "idle-front-sword-hand-sheet-v090.png",
+    "idle-front-head-torso-sheet-v090.png", "idle-front-temporal-trajectory-v090.png",
+}
+REQUIRED_V090_REVIEW_EVIDENCE |= {f"idle-frame-{index:02d}-{phase}.png" for index, phase in enumerate(("I0-neutral-A", "I1-inhale-early", "I2-inhale-mid", "I3-inhale-peak", "I4-return-A", "I5-neutral-B", "I6-exhale-early", "I7-exhale-mid", "I8-exhale-peak", "I9-return-B", "I10-settle", "I11-pre-loop"))}
+REQUIRED_V090_REVIEW_EVIDENCE |= {f"idle-checkerboard-frame-{index:02d}-{phase}.png" for index, phase in enumerate(("I0-neutral-A", "I1-inhale-early", "I2-inhale-mid", "I3-inhale-peak", "I4-return-A", "I5-neutral-B", "I6-exhale-early", "I7-exhale-mid", "I8-exhale-peak", "I9-return-B", "I10-settle", "I11-pre-loop"))}
+REQUIRED_V090_REVIEW_EVIDENCE |= {f"idle-target-detected-frame-{index:02d}-{phase}.png" for index, phase in enumerate(("I0-neutral-A", "I1-inhale-early", "I2-inhale-mid", "I3-inhale-peak", "I4-return-A", "I5-neutral-B", "I6-exhale-early", "I7-exhale-mid", "I8-exhale-peak", "I9-return-B", "I10-settle", "I11-pre-loop"))}
+REQUIRED_V090_REVIEW_EVIDENCE |= {f"idle-alpha-bbox-frame-{index:02d}-{phase}.png" for index, phase in enumerate(("I0-neutral-A", "I1-inhale-early", "I2-inhale-mid", "I3-inhale-peak", "I4-return-A", "I5-neutral-B", "I6-exhale-early", "I7-exhale-mid", "I8-exhale-peak", "I9-return-B", "I10-settle", "I11-pre-loop"))}
+REQUIRED_V090_REVIEW_EVIDENCE |= {f"idle-feet-ground-frame-{index:02d}-{phase}.png" for index, phase in enumerate(("I0-neutral-A", "I1-inhale-early", "I2-inhale-mid", "I3-inhale-peak", "I4-return-A", "I5-neutral-B", "I6-exhale-early", "I7-exhale-mid", "I8-exhale-peak", "I9-return-B", "I10-settle", "I11-pre-loop"))}
+REQUIRED_V090_REVIEW_EVIDENCE |= {f"idle-structural-frame-{index:02d}-{phase}.png" for index, phase in enumerate(("I0-neutral-A", "I1-inhale-early", "I2-inhale-mid", "I3-inhale-peak", "I4-return-A", "I5-neutral-B", "I6-exhale-early", "I7-exhale-mid", "I8-exhale-peak", "I9-return-B", "I10-settle", "I11-pre-loop"))}
+
 
 def _digest(path: Path) -> str:
     digest = hashlib.sha256()
@@ -286,6 +301,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V080_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     elif schema_version == "0.8.1":
         required = REQUIRED_V081_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.9.0":
+        required = REQUIRED_V090_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

@@ -1,0 +1,326 @@
+{
+  "schema_version": "animation-compiled-manifest-1.0",
+  "animation_id": "walk-front-v1",
+  "spec_path": "profiles/animation/walk-front-v1.json",
+  "spec_sha256": "b644555119187d18d5aa6ea380bdeeb0f68df1ace279052196accd2caada8c08",
+  "source": {
+    "asset_revision_id": "r4-cutout-rig-v071",
+    "direction": "front",
+    "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "source_rig_ref": "docs/evidence/r4-cutout-rig-v071.json"
+  },
+  "frames": [
+    {
+      "index": 0,
+      "phase": "F0-contact-left",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-00.png",
+      "rgba_sha256": "958107198299ea232fa52620123cf5e42070a0e55b11635a5dd25a05cf055e19",
+      "target_hash": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8",
+      "metadata": {
+        "phase": "F0-contact-left",
+        "target_hash": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8",
+        "presentation_target_hash": "3ea4ebea02c5b40618c0fba00adc6df2ed411c268a4da7cde7608193ef03127c",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    },
+    {
+      "index": 1,
+      "phase": "F1-down-left",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-01.png",
+      "rgba_sha256": "9bbd9aa307201910eee7cb9b904093444c3b9e8693ff9aed2b0c31e41ded04f7",
+      "target_hash": "e679e8204382da7bb13934091a717b38f889f1e54434321b4316dc54b2d508b0",
+      "metadata": {
+        "phase": "F1-down-left",
+        "target_hash": "e679e8204382da7bb13934091a717b38f889f1e54434321b4316dc54b2d508b0",
+        "presentation_target_hash": "bf2a411b701dac34d9b1337841065e0ad426ac5b48f0493645333077f2a95c19",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "phase": "F2-passing-left",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-02.png",
+      "rgba_sha256": "a1c47ea72ebba400c498ff656c71ea3d277539833f615a187b5967b848ec5180",
+      "target_hash": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6",
+      "metadata": {
+        "phase": "F2-passing-left",
+        "target_hash": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6",
+        "presentation_target_hash": "04dcbe4260f1655aa081dcd26bbcbcb6cb2e5d3cb4eab2e1cda464a3c23a1209",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "phase": "F3-up-left",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-03.png",
+      "rgba_sha256": "e20eeab6f3a319cd6c3a3c29fbf1990433e6b0e8406e52d94602dc182ae37960",
+      "target_hash": "eaea827b0d4016568355e11c611dcef65ad53942546e3bdd2cec587e134c6793",
+      "metadata": {
+        "phase": "F3-up-left",
+        "target_hash": "eaea827b0d4016568355e11c611dcef65ad53942546e3bdd2cec587e134c6793",
+        "presentation_target_hash": "fbf39c5f3de33f0d38e160e7bd304c3a1dc0a1b3b62e9199a44a7c713fbe1d22",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    },
+    {
+      "index": 4,
+      "phase": "F4-contact-right",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-04.png",
+      "rgba_sha256": "ce37fa0e8d872c0be2e84b3bfc5642994082599c1b6535fbae1eb24504c02c2b",
+      "target_hash": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648",
+      "metadata": {
+        "phase": "F4-contact-right",
+        "target_hash": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648",
+        "presentation_target_hash": "7ee212576b2a0bdec559f6f04f154a83253b76833a9b30684a2f645478e529af",
+        "z_order": [
+          "left_shin_foot",
+          "left_thigh",
+          "right_forearm_hand",
+          "right_upper_arm",
+          "torso_pelvis",
+          "right_thigh",
+          "right_shin_foot",
+          "left_upper_arm",
+          "left_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "phase": "F5-down-right",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-05.png",
+      "rgba_sha256": "e9ac95b16378cd7c7d59641bbde080b2ba8eef8b1de5904f95ce718ed9e46668",
+      "target_hash": "be46b80517d682188b5905a169fd803fd2745ecaf9bc52b5954eec1c3ab48fe4",
+      "metadata": {
+        "phase": "F5-down-right",
+        "target_hash": "be46b80517d682188b5905a169fd803fd2745ecaf9bc52b5954eec1c3ab48fe4",
+        "presentation_target_hash": "d44f5ec7b7d9f2cfac5041c737cb41d7b80d82c230409bba0d166751da13b708",
+        "z_order": [
+          "left_shin_foot",
+          "left_thigh",
+          "right_forearm_hand",
+          "right_upper_arm",
+          "torso_pelvis",
+          "right_thigh",
+          "right_shin_foot",
+          "left_upper_arm",
+          "left_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "phase": "F6-passing-right",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-06.png",
+      "rgba_sha256": "5099e25edb5ac47b27c77b39e3d86a82347bfeeb9e88fc12f51c6bbe04a0f36d",
+      "target_hash": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4",
+      "metadata": {
+        "phase": "F6-passing-right",
+        "target_hash": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4",
+        "presentation_target_hash": "462d12e3cf1bd4ebd57221e914595411dbaa1daa3ee2be18a4cd93bda5c44c4f",
+        "z_order": [
+          "left_shin_foot",
+          "left_thigh",
+          "right_forearm_hand",
+          "right_upper_arm",
+          "torso_pelvis",
+          "right_thigh",
+          "right_shin_foot",
+          "left_upper_arm",
+          "left_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    },
+    {
+      "index": 7,
+      "phase": "F7-up-right",
+      "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/frame-07.png",
+      "rgba_sha256": "16efb738e9e2afe6b441c17f5bc0f907e1e370983e4a45eab24dc7fc26757cb4",
+      "target_hash": "a126ba3e8792b1bd6171f425739c596c5e8e90ae38303bfdecdb7502244671e9",
+      "metadata": {
+        "phase": "F7-up-right",
+        "target_hash": "a126ba3e8792b1bd6171f425739c596c5e8e90ae38303bfdecdb7502244671e9",
+        "presentation_target_hash": "4a8d22d7584dfdc20cbfef134033b5435f6b7d286ca67e7616e859ee0b73f816",
+        "z_order": [
+          "left_shin_foot",
+          "left_thigh",
+          "right_forearm_hand",
+          "right_upper_arm",
+          "torso_pelvis",
+          "right_thigh",
+          "right_shin_foot",
+          "left_upper_arm",
+          "left_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "transform_hashes": {
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        }
+      }
+    }
+  ],
+  "compile_status": "COMPILED",
+  "runtime_adapter": "ugas.animation_profiles.walk_front_v1",
+  "determinism": {
+    "pixel_operation": "source-affine-resample-and-alpha-composite",
+    "parameters_frozen_before_render": true,
+    "source_only_pixels": true,
+    "replay_rule": "same spec source hashes adapter and Pillow encoder produce same RGBA bytes"
+  }
+}

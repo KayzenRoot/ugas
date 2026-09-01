@@ -1,0 +1,47 @@
+{
+  "metrics": {
+    "max_joint_angle_delta_degrees": 0.5371096223117604,
+    "max_angular_acceleration_degrees_per_frame2": 0.9968317389106858,
+    "root_vertical_pp_presented_px": 2.6999999999999886,
+    "root_horizontal_pp_presented_px": 0.0,
+    "head_adjacent_step_px": 0.9000000000000057,
+    "sword_motion_pp_px": 6.428871801135182,
+    "loop_root_step_px": 0.7685307000000137,
+    "loop_head_step_px": 0.0,
+    "loop_sword_step_px": 1.8300190481772338,
+    "distinct_target_hash_count": 11,
+    "phase_order": [
+      "I0-neutral-A",
+      "I1-inhale-early",
+      "I2-inhale-mid",
+      "I3-inhale-peak",
+      "I4-return-A",
+      "I5-neutral-B",
+      "I6-exhale-early",
+      "I7-exhale-mid",
+      "I8-exhale-peak",
+      "I9-return-B",
+      "I10-settle",
+      "I11-pre-loop"
+    ],
+    "i11_is_distinct_from_i0": true
+  },
+  "hard_gates": {
+    "joint_angle_delta_le_10": true,
+    "angular_acceleration_le_8": true,
+    "root_vertical_pp_2_to_4": true,
+    "root_horizontal_pp_le_3": true,
+    "head_adjacent_le_3": true,
+    "head_bbox_cv_le_025": true,
+    "torso_bbox_cv_le_025": true,
+    "feet_all_frames_pass": true,
+    "sword_visible_motion_pp_2_to_8": true,
+    "z_order_switches_zero": true,
+    "loop_root_step_le_1_5": true,
+    "loop_head_step_le_1_5": true,
+    "loop_sword_step_le_3": true,
+    "distinct_target_hashes_at_least_10": true,
+    "foreground_bbox_height_variation_le_4_percent": true
+  },
+  "status": "IDLE_TEMPORAL_LOOP_PASSED"
+}

@@ -15,3 +15,6 @@ O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose
 7. The structural core is source-mapped and excludes head/sword; expected coverage is independent from rendered output and every overlap requires a joint corridor or explicit phase geometry.
 
 A revisão visual humana e a aprovação de produção permanecem separadas dos gates técnicos.
+## v0.9.0 runtime boundary
+
+The reusable deterministic animation runtime consumes the immutable R4 cutout rig through declarative animation specs. v0.9.0 covers the front idle pilot and walk replay only; production routing is BLOCKED.

@@ -11,3 +11,6 @@ O alvo local é ComfyUI `0.34.0` com NVIDIA GeForce RTX 5050. O runtime e o graf
 O estimador MediaPipe é somente QA. A documentação oficial do [Pose Landmarker](https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker) e o [model card oficial](https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf) são registrados nas evidências. O bundle `.task` fica fora do Git e do ZIP.
 
 O recheck histórico foi end-to-end: prompt, polling de history, output, BiRefNet para QA transparente, MediaPipe, métricas por junta e overlays. A calibração 05D atualiza somente a lane P, sem IP-Adapter e sem BiRefNet na qualificação. Health, GPU e cache sozinhos nunca substituem essa prova.
+## v0.9.0 boundary
+
+The v0.9.0 animation pilot performs no ComfyUI generation. `comfyui_generation_jobs=0`; the source-only cutout runtime is the qualified lane for this slice.

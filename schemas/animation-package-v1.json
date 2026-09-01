@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.local/schemas/animation-package-v1.json",
+  "title": "UGAS animation package v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_id", "animation_id", "direction", "frame_count", "fps", "per_frame_duration_ms", "loop", "format", "cell_size", "sheet_size", "sprite_sheet", "metadata", "preview_gif", "registry_state", "production_approved"],
+  "properties": {
+    "schema_version": {"const": "animation-package-1.0"},
+    "package_id": {"type": "string"},
+    "animation_id": {"type": "string"},
+    "direction": {"type": "string"},
+    "frame_count": {"type": "integer", "minimum": 2, "maximum": 64},
+    "fps": {"type": "number", "exclusiveMinimum": 0},
+    "per_frame_duration_ms": {"type": "number", "exclusiveMinimum": 0},
+    "loop": {"type": "boolean"},
+    "format": {"const": "RGBA"},
+    "cell_size": {"type": "object", "required": ["width", "height"], "properties": {"width": {"type": "integer"}, "height": {"type": "integer"}}},
+    "sheet_size": {"type": "object", "required": ["width", "height"], "properties": {"width": {"type": "integer"}, "height": {"type": "integer"}}},
+    "sprite_sheet": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "metadata": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "preview_gif": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "registry_state": {"const": "pilot/technical-qualified"},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "qa_status": {"type": "string"},
+    "source_rig_revision": {"type": "string"},
+    "source_rig_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "r4_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

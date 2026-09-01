@@ -1,0 +1,38 @@
+{
+  "schema_version": "animation-package-1.0",
+  "package_id": "ugas-walk-front-v1-pilot-v090",
+  "animation_id": "walk-front-v1",
+  "direction": "front",
+  "frame_count": 8,
+  "fps": 10.0,
+  "per_frame_duration_ms": 100.0,
+  "loop": true,
+  "format": "RGBA",
+  "cell_size": {
+    "width": 512,
+    "height": 512
+  },
+  "sheet_size": {
+    "width": 2048,
+    "height": 1024
+  },
+  "sprite_sheet": {
+    "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/walk-front-spritesheet-v090.png",
+    "sha256": "58da93252731e10622fbd3966158ef11411e4e307f6b066979c60c7c8acd0f1a"
+  },
+  "metadata": {
+    "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/metadata.json",
+    "sha256": "ed4a19f5715942d7da99c851030c7f3cb68921b5f1a666268d18d79f9552bc48"
+  },
+  "preview_gif": {
+    "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/walk-front-preview-v090.gif",
+    "sha256": "3f83604c9c1c152e36eced14d906c705e153da9f59627df0175ca6905e0aa87b"
+  },
+  "registry_state": "pilot/technical-qualified",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "qa_status": "CUTOUT_ANIMATION_RUNTIME_V1_WALK_REPLAY_IDENTICAL",
+  "source_rig_revision": "r4-cutout-rig-v071",
+  "source_rig_sha256": "f1faea6d9925572d062943434eeea25f48e6c7eef704022eaee331c0d3d5a851",
+  "r4_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+}

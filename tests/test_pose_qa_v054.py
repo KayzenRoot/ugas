@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from ugas.pose_qa_estimator import EXPECTED_MODEL_SHA256, PREPROCESS_POLICIES
 from ugas.schema_validation import validate_instance, validate_schema_document
-from ugas.state_consistency import validate_state_consistency
+from ugas.state_consistency_v081 import validate_state_consistency
 from scripts.validation.run_v054_lane_recheck import _validate_thresholds
 
 
@@ -82,8 +82,8 @@ class PoseQAV054Tests(unittest.TestCase):
         self.assertEqual({54701, 54702, 54703}, {item["seed"] for item in provider["records"]})
 
     def test_state_schema_and_active_documents_match(self):
-        state = load("docs/evidence/current-state.json")
-        schema = load("schemas/current-state.json")
+        state = load("docs/evidence/current-state-v0.8.1.json")
+        schema = load("schemas/current-state-v0.8.1.json")
         validate_schema_document(schema)
         validate_instance(state, schema)
         result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.8.1.md").read_text(encoding="utf-8"))

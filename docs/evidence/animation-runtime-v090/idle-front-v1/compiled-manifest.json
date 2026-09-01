@@ -1,0 +1,1306 @@
+{
+  "schema_version": "animation-compiled-manifest-1.0",
+  "animation_id": "idle-front-v1",
+  "spec_path": "profiles/animation/idle-front-v1.json",
+  "spec_sha256": "6a74c912c8253e798003987823478f8ed109979bca0ea4b244e0346d28d59af3",
+  "source": {
+    "asset_revision_id": "r4-cutout-rig-v071",
+    "direction": "front",
+    "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "source_rig_ref": "docs/evidence/r4-cutout-rig-v071.json"
+  },
+  "frames": [
+    {
+      "index": 0,
+      "phase": "I0-neutral-A",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-00.png",
+      "rgba_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+      "metadata": {
+        "phase": "I0-neutral-A",
+        "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+        "presentation_target_hash": "afa49ee55cca061fc1536436b50efcb5492b94198c21b863f52d79d826cdcaf4",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 257.3811
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 160.0,
+              "y": 459.0
+            }
+          },
+          "phase": "I0-neutral-A",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 0,
+          "target_joint_sha256": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"
+        }
+      }
+    },
+    {
+      "index": 1,
+      "phase": "I1-inhale-early",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-01.png",
+      "rgba_sha256": "63ca647e4d1249e7b048890355170f20101e551b6f090b4514b169b409142fc7",
+      "target_hash": "39d7636370752926e14e58c45a9a1298c596cd8bd71c0d2ed158c53499f47ddf",
+      "metadata": {
+        "phase": "I1-inhale-early",
+        "target_hash": "39d7636370752926e14e58c45a9a1298c596cd8bd71c0d2ed158c53499f47ddf",
+        "presentation_target_hash": "40e70f3dc3b8a2e12f246f76a5aacb0202f759bace39d4c5c5ccebd47e43c6d6",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 257.3811
+            },
+            "hip_left": {
+              "x": 295.302177,
+              "y": 253.125023
+            },
+            "hip_right": {
+              "x": 243.784523,
+              "y": 254.146823
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 253.635923
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 157.998511,
+              "y": 458.641431
+            }
+          },
+          "phase": "I1-inhale-early",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 1,
+          "target_joint_sha256": "39d7636370752926e14e58c45a9a1298c596cd8bd71c0d2ed158c53499f47ddf"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "phase": "I2-inhale-mid",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-02.png",
+      "rgba_sha256": "93e17c2cbe23681530ae64986a8a9aff9f486d4a1ce13341a6fc9c673e89a995",
+      "target_hash": "283a3e90d6a9c2ee5769f621e6145870fb157dd76b74ca2090b28689201c4cf5",
+      "metadata": {
+        "phase": "I2-inhale-mid",
+        "target_hash": "283a3e90d6a9c2ee5769f621e6145870fb157dd76b74ca2090b28689201c4cf5",
+        "presentation_target_hash": "e6659bd098dcfcf3f0cdc03eea7bb62656834f4b719710816204c590f7fd2183",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 127.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 127.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 194.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 193.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 259.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 258.3811
+            },
+            "hip_left": {
+              "x": 294.753139,
+              "y": 253.674061
+            },
+            "hip_right": {
+              "x": 244.333561,
+              "y": 254.695861
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 79.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 112.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 254.184961
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 127.3005
+            },
+            "weapon_tip": {
+              "x": 156.729878,
+              "y": 458.400522
+            }
+          },
+          "phase": "I2-inhale-mid",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 2,
+          "target_joint_sha256": "283a3e90d6a9c2ee5769f621e6145870fb157dd76b74ca2090b28689201c4cf5"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "phase": "I3-inhale-peak",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-03.png",
+      "rgba_sha256": "641f53e473c5a772c2dfb3549c3d5bd8638636260544d73716bd576d87a52d9a",
+      "target_hash": "016b264c1f9c96a1320fbfd6b11a5ba8b8dc080fdcebb581fadb76b2107607f3",
+      "metadata": {
+        "phase": "I3-inhale-peak",
+        "target_hash": "016b264c1f9c96a1320fbfd6b11a5ba8b8dc080fdcebb581fadb76b2107607f3",
+        "presentation_target_hash": "f79478bcabf7b1479671bb771d2eeb3c6f20622b772f500d068b457e074ad732",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 127.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 127.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 194.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 193.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 259.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 258.3811
+            },
+            "hip_left": {
+              "x": 294.6561,
+              "y": 253.7711
+            },
+            "hip_right": {
+              "x": 244.4306,
+              "y": 254.7929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 79.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 112.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 254.282
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 127.3005
+            },
+            "weapon_tip": {
+              "x": 156.504061,
+              "y": 458.357085
+            }
+          },
+          "phase": "I3-inhale-peak",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 3,
+          "target_joint_sha256": "016b264c1f9c96a1320fbfd6b11a5ba8b8dc080fdcebb581fadb76b2107607f3"
+        }
+      }
+    },
+    {
+      "index": 4,
+      "phase": "I4-return-A",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-04.png",
+      "rgba_sha256": "bb1c07ea16cccf4e0d9525058bcde1b4e70c4d66e2c01c1e629fbbc1e375ed7e",
+      "target_hash": "1a2e3c0c4a12044f2aed09b2341e48818fe7173dd6127a39b0f7d565bf6cb0c7",
+      "metadata": {
+        "phase": "I4-return-A",
+        "target_hash": "1a2e3c0c4a12044f2aed09b2341e48818fe7173dd6127a39b0f7d565bf6cb0c7",
+        "presentation_target_hash": "ba63b8223197fccc2fdaf2ac9a3aef18c8ad5b8298e8a4bc9f2189aae1c00eb1",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 127.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 127.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 194.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 193.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 259.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 258.3811
+            },
+            "hip_left": {
+              "x": 294.960985,
+              "y": 253.466215
+            },
+            "hip_right": {
+              "x": 244.125715,
+              "y": 254.488015
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 79.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 112.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 253.977115
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 127.3005
+            },
+            "weapon_tip": {
+              "x": 157.213717,
+              "y": 458.492701
+            }
+          },
+          "phase": "I4-return-A",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 4,
+          "target_joint_sha256": "1a2e3c0c4a12044f2aed09b2341e48818fe7173dd6127a39b0f7d565bf6cb0c7"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "phase": "I5-neutral-B",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-05.png",
+      "rgba_sha256": "5f7f9727f87b094cf6fe4630ede6267a9e601ab9366f181c7f5c5c4c730cf2f9",
+      "target_hash": "41ce3f7f8f91f866d3b5d01e45c31566837ce61dff4a69115dae0ab420def457",
+      "metadata": {
+        "phase": "I5-neutral-B",
+        "target_hash": "41ce3f7f8f91f866d3b5d01e45c31566837ce61dff4a69115dae0ab420def457",
+        "presentation_target_hash": "850560462130a6fa323898d37e5b60751c4b28bd081d787fb7a42c9a38252e32",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 257.3811
+            },
+            "hip_left": {
+              "x": 295.510023,
+              "y": 252.917177
+            },
+            "hip_right": {
+              "x": 243.576677,
+              "y": 253.938977
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 253.428077
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 158.485346,
+              "y": 458.730538
+            }
+          },
+          "phase": "I5-neutral-B",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 5,
+          "target_joint_sha256": "41ce3f7f8f91f866d3b5d01e45c31566837ce61dff4a69115dae0ab420def457"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "phase": "I6-exhale-early",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-06.png",
+      "rgba_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+      "metadata": {
+        "phase": "I6-exhale-early",
+        "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+        "presentation_target_hash": "afa49ee55cca061fc1536436b50efcb5492b94198c21b863f52d79d826cdcaf4",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 257.3811
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 160.0,
+              "y": 459.0
+            }
+          },
+          "phase": "I6-exhale-early",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 6,
+          "target_joint_sha256": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"
+        }
+      }
+    },
+    {
+      "index": 7,
+      "phase": "I7-exhale-mid",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-07.png",
+      "rgba_sha256": "b3bf1480e061111fc69e017df6285a5b6dd8c6548d9d6adf7226bbd2021e8b63",
+      "target_hash": "094f2163985d703ee9807de283dcc4626a2809249c6b39e33d3dc17e17885bb1",
+      "metadata": {
+        "phase": "I7-exhale-mid",
+        "target_hash": "094f2163985d703ee9807de283dcc4626a2809249c6b39e33d3dc17e17885bb1",
+        "presentation_target_hash": "d9fddd020a29a82fb6feb65ad0cff8100d12306d7ecd28f3c84b0d0d47a0cb19",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 257.3811
+            },
+            "hip_left": {
+              "x": 295.510023,
+              "y": 251.625023
+            },
+            "hip_right": {
+              "x": 243.576677,
+              "y": 252.646823
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.135923
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 161.516636,
+              "y": 459.258068
+            }
+          },
+          "phase": "I7-exhale-mid",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 7,
+          "target_joint_sha256": "094f2163985d703ee9807de283dcc4626a2809249c6b39e33d3dc17e17885bb1"
+        }
+      }
+    },
+    {
+      "index": 8,
+      "phase": "I8-exhale-peak",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-08.png",
+      "rgba_sha256": "ee4c7153946a24626abc681fb475a698392db685b90197081ed39e155d157135",
+      "target_hash": "5641d8c34941c9f59f297081214f5c51ce35361871c40f90faa1efdfde2abaf5",
+      "metadata": {
+        "phase": "I8-exhale-peak",
+        "target_hash": "5641d8c34941c9f59f297081214f5c51ce35361871c40f90faa1efdfde2abaf5",
+        "presentation_target_hash": "af6ee6d00e999a781c1ac325fcdbeb7405ea5f2e9f0269012490a143dbec33a5",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 125.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 125.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 192.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 191.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 257.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 256.3811
+            },
+            "hip_left": {
+              "x": 294.960985,
+              "y": 251.075985
+            },
+            "hip_right": {
+              "x": 244.125715,
+              "y": 252.097785
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 77.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 110.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 251.586885
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 125.3005
+            },
+            "weapon_tip": {
+              "x": 162.820878,
+              "y": 459.468312
+            }
+          },
+          "phase": "I8-exhale-peak",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 8,
+          "target_joint_sha256": "5641d8c34941c9f59f297081214f5c51ce35361871c40f90faa1efdfde2abaf5"
+        }
+      }
+    },
+    {
+      "index": 9,
+      "phase": "I9-return-B",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-09.png",
+      "rgba_sha256": "2e49d4a0a48ede9c18d324aff81dfbd22792eefd61ac682656b393510e4f077f",
+      "target_hash": "05d878eb3d95c50dc677a7622b4df3c0750df2e5e56ddab47888214874b84d01",
+      "metadata": {
+        "phase": "I9-return-B",
+        "target_hash": "05d878eb3d95c50dc677a7622b4df3c0750df2e5e56ddab47888214874b84d01",
+        "presentation_target_hash": "1993eee64a0549efd3cccadd8bc5d2a264188d5d0939bbe12b904cf12e836a30",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 125.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 125.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 192.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 191.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 257.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 256.3811
+            },
+            "hip_left": {
+              "x": 294.6561,
+              "y": 250.7711
+            },
+            "hip_right": {
+              "x": 244.4306,
+              "y": 251.7929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 77.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 110.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 251.282
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 125.3005
+            },
+            "weapon_tip": {
+              "x": 163.541531,
+              "y": 459.5815
+            }
+          },
+          "phase": "I9-return-B",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 9,
+          "target_joint_sha256": "05d878eb3d95c50dc677a7622b4df3c0750df2e5e56ddab47888214874b84d01"
+        }
+      }
+    },
+    {
+      "index": 10,
+      "phase": "I10-settle",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-10.png",
+      "rgba_sha256": "4535e71d87317fc0ea852dbbaed58609728bb21f0f478b5b2a08d8627507e145",
+      "target_hash": "32e07815ba8820a6a292c4820ea10c21a1f184cf477122fe6ba3df6bde1a89f6",
+      "metadata": {
+        "phase": "I10-settle",
+        "target_hash": "32e07815ba8820a6a292c4820ea10c21a1f184cf477122fe6ba3df6bde1a89f6",
+        "presentation_target_hash": "b31ee5ad7adbb8551a49755936e6d07c70babd29e588836152aceaf503e42205",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 125.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 125.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 192.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 191.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 257.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 256.3811
+            },
+            "hip_left": {
+              "x": 294.753139,
+              "y": 250.868139
+            },
+            "hip_right": {
+              "x": 244.333561,
+              "y": 251.889939
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 77.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 110.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 251.379039
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 125.3005
+            },
+            "weapon_tip": {
+              "x": 163.312118,
+              "y": 459.545752
+            }
+          },
+          "phase": "I10-settle",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 10,
+          "target_joint_sha256": "32e07815ba8820a6a292c4820ea10c21a1f184cf477122fe6ba3df6bde1a89f6"
+        }
+      }
+    },
+    {
+      "index": 11,
+      "phase": "I11-pre-loop",
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/frame-11.png",
+      "rgba_sha256": "b42315d301f24ee3493aa3ec9d092ffa1430d041a5497e729bcb6339cf814eaa",
+      "target_hash": "5f6306b381fccc6a50d66bc137229eb1b098982f5e1227ce83539c1a3fd401cb",
+      "metadata": {
+        "phase": "I11-pre-loop",
+        "target_hash": "5f6306b381fccc6a50d66bc137229eb1b098982f5e1227ce83539c1a3fd401cb",
+        "presentation_target_hash": "8560f59c6b491f07788fd5c6a1f18ad8f49045f2002b43401f171621753a00fa",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 257.3811
+            },
+            "hip_left": {
+              "x": 295.302177,
+              "y": 251.417177
+            },
+            "hip_right": {
+              "x": 243.784523,
+              "y": 252.438977
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 251.928077
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 162.004953,
+              "y": 459.338665
+            }
+          },
+          "phase": "I11-pre-loop",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 11,
+          "target_joint_sha256": "5f6306b381fccc6a50d66bc137229eb1b098982f5e1227ce83539c1a3fd401cb"
+        }
+      }
+    }
+  ],
+  "compile_status": "COMPILED",
+  "runtime_adapter": "ugas.animation_profiles.idle_front_v1",
+  "determinism": {
+    "pixel_operation": "source-affine-resample-and-alpha-composite",
+    "parameters_frozen_before_render": true,
+    "source_only_pixels": true,
+    "replay_rule": "same spec source hashes adapter and Pillow encoder produce same RGBA bytes"
+  }
+}

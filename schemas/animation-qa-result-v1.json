@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.local/schemas/animation-qa-result-v1.json",
+  "title": "UGAS animation QA result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "animation_id", "status", "frames", "temporal", "provenance", "hard_gates"],
+  "properties": {
+    "schema_version": {"const": "animation-qa-result-1.0"},
+    "animation_id": {"type": "string"},
+    "status": {"type": "string"},
+    "frames": {"type": "array", "items": {"type": "object"}},
+    "temporal": {"type": "object"},
+    "provenance": {"type": "object"},
+    "hard_gates": {"type": "object"},
+    "negative_control": {"type": "object"},
+    "failures": {"type": "array", "items": {"type": "string"}},
+    "structural": {"type": "object"}
+  }
+}

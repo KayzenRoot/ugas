@@ -1,0 +1,1032 @@
+{
+  "schema_version": "0.9.0",
+  "animation_id": "idle-front-v1",
+  "phase_order": [
+    "I0-neutral-A",
+    "I1-inhale-early",
+    "I2-inhale-mid",
+    "I3-inhale-peak",
+    "I4-return-A",
+    "I5-neutral-B",
+    "I6-exhale-early",
+    "I7-exhale-mid",
+    "I8-exhale-peak",
+    "I9-return-B",
+    "I10-settle",
+    "I11-pre-loop"
+  ],
+  "targets": [
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 296.1561,
+          "y": 252.2711
+        },
+        "hip_right": {
+          "x": 242.9306,
+          "y": 253.2929
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 78.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 252.782
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 160.0,
+          "y": 459.0
+        }
+      },
+      "phase": "I0-neutral-A",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 0,
+      "target_joint_sha256": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 295.302177,
+          "y": 253.125023
+        },
+        "hip_right": {
+          "x": 243.784523,
+          "y": 254.146823
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 78.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 253.635923
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 157.998511,
+          "y": 458.641431
+        }
+      },
+      "phase": "I1-inhale-early",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 1,
+      "target_joint_sha256": "39d7636370752926e14e58c45a9a1298c596cd8bd71c0d2ed158c53499f47ddf"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 127.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 127.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 194.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 193.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 259.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 258.3811
+        },
+        "hip_left": {
+          "x": 294.753139,
+          "y": 253.674061
+        },
+        "hip_right": {
+          "x": 244.333561,
+          "y": 254.695861
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 79.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 112.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 254.184961
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 127.3005
+        },
+        "weapon_tip": {
+          "x": 156.729878,
+          "y": 458.400522
+        }
+      },
+      "phase": "I2-inhale-mid",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 2,
+      "target_joint_sha256": "283a3e90d6a9c2ee5769f621e6145870fb157dd76b74ca2090b28689201c4cf5"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 127.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 127.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 194.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 193.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 259.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 258.3811
+        },
+        "hip_left": {
+          "x": 294.6561,
+          "y": 253.7711
+        },
+        "hip_right": {
+          "x": 244.4306,
+          "y": 254.7929
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 79.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 112.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 254.282
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 127.3005
+        },
+        "weapon_tip": {
+          "x": 156.504061,
+          "y": 458.357085
+        }
+      },
+      "phase": "I3-inhale-peak",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 3,
+      "target_joint_sha256": "016b264c1f9c96a1320fbfd6b11a5ba8b8dc080fdcebb581fadb76b2107607f3"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 127.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 127.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 194.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 193.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 259.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 258.3811
+        },
+        "hip_left": {
+          "x": 294.960985,
+          "y": 253.466215
+        },
+        "hip_right": {
+          "x": 244.125715,
+          "y": 254.488015
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 79.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 112.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 253.977115
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 127.3005
+        },
+        "weapon_tip": {
+          "x": 157.213717,
+          "y": 458.492701
+        }
+      },
+      "phase": "I4-return-A",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 4,
+      "target_joint_sha256": "1a2e3c0c4a12044f2aed09b2341e48818fe7173dd6127a39b0f7d565bf6cb0c7"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 295.510023,
+          "y": 252.917177
+        },
+        "hip_right": {
+          "x": 243.576677,
+          "y": 253.938977
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 78.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 253.428077
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 158.485346,
+          "y": 458.730538
+        }
+      },
+      "phase": "I5-neutral-B",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 5,
+      "target_joint_sha256": "41ce3f7f8f91f866d3b5d01e45c31566837ce61dff4a69115dae0ab420def457"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 296.1561,
+          "y": 252.2711
+        },
+        "hip_right": {
+          "x": 242.9306,
+          "y": 253.2929
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 78.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 252.782
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 160.0,
+          "y": 459.0
+        }
+      },
+      "phase": "I6-exhale-early",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 6,
+      "target_joint_sha256": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 295.510023,
+          "y": 251.625023
+        },
+        "hip_right": {
+          "x": 243.576677,
+          "y": 252.646823
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 78.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 252.135923
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 161.516636,
+          "y": 459.258068
+        }
+      },
+      "phase": "I7-exhale-mid",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 7,
+      "target_joint_sha256": "094f2163985d703ee9807de283dcc4626a2809249c6b39e33d3dc17e17885bb1"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 125.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 125.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 192.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 191.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 257.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 256.3811
+        },
+        "hip_left": {
+          "x": 294.960985,
+          "y": 251.075985
+        },
+        "hip_right": {
+          "x": 244.125715,
+          "y": 252.097785
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 77.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 110.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 251.586885
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 125.3005
+        },
+        "weapon_tip": {
+          "x": 162.820878,
+          "y": 459.468312
+        }
+      },
+      "phase": "I8-exhale-peak",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 8,
+      "target_joint_sha256": "5641d8c34941c9f59f297081214f5c51ce35361871c40f90faa1efdfde2abaf5"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 125.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 125.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 192.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 191.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 257.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 256.3811
+        },
+        "hip_left": {
+          "x": 294.6561,
+          "y": 250.7711
+        },
+        "hip_right": {
+          "x": 244.4306,
+          "y": 251.7929
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 77.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 110.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 251.282
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 125.3005
+        },
+        "weapon_tip": {
+          "x": 163.541531,
+          "y": 459.5815
+        }
+      },
+      "phase": "I9-return-B",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 9,
+      "target_joint_sha256": "05d878eb3d95c50dc677a7622b4df3c0750df2e5e56ddab47888214874b84d01"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 125.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 125.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 192.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 191.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 257.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 256.3811
+        },
+        "hip_left": {
+          "x": 294.753139,
+          "y": 250.868139
+        },
+        "hip_right": {
+          "x": 244.333561,
+          "y": 251.889939
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 77.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 110.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 251.379039
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 125.3005
+        },
+        "weapon_tip": {
+          "x": 163.312118,
+          "y": 459.545752
+        }
+      },
+      "phase": "I10-settle",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 10,
+      "target_joint_sha256": "32e07815ba8820a6a292c4820ea10c21a1f184cf477122fe6ba3df6bde1a89f6"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 295.302177,
+          "y": 251.417177
+        },
+        "hip_right": {
+          "x": 243.784523,
+          "y": 252.438977
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 269.8312,
+          "y": 78.8774
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 251.928077
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 162.004953,
+          "y": 459.338665
+        }
+      },
+      "phase": "I11-pre-loop",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false
+      },
+      "frame_index": 11,
+      "target_joint_sha256": "5f6306b381fccc6a50d66bc137229eb1b098982f5e1227ce83539c1a3fd401cb"
+    }
+  ],
+  "target_hashes": [
+    "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+    "39d7636370752926e14e58c45a9a1298c596cd8bd71c0d2ed158c53499f47ddf",
+    "283a3e90d6a9c2ee5769f621e6145870fb157dd76b74ca2090b28689201c4cf5",
+    "016b264c1f9c96a1320fbfd6b11a5ba8b8dc080fdcebb581fadb76b2107607f3",
+    "1a2e3c0c4a12044f2aed09b2341e48818fe7173dd6127a39b0f7d565bf6cb0c7",
+    "41ce3f7f8f91f866d3b5d01e45c31566837ce61dff4a69115dae0ab420def457",
+    "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+    "094f2163985d703ee9807de283dcc4626a2809249c6b39e33d3dc17e17885bb1",
+    "5641d8c34941c9f59f297081214f5c51ce35361871c40f90faa1efdfde2abaf5",
+    "05d878eb3d95c50dc677a7622b4df3c0750df2e5e56ddab47888214874b84d01",
+    "32e07815ba8820a6a292c4820ea10c21a1f184cf477122fe6ba3df6bde1a89f6",
+    "5f6306b381fccc6a50d66bc137229eb1b098982f5e1227ce83539c1a3fd401cb"
+  ],
+  "key_pose_bindings": [
+    {
+      "frame": 0,
+      "phase": "I0-neutral-A",
+      "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"
+    },
+    {
+      "frame": 5,
+      "phase": "I5-neutral-B",
+      "target_hash": "41ce3f7f8f91f866d3b5d01e45c31566837ce61dff4a69115dae0ab420def457"
+    }
+  ],
+  "parameters_frozen_before_render": true,
+  "i11_not_duplicate_i0": true
+}

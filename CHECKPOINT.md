@@ -21,3 +21,8 @@ O plano pairwise distingue sobreposição de junta, oclusão esperada, oclusão 
 Pesos, bundle MediaPipe, source SAM2 e checkpoint continuam fora do Git e do review ZIP. A aprovação de produção e a aprovação externa não são inferidas: `walk_authorized=pilot_only`, `production_walk_authorized=false`, `external_approval=not-claimed`. O próximo passo único é `external_review_front_walk_cycle`.
 
 Animação genérica não autoriza execução: somente `WALK FRONT` neste piloto foi executado. Direções e animações diferentes continuam fora do escopo; o próximo passo autorizado é revisão visual externa, não promoção para produção.
+## v0.9.0 current checkpoint
+
+UGAS v0.9.0 is in `REUSABLE_DETERMINISTIC_ANIMATION_RUNTIME` with current gate `CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED`. The v0.8.1 walk decision `FRONT_WALK_V081_PILOT_VISUAL_APPROVED` is `APPROVED_PILOT` for pipeline/pilot only; production routing is `BLOCKED`, and external idle review is `REQUIRED`.
+
+`sam2_runs=0` and `comfyui_generation_jobs=0`; no-claim status is `not-claimed` for production. The generic runtime may only proceed to `external_review_idle_front`; no other animation or direction is authorized.
