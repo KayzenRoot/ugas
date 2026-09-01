@@ -28,7 +28,7 @@ from ..cutout_structural import (
     structural_coverage_qa,
 )
 from ..cutout_temporal_v081 import actual_alpha_safe_margin, duplicate_body_measure, map_presentation_point
-from ..motion_curves import sample_all_tracks, validate_motion_tracks
+from ..motion_curves import motion_tracks_sha256, sample_all_tracks, validate_motion_tracks
 from ..pose_metric_calibration import CORE_JOINTS
 from . import attack_front_v1 as v1
 from .common import load_source_context, render_source_only, target_digest
@@ -283,6 +283,146 @@ def _pre_render_proxies(spec: Mapping[str, Any], targets: list[Mapping[str, Any]
     return {"metrics": metrics, "hard_gates": gates, "body_mechanics": body, "status": "MOTION_PROXIES_PASSED" if all(gates.values()) else "ATTACK_V2_BODY_MECHANICS_GAP"}
 
 
+def _weapon_continuity_limits(spec: Mapping[str, Any]) -> dict[str, Any]:
+    defaults = {
+        "min_post_hit_follow_through_path_px": 12.0,
+        "min_follow_ratio": 0.15,
+        "max_follow_ratio": 0.60,
+        "min_velocity_retention_ratio": 0.25,
+        "max_velocity_retention_ratio": 0.85,
+        "max_abs_weapon_angular_acceleration_deg_per_frame2": 10.0,
+        "follow_through_frames": [6, 7, 8],
+        "recovery_start_frame": 9,
+        "max_recovery_sword_angle_delta_deg": 5.0,
+        "max_recovery_weapon_tip_distance_px": 16.0,
+        "max_recovery_wrist_distance_px": 8.0,
+        "max_recovery_elbow_distance_px": 8.0,
+        "max_recovery_pelvis_distance_px": 4.0,
+        "max_recovery_head_nose_distance_px": 5.0,
+        "max_recovery_torso_rotation_delta_deg": 2.0,
+        "pre_render_post_render_tolerance": 0.001,
+    }
+    configured = spec.get("qa_profile", {}).get("thresholds", {}).get("weapon_continuity", {})
+    return {**defaults, **dict(configured)}
+
+
+def _trajectory_point(target: Mapping[str, Any], name: str, presentation: Mapping[str, Any]) -> tuple[float, float]:
+    return map_presentation_point(_xy(target["joints"][name]), presentation)
+
+
+def _weapon_continuity_metrics(
+    spec: Mapping[str, Any],
+    tips: list[tuple[float, float]],
+    angles: list[float],
+    recovery_points: Mapping[str, list[tuple[float, float]]] | None = None,
+    torso_values: list[float] | None = None,
+    require_recovery_metrics: bool = True,
+) -> dict[str, Any]:
+    limits = _weapon_continuity_limits(spec)
+    hit_frame = int(spec["qa_profile"]["thresholds"]["hit_event_frame"])
+    follow_frames = [int(value) for value in limits["follow_through_frames"]]
+    recovery_start = int(limits["recovery_start_frame"])
+    velocities = [
+        {"from_frame": index - 1, "to_frame": index, "tip_motion_px": math.dist(tips[index - 1], tips[index]), "angular_velocity_degrees_per_frame": _signed_delta(angles[index - 1], angles[index])}
+        for index in range(1, len(tips))
+    ]
+    accelerations = [
+        {"from_frame": item["from_frame"], "to_frame": item["to_frame"], "angular_acceleration_degrees_per_frame2": velocities[index]["angular_velocity_degrees_per_frame"] - velocities[index - 1]["angular_velocity_degrees_per_frame"]}
+        for index, item in enumerate(velocities[1:], start=1)
+    ]
+    active = {int(item) for item in spec["qa_profile"]["thresholds"]["active_window_frames"]}
+    path_between = lambda first, last: sum(item["tip_motion_px"] for item in velocities if first <= item["from_frame"] and item["to_frame"] <= last)
+    active_path = path_between(min(active), max(active))
+    follow_path = path_between(follow_frames[0], follow_frames[-1])
+    hit_velocity = abs(velocities[hit_frame - 1]["angular_velocity_degrees_per_frame"])
+    first_follow_velocity = abs(velocities[hit_frame]["angular_velocity_degrees_per_frame"])
+    retention_ratio = first_follow_velocity / max(hit_velocity, 1e-12)
+    reversal_candidates = []
+    for index in range(1, len(velocities)):
+        previous = velocities[index - 1]["angular_velocity_degrees_per_frame"]
+        current = velocities[index]["angular_velocity_degrees_per_frame"]
+        if previous * current < 0.0:
+            reversal_candidates.append([velocities[index]["from_frame"], velocities[index]["to_frame"]])
+    reversal_transition = [recovery_start - 1, recovery_start] if [recovery_start - 1, recovery_start] in reversal_candidates else None
+    follow_direction = velocities[hit_frame - 1]["angular_velocity_degrees_per_frame"]
+    no_early_reversal = all(
+        velocities[index]["angular_velocity_degrees_per_frame"] * follow_direction > 0.0
+        for index in (hit_frame, hit_frame + 1)
+        if index < len(velocities)
+    )
+    first_recovery_reversal = reversal_candidates and reversal_candidates[0] == [recovery_start - 1, recovery_start]
+    recovery_available = bool(recovery_points) and all(len(values) == len(tips) for values in recovery_points.values())
+    recovery_metrics: dict[str, float | None] = {
+        "V11_vs_V0_sword_angle_delta": abs(_signed_delta(angles[0], angles[-1])),
+        "V11_vs_V0_tip_distance": math.dist(tips[0], tips[-1]),
+    }
+    if recovery_available:
+        for key, values in recovery_points.items():
+            recovery_metrics[f"V11_vs_V0_{key}_distance"] = math.dist(values[0], values[-1])
+    else:
+        recovery_metrics.update({"V11_vs_V0_wrist_distance": None, "V11_vs_V0_elbow_distance": None, "V11_vs_V0_pelvis_distance": None, "V11_vs_V0_head_nose_distance": None})
+    if torso_values and len(torso_values) == len(tips):
+        recovery_metrics["V11_vs_V0_torso_rotation_delta"] = abs(float(torso_values[-1]) - float(torso_values[0]))
+    else:
+        recovery_metrics["V11_vs_V0_torso_rotation_delta"] = None
+    hard_gates = {
+        "post_hit_follow_through_path_ge_12": follow_path >= float(limits["min_post_hit_follow_through_path_px"]),
+        "follow_ratio_ge_0_15": follow_path / max(active_path, 1e-12) >= float(limits["min_follow_ratio"]),
+        "follow_ratio_le_0_60": follow_path / max(active_path, 1e-12) <= float(limits["max_follow_ratio"]),
+        "immediate_velocity_retention_ge_0_25": retention_ratio >= float(limits["min_velocity_retention_ratio"]),
+        "immediate_velocity_retention_le_0_85": retention_ratio <= float(limits["max_velocity_retention_ratio"]),
+        "max_abs_weapon_acceleration_le_10": max((abs(item["angular_acceleration_degrees_per_frame2"]) for item in accelerations), default=0.0) <= float(limits["max_abs_weapon_angular_acceleration_deg_per_frame2"]),
+        "no_sign_reversal_during_6_to_7_and_7_to_8": no_early_reversal,
+        "first_recovery_reversal_is_8_to_9": bool(first_recovery_reversal),
+        "recovery_reversal_acceleration_le_10": abs(next((item["angular_acceleration_degrees_per_frame2"] for item in accelerations if item["from_frame"] == recovery_start - 1 and item["to_frame"] == recovery_start), float("inf"))) <= float(limits["max_abs_weapon_angular_acceleration_deg_per_frame2"]),
+    }
+    if require_recovery_metrics:
+        hard_gates.update({
+            "recovery_metrics_available": recovery_available and recovery_metrics["V11_vs_V0_torso_rotation_delta"] is not None,
+            "V11_sword_angle_within_5_deg": recovery_metrics["V11_vs_V0_sword_angle_delta"] <= float(limits["max_recovery_sword_angle_delta_deg"]),
+            "V11_tip_within_16_px": recovery_metrics["V11_vs_V0_tip_distance"] <= float(limits["max_recovery_weapon_tip_distance_px"]),
+            "V11_wrist_within_8_px": recovery_metrics["V11_vs_V0_wrist_distance"] is not None and recovery_metrics["V11_vs_V0_wrist_distance"] <= float(limits["max_recovery_wrist_distance_px"]),
+            "V11_elbow_within_8_px": recovery_metrics["V11_vs_V0_elbow_distance"] is not None and recovery_metrics["V11_vs_V0_elbow_distance"] <= float(limits["max_recovery_elbow_distance_px"]),
+            "V11_pelvis_within_4_px": recovery_metrics["V11_vs_V0_pelvis_distance"] is not None and recovery_metrics["V11_vs_V0_pelvis_distance"] <= float(limits["max_recovery_pelvis_distance_px"]),
+            "V11_head_nose_within_5_px": recovery_metrics["V11_vs_V0_head_nose_distance"] is not None and recovery_metrics["V11_vs_V0_head_nose_distance"] <= float(limits["max_recovery_head_nose_distance_px"]),
+            "V11_torso_rotation_within_2_deg": recovery_metrics["V11_vs_V0_torso_rotation_delta"] is not None and recovery_metrics["V11_vs_V0_torso_rotation_delta"] <= float(limits["max_recovery_torso_rotation_delta_deg"]),
+        })
+    ratio = follow_path / max(active_path, 1e-12)
+    return {
+        "metrics": {
+            "active_path_px": round(active_path, 6),
+            "post_hit_follow_path_px": round(follow_path, 6),
+            "follow_ratio": round(ratio, 6),
+            "hit_velocity": round(hit_velocity, 6),
+            "first_follow_velocity": round(first_follow_velocity, 6),
+            "velocity_retention_ratio": round(retention_ratio, 6),
+            "max_abs_weapon_acceleration": round(max((abs(item["angular_acceleration_degrees_per_frame2"]) for item in accelerations), default=0.0), 6),
+            "reversal_transition": reversal_transition,
+            "reversal_candidates": reversal_candidates,
+            **{key: None if value is None else round(float(value), 6) for key, value in recovery_metrics.items()},
+        },
+        "velocities": [{**item, "tip_motion_px": round(item["tip_motion_px"], 6), "angular_velocity_degrees_per_frame": round(item["angular_velocity_degrees_per_frame"], 6)} for item in velocities],
+        "accelerations": [{**item, "angular_acceleration_degrees_per_frame2": round(item["angular_acceleration_degrees_per_frame2"], 6)} for item in accelerations],
+        "hard_gates": hard_gates,
+        "status": "ATTACK_V2_WEAPON_CONTINUITY_QA_PASSED" if all(hard_gates.values()) else "ATTACK_V2_WEAPON_CONTINUITY_GAP",
+        "limits": dict(limits),
+    }
+
+
+def weapon_continuity_pre_render_qa(spec: Mapping[str, Any], targets: list[Mapping[str, Any]], samples: list[Mapping[str, Any]]) -> dict[str, Any]:
+    presentation = spec["presentation_transform"]
+    tips = [_trajectory_point(target, "weapon_tip", presentation) for target in targets]
+    angles = [_direction(_xy(target["joints"]["wrist_right"]), _xy(target["joints"]["weapon_tip"])) for target in targets]
+    recovery_points = {key: [_trajectory_point(target, joint, presentation) for target in targets] for key, joint in {"wrist": "wrist_right", "elbow": "elbow_right", "pelvis": "pelvis", "head_nose": "nose"}.items()}
+    torso_values = [_scalar(sample, "torso_rotation_deg") for sample in samples]
+    result = _weapon_continuity_metrics(spec, tips, angles, recovery_points, torso_values, require_recovery_metrics=True)
+    result["stage"] = "pre-render"
+    result["track_sha256"] = motion_tracks_sha256(spec)
+    result["proof_source"] = "src/ugas/animation_profiles/attack_front_v2.py:targets_and_tracks_before_rasterization"
+    result["render_allowed"] = result["status"] == "ATTACK_V2_WEAPON_CONTINUITY_QA_PASSED"
+    return result
+
+
 def prepare(spec: Mapping[str, Any], context: Mapping[str, Any]) -> dict[str, Any]:
     tracks = validate_motion_tracks(spec)
     present = {track["track_id"] for track in tracks}
@@ -307,9 +447,12 @@ def prepare(spec: Mapping[str, Any], context: Mapping[str, Any]) -> dict[str, An
     proxies = _pre_render_proxies(spec, targets, samples, context)
     if not all(temporal_gates.values()):
         raise ValueError("MOTION_CURVE_TEMPORAL_GAP")
+    pre_render_weapon = weapon_continuity_pre_render_qa(spec, targets, samples)
     if not all(proxies["hard_gates"].values()):
         raise ValueError("ATTACK_V2_BODY_MECHANICS_GAP")
-    return {"tracks": tracks, "samples": samples, "targets": targets, "plan": _attack_plan(), "presentation": spec["presentation_transform"], "phases": list(PHASES), "series": series, "temporal_gates": temporal_gates, "proxies": proxies}
+    if not all(pre_render_weapon["hard_gates"].values()):
+        raise ValueError("ATTACK_V2_WEAPON_CONTINUITY_GAP")
+    return {"tracks": tracks, "samples": samples, "targets": targets, "plan": _attack_plan(), "presentation": spec["presentation_transform"], "phases": list(PHASES), "series": series, "temporal_gates": temporal_gates, "proxies": proxies, "weapon_continuity_pre_render": pre_render_weapon}
 
 
 def render_frame(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: Mapping[str, Any], index: int):
@@ -394,19 +537,25 @@ def _foot_ground_qa(frame_records: list[Mapping[str, Any]], targets: list[Mappin
     return result
 
 
-def _weapon_arc_qa(spec: Mapping[str, Any], frame_records: list[Mapping[str, Any]]) -> dict[str, Any]:
+def _weapon_arc_qa(spec: Mapping[str, Any], frame_records: list[Mapping[str, Any]], pre_render: Mapping[str, Any] | None = None) -> dict[str, Any]:
     active = set(int(item) for item in spec["qa_profile"]["thresholds"]["active_window_frames"])
     hit_frame = int(spec["qa_profile"]["thresholds"]["hit_event_frame"])
     tips = [item["weapon"]["tip_presented"] for item in frame_records]
     angles = [float(item["weapon"]["signed_sword_angle_degrees"]) for item in frame_records]
-    velocities = [{"from_frame": index - 1, "to_frame": index, "tip_motion_px": round(math.dist(tips[index - 1], tips[index]), 6), "angular_velocity_degrees_per_frame": round(_signed_delta(angles[index - 1], angles[index]), 6), "inside_or_near_active_window": index - 1 in active or index in active} for index in range(1, len(tips))]
-    accelerations = [{"from_frame": item["from_frame"] - 1, "to_frame": item["to_frame"], "angular_acceleration_degrees_per_frame2": round(velocities[index]["angular_velocity_degrees_per_frame"] - velocities[index - 1]["angular_velocity_degrees_per_frame"], 6)} for index, item in enumerate(velocities[1:], start=1)]
+    recovery_points = {}
+    for key in ("wrist_presented", "elbow_presented", "pelvis_presented", "head_nose_presented"):
+        if all(key in item["weapon"] for item in frame_records):
+            recovery_points[key.removesuffix("_presented")] = [tuple(item["weapon"][key]) for item in frame_records]
+    torso_values = [float(item["weapon"]["torso_rotation_deg"]) for item in frame_records] if all("torso_rotation_deg" in item["weapon"] for item in frame_records) else None
+    continuity = _weapon_continuity_metrics(spec, tips, angles, recovery_points or None, torso_values, require_recovery_metrics=bool(recovery_points and torso_values))
+    velocities = [{**item, "inside_or_near_active_window": item["from_frame"] in active or item["to_frame"] in active} for item in continuity["velocities"]]
+    accelerations = continuity["accelerations"]
     jerks = [{"from_frame": item["from_frame"] - 1, "to_frame": item["to_frame"], "angular_jerk_degrees_per_frame3": round(accelerations[index]["angular_acceleration_degrees_per_frame2"] - accelerations[index - 1]["angular_acceleration_degrees_per_frame2"], 6)} for index, item in enumerate(accelerations[1:], start=1)]
     peak = max(velocities, key=lambda item: abs(item["angular_velocity_degrees_per_frame"]), default={"from_frame": -1, "to_frame": -1, "tip_motion_px": 0.0, "angular_velocity_degrees_per_frame": 0.0, "inside_or_near_active_window": False})
     path = lambda first, last: round(sum(item["tip_motion_px"] for item in velocities if first <= item["from_frame"] and item["to_frame"] <= last), 6)
     critical_head = sum(int(item["weapon"].get("sword_head_critical_collision_pixels", 0)) for item in frame_records)
     forbidden_torso = sum(int(item["weapon"].get("sword_torso_forbidden_pixels", 0)) for item in frame_records)
-    paths = {"total": path(0, 11), "pre_hit": path(0, hit_frame), "active": path(min(active), max(active)), "recovery": path(hit_frame + 1, 11), "post_hit_follow_through": path(hit_frame, min(11, hit_frame + 2))}
+    paths = {"total": path(0, 11), "pre_hit": path(0, hit_frame), "active": path(min(active), max(active)), "recovery": path(hit_frame + 1, 11), "post_hit_follow_through": path(hit_frame, min(11, hit_frame + 2)), "active_window_path_px": continuity["metrics"]["active_path_px"], "post_hit_follow_through_path_px": continuity["metrics"]["post_hit_follow_path_px"]}
     gates = {
         "sword_pivot_attached_all_frames": all(bool(item["weapon"].get("pivot_attached")) for item in frame_records),
         "active_window_frames_exact": [int(item["index"]) for item in frame_records if item["index"] in active] == sorted(active),
@@ -418,14 +567,30 @@ def _weapon_arc_qa(spec: Mapping[str, Any], frame_records: list[Mapping[str, Any
         "post_hit_follow_through_path_nonzero": paths["post_hit_follow_through"] > 0.0,
         "sword_head_collision_zero": critical_head == 0,
         "sword_torso_forbidden_penetration_zero": forbidden_torso == 0,
+        "alpha_safe_margin_ge_24_all_frames": all(bool(item.get("alpha", {}).get("gate")) for item in frame_records),
+        "no_clipping_all_frames": all(bool(item.get("retention", {}).get("hard_gates", {}).get("all_parts_pass")) for item in frame_records),
+        "source_only_provenance": bool(spec.get("provenance", {}).get("source_only_pixels")) and not bool(spec.get("provenance", {}).get("sam2_used")) and int(spec.get("provenance", {}).get("comfyui_generation_jobs", 0)) == 0 and not bool(spec.get("provenance", {}).get("diffusion_used")),
     }
-    return {"active_window_frames": sorted(active), "hit_event_frame": hit_frame, "signed_sword_angle_degrees_by_frame": [{"frame": index, "degrees": round(angle, 6)} for index, angle in enumerate(angles)], "tip_xy_presented": [{"frame": item["index"], "x": item["weapon"]["tip_presented"][0], "y": item["weapon"]["tip_presented"][1]} for item in frame_records], "path_lengths_px": paths, "angular_velocity": velocities, "angular_acceleration": accelerations, "angular_jerk": jerks, "peak_speed": peak, "sword_head_collision_pixels": critical_head, "sword_torso_forbidden_penetration_pixels": forbidden_torso, "hard_gates": gates, "status": "ATTACK_V2_WEAPON_ARC_QA_PASSED" if all(gates.values()) else "ATTACK_V2_WEAPON_ARC_GAP", "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:measured_tip_and_angle_trajectory"}
+    gates.update(continuity["hard_gates"])
+    consistency = None
+    if pre_render is not None:
+        tolerance = float(_weapon_continuity_limits(spec)["pre_render_post_render_tolerance"])
+        pre_metrics = pre_render["metrics"]
+        post_metrics = continuity["metrics"]
+        comparable = ("active_path_px", "post_hit_follow_path_px", "follow_ratio", "hit_velocity", "first_follow_velocity", "velocity_retention_ratio", "max_abs_weapon_acceleration", "V11_vs_V0_sword_angle_delta", "V11_vs_V0_tip_distance", "V11_vs_V0_wrist_distance", "V11_vs_V0_elbow_distance", "V11_vs_V0_pelvis_distance", "V11_vs_V0_head_nose_distance", "V11_vs_V0_torso_rotation_delta")
+        comparisons = {}
+        for key in comparable:
+            before, after = pre_metrics.get(key), post_metrics.get(key)
+            comparisons[key] = {"pre_render": before, "post_render": after, "absolute_delta": None if before is None or after is None else round(abs(float(before) - float(after)), 6), "within_tolerance": before is not None and after is not None and abs(float(before) - float(after)) <= tolerance}
+        consistency = {"tolerance": tolerance, "metrics": comparisons, "reversal_transition_matches": pre_metrics.get("reversal_transition") == post_metrics.get("reversal_transition"), "all_within_tolerance": all(item["within_tolerance"] for item in comparisons.values()) and pre_metrics.get("reversal_transition") == post_metrics.get("reversal_transition")}
+        gates["pre_render_post_render_consistent"] = consistency["all_within_tolerance"]
+    return {"active_window_frames": sorted(active), "hit_event_frame": hit_frame, "signed_sword_angle_degrees_by_frame": [{"frame": index, "degrees": round(angle, 6)} for index, angle in enumerate(angles)], "tip_xy_presented": [{"frame": item["index"], "x": item["weapon"]["tip_presented"][0], "y": item["weapon"]["tip_presented"][1]} for item in frame_records], "path_lengths_px": paths, "angular_velocity": velocities, "angular_acceleration": accelerations, "angular_jerk": jerks, "peak_speed": peak, "sword_head_collision_pixels": critical_head, "sword_torso_forbidden_penetration_pixels": forbidden_torso, "continuity": {**continuity, "pre_render_post_render_consistency": consistency}, "hard_gates": gates, "status": "ATTACK_V2_WEAPON_ARC_QA_PASSED" if all(gates.values()) else "ATTACK_V2_WEAPON_ARC_GAP", "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:measured_presented_tip_and_skeleton_trajectory"}
 
 
 def _temporal_qa(spec: Mapping[str, Any], prepared: Mapping[str, Any], frame_records: list[Mapping[str, Any]]) -> dict[str, Any]:
     series = prepared["series"]
     threshold = spec["qa_profile"]["thresholds"]
-    weapon = _weapon_arc_qa(spec, frame_records)
+    weapon = _weapon_arc_qa(spec, frame_records, prepared.get("weapon_continuity_pre_render"))
     foot_ground = _foot_ground_qa(frame_records, prepared["targets"], spec)
     gates = {**prepared["temporal_gates"], "weapon_arc_qa": weapon["status"] == "ATTACK_V2_WEAPON_ARC_QA_PASSED", "foot_ground_qa": foot_ground["status"] == "ATTACK_V2_FOOT_GROUND_QA_PASSED"}
     return {"metrics": {**series, "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:skeleton_series_before_render"}, "hard_gates": gates, "weapon": weapon, "foot_ground": foot_ground, "status": "ATTACK_V2_TEMPORAL_QA_PASSED" if all(gates.values()) else "ATTACK_V2_TEMPORAL_GAP"}
@@ -464,7 +629,8 @@ def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[st
             "pose_estimator": metrics.get("qualifies") is True and int(metrics.get("measurable_body_joints", 0)) >= 10 and float(metrics.get("pck_at_010", 0.0)) >= 0.80 and float(metrics.get("nme", 1.0)) <= 0.10 and float(metrics.get("limb_angle_mae_degrees", 180.0)) <= 18.0 and float(metrics.get("lower_body_pck", 0.0)) >= 0.75,
             "sword_pivot_attached": sword_transform["target_pivot"] == [target["joints"]["wrist_right"]["x"], target["joints"]["wrist_right"]["y"]], "source_only_pixels": bool(spec["provenance"]["source_only_pixels"]), "no_duplicate_body": duplicate["gate"], "both_feet_planted": feet["status"] == "ATTACK_FOOT_FRAME_PASSED", "frozen_z_order": [value["part"] for value in details["transforms"]] == list(Z_ORDER),
         }
-        record = {"index": index, "phase": PHASES[index], "target_hash": target["target_joint_sha256"], "output_rgba_sha256": item["rgba_sha256"], "hard_gates": gates, "passed": all(gates.values()), "alpha": alpha, "feet": feet, "pose": pose, "duplicate_body": duplicate, "integrity": integrity, "occlusion": pair, "seam": seam, "coverage": {key: value for key, value in aux["coverage"].items() if key not in {"hole_mask", "expected_mask"}}, "retention": aux["retention"], "z_order": list(Z_ORDER), "weapon": {"pivot_attached": gates["sword_pivot_attached"], "target_pivot": sword_transform["target_pivot"], "tip_presented": [round(tip[0], 6), round(tip[1], 6)], "signed_sword_angle_degrees": round(sword_angle, 6), "sword_head_critical_collision_pixels": int(sword_head.get("pixels", 0)) if sword_head.get("critical_pair") else 0, "sword_torso_forbidden_pixels": int(sword_torso.get("outside_authorized_region_pixels", 0))}, "status": "ATTACK_V2_FRAME_PASSED" if all(gates.values()) else "ATTACK_V2_STRUCTURAL_OR_POSE_GAP"}
+        presented_joints = {name: [round(value, 6) for value in map_presentation_point(_xy(target["joints"][name]), spec["presentation_transform"])] for name in ("wrist_right", "elbow_right", "pelvis", "nose")}
+        record = {"index": index, "phase": PHASES[index], "target_hash": target["target_joint_sha256"], "output_rgba_sha256": item["rgba_sha256"], "hard_gates": gates, "passed": all(gates.values()), "alpha": alpha, "feet": feet, "pose": pose, "duplicate_body": duplicate, "integrity": integrity, "occlusion": pair, "seam": seam, "coverage": {key: value for key, value in aux["coverage"].items() if key not in {"hole_mask", "expected_mask"}}, "retention": aux["retention"], "z_order": list(Z_ORDER), "weapon": {"pivot_attached": gates["sword_pivot_attached"], "target_pivot": sword_transform["target_pivot"], "tip_presented": [round(tip[0], 6), round(tip[1], 6)], "signed_sword_angle_degrees": round(sword_angle, 6), "wrist_presented": presented_joints["wrist_right"], "elbow_presented": presented_joints["elbow_right"], "pelvis_presented": presented_joints["pelvis"], "head_nose_presented": presented_joints["nose"], "torso_rotation_deg": round(_scalar(target["motion_tracks_sample"], "torso_rotation_deg"), 6), "sword_head_critical_collision_pixels": int(sword_head.get("pixels", 0)) if sword_head.get("critical_pair") else 0, "sword_torso_forbidden_pixels": int(sword_torso.get("outside_authorized_region_pixels", 0))}, "status": "ATTACK_V2_FRAME_PASSED" if all(gates.values()) else "ATTACK_V2_STRUCTURAL_OR_POSE_GAP"}
         records.append(record)
         structural[PHASES[index]] = {"pair": pair, "seam": seam, "coverage": record["coverage"], "retention": record["retention"]}
     temporal = _temporal_qa(spec, prepared, records)
@@ -473,10 +639,10 @@ def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[st
     expected = [("windup_peak", 3), ("active_start", 4), ("hit_event", 6), ("active_end", 7), ("recovery_complete", 11)]
     marker_gate = [(item["event_id"], item["frame"]) for item in markers] == expected
     top_gates = {
-        "frame_count_exactly_12": len(records) == 12, "all_frames": bool(records) and all(record["passed"] for record in records), "temporal_quality": temporal["status"] == "ATTACK_V2_TEMPORAL_QA_PASSED", "body_mechanics": body["status"] == "ATTACK_V2_BODY_MECHANICS_QA_PASSED", "weapon_arc": temporal["weapon"]["status"] == "ATTACK_V2_WEAPON_ARC_QA_PASSED", "foot_ground": temporal["foot_ground"]["status"] == "ATTACK_V2_FOOT_GROUND_QA_PASSED", "event_timeline_frozen": marker_gate and len(markers) == 5, "key_pose_bindings": all(any(int(binding["frame"]) == index and binding["target_hash"] == targets[index]["target_joint_sha256"] for binding in spec["key_pose_bindings"]) for index in [0, 3, 4, 6, 7, 11]), "front_facing": all(target.get("orientation") == "front" for target in targets), "provenance": bool(spec["provenance"]["source_only_pixels"]) and spec["provenance"]["sam2_used"] is False and int(spec["provenance"]["comfyui_generation_jobs"]) == 0 and spec["provenance"]["diffusion_used"] is False,
+        "frame_count_exactly_12": len(records) == 12, "all_frames": bool(records) and all(record["passed"] for record in records), "temporal_quality": temporal["status"] == "ATTACK_V2_TEMPORAL_QA_PASSED", "body_mechanics": body["status"] == "ATTACK_V2_BODY_MECHANICS_QA_PASSED", "weapon_arc": temporal["weapon"]["status"] == "ATTACK_V2_WEAPON_ARC_QA_PASSED", "pre_render_weapon_continuity": prepared["weapon_continuity_pre_render"]["status"] == "ATTACK_V2_WEAPON_CONTINUITY_QA_PASSED", "foot_ground": temporal["foot_ground"]["status"] == "ATTACK_V2_FOOT_GROUND_QA_PASSED", "event_timeline_frozen": marker_gate and len(markers) == 5, "key_pose_bindings": all(any(int(binding["frame"]) == index and binding["target_hash"] == targets[index]["target_joint_sha256"] for binding in spec["key_pose_bindings"]) for index in [0, 3, 4, 6, 7, 11]), "front_facing": all(target.get("orientation") == "front" for target in targets), "provenance": bool(spec["provenance"]["source_only_pixels"]) and spec["provenance"]["sam2_used"] is False and int(spec["provenance"]["comfyui_generation_jobs"]) == 0 and spec["provenance"]["diffusion_used"] is False,
     }
     failures = [name for name, passed in top_gates.items() if not passed]
     failures.extend(f"frame_{record['index']}_{name}" for record in records for name, passed in record["hard_gates"].items() if not passed)
     failures.extend(f"temporal_{name}" for name, passed in temporal["hard_gates"].items() if not passed)
     qualified = all(top_gates.values()) and not failures
-    return {"animation_id": spec["animation_id"], "decision": "QUALIFIED" if qualified else "FAILED", "status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED" if qualified else "ATTACK_V2_STRUCTURAL_OR_POSE_GAP", "frames": records, "temporal": temporal, "weapon": temporal["weapon"], "foot_ground": temporal["foot_ground"], "body_mechanics": body, "package_metadata": {"active_window_frames": list(ACTIVE_WINDOW), "hit_event_frame": HIT_EVENT_FRAME, "event_timeline_authority": "spec.event_markers", "motion_quality_layer": "generic.motion_tracks", "weapon": "sword"}, "provenance": {"source_sha256": context["source_sha256"], "part_hashes": context["part_hashes"], "mask_hashes": context["mask_hashes"], "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "source_only_pixels": True}, "hard_gates": top_gates, "failures": failures, "structural": structural}
+    return {"animation_id": spec["animation_id"], "decision": "QUALIFIED" if qualified else "FAILED", "status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED" if qualified else "ATTACK_V2_STRUCTURAL_OR_POSE_GAP", "frames": records, "temporal": temporal, "weapon": temporal["weapon"], "weapon_continuity_pre_render": prepared["weapon_continuity_pre_render"], "foot_ground": temporal["foot_ground"], "body_mechanics": body, "package_metadata": {"active_window_frames": list(ACTIVE_WINDOW), "hit_event_frame": HIT_EVENT_FRAME, "event_timeline_authority": "spec.event_markers", "motion_quality_layer": "generic.motion_tracks", "weapon": "sword"}, "provenance": {"source_sha256": context["source_sha256"], "part_hashes": context["part_hashes"], "mask_hashes": context["mask_hashes"], "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "source_only_pixels": True}, "hard_gates": top_gates, "failures": failures, "structural": structural}

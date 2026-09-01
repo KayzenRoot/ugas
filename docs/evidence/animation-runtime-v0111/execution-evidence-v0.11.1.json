@@ -1,0 +1,544 @@
+{
+  "schema_version": "0.11.1",
+  "prompt": "PROMPT-10C-UGAS-WEAPON-CONTINUITY-RECOVERY-CORRECTION-v0.11.1",
+  "baseline_commit": "9401c31f994e968149292b2993d960d3aafc37c4",
+  "parent_v0_10_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+  "repository_ref": "https://github.com/csn1985-ship-it/ugas.git",
+  "animation_id": "attack-front-v2",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 12,
+  "fps": 12,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 3,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 4,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 6,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 7,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 11,
+      "kind": "phase"
+    }
+  ],
+  "event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+  "motion_tracks_sha256": "be9ca4a1b9958370fb138a2effa27547dd49dea549465708a66fad08b1510e1d",
+  "track_hash_frozen_before_first_png": true,
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "generic_motion_curve_regression": "GENERIC_MOTION_CURVE_REGRESSION_PASSED",
+  "historical_replay": "HISTORICAL_REPLAY_V0111_PASSED",
+  "negative_controls": {
+    "zero_follow_through": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "post_hit_follow_through_path_ge_12",
+        "follow_ratio_ge_0_15"
+      ],
+      "metrics": {
+        "active_path_px": 105.292858,
+        "post_hit_follow_path_px": 0.0,
+        "follow_ratio": 0.0,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 3.575,
+        "velocity_retention_ratio": 0.367714,
+        "max_abs_weapon_acceleration": 9.655555,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "follow_through_1_px": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "post_hit_follow_through_path_ge_12",
+        "follow_ratio_ge_0_15"
+      ],
+      "metrics": {
+        "active_path_px": 105.792858,
+        "post_hit_follow_path_px": 1.0,
+        "follow_ratio": 0.009452,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 3.575,
+        "velocity_retention_ratio": 0.367714,
+        "max_abs_weapon_acceleration": 9.655555,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "follow_ratio_0_10": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "post_hit_follow_through_path_ge_12",
+        "follow_ratio_ge_0_15"
+      ],
+      "metrics": {
+        "active_path_px": 110.292858,
+        "post_hit_follow_path_px": 10.0,
+        "follow_ratio": 0.090668,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 3.575,
+        "velocity_retention_ratio": 0.367714,
+        "max_abs_weapon_acceleration": 9.655555,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "immediate_velocity_retention_0_10": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "immediate_velocity_retention_ge_0_25",
+        "max_abs_weapon_acceleration_le_10",
+        "recovery_reversal_acceleration_le_10"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 0.972222,
+        "velocity_retention_ratio": 0.1,
+        "max_abs_weapon_acceleration": 11.927804,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "immediate_velocity_retention_0_95": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "immediate_velocity_retention_le_0_85",
+        "max_abs_weapon_acceleration_le_10",
+        "no_sign_reversal_during_6_to_7_and_7_to_8",
+        "first_recovery_reversal_is_8_to_9"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 9.236111,
+        "velocity_retention_ratio": 0.95,
+        "max_abs_weapon_acceleration": 14.672222,
+        "reversal_transition": null,
+        "reversal_candidates": [
+          [
+            7,
+            8
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "weapon_acceleration_12_deg_per_frame2": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "immediate_velocity_retention_le_0_85",
+        "max_abs_weapon_acceleration_le_10",
+        "recovery_reversal_acceleration_le_10"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 9.722222,
+        "velocity_retention_ratio": 1.0,
+        "max_abs_weapon_acceleration": 58.466693,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "sign_reversal_6_to_7": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "immediate_velocity_retention_ge_0_25",
+        "max_abs_weapon_acceleration_le_10",
+        "no_sign_reversal_during_6_to_7_and_7_to_8",
+        "first_recovery_reversal_is_8_to_9",
+        "recovery_reversal_acceleration_le_10"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 1.0,
+        "velocity_retention_ratio": 0.102857,
+        "max_abs_weapon_acceleration": 13.900026,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "sign_reversal_7_to_8": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "max_abs_weapon_acceleration_le_10",
+        "no_sign_reversal_during_6_to_7_and_7_to_8",
+        "first_recovery_reversal_is_8_to_9"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 4.0,
+        "velocity_retention_ratio": 0.411429,
+        "max_abs_weapon_acceleration": 10.400011,
+        "reversal_transition": null,
+        "reversal_candidates": [
+          [
+            7,
+            8
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "recovery_reversal_acceleration_over_10": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "max_abs_weapon_acceleration_le_10",
+        "recovery_reversal_acceleration_le_10"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 4.0,
+        "velocity_retention_ratio": 0.411429,
+        "max_abs_weapon_acceleration": 19.0,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "V11_sword_angle_20_deg_from_ready": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "max_abs_weapon_acceleration_le_10",
+        "V11_sword_angle_within_5_deg"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 3.575,
+        "velocity_retention_ratio": 0.367714,
+        "max_abs_weapon_acceleration": 15.700099,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 20.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "V11_weapon_tip_40_px_from_ready": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "V11_tip_within_16_px"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 3.575,
+        "velocity_retention_ratio": 0.367714,
+        "max_abs_weapon_acceleration": 9.655555,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 40.0,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "V11_wrist_elbow_far_from_ready": {
+      "status": "REJECTED",
+      "failed_hard_gates": [
+        "V11_wrist_within_8_px",
+        "V11_elbow_within_8_px"
+      ],
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 3.575,
+        "velocity_retention_ratio": 0.367714,
+        "max_abs_weapon_acceleration": 9.655555,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 40.0,
+        "V11_vs_V0_elbow_distance": 40.0,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "V11_near_ready_within_all_bounds": {
+      "status": "PASS",
+      "hard_gates": {
+        "post_hit_follow_through_path_ge_12": true,
+        "follow_ratio_ge_0_15": true,
+        "follow_ratio_le_0_60": true,
+        "immediate_velocity_retention_ge_0_25": true,
+        "immediate_velocity_retention_le_0_85": true,
+        "max_abs_weapon_acceleration_le_10": true,
+        "no_sign_reversal_during_6_to_7_and_7_to_8": true,
+        "first_recovery_reversal_is_8_to_9": true,
+        "recovery_reversal_acceleration_le_10": true,
+        "recovery_metrics_available": true,
+        "V11_sword_angle_within_5_deg": true,
+        "V11_tip_within_16_px": true,
+        "V11_wrist_within_8_px": true,
+        "V11_elbow_within_8_px": true,
+        "V11_pelvis_within_4_px": true,
+        "V11_head_nose_within_5_px": true,
+        "V11_torso_rotation_within_2_deg": true
+      },
+      "metrics": {
+        "active_path_px": 112.147598,
+        "post_hit_follow_path_px": 17.030469,
+        "follow_ratio": 0.151858,
+        "hit_velocity": 9.722222,
+        "first_follow_velocity": 3.575,
+        "velocity_retention_ratio": 0.367714,
+        "max_abs_weapon_acceleration": 9.655555,
+        "reversal_transition": [
+          8,
+          9
+        ],
+        "reversal_candidates": [
+          [
+            8,
+            9
+          ]
+        ],
+        "V11_vs_V0_sword_angle_delta": 4.0,
+        "V11_vs_V0_tip_distance": 12.811845,
+        "V11_vs_V0_wrist_distance": 0.045,
+        "V11_vs_V0_elbow_distance": 0.045,
+        "V11_vs_V0_pelvis_distance": 0.045,
+        "V11_vs_V0_head_nose_distance": 0.045,
+        "V11_vs_V0_torso_rotation_delta": 0.0
+      }
+    },
+    "all_negative_rejected": true,
+    "near_ready_passed": true,
+    "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:_weapon_continuity_metrics before rasterization"
+  },
+  "pre_render_fail_closed": {
+    "status": "REJECTED",
+    "error": "ValueError",
+    "message": "ATTACK_V2_WEAPON_CONTINUITY_GAP",
+    "render_output_exists": false,
+    "render_output_files": [],
+    "proof": "compile_spec calls prepare before creating output_dir"
+  },
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "external_visual_review": "REQUIRED",
+  "no_new_run_hit_death": true,
+  "forbidden_operations_not_used": [
+    "sam2_rerun",
+    "comfyui_generation",
+    "diffusion",
+    "controlnet",
+    "ip_adapter",
+    "inpainting",
+    "manual_pixel_edit",
+    "per_frame_transform_tuning",
+    "production_routing",
+    "new_animation_direction",
+    "new_character",
+    "new_provider",
+    "run_animation",
+    "hit_animation",
+    "death_animation"
+  ],
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/package-manifest.json",
+    "qa_decision": "QUALIFIED",
+    "sprite_sheet_sha256": "28c04645ffc0004480e8f57d3a74d6877ff1204083db994363c3d84d314aa139",
+    "preview_gif_sha256": "39bd02a9f1a5265905107696d90999b39317c14314c5af839d3c8af6c1c50a4b"
+  }
+}

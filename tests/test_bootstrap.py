@@ -32,7 +32,7 @@ from ugas.workflow_registry import load_workflow
 
 class ContractTests(unittest.TestCase):
     def test_version_and_lane_metadata(self):
-        self.assertEqual("0.11.0", UGAS_VERSION)
+        self.assertEqual("0.11.1", UGAS_VERSION)
         models = json.loads((ROOT / "providers/models/registry.json").read_text(encoding="utf-8"))["models"]
         lanes = {item["variant"]: item for item in models if item["family"] == "flux2-klein-4b"}
         self.assertEqual((4, 1.0), (lanes["distilled"]["recommended_steps"], lanes["distilled"]["recommended_guidance"]))

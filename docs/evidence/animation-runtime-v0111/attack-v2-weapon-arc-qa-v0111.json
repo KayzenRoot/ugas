@@ -1,0 +1,635 @@
+{
+  "schema_version": "0.11.1",
+  "animation_id": "attack-front-v2",
+  "active_window_frames": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "hit_event_frame": 6,
+  "signed_sword_angle_degrees_by_frame": [
+    {
+      "frame": 0,
+      "degrees": 99.872218
+    },
+    {
+      "frame": 1,
+      "degrees": 102.112959
+    },
+    {
+      "frame": 2,
+      "degrees": 104.3537
+    },
+    {
+      "frame": 3,
+      "degrees": 107.372218
+    },
+    {
+      "frame": 4,
+      "degrees": 117.772218
+    },
+    {
+      "frame": 5,
+      "degrees": 137.149996
+    },
+    {
+      "frame": 6,
+      "degrees": 146.872218
+    },
+    {
+      "frame": 7,
+      "degrees": 150.447218
+    },
+    {
+      "frame": 8,
+      "degrees": 150.672218
+    },
+    {
+      "frame": 9,
+      "degrees": 141.572192
+    },
+    {
+      "frame": 10,
+      "degrees": 122.872155
+    },
+    {
+      "frame": 11,
+      "degrees": 103.872218
+    }
+  ],
+  "tip_xy_presented": [
+    {
+      "frame": 0,
+      "x": 169.6,
+      "y": 438.7
+    },
+    {
+      "frame": 1,
+      "x": 161.032126,
+      "y": 437.935823
+    },
+    {
+      "frame": 2,
+      "x": 152.600036,
+      "y": 436.790182
+    },
+    {
+      "frame": 3,
+      "x": 140.491102,
+      "y": 433.452429
+    },
+    {
+      "frame": 4,
+      "x": 105.308823,
+      "y": 417.505068
+    },
+    {
+      "frame": 5,
+      "x": 51.969746,
+      "y": 374.544179
+    },
+    {
+      "frame": 6,
+      "x": 29.714004,
+      "y": 345.231525
+    },
+    {
+      "frame": 7,
+      "x": 27.766239,
+      "y": 338.659335
+    },
+    {
+      "frame": 8,
+      "x": 36.182385,
+      "y": 344.378943
+    },
+    {
+      "frame": 9,
+      "x": 47.067398,
+      "y": 367.761151
+    },
+    {
+      "frame": 10,
+      "x": 95.918216,
+      "y": 410.26261
+    },
+    {
+      "frame": 11,
+      "x": 157.064123,
+      "y": 436.055164
+    }
+  ],
+  "path_lengths_px": {
+    "total": 347.529721,
+    "pre_hit": 173.592687,
+    "active": 112.147599,
+    "recovery": 167.082293,
+    "post_hit_follow_through": 17.030468,
+    "active_window_path_px": 112.147598,
+    "post_hit_follow_through_path_px": 17.030468
+  },
+  "angular_velocity": [
+    {
+      "from_frame": 0,
+      "to_frame": 1,
+      "tip_motion_px": 8.601885,
+      "angular_velocity_degrees_per_frame": 2.240741,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 1,
+      "to_frame": 2,
+      "tip_motion_px": 8.509561,
+      "angular_velocity_degrees_per_frame": 2.240741,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 2,
+      "to_frame": 3,
+      "tip_motion_px": 12.560529,
+      "angular_velocity_degrees_per_frame": 3.018518,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 3,
+      "to_frame": 4,
+      "tip_motion_px": 38.627854,
+      "angular_velocity_degrees_per_frame": 10.4,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 4,
+      "to_frame": 5,
+      "tip_motion_px": 68.48865,
+      "angular_velocity_degrees_per_frame": 19.377778,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 5,
+      "to_frame": 6,
+      "tip_motion_px": 36.804208,
+      "angular_velocity_degrees_per_frame": 9.722222,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 6,
+      "to_frame": 7,
+      "tip_motion_px": 6.854741,
+      "angular_velocity_degrees_per_frame": 3.575,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 7,
+      "to_frame": 8,
+      "tip_motion_px": 10.175727,
+      "angular_velocity_degrees_per_frame": 0.225,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 8,
+      "to_frame": 9,
+      "tip_motion_px": 25.791688,
+      "angular_velocity_degrees_per_frame": -9.100026,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 9,
+      "to_frame": 10,
+      "tip_motion_px": 64.751652,
+      "angular_velocity_degrees_per_frame": -18.700037,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 10,
+      "to_frame": 11,
+      "tip_motion_px": 66.363226,
+      "angular_velocity_degrees_per_frame": -18.999937,
+      "inside_or_near_active_window": false
+    }
+  ],
+  "angular_acceleration": [
+    {
+      "from_frame": 1,
+      "to_frame": 2,
+      "angular_acceleration_degrees_per_frame2": 0.0
+    },
+    {
+      "from_frame": 2,
+      "to_frame": 3,
+      "angular_acceleration_degrees_per_frame2": 0.777777
+    },
+    {
+      "from_frame": 3,
+      "to_frame": 4,
+      "angular_acceleration_degrees_per_frame2": 7.381482
+    },
+    {
+      "from_frame": 4,
+      "to_frame": 5,
+      "angular_acceleration_degrees_per_frame2": 8.977778
+    },
+    {
+      "from_frame": 5,
+      "to_frame": 6,
+      "angular_acceleration_degrees_per_frame2": -9.655556
+    },
+    {
+      "from_frame": 6,
+      "to_frame": 7,
+      "angular_acceleration_degrees_per_frame2": -6.147222
+    },
+    {
+      "from_frame": 7,
+      "to_frame": 8,
+      "angular_acceleration_degrees_per_frame2": -3.35
+    },
+    {
+      "from_frame": 8,
+      "to_frame": 9,
+      "angular_acceleration_degrees_per_frame2": -9.325026
+    },
+    {
+      "from_frame": 9,
+      "to_frame": 10,
+      "angular_acceleration_degrees_per_frame2": -9.600011
+    },
+    {
+      "from_frame": 10,
+      "to_frame": 11,
+      "angular_acceleration_degrees_per_frame2": -0.2999
+    }
+  ],
+  "angular_jerk": [
+    {
+      "from_frame": 1,
+      "to_frame": 3,
+      "angular_jerk_degrees_per_frame3": 0.777777
+    },
+    {
+      "from_frame": 2,
+      "to_frame": 4,
+      "angular_jerk_degrees_per_frame3": 6.603705
+    },
+    {
+      "from_frame": 3,
+      "to_frame": 5,
+      "angular_jerk_degrees_per_frame3": 1.596296
+    },
+    {
+      "from_frame": 4,
+      "to_frame": 6,
+      "angular_jerk_degrees_per_frame3": -18.633334
+    },
+    {
+      "from_frame": 5,
+      "to_frame": 7,
+      "angular_jerk_degrees_per_frame3": 3.508334
+    },
+    {
+      "from_frame": 6,
+      "to_frame": 8,
+      "angular_jerk_degrees_per_frame3": 2.797222
+    },
+    {
+      "from_frame": 7,
+      "to_frame": 9,
+      "angular_jerk_degrees_per_frame3": -5.975026
+    },
+    {
+      "from_frame": 8,
+      "to_frame": 10,
+      "angular_jerk_degrees_per_frame3": -0.274985
+    },
+    {
+      "from_frame": 9,
+      "to_frame": 11,
+      "angular_jerk_degrees_per_frame3": 9.300111
+    }
+  ],
+  "peak_speed": {
+    "from_frame": 4,
+    "to_frame": 5,
+    "tip_motion_px": 68.48865,
+    "angular_velocity_degrees_per_frame": 19.377778,
+    "inside_or_near_active_window": true
+  },
+  "sword_head_collision_pixels": 0,
+  "sword_torso_forbidden_penetration_pixels": 0,
+  "continuity": {
+    "metrics": {
+      "active_path_px": 112.147598,
+      "post_hit_follow_path_px": 17.030468,
+      "follow_ratio": 0.151858,
+      "hit_velocity": 9.722222,
+      "first_follow_velocity": 3.575,
+      "velocity_retention_ratio": 0.367714,
+      "max_abs_weapon_acceleration": 9.655556,
+      "reversal_transition": [
+        8,
+        9
+      ],
+      "reversal_candidates": [
+        [
+          8,
+          9
+        ]
+      ],
+      "V11_vs_V0_sword_angle_delta": 4.0,
+      "V11_vs_V0_tip_distance": 12.811845,
+      "V11_vs_V0_wrist_distance": 0.045,
+      "V11_vs_V0_elbow_distance": 0.045,
+      "V11_vs_V0_pelvis_distance": 0.045,
+      "V11_vs_V0_head_nose_distance": 0.045,
+      "V11_vs_V0_torso_rotation_delta": 0.0
+    },
+    "velocities": [
+      {
+        "from_frame": 0,
+        "to_frame": 1,
+        "tip_motion_px": 8.601885,
+        "angular_velocity_degrees_per_frame": 2.240741
+      },
+      {
+        "from_frame": 1,
+        "to_frame": 2,
+        "tip_motion_px": 8.509561,
+        "angular_velocity_degrees_per_frame": 2.240741
+      },
+      {
+        "from_frame": 2,
+        "to_frame": 3,
+        "tip_motion_px": 12.560529,
+        "angular_velocity_degrees_per_frame": 3.018518
+      },
+      {
+        "from_frame": 3,
+        "to_frame": 4,
+        "tip_motion_px": 38.627854,
+        "angular_velocity_degrees_per_frame": 10.4
+      },
+      {
+        "from_frame": 4,
+        "to_frame": 5,
+        "tip_motion_px": 68.48865,
+        "angular_velocity_degrees_per_frame": 19.377778
+      },
+      {
+        "from_frame": 5,
+        "to_frame": 6,
+        "tip_motion_px": 36.804208,
+        "angular_velocity_degrees_per_frame": 9.722222
+      },
+      {
+        "from_frame": 6,
+        "to_frame": 7,
+        "tip_motion_px": 6.854741,
+        "angular_velocity_degrees_per_frame": 3.575
+      },
+      {
+        "from_frame": 7,
+        "to_frame": 8,
+        "tip_motion_px": 10.175727,
+        "angular_velocity_degrees_per_frame": 0.225
+      },
+      {
+        "from_frame": 8,
+        "to_frame": 9,
+        "tip_motion_px": 25.791688,
+        "angular_velocity_degrees_per_frame": -9.100026
+      },
+      {
+        "from_frame": 9,
+        "to_frame": 10,
+        "tip_motion_px": 64.751652,
+        "angular_velocity_degrees_per_frame": -18.700037
+      },
+      {
+        "from_frame": 10,
+        "to_frame": 11,
+        "tip_motion_px": 66.363226,
+        "angular_velocity_degrees_per_frame": -18.999937
+      }
+    ],
+    "accelerations": [
+      {
+        "from_frame": 1,
+        "to_frame": 2,
+        "angular_acceleration_degrees_per_frame2": 0.0
+      },
+      {
+        "from_frame": 2,
+        "to_frame": 3,
+        "angular_acceleration_degrees_per_frame2": 0.777777
+      },
+      {
+        "from_frame": 3,
+        "to_frame": 4,
+        "angular_acceleration_degrees_per_frame2": 7.381482
+      },
+      {
+        "from_frame": 4,
+        "to_frame": 5,
+        "angular_acceleration_degrees_per_frame2": 8.977778
+      },
+      {
+        "from_frame": 5,
+        "to_frame": 6,
+        "angular_acceleration_degrees_per_frame2": -9.655556
+      },
+      {
+        "from_frame": 6,
+        "to_frame": 7,
+        "angular_acceleration_degrees_per_frame2": -6.147222
+      },
+      {
+        "from_frame": 7,
+        "to_frame": 8,
+        "angular_acceleration_degrees_per_frame2": -3.35
+      },
+      {
+        "from_frame": 8,
+        "to_frame": 9,
+        "angular_acceleration_degrees_per_frame2": -9.325026
+      },
+      {
+        "from_frame": 9,
+        "to_frame": 10,
+        "angular_acceleration_degrees_per_frame2": -9.600011
+      },
+      {
+        "from_frame": 10,
+        "to_frame": 11,
+        "angular_acceleration_degrees_per_frame2": -0.2999
+      }
+    ],
+    "hard_gates": {
+      "post_hit_follow_through_path_ge_12": true,
+      "follow_ratio_ge_0_15": true,
+      "follow_ratio_le_0_60": true,
+      "immediate_velocity_retention_ge_0_25": true,
+      "immediate_velocity_retention_le_0_85": true,
+      "max_abs_weapon_acceleration_le_10": true,
+      "no_sign_reversal_during_6_to_7_and_7_to_8": true,
+      "first_recovery_reversal_is_8_to_9": true,
+      "recovery_reversal_acceleration_le_10": true,
+      "recovery_metrics_available": true,
+      "V11_sword_angle_within_5_deg": true,
+      "V11_tip_within_16_px": true,
+      "V11_wrist_within_8_px": true,
+      "V11_elbow_within_8_px": true,
+      "V11_pelvis_within_4_px": true,
+      "V11_head_nose_within_5_px": true,
+      "V11_torso_rotation_within_2_deg": true
+    },
+    "status": "ATTACK_V2_WEAPON_CONTINUITY_QA_PASSED",
+    "limits": {
+      "min_post_hit_follow_through_path_px": 12.0,
+      "min_follow_ratio": 0.15,
+      "max_follow_ratio": 0.6,
+      "min_velocity_retention_ratio": 0.25,
+      "max_velocity_retention_ratio": 0.85,
+      "max_abs_weapon_angular_acceleration_deg_per_frame2": 10.0,
+      "follow_through_frames": [
+        6,
+        7,
+        8
+      ],
+      "recovery_start_frame": 9,
+      "max_recovery_sword_angle_delta_deg": 5.0,
+      "max_recovery_weapon_tip_distance_px": 16.0,
+      "max_recovery_wrist_distance_px": 8.0,
+      "max_recovery_elbow_distance_px": 8.0,
+      "max_recovery_pelvis_distance_px": 4.0,
+      "max_recovery_head_nose_distance_px": 5.0,
+      "max_recovery_torso_rotation_delta_deg": 2.0,
+      "pre_render_post_render_tolerance": 0.001
+    },
+    "pre_render_post_render_consistency": {
+      "tolerance": 0.001,
+      "metrics": {
+        "active_path_px": {
+          "pre_render": 112.147598,
+          "post_render": 112.147598,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "post_hit_follow_path_px": {
+          "pre_render": 17.030469,
+          "post_render": 17.030468,
+          "absolute_delta": 1e-06,
+          "within_tolerance": true
+        },
+        "follow_ratio": {
+          "pre_render": 0.151858,
+          "post_render": 0.151858,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "hit_velocity": {
+          "pre_render": 9.722222,
+          "post_render": 9.722222,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "first_follow_velocity": {
+          "pre_render": 3.575,
+          "post_render": 3.575,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "velocity_retention_ratio": {
+          "pre_render": 0.367714,
+          "post_render": 0.367714,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "max_abs_weapon_acceleration": {
+          "pre_render": 9.655555,
+          "post_render": 9.655556,
+          "absolute_delta": 1e-06,
+          "within_tolerance": true
+        },
+        "V11_vs_V0_sword_angle_delta": {
+          "pre_render": 4.0,
+          "post_render": 4.0,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "V11_vs_V0_tip_distance": {
+          "pre_render": 12.811845,
+          "post_render": 12.811845,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "V11_vs_V0_wrist_distance": {
+          "pre_render": 0.045,
+          "post_render": 0.045,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "V11_vs_V0_elbow_distance": {
+          "pre_render": 0.045,
+          "post_render": 0.045,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "V11_vs_V0_pelvis_distance": {
+          "pre_render": 0.045,
+          "post_render": 0.045,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "V11_vs_V0_head_nose_distance": {
+          "pre_render": 0.045,
+          "post_render": 0.045,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        },
+        "V11_vs_V0_torso_rotation_delta": {
+          "pre_render": 0.0,
+          "post_render": 0.0,
+          "absolute_delta": 0.0,
+          "within_tolerance": true
+        }
+      },
+      "reversal_transition_matches": true,
+      "all_within_tolerance": true
+    }
+  },
+  "hard_gates": {
+    "sword_pivot_attached_all_frames": true,
+    "active_window_frames_exact": true,
+    "hit_event_frame_exact": true,
+    "weapon_tip_path_nonzero": true,
+    "peak_speed_inside_or_near_active_window": true,
+    "hit_event_inside_active_window": true,
+    "pre_hit_acceleration_pattern_exists": true,
+    "post_hit_follow_through_path_nonzero": true,
+    "sword_head_collision_zero": true,
+    "sword_torso_forbidden_penetration_zero": true,
+    "alpha_safe_margin_ge_24_all_frames": true,
+    "no_clipping_all_frames": true,
+    "source_only_provenance": true,
+    "post_hit_follow_through_path_ge_12": true,
+    "follow_ratio_ge_0_15": true,
+    "follow_ratio_le_0_60": true,
+    "immediate_velocity_retention_ge_0_25": true,
+    "immediate_velocity_retention_le_0_85": true,
+    "max_abs_weapon_acceleration_le_10": true,
+    "no_sign_reversal_during_6_to_7_and_7_to_8": true,
+    "first_recovery_reversal_is_8_to_9": true,
+    "recovery_reversal_acceleration_le_10": true,
+    "recovery_metrics_available": true,
+    "V11_sword_angle_within_5_deg": true,
+    "V11_tip_within_16_px": true,
+    "V11_wrist_within_8_px": true,
+    "V11_elbow_within_8_px": true,
+    "V11_pelvis_within_4_px": true,
+    "V11_head_nose_within_5_px": true,
+    "V11_torso_rotation_within_2_deg": true,
+    "pre_render_post_render_consistent": true
+  },
+  "status": "ATTACK_V2_WEAPON_ARC_QA_PASSED",
+  "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:measured_presented_tip_and_skeleton_trajectory"
+}

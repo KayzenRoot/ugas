@@ -1,8 +1,8 @@
-# UGAS checkpoint - v0.8.1
+# UGAS checkpoint - v0.11.1
 
-**STATUS:** `CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED`
-**VERSION:** `0.8.1`
-**PHASE:** `DETERMINISTIC_FRONT_WALK_8FRAME_PILOT`
+**STATUS:** `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`
+**VERSION:** `0.11.1`
+**PHASE:** `REUSABLE_DETERMINISTIC_ANIMATION_RUNTIME`
 
 ## Current state
 
@@ -48,3 +48,11 @@ Historical `walk_front_v081_external_visual=APPROVED_PILOT` and `idle_front_v1_e
 UGAS v0.11.0 adds the generic `motion_tracks[]` quality layer between Animation Spec and adapter, with deterministic scalar/vec2 sampling, linear/smoothstep/cubic-Hermite interpolation, finite-value validation, explicit clamp-only out-of-range policy, and hash binding through compiled manifest, QA, metadata and package. The only newly executed subject is `attack-front-v2`: front, 12 frames, 12 fps, non-loop, sword, source-only R4 targets, frozen markers `windup_peak=3`, `active_start=4`, `hit_event=6`, `active_end=7`, and `recovery_complete=11`.
 
 The v2 technical gate is `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`; all 12 frames, temporal mechanics, weapon arc, planted feet, structural/occlusion, retention, alpha margin, source hashes and independent MediaPipe metrics pass. The v0.10.0 attack-front-v1 spritesheet/GIF/frames and the canonical v0.8.1 walk and v0.9.0 idle fixtures replay byte-identically. `motion_tracks_sha256` is bound in all v2 artifacts. `attack_front_v2_external_visual=REQUIRED`, `production_approved=false`, `production_routing=BLOCKED`, `sam2_runs=0`, `comfyui_generation_jobs=0`, `diffusion_runs=0`, and `new_generation=0`. The only allowed next action is `external_review_attack_front_v2`; no run/hit/death, other direction, provider, rig/mask, manual-pixel or production changes are authorized.
+
+## v0.11.1 current checkpoint
+
+UGAS v0.11.1 is the corrective slice over the immutable public v0.11.0 implementation base `9401c31f994e968149292b2993d960d3aafc37c4`. It corrects only the false-green weapon follow-through/recovery of the same `attack-front-v2`; the generic motion curve layer, R4 rig, masks, body mechanics, foot balance, historical fixtures and thresholds remain unchanged.
+
+The pre-render weapon proxy passes before the first PNG: post-hit follow-through is `17.030469 px`, follow ratio is `0.151858`, velocity retention is `0.367714`, and maximum absolute weapon acceleration is `9.655555 deg/frame²`. Post-render recomputation agrees within `0.001`; V11 sword angle delta is `4.0°`, tip distance is `12.811845 px`, and all recovery gates pass. All required negative controls reject, including the v0.11.0 false-green shape. The package remains source-only, front, 12 frames, non-loop, RGBA, and technically qualified.
+
+The active state is `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED` with `decision=QUALIFIED`, but `attack_front_v2_external_visual=REQUIRED`, `production_approved=false`, `production_routing=BLOCKED`, `sam2_runs=0`, `comfyui_generation_jobs=0`, `diffusion_runs=0`, and `new_generation=0`. The only allowed next action is `external_review_attack_front_v2_v0111`; no run, hit, death, other direction, provider, rig/mask, manual-pixel or production change is authorized.

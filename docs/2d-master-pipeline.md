@@ -1,8 +1,8 @@
-# 2D master pipeline v0.11.0
+# 2D master pipeline v0.11.1
 
-The active release is the v0.11.0 generic motion-quality runtime over the immutable v0.10.0 action lane and v0.9.0 cutout-rig lane. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; only front `attack-front-v2` is newly executed and production routing remains blocked.
+The active release is the v0.11.1 weapon-continuity correction over the immutable v0.11.0 generic motion-quality runtime, v0.10.0 action lane and v0.9.0 cutout-rig lane. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; only front `attack-front-v2` is newly corrected and production routing remains blocked.
 
-This release does not run diffusion or SAM2. It reuses the v0.7.1 eleven-part R4 rig, masks, structural core, walk/idle/attack-v1 fixtures, and adds the generic optional motion-track contract plus a deterministic source-skeleton sword sweep for `attack-front-v2`. The 12 frames are non-looping, 12 fps, front-facing, RGBA, with fixed markers at windup peak, active start/end, hit, and recovery complete. The current lane requires external attack-v2 visual review before authorization.
+This release does not run diffusion or SAM2. It reuses the v0.7.1 eleven-part R4 rig, masks, structural core, walk/idle/attack-v1 fixtures and v0.11.0 motion tracks, then corrects only the source-skeleton sword follow-through/recovery for `attack-front-v2`. The 12 frames are non-looping, 12 fps, front-facing, RGBA, with fixed markers at windup peak, active start/end, hit, and recovery complete. A pre-render proxy and post-render consistency check are hard gates; the current lane requires external attack-v2 visual review before authorization.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 
@@ -15,6 +15,9 @@ O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose
 7. The structural core is source-mapped and excludes head/sword; expected coverage is independent from rendered output and every overlap requires a joint corridor or explicit phase geometry.
 
 A revisão visual humana e a aprovação de produção permanecem separadas dos gates técnicos.
+## v0.11.0 historical boundary
+
+The v0.11.0 generic motion-quality and attack-front-v2 evidence is preserved as the false-green baseline. v0.11.1 does not rewrite it.
 ## v0.10.0 runtime boundary
 
 The reusable deterministic animation runtime consumes the immutable R4 cutout rig through declarative animation specs. v0.10.0 covers `attack-front-v1` only; generic event markers are validated, ordered, hash-bound, and preserved through compiled manifest, QA, metadata, and package artifacts. Production routing is `BLOCKED`, with `decision=QUALIFIED` and every hard gate literally true required before package creation. Evidence is recorded in `docs/evidence/animation-runtime-v0100/`.

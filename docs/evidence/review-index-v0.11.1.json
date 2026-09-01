@@ -1,0 +1,541 @@
+{
+  "schema_version": "0.11.1",
+  "version": "0.11.1",
+  "branch": "main",
+  "review_subject": {
+    "baseline_commit": "9401c31f994e968149292b2993d960d3aafc37c4",
+    "implementation_base_commit": "9401c31f994e968149292b2993d960d3aafc37c4",
+    "repository_ref": "https://github.com/csn1985-ship-it/ugas.git"
+  },
+  "publication": {
+    "index_build_git_head": "9401c31f994e968149292b2993d960d3aafc37c4",
+    "index_build_dirty_state": "dirty_before_publication_commit",
+    "final_head_must_be_resolved_by_external_reviewer": true,
+    "executor_cannot_self_assert_final_head": true
+  },
+  "review_file": "REVIEW-v0.11.1.md",
+  "current_state": "docs/evidence/current-state.json",
+  "tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "count": 319,
+    "passed": 319,
+    "failed": 0,
+    "status": "passed"
+  },
+  "validation": {
+    "command": "python scripts/validation/run_validation.py",
+    "checks": 1522,
+    "passed": 1522,
+    "failed": 0,
+    "status": "passed"
+  },
+  "artifact_set": {
+    "manifest_algorithm": "sha256-canonical-path-list-v1",
+    "artifacts": [
+      {
+        "path": "CHECKPOINT.md",
+        "sha256": "4faa38f94168b2ff655507a8c1e6471bf9c6bddd77cb6afbce767c716f8260c2",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "INSTALL.md",
+        "sha256": "a50d3b7cb49150dc7d7e71812cfc2c7a5541a7176839332f0060a27f5b756e24",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "3063da31fa8f07caa7a7815c9a4fcd0cf0b30b3e1e7f90b18974fe36a255b0aa",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "README.md",
+        "sha256": "b16e8e54fdd032d82c68f8120b860d10427556889c0bad94a3c6b8bb16eb74cd",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "REVIEW-v0.11.1.md",
+        "sha256": "8c771580675b2e3ae1f6d5af61bf99a43f963ec03f704f9c3e4f7d07a299f862",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/2d-master-pipeline.md",
+        "sha256": "e39bbbb5155e0f79fdd930b62b749d98c6b1dcefa534f95f452fc4150a77950d",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/comfyui.md",
+        "sha256": "dcf20ff40da242e1f545cf8602939f1b0577e0f0e0925dc0bdafdbdb7542a8c4",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/attack-front-v2-preview-v0111.gif",
+        "sha256": "39bd02a9f1a5265905107696d90999b39317c14314c5af839d3c8af6c1c50a4b",
+        "media_type": "image/gif",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/attack-front-v2-spritesheet-v0111.png",
+        "sha256": "28c04645ffc0004480e8f57d3a74d6877ff1204083db994363c3d84d314aa139",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/compiled-manifest.json",
+        "sha256": "224164c5d8b51c685150b16dab7f6bbedccb3583d9cc40aa12e543a73c6493b0",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-00.png",
+        "sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-01.png",
+        "sha256": "74d2bc2c1110232d1fc5ddf675d081277c9b381970edcee189e53719038c5203",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-02.png",
+        "sha256": "a17e938c822f856a3f4a64918aa4617b60bb292c680cb651cbde5b5e3300c6df",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-03.png",
+        "sha256": "0527e98171692230ded482c6c62f2f46abcc8c4c863072cc26164c1365fa47e6",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-04.png",
+        "sha256": "28006511ba1cfff86f21abdb8bb77ba04447dacde7ceded186038c671d87f20b",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-05.png",
+        "sha256": "0fbd829731c330b12a88dc94af3fbed6a71b53fd3264cfb0d814d4c48a2f3adc",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-06.png",
+        "sha256": "4f135be99b728b70880ea2ba8fa472732cc41f87d2c5e68d0ce4d54d19d8a8a4",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-07.png",
+        "sha256": "49fc7e207747c457e67d6dbc8b8a5f68f22dc762d45a26040dd10b7422c5b1c2",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-08.png",
+        "sha256": "e8d9a55d65f0f1408d4297532f51b391ccca6d1ab902ebb4c9b3a1632956cc06",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-09.png",
+        "sha256": "f24fdae9b70e5abca21285a710d54bf1e1ae918e46fad7cda05b3d84e4522fd1",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-10.png",
+        "sha256": "3c8ea1d828b0ff7138e265092ef07b9d76e2be9e643c947fe7bf3aebfeeb0fac",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/frame-11.png",
+        "sha256": "619be1c81c345aee6c754f90b9f2b25814dcf6f1dda15a6e3048df6131af63d6",
+        "media_type": "image/png",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/metadata.json",
+        "sha256": "13716e374fe7d730677e055f9c2aa1bf4940a367040e4b040ac6a57e23c208bb",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/package-manifest.json",
+        "sha256": "cf8a2ab7cf853bf5e79cc764f434705e0386f35922d3c97dfe2a9cd950208c35",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/qa-result.json",
+        "sha256": "1a0f08d7e6be5678a44dce38ddda506fc408063c89fe7d2e31cba07fd07669bc",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-00-V0-ready.png",
+        "sha256": "e2d57db69d246b4e719269e68e069a09ddd6c852ec8dd191f44d8dc9b85efc99",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-01-V1-anticipation-early.png",
+        "sha256": "0334e86ea2af3593cddd2724e8efa3b2e5f3915a96ece4de719cfa86fd504aab",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-02-V2-anticipation.png",
+        "sha256": "cf9a58eaa6f4cab59b617b40e9e12effe87ea328896ee0dcafe7d15e1e912ec4",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-03-V3-windup-peak.png",
+        "sha256": "d2d6cf1d08dfd8f8c84f47885119b600c3726584ad122b056f27a7cb7548f2bd",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-04-V4-strike-start.png",
+        "sha256": "366ce69909a77cf7457483ecdb808bbb682b8ccb608a5faf3e5c7671195eea34",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-05-V5-strike-mid.png",
+        "sha256": "dcd38768252e2cb6a5a6d1ab8e349fe779fa550bf6009a1ca2cb1433a7464007",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-06-V6-strike-contact.png",
+        "sha256": "d40b7ab5aac7abea48f3f8e4926aa362199fb020cc62b0a585ad251729daa409",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-07-V7-follow-through.png",
+        "sha256": "894e7457ba324f542740af4b684418a3f6980e69b96be2fc4f6bc51597996bcc",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-08-V8-follow-through-late.png",
+        "sha256": "712f3808c5328823b4b6b19988bfb6af4004acf215f473c6c5cb5f623b8287d8",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-09-V9-recovery-early.png",
+        "sha256": "50404fafc1186987b356510a587132a73cec3beaa6ae31939396580f7bc6c4c9",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-10-V10-recovery-late.png",
+        "sha256": "58ce984e1407177175e5a74b540c0210cc1b22c83e1864bfa6eb28385e0d3004",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/visual/target-detected-overlays/frame-11-V11-ready-end.png",
+        "sha256": "39ceb8aa9c4e98e3083e7cc21ed89c8ec8ff36a7edf5fd6c110538ae0a5849ae",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-v2-body-mechanics-qa-v0111.json",
+        "sha256": "65bb91e06557da47176e636f1496228e78e73701761b1fcbda354cc5fa324f20",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-v2-foot-ground-qa-v0111.json",
+        "sha256": "695ebe4d5fd1d47f632cb1f52ae0740ab9b30ac8b8dabfba9ccf5548f3f94a73",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-v2-temporal-qa-v0111.json",
+        "sha256": "1ae7467132d7a903a0d420ed890dc0fb8562c63b261cba64b6518521df96a1e7",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-v2-visual-manifest-v0111.json",
+        "sha256": "36fc8748cab9485c5f1d47f35b47763f7161d660ea9ce51c7e8accf6af1a84b3",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/attack-v2-weapon-arc-qa-v0111.json",
+        "sha256": "83c46bf1680a39159d71e7170ef83ba7c922059ba143f90e3d25c9cfca8da514",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/execution-evidence-v0.11.1.json",
+        "sha256": "d50e56025a8f426a4fbd1fa821c7b10b37cee683116b34373f9217fb72c8fb4d",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/generic-motion-curve-regression-v0111.json",
+        "sha256": "95e593881e1faa07e52562fe738de9aeaf3271a9943ff903de1fb277832eb197",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/historical-replay-v0111.json",
+        "sha256": "07582abf813dde5d76b405c8e42c7c852d2bcf644971e4ed7bcc98a287933dd3",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/weapon-continuity-post-render-v0111.json",
+        "sha256": "126b05ee8bf40db8c5e22863dc8948b8551cad60f367ddd3891962297b52a849",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0111/weapon-continuity-pre-render-v0111.json",
+        "sha256": "8ef33772168d94f7f5b11ae33c2eca59fc054059c6d431c04c7a052d61993da4",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/current-state-v0.11.0.json",
+        "sha256": "9d690108e767a536ac0ebdcae5993770371d3206b609d219221e026d52761fcf",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/current-state.json",
+        "sha256": "30e6be2b15d0fe4cec83427ec646b7780885f10eb4ad6f03859817ec31b48b1b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/state-consistency-v0110.json",
+        "sha256": "e723dfe65925927bfc4a49dd63963cc1c7738019314a8965410ae59a9b7c014a",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/state-consistency.json",
+        "sha256": "0cc91401a98486d15586b697aa2cb18f17ef522621d67a15a71573a7d1e113ed",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/roadmap.md",
+        "sha256": "759dd90ac8d123bdf3a0eb288b81a2969fb4542e37e1c8baa3a5da1eae3fe30f",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/test-coverage-matrix-v0.11.1.md",
+        "sha256": "4772d29888cc4fef4eceb669f2b28b155d1682ca78a857e11cd60df0bbdcba10",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "package.json",
+        "sha256": "12a0e9dd9cb84734b24dad45b19abe055c977fc8fa4c331cbdd3b981a1c89cbe",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "profiles/animation/attack-front-v2-v0.11.0.json",
+        "sha256": "bc84ff047df9eb5eb4e11e89d7ff9570925f2025d016358afde94c2a1683b579",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "pyproject.toml",
+        "sha256": "1288fb5ac3a116607d87f4af53c9d633fbf38b4090aade6ba6f1412e08dd97ed",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-compiled-manifest-v1.json",
+        "sha256": "fae7fc98d364c13b62fbf53b44a86367d33e0f0010f0334b4a93e77aae39f170",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-package-v1.json",
+        "sha256": "4ece9391cea9c2f38e18ad04ed909a554e5e8c19b2fa56cc9bc357d8a7f31b2d",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-qa-result-v1.json",
+        "sha256": "6c924b808603eb2b5c6737e0cf60cd9602adb1e8da449c8a922c63d68bcbc46c",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-spec-v1.json",
+        "sha256": "19d9a6c2b6f6347b474fdd0c10c8da5101a0df4b9c6dc3683d7f867d75e06fd2",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state-v0.11.0.json",
+        "sha256": "e007c07788e60c46e5c1191dccde3dd890ca555f556436e995e430bf761f1ccb",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state.json",
+        "sha256": "35c63eabacc6ab475f5d44312a737df123ab3adcd6cb05f331354bbdc6c5bf26",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/review-index-v0.11.1.json",
+        "sha256": "2ae71ecc7ad966ebe21eacdaaff3f3760e921d1540e8eb8bab237f34e07a2a14",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/build_review_index_v0111.py",
+        "sha256": "7577ab8fb0318e2d4c20a853cad8e037bb421c26dd16965e8105368c040d135f",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/run_animation_runtime_v0111.py",
+        "sha256": "ef5d1a26fe13ec8d61d755818e09dbb75507d6478d6bd12b86bf90bf0c78d3e5",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/run_validation.py",
+        "sha256": "97669e1448a1a744d8f23e594f04e21a9f2e722587704983c8ef0717316fafff",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_review_index_v0111.py",
+        "sha256": "7a5413d45838fc33e2f23bfd1f6d0401d3877c9e68bc930978d2569dc96055c8",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_state_consistency.py",
+        "sha256": "4d2fec73ca84cb13cde05bc2c7bb8fce26dbfa0bab675287ef24af1eb2aa4b3f",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_state_consistency_v0111.py",
+        "sha256": "0f6e970d57cb4a8256218ffcf829562fab6d2396e5150ec5b6bc13c0bd1931fc",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/animation.py",
+        "sha256": "b06b188df16aa268e81cac54133bddde70fed8a2ed5595080a3702df9df80a6e",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/animation_profiles/attack_front_v2.py",
+        "sha256": "08f76c6d7930fe208698dcbc794157029b74fe7dcdb07dbed9b4fea15e37c433",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/animation_profiles/common.py",
+        "sha256": "ea34a02d36edd0e05e2ea4b7091e53edaf41c37ea49effea1e22c3641c17f7a1",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/cutout_structural.py",
+        "sha256": "43a67b61e67c443767381fcde84a8561fe4f483e2b904bda7d6540a803bb02fd",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/motion_curves.py",
+        "sha256": "5d7938879ed2e699713864d00743950068e0834266da4dcb033933f3241a8db9",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/state_consistency_v0110.py",
+        "sha256": "c9f48f30492496f31fd6bf7e62eaa74bc728ba2a090ed40f136bfb5637d4a316",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/state_consistency_v0111.py",
+        "sha256": "4e9a99532725866985a123682c78eb6d4aa56c7170f22783d435fe90f04b9153",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/test_motion_curves_v0110.py",
+        "sha256": "a624b6367db4513d30aa253b938b865882dd063b7c4106eedfee715459d597eb",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/test_weapon_continuity_v0111.py",
+        "sha256": "bfc86841645c82eb52935aa1c556053ed62fbf31b322db6afa4f5f1718768f58",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      }
+    ],
+    "artifact_set_sha256": "c538ff53c0bfd0a334ba0fc237ac6d44b5c006b10881ebd4ff055023275faa33",
+    "evidence_count": 78,
+    "visual_count": 26
+  },
+  "required_visual_sets": [
+    "attack-front-v2-preview-v0111.gif",
+    "attack-front-v2-spritesheet-v0111.png",
+    "frame-00-V0-ready.png",
+    "frame-01-V1-anticipation-early.png",
+    "frame-02-V2-anticipation.png",
+    "frame-03-V3-windup-peak.png",
+    "frame-04-V4-strike-start.png",
+    "frame-05-V5-strike-mid.png",
+    "frame-06-V6-strike-contact.png",
+    "frame-07-V7-follow-through.png",
+    "frame-08-V8-follow-through-late.png",
+    "frame-09-V9-recovery-early.png",
+    "frame-10-V10-recovery-late.png",
+    "frame-11-V11-ready-end.png"
+  ],
+  "forbidden_artifacts": [
+    "*.zip",
+    "*.safetensors",
+    "*.ckpt",
+    "*.gguf",
+    "*.onnx",
+    "self-referential head_commit claim",
+    "new run/hit/death directions"
+  ],
+  "external_visual_review": {
+    "status": "REQUIRED",
+    "walk_pilot_approval": "APPROVED_PILOT",
+    "idle_front_approval": "APPROVED_PILOT",
+    "attack_front_v1_approval": "APPROVED_PILOT",
+    "attack_front_v2_approval": "REQUIRED"
+  },
+  "production_routing": "BLOCKED"
+}

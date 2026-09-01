@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.11.1",
+  "status": "GENERIC_MOTION_CURVE_REGRESSION_PASSED",
+  "baseline_contract": "v0.11.0 generic motion curve layer unchanged",
+  "positive_fixtures": {
+    "linear_scalar_at_2_5": 5.0,
+    "smoothstep_vec2_at_2": [
+      4.0,
+      -2.0
+    ],
+    "explicit_clamp_at_0": 1.0,
+    "track_hash_changes_when_mutated": true
+  },
+  "negative_controls": {
+    "duplicate_track_id": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_track_id_must_be_unique"
+    },
+    "strictly_ascending_keyframes": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_keyframes_must_be_strictly_increasing"
+    },
+    "keyframe_in_timeline": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_keyframe_frame_out_of_range"
+    },
+    "out_of_range_sample_without_explicit_clamp": {
+      "status": "REJECTED",
+      "error": "MotionCurveError",
+      "message": "motion_sample_out_of_range"
+    }
+  },
+  "motion_curves_source_sha256": "5d7938879ed2e699713864d00743950068e0834266da4dcb033933f3241a8db9",
+  "proof_source": "src/ugas/motion_curves.py"
+}

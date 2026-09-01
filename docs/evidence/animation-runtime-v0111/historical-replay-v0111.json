@@ -1,0 +1,470 @@
+{
+  "schema_version": "0.11.1",
+  "status": "HISTORICAL_REPLAY_V0111_PASSED",
+  "baseline_commit": "9401c31f994e968149292b2993d960d3aafc37c4",
+  "v0_11_0_false_green_baseline_byte_identical": true,
+  "baseline_checks": [
+    {
+      "path": "docs/evidence/animation-runtime-v0110/generic-motion-curve-contract-v0110.json",
+      "baseline_sha256": "f1f691ddbb74eeda5dab88a76be532bbe4833d34a4dea45256fa13513c0893d0",
+      "current_sha256": "668c75b87a82bbb5a4a56ec41298d8dc996dcb9d6604b4d00771026fd2c41580",
+      "byte_identical_to_v0110_baseline": false,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": true
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/historical-replay-v0110.json",
+      "baseline_sha256": "cf61b2c477edb08f08a5593633ed36b2f03127e380000d7a3c0a0cbb7636bb47",
+      "current_sha256": "4a6eec0db153aedd9872ae3d6bcb782ee6f7aeee8a0e3be6a5a724006027cdce",
+      "byte_identical_to_v0110_baseline": false,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": true
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/execution-evidence-v0.11.0.json",
+      "baseline_sha256": "1163041ba0b9a382f1f96b6f98fc0dfdff29fc9128f0bdda5efc3a1f2a089d81",
+      "current_sha256": "52256ca2199d0b07dfacf0c127fdeb160a988a203a043b355becee5e99ae2738",
+      "byte_identical_to_v0110_baseline": false,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": true
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-preview.gif",
+      "baseline_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7",
+      "current_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-spritesheet.png",
+      "baseline_sha256": "6d3942761bdcfb336816470502ce4a40459ad67fc629f54e1600afcdadaf3377",
+      "current_sha256": "6d3942761bdcfb336816470502ce4a40459ad67fc629f54e1600afcdadaf3377",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-00.png",
+      "baseline_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "current_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-01.png",
+      "baseline_sha256": "74d2bc2c1110232d1fc5ddf675d081277c9b381970edcee189e53719038c5203",
+      "current_sha256": "74d2bc2c1110232d1fc5ddf675d081277c9b381970edcee189e53719038c5203",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-02.png",
+      "baseline_sha256": "a17e938c822f856a3f4a64918aa4617b60bb292c680cb651cbde5b5e3300c6df",
+      "current_sha256": "a17e938c822f856a3f4a64918aa4617b60bb292c680cb651cbde5b5e3300c6df",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-03.png",
+      "baseline_sha256": "0527e98171692230ded482c6c62f2f46abcc8c4c863072cc26164c1365fa47e6",
+      "current_sha256": "0527e98171692230ded482c6c62f2f46abcc8c4c863072cc26164c1365fa47e6",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-04.png",
+      "baseline_sha256": "6dabd708f57b21ce02813ae42b86c8045fb5e674383f5228629804f548fa997f",
+      "current_sha256": "6dabd708f57b21ce02813ae42b86c8045fb5e674383f5228629804f548fa997f",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-05.png",
+      "baseline_sha256": "0b6751b124b09e35ac9b3a0462990ae9789a556c4335865a5bbcbbda5646bba9",
+      "current_sha256": "0b6751b124b09e35ac9b3a0462990ae9789a556c4335865a5bbcbbda5646bba9",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-06.png",
+      "baseline_sha256": "4f135be99b728b70880ea2ba8fa472732cc41f87d2c5e68d0ce4d54d19d8a8a4",
+      "current_sha256": "4f135be99b728b70880ea2ba8fa472732cc41f87d2c5e68d0ce4d54d19d8a8a4",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-07.png",
+      "baseline_sha256": "09386429a1e660391fa050b18299c51c80e6d7999db3dbefba9b4a71c5049dd9",
+      "current_sha256": "09386429a1e660391fa050b18299c51c80e6d7999db3dbefba9b4a71c5049dd9",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-08.png",
+      "baseline_sha256": "f8d045801e33a140a7075a1800f83c867736e13ba08986f02acbfa12bce41f43",
+      "current_sha256": "f8d045801e33a140a7075a1800f83c867736e13ba08986f02acbfa12bce41f43",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-09.png",
+      "baseline_sha256": "5b3bc064badcdaf0ce9f6bd29745f77f6682a6c8985a6cf3bac6122a9a9de5e9",
+      "current_sha256": "5b3bc064badcdaf0ce9f6bd29745f77f6682a6c8985a6cf3bac6122a9a9de5e9",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-10.png",
+      "baseline_sha256": "5435405abff94a9332ba8d82af452850f3ebe040850bafb0bb8a42cade5338c9",
+      "current_sha256": "5435405abff94a9332ba8d82af452850f3ebe040850bafb0bb8a42cade5338c9",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/frame-11.png",
+      "baseline_sha256": "f45b8d2b4048994950e83ce19e8fa53841a24741bff19794238cdb117dcbce68",
+      "current_sha256": "f45b8d2b4048994950e83ce19e8fa53841a24741bff19794238cdb117dcbce68",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-00.png",
+      "baseline_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "current_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-01.png",
+      "baseline_sha256": "e8918906d817f5ca47ef2a98950225d3666445e0267b924d7ea8b9ee3a33e01c",
+      "current_sha256": "e8918906d817f5ca47ef2a98950225d3666445e0267b924d7ea8b9ee3a33e01c",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-02.png",
+      "baseline_sha256": "576ffd659e120935d8a7a4670a0c4244bcc81df0f1da52064d66e3c9b512e7a3",
+      "current_sha256": "576ffd659e120935d8a7a4670a0c4244bcc81df0f1da52064d66e3c9b512e7a3",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-03.png",
+      "baseline_sha256": "502fc9df9190ad0231301b44d340a155418ea6cfd5fe28775947820a0c1c7ea0",
+      "current_sha256": "502fc9df9190ad0231301b44d340a155418ea6cfd5fe28775947820a0c1c7ea0",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-04.png",
+      "baseline_sha256": "d80d5ed5c3f1cf76680b206101f98ad0c0cc3a36e4558aa024b9c0edfe4b29c4",
+      "current_sha256": "d80d5ed5c3f1cf76680b206101f98ad0c0cc3a36e4558aa024b9c0edfe4b29c4",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-05.png",
+      "baseline_sha256": "db31a49e929226750168936f6f786ffda7cadb13a3a427acc62c4cd581d8a571",
+      "current_sha256": "db31a49e929226750168936f6f786ffda7cadb13a3a427acc62c4cd581d8a571",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-06.png",
+      "baseline_sha256": "7c2bb7ed8d33e557f3a2f3ee100dbe6b1707c32130a261516a120f8ee902dffb",
+      "current_sha256": "7c2bb7ed8d33e557f3a2f3ee100dbe6b1707c32130a261516a120f8ee902dffb",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-07.png",
+      "baseline_sha256": "eea0a4f0974a9ef3885b070615ff171763a855fbfbe2ef001b0084643167d7bc",
+      "current_sha256": "eea0a4f0974a9ef3885b070615ff171763a855fbfbe2ef001b0084643167d7bc",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-08.png",
+      "baseline_sha256": "ca0a7bbc0fc4bc1c35a189cfa1d376f62e28098b388683f99a2ebde312d1c9b8",
+      "current_sha256": "ca0a7bbc0fc4bc1c35a189cfa1d376f62e28098b388683f99a2ebde312d1c9b8",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-09.png",
+      "baseline_sha256": "28f341bd3976b1c773faf721466d0dc41b12680d60a877a8267622453b52b80b",
+      "current_sha256": "28f341bd3976b1c773faf721466d0dc41b12680d60a877a8267622453b52b80b",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/attack-front-spritesheet-v0100.png",
+      "baseline_sha256": "1fe70634bf13ba6799547ebfae322959d3177b605b6e8223576b70af16aeb7ce",
+      "current_sha256": "1fe70634bf13ba6799547ebfae322959d3177b605b6e8223576b70af16aeb7ce",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/attack-front-preview-v0100.gif",
+      "baseline_sha256": "6f34f5730d3da937595c540388237dc7effc99bb9e27441fcc6bf958c7720e97",
+      "current_sha256": "6f34f5730d3da937595c540388237dc7effc99bb9e27441fcc6bf958c7720e97",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-00-contact-left.png",
+      "baseline_sha256": "958107198299ea232fa52620123cf5e42070a0e55b11635a5dd25a05cf055e19",
+      "current_sha256": "958107198299ea232fa52620123cf5e42070a0e55b11635a5dd25a05cf055e19",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-01-down-left.png",
+      "baseline_sha256": "9bbd9aa307201910eee7cb9b904093444c3b9e8693ff9aed2b0c31e41ded04f7",
+      "current_sha256": "9bbd9aa307201910eee7cb9b904093444c3b9e8693ff9aed2b0c31e41ded04f7",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-02-passing-left.png",
+      "baseline_sha256": "a1c47ea72ebba400c498ff656c71ea3d277539833f615a187b5967b848ec5180",
+      "current_sha256": "a1c47ea72ebba400c498ff656c71ea3d277539833f615a187b5967b848ec5180",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-03-up-left.png",
+      "baseline_sha256": "e20eeab6f3a319cd6c3a3c29fbf1990433e6b0e8406e52d94602dc182ae37960",
+      "current_sha256": "e20eeab6f3a319cd6c3a3c29fbf1990433e6b0e8406e52d94602dc182ae37960",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-04-contact-right.png",
+      "baseline_sha256": "ce37fa0e8d872c0be2e84b3bfc5642994082599c1b6535fbae1eb24504c02c2b",
+      "current_sha256": "ce37fa0e8d872c0be2e84b3bfc5642994082599c1b6535fbae1eb24504c02c2b",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-05-down-right.png",
+      "baseline_sha256": "e9ac95b16378cd7c7d59641bbde080b2ba8eef8b1de5904f95ce718ed9e46668",
+      "current_sha256": "e9ac95b16378cd7c7d59641bbde080b2ba8eef8b1de5904f95ce718ed9e46668",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-06-passing-right.png",
+      "baseline_sha256": "5099e25edb5ac47b27c77b39e3d86a82347bfeeb9e88fc12f51c6bbe04a0f36d",
+      "current_sha256": "5099e25edb5ac47b27c77b39e3d86a82347bfeeb9e88fc12f51c6bbe04a0f36d",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-07-up-right.png",
+      "baseline_sha256": "16efb738e9e2afe6b441c17f5bc0f907e1e370983e4a45eab24dc7fc26757cb4",
+      "current_sha256": "16efb738e9e2afe6b441c17f5bc0f907e1e370983e4a45eab24dc7fc26757cb4",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/walk-front-preview-v081.gif",
+      "baseline_sha256": "3f83604c9c1c152e36eced14d906c705e153da9f59627df0175ca6905e0aa87b",
+      "current_sha256": "3f83604c9c1c152e36eced14d906c705e153da9f59627df0175ca6905e0aa87b",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-00-I0-neutral-A.png",
+      "baseline_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "current_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-01-I1-inhale-early.png",
+      "baseline_sha256": "63ca647e4d1249e7b048890355170f20101e551b6f090b4514b169b409142fc7",
+      "current_sha256": "63ca647e4d1249e7b048890355170f20101e551b6f090b4514b169b409142fc7",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-02-I2-inhale-mid.png",
+      "baseline_sha256": "93e17c2cbe23681530ae64986a8a9aff9f486d4a1ce13341a6fc9c673e89a995",
+      "current_sha256": "93e17c2cbe23681530ae64986a8a9aff9f486d4a1ce13341a6fc9c673e89a995",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-03-I3-inhale-peak.png",
+      "baseline_sha256": "641f53e473c5a772c2dfb3549c3d5bd8638636260544d73716bd576d87a52d9a",
+      "current_sha256": "641f53e473c5a772c2dfb3549c3d5bd8638636260544d73716bd576d87a52d9a",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-04-I4-return-A.png",
+      "baseline_sha256": "bb1c07ea16cccf4e0d9525058bcde1b4e70c4d66e2c01c1e629fbbc1e375ed7e",
+      "current_sha256": "bb1c07ea16cccf4e0d9525058bcde1b4e70c4d66e2c01c1e629fbbc1e375ed7e",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-05-I5-neutral-B.png",
+      "baseline_sha256": "5f7f9727f87b094cf6fe4630ede6267a9e601ab9366f181c7f5c5c4c730cf2f9",
+      "current_sha256": "5f7f9727f87b094cf6fe4630ede6267a9e601ab9366f181c7f5c5c4c730cf2f9",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-06-I6-exhale-early.png",
+      "baseline_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "current_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-07-I7-exhale-mid.png",
+      "baseline_sha256": "b3bf1480e061111fc69e017df6285a5b6dd8c6548d9d6adf7226bbd2021e8b63",
+      "current_sha256": "b3bf1480e061111fc69e017df6285a5b6dd8c6548d9d6adf7226bbd2021e8b63",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-08-I8-exhale-peak.png",
+      "baseline_sha256": "ee4c7153946a24626abc681fb475a698392db685b90197081ed39e155d157135",
+      "current_sha256": "ee4c7153946a24626abc681fb475a698392db685b90197081ed39e155d157135",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-09-I9-return-B.png",
+      "baseline_sha256": "2e49d4a0a48ede9c18d324aff81dfbd22792eefd61ac682656b393510e4f077f",
+      "current_sha256": "2e49d4a0a48ede9c18d324aff81dfbd22792eefd61ac682656b393510e4f077f",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-10-I10-settle.png",
+      "baseline_sha256": "4535e71d87317fc0ea852dbbaed58609728bb21f0f478b5b2a08d8627507e145",
+      "current_sha256": "4535e71d87317fc0ea852dbbaed58609728bb21f0f478b5b2a08d8627507e145",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/idle-front-v090/frames/frame-11-I11-pre-loop.png",
+      "baseline_sha256": "b42315d301f24ee3493aa3ec9d092ffa1430d041a5497e729bcb6339cf814eaa",
+      "current_sha256": "b42315d301f24ee3493aa3ec9d092ffa1430d041a5497e729bcb6339cf814eaa",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v090/idle-front-v1/idle-front-preview-v090.gif",
+      "baseline_sha256": "2f015b3863b78736529ea10fdd3599875369354f752859df85c5686b9e64ed0f",
+      "current_sha256": "2f015b3863b78736529ea10fdd3599875369354f752859df85c5686b9e64ed0f",
+      "byte_identical_to_v0110_baseline": true,
+      "content_identical_to_v0110_baseline": true,
+      "line_ending_only_difference": false
+    }
+  ],
+  "attack_front_v1_replay": {
+    "checks": [
+      {
+        "path": "attack-front-v1/frame-00.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-01.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-02.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-03.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-04.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-05.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-06.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-07.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-08.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/frame-09.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/attack-front-spritesheet-v0100.png",
+        "byte_identical": true
+      },
+      {
+        "path": "attack-front-v1/attack-front-preview-v0100.gif",
+        "byte_identical": true
+      }
+    ],
+    "status": "PASSED"
+  },
+  "walk_idle_attack_v1_byte_identical": true
+}
