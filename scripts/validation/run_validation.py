@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.9.0."""
+"""Objective UGAS validation, including immutable history and active v0.9.1."""
 
 from __future__ import annotations
 
@@ -29,9 +29,10 @@ from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, REQUIRED_V070_REVIEW_EVID
 from ugas.review_snapshot import self_test_sensitive_matcher
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.openpose_guides import COCO18_JOINTS, OPENPOSE_GUIDE_RENDERER_VERSION, validate_openpose_guide
-from ugas.state_consistency import validate_state_consistency
+from ugas.state_consistency import validate_state_consistency as validate_state_consistency_v090
 from ugas.state_consistency_v080 import validate_state_consistency as validate_state_consistency_v080
 from ugas.state_consistency_v081 import validate_state_consistency as validate_state_consistency_v081
+from ugas.state_consistency_v091 import validate_state_consistency as validate_state_consistency_v091
 from ugas.cutout_rig import validate_rig_manifest
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
@@ -1319,7 +1320,8 @@ def _v080_checks() -> None:
     try:
         state = load_json(evidence / "current-state-v0.8.0.json"); validate_instance(state, load_json(ROOT / "schemas/current-state-v0.8.0.json"))
         review = (ROOT / "REVIEW-v0.8.0.md").read_text(encoding="utf-8")
-        consistency = validate_state_consistency_v080(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
+        checkpoint = subprocess.run(["git", "show", "d634d69d3cceac239d8eb5fe8623c764eb6c6b53:CHECKPOINT.md"], cwd=ROOT, capture_output=True, text=True, check=False).stdout
+        consistency = validate_state_consistency_v080(state, checkpoint or (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
         check("v080:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state is consistent")
         check("v080:state-boundary", state.get("current_gate") == "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED" and state.get("walk_authorized") == "pilot_only" and state.get("production_walk_authorized") is False, "pilot status and production block are synchronized")
         provider = load_json(ROOT / "providers/manifests/deterministic-cutout-rig-2d-v0.8.0.json")
@@ -1462,17 +1464,17 @@ def _v081_checks() -> None:
 
 
 def _v090_checks() -> None:
-    """Validate the active reusable runtime and the qualified idle-front pilot."""
+    """Validate the immutable v0.9.0 state and runtime evidence."""
     evidence = ROOT / "docs" / "evidence"
     required = [
-        "REVIEW-v0.9.0.md", "docs/test-coverage-matrix-v0.9.0.md", "schemas/current-state.json",
+        "REVIEW-v0.9.0.md", "docs/test-coverage-matrix-v0.9.0.md", "schemas/current-state-v0.9.0.json",
         "schemas/current-state-v0.8.1.json", "schemas/animation-spec-v1.json", "schemas/animation-compiled-manifest-v1.json",
         "schemas/animation-qa-result-v1.json", "schemas/animation-package-v1.json", "schemas/review-index-v0.9.0.json",
         "profiles/animation/walk-front-v1.json", "profiles/animation/idle-front-v1.json", "src/ugas/animation.py",
         "src/ugas/animation_profiles/common.py", "src/ugas/animation_profiles/walk_front_v1.py", "src/ugas/animation_profiles/idle_front_v1.py",
         "src/ugas/state_consistency.py", "src/ugas/state_consistency_v081.py", "scripts/validation/run_animation_runtime_v090.py",
         "scripts/validation/build_review_visuals_v090.py", "scripts/validation/build_review_index_v090.py", "scripts/validation/validate_review_index_v090.py",
-        "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/current-state-v0.8.1.json",
+        "docs/evidence/current-state-v0.9.0.json", "docs/evidence/state-consistency-v0.9.0.json", "docs/evidence/current-state-v0.8.1.json",
         "docs/evidence/state-consistency-v0.8.1.json", "docs/evidence/front-walk-v081-external-decision-v090.json",
         "docs/evidence/animation-runtime-v090/execution-evidence-v0.9.0.json",
         "docs/evidence/animation-runtime-v090/replay/walk-front-v1/compiled-manifest.json",
@@ -1489,12 +1491,12 @@ def _v090_checks() -> None:
         path = ROOT / relative
         check(f"v090:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(evidence / "current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        state = load_json(evidence / "current-state-v0.9.0.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.9.0.json"))
         review = (ROOT / "REVIEW-v0.9.0.md").read_text(encoding="utf-8")
-        consistency = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
+        consistency = validate_state_consistency_v090(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
         check("v090:state-consistency", consistency["status"] == state["current_gate"], "; ".join(consistency.get("failures", [])) or "active v0.9.0 state is consistent")
-        snapshot = load_json(evidence / "state-consistency.json")
+        snapshot = load_json(evidence / "state-consistency-v0.9.0.json")
         check("v090:state-snapshot", snapshot.get("schema_version") == "0.9.0" and snapshot.get("status") == state["current_gate"], "active state-consistency evidence is current")
         check("v090:state-boundary", state.get("current_gate") == "CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED" and state.get("production_walk_authorized") is False and state.get("state_consistency", {}).get("production_routing") == "BLOCKED", "idle technical qualification remains production-blocked")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
@@ -1537,6 +1539,72 @@ def _v090_checks() -> None:
         check("v090:review-index", result.returncode == 0, (result.stdout + result.stderr).strip()[-800:])
     else:
         check("v090:review-index-tooling", (ROOT / "scripts/validation/validate_review_index_v090.py").is_file(), "review index is built after the validation pass")
+
+
+def _v091_checks() -> None:
+    """Validate the active v0.9.1 generic-runtime correction and evidence."""
+    evidence = ROOT / "docs" / "evidence"
+    required = [
+        "REVIEW-v0.9.1.md", "docs/test-coverage-matrix-v0.9.1.md", "schemas/current-state.json", "schemas/current-state-v0.9.0.json",
+        "schemas/review-index-v0.9.1.json", "src/ugas/state_consistency_v091.py", "scripts/validation/run_animation_runtime_v091.py",
+        "scripts/validation/build_review_index_v091.py", "scripts/validation/validate_review_index_v091.py", "docs/evidence/current-state.json",
+        "docs/evidence/state-consistency-v091.json", "docs/evidence/review-index-v0.9.1.json",
+        "docs/evidence/animation-runtime-v091/generic-runtime-contract-v091.json", "docs/evidence/animation-runtime-v091/timing-alternative-qualification-v091.json",
+        "docs/evidence/animation-runtime-v091/generic-dummy-package-qualification-v091.json", "docs/evidence/animation-runtime-v091/walk-replay-qualification-v091.json",
+        "docs/evidence/animation-runtime-v091/idle-dual-foot-drift-qa-v091.json", "docs/evidence/animation-runtime-v091/idle-layer-bbox-temporal-qa-v091.json",
+        "docs/evidence/animation-runtime-v091/idle-occlusion-policy-v091.json", "docs/evidence/animation-runtime-v091/idle-requalification-v091.json",
+        "docs/evidence/animation-runtime-v091/execution-evidence-v0.9.1.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v091:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(evidence / "current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
+        review = (ROOT / "REVIEW-v0.9.1.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency_v091(state, checkpoint, review)
+        check("v091:state-consistency", consistency["status"] == state["current_gate"], "; ".join(consistency.get("failures", [])) or "active v0.9.1 state is consistent")
+        snapshot = load_json(evidence / "state-consistency-v091.json")
+        check("v091:state-snapshot", snapshot.get("schema_version") == "0.9.1" and snapshot.get("status") == state["current_gate"] and snapshot.get("failures") == [], "v0.9.1 state-consistency evidence is current")
+        check("v091:state-boundary", state.get("current_gate") == "CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED" and state.get("production_walk_authorized") is False and state.get("state_consistency", {}).get("production_routing") == "BLOCKED", "idle technical qualification remains production-blocked")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v091:state-consistency", False, str(exc)); check("v091:state-snapshot", False, str(exc)); check("v091:state-boundary", False, str(exc))
+    try:
+        generic = load_json(evidence / "animation-runtime-v091/generic-runtime-contract-v091.json")
+        timing = load_json(evidence / "animation-runtime-v091/timing-alternative-qualification-v091.json")
+        dummy = load_json(evidence / "animation-runtime-v091/generic-dummy-package-qualification-v091.json")
+        check("v091:generic-decision", generic.get("status") == "GENERIC_RUNTIME_CONTRACT_PASSED" and generic.get("qualified_decision") == "QUALIFIED" and generic.get("qualified_status_arbitrary") != "QUALIFIED" and generic.get("package_policy_uses_decision_not_status") is True, "generic package qualification is decision-based and status-agnostic")
+        check("v091:generic-negative-controls", all(value == "package_requires_qualified_qa" for value in generic.get("negative_controls", {}).values()), "generic package failure paths are fail-closed")
+        representations = timing.get("representations", {})
+        check("v091:timing-alternatives", timing.get("status") == "TIMING_ALTERNATIVE_QUALIFICATION_PASSED" and representations.get("fps_only", {}).get("status") == "VALID" and representations.get("duration_only", {}).get("status") == "VALID" and representations.get("both", {}).get("status") == "INVALID" and representations.get("neither", {}).get("status") == "INVALID" and timing.get("source_spec_unchanged") is True, "timing alternatives are mutually exclusive and source-preserving")
+        check("v091:dummy-package", dummy.get("status") == "GENERIC_RUNTIME_CONTRACT_PASSED" and dummy.get("package_qa_decision") == "QUALIFIED", "synthetic two-key profile qualifies through the generic contract")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v091:generic-decision", False, str(exc)); check("v091:generic-negative-controls", False, str(exc)); check("v091:timing-alternatives", False, str(exc)); check("v091:dummy-package", False, str(exc))
+    try:
+        walk = load_json(evidence / "animation-runtime-v091/walk-replay-qualification-v091.json")
+        idle = load_json(evidence / "animation-runtime-v091/idle-requalification-v091.json")
+        feet = load_json(evidence / "animation-runtime-v091/idle-dual-foot-drift-qa-v091.json")
+        boxes = load_json(evidence / "animation-runtime-v091/idle-layer-bbox-temporal-qa-v091.json")
+        occlusion = load_json(evidence / "animation-runtime-v091/idle-occlusion-policy-v091.json")
+        execution = load_json(evidence / "animation-runtime-v091/execution-evidence-v0.9.1.json")
+        check("v091:walk-replay", walk.get("decision") == "QUALIFIED" and walk.get("status") == "CUTOUT_ANIMATION_RUNTIME_V1_WALK_REPLAY_IDENTICAL" and len(walk.get("frames", [])) == 8 and all(frame.get("passed") is True and frame.get("rgba_sha256") == frame.get("expected_rgba_sha256") for frame in walk["frames"]) and walk.get("spritesheet", {}).get("status") == "BYTE_IDENTICAL" and walk.get("gif", {}).get("status") == "BYTE_IDENTICAL", "walk v0.8.1 replay is byte-identical")
+        check("v091:idle-requalification", idle.get("decision") == "QUALIFIED" and idle.get("frame_count") == 12 and idle.get("target_hashes_unchanged_from_v090") is True and idle.get("canonical_rgba_hashes_unchanged_from_v090") is True and idle.get("deterministic_replay_twice") is True and idle.get("package", {}).get("qa_decision") == "QUALIFIED", "idle replay is deterministic with unchanged canonical RGBA")
+        foot_gates = feet.get("hard_gates", {})
+        check("v091:dual-foot", feet.get("status") == "IDLE_DUAL_FEET_DRIFT_PASSED" and len(foot_gates) == 8 and all(foot_gates.values()) and feet.get("negative_controls", {}).get("sole_plus_2_px") is True and feet.get("negative_controls", {}).get("ankle_plus_3_px") is True and feet.get("negative_controls", {}).get("ankle_plus_1_5_px_passes") is True and all(item.get("frame_to_frame_sole_anchor_drift_px", {}).get("max_frame_pair") == [11, 0] for item in feet.get("sides", {}).values()), "dual-foot QA covers sole, penetration, cyclic drift including I11 to I0, and ankle drift")
+        check("v091:layer-bbox", boxes.get("status") == "IDLE_LAYER_BBOX_TEMPORAL_PASSED" and boxes.get("measurement_layers", {}).get("head") == "presented_layers.head" and boxes.get("measurement_layers", {}).get("torso") == "presented_layers.torso_pelvis" and len(boxes.get("head_bbox_areas", [])) == 12 and len(boxes.get("torso_bbox_areas", [])) == 12 and boxes.get("hard_gates", {}).get("head_bbox_area_cv_le_0.025") is True and boxes.get("hard_gates", {}).get("torso_bbox_area_cv_le_0.025") is True and boxes.get("negative_controls", {}).get("head_only_scale", {}).get("head_fails") is True and boxes.get("negative_controls", {}).get("torso_only_scale", {}).get("torso_fails") is True, "head and torso layer bboxes are independently measured")
+        occlusion_gates = [frame.get("hard_gates", {}) for frame in occlusion.get("frames", [])]
+        check("v091:occlusion-policy", occlusion.get("status") == "IDLE_OCCLUSION_MEASURED_POLICY_PASSED" and len(occlusion_gates) == 12 and all(gate.get("no_meaningful_outside_authorized_overlap") is True and gate.get("z_order_constant") is True and gate.get("explicit_idle_allowed_pair_rules") is True for gate in occlusion_gates) and occlusion.get("negative_fixture", {}).get("status") == "CUTOUT_RIG_OCCLUSION_REGION_GAP" and occlusion.get("negative_fixture", {}).get("hard_gates", {}).get("no_meaningful_outside_authorized_overlap") is False and occlusion.get("no_literal_hard_gate_override") is True, "idle occlusion policy is measured and explicit")
+        check("v091:execution-boundary", execution.get("new_generation") == 0 and execution.get("sam2_runs") == 0 and execution.get("comfyui_generation_jobs") == 0 and execution.get("diffusion_runs") == 0 and execution.get("production_routing") == "BLOCKED", "execution evidence stays deterministic and production-blocked")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError, IndexError) as exc:
+        for name in ("v091:walk-replay", "v091:idle-requalification", "v091:dual-foot", "v091:layer-bbox", "v091:occlusion-policy", "v091:execution-boundary"): check(name, False, str(exc))
+    index_result = _run([sys.executable, "scripts/validation/validate_review_index_v091.py"], ROOT)
+    check("v091:review-index", index_result.returncode == 0, (index_result.stdout + index_result.stderr).strip()[-800:] or "v0.9.1 review index is hash-valid")
+    review = (ROOT / "REVIEW-v0.9.1.md").read_text(encoding="utf-8") if (ROOT / "REVIEW-v0.9.1.md").is_file() else ""
+    headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.9.0 EXTERNAL AUDIT FINDINGS", "BASELINE IMMUTABILITY", "GENERIC QA DECISION CONTRACT", "GENERIC PACKAGE LIFECYCLE", "TIMING ALTERNATIVE SCHEMA", "GENERIC DUMMY PROFILE PROOF", "WALK V081 REPLAY REGRESSION", "IDLE CANONICAL REPLAY", "DUAL-FOOT DRIFT QA", "HEAD / TORSO LAYER BBOX QA", "IDLE OCCLUSION POLICY", "IDLE REQUALIFICATION", "REVIEW INDEX V2", "NO SAM2 / NO COMFYUI / NO GENERATION", "TESTS", "VALIDATION", "TRACKED SNAPSHOT / GITHUB", "EXTERNAL VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE"]
+    check("v091:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.9.1 review headings present")
+    check("v091:no-forbidden-generation", "new_generation=0" in review and "sam2_runs=0" in review and "comfyui_generation_jobs=0" in review and "diffusion_runs=0" in review, "review records zero new-generation activity")
+    check("v091:no-review-zip", not any(path.suffix.casefold() == ".zip" and ("v091" in path.name.casefold() or "0.9.1" in path.name.casefold()) for path in ROOT.rglob("*.zip")), "no review ZIP is generated in the implementation slice")
 
 
 def main() -> int:
@@ -1637,13 +1705,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.9.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.9.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.9.0")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.9.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.9.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.9.1")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

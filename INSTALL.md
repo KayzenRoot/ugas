@@ -39,7 +39,7 @@ python -m ugas.cli cutout-rig qualify-sam2 --json
 
 O checkpoint oficial `sam2.1_hiera_small.pt` deve ficar em `%LOCALAPPDATA%/UGAS/models/sam2/` e ser conferido pelo SHA-256 registrado em `docs/evidence/sam2-checkpoint-provenance-v071.json`. A instalação não usa custom node ComfyUI nem executa jobs ComfyUI.
 
-O v0.7.3 permanece preservado em `current-state-v0.7.3.json`, `REVIEW-v0.7.3.md` e seu snapshot histórico; v0.7.2, v0.7.1, v0.7.0 e v0.6.2 permanecem históricos. O estado atual é `CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED`; walk é apenas `pilot_only`, produção permanece bloqueada e nenhum resultado local equivale a aprovação externa.
-## v0.9.0 runtime check
+O v0.7.3 permanece preservado em `current-state-v0.7.3.json`, `REVIEW-v0.7.3.md` e seu snapshot histórico; v0.7.2, v0.7.1, v0.7.0 e v0.6.2 permanecem históricos. O estado atual v0.9.1 é `CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED`; walk continua `pilot_only`, idle requer revisão externa, produção permanece bloqueada e nenhum resultado local equivale a aprovação externa.
+## v0.9.1 runtime check
 
-After installation, validate a profile with `python -m ugas.animation validate-spec profiles/animation/idle-front-v1.json`. The tracked pilot package is generated only after QA qualification; it is not production approval.
+After installation, validate a profile with `python -m ugas.animation validate-spec profiles/animation/idle-front-v1.json`. The v0.9.1 runner proves the generic decision contract, mutually exclusive timing, walk replay, idle dual-foot/layer-bbox/occlusion gates, and deterministic requalification: `python scripts/validation/run_animation_runtime_v091.py --json`. The tracked pilot package is generated only after QA qualification; it is not production approval.

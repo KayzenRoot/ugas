@@ -16,15 +16,15 @@ python scripts/validation/run_cutout_rig_v073.py --json
 python -m ugas.cli --version
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.8.1.md](REVIEW-v0.8.1.md). O runtime SAM2 e o checkpoint histórico são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.9.1.md](REVIEW-v0.9.1.md). O runtime SAM2 e o checkpoint histórico são externos; nenhum peso é distribuído com o repositório.
 
 ## Boundaries
 
 O provider `deterministic-cutout-rig-2d` aceita somente humanoide frontal com RGBA R4 imutável. Usa `translation_rotation_bounded_uniform_scale`, escala uniforme entre `0.92..1.08`, proveniência de pixels de origem e zero pixels gerados. Os thresholds MediaPipe em [pose-thresholds-v054.json](docs/evidence/pose-thresholds-v054.json) são reutilizados sem alteração.
 
-Somente o piloto walk/front/8 é autorizado neste slice; não há outras animações/direções nem routing de produção. `REVIEW_ARCHIVE_VERIFIED` é verificação local do artefato, não aprovação externa.
+Somente o replay walk/front/8 e o piloto idle/front/12 deste slice são autorizados; não há outras animações/direções nem routing de produção. `REVIEW_ARCHIVE_VERIFIED` é verificação local do artefato, não aprovação externa.
 
-Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.8.1.md](REVIEW-v0.8.1.md) e [docs/evidence/current-state.json](docs/evidence/current-state.json). O review v0.8.0, v0.7.3 e as releases anteriores continuam disponíveis como histórico.
-## v0.9.0 reusable animation runtime
+Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.9.1.md](REVIEW-v0.9.1.md) e [docs/evidence/current-state.json](docs/evidence/current-state.json). Os reviews anteriores continuam disponíveis como histórico.
+## v0.9.1 reusable animation runtime
 
-The current release is `0.9.0`. Use `python -m ugas.animation validate-spec`, `compile`, `qa`, and `package` with the profiles in `profiles/animation/`. The qualified pilot is `idle-front-v1`; production routing remains `BLOCKED` pending external review.
+The current release is `0.9.1`. Use `python -m ugas.animation validate-spec`, `compile`, `qa`, and `package` with the profiles in `profiles/animation/`. The generic package contract is decision-based (`decision=QUALIFIED`) and status-agnostic; the qualified pilot is `idle-front-v1`. Production routing remains `BLOCKED` pending external idle review. Evidence is under `docs/evidence/animation-runtime-v091/`.

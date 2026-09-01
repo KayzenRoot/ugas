@@ -1,0 +1,24 @@
+{
+  "schema_version": "animation-spec-1.0",
+  "animation_id": "qa-fixture-cycle-v1",
+  "asset_revision_id": "qa-fixture-source-v1",
+  "direction": "test",
+  "frame_count": 3,
+  "per_frame_duration_ms": 125,
+  "loop": true,
+  "source_rig_ref": "tests/fixtures/dummy-source.json",
+  "key_pose_bindings": [
+    {"frame": 0, "phase": "T0", "target_hash": "0000000000000000000000000000000000000000000000000000000000000000"},
+    {"frame": 1, "phase": "T1", "target_hash": "0000000000000000000000000000000000000000000000000000000000000000"}
+  ],
+  "interpolation_profile": {"method": "synthetic-fixture", "parameters_frozen_before_render": true, "parameters": {}},
+  "root_motion_profile": {"method": "none", "limits": {}},
+  "foot_policy": {"method": "none", "both_feet_required": false, "limits": {}},
+  "z_order_profile": {"method": "single-layer", "switches_allowed": false, "constant_order": ["fixture"]},
+  "presentation_transform": {"method": "identity", "uniform_scale": 1, "anchor": {"x": 0, "y": 0}, "translation": {"x": 0, "y": 0}, "frozen_before_render": true},
+  "qa_profile": {"profile_id": "dummy-two-key-v1", "feature_flags": {}, "thresholds": {}},
+  "package_profile": {"cell_size": {"width": 1, "height": 1}, "columns": 3, "rows": 1, "format": "RGBA", "gif_review_only": true, "sprite_name": "dummy-spritesheet.png", "gif_name": "dummy-preview.gif"},
+  "provenance": {"source_image": "tests/fixtures/dummy-source.json", "source_parts_dir": "tests/fixtures", "source_masks_dir": "tests/fixtures", "source_skeleton": "tests/fixtures/dummy-source.json", "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000", "sam2_used": false, "comfyui_generation_jobs": 0, "diffusion_used": false, "source_only_pixels": true},
+  "forbidden_operations": ["generation"],
+  "runtime_adapter": "tests.fixtures.dummy_two_key_v1"
+}

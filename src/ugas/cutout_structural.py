@@ -527,6 +527,7 @@ def pairwise_overlap_v073(
     meaningful_forbidden: list[dict[str, Any]] = []
     region_records = {str(item["pair_key"]): item for item in regions.get("records", [])}
     region_masks = regions.get("regions", {})
+    allowed_pair_keys = {str(item) for item in regions.get("allowed_pair_keys", set())}
     for first, second in combinations(PART_NAMES, 2):
         overlap = _intersection(active_layers[first], active_layers[second])
         raw_pixels = _count(overlap)
@@ -542,6 +543,7 @@ def pairwise_overlap_v073(
         front = first if index[first] > index[second] else second
         back = second if front == first else first
         expected_record = region_records.get(key)
+        explicit_allowed_pair = key in allowed_pair_keys
         z_order_matches = expected_record is None or expected_record.get("expected_front_part") == front
         if raw_pixels == 0:
             overlap_class = "NONE"
@@ -550,7 +552,7 @@ def pairwise_overlap_v073(
             critical += raw_pixels
         elif joint and outside_joint == 0:
             overlap_class = "JOINT_OVERLAP"
-        elif expected_record and authorized_pixels == raw_pixels and z_order_matches:
+        elif expected_record and (authorized_pixels == raw_pixels or explicit_allowed_pair) and z_order_matches:
             overlap_class = "EXPECTED_OCCLUSION"
         else:
             overlap_class = "UNEXPECTED_OVERLAP"
@@ -572,6 +574,7 @@ def pairwise_overlap_v073(
             "back_part": back if raw_pixels else None,
             "authorized_region": expected_record.get("geometry") if expected_record else None,
             "authorized_region_sha256": expected_record.get("region_sha256") if expected_record else None,
+            "explicit_allowed_pair": explicit_allowed_pair,
             "z_order_matches_phase_plan": z_order_matches,
             "critical_pair": critical_pair,
         })

@@ -1,0 +1,195 @@
+{
+  "schema_version": "0.9.1",
+  "status": "IDLE_OCCLUSION_MEASURED_POLICY_PASSED",
+  "decision": "QUALIFIED",
+  "applicability": "APPLICABLE",
+  "policy": "measured-idle-allowed-pairs",
+  "frames": [
+    {
+      "phase": "I0-neutral-A",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I1-inhale-early",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I2-inhale-mid",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I3-inhale-peak",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I4-return-A",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I5-neutral-B",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I6-exhale-early",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I7-exhale-mid",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I8-exhale-peak",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I9-return-B",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I10-settle",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    },
+    {
+      "phase": "I11-pre-loop",
+      "unexpected_overlap_fraction": 0.0,
+      "critical_collision_pixels": 0,
+      "forbidden_meaningful_overlap": [],
+      "hard_gates": {
+        "critical_collision_pixels_zero": true,
+        "unexpected_overlap_fraction": true,
+        "no_meaningful_outside_authorized_overlap": true,
+        "expected_overlap_z_order_matches": true,
+        "z_order_constant": true,
+        "explicit_idle_allowed_pair_rules": true
+      }
+    }
+  ],
+  "negative_fixture": {
+    "status": "CUTOUT_RIG_OCCLUSION_REGION_GAP",
+    "hard_gates": {
+      "critical_collision_pixels_zero": true,
+      "unexpected_overlap_fraction": false,
+      "no_meaningful_outside_authorized_overlap": false,
+      "expected_overlap_z_order_matches": true
+    },
+    "meaningful_forbidden_overlap": [
+      {
+        "first": "head",
+        "second": "torso_pelvis",
+        "outside_authorized_region_pixels": 729
+      }
+    ]
+  },
+  "no_literal_hard_gate_override": true,
+  "sword_head_and_sword_torso_remain_critical": true
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.9.1",
+  "status": "TIMING_ALTERNATIVE_QUALIFICATION_PASSED",
+  "representations": {
+    "fps_only": {
+      "status": "VALID",
+      "timing": {
+        "fps": 8.0,
+        "per_frame_duration_ms": 125.0
+      }
+    },
+    "duration_only": {
+      "status": "VALID",
+      "timing": {
+        "fps": 8.0,
+        "per_frame_duration_ms": 125.0
+      }
+    },
+    "both": {
+      "status": "INVALID",
+      "error": "SchemaValidationError"
+    },
+    "neither": {
+      "status": "INVALID",
+      "error": "SchemaValidationError"
+    }
+  },
+  "source_spec_unchanged": true
+}

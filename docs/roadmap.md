@@ -49,6 +49,6 @@ Incluem a escalada OpenPose/RefControl, multi-reference nativo, âncoras e o pil
 ## Next gate
 
 Somente a revisão visual externa pode liberar o próximo prompt. Walk/front/8, âncoras v3, novos providers, DWPose, ControlNet, custom nodes e novos strengths estão fora do slice atual. O próximo passo autorizado é `external_review_then_run_8_frame_walk_prompt`.
-## v0.9.0
+## v0.9.1
 
-Reusable deterministic runtime and 12-frame front idle pilot are technically qualified. External idle-front review is the only allowed next action; other animations and production enablement remain blocked.
+Reusable deterministic runtime and 12-frame front idle pilot are technically qualified after generic decision-contract, timing, dual-foot, head_bbox/torso_bbox, and measured-occlusion corrections. External idle-front review is the only allowed next action; other animations and production enablement remain blocked. `production_routing=BLOCKED`.

@@ -73,6 +73,22 @@ def load_spec(path: Path, root: Path | None = None) -> dict[str, Any]:
     return value
 
 
+def normalized_timing(spec: Mapping[str, Any]) -> dict[str, float]:
+    """Return the runtime timing pair without changing the source spec."""
+    has_fps, has_duration = "fps" in spec, "per_frame_duration_ms" in spec
+    if has_fps == has_duration:
+        raise AnimationContractError("exactly_one_timing_representation_required")
+    if has_fps:
+        fps = float(spec["fps"])
+        if fps <= 0:
+            raise AnimationContractError("fps_must_be_positive")
+        return {"fps": fps, "per_frame_duration_ms": 1000.0 / fps}
+    duration = float(spec["per_frame_duration_ms"])
+    if duration <= 0:
+        raise AnimationContractError("per_frame_duration_ms_must_be_positive")
+    return {"fps": 1000.0 / duration, "per_frame_duration_ms": duration}
+
+
 def _adapter(spec: Mapping[str, Any]):
     return importlib.import_module(str(spec["runtime_adapter"]))
 
@@ -115,10 +131,18 @@ def qa_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     validate_instance(manifest, _schema(root, "animation-compiled-manifest-v1.json"))
     spec_path = root / manifest["spec_path"]
     spec = load_spec(spec_path, root)
+    if manifest["animation_id"] != spec["animation_id"] or manifest["spec_sha256"] != digest_file(spec_path):
+        raise AnimationContractError("compiled_manifest_spec_binding_mismatch")
     adapter = _adapter(spec)
     context = adapter.load_context(spec, root)
     result = adapter.qa(spec, context, manifest, root)
-    result = {"schema_version": "animation-qa-result-1.0", **result}
+    required = {"animation_id", "decision", "status", "frames", "temporal", "provenance", "hard_gates", "failures"}
+    missing = sorted(required.difference(result))
+    if missing:
+        raise AnimationContractError(f"qa_result_contract_missing:{','.join(missing)}")
+    if result["animation_id"] != spec["animation_id"]:
+        raise AnimationContractError("qa_animation_id_mismatch")
+    result = {"schema_version": "animation-qa-result-1.1", **result, "spec_sha256": digest_file(spec_path), "compiled_manifest_sha256": digest_file(manifest_path)}
     validate_instance(result, _schema(root, "animation-qa-result-v1.json"))
     output = manifest_path.parent / "qa-result.json"
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -139,14 +163,23 @@ def _checkerboard(image: Image.Image) -> Image.Image:
 def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     root = (root or _root()).resolve()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    validate_instance(manifest, _schema(root, "animation-compiled-manifest-v1.json"))
     spec = load_spec(root / manifest["spec_path"], root)
+    if manifest["animation_id"] != spec["animation_id"] or manifest["spec_sha256"] != digest_file(root / manifest["spec_path"]):
+        raise AnimationContractError("compiled_manifest_spec_binding_mismatch")
     qa_path = manifest_path.parent / "qa-result.json"
     if not qa_path.is_file():
         raise AnimationContractError("package_requires_qa_result")
     qa = json.loads(qa_path.read_text(encoding="utf-8"))
-    idle_status = "CUTOUT_ANIMATION_RUNTIME_V1_IDLE_" + "".join(("F", "R", "O", "N", "T")) + "_TECHNICALLY_QUALIFIED"
-    replay_status = "CUTOUT_ANIMATION_RUNTIME_V1_" + "".join(("W", "A", "L", "K")) + "_REPLAY_IDENTICAL"
-    if qa.get("status") not in {idle_status, replay_status}:
+    validate_instance(qa, _schema(root, "animation-qa-result-v1.json"))
+    if qa.get("animation_id") != spec["animation_id"]:
+        raise AnimationContractError("qa_animation_id_mismatch")
+    if qa.get("spec_sha256") != digest_file(root / manifest["spec_path"]):
+        raise AnimationContractError("qa_spec_hash_mismatch")
+    if qa.get("compiled_manifest_sha256") != digest_file(manifest_path):
+        raise AnimationContractError("qa_compiled_manifest_hash_mismatch")
+    hard_gates = qa.get("hard_gates")
+    if qa.get("decision") != "QUALIFIED" or not isinstance(hard_gates, dict) or not hard_gates or any(value is not True for value in hard_gates.values()) or qa.get("failures") != []:
         raise AnimationContractError("package_requires_qualified_qa")
     profile = spec["package_profile"]
     cell_w, cell_h = int(profile["cell_size"]["width"]), int(profile["cell_size"]["height"])
@@ -157,15 +190,15 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
         sheet.alpha_composite(image.resize((cell_w, cell_h), Image.Resampling.LANCZOS), ((index % columns) * cell_w, (index // columns) * cell_h))
     sprite_path = manifest_path.parent / str(profile.get("sprite_name", "spritesheet.png"))
     sheet.save(sprite_path, format="PNG", optimize=False)
-    fps = float(spec["fps"]) if "fps" in spec else 1000.0 / float(spec["per_frame_duration_ms"])
-    duration = float(spec["per_frame_duration_ms"]) if "per_frame_duration_ms" in spec else 1000.0 / fps
+    timing = normalized_timing(spec)
+    fps, duration = timing["fps"], timing["per_frame_duration_ms"]
     gif_path = manifest_path.parent / str(profile.get("gif_name", "preview.gif"))
     gif_frames = [_checkerboard(image).convert("RGB") for image in images]
     gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=int(round(duration)), loop=0, disposal=2, optimize=False)
     metadata_path = manifest_path.parent / "metadata.json"
     metadata = {"schema_version": "animation-package-1.0", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "format": "RGBA", "frames": manifest["frames"], "parameters_frozen_before_render": True}
     metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    package = {"schema_version": "animation-package-1.0", "package_id": f"ugas-{spec['animation_id']}-pilot-v090", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "format": "RGBA", "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "sprite_sheet": {"path": _relative(sprite_path, root), "sha256": digest_file(sprite_path)}, "metadata": {"path": _relative(metadata_path, root), "sha256": digest_file(metadata_path)}, "preview_gif": {"path": _relative(gif_path, root), "sha256": digest_file(gif_path)}, "registry_state": "pilot/technical-qualified", "production_approved": False, "production_routing": "BLOCKED", "qa_status": qa["status"], "source_rig_revision": spec["asset_revision_id"], "source_rig_sha256": digest_file(root / spec["source_rig_ref"]), "r4_source_sha256": spec["provenance"]["source_sha256"]}
+    package = {"schema_version": "animation-package-1.0", "package_id": f"ugas-{spec['animation_id']}-package", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "format": "RGBA", "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "sprite_sheet": {"path": _relative(sprite_path, root), "sha256": digest_file(sprite_path)}, "metadata": {"path": _relative(metadata_path, root), "sha256": digest_file(metadata_path)}, "preview_gif": {"path": _relative(gif_path, root), "sha256": digest_file(gif_path)}, "registry_state": "pilot/technical-qualified", "production_approved": False, "production_routing": "BLOCKED", "qa_status": qa["status"], "qa_decision": qa["decision"], "source_rig_revision": spec["asset_revision_id"], "source_rig_sha256": digest_file(root / spec["source_rig_ref"]), "r4_source_sha256": spec["provenance"]["source_sha256"]}
     package_path = manifest_path.parent / "package-manifest.json"
     package_path.write_text(json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     validate_instance(package, _schema(root, "animation-package-v1.json"))

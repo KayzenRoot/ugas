@@ -1,0 +1,294 @@
+{
+  "schema_version": "0.9.1",
+  "status": "IDLE_DUAL_FEET_DRIFT_PASSED",
+  "decision": "QUALIFIED",
+  "sides": {
+    "left": {
+      "baseline_ankle_x": 309.4539,
+      "baseline_projected_sole_y": 463.0,
+      "frame_to_frame_sole_anchor_drift_px": {
+        "max": 0.0,
+        "max_frame_pair": [
+          11,
+          0
+        ],
+        "threshold": 1.5,
+        "samples": [
+          {
+            "from_frame": 11,
+            "to_frame": 0,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 10,
+            "to_frame": 11,
+            "drift_px": 0.0
+          }
+        ]
+      },
+      "ankle_horizontal_drift_from_baseline_px": {
+        "max": 0.0,
+        "max_frame": 0,
+        "threshold": 2.0,
+        "samples": [
+          {
+            "frame": 0,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 1,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 2,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 3,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 4,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 5,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 6,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 7,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 8,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 9,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 10,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 11,
+            "drift_px": 0.0
+          }
+        ]
+      },
+      "hard_gates": {
+        "sole_error_le_threshold": true,
+        "ground_penetration_le_threshold": true,
+        "frame_to_frame_sole_anchor_drift_le_threshold": true,
+        "ankle_horizontal_drift_from_baseline_le_threshold": true
+      },
+      "status": "IDLE_DUAL_FEET_DRIFT_PASSED"
+    },
+    "right": {
+      "baseline_ankle_x": 234.1367,
+      "baseline_projected_sole_y": 462.1,
+      "frame_to_frame_sole_anchor_drift_px": {
+        "max": 0.0,
+        "max_frame_pair": [
+          11,
+          0
+        ],
+        "threshold": 1.5,
+        "samples": [
+          {
+            "from_frame": 11,
+            "to_frame": 0,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "drift_px": 0.0
+          },
+          {
+            "from_frame": 10,
+            "to_frame": 11,
+            "drift_px": 0.0
+          }
+        ]
+      },
+      "ankle_horizontal_drift_from_baseline_px": {
+        "max": 0.0,
+        "max_frame": 0,
+        "threshold": 2.0,
+        "samples": [
+          {
+            "frame": 0,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 1,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 2,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 3,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 4,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 5,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 6,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 7,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 8,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 9,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 10,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 11,
+            "drift_px": 0.0
+          }
+        ]
+      },
+      "hard_gates": {
+        "sole_error_le_threshold": true,
+        "ground_penetration_le_threshold": true,
+        "frame_to_frame_sole_anchor_drift_le_threshold": true,
+        "ankle_horizontal_drift_from_baseline_le_threshold": true
+      },
+      "status": "IDLE_DUAL_FEET_DRIFT_PASSED"
+    }
+  },
+  "hard_gates": {
+    "left_sole_error_le_threshold": true,
+    "left_ground_penetration_le_threshold": true,
+    "left_frame_to_frame_sole_anchor_drift_le_threshold": true,
+    "left_ankle_horizontal_drift_from_baseline_le_threshold": true,
+    "right_sole_error_le_threshold": true,
+    "right_ground_penetration_le_threshold": true,
+    "right_frame_to_frame_sole_anchor_drift_le_threshold": true,
+    "right_ankle_horizontal_drift_from_baseline_le_threshold": true
+  },
+  "negative_controls": {
+    "sole_plus_2_px": true,
+    "ankle_plus_3_px": true,
+    "ankle_plus_1_5_px_passes": true
+  }
+}

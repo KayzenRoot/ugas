@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.9.1",
+  "animation_id": "qa-fixture-cycle-v1",
+  "status": "GENERIC_RUNTIME_CONTRACT_PASSED",
+  "qualified_status_arbitrary": "SYNTHETIC_FIXTURE_TECHNICALLY_OK",
+  "qualified_decision": "QUALIFIED",
+  "package_qa_decision": "QUALIFIED",
+  "package_policy_uses_decision_not_status": true,
+  "hash_bindings_present": true,
+  "negative_controls": {
+    "decision_failed": "package_requires_qualified_qa",
+    "hard_gate_false": "package_requires_qualified_qa",
+    "failures_non_empty": "package_requires_qualified_qa"
+  }
+}

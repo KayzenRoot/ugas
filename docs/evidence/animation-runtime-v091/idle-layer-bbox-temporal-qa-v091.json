@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.9.1",
+  "status": "IDLE_LAYER_BBOX_TEMPORAL_PASSED",
+  "decision": "QUALIFIED",
+  "head_bbox_areas": [
+    7344.0,
+    7344.0,
+    7344.0,
+    7344.0,
+    7344.0,
+    7344.0,
+    7344.0,
+    7344.0,
+    7272.0,
+    7272.0,
+    7272.0,
+    7344.0
+  ],
+  "torso_bbox_areas": [
+    14006.0,
+    14304.0,
+    13857.0,
+    14155.0,
+    13857.0,
+    14304.0,
+    14006.0,
+    13818.0,
+    14006.0,
+    13912.0,
+    14006.0,
+    13912.0
+  ],
+  "head_bbox_area_cv": 0.004256,
+  "torso_bbox_area_cv": 0.011224,
+  "hard_gates": {
+    "head_bbox_area_cv_le_0.025": true,
+    "torso_bbox_area_cv_le_0.025": true
+  },
+  "measurement_layers": {
+    "head": "presented_layers.head",
+    "torso": "presented_layers.torso_pelvis",
+    "foreground": "composite-alpha-bbox-height-only"
+  },
+  "negative_controls": {
+    "head_only_scale": {
+      "head_fails": true,
+      "torso_unaffected": false
+    },
+    "torso_only_scale": {
+      "torso_fails": true,
+      "head_unaffected": false
+    }
+  }
+}

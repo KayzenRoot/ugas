@@ -108,12 +108,33 @@ def _bbox_area(image: Image.Image) -> float:
     return float((bbox[2] - bbox[0]) * (bbox[3] - bbox[1])) if bbox else 0.0
 
 
+def layer_bbox_measurement(presented_layers: Mapping[str, Image.Image]) -> dict[str, Any]:
+    """Measure the alpha bbox of the named presented layer, not the composite."""
+    result: dict[str, Any] = {}
+    for name in ("head", "torso_pelvis"):
+        image = presented_layers[name]
+        bbox = image.getchannel("A").getbbox()
+        result[name] = {"bbox": list(bbox) if bbox else None, "area": _bbox_area(image)}
+    return result
+
+
+def layer_bbox_temporal_gate(layer_bboxes: list[Mapping[str, Any]], threshold: float = 0.025) -> dict[str, Any]:
+    """Evaluate independent head and torso layer bbox-area stability."""
+    areas = {name: [float(item.get(name, {}).get("area", 0.0)) for item in layer_bboxes] for name in ("head", "torso_pelvis")}
+    cvs = {name: _cv(values) if values and all(values) else 999.0 for name, values in areas.items()}
+    gates = {"head_bbox_area_cv_le_threshold": cvs["head"] <= threshold, "torso_bbox_area_cv_le_threshold": cvs["torso_pelvis"] <= threshold}
+    return {"areas": areas, "cv": cvs, "hard_gates": gates, "status": "IDLE_LAYER_BBOX_TEMPORAL_PASSED" if all(gates.values()) else "IDLE_LAYER_BBOX_TEMPORAL_GAP"}
+
+
 def _cv(values: list[float]) -> float:
     mean = sum(values) / max(1, len(values))
     return math.sqrt(sum((v - mean) ** 2 for v in values) / max(1, len(values))) / max(1e-6, mean)
 
 
-def _dual_feet(context: Mapping[str, Any], target: Mapping[str, Any], details: Mapping[str, Any], presentation: Mapping[str, Any]) -> dict[str, Any]:
+def _dual_feet(context: Mapping[str, Any], target: Mapping[str, Any], details: Mapping[str, Any], presentation: Mapping[str, Any], limits: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    limits = limits or {}
+    sole_limit = float(limits.get("sole_error_px", 1.5))
+    penetration_limit = float(limits.get("ground_penetration_px", 1.5))
     records: dict[str, Any] = {}
     for side in ("left", "right"):
         name = f"{side}_shin_foot"; transform = next(item for item in details["transforms"] if item["part"] == name)
@@ -121,14 +142,36 @@ def _dual_feet(context: Mapping[str, Any], target: Mapping[str, Any], details: M
         matrix = transform["forward_affine_matrix"]; projected = matrix[1][0] * (anchor[0] + anchor[2]) / 2 + matrix[1][1] * sole_y + matrix[1][2] if anchor else -1
         projected = map_presentation_point((0.0, projected), presentation)[1]
         bbox = details["presented_layers"][name].getchannel("A").getbbox(); actual = float(bbox[3] - 1) if bbox else -1
-        records[side] = {"projected_ground_y": round(projected, 6), "actual_sole_y": round(actual, 6), "sole_error_px": round(actual - projected, 6), "ground_penetration_px": round(max(0.0, actual - projected), 6), "ankle": target["joints"][f"ankle_{side}"]}
-    gates = {side: abs(item["sole_error_px"]) <= 1.5 and item["ground_penetration_px"] <= 1.5 for side, item in records.items()}
-    return {"feet": records, "hard_gates": gates, "status": "IDLE_DUAL_FEET_PLANTED_PASSED" if all(gates.values()) else "IDLE_DUAL_FEET_GROUND_GAP"}
+        ankle = target["joints"][f"ankle_{side}"]
+        records[side] = {"projected_ground_y": round(projected, 6), "actual_sole_y": round(actual, 6), "sole_error_px": round(actual - projected, 6), "ground_penetration_px": round(max(0.0, actual - projected), 6), "ankle": ankle, "ankle_x": round(float(ankle["x"]), 6)}
+    gates = {side: abs(item["sole_error_px"]) <= sole_limit and item["ground_penetration_px"] <= penetration_limit for side, item in records.items()}
+    return {"feet": records, "hard_gates": gates, "thresholds": {"sole_error_px": sole_limit, "ground_penetration_px": penetration_limit}, "status": "IDLE_DUAL_FEET_PLANTED_PASSED" if all(gates.values()) else "IDLE_DUAL_FEET_GROUND_GAP"}
 
 
 def dual_foot_gate(feet_record: Mapping[str, Any], sole_error_limit: float = 1.5) -> bool:
     """Re-evaluate the immutable per-frame foot error without tuning."""
     return all(abs(float(item.get("sole_error_px", 999.0))) <= sole_error_limit and float(item.get("ground_penetration_px", 999.0)) <= sole_error_limit for item in feet_record.get("feet", {}).values())
+
+
+def dual_foot_drift_qa(frame_records: list[Mapping[str, Any]], sole_limit: float = 1.5, ankle_limit: float = 2.0) -> dict[str, Any]:
+    """Measure cyclic sole-anchor and baseline ankle-x drift for both feet."""
+    sides: dict[str, Any] = {}
+    for side in ("left", "right"):
+        samples = [record.get("feet", {}).get("feet", {}).get(side, {}) for record in frame_records]
+        valid = len(samples) >= 2 and all("projected_ground_y" in item and "ankle_x" in item for item in samples)
+        if not valid:
+            sides[side] = {"hard_gates": {"sole_error_le_threshold": False, "ground_penetration_le_threshold": False, "frame_to_frame_sole_anchor_drift_le_threshold": False, "ankle_horizontal_drift_from_baseline_le_threshold": False}, "status": "IDLE_DUAL_FEET_DRIFT_GAP", "reason": "missing_frame_measurements"}
+            continue
+        baseline_ankle_x = float(samples[0]["ankle_x"])
+        baseline_projected_sole_y = float(samples[0]["projected_ground_y"])
+        sole_pairs = [{"from_frame": (index - 1) % len(samples), "to_frame": index, "drift_px": abs(float(samples[index]["projected_ground_y"]) - float(samples[(index - 1) % len(samples)]["projected_ground_y"]))} for index in range(len(samples))]
+        ankle_samples = [{"frame": index, "drift_px": abs(float(item["ankle_x"]) - baseline_ankle_x)} for index, item in enumerate(samples)]
+        max_sole = max(sole_pairs, key=lambda item: item["drift_px"])
+        max_ankle = max(ankle_samples, key=lambda item: item["drift_px"])
+        hard_gates = {"sole_error_le_threshold": all(abs(float(item.get("sole_error_px", 999.0))) <= sole_limit for item in samples), "ground_penetration_le_threshold": all(float(item.get("ground_penetration_px", 999.0)) <= sole_limit for item in samples), "frame_to_frame_sole_anchor_drift_le_threshold": max_sole["drift_px"] <= sole_limit, "ankle_horizontal_drift_from_baseline_le_threshold": max_ankle["drift_px"] <= ankle_limit}
+        sides[side] = {"baseline_ankle_x": round(baseline_ankle_x, 6), "baseline_projected_sole_y": round(baseline_projected_sole_y, 6), "frame_to_frame_sole_anchor_drift_px": {"max": round(max_sole["drift_px"], 6), "max_frame_pair": [max_sole["from_frame"], max_sole["to_frame"]], "threshold": sole_limit, "samples": [{**item, "drift_px": round(item["drift_px"], 6)} for item in sole_pairs]}, "ankle_horizontal_drift_from_baseline_px": {"max": round(max_ankle["drift_px"], 6), "max_frame": max_ankle["frame"], "threshold": ankle_limit, "samples": [{**item, "drift_px": round(item["drift_px"], 6)} for item in ankle_samples]}, "hard_gates": hard_gates, "status": "IDLE_DUAL_FEET_DRIFT_PASSED" if all(hard_gates.values()) else "IDLE_DUAL_FEET_DRIFT_GAP"}
+    hard_gates = {f"{side}_{name}": value for side, item in sides.items() for name, value in item.get("hard_gates", {}).items()}
+    return {"sides": sides, "hard_gates": hard_gates, "status": "IDLE_DUAL_FEET_DRIFT_PASSED" if hard_gates and all(hard_gates.values()) else "IDLE_DUAL_FEET_DRIFT_GAP"}
 
 
 def z_order_gate(frame_records: list[Mapping[str, Any]]) -> bool:
@@ -148,12 +191,10 @@ def _plan_and_structural(context: Mapping[str, Any], target: Mapping[str, Any], 
         front = pair[0] if order.index(pair[0]) > order.index(pair[1]) else pair[1]
         region_masks[key] = mask
         region_records.append({"pair": list(pair), "pair_key": key, "phase": phase, "expected_front_part": front, "geometry": geometry, "region_pixels": _count(mask), "region_sha256": _digest_image(mask)})
-    regions = {"regions": region_masks, "records": region_records}
+    regions = {"regions": region_masks, "records": region_records, "allowed_pair_keys": {_explicit_pair_key(*raw) for raw in plan.get("allowed_expected_occlusion_pairs", [])}}
     pair = pairwise_overlap_v073(details["layers"], phase, target, plan, regions)
-    # A constant-depth idle profile has no phase-specific occlusion
-    # authorization.  Non-critical overlaps are therefore evaluated by the
-    # measured global fraction; only critical collisions remain fatal.
-    pair["hard_gates"]["no_meaningful_outside_authorized_overlap"] = True
+    pair["hard_gates"]["z_order_constant"] = len({tuple(plan["phase_plans"][name]["z_order"]) for name in PHASES}) == 1
+    pair["hard_gates"]["explicit_idle_allowed_pair_rules"] = bool(plan.get("allowed_expected_occlusion_pairs"))
     pair["status"] = "OCCLUSION_QA_PASSED" if all(pair["hard_gates"].values()) else "CUTOUT_RIG_OCCLUSION_REGION_GAP"
     seam = topological_seam_qa(details["layers"], phase, target, plan)
     integrity = layer_integrity_qa(context["parts"], details["layers"], details["transforms"], context["source"].size)
@@ -202,8 +243,14 @@ def temporal_gate_summary(spec: Mapping[str, Any], targets: list[Mapping[str, An
     z_switches = sum(frame_records[i].get("z_order") != frame_records[(i - 1) % len(frame_records)].get("z_order") for i in range(len(frame_records)))
     heights = [float((out.getchannel("A").getbbox() or (0, 0, 0, 0))[3] - (out.getchannel("A").getbbox() or (0, 0, 0, 0))[1]) for out in outputs]
     feet = all(bool(record.get("feet", {}).get("hard_gates", {})) and all(record["feet"]["hard_gates"].values()) for record in frame_records)
-    gates = {"joint_angle_delta_le_10": max(deltas, default=999) <= float(threshold["joint_angle_delta_max_degrees"]), "angular_acceleration_le_8": max(accelerations, default=999) <= float(threshold["angular_acceleration_max_degrees_per_frame2"]), "root_vertical_pp_2_to_4": 2.0 <= root_y <= 4.0, "root_horizontal_pp_le_3": root_x <= 3.0, "head_adjacent_le_3": head_step <= 3.0, "head_bbox_cv_le_025": _cv([_bbox_area(out) for out in outputs]) <= 0.025, "torso_bbox_cv_le_025": _cv([_bbox_area(out) for out in outputs]) <= 0.025, "feet_all_frames_pass": feet, "sword_visible_motion_pp_2_to_8": 2.0 <= sword_pp <= 8.0, "z_order_switches_zero": z_switches == 0, "loop_root_step_le_1_5": boundary_root <= 1.5, "loop_head_step_le_1_5": boundary_head <= 1.5, "loop_sword_step_le_3": boundary_sword <= 3.0, "distinct_target_hashes_at_least_10": len(target_hashes) >= 10, "foreground_bbox_height_variation_le_4_percent": (max(heights) - min(heights)) / max(1.0, sum(heights) / len(heights)) <= 0.04}
-    return {"metrics": {"max_joint_angle_delta_degrees": max(deltas, default=0), "max_angular_acceleration_degrees_per_frame2": max(accelerations, default=0), "root_vertical_pp_presented_px": root_y, "root_horizontal_pp_presented_px": root_x, "head_adjacent_step_px": head_step, "sword_motion_pp_px": sword_pp, "loop_root_step_px": boundary_root, "loop_head_step_px": boundary_head, "loop_sword_step_px": boundary_sword, "distinct_target_hash_count": len(target_hashes), "phase_order": list(PHASES), "i11_is_distinct_from_i0": target_digest(targets[-1]) != target_digest(targets[0])}, "hard_gates": gates, "status": "IDLE_TEMPORAL_LOOP_PASSED" if all(gates.values()) else "IDLE_TEMPORAL_LOOP_GAP"}
+    dual_feet = dual_foot_drift_qa(frame_records, float(spec["foot_policy"]["limits"].get("frame_to_frame_sole_anchor_drift_px", 1.5)), float(spec["foot_policy"]["limits"].get("ankle_horizontal_drift_from_baseline_px", 2.0)))
+    layer_bbox = layer_bbox_temporal_gate([record.get("layer_bboxes", {}) for record in frame_records], float(threshold["head_torso_bbox_cv"]))
+    head_areas = layer_bbox["areas"]["head"]
+    torso_areas = layer_bbox["areas"]["torso_pelvis"]
+    head_cv = layer_bbox["cv"]["head"]
+    torso_cv = layer_bbox["cv"]["torso_pelvis"]
+    gates = {"joint_angle_delta_le_10": max(deltas, default=999) <= float(threshold["joint_angle_delta_max_degrees"]), "angular_acceleration_le_8": max(accelerations, default=999) <= float(threshold["angular_acceleration_max_degrees_per_frame2"]), "root_vertical_pp_2_to_4": 2.0 <= root_y <= 4.0, "root_horizontal_pp_le_3": root_x <= 3.0, "head_adjacent_le_3": head_step <= 3.0, "head_bbox_cv_le_025": head_cv <= float(threshold["head_torso_bbox_cv"]), "torso_bbox_cv_le_025": torso_cv <= float(threshold["head_torso_bbox_cv"]), "feet_all_frames_pass": feet, "dual_foot_all_four_properties": dual_feet["status"] == "IDLE_DUAL_FEET_DRIFT_PASSED", "sword_visible_motion_pp_2_to_8": 2.0 <= sword_pp <= 8.0, "z_order_switches_zero": z_switches == 0, "loop_root_step_le_1_5": boundary_root <= 1.5, "loop_head_step_le_1_5": boundary_head <= 1.5, "loop_sword_step_le_3": boundary_sword <= 3.0, "distinct_target_hashes_at_least_10": len(target_hashes) >= 10, "foreground_bbox_height_variation_le_4_percent": (max(heights) - min(heights)) / max(1.0, sum(heights) / len(heights)) <= 0.04}
+    return {"metrics": {"max_joint_angle_delta_degrees": max(deltas, default=0), "max_angular_acceleration_degrees_per_frame2": max(accelerations, default=0), "root_vertical_pp_presented_px": root_y, "root_horizontal_pp_presented_px": root_x, "head_adjacent_step_px": head_step, "head_bbox_areas": [round(value, 6) for value in head_areas], "torso_bbox_areas": [round(value, 6) for value in torso_areas], "head_bbox_area_cv": round(head_cv, 6), "torso_bbox_area_cv": round(torso_cv, 6), "foreground_bbox_heights": [round(value, 6) for value in heights], "sword_motion_pp_px": sword_pp, "loop_root_step_px": boundary_root, "loop_head_step_px": boundary_head, "loop_sword_step_px": boundary_sword, "distinct_target_hash_count": len(target_hashes), "phase_order": list(PHASES), "i11_is_distinct_from_i0": target_digest(targets[-1]) != target_digest(targets[0]), "dual_foot": dual_feet}, "hard_gates": gates, "status": "IDLE_TEMPORAL_LOOP_PASSED" if all(gates.values()) else "IDLE_TEMPORAL_LOOP_GAP"}
 
 
 def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[str, Any], root: Path) -> dict[str, Any]:
@@ -214,7 +261,8 @@ def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[st
         target = prepared["targets"][index]; targets.append(target)
         image, details = render_source_only(context, target, list(Z_ORDER), prepared["presentation"]); outputs.append(image)
         pair, seam, integrity, aux = _plan_and_structural(context, target, details, PHASES[index], plan)
-        feet = _dual_feet(context, target, details, spec["presentation_transform"])
+        feet = _dual_feet(context, target, details, spec["presentation_transform"], spec["foot_policy"]["limits"])
+        layer_bboxes = layer_bbox_measurement(details["presented_layers"])
         alpha = actual_alpha_safe_margin(image, 24)
         duplicate = duplicate_body_measure(image)
         frame_path = root / item["path"]
@@ -222,9 +270,13 @@ def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[st
         metrics = pose["metrics"]
         sword = next(t for t in details["transforms"] if t["part"] == "sword")
         gates = {"source_hashes": all(t["source_part_rgba_sha256"] == context["part_hashes"][t["part"]] for t in details["transforms"]), "target_binding": target_digest(target) == item["target_hash"], "global_transform": all(t["nonuniform_scale"] is False for t in details["transforms"]) and spec["presentation_transform"]["frozen_before_render"], "alpha_margin_24": bool(alpha["gate"]), "structural_holes_zero": aux["coverage"]["structural_hole_pixels"] == 0, "layer_integrity": integrity["status"] == "LAYER_INTEGRITY_PASSED", "occlusion": pair["status"] == "OCCLUSION_QA_PASSED", "retention": aux["retention"]["status"] == "RETENTION_OCCLUSION_PASSED", "media_pipe_10_pck_nme_angle": metrics.get("qualifies") is True and int(metrics.get("measurable_body_joints", 0)) >= 10 and float(metrics.get("pck_at_010", 0)) >= 0.80 and float(metrics.get("nme", 1)) <= 0.10 and float(metrics.get("limb_angle_mae_degrees", 180)) <= 18, "sword_attached": sword["target_pivot"] == [target["joints"]["wrist_right"]["x"], target["joints"]["wrist_right"]["y"]], "source_only": True, "no_duplicate_body": duplicate["gate"], "both_feet_planted": feet["status"] == "IDLE_DUAL_FEET_PLANTED_PASSED", "frozen_z_order": details["transforms"] and list(Z_ORDER) == list(details["transforms"][0:len(Z_ORDER)][i]["part"] for i in range(len(Z_ORDER)))}
-        record = {"index": index, "phase": PHASES[index], "target_hash": target["target_joint_sha256"], "output_rgba_sha256": item["rgba_sha256"], "hard_gates": gates, "alpha": alpha, "feet": feet, "pose": pose, "duplicate_body": duplicate, "sword": {"target_pivot": sword["target_pivot"], "visible_tip_motion_source_only": True}, "integrity": integrity, "occlusion": pair, "seam": seam, "coverage": {k: v for k, v in aux["coverage"].items() if k not in {"hole_mask", "expected_mask"}}, "retention": aux["retention"], "z_order": list(Z_ORDER), "status": "IDLE_FRAME_PASSED" if all(gates.values()) else "IDLE_FRAME_GAP"}
+        record = {"index": index, "phase": PHASES[index], "target_hash": target["target_joint_sha256"], "output_rgba_sha256": item["rgba_sha256"], "hard_gates": gates, "alpha": alpha, "feet": feet, "layer_bboxes": layer_bboxes, "pose": pose, "duplicate_body": duplicate, "sword": {"target_pivot": sword["target_pivot"], "visible_tip_motion_source_only": True}, "integrity": integrity, "occlusion": pair, "seam": seam, "coverage": {k: v for k, v in aux["coverage"].items() if k not in {"hole_mask", "expected_mask"}}, "retention": aux["retention"], "z_order": list(Z_ORDER), "status": "IDLE_FRAME_PASSED" if all(gates.values()) else "IDLE_FRAME_GAP"}
         records.append(record); structural[PHASES[index]] = {"pair": pair, "seam": seam, "coverage": record["coverage"], "retention": record["retention"]}
     temporal = temporal_gate_summary(spec, targets, outputs, records)
     frame_pass = all(record["status"] == "IDLE_FRAME_PASSED" for record in records)
     gates = {"all_frames": frame_pass, "temporal_loop": temporal["status"] == "IDLE_TEMPORAL_LOOP_PASSED", "provenance": spec["provenance"]["source_only_pixels"] and spec["provenance"]["sam2_used"] is False and spec["provenance"]["comfyui_generation_jobs"] == 0 and spec["provenance"]["diffusion_used"] is False, "target_motion_nonzero": len({target_digest(t) for t in targets}) >= 10}
-    return {"animation_id": spec["animation_id"], "status": "CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED" if all(gates.values()) else "ANIMATION_RUNTIME_IDLE_FRONT_GAP", "frames": records, "temporal": temporal, "provenance": {"source_sha256": context["source_sha256"], "part_hashes": context["part_hashes"], "mask_hashes": context["mask_hashes"], "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "source_only_pixels": True}, "hard_gates": gates, "structural": structural}
+    failures = [name for name, passed in gates.items() if not passed]
+    failures.extend(f"frame_{record['index']}_{name}" for record in records for name, passed in record["hard_gates"].items() if not passed)
+    failures.extend(f"temporal_{name}" for name, passed in temporal["hard_gates"].items() if not passed)
+    qualified = all(gates.values()) and not failures
+    return {"animation_id": spec["animation_id"], "decision": "QUALIFIED" if qualified else "FAILED", "status": "CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED" if qualified else "ANIMATION_RUNTIME_IDLE_FRONT_GAP", "frames": records, "temporal": temporal, "provenance": {"source_sha256": context["source_sha256"], "part_hashes": context["part_hashes"], "mask_hashes": context["mask_hashes"], "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "source_only_pixels": True}, "hard_gates": gates, "failures": failures, "structural": structural}

@@ -26,3 +26,11 @@ Animação genérica não autoriza execução: somente `WALK FRONT` neste piloto
 UGAS v0.9.0 is in `REUSABLE_DETERMINISTIC_ANIMATION_RUNTIME` with current gate `CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED`. The v0.8.1 walk decision `FRONT_WALK_V081_PILOT_VISUAL_APPROVED` is `APPROVED_PILOT` for pipeline/pilot only; production routing is `BLOCKED`, and external idle review is `REQUIRED`.
 
 `sam2_runs=0` and `comfyui_generation_jobs=0`; no-claim status is `not-claimed` for production. The generic runtime may only proceed to `external_review_idle_front`; no other animation or direction is authorized.
+
+## v0.9.1 current checkpoint
+
+UGAS v0.9.1 is the generic-runtime QA integrity correction over the immutable v0.9.0 implementation base `16c60c9ff934a55adefc82a99d81dafb52d1047c`, with parent baseline `46ba3ae87558ff26055e14aa8d9c6f3ee147333c`. The current gate remains `CUTOUT_ANIMATION_RUNTIME_V1_IDLE_FRONT_TECHNICALLY_QUALIFIED`; `decision=QUALIFIED` is the package gate and profile-specific `status` is informational.
+
+The timing schema accepts exactly one of `fps` or `per_frame_duration_ms`. The generic dummy two-key profile, v0.8.1 walk replay, and idle canonical replay pass. Idle QA measures dual-foot sole error, penetration, cyclic sole drift including I11→I0, ankle drift, head_bbox, torso_bbox, and measured occlusion policy. `sam2_runs=0`, `comfyui_generation_jobs=0`, `new_generation=0`, and `diffusion_runs=0`.
+
+Production remains `production_routing=BLOCKED`; external idle review is `REQUIRED` and not-claimed. The only allowed next action is `external_review_idle_front`. The v0.9.1 review index v2 records baseline/base separately and requires the external reviewer to resolve final HEAD; the executor cannot self-assert that final HEAD.

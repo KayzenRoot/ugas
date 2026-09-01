@@ -4,7 +4,11 @@
   "title": "UGAS Animation Specification v1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "animation_id", "asset_revision_id", "direction", "frame_count", "fps", "loop", "source_rig_ref", "key_pose_bindings", "interpolation_profile", "root_motion_profile", "foot_policy", "z_order_profile", "presentation_transform", "qa_profile", "package_profile", "provenance", "forbidden_operations", "runtime_adapter"],
+  "required": ["schema_version", "animation_id", "asset_revision_id", "direction", "frame_count", "loop", "source_rig_ref", "key_pose_bindings", "interpolation_profile", "root_motion_profile", "foot_policy", "z_order_profile", "presentation_transform", "qa_profile", "package_profile", "provenance", "forbidden_operations", "runtime_adapter"],
+  "oneOf": [
+    {"required": ["fps"], "not": {"required": ["per_frame_duration_ms"]}},
+    {"required": ["per_frame_duration_ms"], "not": {"required": ["fps"]}}
+  ],
   "properties": {
     "schema_version": {"const": "animation-spec-1.0"},
     "animation_id": {"type": "string", "minLength": 1, "pattern": "^[a-z0-9][a-z0-9-]*$"},

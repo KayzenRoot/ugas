@@ -23,7 +23,7 @@
     "registry_state": {"const": "pilot/technical-qualified"},
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
-    "qa_status": {"type": "string"},
+    "qa_status": {"type": "string"}, "qa_decision": {"enum": ["QUALIFIED", "FAILED"]},
     "source_rig_revision": {"type": "string"},
     "source_rig_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "r4_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}

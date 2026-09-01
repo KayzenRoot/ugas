@@ -1,0 +1,938 @@
+{
+  "schema_version": "0.9.1",
+  "version": "0.9.1",
+  "branch": "main",
+  "review_subject": {
+    "baseline_commit": "46ba3ae87558ff26055e14aa8d9c6f3ee147333c",
+    "implementation_base_commit": "16c60c9ff934a55adefc82a99d81dafb52d1047c",
+    "repository_ref": "https://github.com/csn1985-ship-it/ugas.git"
+  },
+  "publication": {
+    "index_build_git_head": "16c60c9ff934a55adefc82a99d81dafb52d1047c",
+    "index_build_dirty_state": "dirty_before_publication_commit",
+    "final_head_must_be_resolved_by_external_reviewer": true,
+    "executor_cannot_self_assert_final_head": true
+  },
+  "review_file": "REVIEW-v0.9.1.md",
+  "current_state": "docs/evidence/current-state.json",
+  "tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "count": 296,
+    "passed": 296,
+    "failed": 0,
+    "status": "passed"
+  },
+  "validation": {
+    "command": "python scripts/validation/run_validation.py",
+    "checks": 1360,
+    "passed": 1360,
+    "failed": 0,
+    "status": "passed"
+  },
+  "artifact_set": {
+    "manifest_algorithm": "sha256-canonical-path-list-v1",
+    "artifacts": [
+      {
+        "path": "CHECKPOINT.md",
+        "sha256": "5d387e46ad9b0b20167806774746939c291a91d921b3dfd0a3ec46027c4a0630",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "INSTALL.md",
+        "sha256": "b4d0742576751f038169995b1510a8ef8861570048f69443050979fe1beb8c32",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "3063da31fa8f07caa7a7815c9a4fcd0cf0b30b3e1e7f90b18974fe36a255b0aa",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "README.md",
+        "sha256": "f79f9a303fb23ff64495e231b895a584d796d088eb1916fa3ffedfe41a25fa18",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "REVIEW-v0.9.1.md",
+        "sha256": "5ca1084b65a090eddfec6f9ef732072cfa3d29e52df1fe647f281f8b5191abb0",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/2d-master-pipeline.md",
+        "sha256": "ce225549316022cfb1a650a0b7c1d1db90e83329822c01e0dbb13bccaf9e7f34",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/comfyui.md",
+        "sha256": "83e3956355d0777560081c88a1505774699780f5ef8e8784799fdac743b764dd",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v090/idle-front-v1/compiled-manifest.json",
+        "sha256": "f513f83659f479307a8f9ad46551567d05463a086a101c2c085a4e2a75e39fae",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v090/idle-front-v1/idle-front-preview-v090.gif",
+        "sha256": "2f015b3863b78736529ea10fdd3599875369354f752859df85c5686b9e64ed0f",
+        "media_type": "image/gif",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v090/idle-front-v1/idle-front-spritesheet-v090.png",
+        "sha256": "3492f7eaf3a3bffd3c458b2e411f6a38772aba6a16a16e2cdeffb1f752503b9a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v090/replay/walk-front-v1/compiled-manifest.json",
+        "sha256": "77737f92b98c2c68595679d4a214346f4a9285bdd799e1e92694b8bbf4bc26ff",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/execution-evidence-v0.9.1.json",
+        "sha256": "37a190149be6f7c1c3868204160e9fa27ce2f87dddc678e0a7867d41f2e1ee88",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/generic-dummy-package-qualification-v091.json",
+        "sha256": "bfb1b41d4ad5c1cafb7214ee56a1d1dfd516c8e4d751ce6f1336b1016956ad58",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/generic-runtime-contract-v091.json",
+        "sha256": "bfb1b41d4ad5c1cafb7214ee56a1d1dfd516c8e4d751ce6f1336b1016956ad58",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/idle-dual-foot-drift-qa-v091.json",
+        "sha256": "a3402c113a0e147021deaa9b260df1dca4f066830ec6035ce589cb2224024311",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/idle-layer-bbox-temporal-qa-v091.json",
+        "sha256": "da338ade0e7cea2f84222219baf05b60a4c01d8bd0e87d72ca0a68045678cce8",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/idle-occlusion-policy-v091.json",
+        "sha256": "f738fd287650c9068ebf9bb5b841d17162762bc18e4b0dac09ca96d2dbf0868b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/idle-requalification-v091.json",
+        "sha256": "468a20c20ee4cf5f3de94522dbaa130957da5c3f29bdc1c0fb2c9eb0c763528e",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/timing-alternative-qualification-v091.json",
+        "sha256": "c4229fcf344d02471b71b7b544539be906c224491689743ea39068c42964c112",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v091/walk-replay-qualification-v091.json",
+        "sha256": "2adfb78442dca439bdcb341a42b8c2a93842050ee7e6d751bd459bb521c5fbb2",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/current-state.json",
+        "sha256": "b6c7883524500f685c151bc2eb4e45259d8f3b35245178fe017e04d848c5ffb7",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-00-I0-neutral-A.png",
+        "sha256": "a238dd471917489801536128d912711ff139b0041c52e4dfe9654731ca6c72b6",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-01-I1-inhale-early.png",
+        "sha256": "13dbf621e7dbaa16ad44d4168813273cca4cd10f19dd973422a26e75203395a3",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-02-I2-inhale-mid.png",
+        "sha256": "7f1d8cddfbacf992c72d40636b204dc6d95ecef29b5735a10784f24fd6d084c5",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-03-I3-inhale-peak.png",
+        "sha256": "520e953ba0f3dca55f334c5f2a72863caa8319a4ad805205f3e4bb42e906d83e",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-04-I4-return-A.png",
+        "sha256": "07f850048ae746139a216af31648700b34d461ecc2fd74c54bdef8faea6dfd5a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-05-I5-neutral-B.png",
+        "sha256": "9f474f4fcb374bec4d50cffdf982d292af699f75f5de41d453b11b560d05ce4f",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-06-I6-exhale-early.png",
+        "sha256": "a238dd471917489801536128d912711ff139b0041c52e4dfe9654731ca6c72b6",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-07-I7-exhale-mid.png",
+        "sha256": "43757b69a87ff27d625fcbd3993e9473c58b5e05c2519202460582e3e245cdab",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-08-I8-exhale-peak.png",
+        "sha256": "bcc50fa9f4cc1abf8ce89344cebec97d28abd9787bfda84f326bae61280c9021",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-09-I9-return-B.png",
+        "sha256": "7baf3376412be67f3e6e5c8c1706efbf6f3fd5f5406145d668566e0ecee14460",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-10-I10-settle.png",
+        "sha256": "553f31e273573b4be909f2213c8cb1d245d1d62d9430f14f0081018e1132a8ba",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/alpha-bbox-overlays/frame-11-I11-pre-loop.png",
+        "sha256": "a01c633ad696efb8535fca043cd1a0d811471cf3e78c513424a9c1aaf64de7e5",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-00-I0-neutral-A.png",
+        "sha256": "086ac0b248bf25ba8e5ea93d2865dacb16a56bacda17e861a6d80396be422aec",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-01-I1-inhale-early.png",
+        "sha256": "8342b3b86af1f68196a09d4c0ba723df89747a39f42ea72b8e96e453306ec044",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-02-I2-inhale-mid.png",
+        "sha256": "da43855c80860eb140858d91861812f190323fd86b7680175013fd81d96ff0d2",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-03-I3-inhale-peak.png",
+        "sha256": "2a3e644490a91ccc88086d08f1fd2e6340d1e734e51b298aedcf0630d7891079",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-04-I4-return-A.png",
+        "sha256": "e6151a76a32994e4a62e7615866dce326b18c5b30c51fa233b489b07688bda08",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-05-I5-neutral-B.png",
+        "sha256": "0c3a16020407cd3838f41dcf6c3e2b8b1be737df316e78b2adba15df33bfce86",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-06-I6-exhale-early.png",
+        "sha256": "086ac0b248bf25ba8e5ea93d2865dacb16a56bacda17e861a6d80396be422aec",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-07-I7-exhale-mid.png",
+        "sha256": "8b48b8e24cda8f57fc1bfdef2df5d70525797d0ebd91fdf6e8f4f8509e2ae5f0",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-08-I8-exhale-peak.png",
+        "sha256": "406e10607924fc115289eff7b252609e7b456398892d067a8c3a6fab4bbe280c",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-09-I9-return-B.png",
+        "sha256": "a9e57659d7fe93981f7cba6400583540b2cf465022f9e9b492fb291a3a3c33e8",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-10-I10-settle.png",
+        "sha256": "b752a991437d2850f8807a42bdca8d43a48bc4f8d3824767e20be48d007bd841",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/checkerboard/frame-11-I11-pre-loop.png",
+        "sha256": "8fd75865f998672f5c42c7f17b86228cf280e98ce0eee54e851010e244e7b189",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-00-I0-neutral-A.png",
+        "sha256": "3e6becea06045d306063dc4931a45b5d17c65859472813d43459c37fc901c3eb",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-01-I1-inhale-early.png",
+        "sha256": "eb0a8892a0872c99c13e7236e2033368decf6ae314b2ee6795aa833f97e6dda4",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-02-I2-inhale-mid.png",
+        "sha256": "df6c4bd959de156e1fb80b567d70795080b84f531990a29fb8391be3019d3437",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-03-I3-inhale-peak.png",
+        "sha256": "547988f75646d9a621c0c8bd581cba10462c72eaf623a652414f96b00bafb3bc",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-04-I4-return-A.png",
+        "sha256": "c30f138fc8524cba45a872708ba0db2482fa2be2926ee0db5fd7ee3c28a03395",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-05-I5-neutral-B.png",
+        "sha256": "9a603179b8c9e1e3fa2e29b2332d83a4ba019829e242058b29caedabbe8df11a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-06-I6-exhale-early.png",
+        "sha256": "3e6becea06045d306063dc4931a45b5d17c65859472813d43459c37fc901c3eb",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-07-I7-exhale-mid.png",
+        "sha256": "56feb6e05ed06517ebda11cc6620bdecb775ee8f4306e928996377034b4b1a7b",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-08-I8-exhale-peak.png",
+        "sha256": "6e0fe0fc93da77bc6086d0d024d003a5677a16f94fe38a85af90fa776131fff3",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-09-I9-return-B.png",
+        "sha256": "482af6e2bb8fec48fcbfd9a142fa4354c13c1ba8e58a4e47da1c49e2bcb1497a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-10-I10-settle.png",
+        "sha256": "d8ef816c4048af8ce43271065f0615f97dfbcfc61b455aaacc3123691325e834",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/feet-ground/frame-11-I11-pre-loop.png",
+        "sha256": "5724c63ce5916dc120b113ea0351f1c2a55725019d332b0862a6d7d3308cf0da",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-00-I0-neutral-A.png",
+        "sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-01-I1-inhale-early.png",
+        "sha256": "63ca647e4d1249e7b048890355170f20101e551b6f090b4514b169b409142fc7",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-02-I2-inhale-mid.png",
+        "sha256": "93e17c2cbe23681530ae64986a8a9aff9f486d4a1ce13341a6fc9c673e89a995",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-03-I3-inhale-peak.png",
+        "sha256": "641f53e473c5a772c2dfb3549c3d5bd8638636260544d73716bd576d87a52d9a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-04-I4-return-A.png",
+        "sha256": "bb1c07ea16cccf4e0d9525058bcde1b4e70c4d66e2c01c1e629fbbc1e375ed7e",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-05-I5-neutral-B.png",
+        "sha256": "5f7f9727f87b094cf6fe4630ede6267a9e601ab9366f181c7f5c5c4c730cf2f9",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-06-I6-exhale-early.png",
+        "sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-07-I7-exhale-mid.png",
+        "sha256": "b3bf1480e061111fc69e017df6285a5b6dd8c6548d9d6adf7226bbd2021e8b63",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-08-I8-exhale-peak.png",
+        "sha256": "ee4c7153946a24626abc681fb475a698392db685b90197081ed39e155d157135",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-09-I9-return-B.png",
+        "sha256": "2e49d4a0a48ede9c18d324aff81dfbd22792eefd61ac682656b393510e4f077f",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-10-I10-settle.png",
+        "sha256": "4535e71d87317fc0ea852dbbaed58609728bb21f0f478b5b2a08d8627507e145",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/frames/frame-11-I11-pre-loop.png",
+        "sha256": "b42315d301f24ee3493aa3ec9d092ffa1430d041a5497e729bcb6339cf814eaa",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-alpha-bbox-overlays-v090.png",
+        "sha256": "22bf3b74cc8ccaab7d167e2a717f088e5c7a4a3b673233fcda10290cb3b963af",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-checkerboard-contact-sheet-v090.png",
+        "sha256": "5825436a9db10d680d34e3a87117f863ab4f9e7aa40d09cebae1dfbf1167095b",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-evidence-contact-sheet-v090.png",
+        "sha256": "0ef25347da919a0f0b324ed2373d26205e79daa4bb2ebd1317d8c323db63f17a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-feet-ground-sheet-v090.png",
+        "sha256": "739c65ebcb1cfd4c1318fe9b6afc48bbe773fbb8a9c32dc09acde9554364787e",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-head-torso-sheet-v090.png",
+        "sha256": "bf4ed338676138e1e2e389f2e93d888dbee14fa0d069ebf56323719672986168",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-structural-maps-v090.png",
+        "sha256": "5825436a9db10d680d34e3a87117f863ab4f9e7aa40d09cebae1dfbf1167095b",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-sword-hand-sheet-v090.png",
+        "sha256": "220fa53ec5cb379472fe5a436063a03a0b21d39ec007de061860be5d0157adc7",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-target-detected-overlays-v090.png",
+        "sha256": "aa3be03c04c555f159b96ca1454508fae94311c5108453fa960d10f483cec91c",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-temporal-trajectory-v090.png",
+        "sha256": "96d395ee98b3d377e6ade7fb49020a4b8a7fec1e3c44cf9e738f00ec798c9c0e",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/idle-front-waist-hip-sheet-v090.png",
+        "sha256": "006a426adb31691fddaf97fbb61437eae24bfa4737a3479dc874bdfa6f034cdd",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-00-I0-neutral-A.png",
+        "sha256": "086ac0b248bf25ba8e5ea93d2865dacb16a56bacda17e861a6d80396be422aec",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-01-I1-inhale-early.png",
+        "sha256": "8342b3b86af1f68196a09d4c0ba723df89747a39f42ea72b8e96e453306ec044",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-02-I2-inhale-mid.png",
+        "sha256": "da43855c80860eb140858d91861812f190323fd86b7680175013fd81d96ff0d2",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-03-I3-inhale-peak.png",
+        "sha256": "2a3e644490a91ccc88086d08f1fd2e6340d1e734e51b298aedcf0630d7891079",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-04-I4-return-A.png",
+        "sha256": "e6151a76a32994e4a62e7615866dce326b18c5b30c51fa233b489b07688bda08",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-05-I5-neutral-B.png",
+        "sha256": "0c3a16020407cd3838f41dcf6c3e2b8b1be737df316e78b2adba15df33bfce86",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-06-I6-exhale-early.png",
+        "sha256": "086ac0b248bf25ba8e5ea93d2865dacb16a56bacda17e861a6d80396be422aec",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-07-I7-exhale-mid.png",
+        "sha256": "8b48b8e24cda8f57fc1bfdef2df5d70525797d0ebd91fdf6e8f4f8509e2ae5f0",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-08-I8-exhale-peak.png",
+        "sha256": "406e10607924fc115289eff7b252609e7b456398892d067a8c3a6fab4bbe280c",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-09-I9-return-B.png",
+        "sha256": "a9e57659d7fe93981f7cba6400583540b2cf465022f9e9b492fb291a3a3c33e8",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-10-I10-settle.png",
+        "sha256": "b752a991437d2850f8807a42bdca8d43a48bc4f8d3824767e20be48d007bd841",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/structural-maps/frame-11-I11-pre-loop.png",
+        "sha256": "8fd75865f998672f5c42c7f17b86228cf280e98ce0eee54e851010e244e7b189",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-00-I0-neutral-A.png",
+        "sha256": "1d6a0e06bb87a4b2c97592bf2221d17588211de6ca4737cd9ec9e6ca96565afe",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-01-I1-inhale-early.png",
+        "sha256": "061138077a635bd514692ea534734a4df5c719797039090b9a5e6cf01403680a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-02-I2-inhale-mid.png",
+        "sha256": "343ce2dbe229fa0cb99735a1eccf0dea2289ce84a33c788349164b01b2305ef6",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-03-I3-inhale-peak.png",
+        "sha256": "a1aeef7cebc423d7b4e007622fa2cc51f1c068a692d6b059c606927494dd2c03",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-04-I4-return-A.png",
+        "sha256": "db333f45857e2d6a179732a8f7ea02c6464fc7a366febd74286d92637a780cf5",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-05-I5-neutral-B.png",
+        "sha256": "4727df81c02df03fd552ba4c5da206ec2673a046aaeb45055c76c06530026df8",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-06-I6-exhale-early.png",
+        "sha256": "1d6a0e06bb87a4b2c97592bf2221d17588211de6ca4737cd9ec9e6ca96565afe",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-07-I7-exhale-mid.png",
+        "sha256": "2137054c86d65382700ba8daf351a6dc07178ca6a294c153d2b6d754882b237e",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-08-I8-exhale-peak.png",
+        "sha256": "53ebb35d23230c35b5f92f6243d3f124a66c417ed8539646ae48a7d1ddea9955",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-09-I9-return-B.png",
+        "sha256": "299eb8c4084b6f9859555ecad4fe667daff7286bac999b8115b534e74776aa0f",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-10-I10-settle.png",
+        "sha256": "a9f6c930239ca01dec7d9bd55c5ac745d140f3ee452a03273871de19e5101232",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/idle-front-v090/target-detected-overlays/frame-11-I11-pre-loop.png",
+        "sha256": "77112e5bff0e575722f3f5e0c7e0e1a746b53e3576b3c14ede77f384f6cbc177",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/review-visuals-v0.9.0.json",
+        "sha256": "ff57b8794afa013f2e252acaf4437e46afe33355413abb9a48d7736a08120bc2",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/state-consistency-v091.json",
+        "sha256": "f4ef7a0c24a8a18bb89840296479b8674d59a05eed1fd6f6f66211df65fc027b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/roadmap.md",
+        "sha256": "7886e3e1fb281cbb918fbc94e19d75832bf3622beee1c0802fedea3b3875ed9e",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/test-coverage-matrix-v0.9.1.md",
+        "sha256": "bcce7f14023993bc7775242c7ec291375c56550c3f1e8d19e40a83b237333e5e",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "package.json",
+        "sha256": "b2f0d80261e332845c17d57b62eb0838f9f181e8f498e5c07235b0b7b9326ee5",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "profiles/animation/idle-front-v1.json",
+        "sha256": "1f859eedd0a97eaca6ac1345e31801b747db6230e95f494aad86e8d34a664470",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "profiles/animation/walk-front-v1.json",
+        "sha256": "3bf376286192ef3d68ab72cd055ad6e35393ad4d6514fb1a574488c9ca5884b5",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "pyproject.toml",
+        "sha256": "111ec3d888a87e8be47c9cb73a804def0e06a61cb80306a0f3e57b773e8754e4",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-compiled-manifest-v1.json",
+        "sha256": "62d5e90da19a7272d7dc6b1f6d50063adfb79c0dbc88d9037ddb5c509a5588f8",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-package-v1.json",
+        "sha256": "d842841096f95b80e5d29becba65edfdad98135531e886a3d8a4c9806160e34b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-qa-result-v1.json",
+        "sha256": "e99436b442e5edbf9b7e2a5dbe1627ae31a3400e0cf8756463bbb17e6509d88b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/animation-spec-v1.json",
+        "sha256": "cd5ebd5207d17f830c085e6c4d385b1129495611a485f6dd2cb2b0bffd5e7832",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state-v0.9.0.json",
+        "sha256": "870af191cb98beae07c8503f331859851a4d8c001cd97f6331591d4d3572236d",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state.json",
+        "sha256": "6e86d43151aaaf167d0f01bd6a66d65e724538211105a8e6b0bfd42b72f4d311",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/review-index-v0.9.1.json",
+        "sha256": "01a37ac1b47fc2df089632fb24fbc32e06106c30a47dda17674abc159d30e91c",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/build_review_index_v091.py",
+        "sha256": "4e8bae2b07f947fd2940c86615a1f95c7e59068793e2e021d88d0c06ffde8f29",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/run_animation_runtime_v091.py",
+        "sha256": "b501966ff532e0b07bd2f48f71d632680fa4fedd084a0f6b2040bc404d98790e",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_review_index_v091.py",
+        "sha256": "170551f465a58ab6ccd38f62990f4344a29df2bb78282eac6e981f12f1da0700",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/animation.py",
+        "sha256": "210aae01071d42ffd66ad556158004ef5ea6a4117d2e415b893a47e189fae9d4",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/animation_profiles/common.py",
+        "sha256": "ea34a02d36edd0e05e2ea4b7091e53edaf41c37ea49effea1e22c3641c17f7a1",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/animation_profiles/idle_front_v1.py",
+        "sha256": "05790335bebd367123f913c16b0037555b3d4b7f367d8aa7e1c7a7db339d3b84",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/animation_profiles/walk_front_v1.py",
+        "sha256": "5398e4f7e1d2a8490190bd03d526c9840e1f690374f33553fb7d51778950d50b",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/cutout_structural.py",
+        "sha256": "ccd8a68bd95969e4f996ad5d709498baf982d14ad9fa674a5786f64f68c6dc08",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/schema_validation.py",
+        "sha256": "84c7fb51132c7209ff4fbd1ab11051f9d246e723878174ecd9af6a71fcc5b4f2",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/state_consistency_v091.py",
+        "sha256": "a02e184710d6322c9b9160d64e6db4ce3b9717b4900fb5d5742f4884d37af3f4",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/fixtures/__init__.py",
+        "sha256": "bf8d2fcb98f265c204bb3556920a1d0beb2319716ca21a2cb79e4f0d6d2704b1",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/fixtures/dummy-source.json",
+        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/fixtures/dummy-two-key-v1.json",
+        "sha256": "0700569c2f0396ea5163c0413dacd00483716fc141ebe1b1d1478689982ef88f",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/fixtures/dummy_two_key_v1.py",
+        "sha256": "c98b35893eb0a2ac862e3f1bef79d35dd5e30ec38d9e1d6654a04327a30a4062",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/test_animation_runtime_v090.py",
+        "sha256": "531e52e500e4d9a8ebf229a5625c027a9c3835a274d71d69e5e94ead12664afa",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      }
+    ],
+    "artifact_set_sha256": "f7cb527c6e318092aa8f38b349e500ae95feb09d4d3b643f0e0c6ea9e02ee79b",
+    "evidence_count": 133,
+    "visual_count": 84
+  },
+  "required_visual_sets": [
+    "idle-alpha-bbox-frame-00-I0-neutral-A.png",
+    "idle-alpha-bbox-frame-01-I1-inhale-early.png",
+    "idle-alpha-bbox-frame-02-I2-inhale-mid.png",
+    "idle-alpha-bbox-frame-03-I3-inhale-peak.png",
+    "idle-alpha-bbox-frame-04-I4-return-A.png",
+    "idle-alpha-bbox-frame-05-I5-neutral-B.png",
+    "idle-alpha-bbox-frame-06-I6-exhale-early.png",
+    "idle-alpha-bbox-frame-07-I7-exhale-mid.png",
+    "idle-alpha-bbox-frame-08-I8-exhale-peak.png",
+    "idle-alpha-bbox-frame-09-I9-return-B.png",
+    "idle-alpha-bbox-frame-10-I10-settle.png",
+    "idle-alpha-bbox-frame-11-I11-pre-loop.png",
+    "idle-checkerboard-frame-00-I0-neutral-A.png",
+    "idle-checkerboard-frame-01-I1-inhale-early.png",
+    "idle-checkerboard-frame-02-I2-inhale-mid.png",
+    "idle-checkerboard-frame-03-I3-inhale-peak.png",
+    "idle-checkerboard-frame-04-I4-return-A.png",
+    "idle-checkerboard-frame-05-I5-neutral-B.png",
+    "idle-checkerboard-frame-06-I6-exhale-early.png",
+    "idle-checkerboard-frame-07-I7-exhale-mid.png",
+    "idle-checkerboard-frame-08-I8-exhale-peak.png",
+    "idle-checkerboard-frame-09-I9-return-B.png",
+    "idle-checkerboard-frame-10-I10-settle.png",
+    "idle-checkerboard-frame-11-I11-pre-loop.png",
+    "idle-feet-ground-frame-00-I0-neutral-A.png",
+    "idle-feet-ground-frame-01-I1-inhale-early.png",
+    "idle-feet-ground-frame-02-I2-inhale-mid.png",
+    "idle-feet-ground-frame-03-I3-inhale-peak.png",
+    "idle-feet-ground-frame-04-I4-return-A.png",
+    "idle-feet-ground-frame-05-I5-neutral-B.png",
+    "idle-feet-ground-frame-06-I6-exhale-early.png",
+    "idle-feet-ground-frame-07-I7-exhale-mid.png",
+    "idle-feet-ground-frame-08-I8-exhale-peak.png",
+    "idle-feet-ground-frame-09-I9-return-B.png",
+    "idle-feet-ground-frame-10-I10-settle.png",
+    "idle-feet-ground-frame-11-I11-pre-loop.png",
+    "idle-frame-00-I0-neutral-A.png",
+    "idle-frame-01-I1-inhale-early.png",
+    "idle-frame-02-I2-inhale-mid.png",
+    "idle-frame-03-I3-inhale-peak.png",
+    "idle-frame-04-I4-return-A.png",
+    "idle-frame-05-I5-neutral-B.png",
+    "idle-frame-06-I6-exhale-early.png",
+    "idle-frame-07-I7-exhale-mid.png",
+    "idle-frame-08-I8-exhale-peak.png",
+    "idle-frame-09-I9-return-B.png",
+    "idle-frame-10-I10-settle.png",
+    "idle-frame-11-I11-pre-loop.png",
+    "idle-front-alpha-bbox-overlays-v090.png",
+    "idle-front-checkerboard-contact-sheet-v090.png",
+    "idle-front-evidence-contact-sheet-v090.png",
+    "idle-front-feet-ground-sheet-v090.png",
+    "idle-front-head-torso-sheet-v090.png",
+    "idle-front-preview-v090.gif",
+    "idle-front-spritesheet-v090.png",
+    "idle-front-structural-maps-v090.png",
+    "idle-front-sword-hand-sheet-v090.png",
+    "idle-front-target-detected-overlays-v090.png",
+    "idle-front-temporal-trajectory-v090.png",
+    "idle-front-waist-hip-sheet-v090.png",
+    "idle-structural-frame-00-I0-neutral-A.png",
+    "idle-structural-frame-01-I1-inhale-early.png",
+    "idle-structural-frame-02-I2-inhale-mid.png",
+    "idle-structural-frame-03-I3-inhale-peak.png",
+    "idle-structural-frame-04-I4-return-A.png",
+    "idle-structural-frame-05-I5-neutral-B.png",
+    "idle-structural-frame-06-I6-exhale-early.png",
+    "idle-structural-frame-07-I7-exhale-mid.png",
+    "idle-structural-frame-08-I8-exhale-peak.png",
+    "idle-structural-frame-09-I9-return-B.png",
+    "idle-structural-frame-10-I10-settle.png",
+    "idle-structural-frame-11-I11-pre-loop.png",
+    "idle-target-detected-frame-00-I0-neutral-A.png",
+    "idle-target-detected-frame-01-I1-inhale-early.png",
+    "idle-target-detected-frame-02-I2-inhale-mid.png",
+    "idle-target-detected-frame-03-I3-inhale-peak.png",
+    "idle-target-detected-frame-04-I4-return-A.png",
+    "idle-target-detected-frame-05-I5-neutral-B.png",
+    "idle-target-detected-frame-06-I6-exhale-early.png",
+    "idle-target-detected-frame-07-I7-exhale-mid.png",
+    "idle-target-detected-frame-08-I8-exhale-peak.png",
+    "idle-target-detected-frame-09-I9-return-B.png",
+    "idle-target-detected-frame-10-I10-settle.png",
+    "idle-target-detected-frame-11-I11-pre-loop.png"
+  ],
+  "forbidden_artifacts": [
+    "*.zip",
+    "*.safetensors",
+    "*.ckpt",
+    "*.gguf",
+    "*.onnx",
+    "self-referential head_commit claim"
+  ],
+  "external_visual_review": {
+    "status": "REQUIRED",
+    "walk_pilot_approval": "APPROVED_PILOT",
+    "idle_front_approval": "REQUIRED"
+  },
+  "production_routing": "BLOCKED"
+}

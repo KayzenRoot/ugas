@@ -61,6 +61,14 @@ def validate_schema_document(schema: dict[str, Any]) -> None:
                 walk(value, f"{location}.properties.{key}")
         if "items" in node:
             walk(node["items"], f"{location}.items")
+        for keyword in ("oneOf", "allOf"):
+            if keyword in node:
+                if not isinstance(node[keyword], list) or not node[keyword]:
+                    raise SchemaValidationError(f"{location}.{keyword} must be a non-empty schema list")
+                for index, child in enumerate(node[keyword]):
+                    walk(child, f"{location}.{keyword}[{index}]")
+        if "not" in node:
+            walk(node["not"], f"{location}.not")
         if "enum" in node and (not isinstance(node["enum"], list) or not node["enum"]):
             raise SchemaValidationError(f"{location}.enum must be a non-empty list")
         if "additionalProperties" in node and not isinstance(node["additionalProperties"], bool):
@@ -75,6 +83,26 @@ def validate_schema_document(schema: dict[str, Any]) -> None:
 
 
 def validate_instance(instance: Any, schema: dict[str, Any], path: str = "$") -> None:
+    if "oneOf" in schema:
+        matches = 0
+        for candidate in schema["oneOf"]:
+            try:
+                validate_instance(instance, candidate, path)
+            except SchemaValidationError:
+                continue
+            matches += 1
+        if matches != 1:
+            raise SchemaValidationError(f"{path} must match exactly one oneOf branch (matched {matches})")
+    if "allOf" in schema:
+        for candidate in schema["allOf"]:
+            validate_instance(instance, candidate, path)
+    if "not" in schema:
+        try:
+            validate_instance(instance, schema["not"], path)
+        except SchemaValidationError:
+            pass
+        else:
+            raise SchemaValidationError(f"{path} must not match the not schema")
     expected = schema.get("type")
     expected_types = expected if isinstance(expected, list) else [expected] if expected else []
     if expected_types and not any(_matches_type(instance, item) for item in expected_types):
@@ -104,5 +132,8 @@ def validate_instance(instance: Any, schema: dict[str, Any], path: str = "$") ->
             raise SchemaValidationError(f"{path} is too short")
         if "pattern" in schema and re.search(schema["pattern"], instance) is None:
             raise SchemaValidationError(f"{path} does not match the required pattern")
-    if isinstance(instance, (int, float)) and not isinstance(instance, bool) and instance < schema.get("minimum", instance):
-        raise SchemaValidationError(f"{path} is below the minimum")
+    if isinstance(instance, (int, float)) and not isinstance(instance, bool):
+        if "minimum" in schema and instance < schema["minimum"]:
+            raise SchemaValidationError(f"{path} is below the minimum")
+        if "exclusiveMinimum" in schema and instance <= schema["exclusiveMinimum"]:
+            raise SchemaValidationError(f"{path} is not above the exclusive minimum")
