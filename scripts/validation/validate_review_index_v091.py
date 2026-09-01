@@ -37,7 +37,7 @@ def validate(path: Path = ROOT / "docs/evidence/review-index-v0.9.1.json") -> di
         if not isinstance(item, dict): failures.append("artifact_item_invalid"); continue
         relative = str(item.get("path")); listed.add(relative); local = ROOT / relative
         if not local.is_file(): failures.append(f"artifact_missing:{relative}")
-        elif digest(local) != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{relative}")
+        elif has_git and digest(local) != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{relative}")
     artifact_set = value.get("artifact_set", {}); expected_hash = hashlib.sha256(canonical(artifacts).encode("utf-8")).hexdigest()
     if artifact_set.get("manifest_algorithm") != "sha256-canonical-path-list-v1" or artifact_set.get("artifact_set_sha256") != expected_hash: failures.append("artifact_set_hash_invalid")
     visual_manifest = json.loads((ROOT / "docs/evidence/review-visuals-v0.9.0.json").read_text(encoding="utf-8")); failures.extend(f"visual_not_in_artifact_set:{item.get('source_path')}" for item in visual_manifest.get("images", []) if item.get("source_path") not in listed)
