@@ -1,0 +1,149 @@
+{
+  "schema_version": "0.10.0",
+  "animation_id": "attack-front-v1",
+  "status": "ATTACK_WEAPON_SWEEP_PASSED",
+  "decision": "QUALIFIED",
+  "active_window_frames": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "hit_event_frame": 5,
+  "tip_xy_presented": [
+    {
+      "frame": 0,
+      "x": 169.6,
+      "y": 438.7
+    },
+    {
+      "frame": 1,
+      "x": 151.858479,
+      "y": 434.954512
+    },
+    {
+      "frame": 2,
+      "x": 124.457138,
+      "y": 426.532696
+    },
+    {
+      "frame": 3,
+      "x": 80.735805,
+      "y": 404.927763
+    },
+    {
+      "frame": 4,
+      "x": 27.92833,
+      "y": 359.262663
+    },
+    {
+      "frame": 5,
+      "x": 84.532381,
+      "y": 406.571769
+    },
+    {
+      "frame": 6,
+      "x": 110.716458,
+      "y": 420.745322
+    },
+    {
+      "frame": 7,
+      "x": 150.83942,
+      "y": 434.776406
+    },
+    {
+      "frame": 8,
+      "x": 165.413294,
+      "y": 437.978807
+    },
+    {
+      "frame": 9,
+      "x": 167.505074,
+      "y": 438.348537
+    }
+  ],
+  "angular_velocity_by_transition": [
+    {
+      "from_frame": 0,
+      "to_frame": 1,
+      "tip_motion_px": 18.132574217456963,
+      "angular_velocity_degrees": 5.0,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 1,
+      "to_frame": 2,
+      "tip_motion_px": 28.666364843421235,
+      "angular_velocity_degrees": 7.0,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 2,
+      "to_frame": 3,
+      "tip_motion_px": 48.76810524545091,
+      "angular_velocity_degrees": 12.0,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 3,
+      "to_frame": 4,
+      "tip_motion_px": 69.81354291171327,
+      "angular_velocity_degrees": 18.0,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 4,
+      "to_frame": 5,
+      "tip_motion_px": 73.77106546695555,
+      "angular_velocity_degrees": 18.0,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 5,
+      "to_frame": 6,
+      "tip_motion_px": 29.774074175123182,
+      "angular_velocity_degrees": 8.0,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 6,
+      "to_frame": 7,
+      "tip_motion_px": 42.50556902181759,
+      "angular_velocity_degrees": 11.0,
+      "inside_or_near_active_window": true
+    },
+    {
+      "from_frame": 7,
+      "to_frame": 8,
+      "tip_motion_px": 14.921567462323708,
+      "angular_velocity_degrees": 4.0,
+      "inside_or_near_active_window": false
+    },
+    {
+      "from_frame": 8,
+      "to_frame": 9,
+      "tip_motion_px": 2.1242042842674063,
+      "angular_velocity_degrees": 0.5,
+      "inside_or_near_active_window": false
+    }
+  ],
+  "peak_tip_motion": {
+    "from_frame": 4,
+    "to_frame": 5,
+    "tip_motion_px": 73.77106546695555,
+    "angular_velocity_degrees": 18.0,
+    "inside_or_near_active_window": true
+  },
+  "sword_head_critical_collision_pixels": 0,
+  "sword_torso_forbidden_penetration_pixels": 0,
+  "hard_gates": {
+    "sword_attached_all_frames": true,
+    "active_window_frames_exact": true,
+    "hit_event_frame_exact": true,
+    "sweep_path_nonzero": true,
+    "contact_frame_inside_active_window": true,
+    "max_weapon_tip_motion_in_or_near_active_window": true,
+    "sword_head_critical_collision_zero": true,
+    "sword_torso_forbidden_penetration_zero": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.10.0",
+  "status": "GENERIC_NON_LOOP_RUNTIME_CONTRACT_PASSED",
+  "loop_fixture": {
+    "closing_transition_evaluated": true,
+    "closing_transition": {
+      "from_frame": 2,
+      "to_frame": 0,
+      "evaluated": true,
+      "valid": true
+    },
+    "status": "ANIMATION_LIFECYCLE_PASSED"
+  },
+  "non_loop_fixture": {
+    "closing_transition_evaluated": false,
+    "closing_transition": {
+      "from_frame": 2,
+      "to_frame": 0,
+      "evaluated": false,
+      "valid": null
+    },
+    "status": "ANIMATION_LIFECYCLE_PASSED"
+  },
+  "non_loop_invalid_final_fixture": {
+    "status": "ANIMATION_LIFECYCLE_GAP",
+    "final_frame_valid": false
+  },
+  "rules": {
+    "loop_evaluates_last_to_first": true,
+    "non_loop_omits_last_to_first": true,
+    "non_loop_requires_final_valid": true,
+    "markers_stay_within_timeline": true
+  }
+}

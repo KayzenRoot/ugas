@@ -1,0 +1,54 @@
+"""Validate the v0.10.0 review index and every hash-bound visual/evidence path."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+BASELINE = "d914d09d35ebfc5658d6c08e3502288c537fbf20"
+
+
+def digest(path: Path) -> str:
+    data = path.read_bytes()
+    if path.suffix.casefold() in {".json", ".md", ".txt"}: data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
+
+
+def canonical(value: object) -> str:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+
+
+def validate(path: Path = ROOT / "docs/evidence/review-index-v0.10.0.json") -> dict[str, object]:
+    value = json.loads(path.read_text(encoding="utf-8")); failures: list[str] = []
+    if "head_commit" in value: failures.append("v2_must_not_use_top_level_head_commit")
+    if value.get("schema_version") != "0.10.0" or value.get("version") != "0.10.0": failures.append("schema_version_or_version_invalid")
+    subject = value.get("review_subject", {})
+    if subject.get("baseline_commit") != BASELINE or subject.get("implementation_base_commit") != BASELINE or subject.get("repository_ref") != "https://github.com/csn1985-ship-it/ugas.git": failures.append("review_subject_commit_binding_invalid")
+    publication = value.get("publication", {}); build_head = str(publication.get("index_build_git_head", "")); has_git = (ROOT / ".git").exists(); final_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip() if has_git else build_head
+    if len(build_head) != 40: failures.append("index_build_git_head_invalid")
+    elif has_git and subprocess.run(["git", "merge-base", "--is-ancestor", build_head, final_head], cwd=ROOT, check=False).returncode != 0: failures.append("index_build_git_head_must_be_ancestor_of_final_head")
+    if publication.get("final_head_must_be_resolved_by_external_reviewer") is not True or publication.get("executor_cannot_self_assert_final_head") is not True: failures.append("external_final_head_resolution_required")
+    artifacts = value.get("artifact_set", {}).get("artifacts", []) if isinstance(value.get("artifact_set"), dict) else []; listed: set[str] = set()
+    for item in artifacts:
+        if not isinstance(item, dict): failures.append("artifact_item_invalid"); continue
+        relative = str(item.get("path")); listed.add(relative); local = ROOT / relative
+        if not local.is_file(): failures.append(f"artifact_missing:{relative}")
+        elif has_git and digest(local) != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{relative}")
+    artifact_set = value.get("artifact_set", {}); expected_hash = hashlib.sha256(canonical(artifacts).encode("utf-8")).hexdigest()
+    if artifact_set.get("manifest_algorithm") != "sha256-canonical-path-list-v1" or artifact_set.get("artifact_set_sha256") != expected_hash: failures.append("artifact_set_hash_invalid")
+    attack_visual = json.loads((ROOT / "docs/evidence/animation-runtime-v0100/attack-front-v1/attack-visual-manifest-v0100.json").read_text(encoding="utf-8"))
+    failures.extend(f"attack_visual_not_in_artifact_set:{item.get('source_path')}" for item in attack_visual.get("images", []) if item.get("source_path") not in listed)
+    failures.extend(f"attack_visual_hash_mismatch:{item.get('source_path')}" for item in attack_visual.get("images", []) if (ROOT / str(item.get("source_path"))).is_file() and digest(ROOT / str(item.get("source_path"))) != item.get("sha256"))
+    required = ["generic-event-marker-contract-v0100.json", "non-loop-runtime-contract-v0100.json", "execution-evidence-v0.10.0.json", "compiled-manifest.json", "qa-result.json", "package-manifest.json", "metadata.json", "attack-temporal-qa-v0100.json", "attack-weapon-sweep-qa-v0100.json", "attack-foot-ground-qa-v0100.json", "attack-event-marker-qa-v0100.json", "attack-visual-manifest-v0100.json"]
+    failures.extend(f"required_evidence_not_in_artifact_set:{name}" for name in required if (f"docs/evidence/animation-runtime-v0100/{name}" not in listed and f"docs/evidence/animation-runtime-v0100/attack-front-v1/{name}" not in listed))
+    if any(str(item).casefold().endswith(".zip") for item in listed): failures.append("zip_must_not_be_in_index")
+    if value.get("external_visual_review", {}).get("attack_front_approval") != "REQUIRED" or value.get("production_routing") != "BLOCKED": failures.append("external_or_production_boundary_invalid")
+    return {"status": "REVIEW_INDEX_V2_PASSED" if not failures else "REVIEW_INDEX_V2_FAILED", "failures": failures, "checked": {"artifact_count": len(artifacts), "visual_count": artifact_set.get("visual_count"), "index_build_git_head": build_head, "final_head": final_head, "ancestor_semantics": has_git}}
+
+
+if __name__ == "__main__":
+    result = validate(Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "docs/evidence/review-index-v0.10.0.json"); print(json.dumps(result, indent=2, ensure_ascii=False)); raise SystemExit(0 if result["status"] == "REVIEW_INDEX_V2_PASSED" else 1)

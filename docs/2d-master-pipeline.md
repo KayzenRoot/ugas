@@ -1,8 +1,8 @@
-# 2D master pipeline v0.9.1
+# 2D master pipeline v0.10.0
 
-The active release is the v0.9.1 generic reusable deterministic runtime correction over the immutable v0.9.0 cutout-rig lane. The v0.8.0, v0.7.3, and v0.9.0 records remain historical and immutable; only the front-walk replay and front-idle pilot are in scope and production routing remains blocked.
+The active release is the v0.10.0 generic action-runtime attack-front slice over the immutable v0.9.1 runtime and v0.9.0 cutout-rig lane. The v0.8.0, v0.7.3, v0.9.0, and v0.9.1 records remain historical and immutable; only the front attack pilot is newly executed and production routing remains blocked.
 
-This release does not run diffusion or SAM2. It reuses the v0.7.1 eleven-part R4 rig and v0.7.2 targets, then applies a source-derived torso/abdomen/belt/pelvis core, deterministic Pillow transforms, independent layer-integrity, geometric pairwise occlusion, topological seam and retention QA. The v0.9.1 runtime adds generic decision-based package qualification, mutually exclusive timing, dual-foot cyclic drift, presented-layer head_bbox/torso_bbox QA, and measured occlusion policy. The current lane requires external idle visual review before authorization.
+This release does not run diffusion or SAM2. It reuses the v0.7.1 eleven-part R4 rig, masks, structural core, walk replay and idle results, then adds the generic optional event-marker contract and a deterministic source-skeleton sword sweep for `attack-front-v1`. The 10 frames are non-looping, 12 fps, front-facing, RGBA, with fixed markers at windup peak, active start/end, hit, and recovery complete. The current lane requires external attack visual review before authorization.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 
@@ -15,6 +15,6 @@ O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose
 7. The structural core is source-mapped and excludes head/sword; expected coverage is independent from rendered output and every overlap requires a joint corridor or explicit phase geometry.
 
 A revisão visual humana e a aprovação de produção permanecem separadas dos gates técnicos.
-## v0.9.1 runtime boundary
+## v0.10.0 runtime boundary
 
-The reusable deterministic animation runtime consumes the immutable R4 cutout rig through declarative animation specs. v0.9.1 covers the front idle pilot and v0.8.1 walk replay only; production routing is `BLOCKED`, with `decision=QUALIFIED` required before package creation. Evidence is recorded in `docs/evidence/animation-runtime-v091/`.
+The reusable deterministic animation runtime consumes the immutable R4 cutout rig through declarative animation specs. v0.10.0 covers `attack-front-v1` only; generic event markers are validated, ordered, hash-bound, and preserved through compiled manifest, QA, metadata, and package artifacts. Production routing is `BLOCKED`, with `decision=QUALIFIED` and every hard gate literally true required before package creation. Evidence is recorded in `docs/evidence/animation-runtime-v0100/`.

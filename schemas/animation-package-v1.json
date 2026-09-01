@@ -14,6 +14,8 @@
     "fps": {"type": "number", "exclusiveMinimum": 0},
     "per_frame_duration_ms": {"type": "number", "exclusiveMinimum": 0},
     "loop": {"type": "boolean"},
+    "event_markers": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["event_id", "frame", "kind"], "properties": {"event_id": {"type": "string", "minLength": 1}, "frame": {"type": "integer", "minimum": 0}, "kind": {"type": "string", "minLength": 1}, "payload": {"type": "object"}}}},
+    "event_markers_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "format": {"const": "RGBA"},
     "cell_size": {"type": "object", "required": ["width", "height"], "properties": {"width": {"type": "integer"}, "height": {"type": "integer"}}},
     "sheet_size": {"type": "object", "required": ["width", "height"], "properties": {"width": {"type": "integer"}, "height": {"type": "integer"}}},
@@ -24,6 +26,7 @@
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
     "qa_status": {"type": "string"}, "qa_decision": {"enum": ["QUALIFIED", "FAILED"]},
+    "adapter_metadata": {"type": "object"},
     "source_rig_revision": {"type": "string"},
     "source_rig_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "r4_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}

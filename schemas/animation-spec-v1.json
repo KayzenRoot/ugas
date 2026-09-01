@@ -18,6 +18,7 @@
     "fps": {"type": "number", "exclusiveMinimum": 0},
     "per_frame_duration_ms": {"type": "number", "exclusiveMinimum": 0},
     "loop": {"type": "boolean"},
+    "event_markers": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["event_id", "frame", "kind"], "properties": {"event_id": {"type": "string", "minLength": 1}, "frame": {"type": "integer", "minimum": 0}, "kind": {"type": "string", "minLength": 1}, "payload": {"type": "object"}}}},
     "source_rig_ref": {"type": "string", "minLength": 1},
     "key_pose_bindings": {"type": "array", "minItems": 2, "items": {"type": "object", "additionalProperties": false, "required": ["frame", "phase", "target_hash"], "properties": {"frame": {"type": "integer", "minimum": 0}, "phase": {"type": "string", "minLength": 1}, "target_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}},
     "interpolation_profile": {"type": "object", "additionalProperties": false, "required": ["method", "parameters_frozen_before_render"], "properties": {"method": {"type": "string", "minLength": 1}, "parameters_frozen_before_render": {"type": "boolean"}, "parameters": {"type": "object"}}},

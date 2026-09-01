@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.10.0",
+  "prompt": "PROMPT-09-UGAS-GENERIC-ACTION-RUNTIME-ATTACK-FRONT-v0.10.0",
+  "baseline_commit": "d914d09d35ebfc5658d6c08e3502288c537fbf20",
+  "implementation_base_commit": "d914d09d35ebfc5658d6c08e3502288c537fbf20",
+  "repository_ref": "https://github.com/csn1985-ship-it/ugas.git",
+  "animation_id": "attack-front-v1",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 10,
+  "fps": 12,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 2,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 3,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 5,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 6,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 9,
+      "kind": "phase"
+    }
+  ],
+  "event_markers_sha256": "446b02fbfc9562a1dc4edd71a37c98b0b891f4c902acc89567d1fa771e1352df",
+  "active_window_frames": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "hit_event_frame": 5,
+  "target_hashes_distinct": true,
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "external_visual_review": "REQUIRED",
+  "visual_gap": "external_attack_front_visual_review_required",
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/package-manifest.json",
+    "qa_decision": "QUALIFIED",
+    "sprite_sheet_sha256": "1fe70634bf13ba6799547ebfae322959d3177b605b6e8223576b70af16aeb7ce",
+    "preview_gif_sha256": "6f34f5730d3da937595c540388237dc7effc99bb9e27441fcc6bf958c7720e97"
+  },
+  "historical_visual_sources": [
+    "docs/evidence/review-visuals-v0.9.0.json"
+  ]
+}

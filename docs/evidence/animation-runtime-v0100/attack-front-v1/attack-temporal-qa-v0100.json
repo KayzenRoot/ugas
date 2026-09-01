@@ -1,0 +1,192 @@
+{
+  "schema_version": "0.10.0",
+  "animation_id": "attack-front-v1",
+  "status": "ATTACK_TEMPORAL_QA_PASSED",
+  "decision": "QUALIFIED",
+  "metrics": {
+    "max_joint_angle_delta_degrees": 16.0,
+    "max_angular_acceleration_degrees_per_frame2": 28.0,
+    "root_horizontal_excursion_presented_px": 0.0,
+    "root_vertical_excursion_presented_px": 0.0,
+    "head_adjacent_center_delta_px": 0.0,
+    "target_hash_count": 10,
+    "frame_pairs_measured": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        9
+      ]
+    ],
+    "closing_pair_measured": false
+  },
+  "hard_gates": {
+    "joint_angle_delta_le_30": true,
+    "angular_acceleration_le_28": true,
+    "root_horizontal_excursion_le_8": true,
+    "root_vertical_excursion_le_8": true,
+    "head_adjacent_center_delta_le_6": true,
+    "target_hashes_exactly_10_distinct": true,
+    "foot_ground_sequential_qa": true,
+    "weapon_sweep_qa": true
+  },
+  "lifecycle": {
+    "loop": false,
+    "frame_validity": [
+      {
+        "index": 0,
+        "valid": true
+      },
+      {
+        "index": 1,
+        "valid": true
+      },
+      {
+        "index": 2,
+        "valid": true
+      },
+      {
+        "index": 3,
+        "valid": true
+      },
+      {
+        "index": 4,
+        "valid": true
+      },
+      {
+        "index": 5,
+        "valid": true
+      },
+      {
+        "index": 6,
+        "valid": true
+      },
+      {
+        "index": 7,
+        "valid": true
+      },
+      {
+        "index": 8,
+        "valid": true
+      },
+      {
+        "index": 9,
+        "valid": true
+      }
+    ],
+    "transitions": [
+      {
+        "from_frame": 0,
+        "to_frame": 1
+      },
+      {
+        "from_frame": 1,
+        "to_frame": 2
+      },
+      {
+        "from_frame": 2,
+        "to_frame": 3
+      },
+      {
+        "from_frame": 3,
+        "to_frame": 4
+      },
+      {
+        "from_frame": 4,
+        "to_frame": 5
+      },
+      {
+        "from_frame": 5,
+        "to_frame": 6
+      },
+      {
+        "from_frame": 6,
+        "to_frame": 7
+      },
+      {
+        "from_frame": 7,
+        "to_frame": 8
+      },
+      {
+        "from_frame": 8,
+        "to_frame": 9
+      }
+    ],
+    "closing_transition_evaluated": false,
+    "closing_transition": {
+      "from_frame": 9,
+      "to_frame": 0,
+      "evaluated": false,
+      "valid": null
+    },
+    "event_markers": [
+      {
+        "event_id": "windup_peak",
+        "frame": 2,
+        "kind": "phase"
+      },
+      {
+        "event_id": "active_start",
+        "frame": 3,
+        "kind": "combat_window"
+      },
+      {
+        "event_id": "hit_event",
+        "frame": 5,
+        "kind": "combat_hit"
+      },
+      {
+        "event_id": "active_end",
+        "frame": 6,
+        "kind": "combat_window"
+      },
+      {
+        "event_id": "recovery_complete",
+        "frame": 9,
+        "kind": "phase"
+      }
+    ],
+    "event_markers_sha256": "446b02fbfc9562a1dc4edd71a37c98b0b891f4c902acc89567d1fa771e1352df",
+    "hard_gates": {
+      "frame_indices_are_sequential": true,
+      "all_frames_valid": true,
+      "final_frame_valid": true,
+      "event_markers_within_timeline": true,
+      "closing_transition_evaluated_for_loop": true,
+      "closing_transition_omitted_for_non_loop": true,
+      "closing_transition_valid": true
+    },
+    "status": "ANIMATION_LIFECYCLE_PASSED"
+  },
+  "closing_pair_measured": false
+}

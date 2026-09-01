@@ -1,0 +1,78 @@
+{
+  "schema_version": "animation-package-1.0",
+  "package_id": "ugas-attack-front-v1-package",
+  "animation_id": "attack-front-v1",
+  "direction": "front",
+  "frame_count": 10,
+  "fps": 12.0,
+  "per_frame_duration_ms": 83.33333333333333,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 2,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 3,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 5,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 6,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 9,
+      "kind": "phase"
+    }
+  ],
+  "event_markers_sha256": "446b02fbfc9562a1dc4edd71a37c98b0b891f4c902acc89567d1fa771e1352df",
+  "format": "RGBA",
+  "cell_size": {
+    "width": 512,
+    "height": 512
+  },
+  "sheet_size": {
+    "width": 2560,
+    "height": 1024
+  },
+  "sprite_sheet": {
+    "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/attack-front-spritesheet-v0100.png",
+    "sha256": "1fe70634bf13ba6799547ebfae322959d3177b605b6e8223576b70af16aeb7ce"
+  },
+  "metadata": {
+    "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/metadata.json",
+    "sha256": "e9c9683a59f9236ebd633ef4842513659b7bc47fb12183e2097e288c6d8aceaa"
+  },
+  "preview_gif": {
+    "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/attack-front-preview-v0100.gif",
+    "sha256": "6f34f5730d3da937595c540388237dc7effc99bb9e27441fcc6bf958c7720e97"
+  },
+  "registry_state": "pilot/technical-qualified",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "qa_status": "CUTOUT_ANIMATION_RUNTIME_V1_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "qa_decision": "QUALIFIED",
+  "adapter_metadata": {
+    "active_window_frames": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "hit_event_frame": 5,
+    "event_timeline_authority": "spec.event_markers",
+    "weapon": "sword"
+  },
+  "source_rig_revision": "r4-cutout-rig-v071",
+  "source_rig_sha256": "f1faea6d9925572d062943434eeea25f48e6c7eef704022eaee331c0d3d5a851",
+  "r4_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+}

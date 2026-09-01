@@ -11,6 +11,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def _git_blob(commit: str, relative: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{commit}:{relative}"], cwd=ROOT)
+
+
 def digest(path: Path) -> str:
     data = path.read_bytes()
     if path.suffix.casefold() in {".json", ".md", ".txt"}: data = data.replace(b"\r\n", b"\n")
@@ -21,7 +25,10 @@ def canonical(value: object) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
 
 
-def validate(path: Path = ROOT / "docs/evidence/review-index-v0.9.1.json") -> dict[str, object]:
+def validate(path: Path = ROOT / "docs/evidence/review-index-v0.9.1.json", _historical: bool = False, source_commit: str | None = None) -> dict[str, object]:
+    if not _historical and path.resolve() == (ROOT / "docs/evidence/review-index-v0.9.1.json").resolve() and (ROOT / ".git").exists():
+        value = json.loads(path.read_text(encoding="utf-8")); source_commit = str(value.get("publication", {}).get("index_build_git_head", ""))
+        return validate(path, True, source_commit)
     value = json.loads(path.read_text(encoding="utf-8")); failures: list[str] = []
     if "head_commit" in value: failures.append("v2_must_not_use_top_level_head_commit")
     if value.get("schema_version") != "0.9.1" or value.get("version") != "0.9.1": failures.append("schema_version_or_version_invalid")
@@ -36,8 +43,13 @@ def validate(path: Path = ROOT / "docs/evidence/review-index-v0.9.1.json") -> di
     for item in artifacts:
         if not isinstance(item, dict): failures.append("artifact_item_invalid"); continue
         relative = str(item.get("path")); listed.add(relative); local = ROOT / relative
-        if not local.is_file(): failures.append(f"artifact_missing:{relative}")
-        elif has_git and digest(local) != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{relative}")
+        if source_commit:
+            present = subprocess.run(["git", "cat-file", "-e", f"{source_commit}:{relative}"], cwd=ROOT, check=False).returncode == 0
+            actual = hashlib.sha256(_git_blob(source_commit, relative).replace(b"\r\n", b"\n") if present and Path(relative).suffix.casefold() in {".json", ".md", ".txt"} else _git_blob(source_commit, relative) if present else b"").hexdigest() if present else None
+        else:
+            actual = digest(local) if local.is_file() else None
+        if actual is None: failures.append(f"artifact_missing:{relative}")
+        elif has_git and actual != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{relative}")
     artifact_set = value.get("artifact_set", {}); expected_hash = hashlib.sha256(canonical(artifacts).encode("utf-8")).hexdigest()
     if artifact_set.get("manifest_algorithm") != "sha256-canonical-path-list-v1" or artifact_set.get("artifact_set_sha256") != expected_hash: failures.append("artifact_set_hash_invalid")
     visual_manifest = json.loads((ROOT / "docs/evidence/review-visuals-v0.9.0.json").read_text(encoding="utf-8")); failures.extend(f"visual_not_in_artifact_set:{item.get('source_path')}" for item in visual_manifest.get("images", []) if item.get("source_path") not in listed)

@@ -34,3 +34,11 @@ UGAS v0.9.1 is the generic-runtime QA integrity correction over the immutable v0
 The timing schema accepts exactly one of `fps` or `per_frame_duration_ms`. The generic dummy two-key profile, v0.8.1 walk replay, and idle canonical replay pass. Idle QA measures dual-foot sole error, penetration, cyclic sole drift including I11→I0, ankle drift, head_bbox, torso_bbox, and measured occlusion policy. `sam2_runs=0`, `comfyui_generation_jobs=0`, `new_generation=0`, and `diffusion_runs=0`.
 
 Production remains `production_routing=BLOCKED`; external idle review is `REQUIRED` and not-claimed. The only allowed next action is `external_review_idle_front`. The v0.9.1 review index v2 records baseline/base separately and requires the external reviewer to resolve final HEAD; the executor cannot self-assert that final HEAD.
+
+## v0.10.0 current checkpoint
+
+UGAS v0.10.0 is the generic action-runtime attack-front slice from the approved public v0.9.1 SHA `d914d09d35ebfc5658d6c08e3502288c537fbf20`. It adds optional hash-bound `event_markers[]`, generic loop/non-loop lifecycle rules, and only `attack-front-v1`: front, 10 frames, 12 fps, non-loop, sword, source-R4 skeleton targets, deterministic Pillow/source pixels, and frozen A0–A9 phases.
+
+The attack pilot is locally `CUTOUT_ANIMATION_RUNTIME_V1_ATTACK_FRONT_TECHNICALLY_QUALIFIED` with `decision=QUALIFIED`. All 10 target hashes are distinct; temporal, weapon sweep, hit frame 5, active window 3–6, sequential foot-ground, structural/occlusion, retention, alpha-margin, source-hash, and independent MediaPipe gates pass. The package is 5x2 at 512x512 cells, RGBA, and carries event markers through manifest, QA, metadata, and package.
+
+Historical `walk_front_v081_external_visual=APPROVED_PILOT` and `idle_front_v1_external_visual=APPROVED_PILOT` are recorded without changing their pixels. Attack external visual review is `REQUIRED`; `production_approved=false`, `production_routing=BLOCKED`, `sam2_runs=0`, `comfyui_generation_jobs=0`, `diffusion_runs=0`, and `new_generation=0`. The only allowed next action is `external_review_attack_front`; run/hit/death, other directions, new providers, rig/mask changes, and production routing remain forbidden.

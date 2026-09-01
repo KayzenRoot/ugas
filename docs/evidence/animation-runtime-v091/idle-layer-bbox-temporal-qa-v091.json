@@ -44,11 +44,11 @@
   "negative_controls": {
     "head_only_scale": {
       "head_fails": true,
-      "torso_unaffected": false
+      "torso_unaffected": true
     },
     "torso_only_scale": {
       "torso_fails": true,
-      "head_unaffected": false
+      "head_unaffected": true
     }
   }
 }

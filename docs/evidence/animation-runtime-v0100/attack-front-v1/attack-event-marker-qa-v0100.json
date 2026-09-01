@@ -1,0 +1,113 @@
+{
+  "schema_version": "0.10.0",
+  "animation_id": "attack-front-v1",
+  "status": "ATTACK_EVENT_MARKER_CONTRACT_PASSED",
+  "markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 2,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 3,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 5,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 6,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 9,
+      "kind": "phase"
+    }
+  ],
+  "spec_event_markers_sha256": "446b02fbfc9562a1dc4edd71a37c98b0b891f4c902acc89567d1fa771e1352df",
+  "compiled_event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 2,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 3,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 5,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 6,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 9,
+      "kind": "phase"
+    }
+  ],
+  "compiled_event_markers_sha256": "446b02fbfc9562a1dc4edd71a37c98b0b891f4c902acc89567d1fa771e1352df",
+  "qa_event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 2,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 3,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 5,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 6,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 9,
+      "kind": "phase"
+    }
+  ],
+  "qa_event_markers_sha256": "446b02fbfc9562a1dc4edd71a37c98b0b891f4c902acc89567d1fa771e1352df",
+  "active_window": {
+    "frames": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "hit_event_frame": 5
+  },
+  "invalid_controls": {
+    "duplicate_event_id": {
+      "status": "REJECTED",
+      "error": "AnimationContractError"
+    },
+    "out_of_range_frame": {
+      "status": "REJECTED",
+      "error": "AnimationContractError"
+    },
+    "non_canonical_order": {
+      "status": "REJECTED",
+      "error": "AnimationContractError"
+    }
+  },
+  "marker_gate": true
+}

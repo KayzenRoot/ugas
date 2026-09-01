@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.10.0",
+  "status": "GENERIC_EVENT_MARKER_CONTRACT_PASSED",
+  "optional_when_omitted": true,
+  "accepted_fields": [
+    "event_id",
+    "frame",
+    "kind",
+    "payload"
+  ],
+  "canonical_order": "frame,event_id",
+  "frame_range": "0..frame_count-1",
+  "invalid_controls": {
+    "duplicate_event_id": "REJECTED",
+    "out_of_range_frame": "REJECTED",
+    "non_canonical_order": "REJECTED"
+  },
+  "hash_bound_lifecycle": true,
+  "preserved_in": [
+    "compiled-manifest.json",
+    "qa-result.json",
+    "metadata.json",
+    "package-manifest.json"
+  ]
+}

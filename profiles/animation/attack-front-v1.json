@@ -1,0 +1,62 @@
+{
+  "schema_version": "animation-spec-1.0",
+  "animation_id": "attack-front-v1",
+  "asset_revision_id": "r4-cutout-rig-v071",
+  "direction": "front",
+  "frame_count": 10,
+  "fps": 12,
+  "loop": false,
+  "event_markers": [
+    {"event_id": "windup_peak", "frame": 2, "kind": "phase"},
+    {"event_id": "active_start", "frame": 3, "kind": "combat_window"},
+    {"event_id": "hit_event", "frame": 5, "kind": "combat_hit"},
+    {"event_id": "active_end", "frame": 6, "kind": "combat_window"},
+    {"event_id": "recovery_complete", "frame": 9, "kind": "phase"}
+  ],
+  "source_rig_ref": "docs/evidence/r4-cutout-rig-v071.json",
+  "key_pose_bindings": [
+    {"frame": 0, "phase": "A0-ready", "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"},
+    {"frame": 2, "phase": "A2-windup-peak", "target_hash": "c15810f87c19c0dd10604fa9ee82365ceb2cf95089605807efd4a0c57a592b4a"},
+    {"frame": 3, "phase": "A3-strike-start", "target_hash": "f65dd50701701b8e5880709741f2358d1e8f4688995c1b33aa0d294f8258c652"},
+    {"frame": 5, "phase": "A5-strike-contact", "target_hash": "7792a38d22af8eed135e42090582aa29fcf1bac806c593db58dd02ed54bac564"},
+    {"frame": 6, "phase": "A6-follow-through", "target_hash": "c3403fef57bb1cec78c314fd14276f7220f2a468856fad95284e32e892fee24e"},
+    {"frame": 9, "phase": "A9-ready-end", "target_hash": "37451db0e8d4fade38f44c427e1c372ed37676baf901877e45ca923b874ed8db"}
+  ],
+  "interpolation_profile": {
+    "method": "deterministic-source-skeleton-attack-only",
+    "parameters_frozen_before_render": true,
+    "parameters": {
+      "right_upper_arm_delta_degrees": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "right_forearm_direction_delta_degrees": [0, 2, 8, 18, 30, 14, 10, 3, 1, 0.5],
+      "sword_direction_delta_degrees": [0, 5, 12, 24, 42, 24, 16, 5, 1, 0.5],
+      "nonuniform_scale_operation_count": 0,
+      "source_only_pose_targets": true
+    }
+  },
+  "root_motion_profile": {
+    "method": "bounded-static-pelvis",
+    "limits": {"root_horizontal_excursion_px": 8, "root_vertical_excursion_px": 8}
+  },
+  "foot_policy": {
+    "method": "dual-foot-planted-sequential-source-sole-anchor",
+    "both_feet_required": true,
+    "limits": {"sole_error_px": 1.5, "ground_penetration_px": 1.5, "projected_sole_frame_to_frame_drift_px": 1.5, "ankle_horizontal_drift_from_A0_px": 2.0}
+  },
+  "z_order_profile": {
+    "method": "constant-attack-front-plan",
+    "switches_allowed": false,
+    "plan_ref": "animation-attack-front-constant-z-v1",
+    "constant_order": ["right_shin_foot", "right_thigh", "left_forearm_hand", "left_upper_arm", "torso_pelvis", "left_thigh", "left_shin_foot", "right_upper_arm", "right_forearm_hand", "head", "sword"]
+  },
+  "presentation_transform": {"method": "single-global-uniform-scale-and-translation", "uniform_scale": 0.9, "anchor": {"x": 256, "y": 256}, "translation": {"x": 0, "y": 0}, "frozen_before_render": true},
+  "qa_profile": {
+    "profile_id": "attack-front-v1-strict",
+    "feature_flags": {"source_hashes": true, "key_bindings": true, "global_transform": true, "structural": true, "occlusion": true, "retention": true, "pose_metrics": true, "source_only_pixels": true, "sword_attachment": true, "weapon_sweep": true, "dual_foot_ground": true, "temporal": true, "non_loop": true, "event_markers": true},
+    "thresholds": {"max_joint_angle_delta_degrees": 30, "max_angular_acceleration_degrees_per_frame2": 28, "root_horizontal_excursion_px": 8, "root_vertical_excursion_px": 8, "head_adjacent_center_delta_px": 6, "alpha_safe_margin_px": 24, "bone_scale_min": 0.92, "bone_scale_max": 1.08, "active_window_frames": [3, 4, 5, 6], "hit_event_frame": 5, "projected_sole_frame_to_frame_drift_px": 1.5, "ankle_horizontal_drift_from_A0_px": 2.0, "pose_min_measurable_body_joints": 10, "pose_pck_at_010": 0.80, "pose_nme": 0.10, "pose_limb_angle_mae_degrees": 18}
+  },
+  "package_profile": {"cell_size": {"width": 512, "height": 512}, "columns": 5, "rows": 2, "format": "RGBA", "gif_review_only": true, "sprite_name": "attack-front-spritesheet-v0100.png", "gif_name": "attack-front-preview-v0100.gif"},
+  "provenance": {"source_image": "docs/evidence/reference-edit-selected-transparent.png", "source_parts_dir": "docs/evidence/r4-cutout-parts-v071", "source_masks_dir": "docs/evidence/r4-cutout-refined-masks-v071", "source_skeleton": "docs/evidence/r4-source-skeleton-v071.json", "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798", "source_manifests": ["docs/evidence/r4-cutout-rig-v071.json", "docs/evidence/r4-cutout-refined-masks-v071-manifest.json"], "sam2_used": false, "comfyui_generation_jobs": 0, "diffusion_used": false, "source_only_pixels": true},
+  "forbidden_operations": ["sam2_rerun", "comfyui_generation", "diffusion", "controlnet", "ip_adapter", "manual_pixel_edit", "per_frame_transform_tuning", "production_routing", "new_animation_direction", "new_character", "new_provider"],
+  "runtime_adapter": "ugas.animation_profiles.attack_front_v1",
+  "adapter_parameters": {"contract": "10-frame-front-sword-attack-v1", "phases": ["A0-ready", "A1-windup-early", "A2-windup-peak", "A3-strike-start", "A4-strike-mid", "A5-strike-contact", "A6-follow-through", "A7-recovery-early", "A8-recovery-late", "A9-ready-end"], "weapon": "sword", "source_only_target_derivation": "R4 skeleton and frozen angle arrays"}
+}

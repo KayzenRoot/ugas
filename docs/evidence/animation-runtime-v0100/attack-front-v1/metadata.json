@@ -1,0 +1,1170 @@
+{
+  "schema_version": "animation-package-1.0",
+  "animation_id": "attack-front-v1",
+  "direction": "front",
+  "frame_count": 10,
+  "fps": 12.0,
+  "per_frame_duration_ms": 83.33333333333333,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 2,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 3,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 5,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 6,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 9,
+      "kind": "phase"
+    }
+  ],
+  "event_markers_sha256": "446b02fbfc9562a1dc4edd71a37c98b0b891f4c902acc89567d1fa771e1352df",
+  "cell_size": {
+    "width": 512,
+    "height": 512
+  },
+  "sheet_size": {
+    "width": 2560,
+    "height": 1024
+  },
+  "format": "RGBA",
+  "frames": [
+    {
+      "index": 0,
+      "phase": "A0-ready",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-00.png",
+      "rgba_sha256": "ac5e8c5867399a5d10e03b6066cfdd0867320bfa5b1598568cba09b7ba1dfd05",
+      "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+      "metadata": {
+        "phase": "A0-ready",
+        "target_hash": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f",
+        "presentation_target_hash": "afa49ee55cca061fc1536436b50efcb5492b94198c21b863f52d79d826cdcaf4",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 195.0874,
+              "y": 257.3811
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 160.0,
+              "y": 459.0
+            }
+          },
+          "phase": "A0-ready",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 0,
+          "target_joint_sha256": "ab4b5cbb734e784e3d6f4f3e5fc67c46e9c1bdcc6973716624c61b36e721963f"
+        },
+        "sword_target_pivot": [
+          195.0874,
+          257.3811
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "phase": "A1-windup-early",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-01.png",
+      "rgba_sha256": "e8918906d817f5ca47ef2a98950225d3666445e0267b924d7ea8b9ee3a33e01c",
+      "target_hash": "360f69d5e22addd17c49abb625b826523b8a5783311774b3fec7109961e3b814",
+      "metadata": {
+        "phase": "A1-windup-early",
+        "target_hash": "360f69d5e22addd17c49abb625b826523b8a5783311774b3fec7109961e3b814",
+        "presentation_target_hash": "e60e8202b98cf191016c2c320045a272b00efcaca10d1db85b54a320d2b41f1f",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 192.813326,
+              "y": 257.044736
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 140.287199,
+              "y": 454.838347
+            }
+          },
+          "phase": "A1-windup-early",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 1,
+          "target_joint_sha256": "360f69d5e22addd17c49abb625b826523b8a5783311774b3fec7109961e3b814"
+        },
+        "sword_target_pivot": [
+          192.813326,
+          257.044736
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "phase": "A2-windup-peak",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-02.png",
+      "rgba_sha256": "576ffd659e120935d8a7a4670a0c4244bcc81df0f1da52064d66e3c9b512e7a3",
+      "target_hash": "c15810f87c19c0dd10604fa9ee82365ceb2cf95089605807efd4a0c57a592b4a",
+      "metadata": {
+        "phase": "A2-windup-peak",
+        "target_hash": "c15810f87c19c0dd10604fa9ee82365ceb2cf95089605807efd4a0c57a592b4a",
+        "presentation_target_hash": "77119d7dc7fa31e29a4e31328a33927bef7d34e9233d596e00f90fcb139ca687",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 186.080847,
+              "y": 255.56281
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 109.841264,
+              "y": 445.480773
+            }
+          },
+          "phase": "A2-windup-peak",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 2,
+          "target_joint_sha256": "c15810f87c19c0dd10604fa9ee82365ceb2cf95089605807efd4a0c57a592b4a"
+        },
+        "sword_target_pivot": [
+          186.080847,
+          255.56281
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "phase": "A3-strike-start",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-03.png",
+      "rgba_sha256": "502fc9df9190ad0231301b44d340a155418ea6cfd5fe28775947820a0c1c7ea0",
+      "target_hash": "f65dd50701701b8e5880709741f2358d1e8f4688995c1b33aa0d294f8258c652",
+      "metadata": {
+        "phase": "A3-strike-start",
+        "target_hash": "f65dd50701701b8e5880709741f2358d1e8f4688995c1b33aa0d294f8258c652",
+        "presentation_target_hash": "3c1fed819953fbdd31645deb9567ae294058ee57f2454d1975b8b4d85e31b604",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 175.321736,
+              "y": 251.558593
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 61.262006,
+              "y": 421.475292
+            }
+          },
+          "phase": "A3-strike-start",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 3,
+          "target_joint_sha256": "f65dd50701701b8e5880709741f2358d1e8f4688995c1b33aa0d294f8258c652"
+        },
+        "sword_target_pivot": [
+          175.321736,
+          251.558593
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "phase": "A4-strike-mid",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-04.png",
+      "rgba_sha256": "d80d5ed5c3f1cf76680b206101f98ad0c0cc3a36e4558aa024b9c0edfe4b29c4",
+      "target_hash": "764e439c87456f863261b1215c961cb99f24fa17f91c357f64162c3963dfa7bb",
+      "metadata": {
+        "phase": "A4-strike-mid",
+        "target_hash": "764e439c87456f863261b1215c961cb99f24fa17f91c357f64162c3963dfa7bb",
+        "presentation_target_hash": "67e6e8bc90014c5b35d376443f2a069f28e6832f100dddaf3cc8dcbaf00663a2",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 163.57143,
+              "y": 244.382303
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 2.587033,
+              "y": 370.736292
+            }
+          },
+          "phase": "A4-strike-mid",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 4,
+          "target_joint_sha256": "764e439c87456f863261b1215c961cb99f24fa17f91c357f64162c3963dfa7bb"
+        },
+        "sword_target_pivot": [
+          163.57143,
+          244.382303
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "phase": "A5-strike-contact",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-05.png",
+      "rgba_sha256": "db31a49e929226750168936f6f786ffda7cadb13a3a427acc62c4cd581d8a571",
+      "target_hash": "7792a38d22af8eed135e42090582aa29fcf1bac806c593db58dd02ed54bac564",
+      "metadata": {
+        "phase": "A5-strike-contact",
+        "target_hash": "7792a38d22af8eed135e42090582aa29fcf1bac806c593db58dd02ed54bac564",
+        "presentation_target_hash": "5258d171d4a2c68e9d66d3302217af9242aaaf3ba23a3ce9c4d5516881dc4227",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 179.540153,
+              "y": 253.385267
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 65.480423,
+              "y": 423.301966
+            }
+          },
+          "phase": "A5-strike-contact",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 5,
+          "target_joint_sha256": "7792a38d22af8eed135e42090582aa29fcf1bac806c593db58dd02ed54bac564"
+        },
+        "sword_target_pivot": [
+          179.540153,
+          253.385267
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "phase": "A6-follow-through",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-06.png",
+      "rgba_sha256": "7c2bb7ed8d33e557f3a2f3ee100dbe6b1707c32130a261516a120f8ee902dffb",
+      "target_hash": "c3403fef57bb1cec78c314fd14276f7220f2a468856fad95284e32e892fee24e",
+      "metadata": {
+        "phase": "A6-follow-through",
+        "target_hash": "c3403fef57bb1cec78c314fd14276f7220f2a468856fad95284e32e892fee24e",
+        "presentation_target_hash": "49e7584fdb80e608cef2cc1e8841382ec140f5454b3d5af0f6cdc4a2e0bed36e",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 183.875716,
+              "y": 254.91323
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 94.573842,
+              "y": 439.050358
+            }
+          },
+          "phase": "A6-follow-through",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 6,
+          "target_joint_sha256": "c3403fef57bb1cec78c314fd14276f7220f2a468856fad95284e32e892fee24e"
+        },
+        "sword_target_pivot": [
+          183.875716,
+          254.91323
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "phase": "A7-recovery-early",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-07.png",
+      "rgba_sha256": "eea0a4f0974a9ef3885b070615ff171763a855fbfbe2ef001b0084643167d7bc",
+      "target_hash": "3051e5551a7bb2dd86bcf6be948403d0a748ccf251396c97f3b0a46433269081",
+      "metadata": {
+        "phase": "A7-recovery-early",
+        "target_hash": "3051e5551a7bb2dd86bcf6be948403d0a748ccf251396c97f3b0a46433269081",
+        "presentation_target_hash": "ebe026f7bb89be2dc6c5781c83e63bedd82f5f8b99d5daaff20bef9911716de0",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 191.681037,
+              "y": 256.84684
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 139.154911,
+              "y": 454.640451
+            }
+          },
+          "phase": "A7-recovery-early",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 7,
+          "target_joint_sha256": "3051e5551a7bb2dd86bcf6be948403d0a748ccf251396c97f3b0a46433269081"
+        },
+        "sword_target_pivot": [
+          191.681037,
+          256.84684
+        ]
+      }
+    },
+    {
+      "index": 8,
+      "phase": "A8-recovery-late",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-08.png",
+      "rgba_sha256": "ca0a7bbc0fc4bc1c35a189cfa1d376f62e28098b388683f99a2ebde312d1c9b8",
+      "target_hash": "2d9382792073789cff59477ef7ce283ee455abf0a6a6e3b9ffc164f822c106a6",
+      "metadata": {
+        "phase": "A8-recovery-late",
+        "target_hash": "2d9382792073789cff59477ef7ce283ee455abf0a6a6e3b9ffc164f822c106a6",
+        "presentation_target_hash": "00e309876252305003066ee29613e327d967b5282c72bbe746a552eef7122559",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 193.948895,
+              "y": 257.222841
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 155.348104,
+              "y": 458.198674
+            }
+          },
+          "phase": "A8-recovery-late",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 8,
+          "target_joint_sha256": "2d9382792073789cff59477ef7ce283ee455abf0a6a6e3b9ffc164f822c106a6"
+        },
+        "sword_target_pivot": [
+          193.948895,
+          257.222841
+        ]
+      }
+    },
+    {
+      "index": 9,
+      "phase": "A9-ready-end",
+      "path": "docs/evidence/animation-runtime-v0100/attack-front-v1/frame-09.png",
+      "rgba_sha256": "28f341bd3976b1c773faf721466d0dc41b12680d60a877a8267622453b52b80b",
+      "target_hash": "37451db0e8d4fade38f44c427e1c372ed37676baf901877e45ca923b874ed8db",
+      "metadata": {
+        "phase": "A9-ready-end",
+        "target_hash": "37451db0e8d4fade38f44c427e1c372ed37676baf901877e45ca923b874ed8db",
+        "presentation_target_hash": "d54a6fd272641a3eee0ee39fb71269a85d638f9418ad94303b9a3a2f2603a9cb",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 314.2688,
+              "y": 126.481
+            },
+            "shoulder_right": {
+              "x": 219.7551,
+              "y": 126.12
+            },
+            "elbow_left": {
+              "x": 332.4109,
+              "y": 193.1442
+            },
+            "elbow_right": {
+              "x": 203.5855,
+              "y": 192.0721
+            },
+            "wrist_left": {
+              "x": 348.8077,
+              "y": 258.5055
+            },
+            "wrist_right": {
+              "x": 194.517802,
+              "y": 257.304454
+            },
+            "hip_left": {
+              "x": 296.1561,
+              "y": 252.2711
+            },
+            "hip_right": {
+              "x": 242.9306,
+              "y": 253.2929
+            },
+            "knee_left": {
+              "x": 304.6358,
+              "y": 352.4924
+            },
+            "knee_right": {
+              "x": 236.19,
+              "y": 350.9961
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 269.8312,
+              "y": 78.8774
+            },
+            "neck": {
+              "x": 267.012,
+              "y": 111.1197
+            },
+            "pelvis": {
+              "x": 269.54335,
+              "y": 252.782
+            },
+            "shoulder_center": {
+              "x": 267.01195,
+              "y": 126.3005
+            },
+            "weapon_tip": {
+              "x": 157.672304,
+              "y": 458.609486
+            }
+          },
+          "phase": "A9-ready-end",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false
+          },
+          "frame_index": 9,
+          "target_joint_sha256": "37451db0e8d4fade38f44c427e1c372ed37676baf901877e45ca923b874ed8db"
+        },
+        "sword_target_pivot": [
+          194.517802,
+          257.304454
+        ]
+      }
+    }
+  ],
+  "parameters_frozen_before_render": true,
+  "adapter_metadata": {
+    "active_window_frames": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "hit_event_frame": 5,
+    "event_timeline_authority": "spec.event_markers",
+    "weapon": "sword"
+  }
+}

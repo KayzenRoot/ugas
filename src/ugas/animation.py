@@ -67,6 +67,7 @@ def load_spec(path: Path, root: Path | None = None) -> dict[str, Any]:
         raise AnimationContractError("render_parameters_must_be_frozen_before_render")
     if value["provenance"]["sam2_used"] or value["provenance"]["comfyui_generation_jobs"] != 0 or value["provenance"]["diffusion_used"] or not value["provenance"]["source_only_pixels"]:
         raise AnimationContractError("forbidden_generation_or_non_source_pixels")
+    _validate_event_markers(value)
     adapter_name = str(value["runtime_adapter"])
     if any(part in adapter_name for part in ("__", "/", "\\")):
         raise AnimationContractError("runtime_adapter_import_invalid")
@@ -87,6 +88,86 @@ def normalized_timing(spec: Mapping[str, Any]) -> dict[str, float]:
     if duration <= 0:
         raise AnimationContractError("per_frame_duration_ms_must_be_positive")
     return {"fps": 1000.0 / duration, "per_frame_duration_ms": duration}
+
+
+def event_markers_for_spec(spec: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Return the frozen, profile-agnostic timeline markers."""
+    markers = spec.get("event_markers", [])
+    if not isinstance(markers, list):
+        raise AnimationContractError("event_markers_must_be_an_array")
+    return [dict(marker) for marker in markers]
+
+
+def event_markers_sha256(spec: Mapping[str, Any]) -> str:
+    """Hash marker metadata independently so every lifecycle artifact is bound."""
+    return digest_bytes(canonical_json(event_markers_for_spec(spec)).encode("utf-8"))
+
+
+def _validate_event_markers(spec: Mapping[str, Any]) -> None:
+    markers = event_markers_for_spec(spec)
+    count = int(spec["frame_count"])
+    event_ids: set[str] = set()
+    for marker in markers:
+        event_id = str(marker.get("event_id", ""))
+        if event_id in event_ids:
+            raise AnimationContractError("event_id_must_be_unique")
+        event_ids.add(event_id)
+        frame = marker.get("frame")
+        if not isinstance(frame, int) or not 0 <= frame < count:
+            raise AnimationContractError("event_marker_frame_out_of_range")
+    canonical = sorted(markers, key=lambda item: (int(item["frame"]), str(item["event_id"])))
+    if markers != canonical:
+        raise AnimationContractError("event_markers_must_be_canonical_by_frame_and_event_id")
+
+
+def _frame_is_valid(record: Mapping[str, Any]) -> bool:
+    if isinstance(record.get("passed"), bool):
+        return bool(record["passed"])
+    if isinstance(record.get("valid"), bool):
+        return bool(record["valid"])
+    gates = record.get("hard_gates")
+    if isinstance(gates, Mapping) and gates and all(isinstance(value, bool) for value in gates.values()):
+        return all(value is True for value in gates.values())
+    status = str(record.get("status", ""))
+    return status.endswith("_PASSED") or status.endswith("_QUALIFIED")
+
+
+def evaluate_lifecycle(spec: Mapping[str, Any], frame_records: list[Mapping[str, Any]]) -> dict[str, Any]:
+    """Apply loop/non-loop lifecycle rules without knowing profile semantics."""
+    expected = list(range(int(spec["frame_count"])))
+    actual = [int(record.get("index", -1)) for record in frame_records]
+    frame_validity = [{"index": int(record.get("index", -1)), "valid": _frame_is_valid(record)} for record in frame_records]
+    sequential = [{"from_frame": index - 1, "to_frame": index} for index in range(1, len(frame_records))]
+    loop = bool(spec["loop"])
+    if loop and frame_records:
+        transitions = [*sequential, {"from_frame": len(frame_records) - 1, "to_frame": 0, "closing": True}]
+        closing_evaluated = True
+        closing_valid = _frame_is_valid(frame_records[-1]) and _frame_is_valid(frame_records[0])
+    else:
+        transitions = sequential
+        closing_evaluated = False
+        closing_valid = None
+    markers = event_markers_for_spec(spec)
+    gates = {
+        "frame_indices_are_sequential": actual == expected,
+        "all_frames_valid": bool(frame_records) and all(item["valid"] for item in frame_validity),
+        "final_frame_valid": bool(frame_records) and frame_validity[-1]["valid"],
+        "event_markers_within_timeline": all(0 <= int(item["frame"]) < len(frame_records) for item in markers),
+        "closing_transition_evaluated_for_loop": closing_evaluated if loop else True,
+        "closing_transition_omitted_for_non_loop": not closing_evaluated if not loop else True,
+        "closing_transition_valid": closing_valid if loop else True,
+    }
+    return {
+        "loop": loop,
+        "frame_validity": frame_validity,
+        "transitions": transitions,
+        "closing_transition_evaluated": closing_evaluated,
+        "closing_transition": {"from_frame": len(frame_records) - 1, "to_frame": 0, "evaluated": closing_evaluated, "valid": closing_valid},
+        "event_markers": markers,
+        "event_markers_sha256": event_markers_sha256(spec),
+        "hard_gates": gates,
+        "status": "ANIMATION_LIFECYCLE_PASSED" if all(gates.values()) else "ANIMATION_LIFECYCLE_GAP",
+    }
 
 
 def _adapter(spec: Mapping[str, Any]):
@@ -116,7 +197,7 @@ def compile_spec(spec_path: Path, output_dir: Path, root: Path | None = None) ->
     manifest = {
         "schema_version": "animation-compiled-manifest-1.0", "animation_id": spec["animation_id"], "spec_path": _relative(spec_path, root), "spec_sha256": digest_file(spec_path),
         "source": {"asset_revision_id": spec["asset_revision_id"], "direction": spec["direction"], "source_sha256": spec["provenance"]["source_sha256"], "source_rig_ref": spec["source_rig_ref"]},
-        "frames": frames, "compile_status": "COMPILED", "runtime_adapter": spec["runtime_adapter"],
+        "frames": frames, "event_markers": event_markers_for_spec(spec), "event_markers_sha256": event_markers_sha256(spec), "compile_status": "COMPILED", "runtime_adapter": spec["runtime_adapter"],
         "determinism": {"pixel_operation": "source-affine-resample-and-alpha-composite", "parameters_frozen_before_render": True, "source_only_pixels": True, "replay_rule": "same spec source hashes adapter and Pillow encoder produce same RGBA bytes"},
     }
     manifest_path = output_dir / "compiled-manifest.json"
@@ -142,7 +223,11 @@ def qa_compiled(manifest_path: Path, root: Path | None = None) -> Path:
         raise AnimationContractError(f"qa_result_contract_missing:{','.join(missing)}")
     if result["animation_id"] != spec["animation_id"]:
         raise AnimationContractError("qa_animation_id_mismatch")
-    result = {"schema_version": "animation-qa-result-1.1", **result, "spec_sha256": digest_file(spec_path), "compiled_manifest_sha256": digest_file(manifest_path)}
+    lifecycle = evaluate_lifecycle(spec, list(result["frames"]))
+    result["temporal"] = {**dict(result["temporal"]), "lifecycle": lifecycle}
+    result["hard_gates"] = {**dict(result["hard_gates"]), "generic_lifecycle": lifecycle["status"] == "ANIMATION_LIFECYCLE_PASSED"}
+    result["failures"] = [*list(result["failures"]), *[f"lifecycle_{name}" for name, passed in lifecycle["hard_gates"].items() if not passed]]
+    result = {"schema_version": "animation-qa-result-1.1", **result, "event_markers": event_markers_for_spec(spec), "event_markers_sha256": event_markers_sha256(spec), "spec_sha256": digest_file(spec_path), "compiled_manifest_sha256": digest_file(manifest_path)}
     validate_instance(result, _schema(root, "animation-qa-result-v1.json"))
     output = manifest_path.parent / "qa-result.json"
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -178,6 +263,12 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
         raise AnimationContractError("qa_spec_hash_mismatch")
     if qa.get("compiled_manifest_sha256") != digest_file(manifest_path):
         raise AnimationContractError("qa_compiled_manifest_hash_mismatch")
+    expected_markers = event_markers_for_spec(spec)
+    expected_marker_hash = event_markers_sha256(spec)
+    if manifest.get("event_markers", expected_markers) != expected_markers or manifest.get("event_markers_sha256", expected_marker_hash) != expected_marker_hash:
+        raise AnimationContractError("compiled_manifest_event_markers_mismatch")
+    if qa.get("event_markers", expected_markers) != expected_markers or qa.get("event_markers_sha256", expected_marker_hash) != expected_marker_hash:
+        raise AnimationContractError("qa_event_markers_mismatch")
     hard_gates = qa.get("hard_gates")
     if qa.get("decision") != "QUALIFIED" or not isinstance(hard_gates, dict) or not hard_gates or any(value is not True for value in hard_gates.values()) or qa.get("failures") != []:
         raise AnimationContractError("package_requires_qualified_qa")
@@ -196,9 +287,9 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     gif_frames = [_checkerboard(image).convert("RGB") for image in images]
     gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=int(round(duration)), loop=0, disposal=2, optimize=False)
     metadata_path = manifest_path.parent / "metadata.json"
-    metadata = {"schema_version": "animation-package-1.0", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "format": "RGBA", "frames": manifest["frames"], "parameters_frozen_before_render": True}
+    metadata = {"schema_version": "animation-package-1.0", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "format": "RGBA", "frames": manifest["frames"], "parameters_frozen_before_render": True, "adapter_metadata": dict(qa.get("package_metadata", {}))}
     metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    package = {"schema_version": "animation-package-1.0", "package_id": f"ugas-{spec['animation_id']}-package", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "format": "RGBA", "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "sprite_sheet": {"path": _relative(sprite_path, root), "sha256": digest_file(sprite_path)}, "metadata": {"path": _relative(metadata_path, root), "sha256": digest_file(metadata_path)}, "preview_gif": {"path": _relative(gif_path, root), "sha256": digest_file(gif_path)}, "registry_state": "pilot/technical-qualified", "production_approved": False, "production_routing": "BLOCKED", "qa_status": qa["status"], "qa_decision": qa["decision"], "source_rig_revision": spec["asset_revision_id"], "source_rig_sha256": digest_file(root / spec["source_rig_ref"]), "r4_source_sha256": spec["provenance"]["source_sha256"]}
+    package = {"schema_version": "animation-package-1.0", "package_id": f"ugas-{spec['animation_id']}-package", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "format": "RGBA", "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "sprite_sheet": {"path": _relative(sprite_path, root), "sha256": digest_file(sprite_path)}, "metadata": {"path": _relative(metadata_path, root), "sha256": digest_file(metadata_path)}, "preview_gif": {"path": _relative(gif_path, root), "sha256": digest_file(gif_path)}, "registry_state": "pilot/technical-qualified", "production_approved": False, "production_routing": "BLOCKED", "qa_status": qa["status"], "qa_decision": qa["decision"], "adapter_metadata": dict(qa.get("package_metadata", {})), "source_rig_revision": spec["asset_revision_id"], "source_rig_sha256": digest_file(root / spec["source_rig_ref"]), "r4_source_sha256": spec["provenance"]["source_sha256"]}
     package_path = manifest_path.parent / "package-manifest.json"
     package_path.write_text(json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     validate_instance(package, _schema(root, "animation-package-v1.json"))

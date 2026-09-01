@@ -12,6 +12,8 @@
     "spec_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "source": {"type": "object", "additionalProperties": false, "required": ["asset_revision_id", "direction", "source_sha256", "source_rig_ref"], "properties": {"asset_revision_id": {"type": "string"}, "direction": {"type": "string"}, "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "source_rig_ref": {"type": "string"}}},
     "frames": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["index", "phase", "path", "rgba_sha256", "target_hash"], "properties": {"index": {"type": "integer", "minimum": 0}, "phase": {"type": "string"}, "path": {"type": "string"}, "rgba_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "target_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "metadata": {"type": "object"}}}},
+    "event_markers": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["event_id", "frame", "kind"], "properties": {"event_id": {"type": "string", "minLength": 1}, "frame": {"type": "integer", "minimum": 0}, "kind": {"type": "string", "minLength": 1}, "payload": {"type": "object"}}}},
+    "event_markers_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "compile_status": {"const": "COMPILED"},
     "runtime_adapter": {"type": "string", "minLength": 1},
     "determinism": {"type": "object", "additionalProperties": false, "required": ["pixel_operation", "parameters_frozen_before_render", "source_only_pixels", "replay_rule"], "properties": {"pixel_operation": {"type": "string"}, "parameters_frozen_before_render": {"type": "boolean"}, "source_only_pixels": {"type": "boolean"}, "replay_rule": {"type": "string"}}}

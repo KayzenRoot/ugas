@@ -111,9 +111,12 @@ def _bbox_negative_controls() -> dict[str, Any]:
         head = Image.new("RGBA", (16, 16), (0, 0, 0, 0)); ImageDraw.Draw(head).rectangle((0, 0, head_size - 1, head_size - 1), fill=(255, 255, 255, 255))
         torso = Image.new("RGBA", (16, 16), (0, 0, 0, 0)); ImageDraw.Draw(torso).rectangle((0, 0, torso_size - 1, torso_size - 1), fill=(255, 255, 255, 255))
         return idle.layer_bbox_measurement({"head": head, "torso_pelvis": torso})
-    good = [measured() for _ in range(12)]; head_bad = copy.deepcopy(good); head_bad[3] = measured(head_size=8); torso_bad = copy.deepcopy(good); torso_bad[3] = measured(torso_size=12)
-    head_result = idle.layer_bbox_temporal_gate(head_bad); torso_result = idle.layer_bbox_temporal_gate(torso_bad)
-    return {"head_only_scale": {"head_fails": head_result["hard_gates"]["head_bbox_area_cv_le_threshold"] is False, "torso_unaffected": torso_result["hard_gates"]["torso_bbox_area_cv_le_threshold"] is True}, "torso_only_scale": {"torso_fails": torso_result["hard_gates"]["torso_bbox_area_cv_le_threshold"] is False, "head_unaffected": head_result["hard_gates"]["head_bbox_area_cv_le_threshold"] is True}}
+    good = [measured() for _ in range(12)]
+    head_bad = copy.deepcopy(good); head_bad[3] = measured(head_size=8)
+    torso_bad = copy.deepcopy(good); torso_bad[3] = measured(torso_size=12)
+    head_result = idle.layer_bbox_temporal_gate(head_bad)
+    torso_result = idle.layer_bbox_temporal_gate(torso_bad)
+    return {"head_only_scale": {"head_fails": head_result["hard_gates"]["head_bbox_area_cv_le_threshold"] is False, "torso_unaffected": head_result["hard_gates"]["torso_bbox_area_cv_le_threshold"] is True}, "torso_only_scale": {"torso_fails": torso_result["hard_gates"]["torso_bbox_area_cv_le_threshold"] is False, "head_unaffected": torso_result["hard_gates"]["head_bbox_area_cv_le_threshold"] is True}}
 
 
 def _forbidden_overlap_fixture() -> dict[str, Any]:
