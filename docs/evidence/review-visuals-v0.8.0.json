@@ -1,0 +1,596 @@
+{
+  "schema_version": "0.8.0",
+  "manifest_type": "review-visual-evidence",
+  "review_state": "deterministic-front-walk-8frame-pilot-technically-qualified",
+  "required_current_visuals": [
+    "front-walk-cycle-v1-config.json",
+    "front-walk-targets-v080.json",
+    "front-walk-z-order-v080.json",
+    "front-walk-per-frame-qa-v080.json",
+    "front-walk-temporal-qa-v080.json",
+    "front-walk-foot-contact-qa-v080.json",
+    "front-walk-half-cycle-qa-v080.json",
+    "front-walk-loop-qa-v080.json",
+    "front-walk-structural-coverage-v080.json",
+    "front-walk-layer-integrity-v080.json",
+    "front-walk-occlusion-v080.json",
+    "front-walk-retention-v080.json",
+    "front-walk-provider-qualification-v080.json",
+    "execution-evidence-v0.8.0.json",
+    "walk-front-spritesheet-v080.png",
+    "walk-front-metadata-v080.json",
+    "walk-front-preview-v080.gif",
+    "walk-front-package-manifest-v080.json",
+    "front-walk-evidence-contact-sheet-v080.png",
+    "front-walk-checkerboard-contact-sheet-v080.png",
+    "front-walk-target-detected-overlays-v080.png",
+    "front-walk-structural-hole-maps-v080.png",
+    "front-walk-waist-hip-zoom-v080.png",
+    "front-walk-feet-ground-zoom-v080.png",
+    "front-walk-sword-hand-zoom-v080.png",
+    "frame-00-contact-left.png",
+    "frame-01-down-left.png",
+    "frame-02-passing-left.png",
+    "frame-03-up-left.png",
+    "frame-04-contact-right.png",
+    "frame-05-down-right.png",
+    "frame-06-passing-right.png",
+    "frame-07-up-right.png",
+    "checkerboard-frame-00-contact-left.png",
+    "checkerboard-frame-01-down-left.png",
+    "checkerboard-frame-02-passing-left.png",
+    "checkerboard-frame-03-up-left.png",
+    "checkerboard-frame-04-contact-right.png",
+    "checkerboard-frame-05-down-right.png",
+    "checkerboard-frame-06-passing-right.png",
+    "checkerboard-frame-07-up-right.png",
+    "target-detected-overlays-frame-00-contact-left.png",
+    "target-detected-overlays-frame-01-down-left.png",
+    "target-detected-overlays-frame-02-passing-left.png",
+    "target-detected-overlays-frame-03-up-left.png",
+    "target-detected-overlays-frame-04-contact-right.png",
+    "target-detected-overlays-frame-05-down-right.png",
+    "target-detected-overlays-frame-06-passing-right.png",
+    "target-detected-overlays-frame-07-up-right.png",
+    "structural-hole-maps-frame-00-contact-left.png",
+    "structural-hole-maps-frame-01-down-left.png",
+    "structural-hole-maps-frame-02-passing-left.png",
+    "structural-hole-maps-frame-03-up-left.png",
+    "structural-hole-maps-frame-04-contact-right.png",
+    "structural-hole-maps-frame-05-down-right.png",
+    "structural-hole-maps-frame-06-passing-right.png",
+    "structural-hole-maps-frame-07-up-right.png",
+    "pairwise-frame-00.json",
+    "pairwise-frame-01.json",
+    "pairwise-frame-02.json",
+    "pairwise-frame-03.json",
+    "pairwise-frame-04.json",
+    "pairwise-frame-05.json",
+    "pairwise-frame-06.json",
+    "pairwise-frame-07.json",
+    "retention-frame-00.json",
+    "retention-frame-01.json",
+    "retention-frame-02.json",
+    "retention-frame-03.json",
+    "retention-frame-04.json",
+    "retention-frame-05.json",
+    "retention-frame-06.json",
+    "retention-frame-07.json"
+  ],
+  "images": [
+    {
+      "archive_name": "front-walk-cycle-v1-config.json",
+      "source_path": "docs/evidence/front-walk-cycle-v1-config.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "0ceee29cf880ffdfdb87058e419e3e876a1bdcef3d3aaa7d23b34a77e2bd1171",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-targets-v080.json",
+      "source_path": "docs/evidence/front-walk-targets-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "4be4498f50f1b7fd2ee48b5fb49658a9d814ceb217054ffb7894e827dae7590e",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-z-order-v080.json",
+      "source_path": "docs/evidence/front-walk-z-order-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "417f06f3c2fc8cabdab83d33a40ac48e3e5232a8a4d9b6eac68c3b5795754cb3",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-per-frame-qa-v080.json",
+      "source_path": "docs/evidence/front-walk-per-frame-qa-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "aba5f65b0d76ea59848ad16ee667eb8fc68dc945877646109bd42a92767eeaf8",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-temporal-qa-v080.json",
+      "source_path": "docs/evidence/front-walk-temporal-qa-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "1f31f037aee09eacfad2882c03bb3f7ac1256ed315c12004787c16f6761c9690",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-foot-contact-qa-v080.json",
+      "source_path": "docs/evidence/front-walk-foot-contact-qa-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "d1252568107d60a05b8b6423893cb4e0434d8b246d6a413d78df98e2763a53e2",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-half-cycle-qa-v080.json",
+      "source_path": "docs/evidence/front-walk-half-cycle-qa-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "e5688345f7d6fa337e6550f5647f41319b1f8b904e52a466890d4e6a892e2f75",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-loop-qa-v080.json",
+      "source_path": "docs/evidence/front-walk-loop-qa-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "53e4bd9e4956260cd3b10fb93b9844d70c0e81d844f3a2cf25fb65acc0f96fb4",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-structural-coverage-v080.json",
+      "source_path": "docs/evidence/front-walk-structural-coverage-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "75dbbe4dcc03d41656dc9c387d2ec4879e7bbed640605a36e9f146d2ede37b4a",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-layer-integrity-v080.json",
+      "source_path": "docs/evidence/front-walk-layer-integrity-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "3840b3cff78c545076064d98e8b5bc48be51a1029fef309257a8fa93004a36d2",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-occlusion-v080.json",
+      "source_path": "docs/evidence/front-walk-occlusion-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "9bec03316c7b0fdf8558cfc269017729fe4eff0db5f81fb8111594bdfa2b55f2",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-retention-v080.json",
+      "source_path": "docs/evidence/front-walk-retention-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "028e93813462ad0c52b40aa6cf659d7acf319d105022460d2d4bb5cbce5d73c4",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-provider-qualification-v080.json",
+      "source_path": "docs/evidence/front-walk-provider-qualification-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "10125e7bb7c5616f5a826af20382d1ac7471794feec554f46f0a81eefadc9569",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "execution-evidence-v0.8.0.json",
+      "source_path": "docs/evidence/execution-evidence-v0.8.0.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "d8669e2badd91f525544523652e3689c6550d98167c1f793144d12c54d06a136",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "walk-front-spritesheet-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/walk-front-spritesheet-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "aa10c02b89387ecbaf92432ab6b7078719343df48f33e2105850945ed00b58aa",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "walk-front-metadata-v080.json",
+      "source_path": "docs/evidence/walk-front-v080/walk-front-metadata-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "4053cb381dbbe4139fd5c96b192778424ee5175810d494edbbba7503d7f754e3",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "walk-front-preview-v080.gif",
+      "source_path": "docs/evidence/walk-front-v080/walk-front-preview-v080.gif",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "073a68864302a64748e821a4c4d42a47d132191261e4d5c991d4b702a334a1f1",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "walk-front-package-manifest-v080.json",
+      "source_path": "docs/evidence/walk-front-v080/walk-front-package-manifest-v080.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "714bbf5e6b73b00ecb39249f2511c6491cd1438bc8e38d2fb5b941fcb5f73ee6",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-evidence-contact-sheet-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/front-walk-evidence-contact-sheet-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "1fc0fa861052324a365b236891e788bf9f1a78f1794f8633ab596041c8bfbca6",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-checkerboard-contact-sheet-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/front-walk-checkerboard-contact-sheet-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "1fc0fa861052324a365b236891e788bf9f1a78f1794f8633ab596041c8bfbca6",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-target-detected-overlays-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/front-walk-target-detected-overlays-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "258e4127757f7a63e3e76b0c9c8054b579fa6496f2b83ff00ddaede07e805c7c",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-structural-hole-maps-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/front-walk-structural-hole-maps-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "1e177795293d35f3138378fca2a59a72513402c0d71e476e5c39081709ebfdf7",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-waist-hip-zoom-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/front-walk-waist-hip-zoom-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "6077926e0d147b2b916b500b2d1d2bbc4ff3133845603a97c7315014bef81cd9",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-feet-ground-zoom-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/front-walk-feet-ground-zoom-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "a955f230f40de94dbd38f7cb466fd62fed0da0468bcd69d527206db7ac10941f",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "front-walk-sword-hand-zoom-v080.png",
+      "source_path": "docs/evidence/walk-front-v080/front-walk-sword-hand-zoom-v080.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "79e643aeaca8249ab4a1c487a4c6251209468e14e27ca43ef3508b32fb69fc3f",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-00-contact-left.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-00-contact-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "16b015839bebba2a4c2a44d188cd0e904f9f0907ee7ccec081f8e08fe268cfc8",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-01-down-left.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-01-down-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "4e51b335f8b06f3f0db12550b4dd301f95c872c0d8dc65a1e4c3e41b78504073",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-02-passing-left.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-02-passing-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "cbe7251b88ac93c592df7f73d5b9b1a3f05c330083ba0174b3f77a5f971d9f3c",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-03-up-left.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-03-up-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "b64f1b68024597ec5a623c8f6feb8a45dc5c6466d1848ebc97749535aeb6c100",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-04-contact-right.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-04-contact-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "a7c366e5f6c37c3af7bd63b469c6171d1c7e50d6415e904882df88674ee71e9f",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-05-down-right.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-05-down-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "22480ae81aaff9aa537155c0c6b1ef6cc4d13a02a12c6ad7070a4e35e979dfbf",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-06-passing-right.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-06-passing-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "c40e028a37eeb14c214ecb3ac9f6c4638d21704b8f7c0216d92af3863ac69a7b",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "frame-07-up-right.png",
+      "source_path": "docs/evidence/walk-front-v080/frames/frame-07-up-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "a4702a3fc01a9a862fe61ff79b21eb9f008991e8be71d642eced06b018c0ba56",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-00-contact-left.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-00-contact-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "c60c6d19ae6ab64c51eb861485873db2ed9db1ef39c55e867d04b95dc17f64ea",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-01-down-left.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-01-down-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "c68904d96f5fbcecd9d4708c65821a29d288e95827360cce591be381a6fccbb2",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-02-passing-left.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-02-passing-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "fff28afc92e796a1c379ba61c37896c67418955b306b2a25309900195139fe9b",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-03-up-left.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-03-up-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "04a8710cd66f912447024f4245aa2040645fc33e20c2b76605f5024d87d87e25",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-04-contact-right.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-04-contact-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "9947906370f9638edf547ce94010fd442282dad62b1441177f9122d323f7401c",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-05-down-right.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-05-down-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "22a5d9c2b4cd6dc1faeaddf17dbc6a2ef4d348598ce4305844889fdc6300cde9",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-06-passing-right.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-06-passing-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "0cc70a1eaf4e3d1c9cd7ae77db95926719e926debd327b6eaaf0bfb5d6487f64",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "checkerboard-frame-07-up-right.png",
+      "source_path": "docs/evidence/walk-front-v080/checkerboard/frame-07-up-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "39f058fe3fd3a17789cdb95d1d5629e461ca8234f0d66969fae77886c61d7601",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-00-contact-left.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-00-contact-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "8b14e120a5e47f2e5f6828d1bd6b2a610b0e47df5f1995f7d086613f750f1ccf",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-01-down-left.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-01-down-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "a4d9a4e4628029746dd2436b05b8bd7db6b2204a9a9e0e3177b4a27c69095613",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-02-passing-left.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-02-passing-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "1b6203e2615a9417d5e0100b408769cfd8537fac7657974ec3a38a7bf64b9d21",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-03-up-left.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-03-up-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "645a9e3b32f608ecaa5e27a7d989262b68461f30d19516e93ef310792071f1b1",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-04-contact-right.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-04-contact-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "e44441b37560761ab7e80eab68ea632f6411845530c5eaac3fc6d572a1c23950",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-05-down-right.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-05-down-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "2d0c82125caafc0f3d61c5240c37f6532f599e8095524ed922b719839cb79eb8",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-06-passing-right.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-06-passing-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "37e1aedaf46f077ee143613ea3caa4e2e3b626bd0e8a202f4d14dd1ee095aa07",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "target-detected-overlays-frame-07-up-right.png",
+      "source_path": "docs/evidence/walk-front-v080/target-detected-overlays/frame-07-up-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "07d09ee89a7dbfe889ba418e9f7b50044ed1e87ab91ad9159464f2b957bc7242",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-00-contact-left.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-00-contact-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "c60c6d19ae6ab64c51eb861485873db2ed9db1ef39c55e867d04b95dc17f64ea",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-01-down-left.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-01-down-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "c68904d96f5fbcecd9d4708c65821a29d288e95827360cce591be381a6fccbb2",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-02-passing-left.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-02-passing-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "fff28afc92e796a1c379ba61c37896c67418955b306b2a25309900195139fe9b",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-03-up-left.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-03-up-left.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "04a8710cd66f912447024f4245aa2040645fc33e20c2b76605f5024d87d87e25",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-04-contact-right.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-04-contact-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "9947906370f9638edf547ce94010fd442282dad62b1441177f9122d323f7401c",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-05-down-right.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-05-down-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "22a5d9c2b4cd6dc1faeaddf17dbc6a2ef4d348598ce4305844889fdc6300cde9",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-06-passing-right.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-06-passing-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "0cc70a1eaf4e3d1c9cd7ae77db95926719e926debd327b6eaaf0bfb5d6487f64",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "structural-hole-maps-frame-07-up-right.png",
+      "source_path": "docs/evidence/walk-front-v080/structural-hole-maps/frame-07-up-right.png",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "39f058fe3fd3a17789cdb95d1d5629e461ca8234f0d66969fae77886c61d7601",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-00.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-00.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "37eaa27b003bb31f114d335cc0efae7d1d71afb53d8284f9d4abc98e8f0098d2",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-01.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-01.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "503eca106d39a6f3a8020fa36e0a96d0cac9b6abab77728ed3c92f786f313a10",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-02.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-02.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "d099b8691cd211a253d6fddd572a0a3965efbed76273d7428f6802b36054678b",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-03.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-03.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "311b1e761b1e5670031a0348e0fd2adefad9fc54aa8a411e68ac299dc5eaf8da",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-04.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-04.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "21cc12a1243395e5f949b085452cd7796cb5b7bb36d6899fba2bdde9330240eb",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-05.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-05.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "23a686dc2a71dd11f2e11ca828fc79c0016f287807f6b636a74e4e45f7bff760",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-06.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-06.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "0bcab6aec64cfc4dfca686ac2d1cf368dee23690ef98ff1fd42362082e78ae62",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "pairwise-frame-07.json",
+      "source_path": "docs/evidence/walk-front-v080/pairwise/frame-07.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "3164bd8348423e406c03d36c9512d4fd4891c10fc7907e69ef760598cbc41cb9",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-00.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-00.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "5a63668c0a7127b9ae6b7adf0b1589425fd200574756d4c086d10369bd2f4320",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-01.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-01.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "33be4e8443bd3edf1c8e3ef8787b806b176761f639fda7e3a8baafed848a3b2a",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-02.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-02.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "0eba5d96ac5cd82d6cd18b3f9030c38d15a5e78939791f0157cfb07ed47c64d1",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-03.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-03.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "21e0a6d05f08af69a3f629877120c8aae8bbee58c671e31fc9dcf6077d156e11",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-04.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-04.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "aadf20f9f73c9ad139972c2cfb23bb6b9db8be873262ddb044608c67e948b545",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-05.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-05.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "9b6461bcdba524b2ca9d21036240f19a978c9a7da0db53afb2e2fecf8a0cbe06",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-06.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-06.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "260a431f86ecf70354c84cda73e45298a245518a3f65afaf6c71c0d00a2d8186",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    },
+    {
+      "archive_name": "retention-frame-07.json",
+      "source_path": "docs/evidence/walk-front-v080/retention/frame-07.json",
+      "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+      "sha256": "f0b40754fe6e2235f90e0a2a218635e9330f695faa8824e2141106d84310f03b",
+      "role": "v0.8.0 deterministic front-walk pilot evidence"
+    }
+  ],
+  "human_visual_review": "required",
+  "production_approval": "not-granted",
+  "external_approval": "not-claimed"
+}

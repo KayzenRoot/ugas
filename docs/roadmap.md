@@ -1,5 +1,11 @@
 # UGAS roadmap
 
+## v0.8.0 - deterministic front-walk 8-frame pilot
+
+The active slice is a single front-facing walk cycle with exactly eight deterministic frames. F0/F2/F4/F6 bind to the immutable v0.7.3 K1-K4 joint hashes; intermediate targets use frozen cubic Hermite skeleton interpolation and source-calibrated bone projection. Pillow transforms source pixels only. The technical result is `CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED`; external visual review is required, `walk_authorized=pilot_only`, and `production_routing=BLOCKED`.
+
+No other animation or direction is authorized. `sam2_runs=0`, `comfyui_generation_jobs=0`, and `new_generation_jobs=0`. The next action is `external_review_front_walk_cycle`; external approval is `not-claimed`.
+
 ## v0.7.3 - deterministic cutout-rig structural coverage correction
 
 Correct the v0.7.2 externally rejected transparent waist/belt/pelvis holes with a source-derived structural core, independent layer-integrity area, explicit phase geometry, pairwise overlap V3, owner displacement diagnostics and Q0/K1–K4 requalification. The technical gate is `CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED`; external visual review remains required and walk is not authorized.

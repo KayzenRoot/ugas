@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.7.1."""
+"""Objective UGAS validation, including immutable history and active v0.8.0."""
 
 from __future__ import annotations
 
@@ -16,6 +16,8 @@ import tomllib
 from pathlib import Path
 from typing import Any
 
+from PIL import Image
+
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
@@ -23,7 +25,7 @@ from ugas.constants import UGAS_VERSION
 from ugas.master_assets import verify_asset_integrity
 from ugas.model_registry import load_model, load_registry, validate_model_workflow_compatibility
 from ugas.reference_edit import validate_edit_contract, validate_execution_evidence
-from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, REQUIRED_V070_REVIEW_EVIDENCE, REQUIRED_V071_REVIEW_EVIDENCE, REQUIRED_V072_REVIEW_EVIDENCE, REQUIRED_V073_REVIEW_EVIDENCE, validate_review_visual_manifest
+from ugas.review import REQUIRED_V062_REVIEW_EVIDENCE, REQUIRED_V070_REVIEW_EVIDENCE, REQUIRED_V071_REVIEW_EVIDENCE, REQUIRED_V072_REVIEW_EVIDENCE, REQUIRED_V073_REVIEW_EVIDENCE, REQUIRED_V080_REVIEW_EVIDENCE, validate_review_visual_manifest
 from ugas.review_snapshot import self_test_sensitive_matcher
 from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.openpose_guides import COCO18_JOINTS, OPENPOSE_GUIDE_RENDERER_VERSION, validate_openpose_guide
@@ -885,7 +887,7 @@ def _v070_checks() -> None:
         check("v070:state-consistency", False, str(exc)); check("v070:state-gate", False, str(exc)); check("v070:state-boundary", False, str(exc))
 
     try:
-        provider = load_json(ROOT / "providers/manifests/deterministic-cutout-rig-2d.json")
+        provider = load_json(ROOT / "providers/manifests/deterministic-cutout-rig-2d-v0.7.3.json")
         validate_instance(provider, load_json(ROOT / "schemas/provider-manifest.json"))
         check("v070:provider-contract", provider.get("id") == "deterministic-cutout-rig-2d" and provider.get("provider_type") == "deterministic_renderer" and provider.get("generation_model") == "none" and provider.get("priority") == "explicit-capability-only", "provider is deterministic and capability-explicit")
         check("v070:provider-routing", provider.get("runtime_policy", {}).get("comfyui_jobs") == 0 and provider.get("runtime_policy", {}).get("walk_frames") is False, "production routing and walk are unchanged")
@@ -1270,6 +1272,84 @@ def _v073_checks() -> None:
         check("v073:visual-manifest", False, str(exc)); check("v073:review-headings", False, str(exc)); check("v073:external-boundary", False, str(exc))
 
 
+def _v073_checks() -> None:
+    """Audit v0.7.3 from immutable snapshots, never from active v0.8.0 files."""
+    evidence = ROOT / "docs" / "evidence"
+    required = [
+        "REVIEW-v0.7.3.md", "docs/test-coverage-matrix-v0.7.3.md",
+        "docs/evidence/current-state-v0.7.3.json", "docs/evidence/state-consistency-v0.7.3.json",
+        "providers/manifests/deterministic-cutout-rig-2d-v0.7.3.json", "schemas/current-state-v0.7.3.json",
+        "docs/evidence/review-visuals-v0.7.3.json", "docs/evidence/cutout-rig-provider-qualification-v073.json",
+        "docs/evidence/execution-evidence-v0.7.3.json", "src/ugas/cutout_structural.py",
+    ]
+    for relative in required:
+        check(f"v073:historical:{relative}", (ROOT / relative).is_file(), "immutable v0.7.3 snapshot present")
+    try:
+        state = load_json(evidence / "current-state-v0.7.3.json")
+        schema = load_json(ROOT / "schemas/current-state-v0.7.3.json")
+        validate_schema_document(schema); validate_instance(state, schema)
+        provider = load_json(ROOT / "providers/manifests/deterministic-cutout-rig-2d-v0.7.3.json")
+        qualification = load_json(evidence / "cutout-rig-provider-qualification-v073.json")
+        execution = load_json(evidence / "execution-evidence-v0.7.3.json")
+        check("v073:historical:state", state.get("version") == "0.7.3" and state.get("current_gate") == "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED" and state.get("walk_authorized") is False, "v0.7.3 state remains immutable")
+        check("v073:historical:provider", provider.get("schema_version") == "0.7.3" and provider.get("qualification_evidence") == "docs/evidence/cutout-rig-provider-qualification-v073.json", "v0.7.3 provider snapshot remains bound")
+        check("v073:historical:qualification", qualification.get("status") == "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED" and qualification.get("walk") == "NOT_RUN", "v0.7.3 qualification remains key-pose-only")
+        check("v073:historical:execution", execution.get("sam2_runs") == 0 and execution.get("comfyui_generation_jobs") == 0 and execution.get("walk") == "NOT_RUN", "v0.7.3 execution boundary remains immutable")
+        visual = load_json(evidence / "review-visuals-v0.7.3.json")
+        result = validate_review_visual_manifest(visual, ROOT)
+        check("v073:historical:visual-manifest", result["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "v0.7.3 visual manifest remains valid")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v073:historical:integrity", False, str(exc))
+
+
+def _v080_checks() -> None:
+    """Validate the active v0.8.0 deterministic eight-frame pilot."""
+    evidence = ROOT / "docs" / "evidence"
+    required = [
+        "REVIEW-v0.8.0.md", "docs/test-coverage-matrix-v0.8.0.md", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json",
+        "providers/manifests/deterministic-cutout-rig-2d.json", "schemas/current-state.json", "scripts/validation/run_cutout_front_walk_v080.py", "src/ugas/cutout_temporal.py", "scripts/validation/materialize_cutout_review_evidence.py",
+        "docs/evidence/front-walk-cycle-v1-config.json", "docs/evidence/front-walk-targets-v080.json", "docs/evidence/front-walk-z-order-v080.json", "docs/evidence/front-walk-per-frame-qa-v080.json", "docs/evidence/front-walk-temporal-qa-v080.json", "docs/evidence/front-walk-foot-contact-qa-v080.json", "docs/evidence/front-walk-half-cycle-qa-v080.json", "docs/evidence/front-walk-loop-qa-v080.json", "docs/evidence/front-walk-structural-coverage-v080.json", "docs/evidence/front-walk-layer-integrity-v080.json", "docs/evidence/front-walk-occlusion-v080.json", "docs/evidence/front-walk-retention-v080.json", "docs/evidence/front-walk-provider-qualification-v080.json", "docs/evidence/execution-evidence-v0.8.0.json", "docs/evidence/review-visuals-v0.8.0.json",
+        "docs/evidence/walk-front-v080/walk-front-spritesheet-v080.png", "docs/evidence/walk-front-v080/walk-front-metadata-v080.json", "docs/evidence/walk-front-v080/walk-front-preview-v080.gif", "docs/evidence/walk-front-v080/walk-front-package-manifest-v080.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v080:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(evidence / "current-state.json"); validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        review = (ROOT / "REVIEW-v0.8.0.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
+        check("v080:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state is consistent")
+        check("v080:state-boundary", state.get("current_gate") == "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED" and state.get("walk_authorized") == "pilot_only" and state.get("production_walk_authorized") is False, "pilot status and production block are synchronized")
+        provider = load_json(ROOT / "providers/manifests/deterministic-cutout-rig-2d.json")
+        validate_instance(provider, load_json(ROOT / "schemas/provider-manifest.json"))
+        check("v080:provider-contract", provider.get("schema_version") == "0.8.0" and provider.get("qualification_evidence") == "docs/evidence/front-walk-provider-qualification-v080.json" and provider.get("generation_model") == "none", "active provider is bound to v0.8.0 evidence")
+        check("v080:provider-boundary", provider.get("runtime_policy", {}).get("comfyui_jobs") == 0 and provider.get("runtime_policy", {}).get("walk_frames") == 8 and provider.get("runtime_policy", {}).get("walk_authorized") == "pilot_only" and provider.get("runtime_policy", {}).get("production_walk_authorized") is False, "provider remains deterministic and pilot-only")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v080:state-consistency", False, str(exc)); check("v080:provider-contract", False, str(exc)); check("v080:provider-boundary", False, str(exc))
+    try:
+        schema_files = {"front-walk-cycle-v1-config-v080.json": "front-walk-cycle-v1-config.json", "front-walk-targets-v080.json": "front-walk-targets-v080.json", "front-walk-z-order-v080.json": "front-walk-z-order-v080.json", "front-walk-per-frame-qa-v080.json": "front-walk-per-frame-qa-v080.json", "front-walk-temporal-qa-v080.json": "front-walk-temporal-qa-v080.json", "front-walk-foot-contact-qa-v080.json": "front-walk-foot-contact-qa-v080.json", "front-walk-half-cycle-qa-v080.json": "front-walk-half-cycle-qa-v080.json", "front-walk-loop-qa-v080.json": "front-walk-loop-qa-v080.json", "front-walk-structural-coverage-v080.json": "front-walk-structural-coverage-v080.json", "front-walk-layer-integrity-v080.json": "front-walk-layer-integrity-v080.json", "front-walk-occlusion-v080.json": "front-walk-occlusion-v080.json", "front-walk-retention-v080.json": "front-walk-retention-v080.json", "front-walk-provider-qualification-v080.json": "front-walk-provider-qualification-v080.json", "execution-evidence-v080.json": "execution-evidence-v0.8.0.json", "front-walk-metadata-v080.json": "walk-front-v080/walk-front-metadata-v080.json", "front-walk-package-manifest-v080.json": "walk-front-v080/walk-front-package-manifest-v080.json"}
+        for schema_name, artifact_name in schema_files.items():
+            schema = load_json(ROOT / "schemas" / schema_name); artifact = load_json(evidence / artifact_name); validate_schema_document(schema); validate_instance(artifact, schema)
+        check("v080:evidence-schemas", True, "all v0.8.0 machine-readable evidence validates against its schema")
+        frame_report = load_json(evidence / "front-walk-per-frame-qa-v080.json"); temporal = load_json(evidence / "front-walk-temporal-qa-v080.json"); feet = load_json(evidence / "front-walk-foot-contact-qa-v080.json"); half = load_json(evidence / "front-walk-half-cycle-qa-v080.json"); loop = load_json(evidence / "front-walk-loop-qa-v080.json")
+        check("v080:frame-gates", frame_report.get("status") == "CUTOUT_RIG_FRONT_WALK_FRAMES_PASSED" and len(frame_report.get("frames", [])) == 8 and all(item.get("status") == "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED" and all(item.get("hard_gates", {}).values()) for item in frame_report["frames"]), "all eight per-frame gates pass")
+        check("v080:temporal-gates", temporal.get("status") == "CUTOUT_RIG_FRONT_WALK_TEMPORAL_PASSED" and all(temporal.get("hard_gates", {}).values()), "temporal gates pass")
+        check("v080:foot-half-loop", feet.get("status") == "CUTOUT_RIG_FRONT_WALK_FOOT_CONTACT_PASSED" and half.get("status") == "CUTOUT_RIG_FRONT_WALK_HALF_CYCLE_PASSED" and loop.get("status") == "CUTOUT_RIG_FRONT_WALK_LOOP_PASSED", "foot, half-cycle and loop gates pass")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v080:evidence-schemas", False, str(exc)); check("v080:frame-gates", False, str(exc)); check("v080:temporal-gates", False, str(exc)); check("v080:foot-half-loop", False, str(exc))
+    try:
+        qualification = load_json(evidence / "front-walk-provider-qualification-v080.json"); execution = load_json(evidence / "execution-evidence-v0.8.0.json"); package = load_json(evidence / "walk-front-v080/walk-front-package-manifest-v080.json"); metadata = load_json(evidence / "walk-front-v080/walk-front-metadata-v080.json")
+        check("v080:decision", qualification.get("status") == "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED" and qualification.get("external_visual_review") == "REQUIRED" and qualification.get("external_approval") == "not-claimed", "technical qualification is separate from external review")
+        check("v080:no-generation", execution.get("sam2_runs") == 0 and execution.get("comfyui_generation_jobs") == 0 and execution.get("new_generation_jobs") == 0 and qualification.get("sam2_runs") == 0 and qualification.get("comfyui_generation_jobs") == 0, "SAM2 and ComfyUI remain zero")
+        check("v080:package-boundary", package.get("registry_state") == "pilot/technical-qualified" and package.get("production_approved") is False and package.get("production_routing") == "BLOCKED" and len(metadata.get("frames", [])) == 8, "runtime package is pilot-only and metadata is complete")
+        sprite = Image.open(evidence / "walk-front-v080/walk-front-spritesheet-v080.png"); check("v080:sprite-layout", sprite.mode == "RGBA" and sprite.size == (2048, 1024), "sprite is RGBA 4x2 512px")
+        check("v080:visual-manifest", validate_review_visual_manifest(load_json(evidence / "review-visuals-v0.8.0.json"), ROOT)["status"] == "REVIEW_VISUAL_MANIFEST_PASSED", "v0.8.0 visual roles are hash-bound")
+        headings = ["STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.7.3 AUDIT RESULT", "BASELINE IMMUTABILITY", "CYCLE CONFIG", "KEY POSE HASH BINDING", "INTERMEDIATE POSE GENERATOR", "FOOT CONTACT / GROUND", "ROOT / PELVIS / TORSO MOTION", "ARM / SWORD MOTION", "Z-ORDER / DEPTH", "PER-FRAME STRUCTURAL COVERAGE", "PER-FRAME LAYER INTEGRITY", "PER-FRAME TOPOLOGY / OCCLUSION", "PER-FRAME MEDIAPIPE QA", "TEMPORAL QA", "HALF-CYCLE QA", "LOOP QA", "VISUAL EVIDENCE", "SPRITESHEET", "METADATA", "GIF PREVIEW", "PACKAGE MANIFEST", "FINAL WALK DECISION", "NO SAM2 / NO COMFYUI", "TESTS", "VALIDATION", "REVIEW ARCHIVE SELF-TEST", "TRACKED SNAPSHOT / GITHUB", "SECURITY / LICENSES", "VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE", "REVIEW ZIP"]
+        check("v080:review-headings", all(f"## {heading}" in review for heading in headings), "exact v0.8.0 review headings present")
+    except (OSError, json.JSONDecodeError, KeyError, ValueError, TypeError) as exc:
+        check("v080:decision", False, str(exc)); check("v080:no-generation", False, str(exc)); check("v080:package-boundary", False, str(exc)); check("v080:sprite-layout", False, str(exc)); check("v080:visual-manifest", False, str(exc)); check("v080:review-headings", False, str(exc))
+
+
 def main() -> int:
     required = [
         "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.5.3.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "docs/test-coverage-matrix-v0.5.3.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/pose-metric-calibration.json", "docs/evidence/pose-metric-calibration-contact-sheet.png", "docs/evidence/pose-metric-negative-controls-contact-sheet.png", "docs/evidence/pose-qa-estimator-qualification.json", "docs/evidence/pose-qa-estimator-model.json", "docs/evidence/v052-refcontrol-baseline-contact.png", "docs/evidence/v053-pose-detection-overlay-contact.png", "docs/evidence/v053-pose-error-table.json", "docs/evidence/v053-provider-qualification.json", "docs/evidence/execution-evidence-v0.5.3.json", "docs/evidence/review-visuals-v0.5.3.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
@@ -1368,18 +1448,18 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.7.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.7.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.7.3")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.8.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.8.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.8.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
-    check("docs:animation-boundary", "animação genérica" in checkpoint_text and "não autoriza" in checkpoint_text, "checkpoint keeps generic animation outside scope")
+    check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
     compile_run = _run([sys.executable, "-m", "compileall", "-q", "src", "scripts", "tests"], ROOT); check("tests:compileall", compile_run.returncode == 0, (compile_run.stdout + compile_run.stderr).strip()[-500:])
-    test_run = _run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"], ROOT, timeout=360); test_text = test_run.stdout + test_run.stderr; match = re.search(r"Ran (\d+) tests", test_text); check("tests:unit", test_run.returncode == 0 and match is not None and int(match.group(1)) >= 245, test_text.strip()[-800:])
+    test_run = _run([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"], ROOT, timeout=360); test_text = test_run.stdout + test_run.stderr; match = re.search(r"Ran (\d+) tests", test_text); check("tests:unit", test_run.returncode == 0 and match is not None and int(match.group(1)) >= 263, test_text.strip()[-800:])
     snapshot_check()
     failures = 0
     for name, ok, detail in RESULTS: print(f"{'PASS' if ok else 'FAIL'} {name} - {detail}"); failures += not ok

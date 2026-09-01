@@ -195,7 +195,7 @@ class CutoutRigContractTests(unittest.TestCase):
         self.assertEqual("7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798", rig["source"]["sha256"])
 
     def test_historical_state_is_separate(self):
-        current = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        current = json.loads((ROOT / "docs/evidence/current-state-v0.7.3.json").read_text(encoding="utf-8"))
         historical = json.loads((ROOT / "docs/evidence/current-state-v0.6.2.json").read_text(encoding="utf-8"))
         self.assertEqual("0.7.3", current["version"])
         self.assertEqual("0.6.2", historical["version"])

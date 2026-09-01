@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.7.3",
+  "validator": "src/ugas/state_consistency.py",
+  "status": "STATE_CONSISTENCY_PASSED",
+  "failures": [],
+  "checked": {
+    "phase": "DETERMINISTIC_CUTOUT_RIG_POSE_PROVIDER",
+    "current_gate": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED",
+    "stop_reason": null,
+    "historical_pose_status": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED",
+    "historical_review_status": "REVIEW_ARCHIVE_VERIFIED",
+    "contradictory_walk_or_anchor_scan": true,
+    "new_generation_started": false,
+    "new_generation_jobs": 0
+  }
+}

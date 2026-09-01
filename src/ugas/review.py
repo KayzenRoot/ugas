@@ -201,6 +201,21 @@ REQUIRED_V073_REVIEW_EVIDENCE = {
     "cutout-rig-provider-qualification-v073.json",
     "execution-evidence-v0.7.3.json",
 }
+REQUIRED_V080_REVIEW_EVIDENCE = {
+    "front-walk-cycle-v1-config.json", "front-walk-targets-v080.json", "front-walk-z-order-v080.json",
+    "front-walk-per-frame-qa-v080.json", "front-walk-temporal-qa-v080.json", "front-walk-foot-contact-qa-v080.json",
+    "front-walk-half-cycle-qa-v080.json", "front-walk-loop-qa-v080.json", "front-walk-structural-coverage-v080.json",
+    "front-walk-layer-integrity-v080.json", "front-walk-occlusion-v080.json", "front-walk-retention-v080.json",
+    "front-walk-provider-qualification-v080.json", "execution-evidence-v0.8.0.json", "walk-front-spritesheet-v080.png",
+    "walk-front-metadata-v080.json", "walk-front-preview-v080.gif", "walk-front-package-manifest-v080.json",
+    "front-walk-evidence-contact-sheet-v080.png", "front-walk-checkerboard-contact-sheet-v080.png",
+    "front-walk-target-detected-overlays-v080.png", "front-walk-structural-hole-maps-v080.png",
+    "front-walk-waist-hip-zoom-v080.png", "front-walk-feet-ground-zoom-v080.png", "front-walk-sword-hand-zoom-v080.png",
+}
+REQUIRED_V080_REVIEW_EVIDENCE |= {f"frame-{index:02d}-{phase.split('-', 1)[1]}.png" for index, phase in enumerate(("F0-contact-left", "F1-down-left", "F2-passing-left", "F3-up-left", "F4-contact-right", "F5-down-right", "F6-passing-right", "F7-up-right"))}
+REQUIRED_V080_REVIEW_EVIDENCE |= {f"{folder}-frame-{index:02d}-{phase.split('-', 1)[1]}.png" for folder in ("checkerboard", "target-detected-overlays", "structural-hole-maps") for index, phase in enumerate(("F0-contact-left", "F1-down-left", "F2-passing-left", "F3-up-left", "F4-contact-right", "F5-down-right", "F6-passing-right", "F7-up-right"))}
+REQUIRED_V080_REVIEW_EVIDENCE |= {f"pairwise-frame-{index:02d}.json" for index in range(8)}
+REQUIRED_V080_REVIEW_EVIDENCE |= {f"retention-frame-{index:02d}.json" for index in range(8)}
 
 
 def _digest(path: Path) -> str:
@@ -248,6 +263,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V072_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     elif schema_version == "0.7.3":
         required = REQUIRED_V073_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.8.0":
+        required = REQUIRED_V080_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

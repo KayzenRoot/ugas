@@ -1,0 +1,1165 @@
+{
+  "schema_version": "0.7.3",
+  "phase": "F5-down-right",
+  "plan_sha256": "cc83650f5f5717e44e84121fa3c86a58085211ac37156e6ff7a312abb7764408",
+  "pairs": [
+    {
+      "first": "head",
+      "second": "torso_pelvis",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": {
+        "kind": "none"
+      },
+      "authorized_region_sha256": "8a39d2abd3999ab73c34db2476849cddf303ce389b35826850f9a700589b4a90",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "left_upper_arm",
+      "pixels": 32,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 32,
+      "authorized_region_pixels": 32,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "head",
+      "back_part": "left_upper_arm",
+      "authorized_region": {
+        "kind": "head_shoulder_wedge",
+        "joint": "shoulder_left",
+        "segment": [
+          [
+            253.4687,
+            89.1197
+          ],
+          [
+            300.7255,
+            104.481
+          ]
+        ],
+        "radius_px": 44
+      },
+      "authorized_region_sha256": "e29b070ab7c52ab1c02c1fc49053e561d38c5be04811f3578896d732256bd18f",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "left_forearm_hand",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "right_upper_arm",
+      "pixels": 26,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 26,
+      "authorized_region_pixels": 26,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "head",
+      "back_part": "right_upper_arm",
+      "authorized_region": {
+        "kind": "head_shoulder_wedge",
+        "joint": "shoulder_right",
+        "segment": [
+          [
+            253.4687,
+            89.1197
+          ],
+          [
+            206.2118,
+            104.12
+          ]
+        ],
+        "radius_px": 44
+      },
+      "authorized_region_sha256": "082ef19e54d003f3115c27b872e99271961bad3c6b06d7bc082f2a930fd61d94",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "right_forearm_hand",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "left_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "left_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "right_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "head",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": true
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "left_upper_arm",
+      "pixels": 58,
+      "joint_corridor_pixels": 48,
+      "outside_joint_corridor_pixels": 10,
+      "authorized_region_pixels": 58,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "left_upper_arm",
+      "back_part": "torso_pelvis",
+      "authorized_region": {
+        "kind": "shoulder_attachment_wedge",
+        "joint": "shoulder_left",
+        "segment": [
+          [
+            300.7255,
+            104.481
+          ],
+          [
+            333.248197,
+            165.434942
+          ]
+        ],
+        "radius_px": 36
+      },
+      "authorized_region_sha256": "df3c32238443ae57f59673793ff58037fc8be25daa84d7e9a248c95f2ee33f7b",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "left_forearm_hand",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": {
+        "kind": "forearm_crossing_corridor",
+        "joint": "wrist_left",
+        "segment": [
+          [
+            333.248197,
+            165.434942
+          ],
+          [
+            330.2644,
+            232.7555
+          ]
+        ],
+        "radius_px": 24
+      },
+      "authorized_region_sha256": "4396e91e5a5459b8a1028aaa5290e4d074750dc242f393e07191414144f7a564",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "right_upper_arm",
+      "pixels": 256,
+      "joint_corridor_pixels": 44,
+      "outside_joint_corridor_pixels": 212,
+      "authorized_region_pixels": 256,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "torso_pelvis",
+      "back_part": "right_upper_arm",
+      "authorized_region": {
+        "kind": "shoulder_attachment_wedge",
+        "joint": "shoulder_right",
+        "segment": [
+          [
+            206.2118,
+            104.12
+          ],
+          [
+            196.406874,
+            171.608577
+          ]
+        ],
+        "radius_px": 36
+      },
+      "authorized_region_sha256": "7c1a2a3ec9609d3553598655a26bf080e61010ac6181570b549e8c3926a37441",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "right_forearm_hand",
+      "pixels": 4,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 4,
+      "authorized_region_pixels": 4,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "torso_pelvis",
+      "back_part": "right_forearm_hand",
+      "authorized_region": {
+        "kind": "forearm_crossing_corridor",
+        "joint": "wrist_right",
+        "segment": [
+          [
+            196.406874,
+            171.608577
+          ],
+          [
+            186.5441,
+            239.1311
+          ]
+        ],
+        "radius_px": 24
+      },
+      "authorized_region_sha256": "4c66e9df96aeec1c860a5da141f875cc987104d692f5ca0f96513fb4695b5500",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "left_thigh",
+      "pixels": 195,
+      "joint_corridor_pixels": 44,
+      "outside_joint_corridor_pixels": 151,
+      "authorized_region_pixels": 195,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "torso_pelvis",
+      "back_part": "left_thigh",
+      "authorized_region": {
+        "kind": "hip_socket_corridor",
+        "joint": "hip_left",
+        "segment": [
+          [
+            256.00005,
+            230.78199999999998
+          ],
+          [
+            282.6128,
+            230.2711
+          ]
+        ],
+        "radius_px": 42,
+        "vertical_radius_px": 62
+      },
+      "authorized_region_sha256": "09da9ec3b1f99e3f52d88ae4b1646f7b1c5dfcd747430660591dbeda12f83968",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "left_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "right_thigh",
+      "pixels": 203,
+      "joint_corridor_pixels": 44,
+      "outside_joint_corridor_pixels": 159,
+      "authorized_region_pixels": 203,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "right_thigh",
+      "back_part": "torso_pelvis",
+      "authorized_region": {
+        "kind": "hip_socket_corridor",
+        "joint": "hip_right",
+        "segment": [
+          [
+            256.00005,
+            230.78199999999998
+          ],
+          [
+            229.3873,
+            231.2929
+          ]
+        ],
+        "radius_px": 42,
+        "vertical_radius_px": 62
+      },
+      "authorized_region_sha256": "7d138dee571fc68b438d0af26c900acadcdf73abecee6e45401a8ac5b74c51fb",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "torso_pelvis",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": true
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "left_forearm_hand",
+      "pixels": 140,
+      "joint_corridor_pixels": 43,
+      "outside_joint_corridor_pixels": 97,
+      "authorized_region_pixels": 140,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "left_forearm_hand",
+      "back_part": "left_upper_arm",
+      "authorized_region": {
+        "kind": "elbow_corridor",
+        "joint": "elbow_left",
+        "segment": [
+          [
+            333.248197,
+            165.434942
+          ],
+          [
+            330.2644,
+            232.7555
+          ]
+        ],
+        "radius_px": 30
+      },
+      "authorized_region_sha256": "5b8ef609c89b84864986fc9ed807d372d350034dac95fb7630142ea72a8c6aba",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "right_upper_arm",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": true
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "right_forearm_hand",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "left_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "left_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "right_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_upper_arm",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_forearm_hand",
+      "second": "right_upper_arm",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_forearm_hand",
+      "second": "right_forearm_hand",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": true
+    },
+    {
+      "first": "left_forearm_hand",
+      "second": "left_thigh",
+      "pixels": 273,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 273,
+      "authorized_region_pixels": 273,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "left_forearm_hand",
+      "back_part": "left_thigh",
+      "authorized_region": {
+        "kind": "hand_hip_crossing_corridor",
+        "joint": "hip_left",
+        "segments": [
+          [
+            [
+              330.2644,
+              232.7555
+            ],
+            [
+              282.6128,
+              230.2711
+            ]
+          ],
+          [
+            [
+              282.6128,
+              230.2711
+            ],
+            [
+              320.397102,
+              323.483537
+            ]
+          ]
+        ],
+        "hip_radius_x_px": 56,
+        "hip_radius_y_px": 72,
+        "thigh_radius_px": 22
+      },
+      "authorized_region_sha256": "3b23ff2009e9a99b3ed25151ca458db5f29596075fee1623da4b223d339bfb3e",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_forearm_hand",
+      "second": "left_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_forearm_hand",
+      "second": "right_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_forearm_hand",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_forearm_hand",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_upper_arm",
+      "second": "right_forearm_hand",
+      "pixels": 58,
+      "joint_corridor_pixels": 54,
+      "outside_joint_corridor_pixels": 4,
+      "authorized_region_pixels": 58,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "right_upper_arm",
+      "back_part": "right_forearm_hand",
+      "authorized_region": {
+        "kind": "elbow_corridor",
+        "joint": "elbow_right",
+        "segment": [
+          [
+            196.406874,
+            171.608577
+          ],
+          [
+            186.5441,
+            239.1311
+          ]
+        ],
+        "radius_px": 30
+      },
+      "authorized_region_sha256": "922ad0c9f5624b94a8cec85ba530db97717101a5db4f5abc5921c311cc67d896",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_upper_arm",
+      "second": "left_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_upper_arm",
+      "second": "left_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_upper_arm",
+      "second": "right_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_upper_arm",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_upper_arm",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_forearm_hand",
+      "second": "left_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_forearm_hand",
+      "second": "left_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_forearm_hand",
+      "second": "right_thigh",
+      "pixels": 65,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 65,
+      "authorized_region_pixels": 65,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "right_thigh",
+      "back_part": "right_forearm_hand",
+      "authorized_region": {
+        "kind": "hand_hip_crossing_corridor",
+        "joint": "hip_right",
+        "segments": [
+          [
+            [
+              186.5441,
+              239.1311
+            ],
+            [
+              229.3873,
+              231.2929
+            ]
+          ],
+          [
+            [
+              229.3873,
+              231.2929
+            ],
+            [
+              235.65951,
+              329.02731
+            ]
+          ]
+        ],
+        "hip_radius_x_px": 56,
+        "hip_radius_y_px": 72,
+        "thigh_radius_px": 22
+      },
+      "authorized_region_sha256": "a605cd442b3e291155b571d61a768acfbd9a49bd27d43e27665d568fce79b259",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_forearm_hand",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_forearm_hand",
+      "second": "sword",
+      "pixels": 146,
+      "joint_corridor_pixels": 41,
+      "outside_joint_corridor_pixels": 105,
+      "authorized_region_pixels": 146,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "sword",
+      "back_part": "right_forearm_hand",
+      "authorized_region": {
+        "kind": "grip_wrist_corridor",
+        "joint": "wrist_right",
+        "radius_x_px": 46,
+        "radius_y_px": 58
+      },
+      "authorized_region_sha256": "f45f03df3ebf01d310e433ba2f2e66623885bc0be1548b64adab9873fdac5db3",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_thigh",
+      "second": "left_shin_foot",
+      "pixels": 107,
+      "joint_corridor_pixels": 42,
+      "outside_joint_corridor_pixels": 65,
+      "authorized_region_pixels": 107,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "left_thigh",
+      "back_part": "left_shin_foot",
+      "authorized_region": {
+        "kind": "knee_corridor",
+        "joint": "knee_left",
+        "segment": [
+          [
+            320.397102,
+            323.483537
+          ],
+          [
+            298.134731,
+            417.0532
+          ]
+        ],
+        "radius_px": 42
+      },
+      "authorized_region_sha256": "e445e50f21dffa2ecc5c3fa1a6b1b85d39a47e53ad4c1b72d556bb8818da88b5",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_thigh",
+      "second": "right_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": true
+    },
+    {
+      "first": "left_thigh",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_thigh",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_shin_foot",
+      "second": "right_thigh",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "left_shin_foot",
+      "second": "right_shin_foot",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": true
+    },
+    {
+      "first": "left_shin_foot",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_thigh",
+      "second": "right_shin_foot",
+      "pixels": 81,
+      "joint_corridor_pixels": 60,
+      "outside_joint_corridor_pixels": 21,
+      "authorized_region_pixels": 81,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "EXPECTED_OCCLUSION",
+      "front_part": "right_shin_foot",
+      "back_part": "right_thigh",
+      "authorized_region": {
+        "kind": "knee_corridor",
+        "joint": "knee_right",
+        "segment": [
+          [
+            235.65951,
+            329.02731
+          ],
+          [
+            221.6771,
+            428.4095
+          ]
+        ],
+        "radius_px": 42
+      },
+      "authorized_region_sha256": "e7a7e109127a067a8050e83f3693bf5bd922e7f949b4117770b4779e2de187fc",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_thigh",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": {
+        "kind": "blade_over_trail_thigh",
+        "joint": "wrist_right",
+        "blade_segment": [
+          [
+            186.5441,
+            239.1311
+          ],
+          [
+            110.3045,
+            429.0491
+          ]
+        ],
+        "trail_thigh_segment": [
+          [
+            182.17098527133297,
+            239.9311650713821
+          ],
+          [
+            188.44319527133297,
+            337.6655750713821
+          ]
+        ],
+        "trail_side_offset_px": 48,
+        "thigh_corridor_radius_px": 38,
+        "blade_radius_px": 44
+      },
+      "authorized_region_sha256": "380d7dc53fae20faf0b4b91fa2c7386e4e101cb94df2ae4e89feaf6ee7de56fb",
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    },
+    {
+      "first": "right_shin_foot",
+      "second": "sword",
+      "pixels": 0,
+      "joint_corridor_pixels": 0,
+      "outside_joint_corridor_pixels": 0,
+      "authorized_region_pixels": 0,
+      "outside_authorized_region_pixels": 0,
+      "overlap_class": "NONE",
+      "front_part": null,
+      "back_part": null,
+      "authorized_region": null,
+      "authorized_region_sha256": null,
+      "z_order_matches_phase_plan": true,
+      "critical_pair": false
+    }
+  ],
+  "foreground_union_pixels": 46286,
+  "unexpected_overlap_pixels": 0,
+  "unexpected_overlap_fraction": 0.0,
+  "critical_collision_pixels": 0,
+  "z_order_mismatches": [],
+  "forbidden_meaningful_overlap": [],
+  "overlap_class_counts": {
+    "JOINT_OVERLAP": 0,
+    "EXPECTED_OCCLUSION": 14,
+    "UNEXPECTED_OVERLAP": 0,
+    "CRITICAL_COLLISION": 0
+  },
+  "hard_gates": {
+    "critical_collision_pixels_zero": true,
+    "unexpected_overlap_fraction": true,
+    "no_meaningful_outside_authorized_overlap": true,
+    "expected_overlap_z_order_matches": true
+  },
+  "status": "OCCLUSION_QA_PASSED"
+}

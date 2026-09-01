@@ -88,6 +88,37 @@ REQUIRED_V073_CURRENT_VISUALS = (
     "execution-evidence-v0.7.3.json",
 )
 
+REQUIRED_V080_CURRENT_VISUALS = (
+    ("front-walk-cycle-v1-config.json", "docs/evidence/front-walk-cycle-v1-config.json"),
+    ("front-walk-targets-v080.json", "docs/evidence/front-walk-targets-v080.json"),
+    ("front-walk-z-order-v080.json", "docs/evidence/front-walk-z-order-v080.json"),
+    ("front-walk-per-frame-qa-v080.json", "docs/evidence/front-walk-per-frame-qa-v080.json"),
+    ("front-walk-temporal-qa-v080.json", "docs/evidence/front-walk-temporal-qa-v080.json"),
+    ("front-walk-foot-contact-qa-v080.json", "docs/evidence/front-walk-foot-contact-qa-v080.json"),
+    ("front-walk-half-cycle-qa-v080.json", "docs/evidence/front-walk-half-cycle-qa-v080.json"),
+    ("front-walk-loop-qa-v080.json", "docs/evidence/front-walk-loop-qa-v080.json"),
+    ("front-walk-structural-coverage-v080.json", "docs/evidence/front-walk-structural-coverage-v080.json"),
+    ("front-walk-layer-integrity-v080.json", "docs/evidence/front-walk-layer-integrity-v080.json"),
+    ("front-walk-occlusion-v080.json", "docs/evidence/front-walk-occlusion-v080.json"),
+    ("front-walk-retention-v080.json", "docs/evidence/front-walk-retention-v080.json"),
+    ("front-walk-provider-qualification-v080.json", "docs/evidence/front-walk-provider-qualification-v080.json"),
+    ("execution-evidence-v0.8.0.json", "docs/evidence/execution-evidence-v0.8.0.json"),
+    ("walk-front-spritesheet-v080.png", "docs/evidence/walk-front-v080/walk-front-spritesheet-v080.png"),
+    ("walk-front-metadata-v080.json", "docs/evidence/walk-front-v080/walk-front-metadata-v080.json"),
+    ("walk-front-preview-v080.gif", "docs/evidence/walk-front-v080/walk-front-preview-v080.gif"),
+    ("walk-front-package-manifest-v080.json", "docs/evidence/walk-front-v080/walk-front-package-manifest-v080.json"),
+    ("front-walk-evidence-contact-sheet-v080.png", "docs/evidence/walk-front-v080/front-walk-evidence-contact-sheet-v080.png"),
+    ("front-walk-checkerboard-contact-sheet-v080.png", "docs/evidence/walk-front-v080/front-walk-checkerboard-contact-sheet-v080.png"),
+    ("front-walk-target-detected-overlays-v080.png", "docs/evidence/walk-front-v080/front-walk-target-detected-overlays-v080.png"),
+    ("front-walk-structural-hole-maps-v080.png", "docs/evidence/walk-front-v080/front-walk-structural-hole-maps-v080.png"),
+    ("front-walk-waist-hip-zoom-v080.png", "docs/evidence/walk-front-v080/front-walk-waist-hip-zoom-v080.png"),
+    ("front-walk-feet-ground-zoom-v080.png", "docs/evidence/walk-front-v080/front-walk-feet-ground-zoom-v080.png"),
+    ("front-walk-sword-hand-zoom-v080.png", "docs/evidence/walk-front-v080/front-walk-sword-hand-zoom-v080.png"),
+)
+REQUIRED_V080_CURRENT_VISUALS += tuple((f"frame-{index:02d}-{phase}.png", f"docs/evidence/walk-front-v080/frames/frame-{index:02d}-{phase}.png") for index, phase in enumerate(("contact-left", "down-left", "passing-left", "up-left", "contact-right", "down-right", "passing-right", "up-right")))
+REQUIRED_V080_CURRENT_VISUALS += tuple((f"{folder}-frame-{index:02d}-{phase}.png", f"docs/evidence/walk-front-v080/{folder}/frame-{index:02d}-{phase}.png") for folder in ("checkerboard", "target-detected-overlays", "structural-hole-maps") for index, phase in enumerate(("contact-left", "down-left", "passing-left", "up-left", "contact-right", "down-right", "passing-right", "up-right")))
+REQUIRED_V080_CURRENT_VISUALS += tuple((f"{folder}-frame-{index:02d}.json", f"docs/evidence/walk-front-v080/{folder}/frame-{index:02d}.json") for folder in ("pairwise", "retention") for index in range(8))
+
 
 def digest(path: Path) -> str:
     data = path.read_bytes()
@@ -98,6 +129,23 @@ def digest(path: Path) -> str:
 
 def main() -> int:
     evidence = ROOT / "docs" / "evidence"
+    v080_status = evidence / "front-walk-provider-qualification-v080.json"
+    if v080_status.is_file():
+        current = REQUIRED_V080_CURRENT_VISUALS
+        missing = [archive for archive, source in current if not (ROOT / source).is_file()]
+        if missing:
+            print(json.dumps({"status": "REVIEW_VISUAL_MANIFEST_FAILED", "missing": missing}, indent=2))
+            return 2
+        manifest = {
+            "schema_version": "0.8.0", "manifest_type": "review-visual-evidence", "review_state": "deterministic-front-walk-8frame-pilot-technically-qualified",
+            "required_current_visuals": [archive for archive, _ in current],
+            "images": [{"archive_name": archive, "source_path": source, "revision_id": ANCHOR_REVISION_ID, "sha256": digest(ROOT / source), "role": "v0.8.0 deterministic front-walk pilot evidence"} for archive, source in current],
+            "human_visual_review": "required", "production_approval": "not-granted", "external_approval": "not-claimed",
+        }
+        path = evidence / "review-visuals-v0.8.0.json"
+        path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(json.dumps({"status": "REVIEW_VISUAL_MANIFEST_MATERIALIZED", "path": str(path), "count": len(current)}, indent=2))
+        return 0
     missing = [name for name in REQUIRED_V073_CURRENT_VISUALS if not (evidence / name).is_file()]
     if missing:
         print(json.dumps({"status": "REVIEW_VISUAL_MANIFEST_FAILED", "missing": missing}, indent=2))

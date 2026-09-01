@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.8.0",
+  "status": "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED",
+  "baseline_commit": "d5bc7fee3e3f0b359dd03ef3344084bbb922cfd3",
+  "source": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "config_frozen_before_render": true,
+  "config_sha256": "2b5f16cfb651efdd3875cdeed0414ab76383ca6629af5091408523104fc39022",
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "new_generation_jobs": 0,
+  "frames": [
+    "F0-contact-left",
+    "F1-down-left",
+    "F2-passing-left",
+    "F3-up-left",
+    "F4-contact-right",
+    "F5-down-right",
+    "F6-passing-right",
+    "F7-up-right"
+  ],
+  "frame_count": 8,
+  "spritesheet": "docs/evidence/walk-front-v080/walk-front-spritesheet-v080.png",
+  "gif": "docs/evidence/walk-front-v080/walk-front-preview-v080.gif",
+  "walk_authorized": "pilot_only",
+  "production_routing": "BLOCKED",
+  "external_visual_review": "REQUIRED",
+  "external_approval": "not-claimed",
+  "source_masks_unchanged": true
+}

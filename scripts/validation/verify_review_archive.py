@@ -95,6 +95,7 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
         (
             name
             for name in (
+                "docs/evidence/review-visuals-v0.8.0.json",
                 "docs/evidence/review-visuals-v0.7.3.json",
                 "docs/evidence/review-visuals-v0.7.2.json",
                 "docs/evidence/review-visuals-v0.7.1.json",
@@ -112,7 +113,23 @@ def _validate_snapshot_contents(archive: zipfile.ZipFile, names: set[str]) -> di
     if active_visual_name is None:
         raise ReviewArchiveError("no supported active review visual manifest is present")
     required_metadata = set(REQUIRED_ARCHIVE_METADATA)
-    if active_visual_name.endswith("v0.7.3.json"):
+    if active_visual_name.endswith("v0.8.0.json"):
+        required_metadata.update(
+            {
+                "REVIEW-v0.8.0.md", "docs/test-coverage-matrix-v0.8.0.md", "docs/evidence/review-visuals-v0.8.0.json",
+                "docs/evidence/current-state.json", "docs/evidence/current-state-v0.7.3.json", "docs/evidence/state-consistency.json", "docs/evidence/state-consistency-v0.7.3.json",
+                "providers/manifests/deterministic-cutout-rig-2d.json", "providers/manifests/deterministic-cutout-rig-2d-v0.7.3.json", "schemas/current-state.json", "schemas/current-state-v0.7.3.json",
+                "schemas/front-walk-cycle-v1-config-v080.json", "schemas/front-walk-targets-v080.json", "schemas/front-walk-z-order-v080.json", "schemas/front-walk-per-frame-qa-v080.json", "schemas/front-walk-temporal-qa-v080.json", "schemas/front-walk-foot-contact-qa-v080.json", "schemas/front-walk-half-cycle-qa-v080.json", "schemas/front-walk-loop-qa-v080.json", "schemas/front-walk-structural-coverage-v080.json", "schemas/front-walk-layer-integrity-v080.json", "schemas/front-walk-occlusion-v080.json", "schemas/front-walk-retention-v080.json", "schemas/front-walk-provider-qualification-v080.json", "schemas/execution-evidence-v080.json", "schemas/front-walk-metadata-v080.json", "schemas/front-walk-package-manifest-v080.json",
+                "src/ugas/cutout_temporal.py", "src/ugas/cutout_structural.py", "scripts/validation/run_cutout_front_walk_v080.py", "scripts/validation/materialize_cutout_review_evidence.py", "scripts/validation/run_validation.py", "scripts/validation/validate_state_consistency.py", "tests/test_cutout_front_walk_v080.py",
+                "docs/evidence/front-walk-cycle-v1-config.json", "docs/evidence/front-walk-targets-v080.json", "docs/evidence/front-walk-z-order-v080.json", "docs/evidence/front-walk-per-frame-qa-v080.json", "docs/evidence/front-walk-temporal-qa-v080.json", "docs/evidence/front-walk-foot-contact-qa-v080.json", "docs/evidence/front-walk-half-cycle-qa-v080.json", "docs/evidence/front-walk-loop-qa-v080.json", "docs/evidence/front-walk-structural-coverage-v080.json", "docs/evidence/front-walk-layer-integrity-v080.json", "docs/evidence/front-walk-occlusion-v080.json", "docs/evidence/front-walk-retention-v080.json", "docs/evidence/front-walk-provider-qualification-v080.json", "docs/evidence/execution-evidence-v0.8.0.json",
+                "docs/evidence/walk-front-v080/walk-front-spritesheet-v080.png", "docs/evidence/walk-front-v080/walk-front-metadata-v080.json", "docs/evidence/walk-front-v080/walk-front-preview-v080.gif", "docs/evidence/walk-front-v080/walk-front-package-manifest-v080.json",
+            }
+        )
+        for folder in ("frames", "checkerboard", "target-detected-overlays", "structural-hole-maps"):
+            required_metadata.update(f"docs/evidence/walk-front-v080/{folder}/frame-{index:02d}-{phase}.png" for index, phase in enumerate(("contact-left", "down-left", "passing-left", "up-left", "contact-right", "down-right", "passing-right", "up-right")))
+        for folder in ("pairwise", "retention"):
+            required_metadata.update(f"docs/evidence/walk-front-v080/{folder}/frame-{index:02d}.json" for index in range(8))
+    elif active_visual_name.endswith("v0.7.3.json"):
         required_metadata.update(
             {
                 "REVIEW-v0.7.3.md", "docs/test-coverage-matrix-v0.7.3.md",
@@ -444,7 +461,9 @@ def verify_archive(archive_path: Path | str) -> dict[str, Any]:
                 archive.extractall(extraction)
                 if (extraction / ".git").exists():
                     raise ReviewArchiveError("extracted review archive unexpectedly contains .git")
-                if content.get("visual_schema_version") == "0.7.3":
+                if content.get("visual_schema_version") == "0.8.0":
+                    minimum_test_count = 263
+                elif content.get("visual_schema_version") == "0.7.3":
                     minimum_test_count = 245
                 elif content.get("visual_schema_version") in {"0.7.1", "0.7.2"}:
                     minimum_test_count = 203

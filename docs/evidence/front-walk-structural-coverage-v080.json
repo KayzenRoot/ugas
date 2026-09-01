@@ -1,0 +1,655 @@
+{
+  "schema_version": "0.8.0",
+  "poses": {
+    "F0-contact-left": {
+      "schema_version": "0.7.3",
+      "phase": "F0-contact-left",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 47206,
+            "bbox": [
+              102,
+              17,
+              351,
+              468
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              233.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    },
+    "F1-down-left": {
+      "schema_version": "0.7.3",
+      "phase": "F1-down-left",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 47067,
+            "bbox": [
+              100,
+              19,
+              352,
+              466
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              235.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              235.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              235.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    },
+    "F2-passing-left": {
+      "schema_version": "0.7.3",
+      "phase": "F2-passing-left",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 46847,
+            "bbox": [
+              102,
+              17,
+              351,
+              472
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              233.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    },
+    "F3-up-left": {
+      "schema_version": "0.7.3",
+      "phase": "F3-up-left",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 47153,
+            "bbox": [
+              106,
+              15,
+              353,
+              469
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              231.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              231.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              231.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    },
+    "F4-contact-right": {
+      "schema_version": "0.7.3",
+      "phase": "F4-contact-right",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 46900,
+            "bbox": [
+              110,
+              17,
+              351,
+              467
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              233.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    },
+    "F5-down-right": {
+      "schema_version": "0.7.3",
+      "phase": "F5-down-right",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 46708,
+            "bbox": [
+              110,
+              19,
+              353,
+              466
+            ]
+          },
+          {
+            "pixels": 1,
+            "bbox": [
+              251,
+              330,
+              252,
+              331
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              235.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              235.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              235.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    },
+    "F6-passing-right": {
+      "schema_version": "0.7.3",
+      "phase": "F6-passing-right",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 46896,
+            "bbox": [
+              110,
+              17,
+              351,
+              471
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              233.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              233.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    },
+    "F7-up-right": {
+      "schema_version": "0.7.3",
+      "phase": "F7-up-right",
+      "structural_expected_pixels": 14895,
+      "structural_output_covered_pixels": 14895,
+      "structural_hole_pixels": 0,
+      "structural_hole_fraction": 0.0,
+      "largest_structural_hole_component_pixels": 0,
+      "largest_structural_hole_bbox": null,
+      "hole_components": [],
+      "belt_core_expected_pixels": 5302,
+      "belt_core_covered_pixels": 5302,
+      "belt_core_coverage": 1.0,
+      "pelvis_bridge_expected_pixels": 2065,
+      "pelvis_bridge_covered_pixels": 2065,
+      "pelvis_bridge_coverage": 1.0,
+      "torso_core_expected_pixels": 9722,
+      "torso_core_covered_pixels": 9722,
+      "torso_core_coverage": 1.0,
+      "edge_speckle": {
+        "meaningful_threshold_pixels": 16,
+        "components": [
+          {
+            "pixels": 47237,
+            "bbox": [
+              106,
+              15,
+              346,
+              468
+            ]
+          }
+        ],
+        "meaningful_detached_fragment_count": 0,
+        "meaningful_detached_fragments": [],
+        "status": "EDGE_SPECKLE_PASSED"
+      },
+      "belt_continuity": {
+        "schema_version": "0.7.3",
+        "samples": {
+          "left_belt": {
+            "sample": [
+              275.959612,
+              231.782
+            ],
+            "connected_to_root": true
+          },
+          "center_belt": {
+            "sample": [
+              256.00005,
+              231.782
+            ],
+            "connected_to_root": true
+          },
+          "right_belt": {
+            "sample": [
+              236.040488,
+              231.782
+            ],
+            "connected_to_root": true
+          }
+        },
+        "hard_gates": {
+          "left_belt": true,
+          "center_belt": true,
+          "right_belt": true
+        },
+        "status": "BELT_CONTINUITY_PASSED"
+      },
+      "hard_gates": {
+        "structural_hole_fraction": true,
+        "largest_structural_hole_component_pixels": true,
+        "no_large_structural_hole_bbox": true,
+        "belt_core_coverage": true,
+        "pelvis_bridge_coverage": true,
+        "torso_core_coverage": true,
+        "detached_meaningful_structural_fragments_zero": true,
+        "belt_continuity": true
+      },
+      "status": "STRUCTURAL_COVERAGE_PASSED"
+    }
+  },
+  "status": "STRUCTURAL_COVERAGE_PASSED"
+}

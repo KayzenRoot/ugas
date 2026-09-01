@@ -1,6 +1,6 @@
-# 2D master pipeline v0.7.3
+# 2D master pipeline v0.8.0
 
-The active release is the v0.7.3 deterministic R4 cutout-rig structural coverage correction. The v0.7.2 audit result, v0.7.1 correction, v0.7.0 result, v0.6.2 SDXL/OpenPose calibration and earlier records remain historical and immutable; only Q0 and four static key poses are in scope.
+The active release is the v0.8.0 deterministic R4 cutout-rig front-walk eight-frame pilot. The v0.7.3 structural correction and earlier records remain historical and immutable; only one front-walk animation is in scope and production routing remains blocked.
 
 This release does not run diffusion or SAM2. It reuses the v0.7.1 eleven-part R4 rig and v0.7.2 targets, then applies a source-derived torso/abdomen/belt/pelvis core, deterministic Pillow transforms, independent layer-integrity, geometric pairwise occlusion, topological seam and retention QA. The current lane requires external visual review before walk authorization.
 
