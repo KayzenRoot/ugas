@@ -11,12 +11,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BASELINE = "9401c31f994e968149292b2993d960d3aafc37c4"
 IMPLEMENTATION_BASE = "f386c490a6d7289befc1c8a34c84eff1d2b1cc96"
-TEXT_SUFFIXES = {".json", ".md", ".txt", ".py"}
+TEXT_SUFFIXES = {".json", ".md", ".txt", ".py", ".toml"}
 
 
 def digest(path: Path) -> str:
     data = path.read_bytes()
-    if path.suffix.casefold() in TEXT_SUFFIXES: data = data.replace(b"\r\n", b"\n")
+    if path.name.casefold() == "license" or path.suffix.casefold() in TEXT_SUFFIXES: data = data.replace(b"\r\n", b"\n")
     return hashlib.sha256(data).hexdigest()
 
 
