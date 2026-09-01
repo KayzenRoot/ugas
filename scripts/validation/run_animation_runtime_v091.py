@@ -126,6 +126,7 @@ def _forbidden_overlap_fixture() -> dict[str, Any]:
 
 
 def run() -> dict[str, Any]:
+    (ROOT / "tmp").mkdir(parents=True, exist_ok=True)
     OUT.mkdir(parents=True, exist_ok=True)
     dummy = _dummy_contract(); timing = _timing_contract()
     walk_spec = ROOT / "profiles/animation/walk-front-v1.json"; idle_spec = ROOT / "profiles/animation/idle-front-v1.json"
