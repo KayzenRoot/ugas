@@ -1327,7 +1327,8 @@ def _v080_checks() -> None:
     try:
         state = load_json(evidence / "current-state-v0.8.0.json"); validate_instance(state, load_json(ROOT / "schemas/current-state-v0.8.0.json"))
         review = (ROOT / "REVIEW-v0.8.0.md").read_text(encoding="utf-8")
-        checkpoint = subprocess.run(["git", "show", "d634d69d3cceac239d8eb5fe8623c764eb6c6b53:CHECKPOINT.md"], cwd=ROOT, capture_output=True, text=True, check=False).stdout
+        checkpoint_path = ROOT / "docs/evidence/checkpoint-v0.8.0.md"
+        checkpoint = checkpoint_path.read_text(encoding="utf-8") if checkpoint_path.is_file() else subprocess.run(["git", "show", "d634d69d3cceac239d8eb5fe8623c764eb6c6b53:CHECKPOINT.md"], cwd=ROOT, capture_output=True, text=True, check=False).stdout
         consistency = validate_state_consistency_v080(state, checkpoint or (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), review)
         check("v080:state-consistency", consistency["status"] == "STATE_CONSISTENCY_PASSED", "; ".join(consistency.get("failures", [])) or "active state is consistent")
         check("v080:state-boundary", state.get("current_gate") == "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED" and state.get("walk_authorized") == "pilot_only" and state.get("production_walk_authorized") is False, "pilot status and production block are synchronized")
@@ -1555,7 +1556,7 @@ def _v091_checks() -> None:
         "REVIEW-v0.9.1.md", "docs/test-coverage-matrix-v0.9.1.md", "schemas/current-state.json", "schemas/current-state-v0.9.0.json",
         "schemas/review-index-v0.9.1.json", "src/ugas/state_consistency_v091.py", "scripts/validation/run_animation_runtime_v091.py",
         "scripts/validation/build_review_index_v091.py", "scripts/validation/validate_review_index_v091.py", "docs/evidence/current-state.json",
-        "docs/evidence/state-consistency-v091.json", "docs/evidence/review-index-v0.9.1.json",
+        "docs/evidence/state-consistency-v091.json", "docs/evidence/checkpoint-v0.8.0.md", "docs/evidence/review-index-v0.9.1.json",
         "docs/evidence/animation-runtime-v091/generic-runtime-contract-v091.json", "docs/evidence/animation-runtime-v091/timing-alternative-qualification-v091.json",
         "docs/evidence/animation-runtime-v091/generic-dummy-package-qualification-v091.json", "docs/evidence/animation-runtime-v091/walk-replay-qualification-v091.json",
         "docs/evidence/animation-runtime-v091/idle-dual-foot-drift-qa-v091.json", "docs/evidence/animation-runtime-v091/idle-layer-bbox-temporal-qa-v091.json",

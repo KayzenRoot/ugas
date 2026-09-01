@@ -8,7 +8,7 @@
     "repository_ref": "https://github.com/csn1985-ship-it/ugas.git"
   },
   "publication": {
-    "index_build_git_head": "152b1bc6980774861b4db6dce29dede02f1c67a3",
+    "index_build_git_head": "d54ce6b9931d611b0f4c05796d0ddffd7c0b9ff8",
     "index_build_dirty_state": "dirty_before_publication_commit",
     "final_head_must_be_resolved_by_external_reviewer": true,
     "executor_cannot_self_assert_final_head": true
@@ -150,6 +150,12 @@
         "path": "docs/evidence/animation-runtime-v091/walk-replay-qualification-v091.json",
         "sha256": "2adfb78442dca439bdcb341a42b8c2a93842050ee7e6d751bd459bb521c5fbb2",
         "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/checkpoint-v0.8.0.md",
+        "sha256": "c5b7818cfb6387702a6bc7e077a60fe1d7bf65c98ab8d17b5fec929b64280e77",
+        "media_type": "text/plain",
         "role": "runtime-or-governance"
       },
       {
@@ -742,7 +748,7 @@
       },
       {
         "path": "scripts/validation/build_review_index_v091.py",
-        "sha256": "4e8bae2b07f947fd2940c86615a1f95c7e59068793e2e021d88d0c06ffde8f29",
+        "sha256": "b19ad2ed0b6fa310a198c2bfd32710d152c43042725031f7db5f179b2a3c1a99",
         "media_type": "text/plain",
         "role": "runtime-or-governance"
       },
@@ -831,8 +837,8 @@
         "role": "runtime-or-governance"
       }
     ],
-    "artifact_set_sha256": "144328263e99990b322ef47be840adfc3acc30882b1d09993e10de44a8fceb2c",
-    "evidence_count": 133,
+    "artifact_set_sha256": "19d66bbb171a81a72c099eb3e439e5245083485a576c8f7f76663b263f38a1c8",
+    "evidence_count": 134,
     "visual_count": 84
   },
   "required_visual_sets": [
