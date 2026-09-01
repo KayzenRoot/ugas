@@ -1,12 +1,16 @@
 # UGAS roadmap
 
-## v0.11.1 - weapon continuity recovery correction
+## v0.11.2 - QA integrity and scope recovery correction
 
-Correct the v0.11.0 false-green post-hit weapon follow-through and recovery for the same 12-frame `attack-front-v2`. Require pre-render proxy gates, post-render metric consistency, negative controls, source-only output, historical replay, external visual review, and blocked production routing.
+Recover the active QA scope after the rejected v0.11.1 correction. Restore v0.11.0 `motion_tracks` and `key_pose_bindings` exactly, bind body gates to declared semantic thresholds, require fail-closed attack-v1 comparison, use relational weapon-arc gates, and qualify NC-01..NC-10. Preserve rejected v0.11.1 history, prove byte-identical pixels/package to v0.11.0, require external visual review, and keep production routing blocked.
+
+## v0.11.1 - rejected weapon continuity recovery correction (historical)
+
+The v0.11.1 implementation and review evidence are preserved as rejected history. v0.11.2 does not rewrite, squash, delete or treat that correction as the active scope.
 
 ## v0.11.0 - generic motion quality layer and attack-front-v2 (historical)
 
-Add optional opaque `motion_tracks[]` between the animation spec and adapter, deterministic scalar/vec2 interpolation, curve hashing, pre-render temporal/body mechanics, and a 12-frame source-only frontal sword attack. Preserve v0.10.0 attack-front-v1 plus v0.8.1 walk and v0.9.0 idle byte-identically. Technical qualification is local; external visual review is required and production routing remains blocked. The v0.11.0 continuity result is preserved as the historical false-green baseline.
+Add optional opaque `motion_tracks[]` between the animation spec and adapter, deterministic scalar/vec2 interpolation, curve hashing, pre-render temporal/body mechanics, and a 12-frame source-only frontal sword attack. Preserve v0.10.0 attack-front-v1 plus v0.8.1 walk and v0.9.0 idle byte-identically. Technical qualification is local; external visual review is required and production routing remains blocked. The v0.11.0 result is preserved as the immutable restoration baseline.
 
 ## v0.8.1 - front-walk QA integrity correction
 

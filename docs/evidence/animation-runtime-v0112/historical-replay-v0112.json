@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.11.2",
+  "status": "HISTORICAL_REPLAY_V0112_PASSED",
+  "preserved_rejected_v0111": true,
+  "checks": [
+    {
+      "path": "REVIEW-v0.11.1.md",
+      "present": true,
+      "byte_identical_to_v0111_commit": true,
+      "content_identical_to_v0111_commit": true,
+      "baseline_commit": "f386c490a6d7289befc1c8a34c84eff1d2b1cc96"
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0111/historical-replay-v0111.json",
+      "present": true,
+      "byte_identical_to_v0111_commit": false,
+      "content_identical_to_v0111_commit": true,
+      "baseline_commit": "f386c490a6d7289befc1c8a34c84eff1d2b1cc96"
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0111/execution-evidence-v0.11.1.json",
+      "present": true,
+      "byte_identical_to_v0111_commit": false,
+      "content_identical_to_v0111_commit": true,
+      "baseline_commit": "f386c490a6d7289befc1c8a34c84eff1d2b1cc96"
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0111/attack-front-v2/qa-result.json",
+      "present": true,
+      "byte_identical_to_v0111_commit": false,
+      "content_identical_to_v0111_commit": true,
+      "baseline_commit": "f386c490a6d7289befc1c8a34c84eff1d2b1cc96"
+    }
+  ],
+  "v0110_visual_baseline": "9401c31f994e968149292b2993d960d3aafc37c4"
+}

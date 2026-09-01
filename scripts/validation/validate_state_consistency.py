@@ -1,4 +1,4 @@
-"""Run the active v0.11.1 fatal state-consistency gate and persist its evidence."""
+"""Run the active v0.11.2 fatal state-consistency gate and persist its evidence."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from ugas.state_consistency_v0111 import validate_state_consistency
+from ugas.state_consistency_v0112 import validate_state_consistency
 from ugas.schema_validation import validate_instance, validate_schema_document
 
 
@@ -21,9 +21,9 @@ def main() -> int:
     result = validate_state_consistency(
         state,
         (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-        (ROOT / "REVIEW-v0.11.1.md").read_text(encoding="utf-8"),
+        (ROOT / "REVIEW-v0.11.2.md").read_text(encoding="utf-8"),
     )
-    evidence = {"schema_version": "0.11.1", "validator": "src/ugas/state_consistency_v0111.py", **result}
+    evidence = {"schema_version": "0.11.2", "validator": "src/ugas/state_consistency_v0112.py", **result}
     (ROOT / "docs/evidence/state-consistency.json").write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(evidence, indent=2, ensure_ascii=False))
     return 0 if result["status"] == "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED" else 2

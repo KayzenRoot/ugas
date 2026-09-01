@@ -1,7 +1,7 @@
-# UGAS checkpoint - v0.11.1
+# UGAS checkpoint - v0.11.2
 
 **STATUS:** `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`
-**VERSION:** `0.11.1`
+**VERSION:** `0.11.2`
 **PHASE:** `REUSABLE_DETERMINISTIC_ANIMATION_RUNTIME`
 
 ## Current state
@@ -49,10 +49,18 @@ UGAS v0.11.0 adds the generic `motion_tracks[]` quality layer between Animation 
 
 The v2 technical gate is `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`; all 12 frames, temporal mechanics, weapon arc, planted feet, structural/occlusion, retention, alpha margin, source hashes and independent MediaPipe metrics pass. The v0.10.0 attack-front-v1 spritesheet/GIF/frames and the canonical v0.8.1 walk and v0.9.0 idle fixtures replay byte-identically. `motion_tracks_sha256` is bound in all v2 artifacts. `attack_front_v2_external_visual=REQUIRED`, `production_approved=false`, `production_routing=BLOCKED`, `sam2_runs=0`, `comfyui_generation_jobs=0`, `diffusion_runs=0`, and `new_generation=0`. The only allowed next action is `external_review_attack_front_v2`; no run/hit/death, other direction, provider, rig/mask, manual-pixel or production changes are authorized.
 
-## v0.11.1 current checkpoint
+## v0.11.1 rejected history
 
 UGAS v0.11.1 is the corrective slice over the immutable public v0.11.0 implementation base `9401c31f994e968149292b2993d960d3aafc37c4`. It corrects only the false-green weapon follow-through/recovery of the same `attack-front-v2`; the generic motion curve layer, R4 rig, masks, body mechanics, foot balance, historical fixtures and thresholds remain unchanged.
 
 The pre-render weapon proxy passes before the first PNG: post-hit follow-through is `17.030469 px`, follow ratio is `0.151858`, velocity retention is `0.367714`, and maximum absolute weapon acceleration is `9.655555 deg/frame²`. Post-render recomputation agrees within `0.001`; V11 sword angle delta is `4.0°`, tip distance is `12.811845 px`, and all recovery gates pass. All required negative controls reject, including the v0.11.0 false-green shape. The package remains source-only, front, 12 frames, non-loop, RGBA, and technically qualified.
 
-The active state is `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED` with `decision=QUALIFIED`, but `attack_front_v2_external_visual=REQUIRED`, `production_approved=false`, `production_routing=BLOCKED`, `sam2_runs=0`, `comfyui_generation_jobs=0`, `diffusion_runs=0`, and `new_generation=0`. The only allowed next action is `external_review_attack_front_v2_v0111`; no run, hit, death, other direction, provider, rig/mask, manual-pixel or production change is authorized.
+The v0.11.1 externally rejected state is preserved unchanged in `current-state-v0.11.1.json`, `REVIEW-v0.11.1.md` and `docs/evidence/animation-runtime-v0111/`. It is not the active status.
+
+## v0.11.2 current checkpoint
+
+UGAS v0.11.2 is the QA integrity and scope recovery correction over HEAD `f386c490a6d7289befc1c8a34c84eff1d2b1cc96`. It restores `motion_tracks` and `key_pose_bindings` exactly from v0.11.0, migrates the unchanged body-mechanics literals into semantic declared thresholds, and makes the attack-v1 comparison fail-closed with a known path, authority commit and immutable SHA-256. The v0.11.1 rejected history is preserved and not rewritten.
+
+The weapon QA uses one unwrapped angular reference for every continuity delta, relational active-vs-pre-active speed, coherent pre-hit acceleration and immediate post-hit same-sign follow-through. NC-01..NC-10 all pass as negative controls. No animation, markers, rig, masks, source skeleton, z-order, pixels or provider was changed; `new_generation=0`, `sam2_runs=0`, `comfyui_generation_jobs=0`, and `diffusion_runs=0`.
+
+The active state is `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED` with `decision=QUALIFIED`, `attack_front_v2_external_visual=REQUIRED`, `production_approved=false`, and `production_routing=BLOCKED`. Historical `walk_front_v081_external_visual=APPROVED_PILOT`, `idle_front_v1_external_visual=APPROVED_PILOT`, and `attack_front_v1_external_visual=APPROVED_PILOT` remain historical decisions. `REVIEW_INDEX_VERIFIED` is local evidence only, not external approval. The only allowed next action is `external_review_attack_front_v2_v0112`; no run, hit, death, other direction, provider, rig/mask, manual-pixel or production change is authorized.

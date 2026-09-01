@@ -1,0 +1,418 @@
+{
+  "schema_version": "0.11.2",
+  "review_state": "attack-front-v2-v0112-technically-qualified",
+  "source_only_pixels": true,
+  "external_visual_review": "REQUIRED",
+  "production_routing": "BLOCKED",
+  "review_subject": {
+    "animation_id": "attack-front-v2",
+    "direction": "front",
+    "frame_count": 12,
+    "baseline_commit": "9401c31f994e968149292b2993d960d3aafc37c4",
+    "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "images": [
+    {
+      "archive_name": "frame-00-V0-ready.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-00-V0-ready.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "bb6ca7ce9d4485c87315f2f9486c6e23a37f25f2f28c6e2ef068eee7049b7803",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 0,
+      "phase": "V0-ready"
+    },
+    {
+      "archive_name": "frame-01-V1-anticipation-early.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-01-V1-anticipation-early.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "3bd3148d3359c492ee77f7d7e5dd7514bf9f6bea6e0a80195d85376f9af541ac",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 1,
+      "phase": "V1-anticipation-early"
+    },
+    {
+      "archive_name": "frame-02-V2-anticipation.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-02-V2-anticipation.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "9029bfc0d3439535c347abcbab63ba874c886f4425505b22fb4d2404bd4c6962",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 2,
+      "phase": "V2-anticipation"
+    },
+    {
+      "archive_name": "frame-03-V3-windup-peak.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-03-V3-windup-peak.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "b2355579b9339716cfab415dbde4f27611866e3cc021dd960017a02862d5fed5",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 3,
+      "phase": "V3-windup-peak"
+    },
+    {
+      "archive_name": "frame-04-V4-strike-start.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-04-V4-strike-start.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "e6ab96a9068247a00100a033c7bd92d96bff4ff5617545dcdce87a59b6fdba52",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 4,
+      "phase": "V4-strike-start"
+    },
+    {
+      "archive_name": "frame-05-V5-strike-mid.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-05-V5-strike-mid.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "8dac3747948e33c20e70ce4f0c7130be35847a132ef1a5644831925dbfc54112",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 5,
+      "phase": "V5-strike-mid"
+    },
+    {
+      "archive_name": "frame-06-V6-strike-contact.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-06-V6-strike-contact.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "e7afef710e3554b7a44af720ea9b667b42aa1c9d8f0467b7870c838e3f86669c",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 6,
+      "phase": "V6-strike-contact"
+    },
+    {
+      "archive_name": "frame-07-V7-follow-through.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-07-V7-follow-through.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "a0e7aa7b17f66057b5261b6397f8cef7ead137931fe67ecfe4a14a53ed5fa867",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 7,
+      "phase": "V7-follow-through"
+    },
+    {
+      "archive_name": "frame-08-V8-follow-through-late.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-08-V8-follow-through-late.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "319b95cf466fc35aab3e3fffbb55407f106bac5608a3683c5cba8ae2bfa033fb",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 8,
+      "phase": "V8-follow-through-late"
+    },
+    {
+      "archive_name": "frame-09-V9-recovery-early.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-09-V9-recovery-early.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "58affbc10df1687c734cbe0b43e775be6397e928e9422cfb00d31bc4fd565c26",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 9,
+      "phase": "V9-recovery-early"
+    },
+    {
+      "archive_name": "frame-10-V10-recovery-late.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-10-V10-recovery-late.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "76a79b94d74295da3db88e38d52a282c1b557451b46211cd5a5a661f756a0519",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 10,
+      "phase": "V10-recovery-late"
+    },
+    {
+      "archive_name": "frame-11-V11-ready-end.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-11-V11-ready-end.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "1820b22556b4c598b027d795a04199f961511b58b36d1c69f909bd300c0be68b",
+      "media_type": "image/png",
+      "role": "target-detected-overlay",
+      "frame": 11,
+      "phase": "V11-ready-end"
+    },
+    {
+      "archive_name": "attack-front-v2-spritesheet.png",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-spritesheet.png",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "6d3942761bdcfb336816470502ce4a40459ad67fc629f54e1600afcdadaf3377",
+      "media_type": "image/png",
+      "role": "final-rgba-spritesheet"
+    },
+    {
+      "archive_name": "attack-front-v2-preview.gif",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-preview.gif",
+      "revision_id": "attack-front-v2-render-v0112",
+      "sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7",
+      "media_type": "image/gif",
+      "role": "review-gif"
+    }
+  ],
+  "frames": [
+    {
+      "frame": 0,
+      "phase": "V0-ready",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-00.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-00-V0-ready.png",
+      "overlay_sha256": "bb6ca7ce9d4485c87315f2f9486c6e23a37f25f2f28c6e2ef068eee7049b7803",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.025665,
+        "limb_angle_mae_degrees": 1.336711,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.990613,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 1,
+      "phase": "V1-anticipation-early",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-01.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-01-V1-anticipation-early.png",
+      "overlay_sha256": "3bd3148d3359c492ee77f7d7e5dd7514bf9f6bea6e0a80195d85376f9af541ac",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.027353,
+        "limb_angle_mae_degrees": 0.830958,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.991315,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 2,
+      "phase": "V2-anticipation",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-02.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-02-V2-anticipation.png",
+      "overlay_sha256": "9029bfc0d3439535c347abcbab63ba874c886f4425505b22fb4d2404bd4c6962",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.02241,
+        "limb_angle_mae_degrees": 2.238475,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.989423,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 3,
+      "phase": "V3-windup-peak",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-03.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-03-V3-windup-peak.png",
+      "overlay_sha256": "b2355579b9339716cfab415dbde4f27611866e3cc021dd960017a02862d5fed5",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.021476,
+        "limb_angle_mae_degrees": 2.310372,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.989497,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 4,
+      "phase": "V4-strike-start",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-04.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-04-V4-strike-start.png",
+      "overlay_sha256": "e6ab96a9068247a00100a033c7bd92d96bff4ff5617545dcdce87a59b6fdba52",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.023065,
+        "limb_angle_mae_degrees": 1.651132,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.990565,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 5,
+      "phase": "V5-strike-mid",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-05.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-05-V5-strike-mid.png",
+      "overlay_sha256": "8dac3747948e33c20e70ce4f0c7130be35847a132ef1a5644831925dbfc54112",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.026825,
+        "limb_angle_mae_degrees": 1.807307,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.989278,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 6,
+      "phase": "V6-strike-contact",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-06.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-06-V6-strike-contact.png",
+      "overlay_sha256": "e7afef710e3554b7a44af720ea9b667b42aa1c9d8f0467b7870c838e3f86669c",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.032085,
+        "limb_angle_mae_degrees": 2.318673,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.986826,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 7,
+      "phase": "V7-follow-through",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-07.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-07-V7-follow-through.png",
+      "overlay_sha256": "a0e7aa7b17f66057b5261b6397f8cef7ead137931fe67ecfe4a14a53ed5fa867",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.035642,
+        "limb_angle_mae_degrees": 1.776392,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.987142,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 8,
+      "phase": "V8-follow-through-late",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-08.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-08-V8-follow-through-late.png",
+      "overlay_sha256": "319b95cf466fc35aab3e3fffbb55407f106bac5608a3683c5cba8ae2bfa033fb",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.025846,
+        "limb_angle_mae_degrees": 1.342195,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.990556,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 9,
+      "phase": "V9-recovery-early",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-09.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-09-V9-recovery-early.png",
+      "overlay_sha256": "58affbc10df1687c734cbe0b43e775be6397e928e9422cfb00d31bc4fd565c26",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.02502,
+        "limb_angle_mae_degrees": 2.447333,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.988307,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 10,
+      "phase": "V10-recovery-late",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-10.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-10-V10-recovery-late.png",
+      "overlay_sha256": "76a79b94d74295da3db88e38d52a282c1b557451b46211cd5a5a661f756a0519",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.019341,
+        "limb_angle_mae_degrees": 1.90834,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.990924,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    },
+    {
+      "frame": 11,
+      "phase": "V11-ready-end",
+      "source_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/frame-11.png",
+      "overlay_path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-11-V11-ready-end.png",
+      "overlay_sha256": "1820b22556b4c598b027d795a04199f961511b58b36d1c69f909bd300c0be68b",
+      "metrics": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.021442,
+        "limb_angle_mae_degrees": 1.476927,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.991357,
+        "qualifies": true,
+        "failure_reasons": []
+      }
+    }
+  ]
+}

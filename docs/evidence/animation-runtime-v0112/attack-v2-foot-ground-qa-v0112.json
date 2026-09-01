@@ -1,0 +1,397 @@
+{
+  "schema_version": "0.11.2",
+  "animation_id": "attack-front-v2",
+  "sides": {
+    "left": {
+      "baseline_ankle_x": 309.4539,
+      "sequential_projected_sole_drift_px": {
+        "max": 0.154423,
+        "max_frame_pair": [
+          4,
+          5
+        ],
+        "threshold": 1.5,
+        "samples": [
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "drift_px": 0.015879
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "drift_px": 0.02949
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "drift_px": 0.015879
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "drift_px": 0.083151
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "drift_px": 0.154423
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "drift_px": 0.08315
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "drift_px": 0.066272
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "drift_px": 0.066271
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "drift_px": 0.03299
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "drift_px": 0.061265
+          },
+          {
+            "from_frame": 10,
+            "to_frame": 11,
+            "drift_px": 0.03299
+          }
+        ]
+      },
+      "ankle_horizontal_drift_from_A0_px": {
+        "max": 0.0,
+        "max_frame": 0,
+        "threshold": 2.0,
+        "samples": [
+          {
+            "frame": 0,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 1,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 2,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 3,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 4,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 5,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 6,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 7,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 8,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 9,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 10,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 11,
+            "drift_px": 0.0
+          }
+        ]
+      },
+      "hard_gates": {
+        "sole_error_le_threshold": true,
+        "ground_penetration_le_threshold": true,
+        "sequential_projected_sole_drift_le_threshold": true,
+        "ankle_horizontal_drift_from_A0_le_threshold": true
+      },
+      "status": "ATTACK_FOOT_GROUND_PASSED"
+    },
+    "right": {
+      "baseline_ankle_x": 234.1367,
+      "sequential_projected_sole_drift_px": {
+        "max": 0.188574,
+        "max_frame_pair": [
+          4,
+          5
+        ],
+        "threshold": 1.5,
+        "samples": [
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "drift_px": 0.010469
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "drift_px": 0.019443
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "drift_px": 0.010469
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "drift_px": 0.10154
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "drift_px": 0.188574
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "drift_px": 0.10154
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "drift_px": 0.083337
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "drift_px": 0.083337
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "drift_px": 0.047601
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "drift_px": 0.088401
+          },
+          {
+            "from_frame": 10,
+            "to_frame": 11,
+            "drift_px": 0.047601
+          }
+        ]
+      },
+      "ankle_horizontal_drift_from_A0_px": {
+        "max": 0.0,
+        "max_frame": 0,
+        "threshold": 2.0,
+        "samples": [
+          {
+            "frame": 0,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 1,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 2,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 3,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 4,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 5,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 6,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 7,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 8,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 9,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 10,
+            "drift_px": 0.0
+          },
+          {
+            "frame": 11,
+            "drift_px": 0.0
+          }
+        ]
+      },
+      "hard_gates": {
+        "sole_error_le_threshold": true,
+        "ground_penetration_le_threshold": true,
+        "sequential_projected_sole_drift_le_threshold": true,
+        "ankle_horizontal_drift_from_A0_le_threshold": true
+      },
+      "status": "ATTACK_FOOT_GROUND_PASSED"
+    }
+  },
+  "hard_gates": {
+    "left_sole_error_le_threshold": true,
+    "left_ground_penetration_le_threshold": true,
+    "left_sequential_projected_sole_drift_le_threshold": true,
+    "left_ankle_horizontal_drift_from_A0_le_threshold": true,
+    "right_sole_error_le_threshold": true,
+    "right_ground_penetration_le_threshold": true,
+    "right_sequential_projected_sole_drift_le_threshold": true,
+    "right_ankle_horizontal_drift_from_A0_le_threshold": true,
+    "balance_pelvis_between_near_support_feet": true
+  },
+  "closing_transition_included": false,
+  "status": "ATTACK_V2_FOOT_GROUND_QA_PASSED",
+  "balance_proxy": {
+    "margin_px": 24.0,
+    "samples": [
+      {
+        "frame": 0,
+        "pelvis_x": 269.54335,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 1,
+        "pelvis_x": 269.621128,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 2,
+        "pelvis_x": 269.765572,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 3,
+        "pelvis_x": 269.84335,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 4,
+        "pelvis_x": 271.010017,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 5,
+        "pelvis_x": 273.176684,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 6,
+        "pelvis_x": 274.34335,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 7,
+        "pelvis_x": 273.44335,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 8,
+        "pelvis_x": 272.54335,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 9,
+        "pelvis_x": 271.778535,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 10,
+        "pelvis_x": 270.358164,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      },
+      {
+        "frame": 11,
+        "pelvis_x": 269.59335,
+        "support_corridor_x": [
+          210.1367,
+          333.4539
+        ],
+        "within_corridor": true
+      }
+    ],
+    "hard_gates": {
+      "pelvis_between_near_support_feet": true
+    },
+    "status": "BALANCE_PROXY_PASSED",
+    "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:pelvis_support_foot_corridor"
+  }
+}

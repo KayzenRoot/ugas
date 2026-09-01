@@ -1,0 +1,1011 @@
+{
+  "schema_version": "0.11.2",
+  "prompt": "PROMPT-CORRETIVO-UGAS-QA-INTEGRITY-SCOPE-RECOVERY-v0.11.2",
+  "baseline_commit": "9401c31f994e968149292b2993d960d3aafc37c4",
+  "previous_rejected_commit": "f386c490a6d7289befc1c8a34c84eff1d2b1cc96",
+  "parent_v0_10_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+  "repository_ref": "https://github.com/csn1985-ship-it/ugas.git",
+  "animation_id": "attack-front-v2",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 12,
+  "fps": 12,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "windup_peak",
+      "frame": 3,
+      "kind": "phase"
+    },
+    {
+      "event_id": "active_start",
+      "frame": 4,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "hit_event",
+      "frame": 6,
+      "kind": "combat_hit"
+    },
+    {
+      "event_id": "active_end",
+      "frame": 7,
+      "kind": "combat_window"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 11,
+      "kind": "phase"
+    }
+  ],
+  "event_markers_sha256": "c9fd811df05964fa293dffab89d1f745b23736f150b8dbb64b4c6d90a15fd2ba",
+  "motion_tracks_sha256": "ba8ab5f4426052ff701471c1a692a2fa52c684e1ad9428626602c01564e2646a",
+  "track_hash_frozen_before_first_png": true,
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "scope": "QA integrity only; v0.11.0 motion tracks/key bindings restored",
+  "generic_motion_curve_regression": "GENERIC_MOTION_CURVE_REGRESSION_PASSED",
+  "historical_replay": "HISTORICAL_REPLAY_V0112_PASSED",
+  "negative_controls": {
+    "schema_version": "0.11.2",
+    "controls": {
+      "NC-02": {
+        "metrics": {
+          "root_path_length_px": 3.6,
+          "torso_rotation_range_deg": 5.518519,
+          "right_shoulder_to_wrist_path_length_px": 71.323362,
+          "attack_v1_equivalent_right_shoulder_to_wrist_path_length_px": 68.284444,
+          "left_wrist_counter_path_length_px": 16.25446,
+          "head_counter_motion_range_deg": 2.2,
+          "thresholds": {
+            "body_root_path_min_px": 2.0,
+            "torso_rotation_range_min_deg": 2.0,
+            "left_wrist_counter_path_min_px": 1.0,
+            "head_counter_motion_max_deg": 4.0,
+            "root_horizontal_excursion_min_px": 2.0,
+            "root_horizontal_excursion_max_px": 6.0,
+            "root_vertical_excursion_min_px": 1.0,
+            "root_vertical_excursion_max_px": 5.0
+          },
+          "attack_v1_baseline": {
+            "available": true,
+            "path": "profiles/animation/attack-front-v1.json",
+            "authority_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+            "expected_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+            "sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+            "reason": "verified_known_path_immutable_hash"
+          },
+          "track_ranges": {
+            "root_shift_x": 0.0,
+            "root_shift_y": 0.0,
+            "torso_rotation_deg": 5.518519,
+            "right_upper_arm_rotation_deg": 2.0,
+            "right_forearm_rotation_deg": 25.0,
+            "right_wrist/grip_rotation_deg": 5.0,
+            "sword_rotation_deg": 44.0,
+            "left_upper_arm_counter_deg": 3.0,
+            "left_forearm_counter_deg": 1.5,
+            "head_counter_rotation_deg": 2.2
+          },
+          "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:skeleton_targets_and_motion_tracks_before_render"
+        },
+        "hard_gates": {
+          "body_root_path_min_px": true,
+          "torso_rotation_range_min_deg": true,
+          "right_shoulder_to_wrist_path_gt_zero": true,
+          "right_shoulder_to_wrist_path_gt_attack_v1": true,
+          "left_wrist_counter_path_min_px": true,
+          "head_counter_motion_max_deg": true,
+          "root_motion_nonzero": false,
+          "torso_motion_nonzero": true,
+          "left_arm_counter_motion_nonzero": true,
+          "root_horizontal_excursion_in_declared_bounds": false,
+          "root_vertical_excursion_in_declared_bounds": false
+        },
+        "status": "ATTACK_V2_BODY_MECHANICS_GAP"
+      },
+      "NC-03": {
+        "metrics": {
+          "root_path_length_px": 10.77401,
+          "torso_rotation_range_deg": 0.0,
+          "right_shoulder_to_wrist_path_length_px": 52.810042,
+          "attack_v1_equivalent_right_shoulder_to_wrist_path_length_px": 68.284444,
+          "left_wrist_counter_path_length_px": 8.859007,
+          "head_counter_motion_range_deg": 2.2,
+          "thresholds": {
+            "body_root_path_min_px": 2.0,
+            "torso_rotation_range_min_deg": 2.0,
+            "left_wrist_counter_path_min_px": 1.0,
+            "head_counter_motion_max_deg": 4.0,
+            "root_horizontal_excursion_min_px": 2.0,
+            "root_horizontal_excursion_max_px": 6.0,
+            "root_vertical_excursion_min_px": 1.0,
+            "root_vertical_excursion_max_px": 5.0
+          },
+          "attack_v1_baseline": {
+            "available": true,
+            "path": "profiles/animation/attack-front-v1.json",
+            "authority_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+            "expected_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+            "sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+            "reason": "verified_known_path_immutable_hash"
+          },
+          "track_ranges": {
+            "root_shift_x": 3.5,
+            "root_shift_y": 2.4,
+            "torso_rotation_deg": 0.0,
+            "right_upper_arm_rotation_deg": 2.0,
+            "right_forearm_rotation_deg": 25.0,
+            "right_wrist/grip_rotation_deg": 5.0,
+            "sword_rotation_deg": 44.0,
+            "left_upper_arm_counter_deg": 3.0,
+            "left_forearm_counter_deg": 1.5,
+            "head_counter_rotation_deg": 2.2
+          },
+          "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:skeleton_targets_and_motion_tracks_before_render"
+        },
+        "hard_gates": {
+          "body_root_path_min_px": true,
+          "torso_rotation_range_min_deg": false,
+          "right_shoulder_to_wrist_path_gt_zero": true,
+          "right_shoulder_to_wrist_path_gt_attack_v1": false,
+          "left_wrist_counter_path_min_px": true,
+          "head_counter_motion_max_deg": true,
+          "root_motion_nonzero": true,
+          "torso_motion_nonzero": false,
+          "left_arm_counter_motion_nonzero": true,
+          "root_horizontal_excursion_in_declared_bounds": true,
+          "root_vertical_excursion_in_declared_bounds": true
+        },
+        "status": "ATTACK_V2_BODY_MECHANICS_GAP"
+      },
+      "NC-04": {
+        "metrics": {
+          "root_path_length_px": 10.77401,
+          "torso_rotation_range_deg": 5.518519,
+          "right_shoulder_to_wrist_path_length_px": 71.323361,
+          "attack_v1_equivalent_right_shoulder_to_wrist_path_length_px": 68.284444,
+          "left_wrist_counter_path_length_px": 21.953907,
+          "head_counter_motion_range_deg": 2.2,
+          "thresholds": {
+            "body_root_path_min_px": 2.0,
+            "torso_rotation_range_min_deg": 2.0,
+            "left_wrist_counter_path_min_px": 1.0,
+            "head_counter_motion_max_deg": 4.0,
+            "root_horizontal_excursion_min_px": 2.0,
+            "root_horizontal_excursion_max_px": 6.0,
+            "root_vertical_excursion_min_px": 1.0,
+            "root_vertical_excursion_max_px": 5.0
+          },
+          "attack_v1_baseline": {
+            "available": true,
+            "path": "profiles/animation/attack-front-v1.json",
+            "authority_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+            "expected_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+            "sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+            "reason": "verified_known_path_immutable_hash"
+          },
+          "track_ranges": {
+            "root_shift_x": 3.5,
+            "root_shift_y": 2.4,
+            "torso_rotation_deg": 5.518519,
+            "right_upper_arm_rotation_deg": 2.0,
+            "right_forearm_rotation_deg": 25.0,
+            "right_wrist/grip_rotation_deg": 5.0,
+            "sword_rotation_deg": 44.0,
+            "left_upper_arm_counter_deg": 0.0,
+            "left_forearm_counter_deg": 0.0,
+            "head_counter_rotation_deg": 2.2
+          },
+          "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:skeleton_targets_and_motion_tracks_before_render"
+        },
+        "hard_gates": {
+          "body_root_path_min_px": true,
+          "torso_rotation_range_min_deg": true,
+          "right_shoulder_to_wrist_path_gt_zero": true,
+          "right_shoulder_to_wrist_path_gt_attack_v1": true,
+          "left_wrist_counter_path_min_px": true,
+          "head_counter_motion_max_deg": true,
+          "root_motion_nonzero": true,
+          "torso_motion_nonzero": true,
+          "left_arm_counter_motion_nonzero": false,
+          "root_horizontal_excursion_in_declared_bounds": true,
+          "root_vertical_excursion_in_declared_bounds": true
+        },
+        "status": "ATTACK_V2_BODY_MECHANICS_GAP"
+      },
+      "NC-05_missing_baseline": {
+        "status": "FAIL_CLOSED",
+        "baseline": {
+          "available": false,
+          "path": "profiles/animation/attack-front-v1.json",
+          "authority_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+          "expected_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+          "reason": "attack_v1_baseline_unreadable:FileNotFoundError"
+        }
+      },
+      "NC-05_wrong_hash": {
+        "status": "FAIL_CLOSED",
+        "baseline": {
+          "available": false,
+          "path": "profiles/animation/attack-front-v1.json",
+          "authority_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+          "expected_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+          "sha256": "beaca65451ec3462abb4f112b032bbbbaf39258273d88dffa86fe3dd4ec63313",
+          "reason": "attack_v1_baseline_hash_mismatch"
+        }
+      },
+      "NC-06": {
+        "status": "GATE_FAILED",
+        "error": "ValueError",
+        "message": "ATTACK_V2_BODY_MECHANICS_GAP"
+      },
+      "NC-07": {
+        "metrics": {
+          "active_peak_abs_angular_speed": 20.0,
+          "pre_active_peak_abs_angular_speed": 3.018519,
+          "strike_sign": 1,
+          "pre_hit_signed_angular_speeds": [
+            20.0,
+            -5.0,
+            10.0
+          ],
+          "post_hit_path_px": 114.824097,
+          "immediate_post_hit_path_px": 6.51505,
+          "total_path_px": 288.558366,
+          "max_abs_angular_acceleration": 25.0,
+          "max_abs_angular_jerk": 41.981481
+        },
+        "velocities": [
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "tip_motion_px": 8.601885,
+            "angular_velocity_degrees_per_frame": 2.240741
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "tip_motion_px": 8.509562,
+            "angular_velocity_degrees_per_frame": 2.240741
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "tip_motion_px": 12.560528,
+            "angular_velocity_degrees_per_frame": 3.018519
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "tip_motion_px": 46.88253,
+            "angular_velocity_degrees_per_frame": 20.0
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "tip_motion_px": 50.603624,
+            "angular_velocity_degrees_per_frame": -5.0
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "tip_motion_px": 46.576139,
+            "angular_velocity_degrees_per_frame": 10.0
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "tip_motion_px": 3.237222,
+            "angular_velocity_degrees_per_frame": 15.875
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "tip_motion_px": 3.277828,
+            "angular_velocity_degrees_per_frame": 0.625
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "tip_motion_px": 36.174621,
+            "angular_velocity_degrees_per_frame": -9.725926
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "tip_motion_px": 35.813087,
+            "angular_velocity_degrees_per_frame": -9.637037
+          },
+          {
+            "from_frame": 10,
+            "to_frame": 11,
+            "tip_motion_px": 36.321339,
+            "angular_velocity_degrees_per_frame": -9.637037
+          }
+        ],
+        "unwrapped_angles": [
+          99.872218,
+          102.112959,
+          104.3537,
+          107.372218,
+          127.372218,
+          122.372218,
+          132.372218,
+          148.247218,
+          148.872218,
+          139.146292,
+          129.509256,
+          119.872218
+        ],
+        "accelerations": [
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "angular_acceleration_degrees_per_frame2": 0.0
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "angular_acceleration_degrees_per_frame2": 0.777778
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "angular_acceleration_degrees_per_frame2": 16.981481
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "angular_acceleration_degrees_per_frame2": -25.0
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "angular_acceleration_degrees_per_frame2": 15.0
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "angular_acceleration_degrees_per_frame2": 5.875
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "angular_acceleration_degrees_per_frame2": -15.25
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "angular_acceleration_degrees_per_frame2": -10.350926
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "angular_acceleration_degrees_per_frame2": 0.088889
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "angular_acceleration_degrees_per_frame2": -0.0
+          }
+        ],
+        "active_window_frames": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "hit_event_frame": 6,
+        "hard_gates": {
+          "active_peak_exceeds_pre_active_peak": true,
+          "pre_hit_acceleration_coherent_toward_strike": false,
+          "post_hit_path_nonzero": true,
+          "immediate_post_hit_path_nonzero": true,
+          "immediate_post_hit_same_strike_sign": true
+        },
+        "status": "ATTACK_V2_WEAPON_ARC_GAP",
+        "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:unwrapped_relational_weapon_trajectory"
+      },
+      "NC-08": {
+        "metrics": {
+          "active_peak_abs_angular_speed": 13.677778,
+          "pre_active_peak_abs_angular_speed": 3.018519,
+          "strike_sign": 1,
+          "pre_hit_signed_angular_speeds": [
+            12.9,
+            13.677778,
+            12.922222
+          ],
+          "post_hit_path_px": 114.824097,
+          "immediate_post_hit_path_px": 6.51505,
+          "total_path_px": 288.558366,
+          "max_abs_angular_acceleration": 13.922222,
+          "max_abs_angular_jerk": 17.922222
+        },
+        "velocities": [
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "tip_motion_px": 8.601885,
+            "angular_velocity_degrees_per_frame": 2.240741
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "tip_motion_px": 8.509562,
+            "angular_velocity_degrees_per_frame": 2.240741
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "tip_motion_px": 12.560528,
+            "angular_velocity_degrees_per_frame": 3.018519
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "tip_motion_px": 46.88253,
+            "angular_velocity_degrees_per_frame": 12.9
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "tip_motion_px": 50.603624,
+            "angular_velocity_degrees_per_frame": 13.677778
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "tip_motion_px": 46.576139,
+            "angular_velocity_degrees_per_frame": 12.922222
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "tip_motion_px": 3.237222,
+            "angular_velocity_degrees_per_frame": -1.0
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "tip_motion_px": 3.277828,
+            "angular_velocity_degrees_per_frame": 3.0
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "tip_motion_px": 36.174621,
+            "angular_velocity_degrees_per_frame": -9.725926
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "tip_motion_px": 35.813087,
+            "angular_velocity_degrees_per_frame": -9.637037
+          },
+          {
+            "from_frame": 10,
+            "to_frame": 11,
+            "tip_motion_px": 36.321339,
+            "angular_velocity_degrees_per_frame": -9.637037
+          }
+        ],
+        "unwrapped_angles": [
+          99.872218,
+          102.112959,
+          104.3537,
+          107.372218,
+          120.272218,
+          133.949996,
+          146.872218,
+          145.872218,
+          148.872218,
+          139.146292,
+          129.509256,
+          119.872218
+        ],
+        "accelerations": [
+          {
+            "from_frame": 0,
+            "to_frame": 1,
+            "angular_acceleration_degrees_per_frame2": 0.0
+          },
+          {
+            "from_frame": 1,
+            "to_frame": 2,
+            "angular_acceleration_degrees_per_frame2": 0.777778
+          },
+          {
+            "from_frame": 2,
+            "to_frame": 3,
+            "angular_acceleration_degrees_per_frame2": 9.881481
+          },
+          {
+            "from_frame": 3,
+            "to_frame": 4,
+            "angular_acceleration_degrees_per_frame2": 0.777778
+          },
+          {
+            "from_frame": 4,
+            "to_frame": 5,
+            "angular_acceleration_degrees_per_frame2": -0.755555
+          },
+          {
+            "from_frame": 5,
+            "to_frame": 6,
+            "angular_acceleration_degrees_per_frame2": -13.922222
+          },
+          {
+            "from_frame": 6,
+            "to_frame": 7,
+            "angular_acceleration_degrees_per_frame2": 4.0
+          },
+          {
+            "from_frame": 7,
+            "to_frame": 8,
+            "angular_acceleration_degrees_per_frame2": -12.725926
+          },
+          {
+            "from_frame": 8,
+            "to_frame": 9,
+            "angular_acceleration_degrees_per_frame2": 0.088889
+          },
+          {
+            "from_frame": 9,
+            "to_frame": 10,
+            "angular_acceleration_degrees_per_frame2": -0.0
+          }
+        ],
+        "active_window_frames": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "hit_event_frame": 6,
+        "hard_gates": {
+          "active_peak_exceeds_pre_active_peak": true,
+          "pre_hit_acceleration_coherent_toward_strike": true,
+          "post_hit_path_nonzero": true,
+          "immediate_post_hit_path_nonzero": true,
+          "immediate_post_hit_same_strike_sign": false
+        },
+        "status": "ATTACK_V2_WEAPON_ARC_GAP",
+        "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:unwrapped_relational_weapon_trajectory"
+      },
+      "NC-09": {
+        "status": "FOOT_GROUND_GAP",
+        "result": {
+          "sides": {
+            "left": {
+              "baseline_ankle_x": 100.0,
+              "sequential_projected_sole_drift_px": {
+                "max": 10.0,
+                "max_frame_pair": [
+                  0,
+                  1
+                ],
+                "threshold": 1.5,
+                "samples": [
+                  {
+                    "from_frame": 0,
+                    "to_frame": 1,
+                    "drift_px": 10.0
+                  },
+                  {
+                    "from_frame": 1,
+                    "to_frame": 2,
+                    "drift_px": 10.0
+                  },
+                  {
+                    "from_frame": 2,
+                    "to_frame": 3,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 3,
+                    "to_frame": 4,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 4,
+                    "to_frame": 5,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 5,
+                    "to_frame": 6,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 6,
+                    "to_frame": 7,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 7,
+                    "to_frame": 8,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 8,
+                    "to_frame": 9,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 9,
+                    "to_frame": 10,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 10,
+                    "to_frame": 11,
+                    "drift_px": 0.0
+                  }
+                ]
+              },
+              "ankle_horizontal_drift_from_A0_px": {
+                "max": 0.0,
+                "max_frame": 0,
+                "threshold": 2.0,
+                "samples": [
+                  {
+                    "frame": 0,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 1,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 2,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 3,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 4,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 5,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 6,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 7,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 8,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 9,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 10,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 11,
+                    "drift_px": 0.0
+                  }
+                ]
+              },
+              "hard_gates": {
+                "sole_error_le_threshold": true,
+                "ground_penetration_le_threshold": true,
+                "sequential_projected_sole_drift_le_threshold": false,
+                "ankle_horizontal_drift_from_A0_le_threshold": true
+              },
+              "status": "ATTACK_FRONT_FOOT_GROUND_GAP"
+            },
+            "right": {
+              "baseline_ankle_x": 100.0,
+              "sequential_projected_sole_drift_px": {
+                "max": 0.0,
+                "max_frame_pair": [
+                  0,
+                  1
+                ],
+                "threshold": 1.5,
+                "samples": [
+                  {
+                    "from_frame": 0,
+                    "to_frame": 1,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 1,
+                    "to_frame": 2,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 2,
+                    "to_frame": 3,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 3,
+                    "to_frame": 4,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 4,
+                    "to_frame": 5,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 5,
+                    "to_frame": 6,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 6,
+                    "to_frame": 7,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 7,
+                    "to_frame": 8,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 8,
+                    "to_frame": 9,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 9,
+                    "to_frame": 10,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "from_frame": 10,
+                    "to_frame": 11,
+                    "drift_px": 0.0
+                  }
+                ]
+              },
+              "ankle_horizontal_drift_from_A0_px": {
+                "max": 0.0,
+                "max_frame": 0,
+                "threshold": 2.0,
+                "samples": [
+                  {
+                    "frame": 0,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 1,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 2,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 3,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 4,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 5,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 6,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 7,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 8,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 9,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 10,
+                    "drift_px": 0.0
+                  },
+                  {
+                    "frame": 11,
+                    "drift_px": 0.0
+                  }
+                ]
+              },
+              "hard_gates": {
+                "sole_error_le_threshold": true,
+                "ground_penetration_le_threshold": true,
+                "sequential_projected_sole_drift_le_threshold": true,
+                "ankle_horizontal_drift_from_A0_le_threshold": true
+              },
+              "status": "ATTACK_FOOT_GROUND_PASSED"
+            }
+          },
+          "hard_gates": {
+            "left_sole_error_le_threshold": true,
+            "left_ground_penetration_le_threshold": true,
+            "left_sequential_projected_sole_drift_le_threshold": false,
+            "left_ankle_horizontal_drift_from_A0_le_threshold": true,
+            "right_sole_error_le_threshold": true,
+            "right_ground_penetration_le_threshold": true,
+            "right_sequential_projected_sole_drift_le_threshold": true,
+            "right_ankle_horizontal_drift_from_A0_le_threshold": true,
+            "balance_pelvis_between_near_support_feet": true
+          },
+          "closing_transition_included": false,
+          "status": "ATTACK_V2_FOOT_GROUND_GAP",
+          "balance_proxy": {
+            "margin_px": 24.0,
+            "samples": [
+              {
+                "frame": 0,
+                "pelvis_x": 269.54335,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 1,
+                "pelvis_x": 269.621128,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 2,
+                "pelvis_x": 269.765572,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 3,
+                "pelvis_x": 269.84335,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 4,
+                "pelvis_x": 271.010017,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 5,
+                "pelvis_x": 273.176684,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 6,
+                "pelvis_x": 274.34335,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 7,
+                "pelvis_x": 273.44335,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 8,
+                "pelvis_x": 272.54335,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 9,
+                "pelvis_x": 271.778535,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 10,
+                "pelvis_x": 270.358164,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              },
+              {
+                "frame": 11,
+                "pelvis_x": 269.59335,
+                "support_corridor_x": [
+                  210.1367,
+                  333.4539
+                ],
+                "within_corridor": true
+              }
+            ],
+            "hard_gates": {
+              "pelvis_between_near_support_feet": true
+            },
+            "status": "BALANCE_PROXY_PASSED",
+            "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:pelvis_support_foot_corridor"
+          }
+        }
+      },
+      "NC-10": {
+        "status": "PACKAGE_FAILED",
+        "error": "AnimationContractError",
+        "message": "package_requires_qualified_qa"
+      }
+    },
+    "status": "NC_01_TO_NC_10_PASSED",
+    "nc_status": {
+      "NC-02": "ATTACK_V2_BODY_MECHANICS_GAP",
+      "NC-03": "ATTACK_V2_BODY_MECHANICS_GAP",
+      "NC-04": "ATTACK_V2_BODY_MECHANICS_GAP",
+      "NC-05_missing_baseline": "FAIL_CLOSED",
+      "NC-05_wrong_hash": "FAIL_CLOSED",
+      "NC-06": "GATE_FAILED",
+      "NC-07": "ATTACK_V2_WEAPON_ARC_GAP",
+      "NC-08": "ATTACK_V2_WEAPON_ARC_GAP",
+      "NC-09": "FOOT_GROUND_GAP",
+      "NC-10": "PACKAGE_FAILED",
+      "NC-01": "REJECTED"
+    }
+  },
+  "pixel_identity": "PIXEL_IDENTITY_V0110_PASSED",
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "external_visual_review": "REQUIRED",
+  "no_new_run_hit_death": true,
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/package-manifest.json",
+    "qa_decision": "QUALIFIED",
+    "sprite_sheet_sha256": "6d3942761bdcfb336816470502ce4a40459ad67fc629f54e1600afcdadaf3377",
+    "preview_gif_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7"
+  }
+}

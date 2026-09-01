@@ -1,4 +1,4 @@
-# Installing UGAS 0.11.1
+# Installing UGAS 0.11.2
 
 ## Requirements
 
@@ -17,13 +17,13 @@ python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
 ```
 
-## v0.11.1 deterministic weapon-continuity correction
+## v0.11.2 QA integrity and scope recovery
 
-Use `python -m ugas.animation validate-spec profiles/animation/attack-front-v2.json`, ou o runner completo `python scripts/validation/run_animation_runtime_v0111.py --json`. Ele executa o proxy pré-render, regressão das curvas, replay histórico, QA estrutural/pose, package e evidências em `docs/evidence/animation-runtime-v0111/`. A lane é source-only: não baixa pesos, não executa ComfyUI/SAM2/diffusion e não autoriza produção. Depois, construa e valide o índice com `python scripts/validation/build_review_index_v0111.py --tests-count <N> --validation-checks <N> --json` e `python scripts/validation/validate_review_index_v0111.py docs/evidence/review-index-v0.11.1.json`.
+Use `python -m ugas.animation validate-spec profiles/animation/attack-front-v2.json`, ou o runner completo `python scripts/validation/run_animation_runtime_v0112.py`. Ele verifica a restauração dos tracks/bindings v0.11.0, thresholds declarados, baseline attack-v1 fail-closed, regras relacionais, NC-01..NC-10, replay e package em `docs/evidence/animation-runtime-v0112/`. A lane é source-only: não baixa pesos, não executa ComfyUI/SAM2/diffusion e não autoriza produção. Depois, construa e valide o índice com `python scripts/validation/build_review_index_v0112.py --tests-count <N> --validation-checks <N> --json` e `python scripts/validation/validate_review_index_v0112.py docs/evidence/review-index-v0.11.2.json`.
 
 ## v0.11.0 deterministic motion-quality attack (historical)
 
-O v0.11.0 permanece preservado em `docs/evidence/animation-runtime-v0110/` como baseline histórico, inclusive o resultado false-green de continuidade identificado pelo v0.11.1.
+O v0.11.0 permanece preservado em `docs/evidence/animation-runtime-v0110/` como baseline visual histórico. O v0.11.1 permanece preservado em `REVIEW-v0.11.1.md`, `current-state-v0.11.1.json` e `docs/evidence/animation-runtime-v0111/` como rejected history.
 
 ## v0.8.1 deterministic front-walk QA correction
 
@@ -47,7 +47,7 @@ python -m ugas.cli cutout-rig qualify-sam2 --json
 
 O checkpoint oficial `sam2.1_hiera_small.pt` deve ficar em `%LOCALAPPDATA%/UGAS/models/sam2/` e ser conferido pelo SHA-256 registrado em `docs/evidence/sam2-checkpoint-provenance-v071.json`. A instalação não usa custom node ComfyUI nem executa jobs ComfyUI.
 
-O v0.9.1 permanece preservado em `current-state-v0.9.1.json`, `REVIEW-v0.9.1.md` e suas evidências. O estado ativo v0.11.1 é `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`; walk continua `pilot_only`, walk/idle/attack-v1 preservam decisões externas históricas `APPROVED_PILOT`, attack-v2 requer revisão externa, produção permanece bloqueada e nenhum resultado local equivale à aprovação externa do attack.
+O v0.9.1 permanece preservado em `current-state-v0.9.1.json`, `REVIEW-v0.9.1.md` e suas evidências. O estado ativo v0.11.2 é `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`; walk continua `pilot_only`, walk/idle/attack-v1 preservam decisões externas históricas `APPROVED_PILOT`, attack-v2 requer revisão externa, produção permanece bloqueada e nenhum resultado local equivale à aprovação externa do attack.
 ## v0.10.0 runtime check
 
 After installation, validate a profile with `python -m ugas.animation validate-spec profiles/animation/attack-front-v1.json`. The v0.10.0 runner proves event markers, loop/non-loop lifecycle, deterministic 10-frame attack pose/weapon/foot/structural/MediaPipe QA, and the package gate: `python scripts/validation/run_animation_runtime_v0100.py`. The tracked pilot package is generated only after QA qualification; it is not production approval.

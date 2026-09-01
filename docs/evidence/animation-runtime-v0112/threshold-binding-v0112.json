@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.11.2",
+  "source": "PROMPT-CORRETIVO-UGAS-QA-INTEGRITY-SCOPE-RECOVERY-v0.11.2.pdf",
+  "declared_thresholds": {
+    "body_root_path_min_px": 2.0,
+    "torso_rotation_range_min_deg": 2.0,
+    "left_wrist_counter_path_min_px": 1.0,
+    "head_counter_motion_max_deg": 4.0,
+    "root_horizontal_excursion_min_px": 2.0,
+    "root_horizontal_excursion_max_px": 6.0,
+    "root_vertical_excursion_min_px": 1.0,
+    "root_vertical_excursion_max_px": 5.0
+  },
+  "adapter_consumers": "_declared_thresholds, _body_mechanics, prepare",
+  "v0111_weapon_numeric_thresholds_active": false
+}

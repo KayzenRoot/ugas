@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.11.1",
+  "version": "0.11.1",
+  "phase": "REUSABLE_DETERMINISTIC_ANIMATION_RUNTIME",
+  "previous_release": {
+    "version": "0.11.0",
+    "pose_lane_status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+    "review_snapshot_status": "REVIEW_INDEX_VERIFIED",
+    "review": "REVIEW-v0.11.0.md",
+    "evidence": "docs/evidence/animation-runtime-v0110/execution-evidence-v0.11.0.json"
+  },
+  "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
+  "current_gate": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "stop_reason": null,
+  "provider_smoke_status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "historical_pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
+  "pose_lane_status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+  "previous_review_snapshot_status": "REVIEW_INDEX_VERIFIED",
+  "canonical_anchor": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "generation_provider_change_authorized": false,
+  "walk_authorized": "pilot_only",
+  "production_walk_authorized": false,
+  "allowed_next_actions": ["external_review_attack_front_v2_v0111"],
+  "forbidden_actions": [
+    "run_or_package_run_hit_death_animation",
+    "run_other_direction",
+    "run_comfyui_generation_for_this_slice",
+    "rerun_sam2",
+    "change_frozen_animation_parameters_after_render",
+    "promote_pilot_to_production_routing",
+    "claim_external_attack_v2_approval",
+    "change_r4_rig_or_masks",
+    "use_non_source_pixels",
+    "change_generic_motion_curve_semantics"
+  ],
+  "evidence": {
+    "historical_v0110_state": "docs/evidence/current-state-v0.11.0.json",
+    "generic_motion_curve_regression": "docs/evidence/animation-runtime-v0111/generic-motion-curve-regression-v0111.json",
+    "historical_replay": "docs/evidence/animation-runtime-v0111/historical-replay-v0111.json",
+    "weapon_continuity_pre_render": "docs/evidence/animation-runtime-v0111/weapon-continuity-pre-render-v0111.json",
+    "weapon_continuity_post_render": "docs/evidence/animation-runtime-v0111/weapon-continuity-post-render-v0111.json",
+    "attack_spec": "profiles/animation/attack-front-v2.json",
+    "attack_compiled_manifest": "docs/evidence/animation-runtime-v0111/attack-front-v2/compiled-manifest.json",
+    "attack_qa": "docs/evidence/animation-runtime-v0111/attack-front-v2/qa-result.json",
+    "attack_package": "docs/evidence/animation-runtime-v0111/attack-front-v2/package-manifest.json",
+    "review_index": "docs/evidence/review-index-v0.11.1.json"
+  },
+  "state_consistency": {
+    "status": "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED",
+    "validator": "src/ugas/state_consistency_v0111.py",
+    "contradictory_promotion": false,
+    "new_generation_started": false,
+    "new_generation_jobs": 0,
+    "sam2_runs": 0,
+    "comfyui_generation_jobs": 0,
+    "diffusion_runs": 0,
+    "walk_front_v081_external_visual": "APPROVED_PILOT",
+    "idle_front_v1_external_visual": "APPROVED_PILOT",
+    "attack_front_v1_external_visual": "APPROVED_PILOT",
+    "attack_front_v2_external_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "deterministic_only": true,
+    "review_index_required": true,
+    "final_head_external_resolution_required": true
+  }
+}

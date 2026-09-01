@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.11.2",
+  "animation_id": "attack-front-v2",
+  "metrics": {
+    "root_path_length_px": 10.77401,
+    "torso_rotation_range_deg": 5.518519,
+    "right_shoulder_to_wrist_path_length_px": 71.323361,
+    "attack_v1_equivalent_right_shoulder_to_wrist_path_length_px": 68.284444,
+    "left_wrist_counter_path_length_px": 21.317841,
+    "head_counter_motion_range_deg": 2.2,
+    "thresholds": {
+      "body_root_path_min_px": 2.0,
+      "torso_rotation_range_min_deg": 2.0,
+      "left_wrist_counter_path_min_px": 1.0,
+      "head_counter_motion_max_deg": 4.0,
+      "root_horizontal_excursion_min_px": 2.0,
+      "root_horizontal_excursion_max_px": 6.0,
+      "root_vertical_excursion_min_px": 1.0,
+      "root_vertical_excursion_max_px": 5.0
+    },
+    "attack_v1_baseline": {
+      "available": true,
+      "path": "profiles/animation/attack-front-v1.json",
+      "authority_commit": "c11196e5e854a0fbc6ec62e959de5ecc28d492ce",
+      "expected_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+      "sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+      "reason": "verified_known_path_immutable_hash"
+    },
+    "track_ranges": {
+      "root_shift_x": 3.5,
+      "root_shift_y": 2.4,
+      "torso_rotation_deg": 5.518519,
+      "right_upper_arm_rotation_deg": 2.0,
+      "right_forearm_rotation_deg": 25.0,
+      "right_wrist/grip_rotation_deg": 5.0,
+      "sword_rotation_deg": 44.0,
+      "left_upper_arm_counter_deg": 3.0,
+      "left_forearm_counter_deg": 1.5,
+      "head_counter_rotation_deg": 2.2
+    },
+    "proof_source": "src/ugas/animation_profiles/attack_front_v2.py:skeleton_targets_and_motion_tracks_before_render"
+  },
+  "hard_gates": {
+    "body_root_path_min_px": true,
+    "torso_rotation_range_min_deg": true,
+    "right_shoulder_to_wrist_path_gt_zero": true,
+    "right_shoulder_to_wrist_path_gt_attack_v1": true,
+    "left_wrist_counter_path_min_px": true,
+    "head_counter_motion_max_deg": true,
+    "root_motion_nonzero": true,
+    "torso_motion_nonzero": true,
+    "left_arm_counter_motion_nonzero": true,
+    "root_horizontal_excursion_in_declared_bounds": true,
+    "root_vertical_excursion_in_declared_bounds": true
+  },
+  "status": "ATTACK_V2_BODY_MECHANICS_QA_PASSED"
+}
