@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"UGAS v0.8.1 retention QA","type":"object","required":["schema_version","poses","status"],"properties":{"schema_version":{"const":"0.8.1"},"poses":{"type":"object","minProperties":8},"status":{"const":"RETENTION_OCCLUSION_PASSED"}}}

@@ -1,26 +1,160 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.8.0 deterministic front-walk pilot state",
+  "title": "UGAS active v0.8.1 deterministic front-walk correction state",
   "type": "object",
-  "required": ["schema_version", "version", "phase", "previous_release", "historical_smoke_status", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "generation_provider_change_authorized", "walk_authorized", "production_walk_authorized", "provider_smoke_status", "historical_pose_lane_status", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"],
+  "required": [
+    "schema_version",
+    "version",
+    "phase",
+    "previous_release",
+    "historical_smoke_status",
+    "current_gate",
+    "stop_reason",
+    "canonical_anchor",
+    "allowed_next_actions",
+    "forbidden_actions",
+    "generation_provider_change_authorized",
+    "walk_authorized",
+    "production_walk_authorized",
+    "provider_smoke_status",
+    "historical_pose_lane_status",
+    "pose_lane_status",
+    "previous_review_snapshot_status",
+    "state_consistency"
+  ],
   "properties": {
-    "schema_version": {"const": "0.8.0"},
-    "version": {"const": "0.8.0"},
-    "phase": {"const": "DETERMINISTIC_FRONT_WALK_8FRAME_PILOT"},
-    "current_gate": {"enum": ["CUTOUT_RIG_FRONT_WALK_FRAME_GAP", "CUTOUT_RIG_FRONT_WALK_TEMPORAL_GAP", "CUTOUT_RIG_FRONT_WALK_LOOP_GAP", "CUTOUT_RIG_FRONT_WALK_PACKAGING_GAP", "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED"]},
-    "stop_reason": {"type": ["string", "null"]},
-    "generation_provider_change_authorized": {"const": false},
-    "walk_authorized": {"const": "pilot_only"},
-    "production_walk_authorized": {"const": false},
-    "provider_smoke_status": {"type": "string", "minLength": 1},
-    "historical_smoke_status": {"const": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS"},
-    "historical_pose_lane_status": {"const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"},
-    "pose_lane_status": {"type": "string", "minLength": 1},
-    "previous_review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"},
-    "previous_release": {"type": "object", "required": ["version", "pose_lane_status", "review_snapshot_status"], "properties": {"version": {"const": "0.7.3"}, "pose_lane_status": {"const": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED"}, "review_snapshot_status": {"const": "REVIEW_ARCHIVE_VERIFIED"}}},
-    "canonical_anchor": {"type": "object", "required": ["asset_id", "revision_id", "sha256"], "properties": {"asset_id": {"type": "string"}, "revision_id": {"const": "revision-3a425d184b1a49be9f6d6c8d52d04b96"}, "sha256": {"const": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"}}},
-    "allowed_next_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-    "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-    "state_consistency": {"type": "object", "required": ["status", "contradictory_walk_or_anchor_promotion", "new_generation_started", "new_generation_jobs", "sam2_runs", "comfyui_generation_jobs"], "properties": {"status": {"type": "string"}, "contradictory_walk_or_anchor_promotion": {"const": false}, "new_generation_started": {"const": false}, "new_generation_jobs": {"const": 0}, "sam2_runs": {"const": 0}, "comfyui_generation_jobs": {"const": 0}}}
+    "schema_version": {
+      "const": "0.8.1"
+    },
+    "version": {
+      "const": "0.8.1"
+    },
+    "phase": {
+      "const": "DETERMINISTIC_FRONT_WALK_8FRAME_PILOT"
+    },
+    "current_gate": {
+      "enum": [
+        "CUTOUT_RIG_FRONT_WALK_FRAME_GAP",
+        "CUTOUT_RIG_FRONT_WALK_TEMPORAL_GAP",
+        "CUTOUT_RIG_FRONT_WALK_LOOP_GAP",
+        "CUTOUT_RIG_FRONT_WALK_PACKAGING_GAP",
+        "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED"
+      ]
+    },
+    "stop_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "generation_provider_change_authorized": {
+      "const": false
+    },
+    "walk_authorized": {
+      "const": "pilot_only"
+    },
+    "production_walk_authorized": {
+      "const": false
+    },
+    "provider_smoke_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "historical_smoke_status": {
+      "const": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS"
+    },
+    "historical_pose_lane_status": {
+      "const": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED"
+    },
+    "pose_lane_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "previous_review_snapshot_status": {
+      "const": "REVIEW_ARCHIVE_VERIFIED"
+    },
+    "previous_release": {
+      "type": "object",
+      "required": [
+        "version",
+        "pose_lane_status",
+        "review_snapshot_status"
+      ],
+      "properties": {
+        "version": {
+          "const": "0.7.3"
+        },
+        "pose_lane_status": {
+          "const": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED"
+        },
+        "review_snapshot_status": {
+          "const": "REVIEW_ARCHIVE_VERIFIED"
+        }
+      }
+    },
+    "canonical_anchor": {
+      "type": "object",
+      "required": [
+        "asset_id",
+        "revision_id",
+        "sha256"
+      ],
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "revision_id": {
+          "const": "revision-3a425d184b1a49be9f6d6c8d52d04b96"
+        },
+        "sha256": {
+          "const": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+        }
+      }
+    },
+    "allowed_next_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "state_consistency": {
+      "type": "object",
+      "required": [
+        "status",
+        "contradictory_walk_or_anchor_promotion",
+        "new_generation_started",
+        "new_generation_jobs",
+        "sam2_runs",
+        "comfyui_generation_jobs"
+      ],
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "contradictory_walk_or_anchor_promotion": {
+          "const": false
+        },
+        "new_generation_started": {
+          "const": false
+        },
+        "new_generation_jobs": {
+          "const": 0
+        },
+        "sam2_runs": {
+          "const": 0
+        },
+        "comfyui_generation_jobs": {
+          "const": 0
+        }
+      }
+    }
   }
 }

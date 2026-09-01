@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"UGAS v0.8.1 temporal QA","type":"object","required":["schema_version","phase_order","hard_gates","status"],"properties":{"schema_version":{"const":"0.8.1"},"phase_order":{"type":"array","minItems":8,"maxItems":8},"status":{"const":"CUTOUT_RIG_FRONT_WALK_TEMPORAL_PASSED"}}}

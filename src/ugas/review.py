@@ -217,6 +217,25 @@ REQUIRED_V080_REVIEW_EVIDENCE |= {f"{folder}-frame-{index:02d}-{phase.split('-',
 REQUIRED_V080_REVIEW_EVIDENCE |= {f"pairwise-frame-{index:02d}.json" for index in range(8)}
 REQUIRED_V080_REVIEW_EVIDENCE |= {f"retention-frame-{index:02d}.json" for index in range(8)}
 
+REQUIRED_V081_REVIEW_EVIDENCE = {
+    "front-walk-cycle-v1-config-v081.json", "front-walk-targets-v081.json", "front-walk-z-order-v081.json",
+    "front-walk-per-frame-qa-v081.json", "front-walk-temporal-pre-smoothing-v081.json", "front-walk-temporal-qa-v081.json",
+    "front-walk-foot-contact-qa-v081.json", "front-walk-foot-ground-record-v081.json", "front-walk-half-cycle-qa-v081.json",
+    "front-walk-loop-qa-v081.json", "front-walk-structural-coverage-v081.json", "front-walk-layer-integrity-v081.json",
+    "front-walk-occlusion-v081.json", "front-walk-retention-v081.json", "front-walk-bone-projection-v081.json",
+    "front-walk-root-motion-v081.json", "front-walk-provider-qualification-v081.json", "execution-evidence-v0.8.1.json",
+    "walk-front-spritesheet-v081.png", "walk-front-metadata-v081.json", "walk-front-preview-v081.gif", "walk-front-package-manifest-v081.json",
+    "front-walk-evidence-contact-sheet-v081.png", "front-walk-checkerboard-contact-sheet-v081.png",
+    "front-walk-target-detected-overlays-v081.png", "front-walk-ground-line-overlays-v081.png", "front-walk-alpha-bbox-contact-sheet-v081.png",
+    "front-walk-structural-hole-maps-v081.png", "front-walk-waist-hip-zoom-v081.png", "front-walk-feet-ground-zoom-v081.png",
+    "front-walk-sword-hand-zoom-v081.png", "front-walk-temporal-trajectory-v081.png",
+}
+REQUIRED_V081_REVIEW_EVIDENCE |= {f"frame-{index:02d}-{phase.split('-', 1)[1]}.png" for index, phase in enumerate(("F0-contact-left", "F1-down-left", "F2-passing-left", "F3-up-left", "F4-contact-right", "F5-down-right", "F6-passing-right", "F7-up-right"))}
+REQUIRED_V081_REVIEW_EVIDENCE |= {f"{folder}-frame-{index:02d}-{phase.split('-', 1)[1]}.png" for folder in ("checkerboard", "target-detected-overlays", "ground-line-overlays", "structural-hole-maps") for index, phase in enumerate(("F0-contact-left", "F1-down-left", "F2-passing-left", "F3-up-left", "F4-contact-right", "F5-down-right", "F6-passing-right", "F7-up-right"))}
+REQUIRED_V081_REVIEW_EVIDENCE |= {f"frame-{index:02d}-alpha-bbox-{phase.split('-', 1)[1]}.png" for index, phase in enumerate(("F0-contact-left", "F1-down-left", "F2-passing-left", "F3-up-left", "F4-contact-right", "F5-down-right", "F6-passing-right", "F7-up-right"))}
+REQUIRED_V081_REVIEW_EVIDENCE |= {f"pairwise-frame-{index:02d}.json" for index in range(8)}
+REQUIRED_V081_REVIEW_EVIDENCE |= {f"retention-frame-{index:02d}.json" for index in range(8)}
+
 
 def _digest(path: Path) -> str:
     digest = hashlib.sha256()
@@ -265,6 +284,8 @@ def validate_review_visual_manifest(manifest: Mapping[str, Any], root: Path | No
         required = REQUIRED_V073_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     elif schema_version == "0.8.0":
         required = REQUIRED_V080_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
+    elif schema_version == "0.8.1":
+        required = REQUIRED_V081_REVIEW_EVIDENCE | {str(name) for name in manifest.get("required_current_visuals", []) if isinstance(name, str)}
     else:
         required = REQUIRED_V043_REVIEW_EVIDENCE
     missing = sorted(required - set(by_name))

@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.8.0",
+  "id": "deterministic-cutout-rig-2d",
+  "kind": "deterministic-renderer-provider",
+  "priority": "explicit-capability-only",
+  "cost_class": "local",
+  "capabilities": ["pose_character_front_2d", "cutout_rig_2d", "front_walk_8frame_pilot"],
+  "transport_capabilities": ["local-python", "rgba-render"],
+  "asset_capabilities_declared": ["front-facing-humanoid", "transparent-rgba-source"],
+  "asset_capabilities_qualified": ["front-facing-humanoid", "transparent-rgba-source", "key-pose-structural-coverage", "front-walk-8frame-pilot"],
+  "qualification_evidence": "docs/evidence/front-walk-provider-qualification-v080.json",
+  "availability_contract": {"runtime": "isolated-cpu-renderer-plus-mediapipe-qa", "sam2": "historical-v071-input-only", "production_routing_changed": false, "sam2_rerun": false},
+  "credential_policy": "No credential belongs in the repository; SAM2 source and checkpoint remain external.",
+  "provider_type": "deterministic_renderer",
+  "generation_model": "none",
+  "source_contract": {"canonical_revision": "R4", "required_format": "RGBA", "pixels_immutable": true, "structural_core_source_mapping": "100%"},
+  "output_contract": {"format": "RGBA", "manifest": "CUTOUT_RIG_MANIFEST", "generated_pixel_fraction": 0.0, "structural_core": "source-derived torso/abdomen/belt/pelvis bridge", "animation": "walk-front-8-pilot"},
+  "runtime_policy": {"comfyui_jobs": 0, "walk_frames": 8, "walk_authorized": "pilot_only", "production_walk_authorized": false, "sam3_forbidden": true, "manual_mask_edits": false},
+  "limits": ["front-facing humanoid only", "one walk-front animation only", "no diffusion", "no inpainting", "no content-aware synthesis", "no pixel interpolation", "external visual review required", "production routing blocked", "external approval not-claimed"]
+}

@@ -1,0 +1,3375 @@
+{
+  "schema_version": "0.8.1",
+  "plan_sha256": "d61fe1292d845944f675f74b33e0e99d749a67d08227e70279846db3ab42ef94",
+  "presentation_transform_sha256": "12a5ae3b233e15662879dabb84dd95da10e02c082741cc8c0268d172c44126a5",
+  "frames": [
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 0,
+      "phase": "F0-contact-left",
+      "canonical_target_joint_sha256": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8",
+      "presentation_target_joint_sha256": "3ea4ebea02c5b40618c0fba00adc6df2ed411c268a4da7cde7608193ef03127c",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F0-contact-left",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 102.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 102.12
+          },
+          "elbow_left": {
+            "x": 318.8917,
+            "y": 169.1376
+          },
+          "elbow_right": {
+            "x": 179.4992,
+            "y": 164.5506
+          },
+          "wrist_left": {
+            "x": 339.2644,
+            "y": 237.5055
+          },
+          "wrist_right": {
+            "x": 177.5441,
+            "y": 230.3811
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 228.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 229.2929
+          },
+          "knee_left": {
+            "x": 290.0639,
+            "y": 328.5741
+          },
+          "knee_right": {
+            "x": 205.0147,
+            "y": 324.1472
+          },
+          "ankle_left": {
+            "x": 295.507,
+            "y": 428.5532
+          },
+          "ankle_right": {
+            "x": 220.0096,
+            "y": 419.4095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 54.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 87.1197
+          },
+          "pelvis": {
+            "x": 254.0,
+            "y": 228.782
+          },
+          "shoulder_center": {
+            "x": 253.4686,
+            "y": 102.3005
+          },
+          "weapon_tip": {
+            "x": 101.3045,
+            "y": 420.2991
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            200.0,
+            115.1197,
+            308.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 0,
+        "canonical_target_joint_sha256": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F0-contact-left",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 117.8329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 117.508
+          },
+          "elbow_left": {
+            "x": 312.60253,
+            "y": 177.82384
+          },
+          "elbow_right": {
+            "x": 187.14928,
+            "y": 173.69554
+          },
+          "wrist_left": {
+            "x": 330.93796,
+            "y": 239.35495
+          },
+          "wrist_right": {
+            "x": 185.38969,
+            "y": 232.94299
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 231.04399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 231.96361
+          },
+          "knee_left": {
+            "x": 286.65751,
+            "y": 321.31669
+          },
+          "knee_right": {
+            "x": 210.11323,
+            "y": 317.33248
+          },
+          "ankle_left": {
+            "x": 291.5563,
+            "y": 411.29788
+          },
+          "ankle_right": {
+            "x": 223.60864,
+            "y": 403.06855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 74.98966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 104.00773
+          },
+          "pelvis": {
+            "x": 254.2,
+            "y": 231.5038
+          },
+          "shoulder_center": {
+            "x": 253.72174,
+            "y": 117.67045
+          },
+          "weapon_tip": {
+            "x": 116.77405,
+            "y": 403.86919
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            200.0,
+            115.1197,
+            308.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 0,
+        "canonical_target_joint_sha256": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "f2f74f19d576d4705f4040b98aaa0ad32c5d001db96d7ace706fcd1a1555e1d8",
+        "presentation_target_joint_sha256": "3ea4ebea02c5b40618c0fba00adc6df2ed411c268a4da7cde7608193ef03127c",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "863d688bec2aa128b5eb99a7b7cd84fd6f16d37e8cc2bec4144947aed082d1e2",
+      "output_bbox": [
+        116,
+        40,
+        342,
+        447
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          116,
+          40,
+          342,
+          447
+        ],
+        "margins_px": {
+          "left": 116.0,
+          "top": 40.0,
+          "right": 170.0,
+          "bottom": 65.0
+        },
+        "min_margin_px": 40.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          254.0,
+          228.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          177.5441,
+          230.3811
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F0-contact-left",
+        "frame_index": 0,
+        "support_side": "left",
+        "swing_side": null,
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 446.301953,
+            "projected_ground_y_canonical": 467.446614,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 446.301953,
+            "expected_sole_y_canonical": 467.446614,
+            "actual_sole_y": 446.0,
+            "actual_sole_y_canonical": 467.0,
+            "sole_error_px": -0.301953,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 0.301953,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "planted"
+          },
+          "right": {
+            "projected_ground_y": 446.301953,
+            "projected_ground_y_canonical": 467.446614,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 439.249764,
+            "expected_sole_y_canonical": 459.610849,
+            "actual_sole_y": 440.0,
+            "actual_sole_y_canonical": 461.0,
+            "sole_error_px": 0.750236,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 6.301953,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "trail"
+          }
+        },
+        "left_bottom_y": 446.0,
+        "right_bottom_y": 440.0,
+        "actual_bottom_y": 446.0,
+        "ground_y": 446.301953
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39697,
+          1
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "42ea5c440142ba46589d435c50d27de3fcf41ed3e38df0b2820043baf5cdce38"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.02449,
+        "limb_angle_mae_degrees": 2.353097,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.988648,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    },
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 1,
+      "phase": "F1-down-left",
+      "canonical_target_joint_sha256": "e679e8204382da7bb13934091a717b38f889f1e54434321b4316dc54b2d508b0",
+      "presentation_target_joint_sha256": "bf2a411b701dac34d9b1337841065e0ad426ac5b48f0493645333077f2a95c19",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F1-down-left",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 104.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 104.12
+          },
+          "elbow_left": {
+            "x": 317.152431,
+            "y": 174.287482
+          },
+          "elbow_right": {
+            "x": 177.77214,
+            "y": 164.633024
+          },
+          "wrist_left": {
+            "x": 340.2644,
+            "y": 240.2555
+          },
+          "wrist_right": {
+            "x": 176.5441,
+            "y": 231.6311
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 230.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 231.2929
+          },
+          "knee_left": {
+            "x": 282.468731,
+            "y": 327.801322
+          },
+          "knee_right": {
+            "x": 194.90434,
+            "y": 319.713259
+          },
+          "ankle_left": {
+            "x": 296.007,
+            "y": 429.5532
+          },
+          "ankle_right": {
+            "x": 218.408525,
+            "y": 415.9095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 56.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 89.1197
+          },
+          "pelvis": {
+            "x": 256.00005,
+            "y": 230.782
+          },
+          "shoulder_center": {
+            "x": 253.46865,
+            "y": 104.3005
+          },
+          "weapon_tip": {
+            "x": 100.3045,
+            "y": 421.5491
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 1,
+        "canonical_target_joint_sha256": "857ea53e641e43b420c7b9f3045983cdb621b200f2b050f438e162b7cbdcb26a",
+        "target_joint_sha256": "e679e8204382da7bb13934091a717b38f889f1e54434321b4316dc54b2d508b0"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F1-down-left",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 119.6329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 119.308
+          },
+          "elbow_left": {
+            "x": 311.037188,
+            "y": 182.458734
+          },
+          "elbow_right": {
+            "x": 185.594926,
+            "y": 173.769722
+          },
+          "wrist_left": {
+            "x": 331.83796,
+            "y": 241.82995
+          },
+          "wrist_right": {
+            "x": 184.48969,
+            "y": 234.06799
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 232.84399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 233.76361
+          },
+          "knee_left": {
+            "x": 279.821858,
+            "y": 320.62119
+          },
+          "knee_right": {
+            "x": 201.013906,
+            "y": 313.341933
+          },
+          "ankle_left": {
+            "x": 292.0063,
+            "y": 412.19788
+          },
+          "ankle_right": {
+            "x": 222.167673,
+            "y": 399.91855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 76.78966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 105.80773
+          },
+          "pelvis": {
+            "x": 256.000045,
+            "y": 233.3038
+          },
+          "shoulder_center": {
+            "x": 253.721785,
+            "y": 119.47045
+          },
+          "weapon_tip": {
+            "x": 115.87405,
+            "y": 404.99419
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 1,
+        "canonical_target_joint_sha256": "e679e8204382da7bb13934091a717b38f889f1e54434321b4316dc54b2d508b0",
+        "target_joint_sha256": "e679e8204382da7bb13934091a717b38f889f1e54434321b4316dc54b2d508b0",
+        "presentation_target_joint_sha256": "bf2a411b701dac34d9b1337841065e0ad426ac5b48f0493645333077f2a95c19",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "0068a0eb3479498777be7f5d850013ee4419100d5cd2b52e490ae1e2f300cea4",
+      "output_bbox": [
+        115,
+        42,
+        344,
+        447
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          115,
+          42,
+          344,
+          447
+        ],
+        "margins_px": {
+          "left": 115.0,
+          "top": 42.0,
+          "right": 168.0,
+          "bottom": 65.0
+        },
+        "min_margin_px": 42.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          256.00005,
+          230.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          176.5441,
+          231.6311
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F1-down-left",
+        "frame_index": 1,
+        "support_side": "left",
+        "swing_side": null,
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 446.464544,
+            "projected_ground_y_canonical": 467.627271,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 446.464544,
+            "expected_sole_y_canonical": 467.627271,
+            "actual_sole_y": 446.0,
+            "actual_sole_y_canonical": 468.0,
+            "sole_error_px": -0.464544,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 0.464544,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "planted"
+          },
+          "right": {
+            "projected_ground_y": 446.464544,
+            "projected_ground_y_canonical": 467.627271,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 437.80713,
+            "expected_sole_y_canonical": 458.007922,
+            "actual_sole_y": 440.0,
+            "actual_sole_y_canonical": 460.0,
+            "sole_error_px": 2.19287,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 6.464544,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "trail"
+          }
+        },
+        "left_bottom_y": 446.0,
+        "right_bottom_y": 440.0,
+        "actual_bottom_y": 446.0,
+        "ground_y": 446.464544
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39471,
+          1,
+          1
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "3d8e88edcdf7161448ec724bff08b0f2f101ef0f7e60aacc5fa5e152237fb15f"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.035189,
+        "limb_angle_mae_degrees": 2.792128,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.984998,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    },
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 2,
+      "phase": "F2-passing-left",
+      "canonical_target_joint_sha256": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6",
+      "presentation_target_joint_sha256": "04dcbe4260f1655aa081dcd26bbcbcb6cb2e5d3cb4eab2e1cda464a3c23a1209",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F2-passing-left",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 102.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 102.12
+          },
+          "elbow_left": {
+            "x": 318.8917,
+            "y": 169.1376
+          },
+          "elbow_right": {
+            "x": 179.4992,
+            "y": 164.5506
+          },
+          "wrist_left": {
+            "x": 339.2644,
+            "y": 237.5055
+          },
+          "wrist_right": {
+            "x": 177.5441,
+            "y": 230.3811
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 228.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 229.2929
+          },
+          "knee_left": {
+            "x": 271.8172,
+            "y": 328.2695
+          },
+          "knee_right": {
+            "x": 191.4963,
+            "y": 319.6014
+          },
+          "ankle_left": {
+            "x": 258.9911,
+            "y": 428.5532
+          },
+          "ankle_right": {
+            "x": 221.0096,
+            "y": 411.4095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 54.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 87.1197
+          },
+          "pelvis": {
+            "x": 255.0,
+            "y": 228.782
+          },
+          "shoulder_center": {
+            "x": 253.4686,
+            "y": 102.3005
+          },
+          "weapon_tip": {
+            "x": 101.3045,
+            "y": 420.2991
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            201.0,
+            115.1197,
+            309.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 2,
+        "canonical_target_joint_sha256": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F2-passing-left",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 117.8329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 117.508
+          },
+          "elbow_left": {
+            "x": 312.60253,
+            "y": 177.82384
+          },
+          "elbow_right": {
+            "x": 187.14928,
+            "y": 173.69554
+          },
+          "wrist_left": {
+            "x": 330.93796,
+            "y": 239.35495
+          },
+          "wrist_right": {
+            "x": 185.38969,
+            "y": 232.94299
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 231.04399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 231.96361
+          },
+          "knee_left": {
+            "x": 270.23548,
+            "y": 321.04255
+          },
+          "knee_right": {
+            "x": 197.94667,
+            "y": 313.24126
+          },
+          "ankle_left": {
+            "x": 258.69199,
+            "y": 411.29788
+          },
+          "ankle_right": {
+            "x": 224.50864,
+            "y": 395.86855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 74.98966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 104.00773
+          },
+          "pelvis": {
+            "x": 255.1,
+            "y": 231.5038
+          },
+          "shoulder_center": {
+            "x": 253.72174,
+            "y": 117.67045
+          },
+          "weapon_tip": {
+            "x": 116.77405,
+            "y": 403.86919
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            201.0,
+            115.1197,
+            309.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 2,
+        "canonical_target_joint_sha256": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "3f1f8e8c17373fd2d10ee7fc7f316708e77bb21814f54b57e1c870f51ba770e6",
+        "presentation_target_joint_sha256": "04dcbe4260f1655aa081dcd26bbcbcb6cb2e5d3cb4eab2e1cda464a3c23a1209",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "4496be5d6061cf22a2346cbe4dc701d09af046a87a9d1700d6f36449b6095e3e",
+      "output_bbox": [
+        116,
+        40,
+        342,
+        451
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          116,
+          40,
+          342,
+          451
+        ],
+        "margins_px": {
+          "left": 116.0,
+          "top": 40.0,
+          "right": 170.0,
+          "bottom": 61.0
+        },
+        "min_margin_px": 40.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          255.0,
+          228.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          177.5441,
+          230.3811
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F2-passing-left",
+        "frame_index": 2,
+        "support_side": "right",
+        "swing_side": "left",
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 461.074226,
+            "projected_ground_y_canonical": 483.860251,
+            "depth_screen_offset_px": 27.9,
+            "support_ground_calibration_offset_px": 3.0,
+            "lift_height_px": 11.560903,
+            "expected_sole_y": 449.513323,
+            "expected_sole_y_canonical": 471.014803,
+            "actual_sole_y": 450.0,
+            "actual_sole_y_canonical": 472.0,
+            "sole_error_px": 0.486677,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 11.074226,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "swing"
+          },
+          "right": {
+            "projected_ground_y": 435.874226,
+            "projected_ground_y_canonical": 455.860251,
+            "depth_screen_offset_px": 2.7,
+            "support_ground_calibration_offset_px": 3.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 433.174226,
+            "expected_sole_y_canonical": 452.860251,
+            "actual_sole_y": 436.0,
+            "actual_sole_y_canonical": 456.0,
+            "sole_error_px": 2.825774,
+            "ground_penetration_px": 0.125774,
+            "visible_clearance_px": -0.125774,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "planted"
+          }
+        },
+        "left_bottom_y": 450.0,
+        "right_bottom_y": 436.0,
+        "actual_bottom_y": 450.0,
+        "ground_y": 435.874226
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39398,
+          1
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "42ea5c440142ba46589d435c50d27de3fcf41ed3e38df0b2820043baf5cdce38"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.0396,
+        "limb_angle_mae_degrees": 2.460605,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.984632,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    },
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 3,
+      "phase": "F3-up-left",
+      "canonical_target_joint_sha256": "eaea827b0d4016568355e11c611dcef65ad53942546e3bdd2cec587e134c6793",
+      "presentation_target_joint_sha256": "fbf39c5f3de33f0d38e160e7bd304c3a1dc0a1b3b62e9199a44a7c713fbe1d22",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F3-up-left",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 100.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 100.12
+          },
+          "elbow_left": {
+            "x": 330.715041,
+            "y": 164.183581
+          },
+          "elbow_right": {
+            "x": 187.042117,
+            "y": 165.222135
+          },
+          "wrist_left": {
+            "x": 335.2644,
+            "y": 232.5055
+          },
+          "wrist_right": {
+            "x": 181.5441,
+            "y": 231.3811
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 226.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 227.2929
+          },
+          "knee_left": {
+            "x": 297.813004,
+            "y": 322.190146
+          },
+          "knee_right": {
+            "x": 204.512853,
+            "y": 324.74853
+          },
+          "ankle_left": {
+            "x": 275.432856,
+            "y": 418.0532
+          },
+          "ankle_right": {
+            "x": 219.138213,
+            "y": 416.9095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 52.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 85.1197
+          },
+          "pelvis": {
+            "x": 256.00005,
+            "y": 226.782
+          },
+          "shoulder_center": {
+            "x": 253.46865,
+            "y": 100.3005
+          },
+          "weapon_tip": {
+            "x": 105.3045,
+            "y": 421.2991
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 3,
+        "canonical_target_joint_sha256": "87e2a47cf7a09f0fb9a9f3c717d550f2d87ea650d956039dc60938575e240043",
+        "target_joint_sha256": "eaea827b0d4016568355e11c611dcef65ad53942546e3bdd2cec587e134c6793"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F3-up-left",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 116.0329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 115.708
+          },
+          "elbow_left": {
+            "x": 323.243537,
+            "y": 173.365223
+          },
+          "elbow_right": {
+            "x": 193.937905,
+            "y": 174.299922
+          },
+          "wrist_left": {
+            "x": 327.33796,
+            "y": 234.85495
+          },
+          "wrist_right": {
+            "x": 188.98969,
+            "y": 233.84299
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 229.24399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 230.16361
+          },
+          "knee_left": {
+            "x": 293.631704,
+            "y": 315.571131
+          },
+          "knee_right": {
+            "x": 209.661568,
+            "y": 317.873677
+          },
+          "ankle_left": {
+            "x": 273.48957,
+            "y": 401.84788
+          },
+          "ankle_right": {
+            "x": 222.824392,
+            "y": 400.81855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 73.18966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 102.20773
+          },
+          "pelvis": {
+            "x": 256.000045,
+            "y": 229.7038
+          },
+          "shoulder_center": {
+            "x": 253.721785,
+            "y": 115.87045
+          },
+          "weapon_tip": {
+            "x": 120.37405,
+            "y": 404.76919
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 3,
+        "canonical_target_joint_sha256": "eaea827b0d4016568355e11c611dcef65ad53942546e3bdd2cec587e134c6793",
+        "target_joint_sha256": "eaea827b0d4016568355e11c611dcef65ad53942546e3bdd2cec587e134c6793",
+        "presentation_target_joint_sha256": "fbf39c5f3de33f0d38e160e7bd304c3a1dc0a1b3b62e9199a44a7c713fbe1d22",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "9782e93142345208a4135559e4abc2703c8bb501e5c9bb62b674e14e92cea52b",
+      "output_bbox": [
+        120,
+        39,
+        342,
+        442
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          120,
+          39,
+          342,
+          442
+        ],
+        "margins_px": {
+          "left": 120.0,
+          "top": 39.0,
+          "right": 170.0,
+          "bottom": 70.0
+        },
+        "min_margin_px": 39.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          256.00005,
+          226.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          181.5441,
+          231.3811
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F3-up-left",
+        "frame_index": 3,
+        "support_side": "right",
+        "swing_side": "left",
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 461.041048,
+            "projected_ground_y_canonical": 483.823387,
+            "depth_screen_offset_px": 25.2,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 20.944146,
+            "expected_sole_y": 440.096903,
+            "expected_sole_y_canonical": 460.552114,
+            "actual_sole_y": 441.0,
+            "actual_sole_y_canonical": 462.0,
+            "sole_error_px": 0.903097,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 20.041048,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "swing"
+          },
+          "right": {
+            "projected_ground_y": 435.841048,
+            "projected_ground_y_canonical": 455.823387,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 435.841048,
+            "expected_sole_y_canonical": 455.823387,
+            "actual_sole_y": 437.0,
+            "actual_sole_y_canonical": 457.0,
+            "sole_error_px": 1.158952,
+            "ground_penetration_px": 1.158952,
+            "visible_clearance_px": -1.158952,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "planted"
+          }
+        },
+        "left_bottom_y": 441.0,
+        "right_bottom_y": 437.0,
+        "actual_bottom_y": 441.0,
+        "ground_y": 435.841048
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39144,
+          1
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "2d80c9ba250e0668f25e52cdb8a7bd69b9497bb84104bb126b893d5560585111"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.027568,
+        "limb_angle_mae_degrees": 3.22029,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.985952,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    },
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 4,
+      "phase": "F4-contact-right",
+      "canonical_target_joint_sha256": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648",
+      "presentation_target_joint_sha256": "7ee212576b2a0bdec559f6f04f154a83253b76833a9b30684a2f645478e529af",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F4-contact-right",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 102.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 102.12
+          },
+          "elbow_left": {
+            "x": 331.9262,
+            "y": 164.1221
+          },
+          "elbow_right": {
+            "x": 195.0729,
+            "y": 169.1055
+          },
+          "wrist_left": {
+            "x": 331.2644,
+            "y": 231.5055
+          },
+          "wrist_right": {
+            "x": 185.5441,
+            "y": 236.3811
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 228.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 229.2929
+          },
+          "knee_left": {
+            "x": 309.2831,
+            "y": 325.25
+          },
+          "knee_right": {
+            "x": 224.3474,
+            "y": 327.0986
+          },
+          "ankle_left": {
+            "x": 296.3141,
+            "y": 420.5532
+          },
+          "ankle_right": {
+            "x": 221.1771,
+            "y": 427.4095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 54.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 87.1197
+          },
+          "pelvis": {
+            "x": 258.0,
+            "y": 228.782
+          },
+          "shoulder_center": {
+            "x": 253.4686,
+            "y": 102.3005
+          },
+          "weapon_tip": {
+            "x": 109.3045,
+            "y": 426.2991
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            204.0,
+            115.1197,
+            312.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 4,
+        "canonical_target_joint_sha256": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F4-contact-right",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 117.8329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 117.508
+          },
+          "elbow_left": {
+            "x": 324.33358,
+            "y": 173.30989
+          },
+          "elbow_right": {
+            "x": 201.16561,
+            "y": 177.79495
+          },
+          "wrist_left": {
+            "x": 323.73796,
+            "y": 233.95495
+          },
+          "wrist_right": {
+            "x": 192.58969,
+            "y": 238.34299
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 231.04399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 231.96361
+          },
+          "knee_left": {
+            "x": 303.95479,
+            "y": 318.325
+          },
+          "knee_right": {
+            "x": 227.51266,
+            "y": 319.98874
+          },
+          "ankle_left": {
+            "x": 292.28269,
+            "y": 404.09788
+          },
+          "ankle_right": {
+            "x": 224.65939,
+            "y": 410.26855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 74.98966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 104.00773
+          },
+          "pelvis": {
+            "x": 257.8,
+            "y": 231.5038
+          },
+          "shoulder_center": {
+            "x": 253.72174,
+            "y": 117.67045
+          },
+          "weapon_tip": {
+            "x": 123.97405,
+            "y": 409.26919
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            204.0,
+            115.1197,
+            312.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 4,
+        "canonical_target_joint_sha256": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "428016ce4d11f56702cb57501dbb400bc9d534c337fe3cf6a5d16bb1d1c53648",
+        "presentation_target_joint_sha256": "7ee212576b2a0bdec559f6f04f154a83253b76833a9b30684a2f645478e529af",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "8a9440fe0cf09d0b321499d3aebb78ac3fa242c8eb9db948b4aaf98efe66db72",
+      "output_bbox": [
+        123,
+        40,
+        342,
+        446
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          123,
+          40,
+          342,
+          446
+        ],
+        "margins_px": {
+          "left": 123.0,
+          "top": 40.0,
+          "right": 170.0,
+          "bottom": 66.0
+        },
+        "min_margin_px": 40.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          258.0,
+          228.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          185.5441,
+          236.3811
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F4-contact-right",
+        "frame_index": 4,
+        "support_side": "right",
+        "swing_side": null,
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 445.300377,
+            "projected_ground_y_canonical": 466.333752,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 440.547805,
+            "expected_sole_y_canonical": 461.053117,
+            "actual_sole_y": 441.0,
+            "actual_sole_y_canonical": 462.0,
+            "sole_error_px": 0.452195,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 4.300377,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "trail"
+          },
+          "right": {
+            "projected_ground_y": 445.300377,
+            "projected_ground_y_canonical": 466.333752,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 445.300377,
+            "expected_sole_y_canonical": 466.333752,
+            "actual_sole_y": 445.0,
+            "actual_sole_y_canonical": 467.0,
+            "sole_error_px": -0.300377,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 0.300377,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "planted"
+          }
+        },
+        "left_bottom_y": 441.0,
+        "right_bottom_y": 445.0,
+        "actual_bottom_y": 445.0,
+        "ground_y": 445.300377
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39436,
+          1,
+          1
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "8e78028bd405fae69f2818fa6049882f3c49f958c4871f316d4b44c5d233295a"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.0215,
+        "limb_angle_mae_degrees": 3.83079,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.986112,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    },
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 5,
+      "phase": "F5-down-right",
+      "canonical_target_joint_sha256": "be46b80517d682188b5905a169fd803fd2745ecaf9bc52b5954eec1c3ab48fe4",
+      "presentation_target_joint_sha256": "d44f5ec7b7d9f2cfac5041c737cb41d7b80d82c230409bba0d166751da13b708",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F5-down-right",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 104.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 104.12
+          },
+          "elbow_left": {
+            "x": 334.248197,
+            "y": 166.684942
+          },
+          "elbow_right": {
+            "x": 198.156874,
+            "y": 170.358577
+          },
+          "wrist_left": {
+            "x": 330.2644,
+            "y": 232.7555
+          },
+          "wrist_right": {
+            "x": 186.5441,
+            "y": 239.1311
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 230.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 231.2929
+          },
+          "knee_left": {
+            "x": 319.897102,
+            "y": 325.633537
+          },
+          "knee_right": {
+            "x": 232.65951,
+            "y": 326.02731
+          },
+          "ankle_left": {
+            "x": 298.134731,
+            "y": 417.0532
+          },
+          "ankle_right": {
+            "x": 221.6771,
+            "y": 428.4095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 56.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 89.1197
+          },
+          "pelvis": {
+            "x": 256.00005,
+            "y": 230.782
+          },
+          "shoulder_center": {
+            "x": 253.46865,
+            "y": 104.3005
+          },
+          "weapon_tip": {
+            "x": 110.3045,
+            "y": 429.0491
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 5,
+        "canonical_target_joint_sha256": "dea9a85eb402c00deccb39d180dcdff4907f84cffa1aa3ed4c389f5c31bb9315",
+        "target_joint_sha256": "be46b80517d682188b5905a169fd803fd2745ecaf9bc52b5954eec1c3ab48fe4"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F5-down-right",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 119.6329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 119.308
+          },
+          "elbow_left": {
+            "x": 326.423377,
+            "y": 175.616448
+          },
+          "elbow_right": {
+            "x": 203.941187,
+            "y": 178.922719
+          },
+          "wrist_left": {
+            "x": 322.83796,
+            "y": 235.07995
+          },
+          "wrist_right": {
+            "x": 193.48969,
+            "y": 240.81799
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 232.84399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 233.76361
+          },
+          "knee_left": {
+            "x": 313.507392,
+            "y": 318.670183
+          },
+          "knee_right": {
+            "x": 234.993559,
+            "y": 319.024579
+          },
+          "ankle_left": {
+            "x": 293.921258,
+            "y": 400.94788
+          },
+          "ankle_right": {
+            "x": 225.10939,
+            "y": 411.16855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 76.78966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 105.80773
+          },
+          "pelvis": {
+            "x": 256.000045,
+            "y": 233.3038
+          },
+          "shoulder_center": {
+            "x": 253.721785,
+            "y": 119.47045
+          },
+          "weapon_tip": {
+            "x": 124.87405,
+            "y": 411.74419
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 5,
+        "canonical_target_joint_sha256": "be46b80517d682188b5905a169fd803fd2745ecaf9bc52b5954eec1c3ab48fe4",
+        "target_joint_sha256": "be46b80517d682188b5905a169fd803fd2745ecaf9bc52b5954eec1c3ab48fe4",
+        "presentation_target_joint_sha256": "d44f5ec7b7d9f2cfac5041c737cb41d7b80d82c230409bba0d166751da13b708",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "5497900214b389f086da51c7c4201f66250e157e2edff42cf2e85c5db5741a50",
+      "output_bbox": [
+        124,
+        42,
+        345,
+        447
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          124,
+          42,
+          345,
+          447
+        ],
+        "margins_px": {
+          "left": 124.0,
+          "top": 42.0,
+          "right": 167.0,
+          "bottom": 65.0
+        },
+        "min_margin_px": 42.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          256.00005,
+          230.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          186.5441,
+          239.1311
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F5-down-right",
+        "frame_index": 5,
+        "support_side": "right",
+        "swing_side": null,
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 445.670672,
+            "projected_ground_y_canonical": 466.745191,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 437.495244,
+            "expected_sole_y_canonical": 457.661383,
+            "actual_sole_y": 438.0,
+            "actual_sole_y_canonical": 459.0,
+            "sole_error_px": 0.504756,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 7.670672,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "trail"
+          },
+          "right": {
+            "projected_ground_y": 445.670672,
+            "projected_ground_y_canonical": 466.745191,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 445.670672,
+            "expected_sole_y_canonical": 466.745191,
+            "actual_sole_y": 446.0,
+            "actual_sole_y_canonical": 468.0,
+            "sole_error_px": 0.329328,
+            "ground_penetration_px": 0.329328,
+            "visible_clearance_px": -0.329328,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "planted"
+          }
+        },
+        "left_bottom_y": 438.0,
+        "right_bottom_y": 446.0,
+        "actual_bottom_y": 446.0,
+        "ground_y": 445.670672
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39296,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "466721942172708621a82916f0f18099e2ead15a1a3d530967117410c1b95fef"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.030977,
+        "limb_angle_mae_degrees": 3.226699,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.985085,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    },
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 6,
+      "phase": "F6-passing-right",
+      "canonical_target_joint_sha256": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4",
+      "presentation_target_joint_sha256": "462d12e3cf1bd4ebd57221e914595411dbaa1daa3ee2be18a4cd93bda5c44c4f",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F6-passing-right",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 102.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 102.12
+          },
+          "elbow_left": {
+            "x": 331.9262,
+            "y": 164.1221
+          },
+          "elbow_right": {
+            "x": 195.0729,
+            "y": 169.1055
+          },
+          "wrist_left": {
+            "x": 331.2644,
+            "y": 231.5055
+          },
+          "wrist_right": {
+            "x": 185.5441,
+            "y": 236.3811
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 228.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 229.2929
+          },
+          "knee_left": {
+            "x": 322.923,
+            "y": 320.4194
+          },
+          "knee_right": {
+            "x": 240.2208,
+            "y": 326.6273
+          },
+          "ankle_left": {
+            "x": 295.3141,
+            "y": 412.5532
+          },
+          "ankle_right": {
+            "x": 253.4593,
+            "y": 427.4095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 54.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 87.1197
+          },
+          "pelvis": {
+            "x": 257.0,
+            "y": 228.782
+          },
+          "shoulder_center": {
+            "x": 253.4686,
+            "y": 102.3005
+          },
+          "weapon_tip": {
+            "x": 109.3045,
+            "y": 426.2991
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            203.0,
+            115.1197,
+            311.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 6,
+        "canonical_target_joint_sha256": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F6-passing-right",
+        "adapter_version": "front-walk-cutout-gait-v2",
+        "view": "front",
+        "orientation": "front",
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 117.8329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 117.508
+          },
+          "elbow_left": {
+            "x": 324.33358,
+            "y": 173.30989
+          },
+          "elbow_right": {
+            "x": 201.16561,
+            "y": 177.79495
+          },
+          "wrist_left": {
+            "x": 323.73796,
+            "y": 233.95495
+          },
+          "wrist_right": {
+            "x": 192.58969,
+            "y": 238.34299
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 231.04399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 231.96361
+          },
+          "knee_left": {
+            "x": 316.2307,
+            "y": 313.97746
+          },
+          "knee_right": {
+            "x": 241.79872,
+            "y": 319.56457
+          },
+          "ankle_left": {
+            "x": 291.38269,
+            "y": 396.89788
+          },
+          "ankle_right": {
+            "x": 253.71337,
+            "y": 410.26855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 74.98966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 104.00773
+          },
+          "pelvis": {
+            "x": 256.9,
+            "y": 231.5038
+          },
+          "shoulder_center": {
+            "x": 253.72174,
+            "y": 117.67045
+          },
+          "weapon_tip": {
+            "x": 123.97405,
+            "y": 409.26919
+          }
+        },
+        "side_mapping": {
+          "anatomical_left": "guide_right",
+          "anatomical_right": "guide_left"
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307,
+          "ratio": 1.0,
+          "distinct": true,
+          "bounded": true
+        },
+        "depth_proxy": {
+          "lead_ankle_y_offset_px": 4.0,
+          "trail_ankle_y_offset_px": -4.0,
+          "swing_ankle_y_offset_px": -12.0,
+          "front_uniform_scale": 1.0,
+          "back_uniform_scale": 0.98,
+          "z_order_is_phase_bound": true
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "selected_swing_degrees": 12.0,
+          "bounded_swing_degrees": [
+            -12.0,
+            12.0
+          ],
+          "protected_torso_corridor": [
+            203.0,
+            115.1197,
+            311.0,
+            280.782
+          ],
+          "tip_crosses_protected_torso": false,
+          "source_length_px": 204.649228
+        },
+        "guide_semantics": "historical guides define phase names only; coordinates are derived from source skeleton and frozen bone lengths",
+        "gait_constraints": {
+          "hip_width_ratio": [
+            0.92,
+            1.08
+          ],
+          "contact_ankle_lateral_separation_max_source_ratio": 1.35,
+          "passing_foot_approaches_centerline": true,
+          "pelvis_sway_bounded_px": 2.0,
+          "root_bob_smooth": true,
+          "jumping_jack": false
+        },
+        "frame_index": 6,
+        "canonical_target_joint_sha256": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "target_joint_sha256": "a1aa58129262cbad344cce22059299cc8754e021b8507700f86eb3fd7e18c2c4",
+        "presentation_target_joint_sha256": "462d12e3cf1bd4ebd57221e914595411dbaa1daa3ee2be18a4cd93bda5c44c4f",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "ab92f599bf98380118688b32da07cf7decd36356507ae9d04b38795b3473bc2e",
+      "output_bbox": [
+        123,
+        40,
+        342,
+        450
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          123,
+          40,
+          342,
+          450
+        ],
+        "margins_px": {
+          "left": 123.0,
+          "top": 40.0,
+          "right": 170.0,
+          "bottom": 62.0
+        },
+        "min_margin_px": 40.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          257.0,
+          228.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          185.5441,
+          236.3811
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F6-passing-right",
+        "frame_index": 6,
+        "support_side": "left",
+        "swing_side": "right",
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 434.694551,
+            "projected_ground_y_canonical": 454.549501,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 434.694551,
+            "expected_sole_y_canonical": 454.549501,
+            "actual_sole_y": 436.0,
+            "actual_sole_y_canonical": 456.0,
+            "sole_error_px": 1.305449,
+            "ground_penetration_px": 1.305449,
+            "visible_clearance_px": -1.305449,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "planted"
+          },
+          "right": {
+            "projected_ground_y": 459.894551,
+            "projected_ground_y_canonical": 482.549501,
+            "depth_screen_offset_px": 25.2,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 11.772948,
+            "expected_sole_y": 448.121603,
+            "expected_sole_y_canonical": 469.468448,
+            "actual_sole_y": 449.0,
+            "actual_sole_y_canonical": 471.0,
+            "sole_error_px": 0.878397,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 10.894551,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "swing"
+          }
+        },
+        "left_bottom_y": 436.0,
+        "right_bottom_y": 449.0,
+        "actual_bottom_y": 449.0,
+        "ground_y": 434.694551
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39459,
+          1,
+          1
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "8e78028bd405fae69f2818fa6049882f3c49f958c4871f316d4b44c5d233295a"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 0.923077,
+        "nme": 0.034948,
+        "limb_angle_mae_degrees": 5.064243,
+        "lower_body_pck": 0.833333,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.936419,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    },
+    {
+      "schema_version": "0.8.1",
+      "frame_index": 7,
+      "phase": "F7-up-right",
+      "canonical_target_joint_sha256": "a126ba3e8792b1bd6171f425739c596c5e8e90ae38303bfdecdb7502244671e9",
+      "presentation_target_joint_sha256": "4a8d22d7584dfdc20cbfef134033b5435f6b7d286ca67e7616e859ee0b73f816",
+      "target": {
+        "schema_version": "0.8.1",
+        "phase": "F7-up-right",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 300.7255,
+            "y": 100.481
+          },
+          "shoulder_right": {
+            "x": 206.2118,
+            "y": 100.12
+          },
+          "elbow_left": {
+            "x": 321.866531,
+            "y": 164.144422
+          },
+          "elbow_right": {
+            "x": 184.666904,
+            "y": 166.434141
+          },
+          "wrist_left": {
+            "x": 335.2644,
+            "y": 232.5055
+          },
+          "wrist_right": {
+            "x": 181.5441,
+            "y": 231.3811
+          },
+          "hip_left": {
+            "x": 282.6128,
+            "y": 226.2711
+          },
+          "hip_right": {
+            "x": 229.3873,
+            "y": 227.2929
+          },
+          "knee_left": {
+            "x": 309.898564,
+            "y": 322.891238
+          },
+          "knee_right": {
+            "x": 215.346506,
+            "y": 320.734392
+          },
+          "ankle_left": {
+            "x": 297.630294,
+            "y": 418.0532
+          },
+          "ankle_right": {
+            "x": 238.689588,
+            "y": 416.9095
+          },
+          "nose": {
+            "x": 256.2879,
+            "y": 52.8774
+          },
+          "neck": {
+            "x": 253.4687,
+            "y": 85.1197
+          },
+          "pelvis": {
+            "x": 256.00005,
+            "y": 226.782
+          },
+          "shoulder_center": {
+            "x": 253.46865,
+            "y": 100.3005
+          },
+          "weapon_tip": {
+            "x": 105.3045,
+            "y": 421.2991
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 7,
+        "canonical_target_joint_sha256": "db9d1ceb80a52c3142fa0d09a849a09893f514f6d6f68364b8c2cc3f903bffc4",
+        "target_joint_sha256": "a126ba3e8792b1bd6171f425739c596c5e8e90ae38303bfdecdb7502244671e9"
+      },
+      "presentation_target": {
+        "schema_version": "0.8.1",
+        "phase": "F7-up-right",
+        "view": "front",
+        "orientation": "front",
+        "generator": {
+          "kind": "deterministic_skeleton_only",
+          "method": "cubic_hermite_then_bounded_skeleton_temporal_smoothing_then_bone_ratio_check",
+          "phase_parameter": 0.5,
+          "pixel_interpolation": false,
+          "image_inputs_used_for_smoothing": false
+        },
+        "joints": {
+          "shoulder_left": {
+            "x": 296.25295,
+            "y": 116.0329
+          },
+          "shoulder_right": {
+            "x": 211.19062,
+            "y": 115.708
+          },
+          "elbow_left": {
+            "x": 315.279878,
+            "y": 173.32998
+          },
+          "elbow_right": {
+            "x": 191.800214,
+            "y": 175.390727
+          },
+          "wrist_left": {
+            "x": 327.33796,
+            "y": 234.85495
+          },
+          "wrist_right": {
+            "x": 188.98969,
+            "y": 233.84299
+          },
+          "hip_left": {
+            "x": 279.95152,
+            "y": 229.24399
+          },
+          "hip_right": {
+            "x": 232.04857,
+            "y": 230.16361
+          },
+          "knee_left": {
+            "x": 304.508708,
+            "y": 316.202114
+          },
+          "knee_right": {
+            "x": 219.411855,
+            "y": 314.260953
+          },
+          "ankle_left": {
+            "x": 293.467265,
+            "y": 401.84788
+          },
+          "ankle_right": {
+            "x": 240.420629,
+            "y": 400.81855
+          },
+          "nose": {
+            "x": 256.25911,
+            "y": 73.18966
+          },
+          "neck": {
+            "x": 253.72183,
+            "y": 102.20773
+          },
+          "pelvis": {
+            "x": 256.000045,
+            "y": 229.7038
+          },
+          "shoulder_center": {
+            "x": 253.721785,
+            "y": 115.87045
+          },
+          "weapon_tip": {
+            "x": 120.37405,
+            "y": 404.76919
+          }
+        },
+        "hip_invariant": {
+          "source_hip_width_px": 53.235307,
+          "target_hip_width_px": 53.235307
+        },
+        "weapon_attachment": {
+          "anatomical_wrist": "wrist_right",
+          "tip_crosses_protected_torso": false,
+          "source_pixels_only": true
+        },
+        "frame_index": 7,
+        "canonical_target_joint_sha256": "a126ba3e8792b1bd6171f425739c596c5e8e90ae38303bfdecdb7502244671e9",
+        "target_joint_sha256": "a126ba3e8792b1bd6171f425739c596c5e8e90ae38303bfdecdb7502244671e9",
+        "presentation_target_joint_sha256": "4a8d22d7584dfdc20cbfef134033b5435f6b7d286ca67e7616e859ee0b73f816",
+        "presentation_transform_sha256": "e372da0d40dced1c8a7e241ab780b1314063d9d795eae7439a4cf01c0a4074c3"
+      },
+      "output_rgba_sha256": "8d15085910145010634d082001bf52c21dd4535f5684aa00bc0d4a0f27b36bfd",
+      "output_bbox": [
+        120,
+        39,
+        338,
+        442
+      ],
+      "alpha_safe_margin": {
+        "alpha_bbox": [
+          120,
+          39,
+          338,
+          442
+        ],
+        "margins_px": {
+          "left": 120.0,
+          "top": 39.0,
+          "right": 174.0,
+          "bottom": 70.0
+        },
+        "min_margin_px": 39.0,
+        "gate": true,
+        "threshold_px": 24
+      },
+      "root_pelvis": {
+        "center": [
+          256.00005,
+          226.782
+        ]
+      },
+      "sword": {
+        "target_pivot": [
+          181.5441,
+          231.3811
+        ],
+        "weapon_attachment": "wrist_right",
+        "source_hash_invariant": true,
+        "face_crossing": false
+      },
+      "foot": {
+        "schema_version": "0.8.1",
+        "phase": "F7-up-right",
+        "frame_index": 7,
+        "support_side": "left",
+        "swing_side": "right",
+        "ground_source": "source-alpha-sole-anchor-forward-projection-plus-frozen-depth-proxy-plus-frozen-support-calibration",
+        "actual_sole_source": "transformed_shin_foot_layer_alpha_bbox",
+        "feet": {
+          "left": {
+            "projected_ground_y": 438.128074,
+            "projected_ground_y_canonical": 458.364527,
+            "depth_screen_offset_px": 0.0,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 0.0,
+            "expected_sole_y": 438.128074,
+            "expected_sole_y_canonical": 458.364527,
+            "actual_sole_y": 438.0,
+            "actual_sole_y_canonical": 459.0,
+            "sole_error_px": -0.128074,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 0.128074,
+            "source_sole_offset_y_px": 37.4468,
+            "source_sole_anchor": [
+              329.5,
+              486.0
+            ],
+            "role": "planted"
+          },
+          "right": {
+            "projected_ground_y": 463.328074,
+            "projected_ground_y_canonical": 486.364527,
+            "depth_screen_offset_px": 25.2,
+            "support_ground_calibration_offset_px": 0.0,
+            "lift_height_px": 24.654492,
+            "expected_sole_y": 438.673582,
+            "expected_sole_y_canonical": 458.970647,
+            "actual_sole_y": 441.0,
+            "actual_sole_y_canonical": 461.0,
+            "sole_error_px": 2.326418,
+            "ground_penetration_px": 0.0,
+            "visible_clearance_px": 22.328074,
+            "source_sole_offset_y_px": 37.5905,
+            "source_sole_anchor": [
+              216.0,
+              485.0
+            ],
+            "role": "swing"
+          }
+        },
+        "left_bottom_y": 438.0,
+        "right_bottom_y": 441.0,
+        "actual_bottom_y": 441.0,
+        "ground_y": 438.128074
+      },
+      "duplicate_body": {
+        "component_pixels_desc": [
+          39299
+        ],
+        "meaningful_duplicate_components": 0,
+        "meaningful_threshold_pixels": 16,
+        "gate": true
+      },
+      "hard_gate_proof_sources": {
+        "operation_allowlist": [
+          "source_mask_crop",
+          "source_affine_resample",
+          "source_alpha_composite",
+          "source_structural_core_composite",
+          "global_uniform_presentation_transform"
+        ],
+        "source_input_hashes": {
+          "head": "12360fb303334014d15185c0afd201d0d5dcee27069dce9bf50587c22437d78f",
+          "torso_pelvis": "fed41b2b9be4f2cb39f403f78795fe760ad02215347c28d66961afb589832175",
+          "left_upper_arm": "718cc314c345f6628843fb58eca7d6350d173f1e17e12726f1d0df87404b9d88",
+          "left_forearm_hand": "880a833d443e658bbbc95697fd62e1e06f43a2c084cd80c64d2054bcdace69ae",
+          "right_upper_arm": "7a40e7becfbdf2c26dbd83b224dace5bed1a878a80ff10fd2b6a21b6c6ae6ae7",
+          "right_forearm_hand": "b3b8ad9f675dba02b8b403fc552ba613b610d1bacf27ffe6ce0fa7f2fa43c691",
+          "left_thigh": "a7457cded8be1e073847644c64858701bec2c01c89aa317bb0ae20ef03076efa",
+          "left_shin_foot": "c1d66b085e281a79cf48bdf3ce79a1a35f7e6178941090844a49b23598152a77",
+          "right_thigh": "215ef75ff1fab24ef558ca9aca294fa4f338938651c9d9387efca78d77efae3e",
+          "right_shin_foot": "95ccdced998180df04bf069ec5f20e0df5434a1cde745c07f51c2064a5460ce5",
+          "sword": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d"
+        },
+        "sword_source_only": {
+          "source_part": "sword",
+          "source_part_rgba_sha256": "48be36697c8238fd1f1f694e043ef54748df31b9ea624d500bab711bcd45346d",
+          "operation": "source_affine_resample",
+          "transform_source_joints": [
+            "wrist_right",
+            "weapon_tip"
+          ],
+          "transform_evidence_sha256": "2d80c9ba250e0668f25e52cdb8a7bd69b9497bb84104bb126b893d5560585111"
+        },
+        "recolor_count": 0,
+        "generated_pixel_fraction": 0.0,
+        "duplicate_body_method": "8-connected-alpha-component-count-with-meaningful-component-threshold",
+        "proof_source": {
+          "module": "src/ugas/cutout_temporal_v081.py",
+          "function": "hard_gate_proof_sources",
+          "regression_test": "tests/test_cutout_front_walk_v081.py::test_hard_gate_proof_sources_are_structural"
+        }
+      },
+      "bone_scale_bounds_passed": true,
+      "media_pipe": {
+        "metric_version": "detected-joint-pose-error-1.0",
+        "measurement_status": "MEASURABLE",
+        "measurable_body_joints": 13,
+        "required_core_present": true,
+        "pck_at_010": 1.0,
+        "nme": 0.031335,
+        "limb_angle_mae_degrees": 4.617258,
+        "lower_body_pck": 1.0,
+        "orientation_match": true,
+        "orientation_score": 1.0,
+        "pose_score": 0.981906,
+        "qualifies": true,
+        "failure_reasons": []
+      },
+      "hard_gates": {
+        "canonical_target_binding": true,
+        "presentation_target_binding": true,
+        "target_skeleton_complete": true,
+        "bone_transform_scale_bounds": true,
+        "actual_alpha_safe_margin_24_px": true,
+        "no_border_clipping": true,
+        "presentation_transform_fidelity": true,
+        "structural_coverage": true,
+        "layer_integrity": true,
+        "topology_occlusion": true,
+        "retention": true,
+        "media_pipe": true,
+        "projected_ground_and_sole": true,
+        "weapon_corridor": true,
+        "weapon_right_hand_attached": true,
+        "sword_source_pixels_only": true,
+        "no_detached_fragment": true,
+        "no_duplicate_body": true,
+        "generated_pixel_fraction_zero": true,
+        "recolor_count_zero": true
+      },
+      "status": "CUTOUT_RIG_FRONT_WALK_FRAME_PASSED"
+    }
+  ],
+  "status": "CUTOUT_RIG_FRONT_WALK_FRAMES_PASSED"
+}

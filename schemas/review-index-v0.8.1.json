@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.8.1 GitHub-first review index",
+  "type": "object",
+  "required": ["schema_version", "version", "branch", "head_commit", "dirty_state_at_publish", "review_file", "current_state", "tests", "validation", "evidence", "required_visual_sets", "forbidden_artifacts", "external_visual_review", "production_routing"],
+  "properties": {
+    "schema_version": {"const": "0.8.1"},
+    "version": {"const": "0.8.1"},
+    "branch": {"const": "main"},
+    "head_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "dirty_state_at_publish": {"enum": ["clean", "dirty_before_index_commit"]},
+    "review_file": {"const": "REVIEW-v0.8.1.md"},
+    "current_state": {"const": "docs/evidence/current-state.json"},
+    "tests": {"type": "object", "required": ["command", "count", "status"], "properties": {"count": {"type": "integer", "minimum": 1}, "status": {"const": "passed"}}},
+    "validation": {"type": "object", "required": ["command", "checks", "passed", "failed", "status"], "properties": {"checks": {"type": "integer", "minimum": 1}, "passed": {"type": "integer", "minimum": 1}, "failed": {"const": 0}, "status": {"const": "passed"}}},
+    "evidence": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["path", "sha256", "media_type", "role"]}},
+    "required_visual_sets": {"type": "array", "minItems": 96, "uniqueItems": true},
+    "forbidden_artifacts": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "external_visual_review": {"type": "object", "required": ["status", "approval"], "properties": {"status": {"const": "REQUIRED"}, "approval": {"const": "not-claimed"}}},
+    "production_routing": {"const": "BLOCKED"}
+  }
+}

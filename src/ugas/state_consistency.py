@@ -1,4 +1,4 @@
-"""Fatal consistency checks for the active UGAS v0.8.0 walk pilot."""
+"""Fatal consistency checks for the active UGAS v0.8.1 walk correction."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import re
 from typing import Any, Mapping
 
 
-CURRENT_SCHEMA_VERSION = "0.8.0"
+CURRENT_SCHEMA_VERSION = "0.8.1"
 CANONICAL_R4_SHA256 = "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
 CANONICAL_R4_REVISION = "revision-3a425d184b1a49be9f6d6c8d52d04b96"
 CURRENT_PHASE = "DETERMINISTIC_FRONT_WALK_8FRAME_PILOT"
@@ -27,9 +27,9 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     failures: list[str] = []
     required = {"schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "canonical_anchor", "allowed_next_actions", "forbidden_actions", "historical_smoke_status", "generation_provider_change_authorized", "walk_authorized", "production_walk_authorized", "provider_smoke_status", "historical_pose_lane_status", "pose_lane_status", "previous_review_snapshot_status", "state_consistency"}
     failures.extend(f"missing:{key}" for key in sorted(required - set(state)))
-    if state.get("schema_version") != CURRENT_SCHEMA_VERSION: failures.append("state_schema_version_must_be_0.8.0")
-    if state.get("version") != CURRENT_SCHEMA_VERSION: failures.append("state_version_must_be_0.8.0")
-    if state.get("phase") != CURRENT_PHASE: failures.append("state_phase_invalid_for_v080")
+    if state.get("schema_version") != CURRENT_SCHEMA_VERSION: failures.append("state_schema_version_must_be_0.8.1")
+    if state.get("version") != CURRENT_SCHEMA_VERSION: failures.append("state_version_must_be_0.8.1")
+    if state.get("phase") != CURRENT_PHASE: failures.append("state_phase_invalid_for_v081")
     if state.get("current_gate") not in CURRENT_GATES: failures.append("state_current_gate_invalid")
     if state.get("provider_smoke_status") != state.get("current_gate"): failures.append("provider_smoke_status_must_equal_current_gate")
     if state.get("walk_authorized") != "pilot_only": failures.append("walk_must_be_pilot_only")
@@ -38,9 +38,9 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     if state.get("historical_pose_lane_status") != HISTORICAL_POSE_STATUS: failures.append("historical_pose_lane_status_must_preserve_v0.5.4")
     if state.get("previous_review_snapshot_status") != HISTORICAL_REVIEW_STATUS: failures.append("previous_review_snapshot_status_must_preserve_v0.5.5")
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
-    if previous.get("version") != "0.7.3": failures.append("previous_release_must_be_0.7.3")
+    if previous.get("version") != "0.8.0": failures.append("previous_release_must_be_0.8.0")
     if previous.get("review_snapshot_status") != HISTORICAL_REVIEW_STATUS: failures.append("previous_release_review_snapshot_missing")
-    if previous.get("pose_lane_status") != "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED": failures.append("previous_release_pose_status_must_preserve_v073")
+    if previous.get("pose_lane_status") != "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED": failures.append("previous_release_pose_status_must_preserve_v080")
     anchor = state.get("canonical_anchor") if isinstance(state.get("canonical_anchor"), Mapping) else {}
     if anchor.get("revision_id") != CANONICAL_R4_REVISION: failures.append("canonical_r4_revision_mismatch")
     if str(anchor.get("sha256", "")).casefold() != CANONICAL_R4_SHA256: failures.append("canonical_r4_sha256_mismatch")
@@ -54,16 +54,16 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     if not isinstance(nested.get("new_generation_started"), bool): failures.append("new_generation_started_must_be_boolean")
     for field in ("new_generation_jobs", "sam2_runs", "comfyui_generation_jobs"):
         if not isinstance(nested.get(field), int) or nested.get(field) < 0: failures.append(f"{field}_must_be_nonnegative_integer")
-    if nested.get("new_generation_started") is not False or nested.get("new_generation_jobs") != 0: failures.append("v080_must_record_no_new_generation")
-    if nested.get("sam2_runs") != 0 or nested.get("comfyui_generation_jobs") != 0: failures.append("v080_must_record_zero_ai_jobs")
+    if nested.get("new_generation_started") is not False or nested.get("new_generation_jobs") != 0: failures.append("v081_must_record_no_new_generation")
+    if nested.get("sam2_runs") != 0 or nested.get("comfyui_generation_jobs") != 0: failures.append("v081_must_record_zero_ai_jobs")
     combined = f"{checkpoint_text}\n{review_text}"
-    required_texts = ("0.8.0", CURRENT_PHASE, "0.7.3", HISTORICAL_SMOKE_STATUS, HISTORICAL_POSE_STATUS, HISTORICAL_REVIEW_STATUS, str(state.get("current_gate")), "external_review_front_walk_cycle", "production_routing=BLOCKED", "sam2_runs=0", "comfyui_generation_jobs=0")
+    required_texts = ("0.8.1", CURRENT_PHASE, "0.8.0", "0.7.3", HISTORICAL_SMOKE_STATUS, HISTORICAL_POSE_STATUS, HISTORICAL_REVIEW_STATUS, str(state.get("current_gate")), "external_review_front_walk_cycle", "production_routing=BLOCKED", "sam2_runs=0", "comfyui_generation_jobs=0")
     failures.extend(f"active_documents_missing:{item}" for item in required_texts if item not in combined)
     combined_lower = combined.casefold()
     if "walk_authorized=pilot_only" not in combined_lower and "walk autorizado somente ao piloto" not in combined_lower: failures.append("active_documents_must_keep_walk_pilot_only")
     if "not-claimed" not in combined_lower and "não reivindicada" not in combined_lower: failures.append("active_documents_must_not_claim_external_approval")
     if re.search(r"verificar\s+o\s+refcontrol", combined, re.IGNORECASE): failures.append("active_documents_have_stale_refcontrol_pending_action")
-    contradictory = re.compile(r"(?:walk[^\n.]{0,100}\b(?:pass|passed|qualified|qualificado)|production[^\n.]{0,100}\b(?:enabled|enabled|routing))", re.IGNORECASE)
+    contradictory = re.compile(r"(?:walk[^\n.]{0,100}\b(?:pass|passed|qualified|qualificado)|production[^\n.]{0,100}\b(?:enabled|active|unblocked|promoted))", re.IGNORECASE)
     for line in combined.splitlines():
         if contradictory.search(line) and "pilot" not in line.casefold() and "technical" not in line.casefold() and "blocked" not in line.casefold() and "não" not in line.casefold():
             failures.extend(("active_documents_promote_pilot_to_production", "active_documents_promote_blocked_walk_or_anchor_result"))

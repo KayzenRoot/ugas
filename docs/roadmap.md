@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.8.0 - deterministic front-walk 8-frame pilot
+## v0.8.1 - front-walk QA integrity correction
+
+The same v0.8.0 front-walk cycle now has strict visible-sole/ground, actual-alpha, pre-render smoothing, temporal, z-order, and hash-bound review gates. Technical qualification is local and pilot-only; production routing remains blocked pending external visual review.
+
+## v0.8.0 - deterministic front-walk 8-frame pilot (historical)
 
 The active slice is a single front-facing walk cycle with exactly eight deterministic frames. F0/F2/F4/F6 bind to the immutable v0.7.3 K1-K4 joint hashes; intermediate targets use frozen cubic Hermite skeleton interpolation and source-calibrated bone projection. Pillow transforms source pixels only. The technical result is `CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED`; external visual review is required, `walk_authorized=pilot_only`, and `production_routing=BLOCKED`.
 

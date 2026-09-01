@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.8.1 pre-smoothing temporal evidence",
+  "type": "object",
+  "required": ["schema_version", "phase_order", "status", "image_inputs_used", "angular_acceleration_records", "max_angular_acceleration_degrees_per_frame2", "optimizer_config_sha256"],
+  "properties": {
+    "schema_version": {"const": "0.8.1"},
+    "phase_order": {"type": "array", "minItems": 8, "maxItems": 8},
+    "status": {"const": "SKELETON_PRE_SMOOTHING_RECORDED"},
+    "image_inputs_used": {"const": false},
+    "angular_acceleration_records": {"type": "array"},
+    "max_angular_acceleration_degrees_per_frame2": {"type": "number"},
+    "optimizer_config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

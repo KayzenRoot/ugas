@@ -1,0 +1,599 @@
+{
+  "schema_version": "0.8.1",
+  "phase_order": [
+    "F0-contact-left",
+    "F1-down-left",
+    "F2-passing-left",
+    "F3-up-left",
+    "F4-contact-right",
+    "F5-down-right",
+    "F6-passing-right",
+    "F7-up-right"
+  ],
+  "angle_deltas_degrees": {
+    "F0-contact-left": {
+      "knee_left": 21.98363279226021,
+      "knee_right": 1.1674215644418382,
+      "elbow_left": 8.629887972481356,
+      "elbow_right": 6.218089058888751
+    },
+    "F1-down-left": {
+      "knee_left": 8.795652508067633,
+      "knee_right": 11.680010639322319,
+      "elbow_left": 4.717468995592725,
+      "elbow_right": 2.6584798466379596
+    },
+    "F2-passing-left": {
+      "knee_left": 8.790225323336585,
+      "knee_right": 5.546873883635385,
+      "elbow_left": 4.717468995592725,
+      "elbow_right": 2.6584798466379596
+    },
+    "F3-up-left": {
+      "knee_left": 21.018816620935837,
+      "knee_right": 17.24682681640917,
+      "elbow_left": 22.748834795153584,
+      "elbow_right": 9.807013644222138
+    },
+    "F4-contact-right": {
+      "knee_left": 0.980537490100204,
+      "knee_right": 22.19606295693825,
+      "elbow_left": 6.009425392063065,
+      "elbow_right": 10.27724099920701
+    },
+    "F5-down-right": {
+      "knee_left": 11.618088768612608,
+      "knee_right": 9.24050573110776,
+      "elbow_left": 4.3617286416249215,
+      "elbow_right": 4.030601668684085
+    },
+    "F6-passing-right": {
+      "knee_left": 5.564114413247324,
+      "knee_right": 9.233294154601822,
+      "elbow_left": 4.3617286416249215,
+      "elbow_right": 4.030601668684085
+    },
+    "F7-up-right": {
+      "knee_left": 17.192497315904745,
+      "knee_right": 21.055795262453756,
+      "elbow_left": 20.128372214735293,
+      "elbow_right": 13.866165584540397
+    }
+  },
+  "angular_acceleration_records": [
+    {
+      "phase": "F0-contact-left",
+      "joint": "knee_left",
+      "value": 4.791135
+    },
+    {
+      "phase": "F0-contact-left",
+      "joint": "knee_right",
+      "value": 19.888374
+    },
+    {
+      "phase": "F0-contact-left",
+      "joint": "elbow_left",
+      "value": 11.498484
+    },
+    {
+      "phase": "F0-contact-left",
+      "joint": "elbow_right",
+      "value": 7.648077
+    },
+    {
+      "phase": "F1-down-left",
+      "joint": "knee_left",
+      "value": 13.18798
+    },
+    {
+      "phase": "F1-down-left",
+      "joint": "knee_right",
+      "value": 10.512589
+    },
+    {
+      "phase": "F1-down-left",
+      "joint": "elbow_left",
+      "value": 3.912419
+    },
+    {
+      "phase": "F1-down-left",
+      "joint": "elbow_right",
+      "value": 3.559609
+    },
+    {
+      "phase": "F2-passing-left",
+      "joint": "knee_left",
+      "value": 17.585878
+    },
+    {
+      "phase": "F2-passing-left",
+      "joint": "knee_right",
+      "value": 6.133137
+    },
+    {
+      "phase": "F2-passing-left",
+      "joint": "elbow_left",
+      "value": 9.434938
+    },
+    {
+      "phase": "F2-passing-left",
+      "joint": "elbow_right",
+      "value": 5.31696
+    },
+    {
+      "phase": "F3-up-left",
+      "joint": "knee_left",
+      "value": 12.228591
+    },
+    {
+      "phase": "F3-up-left",
+      "joint": "knee_right",
+      "value": 22.793701
+    },
+    {
+      "phase": "F3-up-left",
+      "joint": "elbow_left",
+      "value": 18.031366
+    },
+    {
+      "phase": "F3-up-left",
+      "joint": "elbow_right",
+      "value": 7.148534
+    },
+    {
+      "phase": "F4-contact-right",
+      "joint": "knee_left",
+      "value": 20.038279
+    },
+    {
+      "phase": "F4-contact-right",
+      "joint": "knee_right",
+      "value": 4.949236
+    },
+    {
+      "phase": "F4-contact-right",
+      "joint": "elbow_left",
+      "value": 16.739409
+    },
+    {
+      "phase": "F4-contact-right",
+      "joint": "elbow_right",
+      "value": 0.470227
+    },
+    {
+      "phase": "F5-down-right",
+      "joint": "knee_left",
+      "value": 10.637551
+    },
+    {
+      "phase": "F5-down-right",
+      "joint": "knee_right",
+      "value": 12.955557
+    },
+    {
+      "phase": "F5-down-right",
+      "joint": "elbow_left",
+      "value": 1.647697
+    },
+    {
+      "phase": "F5-down-right",
+      "joint": "elbow_right",
+      "value": 6.246639
+    },
+    {
+      "phase": "F6-passing-right",
+      "joint": "knee_left",
+      "value": 6.053974
+    },
+    {
+      "phase": "F6-passing-right",
+      "joint": "knee_right",
+      "value": 18.4738
+    },
+    {
+      "phase": "F6-passing-right",
+      "joint": "elbow_left",
+      "value": 8.723457
+    },
+    {
+      "phase": "F6-passing-right",
+      "joint": "elbow_right",
+      "value": 8.061203
+    },
+    {
+      "phase": "F7-up-right",
+      "joint": "knee_left",
+      "value": 22.756612
+    },
+    {
+      "phase": "F7-up-right",
+      "joint": "knee_right",
+      "value": 11.822501
+    },
+    {
+      "phase": "F7-up-right",
+      "joint": "elbow_left",
+      "value": 15.766644
+    },
+    {
+      "phase": "F7-up-right",
+      "joint": "elbow_right",
+      "value": 9.835564
+    }
+  ],
+  "angular_acceleration_fixture_calibration": {
+    "allowed": false,
+    "nominal_threshold_degrees_per_frame2": 25.0,
+    "generic_exception_removed": true
+  },
+  "max_adjacent_joint_angle_delta_degrees": 22.748835,
+  "max_angular_acceleration_degrees_per_frame2": 22.793701,
+  "head_bbox_areas_actual_alpha": [
+    7344.0,
+    7344.0,
+    7344.0,
+    7242.0,
+    7344.0,
+    7344.0,
+    7344.0,
+    7242.0
+  ],
+  "torso_bbox_areas_actual_alpha": [
+    14155.0,
+    14155.0,
+    14155.0,
+    14006.0,
+    14155.0,
+    14155.0,
+    14155.0,
+    14006.0
+  ],
+  "head_bbox_area_cv": 0.006035,
+  "torso_bbox_area_cv": 0.00457,
+  "foreground_bbox_height_variation": 0.019692,
+  "character_center_x_drift_px": 5.5,
+  "hard_gates": {
+    "adjacent_joint_angle_delta_max_35": true,
+    "angular_acceleration_max_25": true,
+    "head_bbox_area_cv_actual_alpha_max_004": true,
+    "torso_bbox_area_cv_actual_alpha_max_004": true,
+    "foreground_bbox_height_variation_max_8_percent": true,
+    "character_center_x_drift_max_12": true,
+    "root_vertical_amplitude_max_12": true,
+    "head_adjacent_spike_max_8": true,
+    "all_targets_distinct": true
+  },
+  "status": "CUTOUT_RIG_FRONT_WALK_TEMPORAL_PASSED",
+  "pre_smoothing": {
+    "max_angular_acceleration_degrees_per_frame2": 29.931715,
+    "records": [
+      {
+        "phase": "F0-contact-left",
+        "joint": "knee_left",
+        "value": 7.084966
+      },
+      {
+        "phase": "F0-contact-left",
+        "joint": "knee_right",
+        "value": 27.126976
+      },
+      {
+        "phase": "F0-contact-left",
+        "joint": "elbow_left",
+        "value": 23.782349
+      },
+      {
+        "phase": "F0-contact-left",
+        "joint": "elbow_right",
+        "value": 19.328976
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "knee_left",
+        "value": 10.699725
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "knee_right",
+        "value": 14.934444
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "elbow_left",
+        "value": 3.793224
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "elbow_right",
+        "value": 1.849782
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "knee_left",
+        "value": 24.856218
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "knee_right",
+        "value": 7.738244
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "elbow_left",
+        "value": 2.610536
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "elbow_right",
+        "value": 4.454842
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "knee_left",
+        "value": 12.159157
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "knee_right",
+        "value": 20.682743
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "elbow_left",
+        "value": 29.931715
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "elbow_right",
+        "value": 12.87444
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "knee_left",
+        "value": 27.169751
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "knee_right",
+        "value": 7.566044
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "elbow_left",
+        "value": 28.494634
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "elbow_right",
+        "value": 10.119468
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "knee_left",
+        "value": 14.907715
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "knee_right",
+        "value": 10.684307
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "elbow_left",
+        "value": 3.078939
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "elbow_right",
+        "value": 3.558852
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "knee_left",
+        "value": 7.46283
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "knee_right",
+        "value": 25.633108
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "elbow_left",
+        "value": 6.421505
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "elbow_right",
+        "value": 2.847082
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "knee_left",
+        "value": 20.905269
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "knee_right",
+        "value": 11.862148
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "elbow_left",
+        "value": 23.059552
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "elbow_right",
+        "value": 18.283074
+      }
+    ]
+  },
+  "post_smoothing": {
+    "max_angular_acceleration_degrees_per_frame2": 22.793701,
+    "records": [
+      {
+        "phase": "F0-contact-left",
+        "joint": "knee_left",
+        "value": 4.791135
+      },
+      {
+        "phase": "F0-contact-left",
+        "joint": "knee_right",
+        "value": 19.888374
+      },
+      {
+        "phase": "F0-contact-left",
+        "joint": "elbow_left",
+        "value": 11.498484
+      },
+      {
+        "phase": "F0-contact-left",
+        "joint": "elbow_right",
+        "value": 7.648077
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "knee_left",
+        "value": 13.18798
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "knee_right",
+        "value": 10.512589
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "elbow_left",
+        "value": 3.912419
+      },
+      {
+        "phase": "F1-down-left",
+        "joint": "elbow_right",
+        "value": 3.559609
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "knee_left",
+        "value": 17.585878
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "knee_right",
+        "value": 6.133137
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "elbow_left",
+        "value": 9.434938
+      },
+      {
+        "phase": "F2-passing-left",
+        "joint": "elbow_right",
+        "value": 5.31696
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "knee_left",
+        "value": 12.228591
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "knee_right",
+        "value": 22.793701
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "elbow_left",
+        "value": 18.031366
+      },
+      {
+        "phase": "F3-up-left",
+        "joint": "elbow_right",
+        "value": 7.148534
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "knee_left",
+        "value": 20.038279
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "knee_right",
+        "value": 4.949236
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "elbow_left",
+        "value": 16.739409
+      },
+      {
+        "phase": "F4-contact-right",
+        "joint": "elbow_right",
+        "value": 0.470227
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "knee_left",
+        "value": 10.637551
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "knee_right",
+        "value": 12.955557
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "elbow_left",
+        "value": 1.647697
+      },
+      {
+        "phase": "F5-down-right",
+        "joint": "elbow_right",
+        "value": 6.246639
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "knee_left",
+        "value": 6.053974
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "knee_right",
+        "value": 18.4738
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "elbow_left",
+        "value": 8.723457
+      },
+      {
+        "phase": "F6-passing-right",
+        "joint": "elbow_right",
+        "value": 8.061203
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "knee_left",
+        "value": 22.756612
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "knee_right",
+        "value": 11.822501
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "elbow_left",
+        "value": 15.766644
+      },
+      {
+        "phase": "F7-up-right",
+        "joint": "elbow_right",
+        "value": 9.835564
+      }
+    ],
+    "optimizer_config_sha256": "ee6d29d5c465814078dd0992f5b65ea3faebbd3192e6226ce66d5e21305d429b"
+  }
+}

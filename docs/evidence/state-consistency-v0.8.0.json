@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.8.0",
+  "validator": "src/ugas/state_consistency.py",
+  "status": "STATE_CONSISTENCY_PASSED",
+  "failures": [],
+  "checked": {
+    "phase": "DETERMINISTIC_FRONT_WALK_8FRAME_PILOT",
+    "current_gate": "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED",
+    "walk_authorized": "pilot_only",
+    "production_walk_authorized": false,
+    "contradictory_walk_or_anchor_scan": true,
+    "new_generation_started": false,
+    "new_generation_jobs": 0
+  }
+}

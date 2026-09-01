@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"UGAS v0.8.1 half-cycle QA","type":"object","required":["schema_version","mappings","hard_gates","status"],"properties":{"schema_version":{"const":"0.8.1"},"mappings":{"type":"array","minItems":4,"maxItems":4},"status":{"const":"CUTOUT_RIG_FRONT_WALK_HALF_CYCLE_PASSED"}}}

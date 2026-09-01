@@ -1,0 +1,110 @@
+{
+  "schema_version": "0.8.0",
+  "config_id": "front-walk-cycle-v1",
+  "freeze_rule": "write_and_hash_before_first_intermediate_frame_render",
+  "cycle": {
+    "animation_id": "walk-front",
+    "frame_count": 8,
+    "fps": 10,
+    "duration_ms": 100,
+    "loop": true,
+    "direction": "front",
+    "phase_parameter": 0.5
+  },
+  "phase_order": [
+    "F0-contact-left",
+    "F1-down-left",
+    "F2-passing-left",
+    "F3-up-left",
+    "F4-contact-right",
+    "F5-down-right",
+    "F6-passing-right",
+    "F7-up-right"
+  ],
+  "key_bindings": {
+    "F0": "K1-contact-left",
+    "F2": "K2-passing-left",
+    "F4": "K3-contact-right",
+    "F6": "K4-passing-right"
+  },
+  "intermediate_generator": {
+    "kind": "deterministic_skeleton_only",
+    "curve": "cubic_hermite",
+    "tangent": "central_difference_over_four_key_cycle",
+    "projection": "two_bone_lengths_from_source_calibration",
+    "pixel_interpolation": false,
+    "optical_flow": false,
+    "morphing": false
+  },
+  "phase_corrections": {
+    "1": {
+      "root_translation_y_px": 2.0,
+      "planted_ankle_offset_px": [
+        0.5,
+        1.0
+      ],
+      "sword_angle_offset_degrees": 0.0
+    },
+    "3": {
+      "root_translation_y_px": -2.0,
+      "swing_foot_clearance_bias_px": 5.0,
+      "sword_angle_offset_degrees": 0.0
+    },
+    "5": {
+      "root_translation_y_px": 2.0,
+      "planted_ankle_offset_px": [
+        0.5,
+        1.0
+      ],
+      "sword_angle_offset_degrees": 0.0
+    },
+    "7": {
+      "root_translation_y_px": -2.0,
+      "swing_foot_clearance_bias_px": 5.0,
+      "sword_angle_offset_degrees": 0.0
+    }
+  },
+  "bone_ratio_bounds": {
+    "min": 0.92,
+    "max": 1.08,
+    "nonuniform_stretch": false
+  },
+  "thresholds": {
+    "planted_slip_px": 2.5,
+    "ground_penetration_px": 1.5,
+    "swing_clearance_px": 4.0,
+    "root_step_px": 6.0,
+    "pelvis_step_px": 8.0,
+    "root_vertical_amplitude_px": 12.0,
+    "head_adjacent_step_px": 8.0,
+    "safe_margin_px": 24,
+    "media_pipe_measurable_joints": 10,
+    "media_pipe_pck_at_10": 0.8,
+    "media_pipe_nme": 0.1,
+    "media_pipe_angle_mae_degrees": 18.0
+  },
+  "z_order_switch_boundaries": [
+    "F3->F4",
+    "F7->F0"
+  ],
+  "structural_core": {
+    "reuse": "v0.7.3",
+    "structural_holes": 0,
+    "belt_coverage_min": 0.995,
+    "pelvis_coverage_min": 0.995,
+    "torso_coverage_min": 0.995,
+    "generated_pixel_fraction": 0.0,
+    "recolor_count": 0
+  },
+  "forbidden": [
+    "sam2_rerun",
+    "comfyui_generation",
+    "diffusion",
+    "ip_adapter",
+    "controlnet",
+    "pixel_interpolation",
+    "manual_pixel_edit",
+    "production_routing"
+  ],
+  "status": "FROZEN_BEFORE_RENDER"
+}

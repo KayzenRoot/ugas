@@ -1,14 +1,14 @@
 {
-  "schema_version": "0.8.0",
-  "version": "0.8.0",
+  "schema_version": "0.8.1",
+  "version": "0.8.1",
   "phase": "DETERMINISTIC_FRONT_WALK_8FRAME_PILOT",
   "previous_release": {
-    "version": "0.7.3",
-    "pose_lane_status": "CUTOUT_RIG_KEY_POSES_TECHNICALLY_QUALIFIED",
+    "version": "0.8.0",
+    "pose_lane_status": "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED",
     "review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
-    "review": "REVIEW-v0.7.3.md",
-    "provider": "providers/manifests/deterministic-cutout-rig-2d-v0.7.3.json",
-    "evidence": "docs/evidence/cutout-rig-provider-qualification-v073.json"
+    "review": "REVIEW-v0.8.0.md",
+    "provider": "providers/manifests/deterministic-cutout-rig-2d-v0.8.0.json",
+    "evidence": "docs/evidence/front-walk-provider-qualification-v080.json"
   },
   "historical_smoke_status": "SDXL_OPENPOSE_CONTROL_GAP_CONFIRMED_AT_MODEL_CARD_SETTINGS",
   "current_gate": "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED",
@@ -17,24 +17,45 @@
   "historical_pose_lane_status": "LOCAL_POSE_CONTROL_PROVIDER_GAP_CONFIRMED",
   "pose_lane_status": "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED",
   "previous_review_snapshot_status": "REVIEW_ARCHIVE_VERIFIED",
-  "canonical_anchor": {"asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71", "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96", "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"},
+  "canonical_anchor": {
+    "asset_id": "asset-2fec6fed1d714d0cb58ad75b56d7ba71",
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
   "generation_provider_change_authorized": false,
   "walk_authorized": "pilot_only",
   "production_walk_authorized": false,
-  "allowed_next_actions": ["external_review_front_walk_cycle"],
-  "forbidden_actions": ["promote_pilot_to_production_routing", "run_other_animation_or_direction", "run_comfyui_generation_for_this_slice", "rerun_sam2", "change_frozen_config_after_render", "change_v053_pose_thresholds", "claim_external_approval"],
+  "allowed_next_actions": [
+    "external_review_front_walk_cycle"
+  ],
+  "forbidden_actions": [
+    "promote_pilot_to_production_routing",
+    "run_other_animation_or_direction",
+    "run_comfyui_generation_for_this_slice",
+    "rerun_sam2",
+    "change_frozen_config_after_render",
+    "change_v053_pose_thresholds",
+    "claim_external_approval"
+  ],
   "evidence": {
-    "config": "docs/evidence/front-walk-cycle-v1-config.json",
-    "targets": "docs/evidence/front-walk-targets-v080.json",
-    "z_order": "docs/evidence/front-walk-z-order-v080.json",
-    "per_frame": "docs/evidence/front-walk-per-frame-qa-v080.json",
-    "temporal": "docs/evidence/front-walk-temporal-qa-v080.json",
-    "foot_contact": "docs/evidence/front-walk-foot-contact-qa-v080.json",
-    "half_cycle": "docs/evidence/front-walk-half-cycle-qa-v080.json",
-    "loop": "docs/evidence/front-walk-loop-qa-v080.json",
-    "provider": "docs/evidence/front-walk-provider-qualification-v080.json",
-    "execution": "docs/evidence/execution-evidence-v0.8.0.json",
-    "package": "docs/evidence/walk-front-v080/walk-front-package-manifest-v080.json"
+    "config": "docs/evidence/front-walk-cycle-v1-config-v081.json",
+    "targets": "docs/evidence/front-walk-targets-v081.json",
+    "z_order": "docs/evidence/front-walk-z-order-v081.json",
+    "per_frame": "docs/evidence/front-walk-per-frame-qa-v081.json",
+    "temporal_pre_smoothing": "docs/evidence/front-walk-temporal-pre-smoothing-v081.json",
+    "temporal": "docs/evidence/front-walk-temporal-qa-v081.json",
+    "foot_contact": "docs/evidence/front-walk-foot-contact-qa-v081.json",
+    "half_cycle": "docs/evidence/front-walk-half-cycle-qa-v081.json",
+    "loop": "docs/evidence/front-walk-loop-qa-v081.json",
+    "structural_coverage": "docs/evidence/front-walk-structural-coverage-v081.json",
+    "layer_integrity": "docs/evidence/front-walk-layer-integrity-v081.json",
+    "occlusion": "docs/evidence/front-walk-occlusion-v081.json",
+    "retention": "docs/evidence/front-walk-retention-v081.json",
+    "provider": "docs/evidence/front-walk-provider-qualification-v081.json",
+    "execution": "docs/evidence/execution-evidence-v0.8.1.json",
+    "package": "docs/evidence/walk-front-v081/walk-front-package-manifest-v081.json",
+    "review_visuals": "docs/evidence/review-visuals-v0.8.1.json",
+    "review_index": "docs/evidence/review-index-v0.8.1.json"
   },
   "state_consistency": {
     "status": "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED",
@@ -49,6 +70,7 @@
     "production_routing": "BLOCKED",
     "external_visual_review": "REQUIRED",
     "external_approval": "not-claimed",
-    "review_zip_self_validation_required": true
+    "review_zip_self_validation_required": false,
+    "review_index_required": true
   }
 }

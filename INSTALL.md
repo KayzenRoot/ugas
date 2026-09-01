@@ -1,4 +1,4 @@
-# Installing UGAS 0.8.0
+# Installing UGAS 0.8.1
 
 ## Requirements
 
@@ -17,11 +17,11 @@ python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
 ```
 
-## v0.8.0 deterministic front-walk pilot
+## v0.8.1 deterministic front-walk QA correction
 
 Leia [docs/evidence/current-state.json](docs/evidence/current-state.json) antes de iniciar. O provider é uma lane isolada e não altera o routing de produção. A origem SAM2 oficial é fixada por commit; source, checkpoint e runtime ficam fora do Git e do review ZIP.
 
-Depois, use os scripts e gates descritos em [REVIEW-v0.8.0.md](REVIEW-v0.8.0.md). A qualificação reutiliza a revisão, skeleton, máscaras e partes v0.7.1 hash-bound, o core estrutural v0.7.3 e os targets K1–K4 exatos; o renderer usa somente Pillow e a geração intermediária é de skeleton, sem nova execução SAM2 ou ComfyUI.
+Depois, use os scripts e gates descritos em [REVIEW-v0.8.1.md](REVIEW-v0.8.1.md). A qualificação reutiliza a revisão, skeleton, máscaras e partes v0.7.1 hash-bound, o core estrutural v0.7.3 e os targets K1–K4 exatos; o renderer usa somente Pillow e a geração intermediária é de skeleton, sem nova execução SAM2 ou ComfyUI. Execute `python scripts/validation/run_cutout_front_walk_v081.py --json` e depois `python scripts/validation/run_validation.py`.
 
 ### Runtime SAM2 externo
 

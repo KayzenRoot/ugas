@@ -1,0 +1,756 @@
+{
+  "schema_version": "0.8.1",
+  "version": "0.8.1",
+  "branch": "main",
+  "head_commit": "d634d69d3cceac239d8eb5fe8623c764eb6c6b53",
+  "dirty_state_at_publish": "dirty_before_index_commit",
+  "review_file": "REVIEW-v0.8.1.md",
+  "current_state": "docs/evidence/current-state.json",
+  "tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "count": 280,
+    "status": "passed"
+  },
+  "validation": {
+    "command": "python scripts/validation/run_validation.py",
+    "checks": 1268,
+    "passed": 1268,
+    "failed": 0,
+    "status": "passed"
+  },
+  "evidence": [
+    {
+      "path": "REVIEW-v0.8.1.md",
+      "sha256": "331a53e2087d867c6012f81de020dcd4cf9857727e1d995779260dc428f26244",
+      "media_type": "text/markdown",
+      "role": "active release review"
+    },
+    {
+      "path": "CHECKPOINT.md",
+      "sha256": "9213642210c858794fa17d28a5acf191f7dd6bc5312eeeb6694057da94755393",
+      "media_type": "text/markdown",
+      "role": "active governance checkpoint"
+    },
+    {
+      "path": "docs/evidence/current-state.json",
+      "sha256": "d1513724cc7282e5c2ad6f77d6cd89edee7b0ede95809bb72ce2649330f25b66",
+      "media_type": "application/json",
+      "role": "active machine-authoritative state"
+    },
+    {
+      "path": "schemas/current-state.json",
+      "sha256": "5667578b266c296aba86dd830a0d81637ec6bd979ff64271ef3d166ba32e35ee",
+      "media_type": "application/json",
+      "role": "active state schema"
+    },
+    {
+      "path": "providers/manifests/deterministic-cutout-rig-2d.json",
+      "sha256": "c77696a1e8b9979b3dcc13eb931df421e64605fc65bff57746ee91b2d1a722aa",
+      "media_type": "application/json",
+      "role": "active provider manifest"
+    },
+    {
+      "path": "docs/evidence/review-visuals-v0.8.1.json",
+      "sha256": "87d9a8f6f30907b81d148bd27a46dd8d4acab50c5a9022c8fec853eba95a7e97",
+      "media_type": "application/json",
+      "role": "hash-bound visual manifest"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-00-contact-left.png",
+      "sha256": "90e878585495823cdbd4ea6521044f84fd69aa9ba988575ec4477b2a4d84c76b",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-00-contact-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-01-down-left.png",
+      "sha256": "4b229417faac6be7c941b305ac8be83f23b3072545ed3f4b81467abe91abe99e",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-01-down-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-02-passing-left.png",
+      "sha256": "11a6544a2d937275b7b9087d0a981cc04787ecc02e403fed5e85fd927d94078c",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-02-passing-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-03-up-left.png",
+      "sha256": "dee1a7c6a8fe41a5603d2d26452f1e8cf52c85d1102fe5d0f73715edb0375d48",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-03-up-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-04-contact-right.png",
+      "sha256": "f1d21e047ba65ec89324f527f147c18115c7403d370ed1d27512dd5fe4b4c5eb",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-04-contact-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-05-down-right.png",
+      "sha256": "f873f6d8f6da815af59d021cbb3a43716513268c5fb57be14d7e36fadff8b8de",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-05-down-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-06-passing-right.png",
+      "sha256": "9209f955b8c62af734df28713098fd927dce9065e5a73359b750f34ed73a9fa1",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-06-passing-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/checkerboard/frame-07-up-right.png",
+      "sha256": "4074ef04b7a31e80a382fdf57d18b0edc19a185e43215eb7f18320b3d37275da",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: checkerboard-frame-07-up-right.png"
+    },
+    {
+      "path": "docs/evidence/execution-evidence-v0.8.1.json",
+      "sha256": "4e02f15190866d0f2984eea7ffc6461ecdc94f18788535fb4ecc455f2b7a002e",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: execution-evidence-v0.8.1.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-00-alpha-bbox-contact-left.png",
+      "sha256": "d7ced3f9854fb0e14f67138687b3b49c4a3ccae74d7bdc228fdd92f902c6e89c",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-00-alpha-bbox-contact-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-00-contact-left.png",
+      "sha256": "958107198299ea232fa52620123cf5e42070a0e55b11635a5dd25a05cf055e19",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-00-contact-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-01-alpha-bbox-down-left.png",
+      "sha256": "650883828ab052542ca3b0fcb10341ed2f669f05b0fae5ebd94d1e3d259d762b",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-01-alpha-bbox-down-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-01-down-left.png",
+      "sha256": "9bbd9aa307201910eee7cb9b904093444c3b9e8693ff9aed2b0c31e41ded04f7",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-01-down-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-02-alpha-bbox-passing-left.png",
+      "sha256": "66e74f00b10a400faf058d23ef688f58bf3538c820de5f75b83e2bb7ada803d1",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-02-alpha-bbox-passing-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-02-passing-left.png",
+      "sha256": "a1c47ea72ebba400c498ff656c71ea3d277539833f615a187b5967b848ec5180",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-02-passing-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-03-alpha-bbox-up-left.png",
+      "sha256": "cc1614bb27fb2c50c7c2921d95186c99052735fd0526f9fe79a882442c925cfe",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-03-alpha-bbox-up-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-03-up-left.png",
+      "sha256": "e20eeab6f3a319cd6c3a3c29fbf1990433e6b0e8406e52d94602dc182ae37960",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-03-up-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-04-alpha-bbox-contact-right.png",
+      "sha256": "26b0d10baa52c5dbe1422af8d4e1c165125dc05d94c6b31e55be285f34701886",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-04-alpha-bbox-contact-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-04-contact-right.png",
+      "sha256": "ce37fa0e8d872c0be2e84b3bfc5642994082599c1b6535fbae1eb24504c02c2b",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-04-contact-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-05-alpha-bbox-down-right.png",
+      "sha256": "9bc26bbe7c93d7a632be8868e10a264bdc5abd76ad6b5e89100bd61bb14c6c27",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-05-alpha-bbox-down-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-05-down-right.png",
+      "sha256": "e9ac95b16378cd7c7d59641bbde080b2ba8eef8b1de5904f95ce718ed9e46668",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-05-down-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-06-alpha-bbox-passing-right.png",
+      "sha256": "11d9147af9d35b0b8c482311c07357f0d133ab8561185ba7e69a933052ab28f5",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-06-alpha-bbox-passing-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-06-passing-right.png",
+      "sha256": "5099e25edb5ac47b27c77b39e3d86a82347bfeeb9e88fc12f51c6bbe04a0f36d",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-06-passing-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frame-07-alpha-bbox-up-right.png",
+      "sha256": "2521bab9fe767b21e2fe52587ca045a44d264c951a3e73e0a69c2996bc28b269",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-07-alpha-bbox-up-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/frames/frame-07-up-right.png",
+      "sha256": "16efb738e9e2afe6b441c17f5bc0f907e1e370983e4a45eab24dc7fc26757cb4",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: frame-07-up-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-alpha-bbox-contact-sheet-v081.png",
+      "sha256": "e14c64908691eefff8f1bb43e55054eed8810815f8c9d5c65fe65beb5e5bc3d7",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-alpha-bbox-contact-sheet-v081.png"
+    },
+    {
+      "path": "docs/evidence/front-walk-bone-projection-v081.json",
+      "sha256": "e3d170fd265a6e0bb664e9f3594f93a092855f152af49764f33b8f16eefa98ae",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-bone-projection-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-checkerboard-contact-sheet-v081.png",
+      "sha256": "110505ef5402e3eecfcaa3fa242bf7d50fbbd330a8448d6901bf1583b495175e",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-checkerboard-contact-sheet-v081.png"
+    },
+    {
+      "path": "docs/evidence/front-walk-cycle-v1-config-v081.json",
+      "sha256": "5aa7d93f1a539868e2d832c75d2934980cac3f89fe5bbb56972c7878be23f5e8",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-cycle-v1-config-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-evidence-contact-sheet-v081.png",
+      "sha256": "110505ef5402e3eecfcaa3fa242bf7d50fbbd330a8448d6901bf1583b495175e",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-evidence-contact-sheet-v081.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-feet-ground-zoom-v081.png",
+      "sha256": "708d374b6ce08f729ad0596bba732a95cb150d996ad156c07e0d9776ea2a2f72",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-feet-ground-zoom-v081.png"
+    },
+    {
+      "path": "docs/evidence/front-walk-foot-contact-qa-v081.json",
+      "sha256": "6922718431263ec0d58fe10282ab72e4473bf618f7eea89afa1996bd091e9645",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-foot-contact-qa-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-foot-ground-record-v081.json",
+      "sha256": "88e93170f2eab36e800bd61468b96ca2b2fed93998e78840484008c7251a18a7",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-foot-ground-record-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-ground-line-overlays-v081.png",
+      "sha256": "b4d4ffa33547b716275d358b6bd70f3ff908ddc8e8b06f0cdee721bb3d2f1fbb",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-ground-line-overlays-v081.png"
+    },
+    {
+      "path": "docs/evidence/front-walk-half-cycle-qa-v081.json",
+      "sha256": "64393c3e87a36f2b82bf6de6382557bbfbe9b9add8f398947cabf6b7e180e8ff",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-half-cycle-qa-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-layer-integrity-v081.json",
+      "sha256": "4d5d07d8111ebf58ce933ee34c3d3271d7a8ef068720df121aa4894a467712d2",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-layer-integrity-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-loop-qa-v081.json",
+      "sha256": "cb1529de88b096c49350a3f4a500320e8b5bb0e2f109d5c03d85ad0b752b32cb",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-loop-qa-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-occlusion-v081.json",
+      "sha256": "a7b570907192049155d7335eadaad090ab0f430320847d4765b6db2d52be7231",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-occlusion-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-per-frame-qa-v081.json",
+      "sha256": "4a5a542b0658db474e086c82b2806ae9456c398a10d7fa9a17293d741bccbfa8",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-per-frame-qa-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-provider-qualification-v081.json",
+      "sha256": "5653341d41ead762685fb030185cae448dbb3eb6aff4607687d9cf0415ecfb07",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-provider-qualification-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-retention-v081.json",
+      "sha256": "81202f22b47d3427726eb82ba7bbcff52860fe593ce635228258c3c42c7113bf",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-retention-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-root-motion-v081.json",
+      "sha256": "1534123cdb7f4b667df4dba3f3ff587fc21431f53ec295e5732c0017b137c9c3",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-root-motion-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-structural-coverage-v081.json",
+      "sha256": "f51749da652d469ab5b56da42a4f50a210cde8b88d8b6da4c8acd3dd13c1664d",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-structural-coverage-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-structural-hole-maps-v081.png",
+      "sha256": "0331318644a9746cb5f151d8bdc8cbd4eab971e0d687dd86deb67424295e21e2",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-structural-hole-maps-v081.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-sword-hand-zoom-v081.png",
+      "sha256": "1c9a69ff59bcaa3c62a51ad61ccf5fd5d3475d452a888f9fd91c5b8cdc0024d8",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-sword-hand-zoom-v081.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-target-detected-overlays-v081.png",
+      "sha256": "a9a2e97c498899a789502b00c8956d5834e9a6b6e609c938915c8cd4159593fd",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-target-detected-overlays-v081.png"
+    },
+    {
+      "path": "docs/evidence/front-walk-targets-v081.json",
+      "sha256": "f27b05fbf8a8b033fd2f8bc5a49dd48c32d01c261a9cb4629e0339f9039ed4b3",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-targets-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-temporal-pre-smoothing-v081.json",
+      "sha256": "f66b43b69d8a13a141f8c4477d950e360dbc2bc2dede4a2d31e72f2c0e0a0098",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-temporal-pre-smoothing-v081.json"
+    },
+    {
+      "path": "docs/evidence/front-walk-temporal-qa-v081.json",
+      "sha256": "cbdf4615ec8998c29b5b909e10f60134a984d2d59fb12545413ab7e8501f8907",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-temporal-qa-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-temporal-trajectory-v081.png",
+      "sha256": "8f7413868cbda62c044316e170e4b2ba85d6de8e08d2309bbd1861793a004a19",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-temporal-trajectory-v081.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/front-walk-waist-hip-zoom-v081.png",
+      "sha256": "3f7f4c07a7ea9ed56efb956ba0950d6e90744e98d63fadd0970b292d0d7d8a2c",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: front-walk-waist-hip-zoom-v081.png"
+    },
+    {
+      "path": "docs/evidence/front-walk-z-order-v081.json",
+      "sha256": "9c9ff5d2454f60d053f1510cd541e3d558a5cb34c72313511e8e8d971b303e93",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: front-walk-z-order-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-00-contact-left.png",
+      "sha256": "1aa018ba8cac58a69e20615dc09d682898bc74f79f9b921b0ae228101346cd3c",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-00-contact-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-01-down-left.png",
+      "sha256": "240d92011c798252c61ed9aa3bbd6b3f67b203bc9786d123f88a8e54d21542da",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-01-down-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-02-passing-left.png",
+      "sha256": "079200910a94fefee6a9a3fa6a4ad024f395bda607c7b5647a9661ff471f3668",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-02-passing-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-03-up-left.png",
+      "sha256": "5e5b17fee3e98b057fb39be6bb1518484779ec5956f0a2b24a1ba9e44397e19a",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-03-up-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-04-contact-right.png",
+      "sha256": "39e31c3b76f1183b9dfb73b31030cb15ee372865df864304d5aa501d75ae870c",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-04-contact-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-05-down-right.png",
+      "sha256": "395c0adfe00e2cdcf6dc28748812b30a9041e8f0f4b4e169881566b911f6e818",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-05-down-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-06-passing-right.png",
+      "sha256": "9610040c865e5cefca1a399b49626a4596035cd1f49c15cd511d3f239bac723a",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-06-passing-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/ground-line-overlays/frame-07-up-right.png",
+      "sha256": "f1c4f8dad65b611e52662629c1c3bcf235e44d690b61d65bf047637ff1c3ae18",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: ground-line-overlays-frame-07-up-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-00.json",
+      "sha256": "1236dca453c8f31e5b4a4af7c5ea404ecbf9019bd43ecc62d9ac43aad93e7f9c",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-00.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-01.json",
+      "sha256": "95f962b52b2e0a03982a98a5ca0fb4b49bef4f2b554b1c418fbbf8acbd6e84ba",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-01.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-02.json",
+      "sha256": "9d0988d15d801aadf4a012a3c357f8f82a22fda8ec95e9e6839c43222f18cb5f",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-02.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-03.json",
+      "sha256": "528ff08158060fb3cbec07ff08e4e6f7c403b2ba21c89bc2a1465da553ac7d0d",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-03.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-04.json",
+      "sha256": "b313d8a939e770ad9d813725405ae21ab8ff2047f4f8bab6207c11b70b1645b8",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-04.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-05.json",
+      "sha256": "58c0ed1ae004f0dc081c2033403bd7d86f50f44fe53474fd3c7eacab37e36b3e",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-05.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-06.json",
+      "sha256": "1f1b4362b23938bcde196ad896edc3564a95df4d042ec3159e19239ffbe608df",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-06.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/pairwise/frame-07.json",
+      "sha256": "942d94229eb8a856c850946c6504fa5f30864020a9c1db86bcdbd2e397a64101",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: pairwise-frame-07.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-00.json",
+      "sha256": "5a63668c0a7127b9ae6b7adf0b1589425fd200574756d4c086d10369bd2f4320",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-00.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-01.json",
+      "sha256": "b89a96628e526c17045e70d248c3448c74e36b8dc15418e5fc85daa31782de9f",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-01.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-02.json",
+      "sha256": "0eba5d96ac5cd82d6cd18b3f9030c38d15a5e78939791f0157cfb07ed47c64d1",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-02.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-03.json",
+      "sha256": "6dd8ac3e37b75df0d5c7aab3a478795888454a8ca6c55aeff1a3d99559f7ea6b",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-03.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-04.json",
+      "sha256": "aadf20f9f73c9ad139972c2cfb23bb6b9db8be873262ddb044608c67e948b545",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-04.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-05.json",
+      "sha256": "ebad3c57dfc2512006f3714fea764b4143eca052c287c32e33b029091d6dce86",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-05.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-06.json",
+      "sha256": "260a431f86ecf70354c84cda73e45298a245518a3f65afaf6c71c0d00a2d8186",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-06.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/retention/frame-07.json",
+      "sha256": "420844b60d7b87b5e2c01d884448fdd76fc7a2fb0a0b64851cd6df417758934d",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: retention-frame-07.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-00-contact-left.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-00-contact-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-01-down-left.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-01-down-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-02-passing-left.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-02-passing-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-03-up-left.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-03-up-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-04-contact-right.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-04-contact-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-05-down-right.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-05-down-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-06-passing-right.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-06-passing-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/structural-hole-maps/frame-07-up-right.png",
+      "sha256": "37da94638e6c273e2e33b698ba58f3dee183a61287f9518a25e0564684d14159",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: structural-hole-maps-frame-07-up-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-00-contact-left.png",
+      "sha256": "aa9d2ef68b8104a223eb61f588fd086d838f82e47976bee69715b43b8681be70",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-00-contact-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-01-down-left.png",
+      "sha256": "6715f40aafeb0048ba9280d458d1e33ab1d76c7a9d33dbfa13b11d7b125a65ca",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-01-down-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-02-passing-left.png",
+      "sha256": "9bc1bcf6df3527471899e1ec9665fdb8476cdcc3711075b6728467b8d813a876",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-02-passing-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-03-up-left.png",
+      "sha256": "03b090c6d7881b60f035f38b556af3affb031174beca8617a9b39c5d77239879",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-03-up-left.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-04-contact-right.png",
+      "sha256": "e157c95769f33999f389345c71991a4be192db27a2938f4ab83b087058f7b45c",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-04-contact-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-05-down-right.png",
+      "sha256": "4628d67c760e4b4a1c6aff4e2294509e94b9220bed5d8eddbd50e7045f160fbb",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-05-down-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-06-passing-right.png",
+      "sha256": "78b63b5dbe42820b3606e3ea172731f4d6c5d06708595c3a3b697dab3ee51f56",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-06-passing-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/target-detected-overlays/frame-07-up-right.png",
+      "sha256": "b9c7f0608136c40b18e41b06a30207ac26750251ac0bd5868cad43b7e99f251d",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: target-detected-overlays-frame-07-up-right.png"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/walk-front-metadata-v081.json",
+      "sha256": "7e78b5f33ff81b81f69fa4ffb10d906617a3234ad0d1390c15c96d1c9bf159b5",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: walk-front-metadata-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/walk-front-package-manifest-v081.json",
+      "sha256": "9342fcba07670901c6e843b45af9b565637cbc6443288019abc9b7bb8445c5a1",
+      "media_type": "application/json",
+      "role": "v0.8.1 front-walk review evidence: walk-front-package-manifest-v081.json"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/walk-front-preview-v081.gif",
+      "sha256": "3f83604c9c1c152e36eced14d906c705e153da9f59627df0175ca6905e0aa87b",
+      "media_type": "image/gif",
+      "role": "v0.8.1 front-walk review evidence: walk-front-preview-v081.gif"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/walk-front-spritesheet-v081.png",
+      "sha256": "58da93252731e10622fbd3966158ef11411e4e307f6b066979c60c7c8acd0f1a",
+      "media_type": "image/png",
+      "role": "v0.8.1 front-walk review evidence: walk-front-spritesheet-v081.png"
+    }
+  ],
+  "required_visual_sets": [
+    "checkerboard-frame-00-contact-left.png",
+    "checkerboard-frame-01-down-left.png",
+    "checkerboard-frame-02-passing-left.png",
+    "checkerboard-frame-03-up-left.png",
+    "checkerboard-frame-04-contact-right.png",
+    "checkerboard-frame-05-down-right.png",
+    "checkerboard-frame-06-passing-right.png",
+    "checkerboard-frame-07-up-right.png",
+    "execution-evidence-v0.8.1.json",
+    "frame-00-alpha-bbox-contact-left.png",
+    "frame-00-contact-left.png",
+    "frame-01-alpha-bbox-down-left.png",
+    "frame-01-down-left.png",
+    "frame-02-alpha-bbox-passing-left.png",
+    "frame-02-passing-left.png",
+    "frame-03-alpha-bbox-up-left.png",
+    "frame-03-up-left.png",
+    "frame-04-alpha-bbox-contact-right.png",
+    "frame-04-contact-right.png",
+    "frame-05-alpha-bbox-down-right.png",
+    "frame-05-down-right.png",
+    "frame-06-alpha-bbox-passing-right.png",
+    "frame-06-passing-right.png",
+    "frame-07-alpha-bbox-up-right.png",
+    "frame-07-up-right.png",
+    "front-walk-alpha-bbox-contact-sheet-v081.png",
+    "front-walk-bone-projection-v081.json",
+    "front-walk-checkerboard-contact-sheet-v081.png",
+    "front-walk-cycle-v1-config-v081.json",
+    "front-walk-evidence-contact-sheet-v081.png",
+    "front-walk-feet-ground-zoom-v081.png",
+    "front-walk-foot-contact-qa-v081.json",
+    "front-walk-foot-ground-record-v081.json",
+    "front-walk-ground-line-overlays-v081.png",
+    "front-walk-half-cycle-qa-v081.json",
+    "front-walk-layer-integrity-v081.json",
+    "front-walk-loop-qa-v081.json",
+    "front-walk-occlusion-v081.json",
+    "front-walk-per-frame-qa-v081.json",
+    "front-walk-provider-qualification-v081.json",
+    "front-walk-retention-v081.json",
+    "front-walk-root-motion-v081.json",
+    "front-walk-structural-coverage-v081.json",
+    "front-walk-structural-hole-maps-v081.png",
+    "front-walk-sword-hand-zoom-v081.png",
+    "front-walk-target-detected-overlays-v081.png",
+    "front-walk-targets-v081.json",
+    "front-walk-temporal-pre-smoothing-v081.json",
+    "front-walk-temporal-qa-v081.json",
+    "front-walk-temporal-trajectory-v081.png",
+    "front-walk-waist-hip-zoom-v081.png",
+    "front-walk-z-order-v081.json",
+    "ground-line-overlays-frame-00-contact-left.png",
+    "ground-line-overlays-frame-01-down-left.png",
+    "ground-line-overlays-frame-02-passing-left.png",
+    "ground-line-overlays-frame-03-up-left.png",
+    "ground-line-overlays-frame-04-contact-right.png",
+    "ground-line-overlays-frame-05-down-right.png",
+    "ground-line-overlays-frame-06-passing-right.png",
+    "ground-line-overlays-frame-07-up-right.png",
+    "pairwise-frame-00.json",
+    "pairwise-frame-01.json",
+    "pairwise-frame-02.json",
+    "pairwise-frame-03.json",
+    "pairwise-frame-04.json",
+    "pairwise-frame-05.json",
+    "pairwise-frame-06.json",
+    "pairwise-frame-07.json",
+    "retention-frame-00.json",
+    "retention-frame-01.json",
+    "retention-frame-02.json",
+    "retention-frame-03.json",
+    "retention-frame-04.json",
+    "retention-frame-05.json",
+    "retention-frame-06.json",
+    "retention-frame-07.json",
+    "structural-hole-maps-frame-00-contact-left.png",
+    "structural-hole-maps-frame-01-down-left.png",
+    "structural-hole-maps-frame-02-passing-left.png",
+    "structural-hole-maps-frame-03-up-left.png",
+    "structural-hole-maps-frame-04-contact-right.png",
+    "structural-hole-maps-frame-05-down-right.png",
+    "structural-hole-maps-frame-06-passing-right.png",
+    "structural-hole-maps-frame-07-up-right.png",
+    "target-detected-overlays-frame-00-contact-left.png",
+    "target-detected-overlays-frame-01-down-left.png",
+    "target-detected-overlays-frame-02-passing-left.png",
+    "target-detected-overlays-frame-03-up-left.png",
+    "target-detected-overlays-frame-04-contact-right.png",
+    "target-detected-overlays-frame-05-down-right.png",
+    "target-detected-overlays-frame-06-passing-right.png",
+    "target-detected-overlays-frame-07-up-right.png",
+    "walk-front-metadata-v081.json",
+    "walk-front-package-manifest-v081.json",
+    "walk-front-preview-v081.gif",
+    "walk-front-spritesheet-v081.png"
+  ],
+  "forbidden_artifacts": [
+    "sam2_rerun",
+    "comfyui_generation",
+    "diffusion",
+    "controlnet",
+    "ip_adapter",
+    "new_animation_or_direction",
+    "production_routing_enabled",
+    "external_approval_claim",
+    "source_mask_mutation",
+    "pixel_interpolation"
+  ],
+  "external_visual_review": {
+    "status": "REQUIRED",
+    "approval": "not-claimed"
+  },
+  "production_routing": "BLOCKED",
+  "walk_authorized": "pilot_only",
+  "provider_status": "CUTOUT_RIG_FRONT_WALK_8FRAME_TECHNICALLY_QUALIFIED",
+  "canonical_anchor": {
+    "revision_id": "revision-3a425d184b1a49be9f6d6c8d52d04b96",
+    "sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  }
+}

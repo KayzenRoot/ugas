@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.8.1 review visual manifest",
+  "type": "object",
+  "required": ["schema_version", "manifest_type", "review_state", "images", "required_current_visuals", "human_visual_review", "production_approval", "external_approval"],
+  "properties": {
+    "schema_version": {"const": "0.8.1"},
+    "manifest_type": {"const": "review-visual-evidence"},
+    "review_state": {"const": "front-walk-correction"},
+    "images": {"type": "array", "minItems": 96, "items": {"type": "object", "required": ["archive_name", "source_path", "revision_id", "sha256", "media_type", "role"]}},
+    "required_current_visuals": {"type": "array", "minItems": 96, "uniqueItems": true},
+    "human_visual_review": {"const": "required"},
+    "production_approval": {"const": "not-granted"},
+    "external_approval": {"const": "not-claimed"}
+  }
+}

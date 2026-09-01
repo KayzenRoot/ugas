@@ -1,0 +1,4408 @@
+{
+  "schema_version": "0.8.1",
+  "poses": {
+    "F0-contact-left": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 4245.0,
+          "actual_layer_area": 4297,
+          "raster_area_error": 0.01225,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            185.495308,
+            320.070874,
+            232.897244,
+            460.567933
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.01225,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 5650.0113,
+          "actual_layer_area": 5706,
+          "raster_area_error": 0.009909,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            183.618202,
+            193.403521,
+            249.99124,
+            329.790824
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009909,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.058649,
+          "predicted_transformed_area": 2620.284755,
+          "actual_layer_area": 2643,
+          "raster_area_error": 0.008669,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            309.079767,
+            165.784874,
+            349.93684,
+            286.076768
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008669,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3242,
+          "raster_area_error": 0.019178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            285.460152,
+            82.999385,
+            336.482184,
+            193.997151
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 6250.0,
+          "actual_layer_area": 6291,
+          "raster_area_error": 0.00656,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            255.968439,
+            195.071967,
+            308.842535,
+            362.042632
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00656,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.041022,
+          "predicted_transformed_area": 3423.492975,
+          "actual_layer_area": 3465,
+          "raster_area_error": 0.012124,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            267.685386,
+            324.936846,
+            329.536724,
+            466.421173
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012124,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2792.005584,
+          "actual_layer_area": 2825,
+          "raster_area_error": 0.011817,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            167.583496,
+            84.11956,
+            221.940108,
+            168.967439
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011817,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 2897.994204,
+          "actual_layer_area": 2926,
+          "raster_area_error": 0.009664,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            161.896472,
+            161.4525,
+            197.715519,
+            276.080726
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009664,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            101.512412,
+            226.847801,
+            191.217861,
+            419.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "F1-down-left": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.026866,
+          "predicted_transformed_area": 4476.156304,
+          "actual_layer_area": 4503,
+          "raster_area_error": 0.005997,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            175.404586,
+            315.534125,
+            233.451314,
+            459.929872
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.005997,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 0.969072,
+          "predicted_transformed_area": 5305.918058,
+          "actual_layer_area": 5366,
+          "raster_area_error": 0.011324,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            177.618108,
+            196.124733,
+            245.489046,
+            326.773601
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011324,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.037291,
+          "predicted_transformed_area": 2515.623982,
+          "actual_layer_area": 2530,
+          "raster_area_error": 0.005715,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            308.840657,
+            170.983935,
+            351.695892,
+            288.176924
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.005715,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.038002,
+          "predicted_transformed_area": 3427.362572,
+          "actual_layer_area": 3480,
+          "raster_area_error": 0.015358,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            284.436478,
+            84.190324,
+            335.296502,
+            199.698648
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.015358,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            97.0,
+            303.4567,
+            259.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 0.969685,
+          "predicted_transformed_area": 5876.806245,
+          "actual_layer_area": 5929,
+          "raster_area_error": 0.008881,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            253.373023,
+            198.696806,
+            304.007601,
+            359.870951
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008881,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.067238,
+          "predicted_transformed_area": 3598.091361,
+          "actual_layer_area": 3621,
+          "raster_area_error": 0.006367,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            262.303284,
+            324.054776,
+            333.553717,
+            466.870183
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.006367,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 0.984648,
+          "predicted_transformed_area": 2706.932461,
+          "actual_layer_area": 2740,
+          "raster_area_error": 0.012216,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            166.221939,
+            86.483064,
+            221.323939,
+            169.49308
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012216,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 1.017458,
+          "predicted_transformed_area": 3000.069826,
+          "actual_layer_area": 3028,
+          "raster_area_error": 0.00931,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            160.098302,
+            161.472257,
+            197.207934,
+            278.108587
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00931,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            19.0,
+            302.4567,
+            96.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3227,
+          "raster_area_error": 0.014461,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            100.512412,
+            228.097801,
+            190.217861,
+            420.778864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.014461,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "F2-passing-left": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 4245.0,
+          "actual_layer_area": 4284,
+          "raster_area_error": 0.009187,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            173.064738,
+            315.559686,
+            237.084202,
+            455.503645
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009187,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 5650.0,
+          "actual_layer_area": 5712,
+          "raster_area_error": 0.010973,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            174.444824,
+            192.984662,
+            245.127774,
+            327.221209
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010973,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.058649,
+          "predicted_transformed_area": 2620.284755,
+          "actual_layer_area": 2643,
+          "raster_area_error": 0.008669,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            309.079767,
+            165.784874,
+            349.93684,
+            286.076768
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008669,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3242,
+          "raster_area_error": 0.019178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            285.460152,
+            82.999385,
+            336.482184,
+            193.997151
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 6250.0125,
+          "actual_layer_area": 6302,
+          "raster_area_error": 0.008318,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            244.567935,
+            196.916671,
+            302.962606,
+            361.012659
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008318,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.051143,
+          "predicted_transformed_area": 3490.384175,
+          "actual_layer_area": 3525,
+          "raster_area_error": 0.009917,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            242.978204,
+            324.352747,
+            287.576202,
+            470.629098
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009917,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2792.005584,
+          "actual_layer_area": 2825,
+          "raster_area_error": 0.011817,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            167.583496,
+            84.11956,
+            221.940108,
+            168.967439
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011817,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 2897.994204,
+          "actual_layer_area": 2926,
+          "raster_area_error": 0.009664,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            161.896472,
+            161.4525,
+            197.715519,
+            276.080726
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009664,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            101.512412,
+            226.847801,
+            191.217861,
+            419.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "F3-up-left": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 0.967636,
+          "predicted_transformed_area": 3974.675974,
+          "actual_layer_area": 4004,
+          "raster_area_error": 0.007378,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            185.631922,
+            320.80402,
+            231.635072,
+            456.762867
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.007378,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.027003,
+          "predicted_transformed_area": 5959.253665,
+          "actual_layer_area": 6020,
+          "raster_area_error": 0.010194,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            182.49192,
+            190.44353,
+            250.600251,
+            330.521448
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010194,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.016125,
+          "predicted_transformed_area": 2414.008417,
+          "actual_layer_area": 2433,
+          "raster_area_error": 0.007867,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            313.295722,
+            160.784218,
+            347.42127,
+            276.940016
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.007867,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.01912,
+          "predicted_transformed_area": 3303.804332,
+          "actual_layer_area": 3344,
+          "raster_area_error": 0.012166,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            287.082672,
+            80.622341,
+            349.050291,
+            190.970695
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012166,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            93.0,
+            303.4567,
+            255.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 0.965565,
+          "predicted_transformed_area": 5826.973558,
+          "actual_layer_area": 5877,
+          "raster_area_error": 0.008585,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            259.510751,
+            193.680134,
+            314.609738,
+            355.275004
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008585,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.02349,
+          "predicted_transformed_area": 3309.152893,
+          "actual_layer_area": 3329,
+          "raster_area_error": 0.005998,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            257.827494,
+            318.292566,
+            304.597361,
+            460.984291
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.005998,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 0.999417,
+          "predicted_transformed_area": 2788.745477,
+          "actual_layer_area": 2829,
+          "raster_area_error": 0.014435,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            173.493379,
+            81.995005,
+            223.066862,
+            168.164264
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.014435,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 1.008009,
+          "predicted_transformed_area": 2944.606054,
+          "actual_layer_area": 2985,
+          "raster_area_error": 0.013718,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            166.053422,
+            162.109362,
+            205.533831,
+            277.460288
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.013718,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            15.0,
+            302.4567,
+            92.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            105.512412,
+            227.847801,
+            195.217861,
+            420.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "F4-contact-right": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3159.0,
+          "actual_layer_area": 3188,
+          "raster_area_error": 0.00918,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            280.91934,
+            321.51594,
+            323.244053,
+            460.715318
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00918,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 6250.0,
+          "actual_layer_area": 6311,
+          "raster_area_error": 0.00976,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            262.336442,
+            194.126534,
+            329.60299,
+            360.320735
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00976,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 1.031696,
+          "predicted_transformed_area": 3084.621452,
+          "actual_layer_area": 3115,
+          "raster_area_error": 0.009848,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            168.707309,
+            165.917732,
+            214.082363,
+            283.418585
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009848,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 2792.0,
+          "actual_layer_area": 2826,
+          "raster_area_error": 0.012178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            178.709827,
+            84.033321,
+            224.305226,
+            172.144852
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 5650.0,
+          "actual_layer_area": 5698,
+          "raster_area_error": 0.008496,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            195.630695,
+            195.177938,
+            256.213107,
+            329.844406
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008496,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.040708,
+          "predicted_transformed_area": 4597.645485,
+          "actual_layer_area": 4636,
+          "raster_area_error": 0.008342,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            187.36314,
+            322.927289,
+            241.551305,
+            465.389577
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008342,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3216,
+          "raster_area_error": 0.011005,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            287.687598,
+            83.050698,
+            349.931441,
+            190.565683
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011005,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2338.004676,
+          "actual_layer_area": 2363,
+          "raster_area_error": 0.010691,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            307.798289,
+            160.723328,
+            347.716082,
+            274.053436
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010691,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            109.512412,
+            232.847801,
+            199.217861,
+            425.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "F5-down-right": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 0.97705,
+          "predicted_transformed_area": 3015.665753,
+          "actual_layer_area": 3041,
+          "raster_area_error": 0.008401,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            281.250109,
+            321.910252,
+            326.235076,
+            458.110998
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008401,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.018021,
+          "predicted_transformed_area": 6477.292228,
+          "actual_layer_area": 6538,
+          "raster_area_error": 0.009372,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            265.688965,
+            195.527899,
+            343.143923,
+            362.647474
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009372,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 1.059012,
+          "predicted_transformed_area": 3250.125594,
+          "actual_layer_area": 3286,
+          "raster_area_error": 0.011038,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            168.692519,
+            167.043923,
+            217.687063,
+            287.323673
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011038,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 0.98264,
+          "predicted_transformed_area": 2695.903184,
+          "actual_layer_area": 2727,
+          "raster_area_error": 0.011535,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            181.108596,
+            86.412694,
+            224.427408,
+            173.400769
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011535,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            97.0,
+            303.4567,
+            259.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 0.967892,
+          "predicted_transformed_area": 5293.004319,
+          "actual_layer_area": 5352,
+          "raster_area_error": 0.011146,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            197.691424,
+            199.27056,
+            258.851646,
+            328.0754
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011146,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.067758,
+          "predicted_transformed_area": 4839.754837,
+          "actual_layer_area": 4885,
+          "raster_area_error": 0.009349,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            184.331933,
+            321.667461,
+            248.931132,
+            466.502615
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009349,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.022784,
+          "predicted_transformed_area": 3327.603099,
+          "actual_layer_area": 3360,
+          "raster_area_error": 0.009736,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            287.721151,
+            84.673189,
+            352.663733,
+            193.858634
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009736,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 0.982251,
+          "predicted_transformed_area": 2255.742209,
+          "actual_layer_area": 2277,
+          "raster_area_error": 0.009424,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            305.989686,
+            163.322525,
+            349.285551,
+            273.64785
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009424,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            19.0,
+            302.4567,
+            96.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3217,
+          "raster_area_error": 0.011317,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            110.512412,
+            235.597801,
+            200.217861,
+            428.278864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011317,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "F6-passing-right": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3159.0,
+          "actual_layer_area": 3178,
+          "raster_area_error": 0.006015,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            277.008323,
+            316.580933,
+            327.525741,
+            455.571265
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.006015,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 6250.0,
+          "actual_layer_area": 6299,
+          "raster_area_error": 0.00784,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            267.426792,
+            194.24667,
+            346.65095,
+            357.216853
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.00784,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 1.031696,
+          "predicted_transformed_area": 3084.621452,
+          "actual_layer_area": 3115,
+          "raster_area_error": 0.009848,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            168.707309,
+            165.917732,
+            214.082363,
+            283.418585
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009848,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 2792.0,
+          "actual_layer_area": 2826,
+          "raster_area_error": 0.012178,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            178.709827,
+            84.033321,
+            224.305226,
+            172.144852
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012178,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            95.0,
+            303.4567,
+            257.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 5650.0,
+          "actual_layer_area": 5716,
+          "raster_area_error": 0.011681,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            197.738489,
+            197.327578,
+            262.849913,
+            328.811648
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011681,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.054054,
+          "predicted_transformed_area": 4716.321649,
+          "actual_layer_area": 4755,
+          "raster_area_error": 0.008201,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            219.504129,
+            322.334503,
+            266.456785,
+            470.181023
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.008201,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.999999,
+          "predicted_transformed_area": 3180.993638,
+          "actual_layer_area": 3216,
+          "raster_area_error": 0.011005,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            287.687598,
+            83.050698,
+            349.931441,
+            190.565683
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011005,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.000001,
+          "predicted_transformed_area": 2338.004676,
+          "actual_layer_area": 2363,
+          "raster_area_error": 0.010691,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            307.798289,
+            160.723328,
+            347.716082,
+            274.053436
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010691,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            17.0,
+            302.4567,
+            94.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            109.512412,
+            232.847801,
+            199.217861,
+            425.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    },
+    "F7-up-right": {
+      "schema_version": "0.7.3",
+      "parts": {
+        "left_shin_foot": {
+          "source_active_pixels": 3159,
+          "actual_uniform_scale": 0.997587,
+          "predicted_transformed_area": 3143.773059,
+          "actual_layer_area": 3179,
+          "raster_area_error": 0.011205,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            283,
+            349,
+            343,
+            486
+          ],
+          "forward_transformed_bbox": [
+            282.413134,
+            319.173049,
+            324.726124,
+            458.002105
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011205,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_thigh": {
+          "source_active_pixels": 6250,
+          "actual_uniform_scale": 0.998207,
+          "predicted_transformed_area": 6227.607593,
+          "actual_layer_area": 6274,
+          "raster_area_error": 0.007449,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            270,
+            219,
+            324,
+            387
+          ],
+          "forward_transformed_bbox": [
+            262.606123,
+            192.177438,
+            330.354168,
+            357.934612
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.007449,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_forearm_hand": {
+          "source_active_pixels": 2898,
+          "actual_uniform_scale": 0.987282,
+          "predicted_transformed_area": 2824.755216,
+          "actual_layer_area": 2854,
+          "raster_area_error": 0.010353,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            179,
+            189,
+            223,
+            304
+          ],
+          "forward_transformed_bbox": [
+            166.185907,
+            163.377888,
+            202.701082,
+            276.51858
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.010353,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_upper_arm": {
+          "source_active_pixels": 2792,
+          "actual_uniform_scale": 1.026815,
+          "predicted_transformed_area": 2943.742531,
+          "actual_layer_area": 2982,
+          "raster_area_error": 0.012996,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            189,
+            108,
+            238,
+            196
+          ],
+          "forward_transformed_bbox": [
+            171.399871,
+            81.507528,
+            223.275227,
+            169.573887
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012996,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "torso_pelvis": {
+          "source_active_pixels": 9539,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 9539.0,
+          "actual_layer_area": 9722,
+          "raster_area_error": 0.019184,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            216,
+            119,
+            318,
+            282
+          ],
+          "forward_transformed_bbox": [
+            202.4567,
+            93.0,
+            303.4567,
+            255.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.019184,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_thigh": {
+          "source_active_pixels": 5650,
+          "actual_uniform_scale": 0.964824,
+          "predicted_transformed_area": 5259.502233,
+          "actual_layer_area": 5319,
+          "raster_area_error": 0.011312,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            209,
+            219,
+            270,
+            355
+          ],
+          "forward_transformed_bbox": [
+            192.015426,
+            193.389855,
+            252.315317,
+            324.768986
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011312,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "right_shin_foot": {
+          "source_active_pixels": 4245,
+          "actual_uniform_scale": 1.026258,
+          "predicted_transformed_area": 4470.857273,
+          "actual_layer_area": 4504,
+          "raster_area_error": 0.007413,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            202,
+            347,
+            254,
+            485
+          ],
+          "forward_transformed_bbox": [
+            195.847101,
+            316.557348,
+            253.69124,
+            460.874357
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.007413,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_upper_arm": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 0.970966,
+          "predicted_transformed_area": 2998.96719,
+          "actual_layer_area": 3036,
+          "raster_area_error": 0.012349,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            299,
+            107,
+            351,
+            219
+          ],
+          "forward_transformed_bbox": [
+            286.429589,
+            81.501872,
+            339.124669,
+            188.796939
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.012349,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "left_forearm_hand": {
+          "source_active_pixels": 2338,
+          "actual_uniform_scale": 1.03376,
+          "predicted_transformed_area": 2498.526467,
+          "actual_layer_area": 2514,
+          "raster_area_error": 0.006193,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            322,
+            190,
+            360,
+            305
+          ],
+          "forward_transformed_bbox": [
+            309.722694,
+            160.822324,
+            346.083697,
+            279.158111
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.006193,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "head": {
+          "source_active_pixels": 3551,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3551.0,
+          "actual_layer_area": 3585,
+          "raster_area_error": 0.009575,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            206,
+            41,
+            317,
+            119
+          ],
+          "forward_transformed_bbox": [
+            192.4567,
+            15.0,
+            302.4567,
+            92.0
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.009575,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        },
+        "sword": {
+          "source_active_pixels": 3181,
+          "actual_uniform_scale": 1.0,
+          "predicted_transformed_area": 3181.0,
+          "actual_layer_area": 3219,
+          "raster_area_error": 0.011946,
+          "predicted_outside_canvas_area": 0.0,
+          "forward_source_bbox": [
+            160,
+            254,
+            217,
+            459
+          ],
+          "forward_transformed_bbox": [
+            105.512412,
+            227.847801,
+            195.217861,
+            420.528864
+          ],
+          "forward_active_source_pixels_outside_canvas": 0,
+          "actual_border_clipped_pixels": 0,
+          "unexpected_layer_loss_fraction": 0.0,
+          "unexpected_layer_gain_fraction": 0.011946,
+          "hard_gates": {
+            "raster_area_error": true,
+            "predicted_outside_canvas_area_zero": true,
+            "unexpected_layer_loss_fraction": true,
+            "unexpected_layer_gain_fraction": true
+          },
+          "status": "LAYER_INTEGRITY_PASSED"
+        }
+      },
+      "thresholds": {
+        "raster_area_error_max": 0.03,
+        "unexpected_layer_loss_fraction_max": 0.02,
+        "unexpected_layer_gain_fraction_max": 0.02,
+        "active_alpha_threshold": 64
+      },
+      "hard_gates": {
+        "all_parts_pass": true
+      },
+      "status": "LAYER_INTEGRITY_PASSED"
+    }
+  },
+  "presentation_poses": {
+    "F0-contact-left": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2886,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.006147,
+          "presented_bbox": [
+            198,
+            40,
+            300,
+            112
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7848,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.003406,
+          "presented_bbox": [
+            206,
+            110,
+            301,
+            259
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3242,
+          "presented_active_pixels": 2609,
+          "expected_presented_active_pixels": 2626.02,
+          "raster_area_error": 0.006481,
+          "presented_bbox": [
+            281,
+            100,
+            330,
+            202
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2643,
+          "presented_active_pixels": 2148,
+          "expected_presented_active_pixels": 2140.83,
+          "raster_area_error": 0.003349,
+          "presented_bbox": [
+            303,
+            174,
+            342,
+            285
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2825,
+          "presented_active_pixels": 2296,
+          "expected_presented_active_pixels": 2288.25,
+          "raster_area_error": 0.003387,
+          "presented_bbox": [
+            175,
+            100,
+            227,
+            179
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 2926,
+          "presented_active_pixels": 2372,
+          "expected_presented_active_pixels": 2370.06,
+          "raster_area_error": 0.000819,
+          "presented_bbox": [
+            171,
+            169,
+            206,
+            276
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 6291,
+          "presented_active_pixels": 5109,
+          "expected_presented_active_pixels": 5095.71,
+          "raster_area_error": 0.002608,
+          "presented_bbox": [
+            255,
+            200,
+            305,
+            353
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3465,
+          "presented_active_pixels": 2799,
+          "expected_presented_active_pixels": 2806.65,
+          "raster_area_error": 0.002726,
+          "presented_bbox": [
+            266,
+            318,
+            324,
+            447
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 5706,
+          "presented_active_pixels": 4640,
+          "expected_presented_active_pixels": 4621.86,
+          "raster_area_error": 0.003925,
+          "presented_bbox": [
+            190,
+            198,
+            253,
+            324
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4297,
+          "presented_active_pixels": 3466,
+          "expected_presented_active_pixels": 3480.57,
+          "raster_area_error": 0.004186,
+          "presented_bbox": [
+            192,
+            312,
+            237,
+            441
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3219,
+          "presented_active_pixels": 2612,
+          "expected_presented_active_pixels": 2607.39,
+          "raster_area_error": 0.001768,
+          "presented_bbox": [
+            116,
+            228,
+            199,
+            405
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    },
+    "F1-down-left": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2906,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.00074,
+          "presented_bbox": [
+            198,
+            42,
+            300,
+            114
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7835,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.005057,
+          "presented_bbox": [
+            206,
+            112,
+            301,
+            261
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3480,
+          "presented_active_pixels": 2829,
+          "expected_presented_active_pixels": 2818.8,
+          "raster_area_error": 0.003619,
+          "presented_bbox": [
+            280,
+            101,
+            329,
+            208
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2530,
+          "presented_active_pixels": 2057,
+          "expected_presented_active_pixels": 2049.3,
+          "raster_area_error": 0.003757,
+          "presented_bbox": [
+            303,
+            178,
+            344,
+            287
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2740,
+          "presented_active_pixels": 2229,
+          "expected_presented_active_pixels": 2219.4,
+          "raster_area_error": 0.004325,
+          "presented_bbox": [
+            175,
+            102,
+            227,
+            180
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 3028,
+          "presented_active_pixels": 2453,
+          "expected_presented_active_pixels": 2452.68,
+          "raster_area_error": 0.00013,
+          "presented_bbox": [
+            169,
+            169,
+            205,
+            278
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 5929,
+          "presented_active_pixels": 4808,
+          "expected_presented_active_pixels": 4802.49,
+          "raster_area_error": 0.001147,
+          "presented_bbox": [
+            253,
+            203,
+            301,
+            352
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3621,
+          "presented_active_pixels": 2931,
+          "expected_presented_active_pixels": 2933.01,
+          "raster_area_error": 0.000685,
+          "presented_bbox": [
+            260,
+            316,
+            328,
+            447
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 5366,
+          "presented_active_pixels": 4354,
+          "expected_presented_active_pixels": 4346.46,
+          "raster_area_error": 0.001735,
+          "presented_bbox": [
+            184,
+            201,
+            249,
+            322
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4503,
+          "presented_active_pixels": 3657,
+          "expected_presented_active_pixels": 3647.43,
+          "raster_area_error": 0.002624,
+          "presented_bbox": [
+            183,
+            309,
+            238,
+            441
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3227,
+          "presented_active_pixels": 2606,
+          "expected_presented_active_pixels": 2613.87,
+          "raster_area_error": 0.003011,
+          "presented_bbox": [
+            115,
+            230,
+            199,
+            406
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    },
+    "F2-passing-left": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2886,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.006147,
+          "presented_bbox": [
+            198,
+            40,
+            300,
+            112
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7848,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.003406,
+          "presented_bbox": [
+            206,
+            110,
+            301,
+            259
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3242,
+          "presented_active_pixels": 2609,
+          "expected_presented_active_pixels": 2626.02,
+          "raster_area_error": 0.006481,
+          "presented_bbox": [
+            281,
+            100,
+            330,
+            202
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2643,
+          "presented_active_pixels": 2148,
+          "expected_presented_active_pixels": 2140.83,
+          "raster_area_error": 0.003349,
+          "presented_bbox": [
+            303,
+            174,
+            342,
+            285
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2825,
+          "presented_active_pixels": 2296,
+          "expected_presented_active_pixels": 2288.25,
+          "raster_area_error": 0.003387,
+          "presented_bbox": [
+            175,
+            100,
+            227,
+            179
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 2926,
+          "presented_active_pixels": 2372,
+          "expected_presented_active_pixels": 2370.06,
+          "raster_area_error": 0.000819,
+          "presented_bbox": [
+            171,
+            169,
+            206,
+            276
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 6302,
+          "presented_active_pixels": 5113,
+          "expected_presented_active_pixels": 5104.62,
+          "raster_area_error": 0.001642,
+          "presented_bbox": [
+            245,
+            202,
+            300,
+            352
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3525,
+          "presented_active_pixels": 2849,
+          "expected_presented_active_pixels": 2855.25,
+          "raster_area_error": 0.002189,
+          "presented_bbox": [
+            244,
+            316,
+            286,
+            451
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 5712,
+          "presented_active_pixels": 4635,
+          "expected_presented_active_pixels": 4626.72,
+          "raster_area_error": 0.00179,
+          "presented_bbox": [
+            182,
+            198,
+            248,
+            322
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4284,
+          "presented_active_pixels": 3473,
+          "expected_presented_active_pixels": 3470.04,
+          "raster_area_error": 0.000853,
+          "presented_bbox": [
+            181,
+            308,
+            240,
+            437
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3219,
+          "presented_active_pixels": 2612,
+          "expected_presented_active_pixels": 2607.39,
+          "raster_area_error": 0.001768,
+          "presented_bbox": [
+            116,
+            228,
+            199,
+            405
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    },
+    "F3-up-left": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2946,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.014515,
+          "presented_bbox": [
+            198,
+            39,
+            300,
+            110
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7879,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.000531,
+          "presented_bbox": [
+            207,
+            108,
+            301,
+            257
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3344,
+          "presented_active_pixels": 2719,
+          "expected_presented_active_pixels": 2708.64,
+          "raster_area_error": 0.003825,
+          "presented_bbox": [
+            283,
+            97,
+            342,
+            199
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2433,
+          "presented_active_pixels": 1980,
+          "expected_presented_active_pixels": 1970.73,
+          "raster_area_error": 0.004704,
+          "presented_bbox": [
+            307,
+            170,
+            340,
+            276
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2829,
+          "presented_active_pixels": 2288,
+          "expected_presented_active_pixels": 2291.49,
+          "raster_area_error": 0.001523,
+          "presented_bbox": [
+            181,
+            98,
+            228,
+            179
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 2985,
+          "presented_active_pixels": 2410,
+          "expected_presented_active_pixels": 2417.85,
+          "raster_area_error": 0.003247,
+          "presented_bbox": [
+            175,
+            170,
+            213,
+            277
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 5877,
+          "presented_active_pixels": 4774,
+          "expected_presented_active_pixels": 4760.37,
+          "raster_area_error": 0.002863,
+          "presented_bbox": [
+            258,
+            198,
+            310,
+            347
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3329,
+          "presented_active_pixels": 2709,
+          "expected_presented_active_pixels": 2696.49,
+          "raster_area_error": 0.004639,
+          "presented_bbox": [
+            256,
+            311,
+            301,
+            442
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 6020,
+          "presented_active_pixels": 4887,
+          "expected_presented_active_pixels": 4876.2,
+          "raster_area_error": 0.002215,
+          "presented_bbox": [
+            189,
+            196,
+            253,
+            325
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4004,
+          "presented_active_pixels": 3244,
+          "expected_presented_active_pixels": 3243.24,
+          "raster_area_error": 0.000234,
+          "presented_bbox": [
+            192,
+            313,
+            236,
+            438
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3219,
+          "presented_active_pixels": 2614,
+          "expected_presented_active_pixels": 2607.39,
+          "raster_area_error": 0.002535,
+          "presented_bbox": [
+            120,
+            229,
+            203,
+            406
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    },
+    "F4-contact-right": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2886,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.006147,
+          "presented_bbox": [
+            198,
+            40,
+            300,
+            112
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7848,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.003406,
+          "presented_bbox": [
+            206,
+            110,
+            301,
+            259
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3216,
+          "presented_active_pixels": 2610,
+          "expected_presented_active_pixels": 2604.96,
+          "raster_area_error": 0.001935,
+          "presented_bbox": [
+            283,
+            99,
+            342,
+            199
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2363,
+          "presented_active_pixels": 1910,
+          "expected_presented_active_pixels": 1914.03,
+          "raster_area_error": 0.002106,
+          "presented_bbox": [
+            301,
+            169,
+            341,
+            274
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2826,
+          "presented_active_pixels": 2292,
+          "expected_presented_active_pixels": 2289.06,
+          "raster_area_error": 0.001284,
+          "presented_bbox": [
+            185,
+            100,
+            230,
+            182
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 3115,
+          "presented_active_pixels": 2524,
+          "expected_presented_active_pixels": 2523.15,
+          "raster_area_error": 0.000337,
+          "presented_bbox": [
+            177,
+            174,
+            220,
+            283
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 6311,
+          "presented_active_pixels": 5108,
+          "expected_presented_active_pixels": 5111.91,
+          "raster_area_error": 0.000765,
+          "presented_bbox": [
+            260,
+            199,
+            324,
+            353
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3188,
+          "presented_active_pixels": 2577,
+          "expected_presented_active_pixels": 2582.28,
+          "raster_area_error": 0.002045,
+          "presented_bbox": [
+            278,
+            314,
+            318,
+            442
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 5698,
+          "presented_active_pixels": 4634,
+          "expected_presented_active_pixels": 4615.38,
+          "raster_area_error": 0.004034,
+          "presented_bbox": [
+            201,
+            200,
+            258,
+            324
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4636,
+          "presented_active_pixels": 3749,
+          "expected_presented_active_pixels": 3755.16,
+          "raster_area_error": 0.00164,
+          "presented_bbox": [
+            193,
+            315,
+            245,
+            446
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3219,
+          "presented_active_pixels": 2621,
+          "expected_presented_active_pixels": 2607.39,
+          "raster_area_error": 0.00522,
+          "presented_bbox": [
+            123,
+            233,
+            207,
+            410
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    },
+    "F5-down-right": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2906,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.00074,
+          "presented_bbox": [
+            198,
+            42,
+            300,
+            114
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7835,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.005057,
+          "presented_bbox": [
+            206,
+            112,
+            301,
+            261
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3360,
+          "presented_active_pixels": 2730,
+          "expected_presented_active_pixels": 2721.6,
+          "raster_area_error": 0.003086,
+          "presented_bbox": [
+            283,
+            100,
+            345,
+            202
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2277,
+          "presented_active_pixels": 1846,
+          "expected_presented_active_pixels": 1844.37,
+          "raster_area_error": 0.000884,
+          "presented_bbox": [
+            300,
+            171,
+            342,
+            274
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2727,
+          "presented_active_pixels": 2217,
+          "expected_presented_active_pixels": 2208.87,
+          "raster_area_error": 0.003681,
+          "presented_bbox": [
+            188,
+            102,
+            230,
+            184
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 3286,
+          "presented_active_pixels": 2661,
+          "expected_presented_active_pixels": 2661.66,
+          "raster_area_error": 0.000248,
+          "presented_bbox": [
+            177,
+            175,
+            223,
+            287
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 6538,
+          "presented_active_pixels": 5299,
+          "expected_presented_active_pixels": 5295.78,
+          "raster_area_error": 0.000608,
+          "presented_bbox": [
+            263,
+            201,
+            337,
+            354
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3041,
+          "presented_active_pixels": 2471,
+          "expected_presented_active_pixels": 2463.21,
+          "raster_area_error": 0.003163,
+          "presented_bbox": [
+            278,
+            314,
+            320,
+            439
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 5352,
+          "presented_active_pixels": 4345,
+          "expected_presented_active_pixels": 4335.12,
+          "raster_area_error": 0.002279,
+          "presented_bbox": [
+            203,
+            204,
+            260,
+            323
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4885,
+          "presented_active_pixels": 3950,
+          "expected_presented_active_pixels": 3956.85,
+          "raster_area_error": 0.001731,
+          "presented_bbox": [
+            191,
+            313,
+            251,
+            447
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3217,
+          "presented_active_pixels": 2612,
+          "expected_presented_active_pixels": 2605.77,
+          "raster_area_error": 0.002391,
+          "presented_bbox": [
+            124,
+            236,
+            208,
+            413
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    },
+    "F6-passing-right": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2886,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.006147,
+          "presented_bbox": [
+            198,
+            40,
+            300,
+            112
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7848,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.003406,
+          "presented_bbox": [
+            206,
+            110,
+            301,
+            259
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3216,
+          "presented_active_pixels": 2610,
+          "expected_presented_active_pixels": 2604.96,
+          "raster_area_error": 0.001935,
+          "presented_bbox": [
+            283,
+            99,
+            342,
+            199
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2363,
+          "presented_active_pixels": 1910,
+          "expected_presented_active_pixels": 1914.03,
+          "raster_area_error": 0.002106,
+          "presented_bbox": [
+            301,
+            169,
+            341,
+            274
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2826,
+          "presented_active_pixels": 2292,
+          "expected_presented_active_pixels": 2289.06,
+          "raster_area_error": 0.001284,
+          "presented_bbox": [
+            185,
+            100,
+            230,
+            182
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 3115,
+          "presented_active_pixels": 2524,
+          "expected_presented_active_pixels": 2523.15,
+          "raster_area_error": 0.000337,
+          "presented_bbox": [
+            177,
+            174,
+            220,
+            283
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 6299,
+          "presented_active_pixels": 5120,
+          "expected_presented_active_pixels": 5102.19,
+          "raster_area_error": 0.003491,
+          "presented_bbox": [
+            265,
+            199,
+            339,
+            349
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3178,
+          "presented_active_pixels": 2580,
+          "expected_presented_active_pixels": 2574.18,
+          "raster_area_error": 0.002261,
+          "presented_bbox": [
+            274,
+            310,
+            322,
+            437
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 5716,
+          "presented_active_pixels": 4637,
+          "expected_presented_active_pixels": 4629.96,
+          "raster_area_error": 0.001521,
+          "presented_bbox": [
+            203,
+            202,
+            264,
+            323
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4755,
+          "presented_active_pixels": 3851,
+          "expected_presented_active_pixels": 3851.55,
+          "raster_area_error": 0.000143,
+          "presented_bbox": [
+            222,
+            315,
+            267,
+            450
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3219,
+          "presented_active_pixels": 2621,
+          "expected_presented_active_pixels": 2607.39,
+          "raster_area_error": 0.00522,
+          "presented_bbox": [
+            123,
+            233,
+            207,
+            410
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    },
+    "F7-up-right": {
+      "schema_version": "0.8.1",
+      "presentation_scale": 0.9,
+      "parts": {
+        "head": {
+          "canonical_active_pixels": 3585,
+          "presented_active_pixels": 2946,
+          "expected_presented_active_pixels": 2903.85,
+          "raster_area_error": 0.014515,
+          "presented_bbox": [
+            198,
+            39,
+            300,
+            110
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "torso_pelvis": {
+          "canonical_active_pixels": 9722,
+          "presented_active_pixels": 7879,
+          "expected_presented_active_pixels": 7874.82,
+          "raster_area_error": 0.000531,
+          "presented_bbox": [
+            207,
+            108,
+            301,
+            257
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_upper_arm": {
+          "canonical_active_pixels": 3036,
+          "presented_active_pixels": 2459,
+          "expected_presented_active_pixels": 2459.16,
+          "raster_area_error": 6.5e-05,
+          "presented_bbox": [
+            282,
+            98,
+            333,
+            197
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_forearm_hand": {
+          "canonical_active_pixels": 2514,
+          "presented_active_pixels": 2049,
+          "expected_presented_active_pixels": 2036.34,
+          "raster_area_error": 0.006217,
+          "presented_bbox": [
+            304,
+            169,
+            338,
+            279
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_upper_arm": {
+          "canonical_active_pixels": 2982,
+          "presented_active_pixels": 2415,
+          "expected_presented_active_pixels": 2415.42,
+          "raster_area_error": 0.000174,
+          "presented_bbox": [
+            179,
+            98,
+            229,
+            181
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_forearm_hand": {
+          "canonical_active_pixels": 2854,
+          "presented_active_pixels": 2314,
+          "expected_presented_active_pixels": 2311.74,
+          "raster_area_error": 0.000978,
+          "presented_bbox": [
+            175,
+            171,
+            210,
+            277
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_thigh": {
+          "canonical_active_pixels": 6274,
+          "presented_active_pixels": 5093,
+          "expected_presented_active_pixels": 5081.94,
+          "raster_area_error": 0.002176,
+          "presented_bbox": [
+            261,
+            197,
+            325,
+            350
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "left_shin_foot": {
+          "canonical_active_pixels": 3179,
+          "presented_active_pixels": 2564,
+          "expected_presented_active_pixels": 2574.99,
+          "raster_area_error": 0.004268,
+          "presented_bbox": [
+            279,
+            312,
+            319,
+            439
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_thigh": {
+          "canonical_active_pixels": 5319,
+          "presented_active_pixels": 4317,
+          "expected_presented_active_pixels": 4308.39,
+          "raster_area_error": 0.001998,
+          "presented_bbox": [
+            197,
+            199,
+            255,
+            319
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "right_shin_foot": {
+          "canonical_active_pixels": 4504,
+          "presented_active_pixels": 3653,
+          "expected_presented_active_pixels": 3648.24,
+          "raster_area_error": 0.001305,
+          "presented_bbox": [
+            201,
+            309,
+            256,
+            442
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        },
+        "sword": {
+          "canonical_active_pixels": 3219,
+          "presented_active_pixels": 2614,
+          "expected_presented_active_pixels": 2607.39,
+          "raster_area_error": 0.002535,
+          "presented_bbox": [
+            120,
+            229,
+            203,
+            406
+          ],
+          "presented_border_pixels": 0,
+          "hard_gates": {
+            "uniform_transform_area": true,
+            "no_presented_border_clipping": true
+          }
+        }
+      },
+      "status": "PRESENTATION_TRANSFORM_PASSED"
+    }
+  },
+  "status": "LAYER_INTEGRITY_PASSED"
+}
