@@ -30,7 +30,7 @@ class AnimationRuntimeV090Tests(unittest.TestCase):
         spec = json.loads(self.idle_spec_path.read_text(encoding="utf-8"))
         bad_count = copy.deepcopy(spec); bad_count["frame_count"] = 1
         bad_timing = copy.deepcopy(spec); bad_timing["per_frame_duration_ms"] = 125
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
             p = Path(directory) / "bad.json"
             p.write_text(json.dumps(bad_count), encoding="utf-8")
             with self.assertRaises((SchemaValidationError, AnimationContractError)): load_spec(p, ROOT)
@@ -39,7 +39,7 @@ class AnimationRuntimeV090Tests(unittest.TestCase):
 
     def test_timing_representations_are_exclusive_and_normalized(self):
         fixture = json.loads((ROOT / "tests/fixtures/dummy-two-key-v1.json").read_text(encoding="utf-8"))
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
             p = Path(directory) / "timing.json"
             fps_only = copy.deepcopy(fixture); fps_only.pop("per_frame_duration_ms"); fps_only["fps"] = 8
             p.write_text(json.dumps(fps_only), encoding="utf-8"); loaded = load_spec(p, ROOT); self.assertEqual({"fps": 8.0, "per_frame_duration_ms": 125.0}, normalized_timing(loaded))
@@ -51,7 +51,7 @@ class AnimationRuntimeV090Tests(unittest.TestCase):
 
     def test_generic_dummy_status_is_not_a_package_policy(self):
         fixture = ROOT / "tests/fixtures/dummy-two-key-v1.json"
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
             output = Path(directory) / "dummy"
             manifest = compile_spec(fixture, output, ROOT)
             qa_path = qa_compiled(manifest, ROOT)
@@ -61,7 +61,7 @@ class AnimationRuntimeV090Tests(unittest.TestCase):
     def test_generic_dummy_failed_decision_gate_and_failures_are_fail_closed(self):
         fixture = ROOT / "tests/fixtures/dummy-two-key-v1.json"
         for mutation in ("decision", "hard_gate", "failure"):
-            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as directory:
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory(dir=ROOT) as directory:
                 output = Path(directory) / "dummy"; manifest = compile_spec(fixture, output, ROOT); qa_path = qa_compiled(manifest, ROOT); qa = json.loads(qa_path.read_text(encoding="utf-8"))
                 if mutation == "decision": qa["decision"] = "FAILED"
                 elif mutation == "hard_gate": qa["hard_gates"]["fixture_integrity"] = False
@@ -125,7 +125,7 @@ class AnimationRuntimeV090Tests(unittest.TestCase):
         self.assertNotEqual("IDLE_TEMPORAL_LOOP_PASSED", idle.temporal_gate_summary(spec, over, outputs, [{"z_order": list(idle.Z_ORDER), "feet": {"hard_gates": {"left": True, "right": True}}} for _ in range(12)])["status"])
 
     def test_package_absent_on_gate_failure(self):
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
             manifest = Path(directory) / "compiled-manifest.json"; manifest.write_text(self.idle_manifest_path.read_text(encoding="utf-8"), encoding="utf-8")
             with self.assertRaises(AnimationContractError): package_compiled(manifest, ROOT)
 
