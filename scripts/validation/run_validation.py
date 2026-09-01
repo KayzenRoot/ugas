@@ -100,6 +100,13 @@ def _run(command: list[str], cwd: Path, *, env: dict[str, str] | None = None, ti
     return subprocess.run(command, cwd=cwd, env=env, capture_output=True, text=True, check=False, timeout=timeout)
 
 
+def _result_detail(result: subprocess.CompletedProcess[str]) -> str:
+    """Keep nested validation failures visible instead of only a truncated tail."""
+    text = (result.stdout + result.stderr).strip()
+    failures = [line for line in text.splitlines() if line.startswith("FAIL ") or line.startswith("SUMMARY ")]
+    return "\n".join(failures[-20:]) if failures else text[-800:]
+
+
 def snapshot_check() -> None:
     if os.environ.get("UGAS_SKIP_TRACKED_SNAPSHOT") == "1":
         check("snapshot:tracked", True, "nested snapshot check skipped")
@@ -124,11 +131,11 @@ def snapshot_check() -> None:
             ("snapshot:models", [sys.executable, "-m", "ugas.cli", "models", "list"]),
         ):
             result = _run(command, snapshot, env=env)
-            check(name, result.returncode == 0, (result.stdout + result.stderr).strip()[-800:])
+            check(name, result.returncode == 0, _result_detail(result))
         no_git = Path(directory) / "no-git"; shutil.copytree(snapshot, no_git, ignore=shutil.ignore_patterns(".venv", "__pycache__", "*.pyc"))
         no_git_env = env.copy(); no_git_env.pop("UGAS_SKIP_TRACKED_SNAPSHOT", None); no_git_env["UGAS_REVIEW_SNAPSHOT"] = "1"; no_git_env["PYTHONPATH"] = str(no_git / "src")
         result = _run([sys.executable, "scripts/validation/run_validation.py"], no_git, env=no_git_env)
-        check("snapshot:no-git", result.returncode == 0 and "SKIP_EXTERNAL_GIT_CONTEXT" in result.stdout, (result.stdout + result.stderr).strip()[-800:])
+        check("snapshot:no-git", result.returncode == 0 and "SKIP_EXTERNAL_GIT_CONTEXT" in result.stdout, _result_detail(result))
 
 
 def _historical_coverage_checks() -> None:
