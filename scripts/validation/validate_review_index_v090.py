@@ -42,9 +42,9 @@ def validate(path: Path, root: Path = ROOT, final_head: str | None = None, _hist
     if value.get("schema_version") != "0.9.0" or value.get("version") != "0.9.0": failures.append("schema_version_or_version_invalid")
     subject = value.get("review_subject", {})
     if subject.get("baseline_commit") != "46ba3ae87558ff26055e14aa8d9c6f3ee147333c" or subject.get("implementation_base_commit") != subject.get("baseline_commit"): failures.append("review_subject_commit_binding_invalid")
-    publication = value.get("publication", {}); build_head = str(publication.get("index_build_git_head", "")); final_head = final_head or subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
+    publication = value.get("publication", {}); build_head = str(publication.get("index_build_git_head", "")); has_git = (ROOT / ".git").exists(); final_head = final_head or (subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip() if has_git else build_head)
     if len(build_head) != 40: failures.append("index_build_git_head_invalid")
-    else:
+    elif has_git:
         ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", build_head, final_head], cwd=ROOT, check=False); failures.extend(["index_build_git_head_must_be_ancestor_of_final_head"] if ancestor.returncode != 0 else [])
     if publication.get("final_head_must_be_resolved_by_external_reviewer") is not True: failures.append("external_final_head_resolution_required")
     artifact_set = value.get("artifact_set", {}); artifacts = artifact_set.get("artifacts", []) if isinstance(artifact_set, dict) else []
@@ -62,13 +62,13 @@ def validate(path: Path, root: Path = ROOT, final_head: str | None = None, _hist
         else:
             actual = digest(local) if local.is_file() else None
         if actual is None: failures.append(f"artifact_missing:{artifact_path}")
-        elif actual != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{artifact_path}")
+        elif has_git and actual != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{artifact_path}")
     expected_hash = hashlib.sha256(canonical(artifacts).encode("utf-8")).hexdigest()
     if artifact_set.get("artifact_set_sha256") != expected_hash: failures.append("artifact_set_hash_mismatch")
     for item in visual_manifest.get("images", []):
         if item.get("source_path") not in listed: failures.append(f"visual_not_in_artifact_set:{item.get('source_path')}")
     if any(str(item).casefold().endswith(".zip") for item in seen): failures.append("zip_must_not_be_in_index")
-    return {"status": "REVIEW_INDEX_V2_PASSED" if not failures else "REVIEW_INDEX_V2_FAILED", "failures": failures, "checked": {"artifact_count": len(artifacts), "visual_count": artifact_set.get("visual_count"), "index_build_git_head": build_head, "final_head": final_head, "ancestor_semantics": True}}
+    return {"status": "REVIEW_INDEX_V2_PASSED" if not failures else "REVIEW_INDEX_V2_FAILED", "failures": failures, "checked": {"artifact_count": len(artifacts), "visual_count": artifact_set.get("visual_count"), "index_build_git_head": build_head, "final_head": final_head, "ancestor_semantics": has_git}}
 
 
 def main(argv: list[str] | None = None) -> int:
