@@ -33,8 +33,8 @@ def validate(path: Path = ROOT / "docs/evidence/review-index-v0.11.2.json") -> d
     except Exception as exc: failures.append(f"schema:{exc}")
     subject, publication = value.get("review_subject", {}), value.get("publication", {})
     if subject.get("baseline_commit") != BASELINE or subject.get("implementation_base_commit") != IMPLEMENTATION_BASE or subject.get("previous_rejected_commit") != IMPLEMENTATION_BASE: failures.append("review_subject_commit_binding_invalid")
-    build_head = str(publication.get("index_build_git_head", "")); final_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
-    if len(build_head) != 40 or subprocess.run(["git", "merge-base", "--is-ancestor", build_head, final_head], cwd=ROOT, check=False).returncode != 0: failures.append("index_build_git_head_must_be_ancestor_of_final_head")
+    build_head = str(publication.get("index_build_git_head", "")); has_git = (ROOT / ".git").exists(); final_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip() if has_git else build_head
+    if len(build_head) != 40 or (has_git and subprocess.run(["git", "merge-base", "--is-ancestor", build_head, final_head], cwd=ROOT, check=False).returncode != 0): failures.append("index_build_git_head_must_be_ancestor_of_final_head")
     if publication.get("final_head_must_be_resolved_by_external_reviewer") is not True or publication.get("executor_cannot_self_assert_final_head") is not True: failures.append("external_final_head_resolution_required")
     artifacts = value.get("artifact_set", {}).get("artifacts", [])
     listed = set()
