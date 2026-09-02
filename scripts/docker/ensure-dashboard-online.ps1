@@ -1,8 +1,11 @@
 [CmdletBinding()]
-param([int]$EngineTimeoutSeconds = 90)
+param(
+    [int]$EngineTimeoutSeconds = 90,
+    [string]$RepositoryPath = ""
+)
 
 $ErrorActionPreference = "Stop"
-$root = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
+$root = if ($RepositoryPath) { (Resolve-Path -LiteralPath $RepositoryPath).Path } else { (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path }
 $docker = Get-Command docker -ErrorAction SilentlyContinue
 if (-not $docker) { '{"status":"DOCKER_ENGINE_GAP","reason":"docker executable not found"}'; exit 2 }
 

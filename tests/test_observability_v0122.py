@@ -63,7 +63,8 @@ class QaCacheBindingTests(unittest.TestCase):
         self.assertIn("reason", value)
         if not value["worktree_clean"]:
             self.assertNotEqual("PASS", value["status"])
-            self.assertEqual("WORKTREE_DIRTY_UNBOUND", value["reason"])
+            expected_reason = "WORKTREE_DIRTY_UNBOUND" if value.get("git_status_available") else "GIT_STATUS_UNAVAILABLE"
+            self.assertEqual(expected_reason, value["reason"])
 
     def test_source_change_invalidates_previous_pass_without_touching_state_or_index(self) -> None:
         cache = ActiveEvidenceCache(ROOT)

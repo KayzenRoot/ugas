@@ -1,0 +1,135 @@
+{
+    "schema_version":  "0.12.3",
+    "installer":  "scripts/docker/install-dashboard-autostart.ps1",
+    "task_name":  "UGAS-Dashboard-AlwaysOn",
+    "fallback_name":  "UGAS-Dashboard-AlwaysOn.cmd",
+    "fallback_path_is_user_startup":  true,
+    "first_install":  {
+                          "exit_code":  0,
+                          "output":  "{\"status\":\"AUTOSTART_INSTALLED_FALLBACK\",\"method\":\"SIGNED_IN_USER_STARTUP\",\"task\":\"UGAS-Dashboard-AlwaysOn\",\"fallback\":\"UGAS-Dashboard-AlwaysOn.cmd\",\"command\":\"D:\\\\Projeto Codexx\\\\ugas\\\\scripts\\\\docker\\\\ensure-dashboard-online.ps1\",\"repository_path\":\"D:\\\\Projeto Codexx\\\\ugas\",\"task_scheduler_error\":\"Acesso negado.\\r\\n\",\"uninstall_target\":\"UGAS-Dashboard-AlwaysOn.cmd\",\"scope\":\"UGAS Startup entry only\"}",
+                          "parsed":  {
+                                         "status":  "AUTOSTART_INSTALLED_FALLBACK",
+                                         "method":  "SIGNED_IN_USER_STARTUP",
+                                         "task":  "UGAS-Dashboard-AlwaysOn",
+                                         "fallback":  "UGAS-Dashboard-AlwaysOn.cmd",
+                                         "command":  "D:\\Projeto Codexx\\ugas\\scripts\\docker\\ensure-dashboard-online.ps1",
+                                         "repository_path":  "D:\\Projeto Codexx\\ugas",
+                                         "task_scheduler_error":  "Acesso negado.\r\n",
+                                         "uninstall_target":  "UGAS-Dashboard-AlwaysOn.cmd",
+                                         "scope":  "UGAS Startup entry only"
+                                     }
+                      },
+    "second_install":  {
+                           "exit_code":  0,
+                           "output":  "{\"status\":\"AUTOSTART_INSTALLED_FALLBACK\",\"method\":\"SIGNED_IN_USER_STARTUP\",\"task\":\"UGAS-Dashboard-AlwaysOn\",\"fallback\":\"UGAS-Dashboard-AlwaysOn.cmd\",\"command\":\"D:\\\\Projeto Codexx\\\\ugas\\\\scripts\\\\docker\\\\ensure-dashboard-online.ps1\",\"repository_path\":\"D:\\\\Projeto Codexx\\\\ugas\",\"task_scheduler_error\":\"Acesso negado.\\r\\n\",\"uninstall_target\":\"UGAS-Dashboard-AlwaysOn.cmd\",\"scope\":\"UGAS Startup entry only\"}",
+                           "parsed":  {
+                                          "status":  "AUTOSTART_INSTALLED_FALLBACK",
+                                          "method":  "SIGNED_IN_USER_STARTUP",
+                                          "task":  "UGAS-Dashboard-AlwaysOn",
+                                          "fallback":  "UGAS-Dashboard-AlwaysOn.cmd",
+                                          "command":  "D:\\Projeto Codexx\\ugas\\scripts\\docker\\ensure-dashboard-online.ps1",
+                                          "repository_path":  "D:\\Projeto Codexx\\ugas",
+                                          "task_scheduler_error":  "Acesso negado.\r\n",
+                                          "uninstall_target":  "UGAS-Dashboard-AlwaysOn.cmd",
+                                          "scope":  "UGAS Startup entry only"
+                                      }
+                       },
+    "idempotent":  true,
+    "entries_after_two_installs":  [
+                                       "SIGNED_IN_USER_STARTUP"
+                                   ],
+    "uninstall":  {
+                      "exit_code":  0,
+                      "output":  "{\"status\":\"AUTOSTART_UNINSTALLED\",\"task\":\"UGAS-Dashboard-AlwaysOn\",\"task_removed\":false,\"fallback\":\"UGAS-Dashboard-AlwaysOn.cmd\",\"fallback_removed\":true,\"repository_path\":\"D:\\\\Projeto Codexx\\\\ugas\",\"scope\":\"only UGAS-created task and exact UGAS Startup entry; Docker Desktop and unrelated tasks untouched\"}",
+                      "parsed":  {
+                                     "status":  "AUTOSTART_UNINSTALLED",
+                                     "task":  "UGAS-Dashboard-AlwaysOn",
+                                     "task_removed":  false,
+                                     "fallback":  "UGAS-Dashboard-AlwaysOn.cmd",
+                                     "fallback_removed":  true,
+                                     "repository_path":  "D:\\Projeto Codexx\\ugas",
+                                     "scope":  "only UGAS-created task and exact UGAS Startup entry; Docker Desktop and unrelated tasks untouched"
+                                 }
+                  },
+    "uninstall_removed_only_ugas_entry":  true,
+    "reinstall":  {
+                      "exit_code":  0,
+                      "output":  "{\"status\":\"AUTOSTART_INSTALLED_FALLBACK\",\"method\":\"SIGNED_IN_USER_STARTUP\",\"task\":\"UGAS-Dashboard-AlwaysOn\",\"fallback\":\"UGAS-Dashboard-AlwaysOn.cmd\",\"command\":\"D:\\\\Projeto Codexx\\\\ugas\\\\scripts\\\\docker\\\\ensure-dashboard-online.ps1\",\"repository_path\":\"D:\\\\Projeto Codexx\\\\ugas\",\"task_scheduler_error\":\"Acesso negado.\\r\\n\",\"uninstall_target\":\"UGAS-Dashboard-AlwaysOn.cmd\",\"scope\":\"UGAS Startup entry only\"}",
+                      "parsed":  {
+                                     "status":  "AUTOSTART_INSTALLED_FALLBACK",
+                                     "method":  "SIGNED_IN_USER_STARTUP",
+                                     "task":  "UGAS-Dashboard-AlwaysOn",
+                                     "fallback":  "UGAS-Dashboard-AlwaysOn.cmd",
+                                     "command":  "D:\\Projeto Codexx\\ugas\\scripts\\docker\\ensure-dashboard-online.ps1",
+                                     "repository_path":  "D:\\Projeto Codexx\\ugas",
+                                     "task_scheduler_error":  "Acesso negado.\r\n",
+                                     "uninstall_target":  "UGAS-Dashboard-AlwaysOn.cmd",
+                                     "scope":  "UGAS Startup entry only"
+                                 }
+                  },
+    "final_entries":  [
+                          "SIGNED_IN_USER_STARTUP"
+                      ],
+    "final_one_logical_entry":  true,
+    "current_online_state":  {
+                                 "container_id":  "8b6f77295b094430edcaa313d6d7e5f16c7cfee5200ecdf8891cb3de0cec2e7f",
+                                 "container_status":  "running",
+                                 "container_health":  "healthy",
+                                 "url":  "http://127.0.0.1:8765/",
+                                 "api_status":  {
+                                                    "timestamp":  "2026-09-02T19:42:24Z",
+                                                    "status":  "OK",
+                                                    "version":  "0.12.3",
+                                                    "branch":  "codex/v0.12.3-github-native-review",
+                                                    "head":  "a6efb3ed02417c04687ea4ec9a6e4bb0508c765c",
+                                                    "phase":  "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE",
+                                                    "current_gate":  "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED",
+                                                    "production_routing":  "BLOCKED",
+                                                    "production_approved":  false,
+                                                    "external_visual_review":  {
+                                                                                   "status":  "REQUIRED",
+                                                                                   "attack_front_v2":  "APPROVED_PILOT",
+                                                                                   "observability_dashboard":  "REQUIRED"
+                                                                               },
+                                                    "uptime_seconds":  158.69,
+                                                    "active_job":  null,
+                                                    "provider_health":  {
+                                                                            "endpoint":  "http://host.docker.internal:8188",
+                                                                            "checked_at":  "2026-09-02T19:42:19Z",
+                                                                            "status":  "DOWN",
+                                                                            "health":  "UNAVAILABLE",
+                                                                            "reason":  "URLError: local endpoint unavailable",
+                                                                            "degraded":  true
+                                                                        },
+                                                    "state_status":  "OK",
+                                                    "state_error":  null,
+                                                    "service":  {
+                                                                    "session_id":  "sess-1d8af4aae8464e60bdfef09b0882e5ee",
+                                                                    "pid":  7,
+                                                                    "started_at":  "2026-09-02T19:39:45Z"
+                                                                }
+                                                },
+                                 "api_health":  {
+                                                    "timestamp":  "2026-09-02T19:42:24Z",
+                                                    "status":  "DEGRADED",
+                                                    "alerts":  [
+                                                                   {
+                                                                       "severity":  "warning",
+                                                                       "code":  "STALE_LAST_KNOWN",
+                                                                       "message":  "a provider/resource sample is degraded; stale-last-known data is shown"
+                                                                   },
+                                                                   {
+                                                                       "severity":  "warning",
+                                                                       "code":  "COMFYUI_DOWN",
+                                                                       "message":  "URLError: local endpoint unavailable"
+                                                                   },
+                                                                   {
+                                                                       "severity":  "error",
+                                                                       "code":  "QA_GAP",
+                                                                       "message":  "canonical QA evidence did not pass fail-closed validation"
+                                                                   }
+                                                               ]
+                                                }
+                             },
+    "uninstall_scope":  "only UGAS-Dashboard-AlwaysOn task and UGAS-Dashboard-AlwaysOn.cmd; Docker Desktop startup and unrelated tasks untouched"
+}

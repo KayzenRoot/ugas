@@ -1,24 +1,26 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.12.2 Docker always-on local observability state",
+  "title": "UGAS active v0.12.3 GitHub-native review infrastructure state",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "state_consistency", "evidence"],
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "evidence", "state_consistency"],
   "properties": {
-    "schema_version": {"const": "0.12.2"},
-    "version": {"const": "0.12.2"},
-    "phase": {"const": "LOCAL_REALTIME_OBSERVABILITY"},
-    "previous_release": {"type": "object", "required": ["version", "review"], "properties": {"version": {"const": "0.12.1"}, "review": {"type": "string"}}},
-    "current_gate": {"const": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED"},
+    "schema_version": {"const": "0.12.3"},
+    "version": {"const": "0.12.3"},
+    "phase": {"const": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE"},
+    "previous_release": {"type": "object", "additionalProperties": false, "required": ["version", "review", "evidence"], "properties": {"version": {"const": "0.12.2"}, "review": {"const": "REVIEW-v0.12.2.md"}, "evidence": {"const": "docs/evidence/review-index-v0.12.2.json"}}},
+    "current_gate": {"const": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED"},
     "stop_reason": {"type": ["string", "null"]},
-    "allowed_next_actions": {"const": ["external_review_observability_dashboard_v0122"]},
+    "allowed_next_actions": {"const": ["external_review_github_native_v0123_and_dashboard_v0122"]},
     "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
     "external_visual_review": {"type": "object", "required": ["attack_front_v2", "observability_dashboard"], "properties": {"attack_front_v2": {"const": "APPROVED_PILOT"}, "observability_dashboard": {"const": "REQUIRED"}}},
     "always_on_dashboard_policy": {"const": "ENABLED"},
     "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
-    "evidence": {"type": "object", "required": ["external_review", "review_index", "startup", "state_consistency", "qa_cache", "qa_negative_controls", "stale_last_known", "generation_telemetry", "docker_security"]},
-    "state_consistency": {"type": "object", "required": ["status", "production_routing", "production_approved", "dashboard_read_only", "local_only", "telemetry_upload", "new_generation", "historical_v0120_preserved", "historical_v0121_preserved", "runtime_mode", "always_on_dashboard_policy"], "properties": {"status": {"const": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED"}, "production_routing": {"const": "BLOCKED"}, "production_approved": {"const": false}, "dashboard_read_only": {"const": true}, "local_only": {"const": true}, "telemetry_upload": {"const": false}, "new_generation": {"const": 0}, "historical_v0120_preserved": {"const": true}, "historical_v0121_preserved": {"const": true}, "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"}, "always_on_dashboard_policy": {"const": "ENABLED"}}}
+    "new_generation": {"const": 0},
+    "review": {"type": "object", "additionalProperties": false, "required": ["repository", "baseline_head", "feature_branch", "execution_mode", "merge_policy"], "properties": {"repository": {"const": "csn1985-ship-it/ugas"}, "baseline_head": {"const": "6b956b9299f3a2f75280f17706c38c59e3714034"}, "feature_branch": {"const": "codex/v0.12.3-github-native-review"}, "execution_mode": {"const": "GITHUB_PR_FIRST"}, "merge_policy": {"const": "NO_SELF_MERGE"}}},
+    "evidence": {"type": "object", "additionalProperties": false, "required": ["github_preflight", "review_manifest", "visual_manifest", "visual_transport_directory", "autostart", "governance_consistency", "v1_capability_matrix", "tests", "validation", "historical_review_index", "dashboard_visuals"], "properties": {"github_preflight": {"const": "docs/evidence/github-review-v0123/github-preflight.json"}, "review_manifest": {"const": "docs/evidence/github-review-v0123/github-review-manifest-local.json"}, "visual_manifest": {"const": "docs/evidence/github-review-v0123/visual-manifest.json"}, "visual_transport_directory": {"const": "docs/evidence/github-review-v0123/visuals"}, "autostart": {"const": "docs/evidence/github-review-v0123/autostart-v0123.json"}, "governance_consistency": {"const": "docs/evidence/github-review-v0123/governance-consistency-v0123.json"}, "v1_capability_matrix": {"const": "docs/evidence/github-review-v0123/v1-capability-matrix-validation.json"}, "tests": {"const": "docs/evidence/github-review-v0123/test-results-v0123.json"}, "validation": {"const": "docs/evidence/github-review-v0123/validation-results-v0123.json"}, "historical_review_index": {"const": "docs/evidence/review-index-v0.12.2.json"}, "dashboard_visuals": {"type": "array", "minItems": 2, "items": {"type": "string"}}}},
+    "state_consistency": {"type": "object", "additionalProperties": false, "required": ["status", "version", "phase", "current_gate", "feature_branch", "baseline_head", "production_routing", "production_approved", "dashboard_read_only", "local_only", "telemetry_upload", "new_generation", "historical_v0122_preserved", "historical_v0121_preserved", "attack_front_v2_external_visual", "observability_dashboard_external_visual", "runtime_mode", "always_on_dashboard_policy", "allowed_next_actions"], "properties": {"status": {"const": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED"}, "version": {"const": "0.12.3"}, "phase": {"const": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE"}, "current_gate": {"const": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED"}, "feature_branch": {"const": "codex/v0.12.3-github-native-review"}, "baseline_head": {"const": "6b956b9299f3a2f75280f17706c38c59e3714034"}, "production_routing": {"const": "BLOCKED"}, "production_approved": {"const": false}, "dashboard_read_only": {"const": true}, "local_only": {"const": true}, "telemetry_upload": {"const": false}, "new_generation": {"const": 0}, "historical_v0122_preserved": {"const": true}, "historical_v0121_preserved": {"const": true}, "attack_front_v2_external_visual": {"const": "APPROVED_PILOT"}, "observability_dashboard_external_visual": {"const": "REQUIRED"}, "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"}, "always_on_dashboard_policy": {"const": "ENABLED"}, "allowed_next_actions": {"const": ["external_review_github_native_v0123_and_dashboard_v0122"]}}}
   }
 }

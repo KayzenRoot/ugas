@@ -1,4 +1,12 @@
-# UGAS checkpoint - v0.12.2
+# UGAS checkpoint - v0.12.3
+
+## v0.12.3 GitHub-native review infrastructure
+
+The active phase is `GITHUB_NATIVE_REVIEW_INFRASTRUCTURE` and the active increment is `GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED`. GitHub is now the canonical review surface for PR diffs, stable Actions checks, machine manifests and bounded visual evidence. The local dashboard remains `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` in `DOCKER_ALWAYS_ON_LOCAL` mode at `http://127.0.0.1:8765/`. `production_approved=false`, `production_routing=BLOCKED` and `new_generation=0` remain authoritative. The only allowed next action is `external_review_github_native_v0123_and_dashboard_v0122`; after external approval, `RUN_FRONT_V1` is the next functional candidate.
+
+The feature branch is `codex/v0.12.3-github-native-review` from baseline `6b956b9299f3a2f75280f17706c38c59e3714034`. The executor must stop with the PR open, checks green or with explicit infrastructure permission gaps, dashboard online and no merge to `main`. No new asset family, animation, provider, ComfyUI migration or production route is authorized.
+
+## Historical v0.12.2 QA cache integrity + Docker always-on local observability
 
 ## v0.12.2 QA cache integrity + Docker always-on local observability
 
@@ -10,7 +18,7 @@ The active increment is `LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUA
 **RUNTIME_MODE:** `DOCKER_ALWAYS_ON_LOCAL`
 **ALWAYS_ON_DASHBOARD_POLICY:** `ENABLED`
 
-## v0.12.1 rejected history
+## Historical v0.12.1 rejected history
 
 The v0.12.1 dashboard implementation and its evidence remain preserved as rejected history in `REVIEW-v0.12.1.md`, `docs/evidence/observability-v0121/`, `docs/evidence/current-state-v0.12.1.json` and `docs/evidence/review-index-v0.12.1.json`. The v0.12.2 correction does not rewrite those records.
 
@@ -22,7 +30,7 @@ The active increment is `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_
 **VERSION:** `0.12.1`
 **PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
 
-## v0.12.0 rejected history
+## Historical v0.12.0 rejected history
 
 The v0.12.0 dashboard implementation and its evidence remain preserved as rejected history. Its active state is retained in `docs/evidence/current-state-v0.12.0.json` with schema `schemas/current-state-v0.12.0.json`; the historical external binding `docs/evidence/observability-v0120/external-review-v0112.json` is not rewritten.
 

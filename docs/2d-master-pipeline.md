@@ -1,8 +1,8 @@
-# 2D master pipeline v0.12.1
+# 2D master pipeline v0.12.3
 
-The active release is the v0.12.2 QA-cache correction and Docker always-on observer over the rejected v0.12.1/v0.12.0 dashboards and immutable v0.11.2 technical result. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
+The active release is v0.12.3 GitHub-native review infrastructure over the historical v0.12.2 Docker always-on observer and rejected v0.12.1/v0.12.0 dashboards. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
 
-This release does not run diffusion or SAM2. It corrects the local SQLite/SSE observability boundary with HEAD/worktree-bound QA cache invalidation, exact negative controls, DOM-safe rendering, real stage aggregation, stale-last-known probes, process visibility and stable file events. The observer runs in Docker with a read-only repository mount, writable dedicated runtime, loopback-only publication, restart policy and optional GPU override. The 12 source-only v0.11.2 frames, 12 fps timing, markers, pixels and package remain byte-identical to v0.11.0. The external v0.11.2 result is recorded as `APPROVED_PILOT`; v0.12.2 dashboard review remains required before the next capability.
+This release does not run diffusion, SAM2, a new animation or a new asset family. It makes PR diffs, stable CI checks, machine manifests and bounded visual evidence reviewable directly through GitHub, closes the non-admin autostart fallback gap and freezes the V1 order. The local observer remains Dockerized, read-only, loopback-only and always-on. The external v0.11.2 result is recorded as `APPROVED_PILOT`; external review of the GitHub-native v0.12.3 channel and v0.12.2 dashboard remains required before the next capability.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 

@@ -1,0 +1,564 @@
+{
+  "schema_version": "1.0",
+  "manifest_type": "github-native-review",
+  "repository": {
+    "name": "csn1985-ship-it/ugas",
+    "url": "https://github.com/csn1985-ship-it/ugas",
+    "default_branch": "main"
+  },
+  "pull_request": {
+    "number": 0,
+    "base_sha": "6b956b9299f3a2f75280f17706c38c59e3714034",
+    "head_sha": "2451918d4f1f1a0ebe88336c85514c62b8ea3fea",
+    "merge_base_sha": "6b956b9299f3a2f75280f17706c38c59e3714034",
+    "head_branch": "codex/v0.12.3-github-native-review",
+    "base_branch": "main"
+  },
+  "scope": {
+    "version": "0.12.3",
+    "phase": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE",
+    "current_gate": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED",
+    "allowed_next_actions": [
+      "external_review_github_native_v0123_and_dashboard_v0122"
+    ],
+    "new_generation": 0
+  },
+  "changed_files": [
+    {
+      "path": ".github/pull_request_template.md",
+      "status": "A",
+      "additions": 57,
+      "deletions": 0
+    },
+    {
+      "path": ".github/workflows/ugas-ci.yml",
+      "status": "A",
+      "additions": 88,
+      "deletions": 0
+    },
+    {
+      "path": ".github/workflows/ugas-review.yml",
+      "status": "A",
+      "additions": 296,
+      "deletions": 0
+    },
+    {
+      "path": "CHECKPOINT.md",
+      "status": "M",
+      "additions": 11,
+      "deletions": 3
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "status": "A",
+      "additions": 9,
+      "deletions": 0
+    },
+    {
+      "path": "INSTALL.md",
+      "status": "M",
+      "additions": 8,
+      "deletions": 4
+    },
+    {
+      "path": "README.md",
+      "status": "M",
+      "additions": 12,
+      "deletions": 6
+    },
+    {
+      "path": "REVIEW-v0.12.3.md",
+      "status": "A",
+      "additions": 38,
+      "deletions": 0
+    },
+    {
+      "path": "compose.yaml",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "docs/2d-master-pipeline.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "docs/comfyui.md",
+      "status": "M",
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "docs/docker-local-dashboard.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "docs/evidence/current-state.json",
+      "status": "M",
+      "additions": 10,
+      "deletions": 8
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/autostart-v0123.json",
+      "status": "A",
+      "additions": 135,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/gate-results-v0123.json",
+      "status": "A",
+      "additions": 48,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/github-preflight.json",
+      "status": "A",
+      "additions": 65,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/github-review-manifest-local.json",
+      "status": "A",
+      "additions": 564,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/governance-consistency-v0123.json",
+      "status": "A",
+      "additions": 13,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/manifest-validation-results-v0123.json",
+      "status": "A",
+      "additions": 9,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/security-results-v0123.json",
+      "status": "A",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/test-results-v0123.json",
+      "status": "A",
+      "additions": 11,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/v1-capability-matrix-validation.json",
+      "status": "A",
+      "additions": 26,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/validation-results-v0123.json",
+      "status": "A",
+      "additions": 11,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/visual-manifest.json",
+      "status": "A",
+      "additions": 40,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png",
+      "status": "A",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png",
+      "status": "A",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/state-consistency-v0123.json",
+      "status": "A",
+      "additions": 20,
+      "deletions": 0
+    },
+    {
+      "path": "docs/github-review-protocol.md",
+      "status": "A",
+      "additions": 38,
+      "deletions": 0
+    },
+    {
+      "path": "docs/release-policy.md",
+      "status": "A",
+      "additions": 15,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmap.md",
+      "status": "M",
+      "additions": 9,
+      "deletions": 5
+    },
+    {
+      "path": "docs/ugas-v1-capability-matrix.json",
+      "status": "A",
+      "additions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "docs/ugas-v1-capability-matrix.md",
+      "status": "A",
+      "additions": 26,
+      "deletions": 0
+    },
+    {
+      "path": "package.json",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "pyproject.toml",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "schemas/current-state-v0.12.3.json",
+      "status": "A",
+      "additions": 26,
+      "deletions": 0
+    },
+    {
+      "path": "schemas/current-state.json",
+      "status": "M",
+      "additions": 12,
+      "deletions": 10
+    },
+    {
+      "path": "schemas/github-review-manifest-v1.json",
+      "status": "A",
+      "additions": 201,
+      "deletions": 0
+    },
+    {
+      "path": "schemas/review-visual-transport-v1.json",
+      "status": "A",
+      "additions": 44,
+      "deletions": 0
+    },
+    {
+      "path": "schemas/ugas-v1-capability-matrix-v1.json",
+      "status": "A",
+      "additions": 29,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/docker/ensure-dashboard-online.ps1",
+      "status": "M",
+      "additions": 5,
+      "deletions": 2
+    },
+    {
+      "path": "scripts/docker/install-dashboard-autostart.ps1",
+      "status": "M",
+      "additions": 28,
+      "deletions": 4
+    },
+    {
+      "path": "scripts/docker/ugas-dashboard-up.ps1",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "scripts/docker/uninstall-dashboard-autostart.ps1",
+      "status": "M",
+      "additions": 14,
+      "deletions": 7
+    },
+    {
+      "path": "scripts/docker/validate-dashboard-autostart-v0123.ps1",
+      "status": "A",
+      "additions": 68,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/build_github_review_manifest.py",
+      "status": "A",
+      "additions": 226,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/build_review_visual_transport_v0123.py",
+      "status": "A",
+      "additions": 110,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/collect_github_preflight.py",
+      "status": "A",
+      "additions": 149,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/enforce_github_review_v0123.py",
+      "status": "A",
+      "additions": 40,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/record_v0123_results.py",
+      "status": "A",
+      "additions": 110,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/run_validation.py",
+      "status": "M",
+      "additions": 82,
+      "deletions": 43
+    },
+    {
+      "path": "scripts/validation/validate_github_review_manifest.py",
+      "status": "A",
+      "additions": 200,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_github_review_security_v0123.py",
+      "status": "A",
+      "additions": 60,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_governance_v0123.py",
+      "status": "A",
+      "additions": 48,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_review_visual_transport_v0123.py",
+      "status": "A",
+      "additions": 34,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_state_consistency.py",
+      "status": "M",
+      "additions": 6,
+      "deletions": 6
+    },
+    {
+      "path": "scripts/validation/validate_v1_capability_matrix.py",
+      "status": "A",
+      "additions": 42,
+      "deletions": 0
+    },
+    {
+      "path": "src/ugas/__init__.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/cli.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/constants.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/observability/dashboard_app.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/observability/qa_integrity.py",
+      "status": "M",
+      "additions": 8,
+      "deletions": 4
+    },
+    {
+      "path": "src/ugas/observability/service.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/state_consistency_v0123.py",
+      "status": "A",
+      "additions": 51,
+      "deletions": 0
+    },
+    {
+      "path": "tests/test_bootstrap.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "tests/test_github_review_integrity_v0123.py",
+      "status": "A",
+      "additions": 153,
+      "deletions": 0
+    },
+    {
+      "path": "tests/test_observability_v0120.py",
+      "status": "M",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "tests/test_observability_v0122.py",
+      "status": "M",
+      "additions": 2,
+      "deletions": 1
+    },
+    {
+      "path": "tests/test_reference_edit_fidelity_v043.py",
+      "status": "M",
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "tests/test_regressions_v040.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    }
+  ],
+  "change_statistics": {
+    "files": 69,
+    "additions": 3362,
+    "deletions": 127
+  },
+  "current_state": {
+    "path": "docs/evidence/current-state.json",
+    "version": "0.12.3",
+    "phase": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE",
+    "current_gate": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "external_visual_review": {
+      "attack_front_v2": "APPROVED_PILOT",
+      "observability_dashboard": "REQUIRED"
+    },
+    "allowed_next_actions": [
+      "external_review_github_native_v0123_and_dashboard_v0122"
+    ]
+  },
+  "tests": {
+    "schema_version": "0.12.3",
+    "command": "python -m unittest discover -s tests -q",
+    "log_path": "ugas-tests.log",
+    "exit_code": 0,
+    "parse_status": "parsed",
+    "count": 355,
+    "passed": 355,
+    "failed": 0,
+    "status": "passed"
+  },
+  "validation": {
+    "schema_version": "0.12.3",
+    "command": "python scripts/validation/run_validation.py",
+    "log_path": "ugas-validation.log",
+    "exit_code": 0,
+    "parse_status": "parsed",
+    "checks": 1670,
+    "passed": 1670,
+    "failed": 0,
+    "status": "passed"
+  },
+  "overall_status": "PASS",
+  "gates": [
+    {
+      "id": "unit_tests",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "passed"
+    },
+    {
+      "id": "official_validation",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "passed"
+    },
+    {
+      "id": "state_consistency",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "capability_matrix",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "visual_transport",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "manifest_validation",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "security",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    }
+  ],
+  "review_index": {
+    "historical_path": "docs/evidence/review-index-v0.12.2.json",
+    "historical_version": "0.12.2",
+    "status": "PRESERVED_BASELINE_REHEARSAL",
+    "active_manifest_path": "github-review-manifest.json"
+  },
+  "visual_manifest": "visual-manifest.json",
+  "known_gaps": [
+    "CODEOWNERS_GAP",
+    "GITHUB_RULESET_GAP",
+    "LOCAL_REHEARSAL_PR_NOT_AVAILABLE"
+  ],
+  "gap_context": {
+    "source": "local_rehearsal",
+    "pr_number": 0,
+    "pr_available": false,
+    "explicit_gap_input": true
+  },
+  "dashboard_policy": {
+    "always_on": true,
+    "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
+    "local_only": true,
+    "url": "http://127.0.0.1:8765/",
+    "must_remain_online_at_stop": true
+  },
+  "production_boundary": {
+    "approved": false,
+    "routing": "BLOCKED"
+  },
+  "security_boundary": {
+    "secrets_included": false,
+    "model_weights_included": false,
+    "telemetry_db_included": false,
+    "local_credentials_included": false
+  }
+}

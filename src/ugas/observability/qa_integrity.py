@@ -11,10 +11,12 @@ import subprocess
 from typing import Any, Mapping
 
 from ..schema_validation import validate_instance, validate_schema_document
-from ..state_consistency_v0122 import validate_state_consistency
+from ..state_consistency_v0123 import validate_state_consistency
 
-ACTIVE_VERSION = "0.12.2"
-ACTIVE_REVIEW = "REVIEW-v0.12.2.md"
+# The active state/review moved to v0.12.3.  The v0.12.2 index remains the
+# immutable baseline evidence used to bind the local observer.
+ACTIVE_VERSION = "0.12.3"
+ACTIVE_REVIEW = "REVIEW-v0.12.3.md"
 ACTIVE_INDEX = "review-index-v0.12.2.json"
 ACTIVE_EVIDENCE_DIR = "observability-v0122"
 
@@ -60,7 +62,8 @@ def _head(repo_root: Path) -> str:
 
 def validate_review_index(repo_root: Path, path: Path, *, schema_path: Path | None = None) -> dict[str, Any]:
     legacy = path.name == "review-index-v0.12.1.json"
-    version = "0.12.1" if legacy else ACTIVE_VERSION
+    baseline_v0122 = path.name == "review-index-v0.12.2.json"
+    version = "0.12.1" if legacy else ("0.12.2" if baseline_v0122 else ACTIVE_VERSION)
     evidence_dir = "observability-v0121" if legacy else ACTIVE_EVIDENCE_DIR
     default_schema = repo_root / "schemas" / ("review-index-v0.12.1.json" if legacy else "review-index-v0122.json")
     failures: list[str] = []
@@ -265,6 +268,7 @@ class ActiveEvidenceCache:
             "current_head": repository["current_head"],
             "validated_head": repository["current_head"],
             "worktree_clean": repository["worktree_clean"],
+            "git_status_available": repository["git_status_available"],
             "worktree_status": repository["worktree_status"],
             "index_build_head": repository["index_build_head"],
             "artifact_set_sha256": repository["artifact_set_sha256"],

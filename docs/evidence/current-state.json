@@ -1,17 +1,19 @@
 {
-  "schema_version": "0.12.2",
-  "version": "0.12.2",
-  "phase": "LOCAL_REALTIME_OBSERVABILITY",
-  "previous_release": {"version": "0.12.1", "review": "REVIEW-v0.12.1.md", "evidence": "docs/evidence/current-state-v0.12.1.json"},
-  "current_gate": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED",
+  "schema_version": "0.12.3",
+  "version": "0.12.3",
+  "phase": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE",
+  "previous_release": {"version": "0.12.2", "review": "REVIEW-v0.12.2.md", "evidence": "docs/evidence/review-index-v0.12.2.json"},
+  "current_gate": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED",
   "stop_reason": null,
-  "allowed_next_actions": ["external_review_observability_dashboard_v0122"],
+  "allowed_next_actions": ["external_review_github_native_v0123_and_dashboard_v0122"],
   "forbidden_actions": ["add_new_asset_family", "change_attack_front_v2_pixels_or_motion", "enable_production_routing", "make_dashboard_mutating", "bind_dashboard_publicly", "upload_telemetry", "auto_start_next_capability", "migrate_comfyui_into_docker"],
   "production_approved": false,
   "production_routing": "BLOCKED",
   "external_visual_review": {"attack_front_v2": "APPROVED_PILOT", "observability_dashboard": "REQUIRED"},
   "always_on_dashboard_policy": "ENABLED",
   "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
-  "evidence": {"external_review": "docs/evidence/observability-v0121/external-review-v0112-binding-correction-v0121.json", "review_index": "docs/evidence/review-index-v0.12.2.json", "startup": "docs/evidence/observability-v0122/docker-runtime-v0122.json", "qa_cache": "docs/evidence/observability-v0122/qa-cache-invalidation-v0122.json", "qa_negative_controls": "docs/evidence/observability-v0122/qa-negative-controls-v0122.json", "stale_last_known": "docs/evidence/observability-v0122/stale-last-known-integration-v0122.json", "generation_telemetry": "docs/evidence/observability-v0122/generation-telemetry-contract-v0122.json", "docker_security": "docs/evidence/observability-v0122/docker-security-v0122.json", "screenshots": ["docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png", "docs/evidence/observability-v0122/dashboard-docker-live-activity-v0122.png"], "state_consistency": "docs/evidence/state-consistency-v0122.json"},
-  "state_consistency": {"status": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED", "validator": "scripts/validation/validate_state_consistency_v0122.py", "production_routing": "BLOCKED", "production_approved": false, "dashboard_read_only": true, "local_only": true, "telemetry_upload": false, "new_generation": 0, "historical_v0120_preserved": true, "historical_v0121_preserved": true, "attack_front_v2_external_visual": "APPROVED_PILOT", "observability_dashboard_external_visual": "REQUIRED", "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL", "always_on_dashboard_policy": "ENABLED"}
+  "new_generation": 0,
+  "review": {"repository": "csn1985-ship-it/ugas", "baseline_head": "6b956b9299f3a2f75280f17706c38c59e3714034", "feature_branch": "codex/v0.12.3-github-native-review", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE"},
+  "evidence": {"github_preflight": "docs/evidence/github-review-v0123/github-preflight.json", "review_manifest": "docs/evidence/github-review-v0123/github-review-manifest-local.json", "visual_manifest": "docs/evidence/github-review-v0123/visual-manifest.json", "visual_transport_directory": "docs/evidence/github-review-v0123/visuals", "autostart": "docs/evidence/github-review-v0123/autostart-v0123.json", "governance_consistency": "docs/evidence/github-review-v0123/governance-consistency-v0123.json", "v1_capability_matrix": "docs/evidence/github-review-v0123/v1-capability-matrix-validation.json", "tests": "docs/evidence/github-review-v0123/test-results-v0123.json", "validation": "docs/evidence/github-review-v0123/validation-results-v0123.json", "historical_review_index": "docs/evidence/review-index-v0.12.2.json", "dashboard_visuals": ["docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png", "docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png"]},
+  "state_consistency": {"status": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED", "version": "0.12.3", "phase": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE", "current_gate": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.12.3-github-native-review", "baseline_head": "6b956b9299f3a2f75280f17706c38c59e3714034", "production_routing": "BLOCKED", "production_approved": false, "dashboard_read_only": true, "local_only": true, "telemetry_upload": false, "new_generation": 0, "historical_v0122_preserved": true, "historical_v0121_preserved": true, "attack_front_v2_external_visual": "APPROVED_PILOT", "observability_dashboard_external_visual": "REQUIRED", "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL", "always_on_dashboard_policy": "ENABLED", "allowed_next_actions": ["external_review_github_native_v0123_and_dashboard_v0122"]}
 }

@@ -1,14 +1,18 @@
 # UGAS roadmap
 
-## v0.12.2 - QA cache integrity and Docker always-on local observability
+## v0.12.3 - GitHub-native review infrastructure (active)
+
+Make GitHub the canonical review surface with phase `GITHUB_NATIVE_REVIEW_INFRASTRUCTURE` and gate `GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED`, stable PR-first CI checks, a schema-valid review manifest, downloadable bounded evidence including the two v0.12.2 dashboard PNGs, a truthful ruleset/PR permission-gap record, a non-admin always-on fallback, active checkpoint/roadmap cleanup and a frozen V1 capability matrix. Keep the local dashboard online in `DOCKER_ALWAYS_ON_LOCAL` mode with `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, preserve all historical evidence, keep `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and stop at `external_review_github_native_v0123_and_dashboard_v0122`. The next functional candidate after external approval is `RUN_FRONT_V1`; it is not implemented here.
+
+## Historical v0.12.2 - QA cache integrity and Docker always-on local observability
 
 Correct the rejected v0.12.1 QA cache false-green path, execute exact QA-NC-01..08 fixtures, prove stale-last-known through the service/API collector path and bind generation stages to real instrumentation with a fake provider. Operationalize only the dashboard observer in Docker: read-only repository mount, writable shared SQLite runtime, loopback-only publication, restart policy, optional GPU override, host ComfyUI endpoint, persistence, file watching, cross-process telemetry and reversible per-user autostart. Keep production blocked, no new asset family, no animation changes, no real generation and no remote telemetry; stop for external visual review at `external_review_observability_dashboard_v0122`. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` applies to future executor rounds.
 
-## v0.12.1 - observability integrity, security and live pipeline correction (rejected history)
+## Historical v0.12.1 - observability integrity, security and live pipeline correction (rejected history)
 
 Correct only the rejected v0.12.0 dashboard: remove unsafe HTML sinks, make QA fail-closed, expose real workload stages and elapsed time, reconcile orphan jobs, show UGAS/GPU-process/ComfyUI state, preserve stale-last-known samples, emit stable file transitions, correct preview semantics and supersede the defective v0.11.2 binding forward-only. Preserve v0.12.0 evidence, keep the dashboard local-only/read-only, keep `production_approved=false` and `production_routing=BLOCKED`, and wait for `external_review_observability_dashboard_v0121`. No new asset family, animation edit, generation job or remote telemetry is authorized.
 
-## v0.12.0 - local realtime observability dashboard MVP (rejected history)
+## Historical v0.12.0 - local realtime observability dashboard MVP (rejected history)
 
 Add a local-only, read-only, near-real-time operations dashboard launched by `ugas dashboard`. Keep SQLite telemetry bounded, stream events with SSE, sample CPU/RAM/disk/GPU/process state with explicit unsupported fallbacks, watch only approved UGAS roots, and surface canonical state/QA/review evidence without replacing it. Record the v0.11.2 external decision as `APPROVED_PILOT`, keep `production_approved=false` and `production_routing=BLOCKED`, and wait for `external_review_observability_dashboard_v0120`. No new asset family, animation edit, generation job or remote telemetry is authorized.
 
@@ -70,9 +74,9 @@ Calibrou detected-joint pose error, corrigiu o gate causal impossível e parou e
 
 Incluem a escalada OpenPose/RefControl, multi-reference nativo, âncoras e o piloto walk. Seus resultados são históricos e não autorizam promoção atual.
 
-## Next gate
+## Historical navigation note
 
-Somente a revisão visual externa pode liberar o próximo prompt. Walk/front/8, âncoras v3, novos providers, DWPose, ControlNet, custom nodes e novos strengths estão fora do slice atual. O próximo passo autorizado no estado atual é `external_review_observability_dashboard_v0121`. O texto `external_review_then_run_8_frame_walk_prompt` pertence apenas aos registros históricos anteriores e não é acionável.
+The older navigation text below is retained as history only. The sole active next gate is the v0.12.3 GitHub-native review recorded at the top of this file; historical walk/front/8, new providers, custom nodes and older dashboard gates are not actionable.
 ## v0.10.0
 
 Reusable deterministic action runtime and the 10-frame front sword attack pilot are technically qualified after event-marker, lifecycle, temporal, weapon-sweep, foot-ground, structural, occlusion, retention, and independent MediaPipe QA. External attack-front visual review is the only allowed next action; run/hit/death, other directions, provider changes, and production enablement remain blocked. `production_routing=BLOCKED`.

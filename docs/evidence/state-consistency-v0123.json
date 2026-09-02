@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.12.3",
+  "validator": "src/ugas/state_consistency_v0123.py",
+  "status": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.12.3",
+    "phase": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE",
+    "current_gate": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.12.3-github-native-review",
+    "baseline_head": "6b956b9299f3a2f75280f17706c38c59e3714034",
+    "next_action": [
+      "external_review_github_native_v0123_and_dashboard_v0122"
+    ],
+    "production_routing": "BLOCKED",
+    "production_approved": false,
+    "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
+    "always_on_dashboard_policy": "ENABLED"
+  }
+}

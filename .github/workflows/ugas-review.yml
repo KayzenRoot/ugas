@@ -1,0 +1,296 @@
+name: UGAS GitHub review evidence
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ugas-review-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review-evidence:
+    name: UGAS Review / evidence
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: src
+      BASE_REF: ${{ github.event.pull_request.base.sha || github.event.repository.default_branch }}
+      HEAD_REF: ${{ github.event.pull_request.head.sha || github.sha }}
+      HEAD_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      PR_NUMBER: ${{ github.event.pull_request.number || 0 }}
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Set up Python 3.12
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install project reproducibly
+        if: always()
+        continue-on-error: true
+        run: python -m pip install --disable-pip-version-check .
+      - name: Prepare evidence directory
+        if: always()
+        run: mkdir -p "$RUNNER_TEMP/ugas-review-evidence"
+      - name: Build true-PNG review transport
+        id: visual_transport
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          python scripts/validation/build_review_visual_transport_v0123.py
+          code=$?
+          cp docs/evidence/github-review-v0123/visual-manifest.json "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json"
+          printf '%s\n' "$code" > "$RUNNER_TEMP/visual-transport.exit"
+          exit "$code"
+      - name: Run unit tests and capture totals
+        id: unit_tests
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python -m unittest discover -s tests -q 2>&1 | tee "$RUNNER_TEMP/ugas-tests.log"
+          code=${PIPESTATUS[0]}
+          printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-tests.exit"
+          exit "$code"
+      - name: Run official validation and capture totals
+        id: official_validation
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/run_validation.py 2>&1 | tee "$RUNNER_TEMP/ugas-validation.log"
+          code=${PIPESTATUS[0]}
+          printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-validation.exit"
+          exit "$code"
+      - name: Validate active state consistency
+        id: state_consistency
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/validate_state_consistency.py
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/state-consistency.exit"
+          exit "$code"
+      - name: Validate V1 capability matrix
+        id: capability_matrix
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/validate_v1_capability_matrix.py
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/capability-matrix.exit"
+          exit "$code"
+      - name: Validate visual transport and MIME signatures
+        id: visual_validation
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/validate_review_visual_transport_v0123.py \
+            docs/evidence/github-review-v0123/visual-manifest.json \
+            --result-output "$RUNNER_TEMP/prebuild-visual-validation.json"
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/visual-validation.exit"
+          exit "$code"
+      - name: Record actual test, validation and gate results
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python scripts/validation/record_v0123_results.py \
+            --test-log "$RUNNER_TEMP/ugas-tests.log" \
+            --validation-log "$RUNNER_TEMP/ugas-validation.log" \
+            --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
+            --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
+            --state-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
+            --matrix-exit-code "$(cat "$RUNNER_TEMP/capability-matrix.exit" 2>/dev/null || echo 99)" \
+            --visual-exit-code "$(cat "$RUNNER_TEMP/visual-validation.exit" 2>/dev/null || echo 99)" \
+            --manifest-exit-code 97 \
+            --security-exit-code 97 \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence"
+      - name: Build review manifests before enforcement
+        id: build_manifest
+        if: always()
+        continue-on-error: true
+        run: |
+          python scripts/validation/build_github_review_manifest.py \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence" \
+            --base-ref "$BASE_REF" \
+            --head-ref "$HEAD_REF" \
+            --head-branch "$HEAD_BRANCH" \
+            --pr-number "$PR_NUMBER" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0123.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0123.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0123.json" \
+            --visual-manifest "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
+            --preflight-json docs/evidence/github-review-v0123/github-preflight.json
+      - name: Validate review manifest before artifact assembly
+        id: prebuild_manifest_validation
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          python scripts/validation/validate_github_review_manifest.py \
+            "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest.json" \
+            "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
+            --result-output "$RUNNER_TEMP/prebuild-manifest-validation.json"
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/manifest-validation.exit"
+          exit "$code"
+      - name: Record final manifest gate result
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python scripts/validation/record_v0123_results.py \
+            --test-log "$RUNNER_TEMP/ugas-tests.log" \
+            --validation-log "$RUNNER_TEMP/ugas-validation.log" \
+            --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
+            --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
+            --state-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
+            --matrix-exit-code "$(cat "$RUNNER_TEMP/capability-matrix.exit" 2>/dev/null || echo 99)" \
+            --visual-exit-code "$(cat "$RUNNER_TEMP/visual-validation.exit" 2>/dev/null || echo 99)" \
+            --manifest-exit-code "$(cat "$RUNNER_TEMP/manifest-validation.exit" 2>/dev/null || echo 99)" \
+            --security-exit-code 97 \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence"
+          python scripts/validation/build_github_review_manifest.py \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence" \
+            --base-ref "$BASE_REF" \
+            --head-ref "$HEAD_REF" \
+            --head-branch "$HEAD_BRANCH" \
+            --pr-number "$PR_NUMBER" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0123.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0123.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0123.json" \
+            --visual-manifest "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
+            --preflight-json docs/evidence/github-review-v0123/github-preflight.json
+      - name: Assemble bounded evidence artifact
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          artifact="$RUNNER_TEMP/ugas-review-artifact"
+          mkdir -p "$artifact/visuals" "$artifact/state" "$artifact/matrix" "$artifact/governance" "$artifact/logs"
+          copy_if_present() { test -f "$1" && cp "$1" "$2"; }
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest.json" "$artifact/github-review-manifest.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" "$artifact/visual-manifest.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/test-results-v0123.json" "$artifact/test-results-v0123.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0123.json" "$artifact/validation-results-v0123.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0123.json" "$artifact/gate-results-v0123.json"
+          copy_if_present "$RUNNER_TEMP/prebuild-manifest-validation.json" "$artifact/manifest-validation-results-v0123.json"
+          copy_if_present docs/evidence/current-state.json "$artifact/state/current-state.json"
+          copy_if_present docs/evidence/review-index-v0.12.2.json "$artifact/state/review-index-v0.12.2.json"
+          copy_if_present docs/evidence/state-consistency-v0123.json "$artifact/state/state-consistency-v0123.json"
+          copy_if_present docs/evidence/github-review-v0123/v1-capability-matrix-validation.json "$artifact/matrix/v1-capability-matrix-validation.json"
+          copy_if_present docs/evidence/github-review-v0123/governance-consistency-v0123.json "$artifact/governance/governance-consistency-v0123.json"
+          copy_if_present "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log"
+          copy_if_present "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log"
+          copy_if_present docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png "$artifact/visuals/dashboard-docker-overview-v0122-transport.png"
+          copy_if_present docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png "$artifact/visuals/dashboard-docker-live-activity-v0122-transport.png"
+      - name: Validate bounded artifact security
+        id: security
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/validate_github_review_security_v0123.py \
+            --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" \
+            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest.json" \
+            --output "$RUNNER_TEMP/security-results-v0123.json"
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/security.exit"
+          exit "$code"
+      - name: Re-record security result and finalize manifest
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python scripts/validation/record_v0123_results.py \
+            --test-log "$RUNNER_TEMP/ugas-tests.log" \
+            --validation-log "$RUNNER_TEMP/ugas-validation.log" \
+            --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
+            --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
+            --state-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
+            --matrix-exit-code "$(cat "$RUNNER_TEMP/capability-matrix.exit" 2>/dev/null || echo 99)" \
+            --visual-exit-code "$(cat "$RUNNER_TEMP/visual-validation.exit" 2>/dev/null || echo 99)" \
+            --manifest-exit-code "$(cat "$RUNNER_TEMP/manifest-validation.exit" 2>/dev/null || echo 99)" \
+            --security-exit-code "$(cat "$RUNNER_TEMP/security.exit" 2>/dev/null || echo 99)" \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence"
+          python scripts/validation/build_github_review_manifest.py \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence" \
+            --base-ref "$BASE_REF" \
+            --head-ref "$HEAD_REF" \
+            --head-branch "$HEAD_BRANCH" \
+            --pr-number "$PR_NUMBER" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0123.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0123.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0123.json" \
+            --visual-manifest "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
+            --preflight-json docs/evidence/github-review-v0123/github-preflight.json
+          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest.json" "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" "$RUNNER_TEMP/ugas-review-artifact/visual-manifest.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0123.json" "$RUNNER_TEMP/ugas-review-artifact/test-results-v0123.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0123.json" "$RUNNER_TEMP/ugas-review-artifact/validation-results-v0123.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0123.json" "$RUNNER_TEMP/ugas-review-artifact/gate-results-v0123.json"
+          cp "$RUNNER_TEMP/security-results-v0123.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0123.json"
+      - name: Final manifest validation
+        id: final_manifest_validation
+        if: always()
+        continue-on-error: true
+        run: |
+          set +e
+          python scripts/validation/validate_github_review_manifest.py \
+            "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest.json" \
+            "$RUNNER_TEMP/ugas-review-artifact/visual-manifest.json" \
+            --result-output "$RUNNER_TEMP/final-manifest-validation.json"
+          code=$?
+          cp "$RUNNER_TEMP/final-manifest-validation.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0123.json"
+          printf '%s\n' "$code" > "$RUNNER_TEMP/final-manifest-validation.exit"
+          exit "$code"
+      - name: Write GitHub Step Summary
+        if: always()
+        run: |
+          {
+            echo '## UGAS GitHub-native review evidence'
+            echo "- Base: \`$BASE_REF\`"
+            echo "- Head: \`$HEAD_REF\`"
+            echo "- PR number: \`$PR_NUMBER\`"
+            echo '- Gates: unit tests, official validation, state, matrix, visual transport, manifest, security'
+            echo '- Evidence assembly and upload are failure-safe and use `always()`.'
+            echo '- Visual evidence: dedicated true-PNG transport copies with source provenance.'
+            echo '- Production: `production_approved=false`, `production_routing=BLOCKED`'
+            echo "- Artifact: \`ugas-review-evidence-pr-${PR_NUMBER}-${HEAD_REF}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload bounded GitHub review artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ugas-review-evidence-pr-${{ github.event.pull_request.number || 'manual' }}-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/ugas-review-artifact
+          if-no-files-found: error
+          retention-days: 21
+      - name: Enforce final review result after artifact upload
+        if: always()
+        run: |
+          python scripts/validation/enforce_github_review_v0123.py \
+            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest.json" \
+            --manifest-validation "$RUNNER_TEMP/final-manifest-validation.json" \
+            --security "$RUNNER_TEMP/security-results-v0123.json"

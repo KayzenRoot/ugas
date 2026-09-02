@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS V1 capability matrix v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "capabilities", "next_candidate", "production_routing", "new_generation"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "version": {"const": "0.12.3"},
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "capability", "status", "planned_order"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "capability": {"type": "string", "minLength": 1},
+          "status": {"type": "string", "minLength": 1},
+          "planned_order": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "next_candidate": {"const": "RUN_FRONT_V1"},
+    "production_routing": {"const": "BLOCKED"},
+    "new_generation": {"const": 0}
+  }
+}

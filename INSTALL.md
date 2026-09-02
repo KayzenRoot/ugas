@@ -1,4 +1,4 @@
-# Installing UGAS 0.12.2
+# Installing UGAS 0.12.3
 
 ## Requirements
 
@@ -21,15 +21,19 @@ python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1
 ```
 
+## GitHub-native review
+
+Use the PR-first flow in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded GitHub Actions artifact; it never includes secrets, local credentials, telemetry databases, model weights or large generation directories.
+
 ## Local observability dashboard
 
-The v0.12.2 dashboard is a Dockerized local read-only HTTP/SSE service. Compose publishes only `127.0.0.1:8765`, stores bounded telemetry in the shared `.ugas/runtime/telemetry.db`, restarts unless stopped, and never uploads analytics or serves arbitrary files. Start it with `pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1`; `--port 0` remains available for native smoke tests. Non-loopback native hosts are rejected; only the trusted container flag permits the internal `0.0.0.0` bind.
+The v0.12.3 runtime keeps the v0.12.2 Dockerized local read-only HTTP/SSE service. Compose publishes only `127.0.0.1:8765`, stores bounded telemetry in the shared `.ugas/runtime/telemetry.db`, restarts unless stopped, and never uploads analytics or serves arbitrary files. Start it with `pwsh -ExecutionPolicy Bypass -File scripts/docker/ensure-dashboard-online.ps1`; the autostart installer falls back to one signed-in-user Startup entry when per-user Task Scheduler registration is denied.
 
 The UI reports `N/A`, `UNAVAILABLE`, `TIMEOUT`, `GPU_CONTAINER_RUNTIME_GAP` or `STALE_LAST_KNOWN` with a reason when the NVIDIA stack, process metrics or ComfyUI endpoint is not available. QA reports current/validated HEAD, worktree state and cache fingerprint, and cannot remain PASS across repository changes. It does not start a generation job, and untrusted values are rendered through DOM text nodes. See [REVIEW-v0.12.2.md](REVIEW-v0.12.2.md) and `docs/evidence/observability-v0122/` for the runtime proof.
 
-## v0.12.2 governance and always-on boundary
+## v0.12.3 governance and always-on boundary
 
-The v0.11.2 external visual decision is recorded as `APPROVED_PILOT` only. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the next action waits for external review of the v0.12.2 dashboard. The v0.12.0 and v0.12.1 correction histories are preserved separately. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` requires the Docker service to remain running after executor STOP.
+The v0.11.2 external visual decision is recorded as `APPROVED_PILOT` only. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the only next action is `external_review_github_native_v0123_and_dashboard_v0122`. The v0.12.0, v0.12.1 and v0.12.2 correction histories are preserved separately. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` requires the Docker service to remain running after executor STOP.
 
 ## v0.11.2 QA integrity and scope recovery
 

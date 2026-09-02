@@ -1,6 +1,6 @@
 # UGAS Docker always-on local dashboard
 
-The v0.12.2 observer is the only component containerized in this slice. ComfyUI and its model storage remain on the host and are never migrated, started or mutated by Compose.
+The historical v0.12.2 observer is the only component containerized in this v0.12.3 slice. ComfyUI and its model storage remain on the host and are never migrated, started or mutated by Compose.
 
 ## Runtime contract
 
@@ -21,7 +21,7 @@ pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-status.ps1
 pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-logs.ps1
 ```
 
-The start script builds `ugas-dashboard:0.12.2`, probes GPU passthrough, starts the service and does not call `docker compose down`. The executor final state must keep `ugas-dashboard` running and healthy. Stop only when intentionally shutting down this local observer:
+The start script builds `ugas-dashboard:0.12.3`, probes GPU passthrough, starts the service and does not call `docker compose down`. The executor final state must keep `ugas-dashboard` running and healthy. Stop only when intentionally shutting down this local observer:
 
 ```powershell
 pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-down.ps1
@@ -36,7 +36,7 @@ pwsh -ExecutionPolicy Bypass -File scripts/docker/install-dashboard-autostart.ps
 pwsh -ExecutionPolicy Bypass -File scripts/docker/uninstall-dashboard-autostart.ps1
 ```
 
-The task runs `ensure-dashboard-online.ps1`, waits a bounded time for Docker Engine, starts Docker Desktop when it is installed but not ready, then invokes the idempotent up script. It does not require administrator rights for the normal per-user registration and never removes unrelated tasks or services. If Task Scheduler denies registration, the script returns `AUTOSTART_INSTALL_GAP` with remediation.
+The task runs `ensure-dashboard-online.ps1`, waits a bounded time for Docker Engine, starts Docker Desktop when it is installed but not ready, then invokes the idempotent up script. It does not require administrator rights for the normal per-user registration and never removes unrelated tasks or services. If Task Scheduler denies registration, the installer automatically creates exactly one UGAS-owned `UGAS-Dashboard-AlwaysOn.cmd` in the signed-in user's Startup folder and returns `AUTOSTART_INSTALLED_FALLBACK`. Uninstall removes only that exact task and/or Startup entry.
 
 ## Shared telemetry proof
 
