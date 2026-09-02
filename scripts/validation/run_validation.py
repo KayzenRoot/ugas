@@ -162,6 +162,29 @@ def snapshot_check() -> None:
             result = _run(command, snapshot, env=env)
             print(f"DONE {name} returncode={result.returncode}", flush=True)
             check(name, _snapshot_validation_ok(result) if name == "snapshot:validation" else (_snapshot_unit_ok(result) if name == "snapshot:unit-tests" else result.returncode == 0), _result_detail(result) or "known immutable-history drift accepted in isolated snapshot")
+        # Prepackage every historical byte referenced by the v0.11.2 index
+        # before creating the no-git snapshot.  The active v0.12.4 files stay
+        # untouched; the old index resolves only against this immutable bundle
+        # once the temporary Git context is gone.
+        historical_index_path = snapshot / "docs/evidence/review-index-v0.11.2.json"
+        historical_index = load_json(historical_index_path)
+        historical_head = str(historical_index.get("publication", {}).get("index_build_git_head", ""))
+        historical_root = snapshot / "docs/evidence/github-governance-v0124/historical/v0.11.2"
+        bundle_ok = len(historical_head) == 40
+        for artifact in historical_index.get("artifact_set", {}).get("artifacts", []):
+            relative = str(artifact.get("path", ""))
+            source_relative = {"docs/evidence/current-state.json": "docs/evidence/current-state-v0.11.2.json", "schemas/current-state.json": "schemas/current-state-v0.11.2.json"}.get(relative, relative)
+            if not relative or not source_relative:
+                bundle_ok = False
+                continue
+            historical_bytes = subprocess.run(["git", "show", f"{historical_head}:{source_relative}"], cwd=ROOT, capture_output=True, check=False)
+            if historical_bytes.returncode != 0:
+                bundle_ok = False
+                continue
+            target = historical_root / source_relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(historical_bytes.stdout)
+        check("snapshot:historical-bundle", bundle_ok, "v0.11.2 index authority was resolved before no-git packaging")
         no_git = Path(directory) / "no-git"; shutil.copytree(snapshot, no_git, ignore=shutil.ignore_patterns(".venv", "__pycache__", "*.pyc"))
         no_git_env = env.copy(); no_git_env.pop("UGAS_SKIP_TRACKED_SNAPSHOT", None); no_git_env["UGAS_REVIEW_SNAPSHOT"] = "1"; no_git_env["PYTHONPATH"] = str(no_git / "src")
         print("RUN snapshot:no-git", flush=True)
