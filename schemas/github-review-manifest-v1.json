@@ -14,9 +14,12 @@
     "current_state",
     "tests",
     "validation",
+    "overall_status",
+    "gates",
     "review_index",
     "visual_manifest",
     "known_gaps",
+    "gap_context",
     "dashboard_policy",
     "production_boundary",
     "security_boundary"
@@ -101,27 +104,49 @@
     "tests": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema_version", "command", "count", "passed", "failed", "status"],
+      "required": ["schema_version", "command", "exit_code", "parse_status", "count", "passed", "failed", "status"],
       "properties": {
         "schema_version": {"const": "0.12.3"},
         "command": {"type": "string"},
-        "count": {"type": "integer", "minimum": 1},
-        "passed": {"type": "integer", "minimum": 1},
-        "failed": {"const": 0},
-        "status": {"const": "passed"}
+        "log_path": {"type": "string", "minLength": 1},
+        "exit_code": {"type": "integer"},
+        "parse_status": {"enum": ["parsed", "partial", "failed", "not_run"]},
+        "count": {"type": ["integer", "null"], "minimum": 1},
+        "passed": {"type": ["integer", "null"], "minimum": 0},
+        "failed": {"type": ["integer", "null"], "minimum": 0},
+        "status": {"enum": ["passed", "failed", "parse_failed", "not_run"]}
       }
     },
     "validation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema_version", "command", "checks", "passed", "failed", "status"],
+      "required": ["schema_version", "command", "exit_code", "parse_status", "checks", "passed", "failed", "status"],
       "properties": {
         "schema_version": {"const": "0.12.3"},
         "command": {"type": "string"},
-        "checks": {"type": "integer", "minimum": 1},
-        "passed": {"type": "integer", "minimum": 1},
-        "failed": {"const": 0},
-        "status": {"const": "passed"}
+        "log_path": {"type": "string", "minLength": 1},
+        "exit_code": {"type": "integer"},
+        "parse_status": {"enum": ["parsed", "partial", "failed", "not_run"]},
+        "checks": {"type": ["integer", "null"], "minimum": 1},
+        "passed": {"type": ["integer", "null"], "minimum": 0},
+        "failed": {"type": ["integer", "null"], "minimum": 0},
+        "status": {"enum": ["passed", "failed", "parse_failed", "not_run"]}
+      }
+    },
+    "overall_status": {"enum": ["PASS", "FAIL"]},
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "exit_code", "detail"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]},
+          "exit_code": {"type": ["integer", "null"]},
+          "detail": {"type": "string"}
+        }
       }
     },
     "review_index": {
@@ -137,6 +162,17 @@
     },
     "visual_manifest": {"const": "visual-manifest.json"},
     "known_gaps": {"type": "array", "items": {"type": "string"}},
+    "gap_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "pr_number", "pr_available", "explicit_gap_input"],
+      "properties": {
+        "source": {"enum": ["github_event", "local_rehearsal"]},
+        "pr_number": {"type": "integer", "minimum": 0},
+        "pr_available": {"type": "boolean"},
+        "explicit_gap_input": {"type": "boolean"}
+      }
+    },
     "dashboard_policy": {
       "type": "object",
       "additionalProperties": false,

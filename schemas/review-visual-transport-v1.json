@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.12.3 review visual transport manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_type", "source_policy", "transport_policy", "visuals"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "manifest_type": {"const": "review-visual-transport"},
+    "source_policy": {"const": "immutable-v0.12.2-source-byte-preserved"},
+    "transport_policy": {"const": "decoded-pixel-equivalent-png-only"},
+    "visuals": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_path", "source_media_type", "source_size", "source_sha256",
+          "transport_path", "transport_media_type", "transport_signature",
+          "transport_size", "transport_sha256", "width", "height",
+          "source_decoded_pixel_sha256", "transport_decoded_pixel_sha256",
+          "decoded_pixel_equal"
+        ],
+        "properties": {
+          "source_path": {"type": "string", "minLength": 1},
+          "source_media_type": {"const": "image/jpeg"},
+          "source_size": {"type": "integer", "minimum": 1},
+          "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "transport_path": {"type": "string", "minLength": 1},
+          "transport_media_type": {"const": "image/png"},
+          "transport_signature": {"const": "89504E470D0A1A0A"},
+          "transport_size": {"type": "integer", "minimum": 1},
+          "transport_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "width": {"type": "integer", "minimum": 1},
+          "height": {"type": "integer", "minimum": 1},
+          "source_decoded_pixel_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "transport_decoded_pixel_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "decoded_pixel_equal": {"const": true}
+        }
+      }
+    }
+  }
+}

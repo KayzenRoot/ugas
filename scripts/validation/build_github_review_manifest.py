@@ -123,6 +123,37 @@ def _load_result(path: Path, *, validation: bool = False) -> dict[str, Any]:
     return value
 
 
+def _load_gates(path: Path | None, tests: dict[str, Any], validation: dict[str, Any]) -> dict[str, Any]:
+    if path is not None:
+        value = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(value, dict) or not isinstance(value.get("gates"), list):
+            raise ValueError(f"gate result must contain a gates array: {path}")
+        return value
+    gates = [
+        {"id": "unit_tests", "status": "PASS" if tests.get("status") == "passed" else "FAIL", "exit_code": tests.get("exit_code"), "detail": str(tests.get("status"))},
+        {"id": "official_validation", "status": "PASS" if validation.get("status") == "passed" else "FAIL", "exit_code": validation.get("exit_code"), "detail": str(validation.get("status"))},
+    ]
+    return {"schema_version": "0.12.3", "overall_status": "FAIL", "gates": gates}
+
+
+def _known_gaps(args: argparse.Namespace, event: dict[str, Any], pr_number: int) -> tuple[list[str], dict[str, Any]]:
+    gaps = {str(item) for item in (args.known_gap or []) if str(item)}
+    if args.preflight_json:
+        preflight = json.loads(Path(args.preflight_json).read_text(encoding="utf-8"))
+        for item in preflight.get("permission_gaps", []) if isinstance(preflight, dict) else []:
+            if isinstance(item, dict) and item.get("code"):
+                gaps.add(str(item["code"]))
+    # PR creation is represented only by the tracked preflight when the PR
+    # does not exist.  A manifest never carries that gap: on a real PR the
+    # GitHub event is authoritative, and in a local rehearsal the explicit
+    # LOCAL_REHEARSAL_PR_NOT_AVAILABLE context is used instead.
+    gaps.discard("GITHUB_PR_CREATE_GAP")
+    source = "github_event" if event else "local_rehearsal"
+    if not event and pr_number == 0:
+        gaps.add("LOCAL_REHEARSAL_PR_NOT_AVAILABLE")
+    return sorted(gaps), {"source": source, "pr_number": pr_number, "pr_available": pr_number > 0, "explicit_gap_input": bool(args.known_gap or args.preflight_json)}
+
+
 def build(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any]]:
     event = _event_values()
     base_ref = args.base_ref or event.get("base_ref") or BASELINE
@@ -132,18 +163,18 @@ def build(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any]]:
     merge_base = _resolve(_run(["git", "merge-base", base, head]))
     changed, additions, deletions = _changed_files(base, head)
     state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-    tests = _load_result(Path(args.tests_json)) if args.tests_json else {"command": "not-run-in-local-builder", "count": 1, "passed": 1, "failed": 0, "status": "passed"}
-    validation = _load_result(Path(args.validation_json), validation=True) if args.validation_json else {"command": "not-run-in-local-builder", "checks": 1, "passed": 1, "failed": 0, "status": "passed"}
-    visual_entries = []
-    for relative in VISUALS:
-        source = ROOT / relative
-        if not source.is_file():
-            raise FileNotFoundError(source)
-        visual_entries.append({"path": relative, "media_type": "image/png", "byte_size": source.stat().st_size, "sha256": _digest(source)})
-    visual_manifest = {"schema_version": "1.0", "manifest_type": "review-visuals", "visuals": visual_entries}
+    tests = _load_result(Path(args.tests_json)) if args.tests_json else {"schema_version": "0.12.3", "command": "not-run-in-local-builder", "log_path": "not-run", "exit_code": 0, "parse_status": "not_run", "count": None, "passed": None, "failed": None, "status": "not_run"}
+    validation = _load_result(Path(args.validation_json), validation=True) if args.validation_json else {"schema_version": "0.12.3", "command": "not-run-in-local-builder", "log_path": "not-run", "exit_code": 0, "parse_status": "not_run", "checks": None, "passed": None, "failed": None, "status": "not_run"}
+    visual_path = Path(args.visual_manifest) if args.visual_manifest else ROOT / "docs/evidence/github-review-v0123/visual-manifest.json"
+    visual_manifest = json.loads(visual_path.read_text(encoding="utf-8"))
+    if not isinstance(visual_manifest, dict) or not isinstance(visual_manifest.get("visuals"), list):
+        raise ValueError(f"visual manifest must contain a visuals array: {visual_path}")
     branch = args.head_branch or event.get("head_branch") or _run(["git", "branch", "--show-current"]) or BRANCH
     pr_number = args.pr_number if args.pr_number is not None else int(event.get("number") or 0)
-    known_gaps = sorted(set(args.known_gap or ["GITHUB_PR_CREATE_GAP", "GITHUB_RULESET_GAP", "CODEOWNERS_GAP"]))
+    known_gaps, gap_context = _known_gaps(args, event, pr_number)
+    gate_result = _load_gates(Path(args.gates_json) if args.gates_json else None, tests, validation)
+    gates = gate_result["gates"]
+    overall_status = "PASS" if gate_result.get("overall_status") == "PASS" and all(item.get("status") == "PASS" for item in gates) else "FAIL"
     manifest = {
         "schema_version": "1.0",
         "manifest_type": "github-native-review",
@@ -155,9 +186,12 @@ def build(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any]]:
         "current_state": {"path": "docs/evidence/current-state.json", "version": state["version"], "phase": state["phase"], "current_gate": state["current_gate"], "production_approved": state["production_approved"], "production_routing": state["production_routing"], "external_visual_review": state["external_visual_review"], "allowed_next_actions": state["allowed_next_actions"]},
         "tests": tests,
         "validation": validation,
+        "overall_status": overall_status,
+        "gates": gates,
         "review_index": {"historical_path": "docs/evidence/review-index-v0.12.2.json", "historical_version": "0.12.2", "status": "PRESERVED_BASELINE_REHEARSAL", "active_manifest_path": "github-review-manifest.json"},
         "visual_manifest": "visual-manifest.json",
         "known_gaps": known_gaps,
+        "gap_context": gap_context,
         "dashboard_policy": {"always_on": True, "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL", "local_only": True, "url": "http://127.0.0.1:8765/", "must_remain_online_at_stop": True},
         "production_boundary": {"approved": False, "routing": "BLOCKED"},
         "security_boundary": {"secrets_included": False, "model_weights_included": False, "telemetry_db_included": False, "local_credentials_included": False},
@@ -174,6 +208,9 @@ def main() -> int:
     parser.add_argument("--pr-number", type=int)
     parser.add_argument("--tests-json")
     parser.add_argument("--validation-json")
+    parser.add_argument("--gates-json")
+    parser.add_argument("--visual-manifest")
+    parser.add_argument("--preflight-json")
     parser.add_argument("--known-gap", action="append")
     args = parser.parse_args()
     output_dir = Path(args.output_dir)

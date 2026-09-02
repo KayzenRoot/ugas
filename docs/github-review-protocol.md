@@ -21,7 +21,11 @@ The workflows use read-only `contents` permissions, PR-keyed concurrency and can
 
 `UGAS Review Evidence` creates `github-review-manifest.json` and `visual-manifest.json`, then uploads a bounded artifact named `ugas-review-evidence-pr-<N>-<SHA>`. It contains PR base/head/merge-base, changed-file statistics, current gate, production boundary, actual test and validation totals, historical review-index status, known gaps, and SHA-256/size metadata for the two v0.12.2 dashboard PNGs.
 
-The artifact is a transport surface, not a source of truth. It must not contain secrets, model weights, telemetry databases, local credentials, ZIPs or large generation directories. Retention is 21 days; the tracked repository remains canonical.
+The artifact is a transport surface, not a source of truth. Evidence assembly and upload use `always()` so failed gates remain inspectable; final enforcement occurs after upload. It must not contain secrets, model weights, telemetry databases, local credentials, ZIPs or large generation directories. Retention is 21 days; the tracked repository remains canonical.
+
+The two historical v0.12.2 dashboard files are preserved as immutable JPEG/JFIF sources. The review artifact transports dedicated true-PNG copies with source/transport byte hashes, magic-byte MIME detection, dimensions and decoded-pixel hashes. A renamed JPEG is a negative-control failure, not valid PNG evidence. Test and validation results carry actual exit codes and null totals when parsing is not possible.
+
+The review workflow pins checkout, setup-python and upload-artifact to immutable release SHAs. Repository/ruleset gaps must be explicitly evidenced; a local rehearsal records that a PR is unavailable, while a real positive-number PR cannot carry `GITHUB_PR_CREATE_GAP`.
 
 ## Governance boundaries
 
