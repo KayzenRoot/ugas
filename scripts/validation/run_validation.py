@@ -131,22 +131,26 @@ def _snapshot_validation_ok(result: subprocess.CompletedProcess[str]) -> bool:
     # its v0.12.2 index contains hashes from the earlier publication commit.
     # Those two immutable-history drifts are accepted; all active checks must
     # otherwise be green.
-    historical_drift = (
+    legacy_drift = (
         "FAILv0112:review-index" in compact
         and "artifact_hash_mismatch:CHECKPOINT.md" in compact
+    )
+    legacy_only = legacy_drift and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=1", compact) is not None
+    old_baseline_drift = (
+        legacy_drift
         and "FAILv0122:review-index" in compact
         and "artifact-hash-mismatch:.dockerignore" in compact
         and "artifact-hash-mismatch:compose.yaml" in compact
         and "review-index-build-head-not-ancestor" in compact
     )
-    return historical_drift and (
-        re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=2", compact) is not None
-        or (
-            "test_api_exposes_repository_binding_and_dirty_worktree_is_not_pass" in compact
-            and "GIT_STATUS_UNAVAILABLE" in compact
-            and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=3", compact) is not None
-        )
+    old_baseline_only = old_baseline_drift and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=2", compact) is not None
+    old_baseline_with_legacy_test = (
+        old_baseline_drift
+        and "test_api_exposes_repository_binding_and_dirty_worktree_is_not_pass" in compact
+        and "GIT_STATUS_UNAVAILABLE" in compact
+        and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=3", compact) is not None
     )
+    return legacy_only or old_baseline_only or old_baseline_with_legacy_test
 
 
 def _snapshot_unit_ok(result: subprocess.CompletedProcess[str]) -> bool:
