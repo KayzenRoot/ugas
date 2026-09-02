@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.12.1",
+  "evidence_type": "superseding_external_binding_correction",
+  "previous_record": "docs/evidence/observability-v0120/external-review-v0112.json",
+  "previous_record_status": "PRESERVED_REJECTED_HISTORY",
+  "reviewed_artifact": "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-preview.gif",
+  "artifact_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7",
+  "decision": "APPROVED_PILOT",
+  "approval_scope": "pilot_and_pipeline_only",
+  "production_approval": false,
+  "production_routing": "BLOCKED",
+  "correction_reason": "The v0.12.0 external-review record used the wrong reviewed_artifact path. This v0.12.1 record binds the unchanged v0.11.2 GIF at its canonical animation-runtime path; the old record is superseded and not rewritten.",
+  "animation_pixels_changed": false,
+  "new_generation": 0,
+  "external_observability_review": "REQUIRED",
+  "immutable": true
+}

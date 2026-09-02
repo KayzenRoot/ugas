@@ -1,0 +1,29 @@
+{
+  "captured_at": "2026-09-02T12:49:16Z",
+  "api_status": 200,
+  "orphan_job": {
+    "job_id": "job-v0121-orphan",
+    "parent_command_id": null,
+    "command": [
+      "generate",
+      "--orphan-proof"
+    ],
+    "category": "job",
+    "type": "generation",
+    "current_stage": "UNKNOWN",
+    "status": "ORPHANED",
+    "started_at": "2026-09-02T12:49:16.755337Z",
+    "elapsed_seconds": 0.028,
+    "finished_at": null,
+    "latest_message": "orphaned generation record",
+    "recent_stages": [],
+    "pid": 2147483647,
+    "session_id": "sess-f7e61f78649a4d4b8382029c3cc93376",
+    "role": "workload",
+    "last_event_at": "2026-09-02T12:49:16.755337Z",
+    "stale_reason": "recorded process is no longer alive",
+    "active_workload": false
+  },
+  "orphan_reconciled": true,
+  "dashboard_service_excluded": true
+}

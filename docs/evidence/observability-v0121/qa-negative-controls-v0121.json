@@ -1,0 +1,47 @@
+{
+  "captured_at": "2026-09-02T12:49:46Z",
+  "fixtures": [
+    {
+      "id": "QA-NC-01",
+      "failures": [
+        "tests_must_be_passed_failed_zero_passed_equals_count"
+      ],
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-02",
+      "failures": [
+        "tests_must_be_passed_failed_zero_passed_equals_count"
+      ],
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-03",
+      "failures": [
+        "tests_must_be_passed_failed_zero_passed_equals_count"
+      ],
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-04",
+      "failures": [
+        "validation_must_be_passed_failed_zero_passed_equals_checks"
+      ],
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-05",
+      "failures": [
+        "validation_must_be_passed_failed_zero_passed_equals_checks"
+      ],
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-06",
+      "failure": "production_approved_must_remain_false",
+      "rejected": true
+    }
+  ],
+  "all_rejected": true,
+  "missing_malformed_mismatch_contradiction_are_gaps": true
+}

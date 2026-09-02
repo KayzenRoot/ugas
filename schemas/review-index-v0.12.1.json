@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.12.1 observability integrity correction review index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "branch", "review_subject", "publication", "review_file", "current_state", "tests", "validation", "artifact_set", "required_visual_sets", "forbidden_artifacts", "external_visual_review", "production_routing", "scope_boundary"],
+  "properties": {
+    "schema_version": {"const": "0.12.1"},
+    "version": {"const": "0.12.1"},
+    "branch": {"const": "main"},
+    "review_subject": {"type": "object", "additionalProperties": false, "required": ["base_head", "previous_implementation_commit", "repository_ref"], "properties": {"base_head": {"const": "789c82f246e48b119f2eebfade890a854b5a7b63"}, "previous_implementation_commit": {"const": "d0eb6e06cf9c5eadce586fc1c096ba1ac168daa5"}, "repository_ref": {"const": "https://github.com/csn1985-ship-it/ugas.git"}}},
+    "publication": {"type": "object", "additionalProperties": false, "required": ["index_build_git_head", "index_build_dirty_state", "final_head_must_be_resolved_by_external_reviewer", "executor_cannot_self_assert_final_head"], "properties": {"index_build_git_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "index_build_dirty_state": {"enum": ["dirty_before_publication_commit", "clean"]}, "final_head_must_be_resolved_by_external_reviewer": {"const": true}, "executor_cannot_self_assert_final_head": {"const": true}}},
+    "review_file": {"const": "REVIEW-v0.12.1.md"},
+    "current_state": {"const": "docs/evidence/current-state.json"},
+    "tests": {"type": "object", "additionalProperties": false, "required": ["command", "count", "passed", "failed", "status"], "properties": {"command": {"type": "string"}, "count": {"type": "integer", "minimum": 1}, "passed": {"type": "integer", "minimum": 1}, "failed": {"const": 0}, "status": {"const": "passed"}}},
+    "validation": {"type": "object", "additionalProperties": false, "required": ["command", "checks", "passed", "failed", "status"], "properties": {"command": {"type": "string"}, "checks": {"type": "integer", "minimum": 1}, "passed": {"type": "integer", "minimum": 1}, "failed": {"const": 0}, "status": {"const": "passed"}}},
+    "artifact_set": {"type": "object", "additionalProperties": false, "required": ["manifest_algorithm", "artifacts", "artifact_set_sha256", "evidence_count", "visual_count"], "properties": {"manifest_algorithm": {"const": "sha256-canonical-path-list-v1"}, "artifacts": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["path", "sha256", "media_type", "role"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "media_type": {"type": "string"}, "role": {"type": "string"}}}}, "artifact_set_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "evidence_count": {"type": "integer", "minimum": 1}, "visual_count": {"type": "integer", "minimum": 5}}},
+    "required_visual_sets": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string"}},
+    "forbidden_artifacts": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "external_visual_review": {"type": "object", "additionalProperties": false, "required": ["status", "attack_front_v2_approval", "observability_dashboard_approval"], "properties": {"status": {"const": "REQUIRED"}, "attack_front_v2_approval": {"const": "APPROVED_PILOT"}, "observability_dashboard_approval": {"const": "REQUIRED"}}},
+    "production_routing": {"const": "BLOCKED"},
+    "scope_boundary": {"type": "object", "additionalProperties": false, "required": ["local_only", "read_only", "telemetry_upload", "new_generation", "new_asset_family", "animation_pixels_changed"], "properties": {"local_only": {"const": true}, "read_only": {"const": true}, "telemetry_upload": {"const": false}, "new_generation": {"const": 0}, "new_asset_family": {"const": false}, "animation_pixels_changed": {"const": false}}}
+  }
+}

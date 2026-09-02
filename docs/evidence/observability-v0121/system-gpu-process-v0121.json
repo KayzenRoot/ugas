@@ -1,0 +1,302 @@
+{
+  "captured_at": "2026-09-02T12:49:16Z",
+  "system_api_status": 200,
+  "process_api_status": 200,
+  "system": {
+    "timestamp": "2026-09-02T12:49:15Z",
+    "cpu": {
+      "percent": 18.83,
+      "logical_cpus": 8,
+      "status": "AVAILABLE"
+    },
+    "memory": {
+      "used_bytes": 8226144256,
+      "total_bytes": 16964046848,
+      "percent": 48.49,
+      "status": "AVAILABLE"
+    },
+    "disk": {
+      "used_bytes": 333218709504,
+      "free_bytes": 664983695360,
+      "total_bytes": 998202404864,
+      "percent": 33.38,
+      "status": "AVAILABLE",
+      "volume": "D:\\"
+    },
+    "gpu": {
+      "status": "GPU_AVAILABLE",
+      "capability": "NVIDIA_SMI",
+      "reason": null,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5050",
+        "utilization_percent": 2.0,
+        "vram_used_mb": 732.0,
+        "vram_total_mb": 8151.0,
+        "temperature_c": 41.0,
+        "power_draw_w": 48.53,
+        "processes": [
+          {
+            "pid": "1736",
+            "process_name": "[Insufficient Permissions]",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "8176",
+            "process_name": "C:\\Windows\\System32\\ShellHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "8080",
+            "process_name": "C:\\Windows\\explorer.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "1884",
+            "process_name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "7340",
+            "process_name": "C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "7956",
+            "process_name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "8780",
+            "process_name": "C:\\Windows\\SystemApps\\Microsoft.LockApp_cw5n1h2txyewy\\LockApp.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "12804",
+            "process_name": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.53\\msedgewebview2.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "9100",
+            "process_name": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "12452",
+            "process_name": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "14792",
+            "process_name": "C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "16320",
+            "process_name": "C:\\Program Files\\Parsec\\parsecd.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "16252",
+            "process_name": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.53\\msedgewebview2.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "16080",
+            "process_name": "[Insufficient Permissions]",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "18268",
+            "process_name": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "17188",
+            "process_name": "C:\\Program Files\\Docker\\Docker\\frontend\\Docker Desktop.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "10528",
+            "process_name": "C:\\Windows\\System32\\ApplicationFrameHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "13724",
+            "process_name": "C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "9408",
+            "process_name": "C:\\Windows\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "11732",
+            "process_name": "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.831.2377.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+            "memory_used_mb": null
+          }
+        ],
+        "process_status": "GPU_PROCESS_AVAILABLE",
+        "process_reason": null
+      },
+      "timestamp": "2026-09-02T12:49:15Z"
+    },
+    "ugas_process": {
+      "pid": 21856,
+      "cpu_percent": null,
+      "rss_bytes": null,
+      "status": "UNAVAILABLE",
+      "reason": "optional process metrics dependency not installed"
+    }
+  },
+  "processes": {
+    "timestamp": "2026-09-02T12:49:16Z",
+    "ugas": {
+      "pid": 21856,
+      "cpu_percent": null,
+      "rss_bytes": null,
+      "status": "UNAVAILABLE",
+      "reason": "optional process metrics dependency not installed",
+      "name": null
+    },
+    "comfyui": {
+      "endpoint": "http://127.0.0.1:8188",
+      "checked_at": "2026-09-02T12:49:15Z",
+      "status": "DOWN",
+      "health": "UNAVAILABLE",
+      "reason": "URLError: local endpoint unavailable",
+      "degraded": true
+    }
+  },
+  "gpu_processes": [
+    {
+      "pid": "1736",
+      "process_name": "[Insufficient Permissions]",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "8176",
+      "process_name": "C:\\Windows\\System32\\ShellHost.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "8080",
+      "process_name": "C:\\Windows\\explorer.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "1884",
+      "process_name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "7340",
+      "process_name": "C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "7956",
+      "process_name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "8780",
+      "process_name": "C:\\Windows\\SystemApps\\Microsoft.LockApp_cw5n1h2txyewy\\LockApp.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "12804",
+      "process_name": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.53\\msedgewebview2.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "9100",
+      "process_name": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "12452",
+      "process_name": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "14792",
+      "process_name": "C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "16320",
+      "process_name": "C:\\Program Files\\Parsec\\parsecd.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "16252",
+      "process_name": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\152.0.4191.53\\msedgewebview2.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "16080",
+      "process_name": "[Insufficient Permissions]",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "18268",
+      "process_name": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "17188",
+      "process_name": "C:\\Program Files\\Docker\\Docker\\frontend\\Docker Desktop.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "10528",
+      "process_name": "C:\\Windows\\System32\\ApplicationFrameHost.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "13724",
+      "process_name": "C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "9408",
+      "process_name": "C:\\Windows\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe",
+      "memory_used_mb": null
+    },
+    {
+      "pid": "11732",
+      "process_name": "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.831.2377.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+      "memory_used_mb": null
+    }
+  ],
+  "requirements": {
+    "ugas_pid": true,
+    "ugas_name_or_reason": true,
+    "gpu_process_pid_name_memory_or_reason": true,
+    "comfyui_endpoint_status_reason_checked_at": true,
+    "timestamps_present": true
+  },
+  "headers": {
+    "system": {
+      "Server": "BaseHTTP/0.6 Python/3.12.10",
+      "Date": "Wed, 02 Sep 2026 12:49:16 GMT",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "no-referrer",
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+      "Content-Length": "3244"
+    },
+    "processes": {
+      "Server": "BaseHTTP/0.6 Python/3.12.10",
+      "Date": "Wed, 02 Sep 2026 12:49:16 GMT",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "no-referrer",
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+      "Content-Length": "375"
+    }
+  }
+}

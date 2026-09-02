@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>UGAS / Local Operations</title>
+  <title>UGAS v0.12.1 / Local Operations</title>
   <link rel="stylesheet" href="/static/dashboard.css">
 </head>
 <body>
@@ -19,9 +19,10 @@
     </section>
     <section class="metrics-grid">
       <article class="panel metric-panel"><div class="panel-heading"><div><p class="eyebrow">SYSTEM</p><h2>Machine telemetry</h2></div><span class="panel-age" id="system-age">-</span></div><div id="system-metrics" class="metric-list"></div><div class="sparkline-wrap"><div class="metric-label">CPU history <span class="unit">percent</span></div><div id="cpu-chart" class="sparkline" aria-label="CPU history"></div></div></article>
-      <article class="panel metric-panel"><div class="panel-heading"><div><p class="eyebrow">GPU / VRAM</p><h2>Accelerator state</h2></div><span class="panel-age" id="gpu-age">-</span></div><div id="gpu-metrics" class="metric-list"></div><div class="sparkline-wrap"><div class="metric-label">GPU history <span class="unit">percent</span></div><div id="gpu-chart" class="sparkline" aria-label="GPU history"></div></div></article>
+      <article class="panel metric-panel"><div class="panel-heading"><div><p class="eyebrow">GPU / VRAM</p><h2>Accelerator state</h2></div><span class="panel-age" id="gpu-age">-</span></div><div id="gpu-metrics" class="metric-list"></div><div class="subheading">GPU processes</div><div id="gpu-processes" class="process-list"></div><div class="sparkline-wrap"><div class="metric-label">GPU history <span class="unit">percent</span></div><div id="gpu-chart" class="sparkline" aria-label="GPU history"></div></div></article>
       <article class="panel pipeline-panel"><div class="panel-heading"><div><p class="eyebrow">LIVE PIPELINE</p><h2>What UGAS is doing</h2></div><span id="job-badge" class="badge neutral">IDLE</span></div><div id="pipeline" class="pipeline-content"></div></article>
     </section>
+    <section class="panel process-panel"><div class="panel-heading"><div><p class="eyebrow">PROCESS / PROVIDER</p><h2>UGAS and ComfyUI</h2></div><span class="panel-age" id="process-age">-</span></div><div id="process-metrics" class="metric-list"></div></section>
     <section class="content-grid">
       <article class="panel assets-panel"><div class="panel-heading"><div><p class="eyebrow">ASSET ACTIVITY</p><h2>Recent files &amp; evidence</h2></div><span class="panel-age" id="assets-age">-</span></div><div id="assets" class="asset-list"></div></article>
       <article class="panel preview-panel"><div class="panel-heading"><div><p class="eyebrow">SAFE PREVIEW</p><h2>Selected artifact</h2></div><span id="preview-kind" class="badge neutral">NONE</span></div><div id="preview" class="preview-frame"><span class="muted">Select a recent image, GIF or WebP artifact.</span></div></article>

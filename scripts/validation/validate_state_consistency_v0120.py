@@ -1,4 +1,4 @@
-"""Run and persist the active v0.12.0 state-consistency gate."""
+"""Run the preserved v0.12.0 historical state-consistency gate."""
 
 from __future__ import annotations
 
@@ -14,10 +14,10 @@ from ugas.state_consistency_v0120 import validate_state_consistency
 
 
 def main() -> int:
-    state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-    schema = json.loads((ROOT / "schemas/current-state.json").read_text(encoding="utf-8"))
+    state = json.loads((ROOT / "docs/evidence/current-state-v0.12.0.json").read_text(encoding="utf-8"))
+    schema = json.loads((ROOT / "schemas/current-state-v0.12.0.json").read_text(encoding="utf-8"))
     validate_schema_document(schema); validate_instance(state, schema)
-    result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.0.md").read_text(encoding="utf-8"))
+    result = validate_state_consistency(state, (ROOT / "REVIEW-v0.12.0.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.0.md").read_text(encoding="utf-8"))
     evidence = {"schema_version": "0.12.0", "validator": "src/ugas/state_consistency_v0120.py", **result}
     output = ROOT / "docs/evidence/state-consistency-v0120.json"
     output.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

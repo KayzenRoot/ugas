@@ -104,7 +104,33 @@ class CpuSampler:
         return {"percent": percent, "logical_cpus": os.cpu_count() or 1, "status": "AVAILABLE" if percent is not None else "WARMING_UP"}
 
 
-def probe_nvidia_smi(*, executable: str = "nvidia-smi", timeout: float = 0.8, runner: Callable[..., subprocess.CompletedProcess[str]] | None = None) -> dict[str, Any]:
+def probe_nvidia_processes(*, executable: str = "nvidia-smi", timeout: float = 0.8, runner: Callable[..., subprocess.CompletedProcess[str]] | None = None) -> dict[str, Any]:
+    """Probe the optional NVIDIA compute-process listing independently."""
+
+    runner = runner or _run
+    try:
+        result = runner([executable, "--query-compute-apps=pid,process_name,used_gpu_memory", "--format=csv,noheader,nounits"], timeout=timeout)
+    except FileNotFoundError:
+        return {"status": "GPU_PROCESS_UNAVAILABLE", "capability": "UNSUPPORTED", "reason": "nvidia-smi executable not found", "processes": [], "timestamp": _now()}
+    except subprocess.TimeoutExpired:
+        return {"status": "GPU_PROCESS_UNAVAILABLE", "capability": "TIMEOUT", "reason": "nvidia-smi process probe timed out", "processes": [], "timestamp": _now()}
+    except OSError as exc:
+        return {"status": "GPU_PROCESS_UNAVAILABLE", "capability": "ERROR", "reason": f"nvidia-smi process probe failed: {type(exc).__name__}", "processes": [], "timestamp": _now()}
+    if result.returncode != 0:
+        return {"status": "GPU_PROCESS_UNAVAILABLE", "capability": "UNSUPPORTED", "reason": (result.stderr or "nvidia-smi process listing unavailable").strip()[:300], "processes": [], "timestamp": _now()}
+    processes: list[dict[str, Any]] = []
+    for row in result.stdout.strip().splitlines():
+        values = [item.strip() for item in row.split(",")]
+        if len(values) >= 3:
+            try:
+                memory = float(values[2])
+            except ValueError:
+                memory = None
+            processes.append({"pid": values[0], "process_name": values[1], "memory_used_mb": memory})
+    return {"status": "GPU_PROCESS_AVAILABLE", "capability": "NVIDIA_SMI", "reason": None, "processes": processes, "timestamp": _now()}
+
+
+def probe_nvidia_smi(*, executable: str = "nvidia-smi", timeout: float = 0.8, runner: Callable[..., subprocess.CompletedProcess[str]] | None = None, include_processes: bool = True) -> dict[str, Any]:
     runner = runner or _run
     query = [executable, "--query-gpu=name,utilization.gpu,memory.used,memory.total,temperature.gpu,power.draw", "--format=csv,noheader,nounits"]
     try:
@@ -126,17 +152,11 @@ def probe_nvidia_smi(*, executable: str = "nvidia-smi", timeout: float = 0.8, ru
         except ValueError: return None
     gpu = {"name": fields[0], "utilization_percent": number(fields[1]), "vram_used_mb": number(fields[2]),
            "vram_total_mb": number(fields[3]), "temperature_c": number(fields[4]), "power_draw_w": number(fields[5])}
-    try:
-        processes = runner([executable, "--query-compute-apps=pid,process_name,used_gpu_memory", "--format=csv,noheader,nounits"], timeout=timeout)
-        gpu_processes = []
-        if processes.returncode == 0:
-            for row in processes.stdout.strip().splitlines():
-                values = [item.strip() for item in row.split(",")]
-                if len(values) >= 3:
-                    gpu_processes.append({"pid": values[0], "process_name": values[1], "memory_used_mb": number(values[2])})
-    except (FileNotFoundError, subprocess.TimeoutExpired, OSError):
-        gpu_processes = []
-    gpu["processes"] = gpu_processes
+    if include_processes:
+        process_result = probe_nvidia_processes(executable=executable, timeout=timeout, runner=runner)
+        gpu["processes"] = process_result.get("processes", [])
+        gpu["process_status"] = process_result.get("status")
+        gpu["process_reason"] = process_result.get("reason")
     return {"status": "GPU_AVAILABLE", "capability": "NVIDIA_SMI", "reason": None, "gpu": gpu, "timestamp": _now()}
 
 

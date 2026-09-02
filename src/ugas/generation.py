@@ -44,7 +44,7 @@ from .reference_edit import (
     runtime_plausibility,
 )
 from .workflow_registry import bind_workflow, load_workflow, validate_api_workflow
-from .observability.service import current_service
+from .observability.service import current_command_id, current_service
 
 
 class GenerationError(RuntimeError):
@@ -117,14 +117,20 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
         parameters={"endpoint": client.base_url, "model_variant": model.get("variant"), "workflow_parameters": workflow_record.get("parameters", {}), "compatibility": compatibility}, input_hashes=input_hashes)
     validated = transition(job, "validated"); persist(validated, output_dir)
     observer = current_service()
+    parent_command_id = current_command_id()
+    def stage_event(stage_name: str, *, action: str = "running", status: str = "RUNNING", message: str | None = None) -> None:
+        if observer:
+            observer.emit(category="stage", source="generation", action=action, status=status, message=message or f"generation stage {stage_name}", job_id=validated["job_id"], metadata={"stage": stage_name, "parent_command_id": parent_command_id, "session_id": observer.session_id, "pid": observer.pid})
     if observer:
-        observer.emit(category="job", source="generation", action="started", status="RUNNING", message="generation job validated and starting", job_id=validated["job_id"], metadata={"workflow": workflow_id, "model": model_id, "output_dir": str(output_dir)})
+        observer.emit(category="job", source="generation", action="started", status="RUNNING", message="generation job validated and starting", job_id=validated["job_id"], metadata={"workflow": workflow_id, "model": model_id, "output_dir": str(output_dir), "parent_command_id": parent_command_id, "session_id": observer.session_id, "pid": observer.pid, "type": "generation"})
+        stage_event("validate", action="completed", status="SUCCEEDED", message="generation request validated")
     try:
         job = validated
         job_id = job["job_id"]
         target_path = output_dir / filename
         target_existed_before_submission = target_path.exists()
         submitted_at = _now(); started = time.perf_counter()
+        stage_event("submit")
         submitted = client.submit_workflow(workflow, client_id=job_id)
         prompt_id = submitted["prompt_id"]
         first_poll_at: str | None = None
@@ -134,9 +140,10 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
                 first_poll_at = _now()
         job = transition(job, "queued"); job = transition(job, "running")
         if observer:
-            observer.emit(category="stage", source="generation", action="running", status="RUNNING", message="provider job is running", job_id=job_id, metadata={"prompt_id": prompt_id, "stage": "provider"})
+            stage_event("provider", message="provider job is running")
         history = client.poll_history(prompt_id, on_poll=mark_first_poll); completed_at = _now(); outputs = client.fetch_history_outputs(history)
         if not outputs: raise GenerationError("ComfyUI history contained no retrievable output")
+        stage_event("output-fetch", action="completed", status="SUCCEEDED", message="provider output fetched")
         runtime_ms = round((time.perf_counter() - started) * 1000, 3)
         history_key = history.get("_ugas_prompt_id") == prompt_id
         output_records = [{"filename": item.get("filename"), "subfolder": item.get("subfolder", ""), "type": item.get("type", "output"), "node_id": item.get("node_id"), "data_sha256": inspect_png_bytes(item.get("data", b""))["sha256"]} for item in outputs]
@@ -158,6 +165,7 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
         if not job["execution_evidence"]["fresh_binding"]:
             raise GenerationError("FRESH_EXECUTION_BINDING_FAILED: prompt/history/output binding or stale target check failed")
         job = transition(job, "succeeded"); job = transition(job, "postprocessed")
+        stage_event("postprocess", action="completed", status="SUCCEEDED", message="output postprocessed")
         job["output_hashes"] = {item.get("filename", str(index)): inspect_png_bytes(item["data"]) for index, item in enumerate(outputs) if item.get("data", b"").startswith(b"\x89PNG")}
         job = transition(job, "validated_output"); job["provenance_event"] = {"event": "comfyui-job", "job_id": job["job_id"], "workflow": workflow_id, "model": model_id, "prompt": prompt, "seed": seed}; job = transition(job, "registered")
         target_outputs: list[dict[str, Any]] = []
@@ -167,7 +175,8 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
         job["execution_evidence"]["output_paths"] = [{"path": item["path"], "sha256": sha256(Path(item["path"])), "filename": item.get("filename"), "subfolder": item.get("subfolder", ""), "type": item.get("type", "output")} for item in target_outputs]
         job_path = persist(job, output_dir)
         if observer:
-            observer.emit(category="job", source="generation", action="completed", status="SUCCEEDED", message="generation job completed", job_id=job_id, metadata={"output_count": len(target_outputs), "runtime_ms": job["execution_evidence"].get("runtime_ms")})
+            stage_event("complete", action="completed", status="SUCCEEDED", message="generation job completed")
+            observer.emit(category="job", source="generation", action="completed", status="SUCCEEDED", message="generation job completed", job_id=job_id, metadata={"output_count": len(target_outputs), "runtime_ms": job["execution_evidence"].get("runtime_ms"), "parent_command_id": parent_command_id, "session_id": observer.session_id, "pid": observer.pid})
         return {"job": job, "job_path": str(job_path)}, target_outputs
     except (ComfyUIError, OSError, KeyError, GenerationError) as exc:
         job["error"] = str(exc)
@@ -175,7 +184,8 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
         except Exception: job["state"] = "failed"
         persist(job, output_dir)
         if observer:
-            observer.emit(category="job", severity="error", source="generation", action="failed", status="FAILED", message="generation job failed", job_id=job.get("job_id"), metadata={"error_type": type(exc).__name__})
+            stage_event("error", action="failed", status="FAILED", message="generation job failed")
+            observer.emit(category="job", severity="error", source="generation", action="failed", status="FAILED", message="generation job failed", job_id=job.get("job_id"), metadata={"error_type": type(exc).__name__, "parent_command_id": parent_command_id, "session_id": observer.session_id, "pid": observer.pid})
         raise GenerationError(str(exc)) from exc
 
 

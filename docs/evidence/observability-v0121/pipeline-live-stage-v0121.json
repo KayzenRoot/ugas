@@ -1,0 +1,155 @@
+{
+  "captured_at": "2026-09-02T12:49:16Z",
+  "api_status": 200,
+  "job": {
+    "job_id": "job-v0121-live-stage",
+    "parent_command_id": "cmd-v0121-parent",
+    "command": [
+      "generate",
+      "--observability-stage-proof"
+    ],
+    "category": "job",
+    "type": "generation",
+    "current_stage": "complete",
+    "status": "SUCCEEDED",
+    "started_at": "2026-09-02T12:49:16.714788Z",
+    "elapsed_seconds": 0.037,
+    "finished_at": "2026-09-02T12:49:16.751338Z",
+    "latest_message": "generation job completed",
+    "recent_stages": [
+      {
+        "stage": "validate",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.720789Z",
+        "message": "generation stage validate completed"
+      },
+      {
+        "stage": "submit",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.725300Z",
+        "message": "generation stage submit completed"
+      },
+      {
+        "stage": "provider",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.729815Z",
+        "message": "generation stage provider completed"
+      },
+      {
+        "stage": "output-fetch",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.734824Z",
+        "message": "generation stage output-fetch completed"
+      },
+      {
+        "stage": "postprocess",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.740339Z",
+        "message": "generation stage postprocess completed"
+      },
+      {
+        "stage": "complete",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.745339Z",
+        "message": "generation stage complete completed"
+      }
+    ],
+    "pid": 21856,
+    "session_id": "sess-f7e61f78649a4d4b8382029c3cc93376",
+    "role": "workload",
+    "last_event_at": "2026-09-02T12:49:16.751338Z"
+  },
+  "local_snapshot": {
+    "job_id": "job-v0121-live-stage",
+    "parent_command_id": "cmd-v0121-parent",
+    "command": [
+      "generate",
+      "--observability-stage-proof"
+    ],
+    "category": "job",
+    "type": "generation",
+    "current_stage": "complete",
+    "status": "SUCCEEDED",
+    "started_at": "2026-09-02T12:49:16.714788Z",
+    "elapsed_seconds": 0.037,
+    "finished_at": "2026-09-02T12:49:16.751338Z",
+    "latest_message": "generation job completed",
+    "recent_stages": [
+      {
+        "stage": "validate",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.720789Z",
+        "message": "generation stage validate completed"
+      },
+      {
+        "stage": "submit",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.725300Z",
+        "message": "generation stage submit completed"
+      },
+      {
+        "stage": "provider",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.729815Z",
+        "message": "generation stage provider completed"
+      },
+      {
+        "stage": "output-fetch",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.734824Z",
+        "message": "generation stage output-fetch completed"
+      },
+      {
+        "stage": "postprocess",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.740339Z",
+        "message": "generation stage postprocess completed"
+      },
+      {
+        "stage": "complete",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T12:49:16.745339Z",
+        "message": "generation stage complete completed"
+      }
+    ],
+    "pid": 21856,
+    "session_id": "sess-f7e61f78649a4d4b8382029c3cc93376",
+    "role": "workload",
+    "last_event_at": "2026-09-02T12:49:16.751338Z"
+  },
+  "required_fields": [
+    "job_id",
+    "parent_command_id",
+    "command",
+    "category",
+    "type",
+    "current_stage",
+    "status",
+    "started_at",
+    "elapsed_seconds",
+    "finished_at",
+    "latest_message",
+    "recent_stages"
+  ],
+  "all_required_fields_present": true,
+  "stage_sequence": [
+    "validate",
+    "submit",
+    "provider",
+    "output-fetch",
+    "postprocess",
+    "complete"
+  ]
+}

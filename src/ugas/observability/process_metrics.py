@@ -48,9 +48,9 @@ def _process_name(pid: int) -> str | None:
     return None
 
 
-def collect_process_metrics(pid: int | None, *, comfyui_endpoint: str = "http://127.0.0.1:8188") -> dict[str, Any]:
+def collect_process_metrics(pid: int | None, *, comfyui_endpoint: str = "http://127.0.0.1:8188", comfyui_probe: dict[str, Any] | None = None) -> dict[str, Any]:
     process = process_resource_metrics(pid)
     if pid and not process.get("name"):
         process["name"] = _process_name(pid)
-    comfy = probe_endpoint(comfyui_endpoint)
+    comfy = comfyui_probe if comfyui_probe is not None else probe_endpoint(comfyui_endpoint)
     return {"timestamp": _now(), "ugas": process, "comfyui": comfy}

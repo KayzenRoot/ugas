@@ -54,10 +54,10 @@ def _decode(value: str) -> tuple[str, str] | None:
 def classify_file(path: Path) -> str:
     suffix = path.suffix.casefold()
     name = path.name.casefold()
-    if suffix in MEDIA_TYPES:
-        return "gif" if suffix == ".gif" else "image"
     if "spritesheet" in name or "sprite-sheet" in name:
         return "spritesheet"
+    if suffix in MEDIA_TYPES:
+        return "gif" if suffix == ".gif" else "image"
     if "manifest" in name or suffix == ".json" and "registry" in name:
         return "manifest"
     if "qa" in name or "validation" in name or "test" in name:
@@ -114,7 +114,8 @@ class AssetActivityTracker:
     def _record(self, root: ApprovedRoot, path: Path, *, action: str, stat: os.stat_result, sha256: str | None) -> dict[str, Any]:
         relative = path.resolve().relative_to(root.path.resolve()).as_posix()
         project_relative = path.resolve().relative_to(self.repo_root).as_posix()
-        return {"safe_id": _encode(root.key, relative), "path": project_relative, "root": root.label, "file_kind": classify_file(path), "action": action, "size_bytes": stat.st_size, "mtime": stat.st_mtime, "sha256": sha256, "status": "STABLE" if sha256 else "STABILIZING", "media_type": MEDIA_TYPES.get(path.suffix.casefold()), "timestamp": stat.st_mtime}
+        media_type = MEDIA_TYPES.get(path.suffix.casefold())
+        return {"safe_id": _encode(root.key, relative), "path": project_relative, "root": root.label, "file_kind": classify_file(path), "action": action, "size_bytes": stat.st_size, "mtime": stat.st_mtime, "sha256": sha256, "status": "STABLE" if sha256 else "STABILIZING", "media_type": media_type, "previewable": bool(media_type and root.key != "repository"), "timestamp": stat.st_mtime}
 
     @staticmethod
     def _hash(path: Path) -> str | None:
@@ -146,6 +147,10 @@ class AssetActivityTracker:
             current[key] = {"size": stat.st_size, "mtime_ns": stat.st_mtime_ns, "sha256": sha256, "path": path, "root": root, "baseline": not self._bootstrapped and prior is None}
             if self._bootstrapped and (prior is None or not same):
                 changes.append(self._record(root, path, action="created" if prior is None else "updated", stat=stat, sha256=sha256))
+            elif self._bootstrapped and prior and same and not prior.get("sha256") and sha256:
+                stable = self._record(root, path, action="stable", stat=stat, sha256=sha256)
+                stable["transition"] = "STABILIZING->STABLE"
+                changes.append(stable)
         self._known = current
         self._bootstrapped = True
         return changes

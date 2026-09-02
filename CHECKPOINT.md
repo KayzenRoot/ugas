@@ -1,16 +1,28 @@
-# UGAS checkpoint - v0.12.0
+# UGAS checkpoint - v0.12.1
 
-## v0.12.0 local realtime observability dashboard
+## v0.12.1 observability integrity, security and live pipeline correction
 
-The active increment is `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`. The v0.11.2 external visual result is recorded as `APPROVED_PILOT` for pilot/pipeline only; it is not production approval. The local dashboard is read-only, local-only and near-real-time, with `production_approved=false` and `production_routing=BLOCKED`. It exposes canonical state, QA, system/GPU/process telemetry, jobs, allowlisted file activity, safe previews, bounded SQLite events and SSE. The next action is `external_review_observability_dashboard_v0120`; no new asset family or animation is authorized.
+The active increment is `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`. It corrects only the rejected v0.12.0 local dashboard: unsafe HTML sinks are removed, QA is fail-closed, live workload stages and elapsed time are real, orphan jobs are reconciled, resource/process probes expose stale-last-known data honestly, file activity has a stable transition, and the v0.11.2 binding defect is superseded forward-only. The v0.11.2 external visual result remains `APPROVED_PILOT` for pilot/pipeline only; it is not production approval. The local dashboard remains read-only/local-only, with `production_approved=false` and `production_routing=BLOCKED`. The only next action is `external_review_observability_dashboard_v0121`; no new asset family, animation, generation job or remote telemetry is authorized.
+
+**STATUS:** `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`
+**VERSION:** `0.12.1`
+**PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
+
+## v0.12.0 rejected history
+
+The v0.12.0 dashboard implementation and its evidence remain preserved as rejected history. Its active state is retained in `docs/evidence/current-state-v0.12.0.json` with schema `schemas/current-state-v0.12.0.json`; the historical external binding `docs/evidence/observability-v0120/external-review-v0112.json` is not rewritten.
+
+## Current state
+
+The machine-authoritative active state is [docs/evidence/current-state.json](docs/evidence/current-state.json), and the v0.12.1 correction evidence is hash-bound by `docs/evidence/review-index-v0.12.1.json`.
+
+### Historical v0.12.0 state record
 
 **STATUS:** `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`
 **VERSION:** `0.12.0`
 **PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
 
-## Current state
-
-O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). O piloto v0.8.1 corrige a integridade QA do mesmo cutout-rig R4 v0.7.1, core estrutural v0.7.3 e hashes K1–K4 imutáveis para oito frames front-walk. O v0.8.0 está preservado em snapshots versionados.
+O registro acima é histórico do v0.12.0 e não substitui o estado ativo v0.12.1. O piloto v0.8.1 corrige a integridade QA do mesmo cutout-rig R4 v0.7.1, core estrutural v0.7.3 e hashes K1–K4 imutáveis para oito frames front-walk. O v0.8.0 está preservado em snapshots versionados.
 
 O escopo é somente o piloto determinístico front/walk/8: `deterministic-cutout-rig-2d` recebe o R4 RGBA canônico e as partes v0.7.1; intermediários são skeletons Hermite projetados, não pixels interpolados. `sam2_runs=0`, `comfyui_generation_jobs=0` e `production_routing=BLOCKED`.
 

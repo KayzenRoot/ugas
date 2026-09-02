@@ -1,4 +1,4 @@
-# Installing UGAS 0.12.0
+# Installing UGAS 0.12.1
 
 ## Requirements
 
@@ -15,18 +15,19 @@ $env:PYTHONPATH = "src"
 python scripts/validation/validate_state_consistency.py
 python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
+python scripts/validation/run_observability_v0121.py
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
 ## Local observability dashboard
 
-The v0.12.0 dashboard is a local read-only HTTP/SSE service. It binds to loopback by default, stores bounded telemetry in `.ugas/runtime/telemetry.db`, and never uploads analytics or serves arbitrary files. Start it with `python -m ugas.cli dashboard`; `--port 0` selects an ephemeral port for smoke tests and `--no-open` suppresses browser launch. Non-loopback hosts are rejected.
+The v0.12.1 dashboard is a local read-only HTTP/SSE service. It binds to loopback by default, stores bounded telemetry in `.ugas/runtime/telemetry.db`, and never uploads analytics or serves arbitrary files. Start it with `python -m ugas.cli dashboard`; `--port 0` selects an ephemeral port for smoke tests and `--no-open` suppresses browser launch. Non-loopback hosts are rejected.
 
-The UI reports `N/A` or `UNAVAILABLE` with a reason when the NVIDIA stack, process metrics or ComfyUI endpoint is not available. It does not start a generation job. See [REVIEW-v0.12.0.md](REVIEW-v0.12.0.md) and `docs/evidence/observability-v0120/` for the runtime proof.
+The UI reports `N/A`, `UNAVAILABLE`, `TIMEOUT` or `STALE_LAST_KNOWN` with a reason when the NVIDIA stack, process metrics or ComfyUI endpoint is not available. It does not start a generation job, and untrusted values are rendered through DOM text nodes. See [REVIEW-v0.12.1.md](REVIEW-v0.12.1.md) and `docs/evidence/observability-v0121/` for the runtime proof.
 
-## v0.12.0 governance boundary
+## v0.12.1 governance boundary
 
-The v0.11.2 external visual decision is recorded as `APPROVED_PILOT` only. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the next action waits for external review of the v0.12.0 dashboard.
+The v0.11.2 external visual decision is recorded as `APPROVED_PILOT` only. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the next action waits for external review of the v0.12.1 dashboard. The v0.12.0 correction history is preserved separately.
 
 ## v0.11.2 QA integrity and scope recovery
 

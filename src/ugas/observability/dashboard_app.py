@@ -40,9 +40,15 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
     def log_message(self, format: str, *args: object) -> None:
         return
 
+    def _security_headers(self) -> None:
+        self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Referrer-Policy", "no-referrer")
+
     def _send_json(self, value: object, status: int = 200) -> None:
         payload = json.dumps(value, ensure_ascii=True, separators=(",", ":")).encode("utf-8")
         self.send_response(status)
+        self._security_headers()
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(payload)))
@@ -58,6 +64,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         except OSError:
             self._send_json({"status": "NOT_FOUND"}, HTTPStatus.NOT_FOUND); return
         self.send_response(HTTPStatus.OK)
+        self._security_headers()
         self.send_header("Content-Type", content_type)
         self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(data)))
@@ -98,7 +105,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             file_path, content_type = resolved
             try: data = file_path.read_bytes()
             except OSError: self._send_json({"status": "NOT_FOUND"}, HTTPStatus.NOT_FOUND); return
-            self.send_response(HTTPStatus.OK); self.send_header("Content-Type", content_type); self.send_header("Cache-Control", "no-store"); self.send_header("Content-Length", str(len(data))); self.end_headers()
+            self.send_response(HTTPStatus.OK); self._security_headers(); self.send_header("Content-Type", content_type); self.send_header("Cache-Control", "no-store"); self.send_header("Content-Length", str(len(data))); self.end_headers()
             try: self.wfile.write(data)
             except OSError: pass
             return
@@ -117,18 +124,19 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._read_only_rejection()
 
     def _read_only_rejection(self) -> None:
-        self._send_json({"status": "READ_ONLY", "error": "dashboard API is read-only in v0.12.0"}, HTTPStatus.METHOD_NOT_ALLOWED)
+        self._send_json({"status": "READ_ONLY", "error": "dashboard API is read-only in v0.12.1"}, HTTPStatus.METHOD_NOT_ALLOWED)
 
     def _stream(self, service: ObservabilityService) -> None:
         subscriber = service.subscribe()
         try:
             self.send_response(HTTPStatus.OK)
+            self._security_headers()
             self.send_header("Content-Type", "text/event-stream; charset=utf-8")
             self.send_header("Cache-Control", "no-cache")
             self.send_header("Connection", "keep-alive")
             self.send_header("X-Accel-Buffering", "no")
             self.end_headers()
-            self._sse("snapshot", service.snapshot())
+            self._sse("snapshot", service.stream_snapshot())
             while True:
                 try:
                     event = subscriber.get(timeout=15)

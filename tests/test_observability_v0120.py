@@ -28,6 +28,7 @@ from ugas.observability.service import ObservabilityService
 from ugas.observability.store import TelemetryStore
 from ugas.observability.system_metrics import probe_nvidia_smi
 from ugas.state_consistency_v0120 import validate_state_consistency
+from ugas.state_consistency_v0121 import validate_state_consistency as validate_state_consistency_v0121
 
 
 class EventAndStoreTests(unittest.TestCase):
@@ -136,7 +137,7 @@ class DashboardApiTests(unittest.TestCase):
 class GovernanceAndCliTests(unittest.TestCase):
     def test_current_state_cannot_promote_production(self) -> None:
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-        result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.0.md").read_text(encoding="utf-8"))
+        result = validate_state_consistency_v0121(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.1.md").read_text(encoding="utf-8"))
         self.assertEqual("LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED", result["status"])
         mutant = dict(state); mutant["production_approved"] = True
         self.assertIn("production_approved_must_remain_false", validate_state_consistency(mutant, "", "")["failures"])
