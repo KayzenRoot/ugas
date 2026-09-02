@@ -177,6 +177,10 @@ def snapshot_check() -> None:
             if not relative or not source_relative:
                 bundle_ok = False
                 continue
+            expected_hash = str(artifact.get("sha256", ""))
+            existing_historical = snapshot / source_relative
+            if existing_historical.is_file() and digest(existing_historical) == expected_hash:
+                continue
             historical_bytes = subprocess.run(["git", "show", f"{historical_head}:{source_relative}"], cwd=ROOT, capture_output=True, check=False)
             if historical_bytes.returncode != 0:
                 bundle_ok = False
