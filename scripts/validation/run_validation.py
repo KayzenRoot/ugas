@@ -43,7 +43,11 @@ from ugas.state_consistency_v0121 import validate_state_consistency as validate_
 from ugas.state_consistency_v0122 import validate_state_consistency as validate_state_consistency_v0122
 from ugas.state_consistency_v0123 import validate_state_consistency as validate_state_consistency_v0123
 from ugas.state_consistency_v0123 import BASELINE_HEAD as V0123_BASELINE_HEAD
+from ugas.state_consistency_v0124 import validate_state_consistency as validate_state_consistency_v0124
+from ugas.state_consistency_v0124 import BASELINE_HEAD as V0124_BASELINE_HEAD
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
+from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
+from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
 from ugas.observability.qa_integrity import validate_review_index as validate_review_index_v0122
 from ugas.cutout_rig import validate_rig_manifest
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
@@ -120,51 +124,15 @@ def _result_detail(result: subprocess.CompletedProcess[str]) -> str:
 
 
 def _snapshot_validation_ok(result: subprocess.CompletedProcess[str]) -> bool:
-    """Accept only the known immutable-history drift in an archived snapshot."""
+    """Require the isolated historical validation to complete successfully."""
 
-    if result.returncode == 0:
-        return True
-    text = result.stdout + result.stderr
-    compact = re.sub(r"\s+", "", text)
-    # The archived pre-v0.12.3 tree is deliberately not rewritten. Its
-    # historical v0.11.2 index reports the changed active CHECKPOINT path and
-    # its v0.12.2 index contains hashes from the earlier publication commit.
-    # Those two immutable-history drifts are accepted; all active checks must
-    # otherwise be green.
-    legacy_drift = (
-        "FAILv0112:review-index" in compact
-        and "artifact_hash_mismatch:CHECKPOINT.md" in compact
-    )
-    legacy_only = legacy_drift and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=1", compact) is not None
-    old_baseline_drift = (
-        legacy_drift
-        and "FAILv0122:review-index" in compact
-        and "artifact-hash-mismatch:.dockerignore" in compact
-        and "artifact-hash-mismatch:compose.yaml" in compact
-        and "review-index-build-head-not-ancestor" in compact
-    )
-    old_baseline_only = old_baseline_drift and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=2", compact) is not None
-    old_baseline_with_legacy_test = (
-        old_baseline_drift
-        and "test_api_exposes_repository_binding_and_dirty_worktree_is_not_pass" in compact
-        and "GIT_STATUS_UNAVAILABLE" in compact
-        and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=3", compact) is not None
-    )
-    return legacy_only or old_baseline_only or old_baseline_with_legacy_test
+    return result.returncode == 0
 
 
 def _snapshot_unit_ok(result: subprocess.CompletedProcess[str]) -> bool:
-    """Accept the pre-v0.12.3 no-git expectation while the baseline is archived."""
+    """Require all unit tests to pass in the isolated snapshot."""
 
-    if result.returncode == 0:
-        return True
-    compact = re.sub(r"\s+", "", result.stdout + result.stderr)
-    return (
-        "test_api_exposes_repository_binding_and_dirty_worktree_is_not_pass" in compact
-        and "AssertionError:'WORKTREE_DIRTY_UNBOUND'!='GIT_STATUS_UNAVAILABLE'" in compact
-        and "Ran349tests" in compact
-        and "FAILED(failures=1,skipped=2)" in compact
-    )
+    return result.returncode == 0
 
 
 def snapshot_check() -> None:
@@ -2007,39 +1975,74 @@ def _v0122_checks() -> None:
 
 
 def _v0123_checks() -> None:
-    """Validate the active v0.12.3 review-infrastructure contracts."""
-    required = ["REVIEW-v0.12.3.md", "CONTRIBUTING.md", ".github/pull_request_template.md", ".github/workflows/ugas-ci.yml", ".github/workflows/ugas-review.yml", "docs/github-review-protocol.md", "docs/release-policy.md", "docs/ugas-v1-capability-matrix.md", "docs/ugas-v1-capability-matrix.json", "schemas/current-state.json", "schemas/current-state-v0.12.3.json", "schemas/github-review-manifest-v1.json", "schemas/review-visual-transport-v1.json", "schemas/ugas-v1-capability-matrix-v1.json", "scripts/validation/build_github_review_manifest.py", "scripts/validation/build_review_visual_transport_v0123.py", "scripts/validation/validate_github_review_manifest.py", "scripts/validation/validate_review_visual_transport_v0123.py", "scripts/validation/validate_github_review_security_v0123.py", "scripts/validation/enforce_github_review_v0123.py", "scripts/validation/validate_governance_v0123.py", "scripts/validation/validate_v1_capability_matrix.py", "scripts/validation/record_v0123_results.py", "scripts/docker/install-dashboard-autostart.ps1", "scripts/docker/uninstall-dashboard-autostart.ps1", "scripts/docker/ensure-dashboard-online.ps1", "docs/evidence/current-state.json", "docs/evidence/github-review-v0123/visual-manifest.json", "docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png", "docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png"]
+    """Validate v0.12.3 as preserved history after the active state advances."""
+    required = [
+        "REVIEW-v0.12.3.md", "schemas/current-state-v0.12.3.json", "docs/evidence/current-state-v0.12.3.json",
+        "schemas/github-review-manifest-v1.json", "schemas/review-visual-transport-v1.json",
+        "scripts/validation/build_github_review_manifest.py", "scripts/validation/build_review_visual_transport_v0123.py",
+        "scripts/validation/validate_github_review_manifest.py", "scripts/validation/validate_review_visual_transport_v0123.py",
+        "scripts/validation/validate_github_review_security_v0123.py", "scripts/validation/enforce_github_review_v0123.py",
+        "scripts/validation/validate_governance_v0123.py", "scripts/validation/record_v0123_results.py",
+        "docs/evidence/github-review-v0123/visual-manifest.json",
+        "docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png",
+        "docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png",
+    ]
     for relative in required:
-        path = ROOT / relative; check(f"v0123:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+        path = ROOT / relative; check(f"v0123:history:{relative}", path.is_file(), "preserved" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
-        consistency = validate_state_consistency_v0123(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        check("v0123:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.12.3 state is consistent")
+        state = load_json(ROOT / "docs/evidence/current-state-v0.12.3.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.12.3.json"))
+        check("v0123:history-state", state.get("version") == "0.12.3" and state.get("production_routing") == "BLOCKED" and state.get("production_approved") is False, "v0.12.3 state snapshot remains immutable and production-blocked")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
-        check("v0123:state-consistency", False, str(exc))
-    ci = (ROOT / ".github/workflows/ugas-ci.yml").read_text(encoding="utf-8")
-    review = (ROOT / ".github/workflows/ugas-review.yml").read_text(encoding="utf-8")
-    check("v0123:workflow-triggers", all(literal in ci for literal in ("pull_request:", "workflow_dispatch:", "push:", "branches: [main]", "cancel-in-progress: true")) and all(literal in review for literal in ("pull_request:", "workflow_dispatch:", "fetch-depth: 0", "if: always()", "Assemble bounded evidence artifact", "Upload bounded GitHub review artifact")), "PR-first workflows have stable triggers, failure-safe evidence and cancellation")
-    check("v0123:workflow-action-pins", all(literal in ci and literal in review for literal in ("actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2", "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0")) and "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2" in review, "CI and review workflow actions are pinned to immutable release SHAs")
-    check("v0123:stable-check-names", "UGAS CI / unit-and-validation" in ci and "UGAS CI / docker-smoke" in ci, "stable CI check identities are present")
-    compose = (ROOT / "compose.yaml").read_text(encoding="utf-8")
-    check("v0123:dashboard-boundary", '"127.0.0.1:${UGAS_DASHBOARD_PORT:-8765}:8765"' in compose and "restart: unless-stopped" in compose and "read_only: true" in compose, "dashboard remains loopback-only, persistent and read-only")
-    installer = (ROOT / "scripts/docker/install-dashboard-autostart.ps1").read_text(encoding="utf-8")
-    check("v0123:autostart-fallback", all(literal in installer for literal in ("AUTOSTART_INSTALLED_FALLBACK", "[Environment]::GetFolderPath(\"Startup\")", "Register-ScheduledTask", "UGAS-Dashboard-AlwaysOn.cmd")), "Task Scheduler is attempted before the non-admin Startup fallback")
-    check("v0123:scope-boundary", all(literal not in "\n".join(path for path in subprocess.run(["git", "diff", "--name-only", V0123_BASELINE_HEAD], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) for literal in ("docs/evidence/animation-runtime", "profiles/animation", "providers/")), "no asset, animation or provider files changed")
+        check("v0123:history-state", False, str(exc))
     manifest = ROOT / "docs/evidence/github-review-v0123/github-review-manifest-local.json"
     visuals = ROOT / "docs/evidence/github-review-v0123/visual-manifest.json"
     if manifest.is_file() and visuals.is_file():
-        manifest_result = validate_github_review_manifest(manifest, visuals)
-        check("v0123:review-manifest", manifest_result["status"] == "GITHUB_REVIEW_MANIFEST_PASSED", "; ".join(manifest_result.get("failures", [])) or "active GitHub review manifest and visuals are valid")
+        result = validate_github_review_manifest(manifest, visuals)
+        check("v0123:history-manifest", result["status"] == "GITHUB_REVIEW_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "v0.12.3 manifest remains valid")
     else:
-        check("v0123:review-manifest", False, "local GitHub review manifest evidence is missing")
-    matrix = ROOT / "docs/evidence/github-review-v0123/v1-capability-matrix-validation.json"
-    if matrix.is_file():
-        value = load_json(matrix); check("v0123:capability-matrix", value.get("status") == "V1_CAPABILITY_MATRIX_PASSED" and value.get("next_candidate") == "RUN_FRONT_V1", "V1 capability order and next candidate are frozen")
+        check("v0123:history-manifest", False, "v0.12.3 manifest evidence is missing")
+
+
+def _v0124_checks() -> None:
+    """Validate the active v0.12.4 CI/governance recovery slice."""
+    required = [
+        "REVIEW-v0.12.4.md", "schemas/current-state-v0.12.4.json", "schemas/current-state.json", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.12.3.json",
+        "src/ugas/state_consistency_v0124.py", "scripts/validation/validate_state_consistency.py", "scripts/validation/validate_governance_v0124.py",
+        "scripts/validation/build_github_review_manifest_v0124.py", "scripts/validation/validate_github_review_manifest_v0124.py", "scripts/validation/validate_github_review_security_v0124.py", "scripts/validation/enforce_github_review_v0124.py", "scripts/validation/record_v0124_results.py", "scripts/validation/validate_github_workflows_v0124.py", "scripts/github/ugas-pr-handoff.ps1",
+        "docs/evidence/github-governance-v0124/pr1-premature-merge.json", "docs/evidence/github-governance-v0124/dashboard-external-visual-approval.json", "docs/evidence/github-governance-v0124/ruleset-readback.json", "docs/evidence/github-governance-v0124/historical/v0.11.2/CHECKPOINT.md",
+        "docs/evidence/github-governance-v0124/workflow-validation.json", "docs/evidence/github-governance-v0124/negative-controls-v0124.json", "docs/evidence/github-governance-v0124/test-results-v0124.json", "docs/evidence/github-governance-v0124/validation-results-v0124.json",
+        ".github/workflows/ugas-ci.yml", ".github/workflows/ugas-review.yml",
+    ]
+    for relative in required:
+        path = ROOT / relative; check(f"v0124:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.12.4.json"))
+        consistency = validate_state_consistency_v0124(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.4.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0124:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.12.4 state is consistent")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0124:state-consistency", False, str(exc))
+    workflow_result = validate_github_workflows_v0124(ROOT)
+    check("v0124:workflow-structure", workflow_result["status"] == "PASS", "; ".join(workflow_result.get("failures", [])) or "workflow structure is locally valid; GitHub remains authoritative")
+    incident = load_json(ROOT / "docs/evidence/github-governance-v0124/pr1-premature-merge.json")
+    check("v0124:pr1-incident", incident.get("classification") == "GOVERNANCE_ORDER_VIOLATION_AND_FAILED_CHECK_MERGE" and incident.get("pr", {}).get("number") == 1 and incident.get("review_workflow", {}).get("conclusion") == "FAILURE" and incident.get("review_artifact", {}).get("uploaded") is True, "PR #1 red-run premature-merge incident is factual and immutable")
+    approval = load_json(ROOT / "docs/evidence/github-governance-v0124/dashboard-external-visual-approval.json")
+    check("v0124:dashboard-approval-binding", approval.get("decision") == "APPROVED_PILOT" and approval.get("source_artifact", {}).get("id") == "9867524286" and len(approval.get("visuals", [])) == 2 and approval.get("historical_sources_rewritten") is False, "dashboard visual approval is forward-only and bound to PR #1 artifact/visual hashes")
+    ruleset = load_json(ROOT / "docs/evidence/github-governance-v0124/ruleset-readback.json")
+    check("v0124:ruleset-readback", ruleset.get("protected") is False and ruleset.get("credential_values_recorded") is False and ruleset.get("capability_gap") == "RULESET_CAPABILITY_GAP", "effective protection is not claimed without authenticated readback")
+    negative = load_json(ROOT / "docs/evidence/github-governance-v0124/negative-controls-v0124.json")
+    check("v0124:negative-controls", negative.get("status") == "ALL_REQUIRED_NEGATIVE_CONTROLS_PASSED", "merge, snapshot, history, workflow, artifact and production negative controls pass")
+    manifest = ROOT / "docs/evidence/github-governance-v0124/github-review-manifest-local.json"
+    visual = ROOT / "docs/evidence/github-governance-v0124/visual-manifest.json"
+    if manifest.is_file() and visual.is_file():
+        result = validate_github_review_manifest_v0124(manifest, visual)
+        check("v0124:review-manifest", result["status"] == "V0124_GITHUB_REVIEW_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "active v0.12.4 review manifest and visuals are valid")
     else:
-        check("v0123:capability-matrix", False, "capability matrix validation evidence is missing")
+        check("v0124:review-manifest", False, "local v0.12.4 review manifest evidence is missing")
+    active_files = "\n".join(path for path in subprocess.run(["git", "diff", "--name-only", V0124_BASELINE_HEAD], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else ""
+    check("v0124:scope-boundary", all(literal not in active_files for literal in ("docs/evidence/animation-runtime", "profiles/animation", "providers/")), "no asset, animation or provider files changed")
+    check("v0124:no-self-merge-path", "merge_performed = $false" in (ROOT / "scripts/github/ugas-pr-handoff.ps1").read_text(encoding="utf-8") and "gh', 'pr', 'merge" not in (ROOT / "scripts/github/ugas-pr-handoff.ps1").read_text(encoding="utf-8"), "handoff helper has no self-merge path")
 
 
 def main() -> int:
@@ -2140,13 +2143,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.12.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.12.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.12.3")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.12.4", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.12.4.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.12.4")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

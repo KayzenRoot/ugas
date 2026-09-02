@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.12.4",
+  "status": "PASS",
+  "workflows": [
+    {
+      "status": "PASS",
+      "workflow": ".github/workflows/ugas-ci.yml",
+      "kind": "ci",
+      "action_pin_count": 3,
+      "failures": []
+    },
+    {
+      "status": "PASS",
+      "workflow": ".github/workflows/ugas-review.yml",
+      "kind": "review",
+      "action_pin_count": 3,
+      "failures": []
+    }
+  ],
+  "failures": [],
+  "real_github_run_required": true
+}

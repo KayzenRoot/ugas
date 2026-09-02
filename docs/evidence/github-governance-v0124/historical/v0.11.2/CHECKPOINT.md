@@ -1,52 +1,12 @@
-# UGAS checkpoint - v0.12.4
+# UGAS checkpoint - v0.11.2
 
-## v0.12.4 GitHub CI and governance recovery
-
-The active phase is `GITHUB_CI_GOVERNANCE_RECOVERY` and the local gate is `GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR`; it becomes technically qualified only after a real corrective PR has all required GitHub checks green. The branch is `codex/v0.12.4-github-ci-governance-recovery` from remote main baseline `877ede34afadd631764887ad6c5fb941ca4371a8`. `GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY`, `GITHUB_REVIEW_MODE=PR_FIRST`, `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, and `DOCKER_ALWAYS_ON_LOCAL` are authoritative.
-
-PR #1 remains an immutable governance incident: v0.12.3 was merged before external approval while the real review workflow was red. The machine record is `docs/evidence/github-governance-v0124/pr1-premature-merge.json`. The dashboard decision is forward-only `observability_dashboard_external_visual=APPROVED_PILOT`, bound to the PR #1 artifact and the existing v0.12.2 source/transport hashes; it is visual/pilot approval only.
-
-The only allowed next action is `external_review_github_ci_governance_v0124`; `RUN_FRONT_V1` remains the next necessary functional candidate but is not executed here. `production_approved=false`, `production_routing=BLOCKED` and `new_generation=0` remain authoritative. Do not directly modify `main`, rewrite PR #1 history, merge before explicit Sol approval, create assets, execute animation, enable production or migrate ComfyUI.
-
-## Historical v0.12.2 QA cache integrity + Docker always-on local observability
-
-## v0.12.2 QA cache integrity + Docker always-on local observability
-
-The active increment is `LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED`. It corrects the rejected v0.12.1 QA false-green path by binding each cache generation to the current HEAD, full worktree state and review artifact-set fingerprint; dirty/unreview-bound worktrees are GAP. Exact QA-NC-01..08 fixtures are executed, stale-last-known is proven through service/API collection, and generation stage telemetry is emitted through the production instrumentation boundary with a fake provider and no real generation. The dashboard observer runs in Docker with a read-only repository mount, writable shared `.ugas/runtime`, loopback-only host publication, bounded log rotation, non-root/no-socket security, restart policy, optional GPU override and host ComfyUI probing. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` is now mandatory for future executor rounds. The v0.11.2 external visual result remains `APPROVED_PILOT` for pilot/pipeline only; it is not production approval. `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and external dashboard review remains `REQUIRED`. The only next action is `external_review_observability_dashboard_v0122`.
-
-**STATUS:** `LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED`
-**VERSION:** `0.12.2`
-**PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
-**RUNTIME_MODE:** `DOCKER_ALWAYS_ON_LOCAL`
-**ALWAYS_ON_DASHBOARD_POLICY:** `ENABLED`
-
-## Historical v0.12.1 rejected history
-
-The v0.12.1 dashboard implementation and its evidence remain preserved as rejected history in `REVIEW-v0.12.1.md`, `docs/evidence/observability-v0121/`, `docs/evidence/current-state-v0.12.1.json` and `docs/evidence/review-index-v0.12.1.json`. The v0.12.2 correction does not rewrite those records.
-
-## v0.12.1 observability integrity, security and live pipeline correction (rejected history)
-
-The active increment is `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`. It corrects only the rejected v0.12.0 local dashboard: unsafe HTML sinks are removed, QA is fail-closed, live workload stages and elapsed time are real, orphan jobs are reconciled, resource/process probes expose stale-last-known data honestly, file activity has a stable transition, and the v0.11.2 binding defect is superseded forward-only. The v0.11.2 external visual result remains `APPROVED_PILOT` for pilot/pipeline only; it is not production approval. The local dashboard remains read-only/local-only, with `production_approved=false` and `production_routing=BLOCKED`. The only next action is `external_review_observability_dashboard_v0121`; no new asset family, animation, generation job or remote telemetry is authorized.
-
-**STATUS:** `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`
-**VERSION:** `0.12.1`
-**PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
-
-## Historical v0.12.0 rejected history
-
-The v0.12.0 dashboard implementation and its evidence remain preserved as rejected history. Its active state is retained in `docs/evidence/current-state-v0.12.0.json` with schema `schemas/current-state-v0.12.0.json`; the historical external binding `docs/evidence/observability-v0120/external-review-v0112.json` is not rewritten.
+**STATUS:** `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`
+**VERSION:** `0.11.2`
+**PHASE:** `REUSABLE_DETERMINISTIC_ANIMATION_RUNTIME`
 
 ## Current state
 
-The machine-authoritative active state is [docs/evidence/current-state.json](docs/evidence/current-state.json), and the v0.12.1 correction evidence is hash-bound by `docs/evidence/review-index-v0.12.1.json`.
-
-### Historical v0.12.0 state record
-
-**STATUS:** `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`
-**VERSION:** `0.12.0`
-**PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
-
-O registro acima é histórico do v0.12.0 e não substitui o estado ativo v0.12.1. O piloto v0.8.1 corrige a integridade QA do mesmo cutout-rig R4 v0.7.1, core estrutural v0.7.3 e hashes K1–K4 imutáveis para oito frames front-walk. O v0.8.0 está preservado em snapshots versionados.
+O estado machine-authoritative está em [docs/evidence/current-state.json](docs/evidence/current-state.json). O piloto v0.8.1 corrige a integridade QA do mesmo cutout-rig R4 v0.7.1, core estrutural v0.7.3 e hashes K1–K4 imutáveis para oito frames front-walk. O v0.8.0 está preservado em snapshots versionados.
 
 O escopo é somente o piloto determinístico front/walk/8: `deterministic-cutout-rig-2d` recebe o R4 RGBA canônico e as partes v0.7.1; intermediários são skeletons Hermite projetados, não pixels interpolados. `sam2_runs=0`, `comfyui_generation_jobs=0` e `production_routing=BLOCKED`.
 

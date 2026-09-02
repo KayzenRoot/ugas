@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.12.4",
+  "decision_type": "external_dashboard_visual",
+  "decision": "APPROVED_PILOT",
+  "scope": "visual_and_pilot_only",
+  "repository": "csn1985-ship-it/ugas",
+  "source_artifact": {"id": "9867524286", "name": "ugas-review-evidence-pr-1-2f8d04f03a6f4de0ead7683899f945cd60d5000f", "digest": "sha256:6ffe21738ed7960aabb5cd874cc44c4030a3b5fee0463f58c004805637a4d6d2"},
+  "visual_manifest": "docs/evidence/github-review-v0123/visual-manifest.json",
+  "visuals": [
+    {"source_path": "docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png", "source_sha256": "08fed596faeeeef8803006dfe38c0635405ec7399097d40508a73a415b732f23", "transport_path": "docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png", "transport_sha256": "d129beed2d1d1b8630b8be57e44489594135b46d1ef783f79ebcc518a49a86f3"},
+    {"source_path": "docs/evidence/observability-v0122/dashboard-docker-live-activity-v0122.png", "source_sha256": "5f8ad61744942a00300b92816913c1e8fc970e1f716a33f3962df0918c47338a", "transport_path": "docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png", "transport_sha256": "ec08a8566541113a974d0e5d309ac16596ff62475c5c28ebe136e1aada370a87"}
+  ],
+  "observations": ["dashboard_is_coherent_and_readable", "degraded_and_qa_gap_states_are_visible", "telemetry_gpu_process_provider_file_activity_qa_gates_jobs_and_events_are_organized"],
+  "non_blocking_debt": "long_phase_and_gate_identifiers_wrap_in_narrow_cards",
+  "does_not_approve": ["v0.12.3_github_infrastructure", "production_routing", "pr1_validation"],
+  "historical_sources_rewritten": false
+}

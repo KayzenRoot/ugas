@@ -1,8 +1,8 @@
 # UGAS roadmap
 
-## v0.12.3 - GitHub-native review infrastructure (active)
+## v0.12.4 - GitHub CI and governance recovery (active: `GITHUB_CI_GOVERNANCE_RECOVERY`)
 
-Make GitHub the canonical review surface with phase `GITHUB_NATIVE_REVIEW_INFRASTRUCTURE` and gate `GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED`, stable PR-first CI checks, a schema-valid review manifest, downloadable bounded evidence including the two v0.12.2 dashboard PNGs, a truthful ruleset/PR permission-gap record, a non-admin always-on fallback, active checkpoint/roadmap cleanup and a frozen V1 capability matrix. Keep the local dashboard online in `DOCKER_ALWAYS_ON_LOCAL` mode with `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, preserve all historical evidence, keep `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and stop at `external_review_github_native_v0123_and_dashboard_v0122`. The next functional candidate after external approval is `RUN_FRONT_V1`; it is not implemented here.
+Recover GitHub-first development after the premature v0.12.3 merge. Start from remote main `877ede34afadd631764887ad6c5fb941ca4371a8` on a new corrective branch, fix the three real historical snapshot/no-git validation defects, prove stable PR-triggered `UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke` and `UGAS Review / evidence` checks, and leave the corrective PR open without merge. Record the immutable PR #1 incident, record `observability_dashboard_external_visual=APPROVED_PILOT` bound to the existing artifact/visual hashes, configure and read back the strongest practical main protection or record `RULESET_CAPABILITY_GAP`, and keep the local Docker dashboard online under `DOCKER_ALWAYS_ON_LOCAL`. `GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY`, `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` remain outside this slice. Stop only at `external_review_github_ci_governance_v0124`.
 
 ## Historical v0.12.2 - QA cache integrity and Docker always-on local observability
 
@@ -76,7 +76,7 @@ Incluem a escalada OpenPose/RefControl, multi-reference nativo, âncoras e o pil
 
 ## Historical navigation note
 
-The older navigation text below is retained as history only. The sole active next gate is the v0.12.3 GitHub-native review recorded at the top of this file; historical walk/front/8, new providers, custom nodes and older dashboard gates are not actionable.
+The older navigation text below is retained as history only. The sole active next gate is the v0.12.4 GitHub CI/governance recovery recorded at the top of this file; historical v0.12.3, walk/front/8, new providers, custom nodes and older dashboard gates are not actionable.
 ## v0.10.0
 
 Reusable deterministic action runtime and the 10-frame front sword attack pilot are technically qualified after event-marker, lifecycle, temporal, weapon-sweep, foot-ground, structural, occlusion, retention, and independent MediaPipe QA. External attack-front visual review is the only allowed next action; run/hit/death, other directions, provider changes, and production enablement remain blocked. `production_routing=BLOCKED`.

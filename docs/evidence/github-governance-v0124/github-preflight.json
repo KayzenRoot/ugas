@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.12.4",
+  "repository": "csn1985-ship-it/ugas",
+  "default_branch": "main",
+  "baseline_head": "877ede34afadd631764887ad6c5fb941ca4371a8",
+  "feature_branch": "codex/v0.12.4-github-ci-governance-recovery",
+  "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.4-github-ci-governance-recovery",
+  "remote_branch_present": false,
+  "authentication": {"gh_cli_present": true, "authenticated": false, "credential_values_recorded": false},
+  "permission_gaps": [
+    {"code": "GITHUB_PR_CREATE_GAP", "reason": "gh is installed but no authenticated GitHub host is available.", "remediation": "Authenticate gh with pull-request write permission for csn1985-ship-it/ugas.", "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.4-github-ci-governance-recovery"},
+    {"code": "RULESET_CAPABILITY_GAP", "reason": "main protection cannot be configured until authenticated owner/admin access is available.", "remediation": "Authenticate owner/admin access and configure/read back the strongest practical main ruleset."},
+    {"code": "CODEOWNERS_GAP", "reason": "No reviewer identity was guessed or fabricated.", "remediation": "Add CODEOWNERS only after a confirmed owner/reviewer identity is available."}
+  ],
+  "status": "BLOCKED_GITHUB_AUTH",
+  "credential_values_recorded": false
+}

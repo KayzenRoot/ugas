@@ -137,11 +137,11 @@ class DashboardApiTests(unittest.TestCase):
 class GovernanceAndCliTests(unittest.TestCase):
     def test_current_state_cannot_promote_production(self) -> None:
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-        from ugas.state_consistency_v0123 import validate_state_consistency as validate_state_consistency_v0123
-        result = validate_state_consistency_v0123(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        self.assertEqual("GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED", result["status"])
+        from ugas.state_consistency_v0124 import validate_state_consistency as validate_state_consistency_v0124
+        result = validate_state_consistency_v0124(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.4.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        self.assertEqual("GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR", result["status"])
         mutant = dict(state); mutant["production_approved"] = True
-        self.assertIn("production_approved_must_remain_false", validate_state_consistency(mutant, "", "")["failures"])
+        self.assertIn("production_approved_must_remain_false", validate_state_consistency_v0124(mutant, "", "")["failures"])
 
     def test_dashboard_cli_startup_smoke_on_ephemeral_port(self) -> None:
         environment = dict(os.environ); environment["PYTHONPATH"] = str(ROOT / "src")

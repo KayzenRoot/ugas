@@ -46,10 +46,14 @@ jobs:
         env:
           PYTHONPATH: src
         run: python scripts/validation/validate_v1_capability_matrix.py
-      - name: Active GitHub review manifest validation
+      - name: Workflow structure validation
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_github_review_manifest.py
+        run: python scripts/validation/validate_github_workflows_v0124.py --root .
+      - name: Active GitHub governance review manifest validation
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_github_review_manifest_v0124.py
 
   docker-smoke:
     name: UGAS CI / docker-smoke

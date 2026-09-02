@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.12.4",
+  "status": "ALL_REQUIRED_NEGATIVE_CONTROLS_PASSED",
+  "controls": {
+    "GOV-NC-01": "PASS",
+    "GOV-NC-02": "PASS",
+    "CI-NC-01": "PASS",
+    "CI-NC-02": "PASS",
+    "HIST-NC-01": "PASS",
+    "WF-NC-01": "PASS",
+    "ART-NC-01": "PASS",
+    "STATE-NC-01": "PASS"
+  },
+  "evidence": "tests/test_github_governance_v0124.py",
+  "merge_performed": false,
+  "production_approved": false,
+  "new_generation": 0
+}
