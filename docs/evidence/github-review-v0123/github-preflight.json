@@ -6,7 +6,7 @@
   "baseline_head": "6b956b9299f3a2f75280f17706c38c59e3714034",
   "feature_branch": "codex/v0.12.3-github-native-review",
   "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.3-github-native-review",
-  "remote_branch_present": false,
+  "remote_branch_present": true,
   "workflow_presence": {
     "baseline": false,
     "working_tree": true,
@@ -43,6 +43,23 @@
       "remediation": "Add .github/CODEOWNERS only after a valid repository owner/reviewer account is confirmed."
     }
   ],
-  "operations": {},
+  "operations": {
+    "ruleset": {
+      "status": "GITHUB_RULESET_GAP",
+      "attempted": false,
+      "reason": "no API token available"
+    },
+    "metadata": {
+      "status": "GITHUB_METADATA_GAP",
+      "attempted": false,
+      "reason": "no API token available"
+    },
+    "pull_request": {
+      "status": "GITHUB_PR_CREATE_GAP",
+      "attempted": false,
+      "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.3-github-native-review",
+      "reason": "no API token available"
+    }
+  },
   "status": "READY_WITH_EXPLICIT_GITHUB_GAPS"
 }
