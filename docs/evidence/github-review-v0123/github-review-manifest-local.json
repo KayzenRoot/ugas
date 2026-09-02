@@ -9,7 +9,7 @@
   "pull_request": {
     "number": 0,
     "base_sha": "6b956b9299f3a2f75280f17706c38c59e3714034",
-    "head_sha": "6b956b9299f3a2f75280f17706c38c59e3714034",
+    "head_sha": "fa123e1ce2016919db4c94c4fd0fff7a2516face",
     "merge_base_sha": "6b956b9299f3a2f75280f17706c38c59e3714034",
     "head_branch": "codex/v0.12.3-github-native-review",
     "base_branch": "main"
@@ -45,8 +45,8 @@
     {
       "path": "CHECKPOINT.md",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 11,
+      "deletions": 3
     },
     {
       "path": "CONTRIBUTING.md",
@@ -57,14 +57,14 @@
     {
       "path": "INSTALL.md",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 8,
+      "deletions": 4
     },
     {
       "path": "README.md",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 12,
+      "deletions": 6
     },
     {
       "path": "REVIEW-v0.12.3.md",
@@ -75,32 +75,32 @@
     {
       "path": "compose.yaml",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "docs/2d-master-pipeline.md",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 3,
+      "deletions": 3
     },
     {
       "path": "docs/comfyui.md",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 2,
+      "deletions": 2
     },
     {
       "path": "docs/docker-local-dashboard.md",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 3,
+      "deletions": 3
     },
     {
       "path": "docs/evidence/current-state.json",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 10,
+      "deletions": 8
     },
     {
       "path": "docs/evidence/github-review-v0123/autostart-v0123.json",
@@ -109,9 +109,15 @@
       "deletions": 0
     },
     {
+      "path": "docs/evidence/github-review-v0123/github-preflight.json",
+      "status": "A",
+      "additions": 48,
+      "deletions": 0
+    },
+    {
       "path": "docs/evidence/github-review-v0123/github-review-manifest-local.json",
       "status": "A",
-      "additions": 409,
+      "additions": 435,
       "deletions": 0
     },
     {
@@ -165,8 +171,8 @@
     {
       "path": "docs/roadmap.md",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 9,
+      "deletions": 5
     },
     {
       "path": "docs/ugas-v1-capability-matrix.json",
@@ -183,14 +189,14 @@
     {
       "path": "package.json",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "pyproject.toml",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "schemas/current-state-v0.12.3.json",
@@ -201,13 +207,13 @@
     {
       "path": "schemas/current-state.json",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 12,
+      "deletions": 10
     },
     {
       "path": "schemas/github-review-manifest-v1.json",
       "status": "A",
-      "additions": 163,
+      "additions": 165,
       "deletions": 0
     },
     {
@@ -219,26 +225,26 @@
     {
       "path": "scripts/docker/ensure-dashboard-online.ps1",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 5,
+      "deletions": 2
     },
     {
       "path": "scripts/docker/install-dashboard-autostart.ps1",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 28,
+      "deletions": 4
     },
     {
       "path": "scripts/docker/ugas-dashboard-up.ps1",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "scripts/docker/uninstall-dashboard-autostart.ps1",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 14,
+      "deletions": 7
     },
     {
       "path": "scripts/docker/validate-dashboard-autostart-v0123.ps1",
@@ -267,8 +273,8 @@
     {
       "path": "scripts/validation/run_validation.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 81,
+      "deletions": 43
     },
     {
       "path": "scripts/validation/validate_github_review_manifest.py",
@@ -285,8 +291,8 @@
     {
       "path": "scripts/validation/validate_state_consistency.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 6,
+      "deletions": 6
     },
     {
       "path": "scripts/validation/validate_v1_capability_matrix.py",
@@ -297,38 +303,38 @@
     {
       "path": "src/ugas/__init__.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "src/ugas/cli.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "src/ugas/constants.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "src/ugas/observability/dashboard_app.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "src/ugas/observability/qa_integrity.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 8,
+      "deletions": 4
     },
     {
       "path": "src/ugas/observability/service.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "src/ugas/state_consistency_v0123.py",
@@ -339,38 +345,38 @@
     {
       "path": "tests/test_bootstrap.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     },
     {
       "path": "tests/test_observability_v0120.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 3,
+      "deletions": 3
     },
     {
       "path": "tests/test_observability_v0122.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 2,
+      "deletions": 1
     },
     {
       "path": "tests/test_reference_edit_fidelity_v043.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 2,
+      "deletions": 2
     },
     {
       "path": "tests/test_regressions_v040.py",
       "status": "M",
-      "additions": 0,
-      "deletions": 0
+      "additions": 1,
+      "deletions": 1
     }
   ],
   "change_statistics": {
-    "files": 57,
-    "additions": 1921,
-    "deletions": 0
+    "files": 58,
+    "additions": 2227,
+    "deletions": 127
   },
   "current_state": {
     "path": "docs/evidence/current-state.json",
