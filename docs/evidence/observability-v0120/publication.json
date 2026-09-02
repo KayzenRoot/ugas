@@ -1,9 +1,17 @@
 {
-  "status": "PENDING_FINAL_COMMIT",
+  "status": "PUBLISHED",
   "branch": "main",
-  "review_index_build_head": "pending",
-  "published_head": "pending",
+  "review_index_build_head": "bc1252992ff5b38096b7e9bd58b5ffe5cee41ffc",
+  "published_head": "d0eb6e06cf9c5eadce586fc1c096ba1ac168daa5",
   "remote": "https://github.com/csn1985-ship-it/ugas.git",
+  "remote_head_after_push": "d0eb6e06cf9c5eadce586fc1c096ba1ac168daa5",
+  "working_tree_clean_before_publication_record": true,
+  "publication_record_is_follow_up_documentation_only": true,
+  "verified_commands": [
+    "git rev-parse HEAD",
+    "git status --short --branch",
+    "git push origin main"
+  ],
   "final_head_must_be_verified_after_push": true,
   "production_routing": "BLOCKED",
   "external_observability_review": "REQUIRED"
