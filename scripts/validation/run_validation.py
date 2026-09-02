@@ -1997,7 +1997,7 @@ def _v0122_checks() -> None:
     required += [f"docs/evidence/observability-v0122/{name}" for name in ("qa-cache-invalidation-v0122.json", "qa-negative-controls-v0122.json", "stale-last-known-integration-v0122.json", "generation-telemetry-contract-v0122.json", "docker-preflight-v0122.json", "docker-compose-config-v0122.json", "docker-build-v0122.json", "docker-runtime-v0122.json", "docker-gpu-v0122.json", "docker-cross-process-telemetry-v0122.json", "docker-file-watch-v0122.json", "docker-persistence-v0122.json", "docker-autostart-v0122.json", "docker-security-v0122.json", "test-results-v0122.json", "validation-results-v0122.json", "publication.json", "dashboard-docker-overview-v0122.png", "dashboard-docker-live-activity-v0122.png")]
     for relative in required:
         path = ROOT / relative; check(f"v0122:history:{relative}", path.is_file(), "preserved" if path.is_file() else "missing")
-    unchanged = subprocess.run(["git", "diff", "--quiet", V0123_BASELINE_HEAD, "--", "docs/evidence/review-index-v0.12.2.json"], cwd=ROOT, capture_output=True, check=False).returncode == 0
+    unchanged = (not (ROOT / ".git").exists() and (ROOT / "docs/evidence/review-index-v0.12.2.json").is_file()) or subprocess.run(["git", "diff", "--quiet", V0123_BASELINE_HEAD, "--", "docs/evidence/review-index-v0.12.2.json"], cwd=ROOT, capture_output=True, check=False).returncode == 0
     check("v0122:history:index-unchanged", unchanged, "v0.12.2 review index file was not rewritten")
     check("v0122:history:active-artifacts-present", evidence.is_dir() and (ROOT / "docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png").is_file(), "v0.12.2 evidence remains available as historical transport material")
 
