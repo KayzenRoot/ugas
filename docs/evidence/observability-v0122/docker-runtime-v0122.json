@@ -1,0 +1,391 @@
+{
+  "captured_at": "2026-09-02T16:55:01Z",
+  "container": {
+    "Id": "e064592af07f5758cfdc08dc3207b704a0337fb6500a4bae21e5ea01dba2bb41",
+    "Created": "2026-09-02T16:54:35.297626175Z",
+    "Path": "python",
+    "Args": [
+      "-m",
+      "ugas.cli",
+      "dashboard",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8765",
+      "--no-open"
+    ],
+    "State": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 68125,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-09-02T16:54:38.295002746Z",
+      "FinishedAt": "0001-01-01T00:00:00Z",
+      "Health": {
+        "Status": "starting",
+        "FailingStreak": 0,
+        "Log": [
+          {
+            "Start": "2026-09-02T16:54:44.143844823Z",
+            "End": "2026-09-02T16:54:46.855819175Z",
+            "ExitCode": 1,
+            "Output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1373, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1348, in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1478, in getresponse\n    response.begin()\n  File \"/usr/local/lib/python3.12/http/client.py\", line 343, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/http/client.py\", line 304, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/socket.py\", line 720, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out\n"
+          },
+          {
+            "Start": "2026-09-02T16:54:51.857590352Z",
+            "End": "2026-09-02T16:54:54.644039346Z",
+            "ExitCode": 1,
+            "Output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1373, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1348, in do_open\n    r = h.getresponse()\n        ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1478, in getresponse\n    response.begin()\n  File \"/usr/local/lib/python3.12/http/client.py\", line 343, in begin\n    version, status, reason = self._read_status()\n                              ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/http/client.py\", line 304, in _read_status\n    line = str(self.fp.readline(_MAXLINE + 1), \"iso-8859-1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/socket.py\", line 720, in readinto\n    return self._sock.recv_into(b)\n           ^^^^^^^^^^^^^^^^^^^^^^^\nTimeoutError: timed out\n"
+          }
+        ]
+      }
+    },
+    "Image": "sha256:251c68534a258757ad2e60d5107d60e9faa8bba2633b47b27745c50d3953f54c",
+    "ResolvConfPath": "/var/lib/docker/containers/e064592af07f5758cfdc08dc3207b704a0337fb6500a4bae21e5ea01dba2bb41/resolv.conf",
+    "HostnamePath": "/var/lib/docker/containers/e064592af07f5758cfdc08dc3207b704a0337fb6500a4bae21e5ea01dba2bb41/hostname",
+    "HostsPath": "/var/lib/docker/containers/e064592af07f5758cfdc08dc3207b704a0337fb6500a4bae21e5ea01dba2bb41/hosts",
+    "LogPath": "/var/lib/docker/containers/e064592af07f5758cfdc08dc3207b704a0337fb6500a4bae21e5ea01dba2bb41/e064592af07f5758cfdc08dc3207b704a0337fb6500a4bae21e5ea01dba2bb41-json.log",
+    "Name": "/ugas-dashboard",
+    "RestartCount": 0,
+    "Driver": "overlayfs",
+    "Platform": "linux",
+    "MountLabel": "",
+    "ProcessLabel": "",
+    "AppArmorProfile": "",
+    "ExecIDs": null,
+    "HostConfig": {
+      "Binds": [
+        "D:\\Projeto Codexx\\ugas:/workspace/ugas:ro",
+        "D:\\Projeto Codexx\\ugas\\.ugas\\runtime:/workspace/ugas/.ugas/runtime:rw"
+      ],
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      },
+      "NetworkMode": "ugas-observability_default",
+      "PortBindings": {
+        "8765/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8765"
+          }
+        ]
+      },
+      "RestartPolicy": {
+        "Name": "unless-stopped",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": [
+        "ALL"
+      ],
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": null,
+      "DnsSearch": null,
+      "ExtraHosts": [
+        "host.docker.internal:host-gateway"
+      ],
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ],
+      "Tmpfs": {
+        "/tmp": "rw,noexec,nosuid,size=64m"
+      },
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 0,
+      "NanoCpus": 0,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": null,
+      "BlkioDeviceReadBps": null,
+      "BlkioDeviceWriteBps": null,
+      "BlkioDeviceReadIOps": null,
+      "BlkioDeviceWriteIOps": null,
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": null,
+      "DeviceCgroupRules": null,
+      "DeviceRequests": [
+        {
+          "Driver": "",
+          "Count": -1,
+          "DeviceIDs": null,
+          "Capabilities": [
+            [
+              "gpu"
+            ]
+          ],
+          "Options": null
+        }
+      ],
+      "MemoryReservation": 0,
+      "MemorySwap": 0,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": null,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ],
+      "Init": true
+    },
+    "Storage": {
+      "RootFS": {
+        "Snapshot": {
+          "Name": "overlayfs"
+        }
+      }
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "D:\\Projeto Codexx\\ugas",
+        "Destination": "/workspace/ugas",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "D:\\Projeto Codexx\\ugas\\.ugas\\runtime",
+        "Destination": "/workspace/ugas/.ugas/runtime",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": "rprivate"
+      }
+    ],
+    "Config": {
+      "Hostname": "e064592af07f",
+      "Domainname": "",
+      "User": "10001:10001",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "ExposedPorts": {
+        "8765/tcp": {}
+      },
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "UGAS_TELEMETRY_READ_ONLY=1",
+        "NVIDIA_DRIVER_CAPABILITIES=compute,utility",
+        "NVIDIA_VISIBLE_DEVICES=all",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONUNBUFFERED=1",
+        "UGAS_COMFYUI_URL=http://host.docker.internal:8188",
+        "UGAS_CONTAINERIZED=1",
+        "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "LANG=C.UTF-8",
+        "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+        "PYTHON_VERSION=3.12.14",
+        "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a",
+        "PIP_DISABLE_PIP_VERSION_CHECK=1",
+        "PYTHONPATH=/workspace/ugas/src"
+      ],
+      "Cmd": null,
+      "Healthcheck": {
+        "Test": [
+          "CMD-SHELL",
+          "python -c \"from urllib.request import urlopen; response=urlopen('http://127.0.0.1:8765/api/health', timeout=2); raise SystemExit(0 if response.status == 200 else 1)\""
+        ],
+        "Interval": 10000000000,
+        "Timeout": 3000000000,
+        "StartPeriod": 15000000000,
+        "Retries": 5
+      },
+      "Image": "ugas-dashboard:0.12.2",
+      "Volumes": null,
+      "WorkingDir": "/workspace/ugas",
+      "Entrypoint": [
+        "python",
+        "-m",
+        "ugas.cli",
+        "dashboard",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8765",
+        "--no-open"
+      ],
+      "Labels": {
+        "com.docker.compose.config-hash": "eb64cad03a5b1aedd6e7bb05ddc1e175a8f392d10acb37d317ac64cc3ea6da4b",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:b2dfd0d946966d257d0a5455240e8da01735cdf8c3999ceebf2cb90505d742d3",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "ugas-observability",
+        "com.docker.compose.project.config_files": "D:\\Projeto Codexx\\ugas\\compose.yaml,D:\\Projeto Codexx\\ugas\\compose.gpu.yaml",
+        "com.docker.compose.project.working_dir": "D:\\Projeto Codexx\\ugas",
+        "com.docker.compose.replace": "ugas-dashboard",
+        "com.docker.compose.service": "dashboard",
+        "com.docker.compose.version": "5.4.0"
+      }
+    },
+    "NetworkSettings": {
+      "SandboxID": "be67664bcc7161c9530b4697a329f87d5b00edcbfa6ab31ffabc9c706a2a0f7d",
+      "SandboxKey": "/var/run/docker/netns/be67664bcc71",
+      "Ports": {
+        "8765/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8765"
+          }
+        ]
+      },
+      "Networks": {
+        "ugas-observability_default": {
+          "IPAMConfig": null,
+          "Links": null,
+          "Aliases": [
+            "ugas-dashboard",
+            "dashboard"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "546b03c68edc8eafc1692898c256d05b9e63d89fea1e84b6e6491ab6b485fa50",
+          "EndpointID": "998760be37a3f070259c472d193e810bb9ec81e7625961ec65aae901b8616c4a",
+          "Gateway": "172.18.0.1",
+          "IPAddress": "172.18.0.2",
+          "MacAddress": "1e:e3:fb:fd:90:02",
+          "IPPrefixLen": 16,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "ugas-dashboard",
+            "dashboard",
+            "e064592af07f"
+          ]
+        }
+      }
+    },
+    "ImageManifestDescriptor": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:b2dfd0d946966d257d0a5455240e8da01735cdf8c3999ceebf2cb90505d742d3",
+      "size": 2958,
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      }
+    }
+  },
+  "container_id": "e064592af07f5758cfdc08dc3207b704a0337fb6500a4bae21e5ea01dba2bb41",
+  "container_status": "running",
+  "health": "starting",
+  "started_at": "2026-09-02T16:54:38.295002746Z",
+  "local_url": "http://127.0.0.1:8765/",
+  "api_status_code": 200,
+  "api_status": {
+    "timestamp": "2026-09-02T16:55:01Z",
+    "status": "OK",
+    "version": "0.12.2",
+    "branch": "main",
+    "head": "f83c6a1c680a2c27a90f41d96cc8d1924c577db1",
+    "phase": "LOCAL_REALTIME_OBSERVABILITY",
+    "current_gate": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED",
+    "production_routing": "BLOCKED",
+    "production_approved": false,
+    "external_visual_review": {
+      "status": "REQUIRED",
+      "attack_front_v2": "APPROVED_PILOT",
+      "observability_dashboard": "REQUIRED"
+    },
+    "uptime_seconds": 21.34,
+    "active_job": null,
+    "provider_health": {
+      "endpoint": "http://host.docker.internal:8188",
+      "checked_at": "2026-09-02T16:54:58Z",
+      "status": "DOWN",
+      "health": "UNAVAILABLE",
+      "reason": "URLError: local endpoint unavailable",
+      "degraded": true
+    },
+    "state_status": "OK",
+    "state_error": null,
+    "service": {
+      "session_id": "sess-47d75ea76edd4244b1d343ada767507e",
+      "pid": 7,
+      "started_at": "2026-09-02T16:54:40Z"
+    }
+  },
+  "api_health_code": 200,
+  "api_health": {
+    "timestamp": "2026-09-02T16:55:01Z",
+    "status": "DEGRADED",
+    "alerts": [
+      {
+        "severity": "warning",
+        "code": "STALE_LAST_KNOWN",
+        "message": "a provider/resource sample is degraded; stale-last-known data is shown"
+      },
+      {
+        "severity": "warning",
+        "code": "COMFYUI_DOWN",
+        "message": "URLError: local endpoint unavailable"
+      },
+      {
+        "severity": "error",
+        "code": "QA_GAP",
+        "message": "canonical QA evidence did not pass fail-closed validation"
+      }
+    ]
+  }
+}

@@ -1,15 +1,17 @@
 {
-  "schema_version": "0.12.1",
-  "version": "0.12.1",
+  "schema_version": "0.12.2",
+  "version": "0.12.2",
   "phase": "LOCAL_REALTIME_OBSERVABILITY",
-  "previous_release": {"version": "0.12.0", "review": "REVIEW-v0.12.0.md", "evidence": "docs/evidence/current-state-v0.12.0.json"},
-  "current_gate": "LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED",
+  "previous_release": {"version": "0.12.1", "review": "REVIEW-v0.12.1.md", "evidence": "docs/evidence/current-state-v0.12.1.json"},
+  "current_gate": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED",
   "stop_reason": null,
-  "allowed_next_actions": ["external_review_observability_dashboard_v0121"],
-  "forbidden_actions": ["add_new_asset_family", "change_attack_front_v2_pixels_or_motion", "enable_production_routing", "make_dashboard_mutating", "bind_dashboard_publicly", "upload_telemetry", "auto_start_next_capability"],
+  "allowed_next_actions": ["external_review_observability_dashboard_v0122"],
+  "forbidden_actions": ["add_new_asset_family", "change_attack_front_v2_pixels_or_motion", "enable_production_routing", "make_dashboard_mutating", "bind_dashboard_publicly", "upload_telemetry", "auto_start_next_capability", "migrate_comfyui_into_docker"],
   "production_approved": false,
   "production_routing": "BLOCKED",
   "external_visual_review": {"attack_front_v2": "APPROVED_PILOT", "observability_dashboard": "REQUIRED"},
-  "evidence": {"external_review": "docs/evidence/observability-v0121/external-review-v0112-binding-correction-v0121.json", "review_index": "docs/evidence/review-index-v0.12.1.json", "startup": "docs/evidence/observability-v0121/dashboard-startup.json", "system_idle": "docs/evidence/observability-v0121/system-gpu-process-v0121.json", "command_event": "docs/evidence/observability-v0121/pipeline-live-stage-v0121.json", "file_activity": "docs/evidence/observability-v0121/file-activity-v0121.json", "api_snapshots": "docs/evidence/observability-v0121/api-snapshots.json", "security": "docs/evidence/observability-v0121/security-xss.json", "test_results": "docs/evidence/observability-v0121/test-results-v0121.json", "validation_results": "docs/evidence/observability-v0121/validation-results-v0121.json", "animation_regression": "docs/evidence/observability-v0121/animation-regression-v0112-v0121.json", "screenshots": ["docs/evidence/observability-v0121/dashboard-overview.png", "docs/evidence/observability-v0121/dashboard-system-gpu-processes.png", "docs/evidence/observability-v0121/dashboard-live-pipeline-stage.png", "docs/evidence/observability-v0121/dashboard-qa-events.png", "docs/evidence/observability-v0121/dashboard-mobile.png"], "state_consistency": "docs/evidence/state-consistency-v0121.json"},
-  "state_consistency": {"status": "LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED", "validator": "scripts/validation/validate_state_consistency_v0121.py", "production_routing": "BLOCKED", "production_approved": false, "dashboard_read_only": true, "local_only": true, "telemetry_upload": false, "new_generation": 0, "historical_v0120_preserved": true, "attack_front_v2_external_visual": "APPROVED_PILOT", "observability_dashboard_external_visual": "REQUIRED"}
+  "always_on_dashboard_policy": "ENABLED",
+  "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
+  "evidence": {"external_review": "docs/evidence/observability-v0121/external-review-v0112-binding-correction-v0121.json", "review_index": "docs/evidence/review-index-v0.12.2.json", "startup": "docs/evidence/observability-v0122/docker-runtime-v0122.json", "qa_cache": "docs/evidence/observability-v0122/qa-cache-invalidation-v0122.json", "qa_negative_controls": "docs/evidence/observability-v0122/qa-negative-controls-v0122.json", "stale_last_known": "docs/evidence/observability-v0122/stale-last-known-integration-v0122.json", "generation_telemetry": "docs/evidence/observability-v0122/generation-telemetry-contract-v0122.json", "docker_security": "docs/evidence/observability-v0122/docker-security-v0122.json", "screenshots": ["docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png", "docs/evidence/observability-v0122/dashboard-docker-live-activity-v0122.png"], "state_consistency": "docs/evidence/state-consistency-v0122.json"},
+  "state_consistency": {"status": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED", "validator": "scripts/validation/validate_state_consistency_v0122.py", "production_routing": "BLOCKED", "production_approved": false, "dashboard_read_only": true, "local_only": true, "telemetry_upload": false, "new_generation": 0, "historical_v0120_preserved": true, "historical_v0121_preserved": true, "attack_front_v2_external_visual": "APPROVED_PILOT", "observability_dashboard_external_visual": "REQUIRED", "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL", "always_on_dashboard_policy": "ENABLED"}
 }

@@ -1,6 +1,20 @@
-# UGAS checkpoint - v0.12.1
+# UGAS checkpoint - v0.12.2
 
-## v0.12.1 observability integrity, security and live pipeline correction
+## v0.12.2 QA cache integrity + Docker always-on local observability
+
+The active increment is `LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED`. It corrects the rejected v0.12.1 QA false-green path by binding each cache generation to the current HEAD, full worktree state and review artifact-set fingerprint; dirty/unreview-bound worktrees are GAP. Exact QA-NC-01..08 fixtures are executed, stale-last-known is proven through service/API collection, and generation stage telemetry is emitted through the production instrumentation boundary with a fake provider and no real generation. The dashboard observer runs in Docker with a read-only repository mount, writable shared `.ugas/runtime`, loopback-only host publication, bounded log rotation, non-root/no-socket security, restart policy, optional GPU override and host ComfyUI probing. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` is now mandatory for future executor rounds. The v0.11.2 external visual result remains `APPROVED_PILOT` for pilot/pipeline only; it is not production approval. `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and external dashboard review remains `REQUIRED`. The only next action is `external_review_observability_dashboard_v0122`.
+
+**STATUS:** `LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED`
+**VERSION:** `0.12.2`
+**PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
+**RUNTIME_MODE:** `DOCKER_ALWAYS_ON_LOCAL`
+**ALWAYS_ON_DASHBOARD_POLICY:** `ENABLED`
+
+## v0.12.1 rejected history
+
+The v0.12.1 dashboard implementation and its evidence remain preserved as rejected history in `REVIEW-v0.12.1.md`, `docs/evidence/observability-v0121/`, `docs/evidence/current-state-v0.12.1.json` and `docs/evidence/review-index-v0.12.1.json`. The v0.12.2 correction does not rewrite those records.
+
+## v0.12.1 observability integrity, security and live pipeline correction (rejected history)
 
 The active increment is `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`. It corrects only the rejected v0.12.0 local dashboard: unsafe HTML sinks are removed, QA is fail-closed, live workload stages and elapsed time are real, orphan jobs are reconciled, resource/process probes expose stale-last-known data honestly, file activity has a stable transition, and the v0.11.2 binding defect is superseded forward-only. The v0.11.2 external visual result remains `APPROVED_PILOT` for pilot/pipeline only; it is not production approval. The local dashboard remains read-only/local-only, with `production_approved=false` and `production_routing=BLOCKED`. The only next action is `external_review_observability_dashboard_v0121`; no new asset family, animation, generation job or remote telemetry is authorized.
 

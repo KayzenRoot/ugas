@@ -1,0 +1,70 @@
+{
+  "captured_at": "2026-09-02T16:57:27Z",
+  "fixtures": [
+    {
+      "id": "QA-NC-01",
+      "status": "GAP",
+      "reason": "STATE_EVIDENCE_INVALID",
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-02",
+      "status": "GAP",
+      "reason": "STATE_EVIDENCE_INVALID",
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-03",
+      "failures": [
+        "tests_must_be_passed_failed_zero_passed_equals_count"
+      ],
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-04",
+      "failures": [
+        "validation_must_be_passed_failed_zero_passed_equals_checks"
+      ],
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-05",
+      "status": "GAP",
+      "reason": "REVIEW_INDEX_INVALID",
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-06",
+      "status": "GAP",
+      "reason": "STATE_EVIDENCE_INVALID",
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-07",
+      "clean_status": "PASS",
+      "dirty_status": "GAP",
+      "reason": "WORKTREE_DIRTY_UNBOUND",
+      "rejected": true
+    },
+    {
+      "id": "QA-NC-08",
+      "clean_pass": true,
+      "second_status": "GAP",
+      "rejected": true,
+      "reason": "REVIEW_INDEX_INVALID",
+      "current_head_changed": true
+    }
+  ],
+  "fixture_ids": [
+    "QA-NC-01",
+    "QA-NC-02",
+    "QA-NC-03",
+    "QA-NC-04",
+    "QA-NC-05",
+    "QA-NC-06",
+    "QA-NC-07",
+    "QA-NC-08"
+  ],
+  "all_exact": true,
+  "all_rejected": true
+}

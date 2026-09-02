@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active v0.12.1 local observability correction state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "state_consistency", "evidence"],
+  "properties": {
+    "schema_version": {"const": "0.12.1"},
+    "version": {"const": "0.12.1"},
+    "phase": {"const": "LOCAL_REALTIME_OBSERVABILITY"},
+    "previous_release": {"type": "object", "required": ["version", "review"], "properties": {"version": {"const": "0.12.0"}, "review": {"type": "string"}}},
+    "current_gate": {"const": "LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED"},
+    "stop_reason": {"type": ["string", "null"]},
+    "allowed_next_actions": {"const": ["external_review_observability_dashboard_v0121"]},
+    "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "external_visual_review": {"type": "object", "required": ["attack_front_v2", "observability_dashboard"], "properties": {"attack_front_v2": {"const": "APPROVED_PILOT"}, "observability_dashboard": {"const": "REQUIRED"}}},
+    "evidence": {"type": "object", "required": ["external_review", "review_index", "startup", "state_consistency"]},
+    "state_consistency": {"type": "object", "required": ["status", "production_routing", "production_approved", "dashboard_read_only", "local_only", "telemetry_upload", "new_generation", "historical_v0120_preserved"], "properties": {"status": {"const": "LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED"}, "production_routing": {"const": "BLOCKED"}, "production_approved": {"const": false}, "dashboard_read_only": {"const": true}, "local_only": {"const": true}, "telemetry_upload": {"const": false}, "new_generation": {"const": 0}, "historical_v0120_preserved": {"const": true}}}
+  }
+}

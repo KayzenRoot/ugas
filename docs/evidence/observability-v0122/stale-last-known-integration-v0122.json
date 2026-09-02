@@ -1,0 +1,93 @@
+{
+  "captured_at": "2026-09-02T16:57:30Z",
+  "service_refresh_proof": true,
+  "api_proof": true,
+  "api_system": {
+    "timestamp": "2026-09-02T16:57:27Z",
+    "cpu": {
+      "percent": 29.81,
+      "logical_cpus": 8,
+      "status": "AVAILABLE"
+    },
+    "memory": {
+      "used_bytes": 14212513792,
+      "total_bytes": 16964046848,
+      "percent": 83.78,
+      "status": "AVAILABLE"
+    },
+    "disk": {
+      "used_bytes": 342308294656,
+      "free_bytes": 655894110208,
+      "total_bytes": 998202404864,
+      "percent": 34.29,
+      "status": "AVAILABLE",
+      "volume": "D:\\"
+    },
+    "gpu": {
+      "status": "GPU_PENDING",
+      "capability": "COLLECTING",
+      "reason": "GPU probe timed out",
+      "timestamp": "2026-09-02T16:57:27Z",
+      "probe_status": "TIMEOUT",
+      "degraded": true,
+      "stale_last_known": {
+        "status": "GPU_AVAILABLE",
+        "capability": "NVIDIA_SMI",
+        "reason": null,
+        "gpu": {
+          "name": "Fixture GPU",
+          "utilization_percent": 63,
+          "vram_used_mb": 1024,
+          "vram_total_mb": 4096,
+          "processes": [],
+          "process_status": "GPU_PROCESS_AVAILABLE",
+          "process_reason": null
+        },
+        "timestamp": "2026-09-02T16:57:27Z"
+      },
+      "stale_last_known_timestamp": "2026-09-02T16:57:27Z",
+      "stale_last_known_age_seconds": 2.555668,
+      "stale_metric": "gpu"
+    },
+    "ugas_process": {
+      "pid": 1296,
+      "cpu_percent": null,
+      "rss_bytes": null,
+      "status": "UNAVAILABLE",
+      "reason": "optional process metrics dependency not installed"
+    }
+  },
+  "api_processes": {
+    "timestamp": "2026-09-02T16:57:29Z",
+    "ugas": {
+      "pid": 1296,
+      "cpu_percent": null,
+      "rss_bytes": null,
+      "status": "UNAVAILABLE",
+      "reason": "optional process metrics dependency not installed",
+      "name": null
+    },
+    "comfyui": {
+      "endpoint": "http://127.0.0.1:8188",
+      "checked_at": "2026-09-02T16:57:29Z",
+      "status": "UNAVAILABLE",
+      "health": "UNAVAILABLE",
+      "reason": "ComfyUI probe timed out",
+      "probe_status": "TIMEOUT",
+      "degraded": true,
+      "stale_last_known": {
+        "endpoint": "http://host.docker.internal:8188",
+        "checked_at": "2026-09-02T16:57:27Z",
+        "status": "UP",
+        "health": "HEALTHY",
+        "reason": null
+      },
+      "stale_last_known_timestamp": "2026-09-02T16:57:27Z",
+      "stale_last_known_age_seconds": 2.555668,
+      "stale_metric": "comfyui"
+    }
+  },
+  "api_elapsed_seconds": 0.015,
+  "no_slow_probe_on_api": true,
+  "zero_not_fabricated": true
+}

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import threading
 import time
@@ -12,6 +13,7 @@ import webbrowser
 from typing import Any
 from urllib.parse import parse_qs, urlsplit
 
+from ..constants import UGAS_VERSION
 from .service import ObservabilityService
 
 LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
@@ -124,7 +126,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._read_only_rejection()
 
     def _read_only_rejection(self) -> None:
-        self._send_json({"status": "READ_ONLY", "error": "dashboard API is read-only in v0.12.1"}, HTTPStatus.METHOD_NOT_ALLOWED)
+        self._send_json({"status": "READ_ONLY", "error": "dashboard API is read-only in v0.12.2"}, HTTPStatus.METHOD_NOT_ALLOWED)
 
     def _stream(self, service: ObservabilityService) -> None:
         subscriber = service.subscribe()
@@ -169,8 +171,10 @@ def _query_value(query: dict[str, list[str]], name: str) -> str | None:
 
 
 def build_server(service: ObservabilityService, host: str = "127.0.0.1", port: int = 8765) -> DashboardHTTPServer:
-    if host.casefold() not in LOOPBACK_HOSTS:
-        raise ValueError("UGAS dashboard is local-only; --host must be loopback")
+    normalized = host.casefold()
+    if normalized not in LOOPBACK_HOSTS:
+        if not (normalized == "0.0.0.0" and os.environ.get("UGAS_CONTAINERIZED") == "1"):
+            raise ValueError("UGAS dashboard is local-only; non-loopback bind requires trusted UGAS_CONTAINERIZED=1")
     return DashboardHTTPServer((host, int(port)), service)
 
 
@@ -183,15 +187,23 @@ def startup_record(service: ObservabilityService, server: DashboardHTTPServer) -
         gpu_summary["device"] = {key: gpu["gpu"].get(key) for key in ("name", "utilization_percent", "vram_used_mb", "vram_total_mb", "temperature_c", "power_draw_w")}
     comfy = service.processes().get("comfyui", {})
     provider_summary = {key: comfy.get(key) for key in ("endpoint", "status", "health", "reason", "checked_at")}
-    return {"status": "DASHBOARD_STARTED", "dashboard_url": f"http://{display_host}:{port}/", "version": service.status().get("version"), "pid": service.pid, "telemetry_db": str(service.telemetry_db), "gpu": gpu_summary, "provider": provider_summary, "shutdown": "CTRL+C"}
+    # Startup is a supervisor contract, not a full health sample. Avoid Git
+    # and provider probes here so an ephemeral-port launch is immediate even
+    # on a slow Windows/Docker Desktop bind mount.
+    return {"status": "DASHBOARD_STARTED", "dashboard_url": f"http://{display_host}:{port}/", "version": UGAS_VERSION, "pid": service.pid, "telemetry_db": str(service.telemetry_db), "gpu": gpu_summary, "provider": provider_summary, "shutdown": "CTRL+C"}
 
 
 def run_dashboard(repo_root: Path, *, host: str = "127.0.0.1", port: int = 8765, no_open: bool = False, service: ObservabilityService | None = None) -> int:
     own_service = service is None
-    service = (service or ObservabilityService(repo_root)).start()
+    service = service or ObservabilityService(repo_root)
     server: DashboardHTTPServer | None = None
     try:
+        # Bind validation happens before any collector work. The long-running
+        # dashboard should publish its startup record immediately and let the
+        # worker produce the first complete snapshot asynchronously, keeping
+        # CLI/supervisor startup deterministic on slow bind mounts.
         server = build_server(service, host, port)
+        service.start(prime=False)
         record = startup_record(service, server)
         (service.runtime_dir / "dashboard-startup.json").write_text(json.dumps(record, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
         # Keep startup evidence a single machine-readable line so a supervisor

@@ -1,8 +1,8 @@
 # 2D master pipeline v0.12.1
 
-The active release is the v0.12.1 observability integrity correction over the rejected v0.12.0 dashboard and immutable v0.11.2 technical result. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
+The active release is the v0.12.2 QA-cache correction and Docker always-on observer over the rejected v0.12.1/v0.12.0 dashboards and immutable v0.11.2 technical result. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
 
-This release does not run diffusion or SAM2. It corrects the local SQLite/SSE observability boundary with DOM-safe rendering, fail-closed QA, real stage aggregation, stale-last-known probes, process visibility and stable file events. The 12 source-only v0.11.2 frames, 12 fps timing, markers, pixels and package remain byte-identical to v0.11.0. The external v0.11.2 result is recorded as `APPROVED_PILOT`; v0.12.1 dashboard review remains required before the next capability.
+This release does not run diffusion or SAM2. It corrects the local SQLite/SSE observability boundary with HEAD/worktree-bound QA cache invalidation, exact negative controls, DOM-safe rendering, real stage aggregation, stale-last-known probes, process visibility and stable file events. The observer runs in Docker with a read-only repository mount, writable dedicated runtime, loopback-only publication, restart policy and optional GPU override. The 12 source-only v0.11.2 frames, 12 fps timing, markers, pixels and package remain byte-identical to v0.11.0. The external v0.11.2 result is recorded as `APPROVED_PILOT`; v0.12.2 dashboard review remains required before the next capability.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 

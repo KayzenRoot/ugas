@@ -1,4 +1,4 @@
-"""UGAS v0.12.1 machine-readable CLI."""
+"""UGAS v0.12.2 machine-readable CLI."""
 
 from __future__ import annotations
 

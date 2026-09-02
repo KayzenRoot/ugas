@@ -87,16 +87,17 @@ class ObservabilityService:
         self._latest_qa: dict[str, Any] | None = None
         self._latest_stream_snapshot: dict[str, Any] | None = None
 
-    def start(self) -> "ObservabilityService":
+    def start(self, *, prime: bool = True) -> "ObservabilityService":
         if self._worker and self._worker.is_alive():
             return self
-        try:
-            self.assets.scan()
-            # Prime the snapshot outside the HTTP request path. Slow probes are
-            # parallel and later requests only read the latest collected value.
-            self.refresh()
-        except Exception as exc:  # pragma: no cover - platform dependent
-            self.emit(category="error", severity="warning", source="observability", action="startup", status="DEGRADED", message="initial telemetry sample unavailable", metadata={"reason": type(exc).__name__})
+        if prime:
+            try:
+                self.assets.scan()
+                # Prime the snapshot outside the HTTP request path. Slow probes are
+                # parallel and later requests only read the latest collected value.
+                self.refresh()
+            except Exception as exc:  # pragma: no cover - platform dependent
+                self.emit(category="error", severity="warning", source="observability", action="startup", status="DEGRADED", message="initial telemetry sample unavailable", metadata={"reason": type(exc).__name__})
         self._stop.clear()
         self._worker = threading.Thread(target=self._collect_loop, name="ugas-observability", daemon=True)
         self._worker.start()
@@ -268,6 +269,12 @@ class ObservabilityService:
         active_candidates: list[dict[str, Any]] = []
         pid_alive_cache: dict[int, bool] = {}
         for record in values:
+            # A successful terminal job is authoritative even if the separate
+            # stage event was briefly buffered during a shared SQLite lock.
+            # Keep the live dashboard from reporting a permanently unfinished
+            # postprocess stage after the job completion event was persisted.
+            if record.get("status") == "SUCCEEDED" and record.get("current_stage") not in {"complete", "error"}:
+                record["current_stage"] = "complete"
             if record.get("status") != "RUNNING":
                 record["elapsed_seconds"] = _elapsed(record.get("started_at"), record.get("finished_at")); continue
             command = record.get("command")
@@ -289,7 +296,7 @@ class ObservabilityService:
 
     def qa(self) -> dict[str, Any]:
         result = self._latest_qa if self._latest_qa is not None else self._qa_cache.validate(); index = result.get("review_index", {}); state = result.get("current_state") or {}
-        return {"timestamp": _now(), "status": result.get("status", "GAP"), "integrity": result, "current_state": {"version": state.get("version", "GAP"), "gate": state.get("gate", "GAP"), "production_routing": state.get("production_routing", "GAP"), "production_approved": state.get("production_approved", False), "external_visual": {"attack_front_v2": (state.get("external_visual_review") or {}).get("attack_front_v2", "GAP"), "observability_dashboard": (state.get("external_visual_review") or {}).get("observability_dashboard", "GAP")}}, "tests": result.get("tests", {}), "validation": result.get("validation", {}), "review_index": {"status": "PASS" if index.get("status") == "PASS" else "GAP", "path": "docs/evidence/review-index-v0.12.1.json", "artifact_count": index.get("artifact_count"), "visual_count": index.get("visual_count"), "checked_at": index.get("checked_at"), "head": index.get("head")}, "errors": result.get("failures", [])}
+        return {"timestamp": _now(), "status": result.get("status", "GAP"), "current_head": result.get("current_head"), "validated_head": result.get("validated_head"), "worktree_clean": result.get("worktree_clean"), "cache_checked_at": result.get("cache_checked_at"), "cache_generation": result.get("cache_generation"), "cache_fingerprint": result.get("cache_fingerprint"), "stale": result.get("stale"), "reason": result.get("reason"), "integrity": result, "current_state": {"version": state.get("version", "GAP"), "gate": state.get("gate", "GAP"), "production_routing": state.get("production_routing", "GAP"), "production_approved": state.get("production_approved", False), "external_visual": {"attack_front_v2": (state.get("external_visual_review") or {}).get("attack_front_v2", "GAP"), "observability_dashboard": (state.get("external_visual_review") or {}).get("observability_dashboard", "GAP")}}, "tests": result.get("tests", {}), "validation": result.get("validation", {}), "review_index": {"status": "PASS" if index.get("status") == "PASS" else "GAP", "path": "docs/evidence/review-index-v0.12.2.json", "artifact_count": index.get("artifact_count"), "visual_count": index.get("visual_count"), "checked_at": index.get("checked_at"), "head": index.get("head")}, "errors": result.get("failures", [])}
 
     def events(self, *, limit: int = 100, category: str | None = None, severity: str | None = None, search: str | None = None) -> dict[str, Any]:
         return {"timestamp": _now(), "status": "OK" if self.store.available else "DEGRADED", "store": {"available": self.store.available, "path": str(self.telemetry_db), "reason": self.store.reason, "count": self.store.count()}, "events": self.store.query(limit=limit, category=category, severity=severity, search=search)}

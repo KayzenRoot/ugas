@@ -39,7 +39,8 @@ from ugas.state_consistency_v0111 import validate_state_consistency as validate_
 from ugas.state_consistency_v0112 import validate_state_consistency as validate_state_consistency_v0112
 from ugas.state_consistency_v0120 import validate_state_consistency as validate_state_consistency_v0120
 from ugas.state_consistency_v0121 import validate_state_consistency as validate_state_consistency_v0121
-from ugas.observability.qa_integrity import validate_review_index as validate_review_index_v0121
+from ugas.state_consistency_v0122 import validate_state_consistency as validate_state_consistency_v0122
+from ugas.observability.qa_integrity import validate_review_index as validate_review_index_v0122
 from ugas.cutout_rig import validate_rig_manifest
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
@@ -121,10 +122,17 @@ def _snapshot_validation_ok(result: subprocess.CompletedProcess[str]) -> bool:
         return True
     text = result.stdout + result.stderr
     compact = re.sub(r"\s+", "", text)
+    # The archived pre-v0.12.2 tree is deliberately not rewritten. Its
+    # historical v0.11.2 index reports the changed active CHECKPOINT path and
+    # its v0.12.1 index points at a non-ancestor historical build head. Those
+    # are the only accepted immutable-history drifts; active v0.12.2 checks
+    # still run normally and must have zero failures.
     return (
         "FAILv0112:review-index" in compact
         and "artifact_hash_mismatch:CHECKPOINT.md" in compact
-        and re.search(r"SUMMARYchecks=\d+passed=\d+failed=1", compact) is not None
+        and "FAILv0121:review-index" in compact
+        and "review-index-build-head-not-ancestor" in compact
+        and re.search(r"SUMMARYchecks=(\d+)passed=(\d+)failed=2", compact) is not None
     )
 
 
@@ -1937,43 +1945,62 @@ def _v0120_checks() -> None:
     check("v0120:api-contract", all(route in contracts for route in ("/api/status", "/api/system", "/api/processes", "/api/jobs", "/api/assets/recent", "/api/qa", "/api/events", "/api/health", "/api/stream", "/api/preview/")), "required read-only JSON, SSE and preview routes are present")
     check("v0120:security-contract", "127.0.0.1" in contracts and "shell=True" not in (ROOT / "src/ugas/observability/system_metrics.py").read_text(encoding="utf-8"), "loopback default and explicit subprocess boundary are present")
     historical_index = ROOT / "docs/evidence/review-index-v0.12.0.json"
-    check("v0120:review-index-history", historical_index.is_file() and "0.12.0" in historical_index.read_text(encoding="utf-8"), "v0.12.0 review index remains preserved history; active v0.12.1 owns current validation")
+    check("v0120:review-index-history", historical_index.is_file() and "0.12.0" in historical_index.read_text(encoding="utf-8"), "v0.12.0 review index remains preserved history; active v0.12.2 owns current validation")
 
 
-def _v0121_checks() -> None:
-    """Validate the active v0.12.1 correction and its fail-closed boundaries."""
-    evidence = ROOT / "docs" / "evidence" / "observability-v0121"
-    required = [
-        "REVIEW-v0.12.1.md", "docs/test-coverage-matrix-v0.12.1.md", "schemas/current-state.json", "schemas/current-state-v0.12.0.json", "schemas/review-index-v0.12.1.json",
-        "src/ugas/state_consistency_v0121.py", "src/ugas/observability/qa_integrity.py", "scripts/validation/validate_state_consistency_v0121.py", "scripts/validation/validate_review_index_v0121.py", "tests/test_observability_v0121.py",
-        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.12.0.json", "docs/evidence/state-consistency-v0121.json", "docs/evidence/review-index-v0.12.1.json",
-    ]
-    required += [f"docs/evidence/observability-v0121/{name}" for name in (
-        "security-xss.json", "qa-negative-controls-v0121.json", "pipeline-live-stage-v0121.json", "orphan-reconciliation-v0121.json", "system-gpu-process-v0121.json", "stale-last-known-v0121.json", "file-activity-v0121.json", "preview-security-v0121.json", "external-review-v0112-binding-correction-v0121.json", "animation-regression-v0112-v0121.json", "dashboard-startup.json", "api-snapshots.json", "test-results-v0121.json", "validation-results-v0121.json", "publication.json",
-        "dashboard-overview.png", "dashboard-system-gpu-processes.png", "dashboard-live-pipeline-stage.png", "dashboard-qa-events.png", "dashboard-mobile.png",
-    )]
+def _v0121_history_checks() -> None:
+    """Confirm v0.12.1 remains available as immutable rejected history."""
+    required = ["REVIEW-v0.12.1.md", "docs/test-coverage-matrix-v0.12.1.md", "schemas/current-state-v0.12.1.json", "schemas/review-index-v0.12.1.json", "docs/evidence/current-state-v0.12.1.json", "docs/evidence/current-state-v0.12.0.json", "docs/evidence/state-consistency-v0121.json", "docs/evidence/review-index-v0.12.1.json"]
+    required += [f"docs/evidence/observability-v0121/{name}" for name in ("security-xss.json", "qa-negative-controls-v0121.json", "pipeline-live-stage-v0121.json", "orphan-reconciliation-v0121.json", "system-gpu-process-v0121.json", "stale-last-known-v0121.json", "file-activity-v0121.json", "preview-security-v0121.json", "external-review-v0112-binding-correction-v0121.json", "animation-regression-v0112-v0121.json", "dashboard-startup.json", "api-snapshots.json", "test-results-v0121.json", "validation-results-v0121.json", "publication.json", "dashboard-overview.png", "dashboard-system-gpu-processes.png", "dashboard-live-pipeline-stage.png", "dashboard-qa-events.png", "dashboard-mobile.png")]
     for relative in required:
-        path = ROOT / relative; check(f"v0121:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+        path = ROOT / relative; check(f"v0121:history:{relative}", path.is_file(), "preserved" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state-v0.12.1.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.12.1.json"))
+        consistency = validate_state_consistency_v0121(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.1.md").read_text(encoding="utf-8"))
+        check("v0121:history-state", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "v0.12.1 state snapshot remains valid")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0121:history-state", False, str(exc))
+
+
+def _v0122_checks() -> None:
+    """Validate the active v0.12.2 integrity and Docker boundary."""
+    evidence = ROOT / "docs/evidence/observability-v0122"
+    required = ["REVIEW-v0.12.2.md", "docs/test-coverage-matrix-v0.12.2.md", "schemas/current-state.json", "schemas/current-state-v0.12.1.json", "schemas/review-index-v0122.json", "src/ugas/state_consistency_v0122.py", "src/ugas/observability/qa_integrity.py", "scripts/validation/validate_state_consistency_v0122.py", "scripts/validation/validate_review_index_v0122.py", "tests/test_observability_v0122.py", "docs/evidence/current-state.json", "docs/evidence/state-consistency-v0122.json", "docs/evidence/review-index-v0.12.2.json"]
+    required += [f"docs/evidence/observability-v0122/{name}" for name in ("qa-cache-invalidation-v0122.json", "qa-negative-controls-v0122.json", "stale-last-known-integration-v0122.json", "generation-telemetry-contract-v0122.json", "docker-preflight-v0122.json", "docker-compose-config-v0122.json", "docker-build-v0122.json", "docker-runtime-v0122.json", "docker-gpu-v0122.json", "docker-cross-process-telemetry-v0122.json", "docker-file-watch-v0122.json", "docker-persistence-v0122.json", "docker-autostart-v0122.json", "docker-security-v0122.json", "test-results-v0122.json", "validation-results-v0122.json", "publication.json", "dashboard-docker-overview-v0122.png", "dashboard-docker-live-activity-v0122.png")]
+    required += ["docker/Dockerfile.dashboard", "compose.yaml", "compose.gpu.yaml", ".dockerignore", "scripts/docker/ugas-dashboard-up.ps1", "scripts/docker/ugas-dashboard-down.ps1", "scripts/docker/ugas-dashboard-status.ps1", "scripts/docker/ugas-dashboard-logs.ps1", "scripts/docker/ensure-dashboard-online.ps1", "scripts/docker/install-dashboard-autostart.ps1", "scripts/docker/uninstall-dashboard-autostart.ps1", "docs/docker-local-dashboard.md"]
+    for relative in required:
+        path = ROOT / relative; check(f"v0122:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
         state = load_json(ROOT / "docs/evidence/current-state.json")
         validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
-        consistency = validate_state_consistency_v0121(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.1.md").read_text(encoding="utf-8"))
-        check("v0121:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.12.1 state is consistent")
+        consistency = validate_state_consistency_v0122(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.2.md").read_text(encoding="utf-8"))
+        check("v0122:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.12.2 state is consistent")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
-        check("v0121:state-consistency", False, str(exc))
-    try:
-        binding = load_json(evidence / "external-review-v0112-binding-correction-v0121.json")
-        gif = ROOT / binding["reviewed_artifact"]
-        check("v0121:binding-correction", binding.get("decision") == "APPROVED_PILOT" and binding.get("production_approval") is False and binding.get("production_routing") == "BLOCKED" and binding.get("artifact_sha256") == digest(gif) and binding.get("reviewed_artifact") == "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-preview.gif", "corrected v0.11.2 binding is exact and pilot-only")
-    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
-        check("v0121:binding-correction", False, str(exc))
+        check("v0122:state-consistency", False, str(exc))
     app = (ROOT / "src/ugas/observability/dashboard_app.py").read_text(encoding="utf-8")
     dashboard_js = (ROOT / "src/ugas/observability/static/dashboard.js").read_text(encoding="utf-8")
-    check("v0121:xss-sinks", "innerHTML" not in dashboard_js and "outerHTML" not in dashboard_js, "dashboard has no unsafe HTML sinks")
-    check("v0121:security-headers", "default-src 'self'" in app and "X-Content-Type-Options" in app and "Referrer-Policy" in app, "CSP and security response headers are implemented")
-    check("v0121:api-contract", all(route in app for route in ("/api/status", "/api/system", "/api/processes", "/api/jobs", "/api/assets/recent", "/api/qa", "/api/events", "/api/health", "/api/stream", "/api/preview/")), "read-only API/SSE/preview routes remain present")
-    index_result = validate_review_index_v0121(ROOT, ROOT / "docs/evidence/review-index-v0.12.1.json")
-    check("v0121:review-index", index_result["status"] == "PASS", "; ".join(index_result.get("failures", [])) or "v0.12.1 review index is hash-valid")
+    check("v0122:xss-sinks", "innerHTML" not in dashboard_js and "outerHTML" not in dashboard_js, "dashboard has no unsafe HTML sinks")
+    check("v0122:security-headers", "default-src 'self'" in app and "X-Content-Type-Options" in app and "Referrer-Policy" in app, "CSP and security response headers are implemented")
+    check("v0122:api-contract", all(route in app for route in ("/api/status", "/api/system", "/api/processes", "/api/jobs", "/api/assets/recent", "/api/qa", "/api/events", "/api/health", "/api/stream", "/api/preview/")), "read-only API/SSE/preview routes remain present")
+    index_result = validate_review_index_v0122(ROOT, ROOT / "docs/evidence/review-index-v0.12.2.json")
+    check("v0122:review-index", index_result["status"] == "PASS", "; ".join(index_result.get("failures", [])) or "v0.12.2 review index is hash-valid")
+    try:
+        cache_text = (ROOT / "src/ugas/observability/qa_integrity.py").read_text(encoding="utf-8")
+        check("v0122:cache-binding", all(literal in cache_text for literal in ("git_head", "worktree_status", "artifact_set_sha256", "WORKTREE_DIRTY_UNBOUND", "cache_generation", "cache_fingerprint")), "cache key binds HEAD, worktree, artifact set and generation")
+        qa_cache = load_json(evidence / "qa-cache-invalidation-v0122.json")
+        check("v0122:qa-cache-evidence", qa_cache.get("clean_pass") is True and qa_cache.get("dirty_source_gap") is True and qa_cache.get("head_change_gap") is True, "clean/source-change/HEAD-change cache invalidation is proven")
+        controls = load_json(evidence / "qa-negative-controls-v0122.json")
+        ids = [item.get("id") for item in controls.get("fixtures", [])]
+        check("v0122:qa-nc-01-08", ids == [f"QA-NC-{index:02d}" for index in range(1, 9)] and all(item.get("rejected") is True for item in controls["fixtures"]), "exact QA-NC-01..08 fixtures reject")
+        stale = load_json(evidence / "stale-last-known-integration-v0122.json")
+        check("v0122:stale-integration", stale.get("service_refresh_proof") is True and stale.get("api_proof") is True and stale.get("no_slow_probe_on_api") is True and stale.get("zero_not_fabricated") is True, "collector/API stale-last-known contract is proven")
+        generation = load_json(evidence / "generation-telemetry-contract-v0122.json")
+        check("v0122:generation-contract", generation.get("actual_instrumentation_path") is True and generation.get("fake_provider") is True and generation.get("new_generation") == 0 and generation.get("parent_command_bound") is True and generation.get("real_stage_names") is True, "generation instrumentation contract is proven without real generation")
+        compose = load_json(evidence / "docker-compose-config-v0122.json")
+        check("v0122:compose-security", compose.get("host_publication") == "127.0.0.1:8765" and compose.get("repo_read_only") is True and compose.get("runtime_read_write") is True and compose.get("restart") == "unless-stopped" and compose.get("non_root") is True and compose.get("no_socket") is True, "Compose security and persistence contract is normalized")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v0122:evidence-contracts", False, str(exc))
 
 
 def main() -> int:
@@ -2074,13 +2101,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.12.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.12.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.12.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.12.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.12.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.12.2")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

@@ -1,8 +1,8 @@
-# UGAS 0.12.1
+# UGAS 0.12.2
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão. O release ativo corrige a integridade, segurança e precisão do dashboard local read-only, near-real-time, sem telemetria remota.
+Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão. O release ativo corrige a integridade do cache QA e mantém um dashboard Dockerizado, read-only, near-real-time e local, sem telemetria remota.
 
-O v0.12.0 permanece preservado como rejected history. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
+O v0.12.0 e o v0.12.1 permanecem preservados como rejected history. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
 
 ## Quick start
 
@@ -11,9 +11,11 @@ $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
 python scripts/validation/validate_state_consistency.py
 python scripts/validation/run_validation.py
-python scripts/validation/run_observability_v0121.py
-python scripts/validation/build_review_index_v0121.py --tests-count <N> --validation-checks <N> --json
-python scripts/validation/validate_review_index_v0121.py docs/evidence/review-index-v0.12.1.json
+python scripts/validation/run_observability_v0122.py
+python scripts/validation/build_review_index_v0122.py --json
+python scripts/validation/validate_review_index_v0122.py docs/evidence/review-index-v0.12.2.json
+docker compose -f compose.yaml -f compose.gpu.yaml up -d --build
+pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-status.ps1
 python scripts/validation/run_animation_runtime_v0112.py
 python scripts/validation/build_review_index_v0112.py --tests-count <N> --validation-checks <N> --json
 python scripts/validation/validate_review_index_v0112.py docs/evidence/review-index-v0.11.2.json
@@ -22,13 +24,21 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.12.1.md](REVIEW-v0.12.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.12.2.md](REVIEW-v0.12.2.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
-## v0.12.1 observability integrity correction
+## v0.12.2 QA cache and Docker always-on local observability
 
-`python -m ugas.cli dashboard` abre o dashboard local em `127.0.0.1:8765`. Use `--port 0` para um smoke test efêmero, `--no-open` para não abrir o navegador e `--host` somente com um endereço loopback. A UI é estática, sem CDN/build chain, e expõe apenas GET read-only: status, sistema/GPU/processos, ComfyUI, jobs com estágios reais, assets allowlisted, QA fail-closed, health, eventos e stream SSE.
+O dashboard Dockerizado fica em `http://127.0.0.1:8765/`, usa `restart: unless-stopped`, monta o repositório somente para leitura e `.ugas/runtime` para persistência SQLite WAL. A aplicação só aceita `0.0.0.0` dentro do container confiável (`UGAS_CONTAINERIZED=1`); invocações nativas continuam loopback-only. Use `pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1` para build/start e `scripts/docker/ensure-dashboard-online.ps1` para autostart idempotente.
 
-O banco local fica em `.ugas/runtime/telemetry.db` (SQLite WAL) e é ignorado pelo Git. GPU ausente é reportada como `GPU_UNAVAILABLE` com motivo; timeouts preservam `stale_last_known` sem zero fabricado. A UI não usa `innerHTML` para dados não confiáveis e as respostas incluem CSP, nosniff e referrer policy.
+O banco local fica em `.ugas/runtime/telemetry.db` (SQLite WAL) e é ignorado pelo Git. GPU ausente é reportada como `GPU_CONTAINER_RUNTIME_GAP` ou `GPU_UNAVAILABLE` com motivo; timeouts preservam `stale_last_known` sem zero fabricado. O QA expõe HEAD/worktree/cache fingerprint e invalida PASS quando o repositório muda. A UI não usa `innerHTML` para dados não confiáveis e as respostas incluem CSP, nosniff e referrer policy.
+
+## ALWAYS_ON_DASHBOARD_POLICY
+
+Depois de aprovado tecnicamente, o dashboard deve permanecer online durante o desenvolvimento. Após qualquer alteração de observabilidade/runtime, execute `docker compose -f compose.yaml -f compose.gpu.yaml up -d --build` e verifique `/api/status` e `/api/health`. A política é local, read-only e não inicia nem migra o ComfyUI.
+
+## v0.12.1 local observability (rejected history)
+
+O v0.12.1 permanece preservado em `REVIEW-v0.12.1.md`, `docs/evidence/observability-v0121/` e `docs/evidence/current-state-v0.12.1.json`. A correção v0.12.2 não reescreve essa evidência.
 
 ## v0.12.0 local observability (rejected history)
 
@@ -40,7 +50,7 @@ O provider `deterministic-cutout-rig-2d` aceita somente humanoide frontal com RG
 
 Somente o replay walk/front/8, o idle/front/12 histórico, o `attack-front-v1` histórico e o novo `attack-front-v2` front/12 deste slice são autorizados; não há outras animações/direções nem routing de produção. `REVIEW_INDEX_VERIFIED` é verificação local do índice, não aprovação externa.
 
-Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.12.1.md](REVIEW-v0.12.1.md) e [docs/evidence/current-state.json](docs/evidence/current-state.json). O REVIEW-v0.12.0 e o REVIEW-v0.11.1 permanecem disponíveis como rejected history.
+Consulte [INSTALL.md](INSTALL.md), [CHECKPOINT.md](CHECKPOINT.md), [REVIEW-v0.12.2.md](REVIEW-v0.12.2.md) e [docs/evidence/current-state.json](docs/evidence/current-state.json). Os reviews v0.12.0 e v0.12.1 permanecem disponíveis como rejected history.
 
 ## v0.11.2 QA integrity and scope recovery
 

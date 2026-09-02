@@ -1,0 +1,661 @@
+{
+  "schema_version": "0.12.2",
+  "version": "0.12.2",
+  "branch": "main",
+  "review_subject": {
+    "base_head": "f83c6a1c680a2c27a90f41d96cc8d1924c577db1",
+    "previous_implementation_commit": "4ae0ff4a1ccfeab1dbcb47fb7c5ffb8ec9a7765d",
+    "repository_ref": "https://github.com/csn1985-ship-it/ugas.git"
+  },
+  "publication": {
+    "index_build_git_head": "f83c6a1c680a2c27a90f41d96cc8d1924c577db1",
+    "index_build_dirty_state": "dirty_before_publication_commit",
+    "final_head_must_be_resolved_by_external_reviewer": true,
+    "executor_cannot_self_assert_final_head": true
+  },
+  "review_file": "REVIEW-v0.12.2.md",
+  "current_state": "docs/evidence/current-state.json",
+  "tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "count": 349,
+    "passed": 349,
+    "failed": 0,
+    "status": "passed"
+  },
+  "validation": {
+    "command": "python scripts/validation/run_validation.py",
+    "checks": 1656,
+    "passed": 1656,
+    "failed": 0,
+    "status": "passed"
+  },
+  "artifact_set": {
+    "manifest_algorithm": "sha256-canonical-path-list-v1",
+    "artifacts": [
+      {
+        "path": ".dockerignore",
+        "sha256": "36ff35e17300a348966aee980328a05eaff396b348db70e7ca282ba6d60dc843",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "CHECKPOINT.md",
+        "sha256": "a42b996c7cb55505cfa1407d7f93190ecfd23de6dac23707108192fca320da1a",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "INSTALL.md",
+        "sha256": "db1935581ff79717def3a250aedd2a491e73f9353fdb5f566cebd838ce42baf8",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "3063da31fa8f07caa7a7815c9a4fcd0cf0b30b3e1e7f90b18974fe36a255b0aa",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "README.md",
+        "sha256": "6bfe4924083044ba69b9f898dd4382242ec2b9ab3878c9a3a9949724feb8093f",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "REVIEW-v0.12.1.md",
+        "sha256": "931ef866a175e1ebd1958a5ad83630f4ed7fdd3522fb13232b8df5b024389268",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "REVIEW-v0.12.2.md",
+        "sha256": "56215a0b2a2be7affa6f0fa087c36a25cd0fdfa4e0b63c1a5ed5cbd5b4f6f705",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "compose.gpu.yaml",
+        "sha256": "1eeec546a141efc2996fb11eae3d258f2ad4f1cac22163aafcb922903bfc0291",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "compose.yaml",
+        "sha256": "91ae3d6c6f72d5cae25cd9e6151491abbbd0b42a6611e804ff6550ba94b06923",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docker/Dockerfile.dashboard",
+        "sha256": "533627fdd6b169c531a2d6f8413e3a606294b579123fb8649467e914919df461",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/2d-master-pipeline.md",
+        "sha256": "c2af7ba1f9875989fa507a2c1eae13e9a15e9734771543da6985edf0222f673c",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/comfyui.md",
+        "sha256": "14774c44b483bcb58de9e96b76b12010c3f906e3a251925297b0f89321772f94",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/docker-local-dashboard.md",
+        "sha256": "1a36b6fbc77c64fb2bcf3c64958b624e13680dd9300cbd1ea8e43abb1aed8216",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/current-state-v0.12.0.json",
+        "sha256": "4f59ab1f52528552531a1c22fdef9b724337c50acc709bb6cb4cccbd33ad6c28",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/current-state-v0.12.1.json",
+        "sha256": "9b6d06c2644b296bf45126fb46ab6da3b89b6f07ce99ac59b363644a603ca7cd",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/current-state.json",
+        "sha256": "de664935e6898742e84ca1758d317f5f3d6104b1228c23528b92508bc731da2b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/animation-regression-v0112-v0121.json",
+        "sha256": "75ac82f1c252e87233587d543e491e219d0b6733b993b6ebc7cfedfefde344bd",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/api-snapshots.json",
+        "sha256": "a1614137e2a1c5f6601b73b1525d4c48d13735945d98e81afd1e917ac7c9702d",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/command-event.json",
+        "sha256": "4dec4a3297a568a4835c04ddcb667ac255d9b988c988ea680e1f2fce4b131e31",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/dashboard-live-pipeline-stage.png",
+        "sha256": "ffb8037e77fdad62bccf436cd12f63bed7a71db26b371c92525ea1e48cbef11a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/dashboard-mobile.png",
+        "sha256": "f72089b634871b42b55f17cf4e4d4fb8acd698f33aac6964e7e03025a93c8392",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/dashboard-overview.png",
+        "sha256": "3cd8d7919aa4865e53ae764d24dfe98b9f0482e9c936d6e95e598d1a85fe545d",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/dashboard-qa-events.png",
+        "sha256": "ffb196a836fd089d97cd169bf11c0bfd3ca88a8fb427900b82dbbce2b5dea2f6",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/dashboard-startup.json",
+        "sha256": "12361d23d966bae8645d0d67acb7bc908932fb3029229c258e4b5a9a303b27f7",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/dashboard-system-gpu-processes.png",
+        "sha256": "a9a13cee474c325aaf1a993f312cd3a49eddafb93d928b6e01311fa41d04dbc1",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/external-review-v0112-binding-correction-v0121.json",
+        "sha256": "f76aa29e661a9f255f4b82e420bd2a80c64c1c1a0c5b97f79b078714b26a1890",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/file-activity-v0121.json",
+        "sha256": "b0537af431d7f1c66fbe63f4c6229ba94e716b1a0aa28ecb602deb6895e506e5",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/orphan-reconciliation-v0121.json",
+        "sha256": "c8224e4b0a63e510cebf82dabbe58ac5cfa9653560ea55f492e0a3ebe799f18b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/pipeline-live-stage-v0121.json",
+        "sha256": "0b7ec7510d174d6c20aa8f36152e3829e402c0c04a22af6ff0f84e2c4fb56331",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/preview-security-v0121.json",
+        "sha256": "97e678b8184e8faa04fc04c179463d18415ed6aa333112c94a70ad270fcbe0e2",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/publication.json",
+        "sha256": "7610cf16760d558030d0b373a5e540554f66bea97fae51fe0fba8f03b627cd00",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/qa-negative-controls-v0121.json",
+        "sha256": "04d17ff22ffd7db1ddcb19f57fc03e85ec1f924a9857c300a1ea25ed3c57b99d",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/security-xss.json",
+        "sha256": "f27b3ede3b9d3e70c54c6bc24a6e1106e1c394dd8112972ec7e65b9ca1f94d7e",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/stale-last-known-v0121.json",
+        "sha256": "8e111bfaae29f8ffab57d5ff4b4371e823e73939709ea1b014d0a8eccedf3757",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/system-gpu-process-v0121.json",
+        "sha256": "754c5a2bda0b2e4c1e2f7af4bca9bc5bf9d4cf6042dbccc84e2c97e67acf1d89",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/test-results-v0121.json",
+        "sha256": "c6a009b7040972a47155bc1929ebfb7c8529bad142328a6aaf08864e05c7e593",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0121/validation-results-v0121.json",
+        "sha256": "f906e489cac2ec6d54a5e9b3ce5509613bb2303f7a8c5703bad47a759c5e7036",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/dashboard-docker-live-activity-v0122.png",
+        "sha256": "5f8ad61744942a00300b92816913c1e8fc970e1f716a33f3962df0918c47338a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png",
+        "sha256": "08fed596faeeeef8803006dfe38c0635405ec7399097d40508a73a415b732f23",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-autostart-v0122.json",
+        "sha256": "aa5f357481576d6c8e4d5104f350a5cd428d7482b9732a70fe148b4900364027",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-build-v0122.json",
+        "sha256": "0ec1c3a120bef00a6f9caf5cfdf7270b56edb62bd5a8b459e5a5ee15dd0aa6bf",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-compose-config-v0122.json",
+        "sha256": "51d543e7918fde634c35c22dbca53c7b5999e335b5208336fa9fb7e0b9355115",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-cross-process-telemetry-v0122.json",
+        "sha256": "df506c6cd4ae5749f9ebd16e5c2984b19fae8ae31ec8ad2214cfd1d2f18469cf",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-file-watch-v0122.json",
+        "sha256": "3b8748ccb4478317f21a2cd11a361b44c68270495f0fd837365c81cc8276fad6",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-gpu-v0122.json",
+        "sha256": "404c91ef121c09e475ddcbd02ee3ac1d81aabcbdf3eec328447d467956f95875",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-persistence-v0122.json",
+        "sha256": "df92d998bf5c789e2cd441340b65b3493c81d96a7e92554d966f2ab05cc84b63",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-preflight-v0122.json",
+        "sha256": "7db406f58b09e104f06b2024f0ea7cc306c320eff5b2ced7e41702df2977e6c2",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-runtime-v0122.json",
+        "sha256": "1affb520d9a43a2e875710ce1e20f6f7c10bb00bf8003baeb62a11956fa7ef34",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/docker-security-v0122.json",
+        "sha256": "3df75ca073db2afb9e0169ad21e203341a9474576800578c98073e4156b3db75",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/generation-telemetry-contract-v0122.json",
+        "sha256": "1f4d38467b96884cbe77f8385f5f255934b3eaf963d233d1d130498d47ea30e6",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/qa-cache-invalidation-v0122.json",
+        "sha256": "df461c11fd77d721fc80e0c6bdaa6ef72c166a0661151157f83cdf55c0c03fa0",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/qa-negative-controls-v0122.json",
+        "sha256": "d17f711e60cae9a56fbe6c7b03a710a30d3457f1fa8be99083b4911936a39f63",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/stale-last-known-integration-v0122.json",
+        "sha256": "340e8f1b5fdfb5a99879ce147eb53159911bd7a55e5308424a7d021ac1408d7f",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/test-results-v0122.json",
+        "sha256": "7e923c4eef1bd2edfa8dafb5d1727ba529baf02e882edf3986e0e417fd0d82a0",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0122/validation-results-v0122.json",
+        "sha256": "1920579f1aa425c6c64d623c66be69549cffee2bd876a7e35713f1c4fd7f7c73",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/review-index-v0.12.1.json",
+        "sha256": "15c1e5e4b1f74fea1701e3a02e3c14ef9b25f38200bf7fd783f04b3aafa2120a",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/state-consistency-v0121.json",
+        "sha256": "676f3de05dc5b3f5d17a0220eaa6073ce9644f46ac4245edf017bb9df8e1c085",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/state-consistency-v0122.json",
+        "sha256": "26460fa68cff2de559803933dd142d94a77599433015ef3543be1559399d0023",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/roadmap.md",
+        "sha256": "b5ae0b9ea2bc24f566228fbc94cfc105662e3543d0e14cfdc2ffb8654685b04d",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/test-coverage-matrix-v0.12.1.md",
+        "sha256": "30d7fe7743a25e06f7c6daccaffc3eac5f4ff2124e3ef8aad0abce11626d2b99",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/test-coverage-matrix-v0.12.2.md",
+        "sha256": "f7fd240a8c2362b180a1a27b85d2c94cd471f6080ed8a38a4d3845561f4bc58c",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "package.json",
+        "sha256": "e2d3cb06e10be1fc03253c569196689e24ecc8dac06436d3425bbb0316b94606",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "pyproject.toml",
+        "sha256": "6b497b99f3f7b1e328d7488c9321ae02c90d64756e1e7947276363739dd1116b",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state-v0.12.1.json",
+        "sha256": "57af9a974b76e0f39daff443cb29d064a0775d7374918100cda819d673bd8f5d",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state.json",
+        "sha256": "4fec25d87a9b7f072af928105a568d2659875642fe0eabb9255f5debd335a632",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/review-index-v0.12.1.json",
+        "sha256": "c258aeb48233eecffbe1442d674712a27cadf5de7e28febdca266a0635c2fdc6",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/review-index-v0122.json",
+        "sha256": "f4ca81733ff506860b6ede5bbb4c9b4c9421c6a2cd0d41879f4c80f36b350df9",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/docker/ensure-dashboard-online.ps1",
+        "sha256": "13e29a01645b9775f772fc48c3fc79a477f0412634979dfaf418f8e01196c8fc",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/docker/install-dashboard-autostart.ps1",
+        "sha256": "e2f58be9920697dfd66c4bc203aa3a6eb60f2cf8cdbf7cba27bc1529be1167b7",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/docker/ugas-dashboard-down.ps1",
+        "sha256": "43ad16a5bb45a4e58fa1612650f2825c55ace182502fb82e2b3c3489ad44bd3a",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/docker/ugas-dashboard-logs.ps1",
+        "sha256": "63586ce545a679f6c32207702e1261c1b93fe0b134c7118893d35745b0ae9e32",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/docker/ugas-dashboard-status.ps1",
+        "sha256": "14962f9232cb98fb9fac303a2d07e3ca4b039189c62587a90ec3ebe31b1510ee",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/docker/ugas-dashboard-up.ps1",
+        "sha256": "03a53895cb0b8fdbd493aa81ed6e214f72af922e9d37915fa457e6ab1b8cb70f",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/docker/uninstall-dashboard-autostart.ps1",
+        "sha256": "574800cf9b9291ce66dbfd485b30445c8c013c284b002c07d266d710344912b7",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/build_review_index_v0122.py",
+        "sha256": "79a0fd46a9b281a168a9d32bf146a8115244431a8443f0fc03aad6bbc19af885",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/run_observability_v0122.py",
+        "sha256": "0a774c30f3790a522d6fe147ebd1f6001d0d790d9c1b4df123813d9d35484954",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/run_validation.py",
+        "sha256": "b08f1e460f03f433bf0de123372f86d3a5ee1427290947e83534eeb49f8fe72b",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_review_index_v0122.py",
+        "sha256": "8e7f8d69aabacea948a9a568cd2991469d24deea249dc920643fdbebb776eb20",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_state_consistency_v0122.py",
+        "sha256": "6c9d35fc885e208ffc8d38eeeb4358e9a86438b4e8704b8974f017d3b411e908",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/__init__.py",
+        "sha256": "06fea801ec6b89ece85c030393ffe35f84c57be0323cf0b51d8e9bd52ac06cad",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/cli.py",
+        "sha256": "d9e158033ea047c2c6ad1306eeda859d8c537c72e03d027e09365c8401d24856",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/constants.py",
+        "sha256": "c7fe18579058fbe8eb855d0b14d0e0b26c8cbdd7ba81e2afbdb6521a31489bf1",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/generation.py",
+        "sha256": "c7694978dfc318f2d232da85d14f6c86bff8a57be1331ad2bc1b397bc0f1330b",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/__init__.py",
+        "sha256": "a09564076e9e757d68bfe3b93f29f9f921016fb11d78a9df27947c661c9bec2d",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/asset_activity.py",
+        "sha256": "78b4349fa715b3fbc14666a32727fd71660078d3352f9fb5a796da161e511fd4",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/dashboard_app.py",
+        "sha256": "d7722ea34fc35e828d665fd88a6f49cf337ddc052287d25482dc4de4cc237add",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/events.py",
+        "sha256": "1257b829a4f9f5e873e349bef8352efc1681d26ef54c6ffbf730d645b643d1d5",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/process_metrics.py",
+        "sha256": "e127940d171f7700ebacd1c1555340df625330ac35058eb6aae64bd4f14cd5d3",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/qa_integrity.py",
+        "sha256": "e67da57cf780bbcfd1cfec3d644c90fa34fda3bf8c4515e3886ba0465605bc5e",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/service.py",
+        "sha256": "1202036316d281bfba48da6a9c691557c05b2c2aeb290eb584fba7c094f06313",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/static/dashboard.css",
+        "sha256": "845d93fc64a8ee0cf3037663b0805f97ca25e1cc05fe458c7ccee9df69a1529a",
+        "media_type": "text/css",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/static/dashboard.js",
+        "sha256": "4f1757dc4a6b839dc8ecad6c7ad67bf1439e0cf470b420a34cc243b00d0fbcc4",
+        "media_type": "text/javascript",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/static/index.html",
+        "sha256": "fcb764eb61857c7ef1209a10195b0df59faf6603ddffe3bdd9ba0098438c9cde",
+        "media_type": "text/html",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/store.py",
+        "sha256": "fd903fb26ce08613839b20fd5e91769b009bb96b7222619101e9129b468eb6ed",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/system_metrics.py",
+        "sha256": "9837a9432a37245976d87f528ea095926df4af0730dc6a8819cc67a87710efa4",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/state_consistency_v0121.py",
+        "sha256": "8c2cb75de7ed51cdd0c27e92fda0112f5b0a5cda3d47a6e2f826804a30a193b5",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/state_consistency_v0122.py",
+        "sha256": "709883fb2b4999587d79513b5c6a37c800b270063fabd92da89414d8a33bf8cb",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/test_observability_v0122.py",
+        "sha256": "428ca30df45426fec32f4186c53108d897424acebcb1b7ef48fb3beab10d0019",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      }
+    ],
+    "artifact_set_sha256": "91b3e05fd9fe79b5d6891d7e7c89171981f3aeec19d306cec4e0a47805239543",
+    "evidence_count": 98,
+    "visual_count": 7
+  },
+  "required_visual_sets": [
+    "docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png",
+    "docs/evidence/observability-v0122/dashboard-docker-live-activity-v0122.png"
+  ],
+  "forbidden_artifacts": [
+    "*.zip",
+    "*.safetensors",
+    "*.ckpt",
+    "*.gguf",
+    "*.onnx",
+    "public bind",
+    "telemetry upload",
+    "new asset families",
+    "animation pixel changes",
+    "ComfyUI migration",
+    "production promotion",
+    "self-referential head_commit claim"
+  ],
+  "external_visual_review": {
+    "status": "REQUIRED",
+    "attack_front_v2_approval": "APPROVED_PILOT",
+    "observability_dashboard_approval": "REQUIRED"
+  },
+  "production_routing": "BLOCKED",
+  "scope_boundary": {
+    "local_only": true,
+    "read_only": true,
+    "telemetry_upload": false,
+    "new_generation": 0,
+    "new_asset_family": false,
+    "animation_pixels_changed": false,
+    "comfyui_migrated": false
+  }
+}

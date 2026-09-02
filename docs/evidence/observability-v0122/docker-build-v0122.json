@@ -1,0 +1,96 @@
+{
+  "captured_at": "2026-09-02T16:55:01Z",
+  "status": "BUILT",
+  "exit_code": 0,
+  "image": {
+    "Id": "sha256:251c68534a258757ad2e60d5107d60e9faa8bba2633b47b27745c50d3953f54c",
+    "RepoTags": [
+      "ugas-dashboard:0.12.2"
+    ],
+    "RepoDigests": [
+      "ugas-dashboard@sha256:251c68534a258757ad2e60d5107d60e9faa8bba2633b47b27745c50d3953f54c"
+    ],
+    "Comment": "buildkit.dockerfile.v0",
+    "Created": "2026-09-02T16:54:09.384087271Z",
+    "Config": {
+      "User": "10001:10001",
+      "Env": [
+        "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "LANG=C.UTF-8",
+        "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+        "PYTHON_VERSION=3.12.14",
+        "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONUNBUFFERED=1",
+        "PIP_DISABLE_PIP_VERSION_CHECK=1",
+        "PYTHONPATH=/workspace/ugas/src"
+      ],
+      "Entrypoint": [
+        "python",
+        "-m",
+        "ugas.cli",
+        "dashboard",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8765",
+        "--no-open"
+      ],
+      "WorkingDir": "/workspace/ugas",
+      "Labels": {
+        "com.docker.compose.project": "ugas-observability",
+        "com.docker.compose.service": "dashboard",
+        "com.docker.compose.version": "5.4.0"
+      },
+      "Healthcheck": {
+        "Test": [
+          "CMD-SHELL",
+          "python -c \"from urllib.request import urlopen; response=urlopen('http://127.0.0.1:8765/api/health', timeout=2); raise SystemExit(0 if response.status == 200 else 1)\""
+        ],
+        "Interval": 10000000000,
+        "Timeout": 3000000000,
+        "StartPeriod": 15000000000,
+        "Retries": 5
+      }
+    },
+    "Architecture": "amd64",
+    "Os": "linux",
+    "Size": 186771127,
+    "RootFS": {
+      "Type": "layers",
+      "Layers": [
+        "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+        "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+        "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+        "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+        "sha256:ca1672bb41165ed630ad5b05757ac7772158eee275371ec0440c2679d4df22c1",
+        "sha256:cec483439ca45eb9deaf98adad85d881d882e324fde7053a9c080ae54cd77898",
+        "sha256:e261cb841e63fa67154b811c8642649bc60e94113b8d0b2008a7e78d3edc997e",
+        "sha256:4edd75c7116a9f40a6f2318099bce05bd38b970e58747bf765166bfb82a664e7",
+        "sha256:61851c1919a586de2bdc71c18d623d1882ded11d6926a30354f223e4b18b36ef",
+        "sha256:78e7d726b279b112a95a7311b11caffb0217efbd13b566a1c60695f846ccc211",
+        "sha256:21254026c49139523e8bf6775ebf7487b8ea5e8085b822b5f9432aa7764e181d",
+        "sha256:7a68ab743a7fef6b3ce4196ec5d04b13b8d04e5cc4e609da9be1c0bfabd70b15",
+        "sha256:2d80be97b6bae957ec6aae44397f39ea02fa9a238381ffd61209ff87cebaed61",
+        "sha256:b63698f6958127cfce70f4bad29c6591d91f15cafeef66483eaf11bc911542d7"
+      ]
+    },
+    "Metadata": {
+      "LastTagTime": "2026-09-02T16:54:22.378351355Z"
+    },
+    "Descriptor": {
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "digest": "sha256:251c68534a258757ad2e60d5107d60e9faa8bba2633b47b27745c50d3953f54c",
+      "size": 856
+    },
+    "Identity": {
+      "Build": [
+        {
+          "Ref": "sehalajtx97zj9tihv7klv256",
+          "CreatedAt": "2026-09-02T16:54:26.201372199Z"
+        }
+      ]
+    }
+  },
+  "error": ""
+}

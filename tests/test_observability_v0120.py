@@ -137,8 +137,9 @@ class DashboardApiTests(unittest.TestCase):
 class GovernanceAndCliTests(unittest.TestCase):
     def test_current_state_cannot_promote_production(self) -> None:
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-        result = validate_state_consistency_v0121(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.1.md").read_text(encoding="utf-8"))
-        self.assertEqual("LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED", result["status"])
+        from ugas.state_consistency_v0122 import validate_state_consistency as validate_state_consistency_v0122
+        result = validate_state_consistency_v0122(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.2.md").read_text(encoding="utf-8"))
+        self.assertEqual("LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED", result["status"])
         mutant = dict(state); mutant["production_approved"] = True
         self.assertIn("production_approved_must_remain_false", validate_state_consistency(mutant, "", "")["failures"])
 

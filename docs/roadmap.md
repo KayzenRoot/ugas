@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.12.1 - observability integrity, security and live pipeline correction
+## v0.12.2 - QA cache integrity and Docker always-on local observability
+
+Correct the rejected v0.12.1 QA cache false-green path, execute exact QA-NC-01..08 fixtures, prove stale-last-known through the service/API collector path and bind generation stages to real instrumentation with a fake provider. Operationalize only the dashboard observer in Docker: read-only repository mount, writable shared SQLite runtime, loopback-only publication, restart policy, optional GPU override, host ComfyUI endpoint, persistence, file watching, cross-process telemetry and reversible per-user autostart. Keep production blocked, no new asset family, no animation changes, no real generation and no remote telemetry; stop for external visual review at `external_review_observability_dashboard_v0122`. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` applies to future executor rounds.
+
+## v0.12.1 - observability integrity, security and live pipeline correction (rejected history)
 
 Correct only the rejected v0.12.0 dashboard: remove unsafe HTML sinks, make QA fail-closed, expose real workload stages and elapsed time, reconcile orphan jobs, show UGAS/GPU-process/ComfyUI state, preserve stale-last-known samples, emit stable file transitions, correct preview semantics and supersede the defective v0.11.2 binding forward-only. Preserve v0.12.0 evidence, keep the dashboard local-only/read-only, keep `production_approved=false` and `production_routing=BLOCKED`, and wait for `external_review_observability_dashboard_v0121`. No new asset family, animation edit, generation job or remote telemetry is authorized.
 

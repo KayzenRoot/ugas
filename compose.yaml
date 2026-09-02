@@ -1,0 +1,42 @@
+name: ugas-observability
+
+services:
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dashboard
+    image: ugas-dashboard:0.12.2
+    container_name: ugas-dashboard
+    user: "10001:10001"
+    restart: unless-stopped
+    init: true
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    environment:
+      UGAS_CONTAINERIZED: "1"
+      UGAS_TELEMETRY_READ_ONLY: "1"
+      UGAS_COMFYUI_URL: ${UGAS_COMFYUI_URL:-http://host.docker.internal:8188}
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    ports:
+      - "127.0.0.1:${UGAS_DASHBOARD_PORT:-8765}:8765"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - type: bind
+        source: ${UGAS_REPO_PATH:-.}
+        target: /workspace/ugas
+        read_only: true
+      - type: bind
+        source: ${UGAS_RUNTIME_PATH:-./.ugas/runtime}
+        target: /workspace/ugas/.ugas/runtime
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

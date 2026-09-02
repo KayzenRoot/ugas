@@ -1,0 +1,60 @@
+{
+  "captured_at": "2026-09-02T16:57:06Z",
+  "restart": {
+    "exit_code": 0,
+    "stdout_tail": "",
+    "stderr_tail": " Container ugas-dashboard Restarting \n Container ugas-dashboard Started \n",
+    "health_code": 200,
+    "health": {
+      "timestamp": "2026-09-02T16:55:54Z",
+      "status": "DEGRADED",
+      "alerts": [
+        {
+          "severity": "warning",
+          "code": "STALE_LAST_KNOWN",
+          "message": "a provider/resource sample is degraded; stale-last-known data is shown"
+        },
+        {
+          "severity": "warning",
+          "code": "COMFYUI_DOWN",
+          "message": "URLError: local endpoint unavailable"
+        },
+        {
+          "severity": "error",
+          "code": "QA_GAP",
+          "message": "canonical QA evidence did not pass fail-closed validation"
+        }
+      ]
+    },
+    "event_survived_restart": true
+  },
+  "rebuild": {
+    "exit_code": 0,
+    "stdout_tail": "st sha256:acb92e1fcd8ecd5c731a736fcd4e05e7effc4289bb761bfae62a477b3c5806b6\n#17 exporting manifest list sha256:acb92e1fcd8ecd5c731a736fcd4e05e7effc4289bb761bfae62a477b3c5806b6 0.3s done\n#17 naming to docker.io/library/ugas-dashboard:0.12.2\n#17 naming to docker.io/library/ugas-dashboard:0.12.2 0.0s done\n#17 unpacking to docker.io/library/ugas-dashboard:0.12.2\n#17 unpacking to docker.io/library/ugas-dashboard:0.12.2 4.1s done\n#17 DONE 16.0s\n\n#18 resolving provenance for metadata file\n#18 DONE 0.0s\n",
+    "stderr_tail": " Image ugas-dashboard:0.12.2 Building \n Image ugas-dashboard:0.12.2 Built \n Container ugas-dashboard Recreate \n Container ugas-dashboard Recreated \n Container ugas-dashboard Starting \n Container ugas-dashboard Started \n",
+    "health_code": 200,
+    "health": {
+      "timestamp": "2026-09-02T16:57:06Z",
+      "status": "DEGRADED",
+      "alerts": [
+        {
+          "severity": "warning",
+          "code": "STALE_LAST_KNOWN",
+          "message": "a provider/resource sample is degraded; stale-last-known data is shown"
+        },
+        {
+          "severity": "warning",
+          "code": "COMFYUI_DOWN",
+          "message": "URLError: local endpoint unavailable"
+        },
+        {
+          "severity": "error",
+          "code": "QA_GAP",
+          "message": "canonical QA evidence did not pass fail-closed validation"
+        }
+      ]
+    },
+    "event_survived_rebuild": true
+  },
+  "telemetry_db": ".ugas/runtime/telemetry.db"
+}

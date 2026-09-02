@@ -1,0 +1,459 @@
+{
+  "captured_at": "2026-09-02T16:55:02Z",
+  "host_command": "python -m ugas.cli models list",
+  "started_at": "2026-09-02T16:55:01Z",
+  "exit_code": 0,
+  "stdout_tail": "el_folders\": {\n        \"background_removal\": \"background_removal\"\n      },\n      \"required_nodes\": [\n        \"LoadBackgroundRemovalModel\",\n        \"RemoveBackground\",\n        \"InvertMask\",\n        \"JoinImageWithAlpha\",\n        \"MaskToImage\",\n        \"SaveImage\"\n      ],\n      \"workflow_ids\": [\n        \"birefnet-background-removal\"\n      ],\n      \"status\": \"qualified\",\n      \"qualification_evidence\": {\n        \"status\": \"qualified\",\n        \"hashes_verified\": true,\n        \"files_verified_at\": \"2026-08-29\",\n        \"live_smoke_evidence\": \"docs/evidence/birefnet.json\"\n      },\n      \"download_files\": {\n        \"background_removal/birefnet.safetensors\": \"https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors\"\n      }\n    }\n  ],\n  \"registry_policy\": {\n    \"weights_outside_git\": true,\n    \"hash_required\": true,\n    \"license_required_before_commercial_use\": true,\n    \"floating_latest_forbidden\": true,\n    \"base_distilled_mismatch_rejected\": true\n  }\n}\n",
+  "stderr_tail": "",
+  "host_command_visible_in_container_api": true,
+  "event_payload": {
+    "timestamp": "2026-09-02T16:55:02Z",
+    "status": "OK",
+    "store": {
+      "available": true,
+      "path": "/workspace/ugas/.ugas/runtime/telemetry.db",
+      "reason": null,
+      "count": 5000
+    },
+    "events": [
+      {
+        "timestamp": "2026-09-02T16:54:40.194294Z",
+        "event_id": "evt-ea7801780ca44103b59ce492d727ac30",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-6f78656526cf4f67a0ca5858a8a9ca60",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "dashboard",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            "8765",
+            "--no-open"
+          ],
+          "session_id": "sess-47d75ea76edd4244b1d343ada767507e",
+          "service_id": "sess-47d75ea76edd4244b1d343ada767507e",
+          "pid": 7,
+          "role": "dashboard_service"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:55:02.372823Z",
+        "event_id": "evt-972b03c1956942fb80e895e53dfb79ed",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-7ade7ee3582842d5b3efddbdebf67f57",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-624a5f52545f49989f832e5ecba0ea7a",
+          "pid": 16104
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:55:02.296483Z",
+        "event_id": "evt-02d633e895334381bf9880f0a25852ad",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-7ade7ee3582842d5b3efddbdebf67f57",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "models",
+            "list"
+          ],
+          "session_id": "sess-624a5f52545f49989f832e5ecba0ea7a",
+          "service_id": "sess-624a5f52545f49989f832e5ecba0ea7a",
+          "pid": 16104,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:54:55.892755Z",
+        "event_id": "evt-7bc5bccae35944d6a1094cbdc328b13d",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-69b7c36a6d9b4516ac1fd32f1ac55418",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-c0b20714a4b54e9f98f8e0e8528553ea",
+          "pid": 9012
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:54:55.254745Z",
+        "event_id": "evt-4aa33365b0a04b7cb582d141cad4bb9b",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-69b7c36a6d9b4516ac1fd32f1ac55418",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "generate",
+            "--fake-provider"
+          ],
+          "session_id": "sess-c0b20714a4b54e9f98f8e0e8528553ea",
+          "service_id": "sess-c0b20714a4b54e9f98f8e0e8528553ea",
+          "pid": 9012,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:50:57.160087Z",
+        "event_id": "evt-8301123f231d4226a077c87ee807d47c",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-ef74a1eaeca04ce0a5585021e8df2126",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-93750dfba26b4c4b816d50e24b478e99",
+          "pid": 22404
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:50:57.004189Z",
+        "event_id": "evt-3f349617745c4994aff71e324464663f",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-ef74a1eaeca04ce0a5585021e8df2126",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "models",
+            "list"
+          ],
+          "session_id": "sess-93750dfba26b4c4b816d50e24b478e99",
+          "service_id": "sess-93750dfba26b4c4b816d50e24b478e99",
+          "pid": 22404,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:47:06.621566Z",
+        "event_id": "evt-46e9b5c479574fb2987b483ade2c91f1",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-de4beb190cba4c93bff303aa75fb054a",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-ccb40d6c9c9740c99c423d80cc8e15c9",
+          "pid": 2252
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:46:33.656577Z",
+        "event_id": "evt-a8d1d2e8cd9f419dbe0ccb22034e36fd",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-de4beb190cba4c93bff303aa75fb054a",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "generate",
+            "--fake-provider"
+          ],
+          "session_id": "sess-ccb40d6c9c9740c99c423d80cc8e15c9",
+          "service_id": "sess-ccb40d6c9c9740c99c423d80cc8e15c9",
+          "pid": 2252,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:46:29.519378Z",
+        "event_id": "evt-45fab2555ce24e59be2a5f66c3a76629",
+        "category": "command",
+        "severity": "info",
+        "source": "test",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "dashboard service",
+        "job_id": "cmd-dashboard-v0121-5f7e3582e0cc402a9f7807723ea15cdf",
+        "asset_id": null,
+        "metadata": {
+          "pid": 2252,
+          "session_id": "sess-25525a787fc9475b8047270d02cca089",
+          "argv": [
+            "dashboard",
+            "--port",
+            "0"
+          ],
+          "role": "dashboard_service"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:43:13.366596Z",
+        "event_id": "evt-abacb6db6a8942fd95edbf1a159f75ae",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-12107a7b409448cda16e40b0ecf1dbae",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-a27dfbcea8424c3f9ff5f9f4aee90546",
+          "pid": 8532
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:43:12.651621Z",
+        "event_id": "evt-8f6677261bd54638a39f0623f4a89b3e",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-12107a7b409448cda16e40b0ecf1dbae",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "generate",
+            "--fake-provider"
+          ],
+          "session_id": "sess-a27dfbcea8424c3f9ff5f9f4aee90546",
+          "service_id": "sess-a27dfbcea8424c3f9ff5f9f4aee90546",
+          "pid": 8532,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:40:32.553176Z",
+        "event_id": "evt-f8fc52b798f149a49877231f6166638c",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-1bf22d8275d647f78cf15d999e4460c9",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-f0a94c29bd4742eba9c61086555fbf2e",
+          "pid": 21916
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:40:32.486665Z",
+        "event_id": "evt-3c63789a07884fa9befd36048a562fcf",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-1bf22d8275d647f78cf15d999e4460c9",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "models",
+            "list"
+          ],
+          "session_id": "sess-f0a94c29bd4742eba9c61086555fbf2e",
+          "service_id": "sess-f0a94c29bd4742eba9c61086555fbf2e",
+          "pid": 21916,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:40:26.178049Z",
+        "event_id": "evt-3781da1d595a44668ae556412b19371e",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-00735df92c2e474c96f601a9d8ef5a00",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-e345adc1645143979ab7b65424173bb3",
+          "pid": 1216
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:40:25.608536Z",
+        "event_id": "evt-7643ad3ee2ca44e787af782f7541071c",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-00735df92c2e474c96f601a9d8ef5a00",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "generate",
+            "--fake-provider"
+          ],
+          "session_id": "sess-e345adc1645143979ab7b65424173bb3",
+          "service_id": "sess-e345adc1645143979ab7b65424173bb3",
+          "pid": 1216,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:37:51.834373Z",
+        "event_id": "evt-0250c61ed8a547b6b329f3b487a2d2d9",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-fb4e446462464dfc8a287fc8c13b7f83",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-689f4f6569464c51bbaf69fa01cec4f2",
+          "pid": 19620
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:37:51.314004Z",
+        "event_id": "evt-890a6b0901bf4d37ad153809c7c0ebf4",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-fb4e446462464dfc8a287fc8c13b7f83",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "generate",
+            "--fake-provider"
+          ],
+          "session_id": "sess-689f4f6569464c51bbaf69fa01cec4f2",
+          "service_id": "sess-689f4f6569464c51bbaf69fa01cec4f2",
+          "pid": 19620,
+          "role": "workload"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:37:47.547477Z",
+        "event_id": "evt-2e78632ebd9b4315a89f4111004892e3",
+        "category": "command",
+        "severity": "info",
+        "source": "test",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "dashboard service",
+        "job_id": "cmd-dashboard-v0121-a5ffb11e75034b38b68eddaac9791532",
+        "asset_id": null,
+        "metadata": {
+          "pid": 19620,
+          "session_id": "sess-001c254b6d2a4704bb5a8d11b8561919",
+          "argv": [
+            "dashboard",
+            "--port",
+            "0"
+          ],
+          "role": "dashboard_service"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:37:22.511775Z",
+        "event_id": "evt-1855610a799f42f394d7bc44c051a1c0",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-5c5f7baa67184de4a3fcd03154bd9034",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "dashboard",
+            "--port",
+            "0",
+            "--no-open"
+          ],
+          "session_id": "sess-a5fbc86dd2854d02a76d1a16553935f1",
+          "service_id": "sess-a5fbc86dd2854d02a76d1a16553935f1",
+          "pid": 7128,
+          "role": "dashboard_service"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:35:32.880320Z",
+        "event_id": "evt-ad277f7da1454ac594a963a2c32f41fb",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "started",
+        "status": "RUNNING",
+        "message": "UGAS command started",
+        "job_id": "cmd-a6c9b159baa14a8aacb649f522bb9ade",
+        "asset_id": null,
+        "metadata": {
+          "argv": [
+            "dashboard",
+            "--port",
+            "0",
+            "--no-open"
+          ],
+          "session_id": "sess-160ab097c1e54d10a66418a2d7cd7010",
+          "service_id": "sess-160ab097c1e54d10a66418a2d7cd7010",
+          "pid": 4912,
+          "role": "dashboard_service"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:33:53.362291Z",
+        "event_id": "evt-2fa80fab3d4f49c3ad1bccc4dbf38c00",
+        "category": "command",
+        "severity": "info",
+        "source": "ugas.cli",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "message": "UGAS command completed",
+        "job_id": "cmd-2b74a222c846406aa7a9a5d9f84e8b29",
+        "asset_id": null,
+        "metadata": {
+          "session_id": "sess-4879c90a48f94fc58d541b3d439b0195",
+          "pid": 20596
+        }
+      }
+    ]
+  }
+}

@@ -1,8 +1,8 @@
-# Installing UGAS 0.12.1
+# Installing UGAS 0.12.2
 
 ## Requirements
 
-- Python 3.12+ com Pillow disponível para validação.
+- Python 3.12+ com Pillow e psutil disponíveis para validação/telemetria.
 - ComfyUI local em `http://127.0.0.1:8188` quando a lane real for executada.
 - GPU NVIDIA compatível; a qualificação mantém resolução mínima de 512x512.
 - Os pesos ficam fora deste repositório e fora do review ZIP.
@@ -15,19 +15,21 @@ $env:PYTHONPATH = "src"
 python scripts/validation/validate_state_consistency.py
 python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
-python scripts/validation/run_observability_v0121.py
+python scripts/validation/run_observability_v0122.py
+python scripts/validation/build_review_index_v0122.py --json
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
+pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1
 ```
 
 ## Local observability dashboard
 
-The v0.12.1 dashboard is a local read-only HTTP/SSE service. It binds to loopback by default, stores bounded telemetry in `.ugas/runtime/telemetry.db`, and never uploads analytics or serves arbitrary files. Start it with `python -m ugas.cli dashboard`; `--port 0` selects an ephemeral port for smoke tests and `--no-open` suppresses browser launch. Non-loopback hosts are rejected.
+The v0.12.2 dashboard is a Dockerized local read-only HTTP/SSE service. Compose publishes only `127.0.0.1:8765`, stores bounded telemetry in the shared `.ugas/runtime/telemetry.db`, restarts unless stopped, and never uploads analytics or serves arbitrary files. Start it with `pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1`; `--port 0` remains available for native smoke tests. Non-loopback native hosts are rejected; only the trusted container flag permits the internal `0.0.0.0` bind.
 
-The UI reports `N/A`, `UNAVAILABLE`, `TIMEOUT` or `STALE_LAST_KNOWN` with a reason when the NVIDIA stack, process metrics or ComfyUI endpoint is not available. It does not start a generation job, and untrusted values are rendered through DOM text nodes. See [REVIEW-v0.12.1.md](REVIEW-v0.12.1.md) and `docs/evidence/observability-v0121/` for the runtime proof.
+The UI reports `N/A`, `UNAVAILABLE`, `TIMEOUT`, `GPU_CONTAINER_RUNTIME_GAP` or `STALE_LAST_KNOWN` with a reason when the NVIDIA stack, process metrics or ComfyUI endpoint is not available. QA reports current/validated HEAD, worktree state and cache fingerprint, and cannot remain PASS across repository changes. It does not start a generation job, and untrusted values are rendered through DOM text nodes. See [REVIEW-v0.12.2.md](REVIEW-v0.12.2.md) and `docs/evidence/observability-v0122/` for the runtime proof.
 
-## v0.12.1 governance boundary
+## v0.12.2 governance and always-on boundary
 
-The v0.11.2 external visual decision is recorded as `APPROVED_PILOT` only. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the next action waits for external review of the v0.12.1 dashboard. The v0.12.0 correction history is preserved separately.
+The v0.11.2 external visual decision is recorded as `APPROVED_PILOT` only. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the next action waits for external review of the v0.12.2 dashboard. The v0.12.0 and v0.12.1 correction histories are preserved separately. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` requires the Docker service to remain running after executor STOP.
 
 ## v0.11.2 QA integrity and scope recovery
 

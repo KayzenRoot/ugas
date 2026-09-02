@@ -1,0 +1,122 @@
+{
+  "captured_at": "2026-09-02T16:57:31Z",
+  "actual_instrumentation_path": true,
+  "fake_provider": true,
+  "new_generation": 0,
+  "parent_command_id": true,
+  "parent_command_bound": true,
+  "real_stage_names": true,
+  "job": {
+    "job_id": "job-aac1b26680bf4414a5fb1cc23206620a",
+    "parent_command_id": "cmd-78b9ca1688a24822bc9a280afcf1a90e",
+    "command": "flux2-klein-4b-distilled-text-to-image",
+    "category": "job",
+    "type": "generation",
+    "current_stage": "complete",
+    "status": "SUCCEEDED",
+    "started_at": "2026-09-02T16:57:30.413719Z",
+    "elapsed_seconds": 0.501,
+    "finished_at": "2026-09-02T16:57:30.914292Z",
+    "latest_message": "generation job completed",
+    "recent_stages": [
+      {
+        "stage": "validate",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T16:57:30.471283Z",
+        "message": "generation request validated"
+      },
+      {
+        "stage": "submit",
+        "action": "running",
+        "status": "RUNNING",
+        "timestamp": "2026-09-02T16:57:30.531961Z",
+        "message": "generation stage submit"
+      },
+      {
+        "stage": "provider",
+        "action": "running",
+        "status": "RUNNING",
+        "timestamp": "2026-09-02T16:57:30.591973Z",
+        "message": "provider job is running"
+      },
+      {
+        "stage": "output-fetch",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T16:57:30.702824Z",
+        "message": "provider output fetched"
+      },
+      {
+        "stage": "postprocess",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T16:57:30.768827Z",
+        "message": "output postprocessed"
+      },
+      {
+        "stage": "complete",
+        "action": "completed",
+        "status": "SUCCEEDED",
+        "timestamp": "2026-09-02T16:57:30.859593Z",
+        "message": "generation job completed"
+      }
+    ],
+    "pid": 1296,
+    "session_id": "sess-2bbe5379b2674517a28579fb2587317e",
+    "role": "workload",
+    "last_event_at": "2026-09-02T16:57:30.914292Z"
+  },
+  "stage_names": [
+    "validate",
+    "submit",
+    "provider",
+    "output-fetch",
+    "postprocess",
+    "complete"
+  ],
+  "instrumented_stage_events": [
+    {
+      "stage": "validate",
+      "action": "completed",
+      "status": "SUCCEEDED",
+      "job_id": "job-aac1b26680bf4414a5fb1cc23206620a",
+      "parent_command_id": "cmd-78b9ca1688a24822bc9a280afcf1a90e"
+    },
+    {
+      "stage": "submit",
+      "action": "running",
+      "status": "RUNNING",
+      "job_id": "job-aac1b26680bf4414a5fb1cc23206620a",
+      "parent_command_id": "cmd-78b9ca1688a24822bc9a280afcf1a90e"
+    },
+    {
+      "stage": "provider",
+      "action": "running",
+      "status": "RUNNING",
+      "job_id": "job-aac1b26680bf4414a5fb1cc23206620a",
+      "parent_command_id": "cmd-78b9ca1688a24822bc9a280afcf1a90e"
+    },
+    {
+      "stage": "output-fetch",
+      "action": "completed",
+      "status": "SUCCEEDED",
+      "job_id": "job-aac1b26680bf4414a5fb1cc23206620a",
+      "parent_command_id": "cmd-78b9ca1688a24822bc9a280afcf1a90e"
+    },
+    {
+      "stage": "postprocess",
+      "action": "completed",
+      "status": "SUCCEEDED",
+      "job_id": "job-aac1b26680bf4414a5fb1cc23206620a",
+      "parent_command_id": "cmd-78b9ca1688a24822bc9a280afcf1a90e"
+    },
+    {
+      "stage": "complete",
+      "action": "completed",
+      "status": "SUCCEEDED",
+      "job_id": "job-aac1b26680bf4414a5fb1cc23206620a",
+      "parent_command_id": "cmd-78b9ca1688a24822bc9a280afcf1a90e"
+    }
+  ]
+}

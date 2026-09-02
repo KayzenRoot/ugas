@@ -13,6 +13,7 @@ MEDIA_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
 EXCLUDED_DIRS = {".git", ".venv", "venv", "node_modules", "__pycache__", ".pytest_cache", ".mypy_cache", "tmp", "build", "dist", ".ugas"}
 SECRET_NAMES = {".env", ".env.local", ".env.production", "credentials.json", "secrets.json", "token.json"}
 WEIGHT_SUFFIXES = {".safetensors", ".ckpt", ".gguf", ".onnx", ".pth"}
+RUNTIME_ACTIVITY_EXCLUDED_NAMES = {"telemetry.db", "telemetry.db-wal", "telemetry.db-shm"}
 
 
 @dataclass(frozen=True, slots=True)
@@ -91,12 +92,23 @@ class AssetActivityTracker:
     def _iter_files(self):
         seen: set[str] = set()
         count = 0
-        for root in self.roots:
+        # Docker Desktop bind mounts can make a recursive repository walk very
+        # expensive (especially across the Windows/VM boundary). The
+        # container dashboard only needs operational activity: runtime files
+        # and generated output roots. Native mode retains the full allowlisted
+        # repository scan for local development and review diagnostics.
+        roots = self.roots[:3] if os.environ.get("UGAS_CONTAINERIZED") == "1" else self.roots
+        for root in roots:
             if not root.path.is_dir():
                 continue
             for directory, dirs, files in os.walk(root.path, followlinks=False):
                 dirs[:] = [item for item in dirs if item.casefold() not in EXCLUDED_DIRS]
                 for filename in files:
+                    # The telemetry database is an output of this observer;
+                    # reporting its own writes would create an endless
+                    # file-event -> telemetry-write feedback loop.
+                    if root.key == "runtime" and filename.casefold() in RUNTIME_ACTIVITY_EXCLUDED_NAMES:
+                        continue
                     path = Path(directory) / filename
                     if path.is_symlink() or _is_excluded(path, self.repo_root, allow_runtime=root.key == "runtime"):
                         continue

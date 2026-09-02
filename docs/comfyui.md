@@ -1,6 +1,6 @@
-# ComfyUI integration notes - UGAS v0.12.0
+# ComfyUI integration notes - UGAS v0.12.2
 
-The active release is v0.12.1. The local observability dashboard probes ComfyUI read-only, exposes endpoint health with checked_at/reason and preserves stale-last-known data after timeout; it never starts generation. The v0.12.0 dashboard remains rejected history. The deterministic QA-integrity/scope-recovery cutout-rig lane from v0.11.2 remains historical. The v0.8.0/v0.7.3/v0.9.0/v0.9.1/v0.10.0/v0.11.0 structural and runtime/model/custom-node records below remain historical; v0.11.1 remains rejected history.
+The active release is v0.12.2. The Dockerized local observability dashboard probes the host ComfyUI endpoint read-only at `http://host.docker.internal:8188`, exposes endpoint health with checked_at/reason and preserves stale-last-known data after timeout; it never starts generation. The v0.12.0 and v0.12.1 dashboards remain rejected history. The deterministic QA-integrity/scope-recovery cutout-rig lane from v0.11.2 remains historical. The v0.8.0/v0.7.3/v0.9.0/v0.9.1/v0.10.0/v0.11.0 structural and runtime/model/custom-node records below remain historical; v0.11.1 remains rejected history.
 
 The v0.6.0 release records the bounded SDXL ControlNet/IP-Adapter runtime qualification. The ComfyUI/RTX 5050 and A/C/R evidence below is historical and remains unchanged. v0.8.1 reuses v0.7.1 parts and the v0.7.3 structural core as immutable inputs, uses deterministic skeleton interpolation plus Pillow transforms, and has zero ComfyUI generation jobs; it remains blocked from production routing until external visual review.
 

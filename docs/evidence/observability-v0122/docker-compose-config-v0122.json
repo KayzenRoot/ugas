@@ -1,0 +1,110 @@
+{
+  "captured_at": "2026-09-02T16:55:00Z",
+  "compose_config_exit_code": 0,
+  "compose_config_error": "",
+  "compose_files": [
+    "compose.yaml",
+    "compose.gpu.yaml"
+  ],
+  "gpu_requested": true,
+  "gpu_probe": "NVIDIA GeForce RTX 5050",
+  "gpu_probe_error": "",
+  "host_publication": "127.0.0.1:8765",
+  "ports": [
+    {
+      "mode": "ingress",
+      "host_ip": "127.0.0.1",
+      "target": 8765,
+      "published": "8765",
+      "protocol": "tcp"
+    }
+  ],
+  "repo_read_only": true,
+  "runtime_read_write": true,
+  "restart": "unless-stopped",
+  "non_root": true,
+  "no_socket": true,
+  "normalized": {
+    "name": "ugas-observability",
+    "networks": {
+      "default": {
+        "name": "ugas-observability_default",
+        "ipam": {}
+      }
+    },
+    "services": {
+      "dashboard": {
+        "build": {
+          "context": "D:\\Projeto Codexx\\ugas",
+          "dockerfile": "docker/Dockerfile.dashboard"
+        },
+        "cap_drop": [
+          "ALL"
+        ],
+        "command": null,
+        "container_name": "ugas-dashboard",
+        "entrypoint": null,
+        "environment": {
+          "NVIDIA_DRIVER_CAPABILITIES": "compute,utility",
+          "NVIDIA_VISIBLE_DEVICES": "all",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONUNBUFFERED": "1",
+          "UGAS_COMFYUI_URL": "http://host.docker.internal:8188",
+          "UGAS_CONTAINERIZED": "1",
+          "UGAS_TELEMETRY_READ_ONLY": "1"
+        },
+        "extra_hosts": [
+          "host.docker.internal=host-gateway"
+        ],
+        "gpus": [
+          {
+            "count": -1
+          }
+        ],
+        "image": "ugas-dashboard:0.12.2",
+        "init": true,
+        "logging": {
+          "driver": "json-file",
+          "options": {
+            "max-file": "3",
+            "max-size": "10m"
+          }
+        },
+        "networks": {
+          "default": null
+        },
+        "ports": [
+          {
+            "mode": "ingress",
+            "host_ip": "127.0.0.1",
+            "target": 8765,
+            "published": "8765",
+            "protocol": "tcp"
+          }
+        ],
+        "read_only": true,
+        "restart": "unless-stopped",
+        "security_opt": [
+          "no-new-privileges:true"
+        ],
+        "tmpfs": [
+          "/tmp:rw,noexec,nosuid,size=64m"
+        ],
+        "user": "10001:10001",
+        "volumes": [
+          {
+            "type": "bind",
+            "source": "D:\\Projeto Codexx\\ugas",
+            "target": "/workspace/ugas",
+            "read_only": true
+          },
+          {
+            "type": "bind",
+            "source": "D:\\Projeto Codexx\\ugas\\.ugas\\runtime",
+            "target": "/workspace/ugas/.ugas/runtime"
+          }
+        ]
+      }
+    }
+  }
+}

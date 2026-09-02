@@ -1,0 +1,31 @@
+{
+  "captured_at": "2026-09-02T16:57:08Z",
+  "container_inspect_exit_code": 0,
+  "non_root_user": true,
+  "read_only_rootfs": true,
+  "no_new_privileges": true,
+  "cap_drop_all": true,
+  "docker_socket_mounted": false,
+  "repo_mount_read_only": true,
+  "runtime_mount_read_write": true,
+  "host_port_loopback": true,
+  "restart_policy": "unless-stopped",
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "D:\\Projeto Codexx\\ugas\\.ugas\\runtime",
+      "Destination": "/workspace/ugas/.ugas/runtime",
+      "Mode": "rw",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "D:\\Projeto Codexx\\ugas",
+      "Destination": "/workspace/ugas",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ]
+}

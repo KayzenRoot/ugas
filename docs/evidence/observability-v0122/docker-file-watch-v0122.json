@@ -1,0 +1,110 @@
+{
+  "captured_at": "2026-09-02T16:55:27Z",
+  "path": ".ugas/runtime/observability-watch-v0122.txt",
+  "created_at": "2026-09-02T16:55:02Z",
+  "created_event_visible": true,
+  "stable_event_visible": true,
+  "created_event": {
+    "timestamp": "2026-09-02T16:55:11Z",
+    "status": "OK",
+    "store": {
+      "available": true,
+      "path": "/workspace/ugas/.ugas/runtime/telemetry.db",
+      "reason": null,
+      "count": 5000
+    },
+    "events": [
+      {
+        "timestamp": "2026-09-02T16:55:11.412027Z",
+        "event_id": "evt-8419d536adfd4a6f83866a3f7618255b",
+        "category": "file",
+        "severity": "info",
+        "source": "asset_activity",
+        "action": "created",
+        "status": "STABILIZING",
+        "message": "created .ugas/runtime/observability-watch-v0122.txt",
+        "job_id": null,
+        "asset_id": "cnVudGltZTpvYnNlcnZhYmlsaXR5LXdhdGNoLXYwMTIyLnR4dA",
+        "metadata": {
+          "safe_id": "cnVudGltZTpvYnNlcnZhYmlsaXR5LXdhdGNoLXYwMTIyLnR4dA",
+          "path": ".ugas/runtime/observability-watch-v0122.txt",
+          "root": "runtime",
+          "file_kind": "log",
+          "action": "created",
+          "size_bytes": 18,
+          "mtime": 1788368102.5142076,
+          "sha256": null,
+          "status": "STABILIZING",
+          "media_type": null,
+          "previewable": false,
+          "timestamp": 1788368102.5142076
+        }
+      }
+    ]
+  },
+  "stable_event": {
+    "timestamp": "2026-09-02T16:55:26Z",
+    "status": "OK",
+    "store": {
+      "available": true,
+      "path": "/workspace/ugas/.ugas/runtime/telemetry.db",
+      "reason": null,
+      "count": 5000
+    },
+    "events": [
+      {
+        "timestamp": "2026-09-02T16:55:26.316907Z",
+        "event_id": "evt-653f50d4dc0341c187aa0edefd23984f",
+        "category": "file",
+        "severity": "debug",
+        "source": "asset_activity",
+        "action": "stable",
+        "status": "STABLE",
+        "message": "stable .ugas/runtime/observability-watch-v0122.txt",
+        "job_id": null,
+        "asset_id": "cnVudGltZTpvYnNlcnZhYmlsaXR5LXdhdGNoLXYwMTIyLnR4dA",
+        "metadata": {
+          "safe_id": "cnVudGltZTpvYnNlcnZhYmlsaXR5LXdhdGNoLXYwMTIyLnR4dA",
+          "path": ".ugas/runtime/observability-watch-v0122.txt",
+          "root": "runtime",
+          "file_kind": "log",
+          "action": "stable",
+          "size_bytes": 18,
+          "mtime": 1788368102.5142076,
+          "sha256": "cc86972a2a3b84e824d8aa0dd79941f4b72a97d553a16c965247c26e14b77592",
+          "status": "STABLE",
+          "media_type": null,
+          "previewable": false,
+          "timestamp": 1788368102.5142076,
+          "transition": "STABILIZING->STABLE"
+        }
+      },
+      {
+        "timestamp": "2026-09-02T16:55:11.412027Z",
+        "event_id": "evt-8419d536adfd4a6f83866a3f7618255b",
+        "category": "file",
+        "severity": "info",
+        "source": "asset_activity",
+        "action": "created",
+        "status": "STABILIZING",
+        "message": "created .ugas/runtime/observability-watch-v0122.txt",
+        "job_id": null,
+        "asset_id": "cnVudGltZTpvYnNlcnZhYmlsaXR5LXdhdGNoLXYwMTIyLnR4dA",
+        "metadata": {
+          "safe_id": "cnVudGltZTpvYnNlcnZhYmlsaXR5LXdhdGNoLXYwMTIyLnR4dA",
+          "path": ".ugas/runtime/observability-watch-v0122.txt",
+          "root": "runtime",
+          "file_kind": "log",
+          "action": "created",
+          "size_bytes": 18,
+          "mtime": 1788368102.5142076,
+          "sha256": null,
+          "status": "STABILIZING",
+          "media_type": null,
+          "previewable": false,
+          "timestamp": 1788368102.5142076
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.12.2",
+  "validator": "src/ugas/state_consistency_v0122.py",
+  "status": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.12.2",
+    "phase": "LOCAL_REALTIME_OBSERVABILITY",
+    "current_gate": "LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUALIFIED",
+    "attack_front_v2": "APPROVED_PILOT",
+    "dashboard_review": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "production_approved": false,
+    "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
+    "always_on_dashboard_policy": "ENABLED"
+  }
+}
