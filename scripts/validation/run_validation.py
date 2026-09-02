@@ -37,6 +37,7 @@ from ugas.state_consistency_v0100 import validate_state_consistency as validate_
 from ugas.state_consistency_v0110 import validate_state_consistency as validate_state_consistency_v0110
 from ugas.state_consistency_v0111 import validate_state_consistency as validate_state_consistency_v0111
 from ugas.state_consistency_v0112 import validate_state_consistency as validate_state_consistency_v0112
+from ugas.state_consistency_v0120 import validate_state_consistency as validate_state_consistency_v0120
 from ugas.cutout_rig import validate_rig_manifest
 from ugas.workflow_registry import load_workflow, load_workflows, validate_api_workflow
 from ugas.identity import ANCHOR_ASSET_ID, ANCHOR_REVISION_ID, ANCHOR_SHA256, validate_identity_manifest
@@ -1839,9 +1840,9 @@ def _v0112_checks() -> None:
     """Validate the active v0.11.2 QA-integrity and scope-recovery slice."""
     evidence = ROOT / "docs" / "evidence"
     required = [
-        "REVIEW-v0.11.2.md", "docs/test-coverage-matrix-v0.11.2.md", "schemas/current-state.json", "schemas/current-state-v0.11.0.json", "schemas/current-state-v0.11.1.json", "schemas/review-index-v0.11.2.json",
+        "REVIEW-v0.11.2.md", "docs/test-coverage-matrix-v0.11.2.md", "schemas/current-state-v0.11.2.json", "schemas/current-state-v0.11.0.json", "schemas/current-state-v0.11.1.json", "schemas/review-index-v0.11.2.json",
         "src/ugas/state_consistency_v0112.py", "scripts/validation/run_animation_runtime_v0112.py", "scripts/validation/build_review_index_v0112.py", "scripts/validation/validate_review_index_v0112.py", "scripts/validation/validate_state_consistency_v0112.py", "tests/test_qa_integrity_v0112.py",
-        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.11.0.json", "docs/evidence/current-state-v0.11.1.json", "docs/evidence/state-consistency.json", "docs/evidence/review-index-v0.11.2.json",
+        "docs/evidence/current-state-v0.11.2.json", "docs/evidence/current-state-v0.11.0.json", "docs/evidence/current-state-v0.11.1.json", "docs/evidence/state-consistency-v0112.json", "docs/evidence/review-index-v0.11.2.json",
         "docs/evidence/animation-runtime-v0112/identity-proof-v0112.json", "docs/evidence/animation-runtime-v0112/threshold-binding-v0112.json", "docs/evidence/animation-runtime-v0112/attack-v1-baseline-fail-closed-v0112.json", "docs/evidence/animation-runtime-v0112/negative-controls-v0112.json", "docs/evidence/animation-runtime-v0112/historical-replay-v0112.json", "docs/evidence/animation-runtime-v0112/qa-integrity-scope-recovery-v0112.json", "docs/evidence/animation-runtime-v0112/execution-evidence-v0.11.2.json", "docs/evidence/animation-runtime-v0112/attack-v2-visual-manifest-v0112.json",
         "docs/evidence/animation-runtime-v0112/attack-front-v2/compiled-manifest.json", "docs/evidence/animation-runtime-v0112/attack-front-v2/qa-result.json", "docs/evidence/animation-runtime-v0112/attack-front-v2/package-manifest.json", "docs/evidence/animation-runtime-v0112/attack-front-v2/metadata.json", "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-spritesheet.png", "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-preview.gif",
     ]
@@ -1849,8 +1850,8 @@ def _v0112_checks() -> None:
     for relative in required:
         path = ROOT / relative; check(f"v0112:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(evidence / "current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        state = load_json(evidence / "current-state-v0.11.2.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.11.2.json"))
         consistency = validate_state_consistency_v0112(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.11.2.md").read_text(encoding="utf-8"))
         check("v0112:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.11.2 state is consistent")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
@@ -1882,6 +1883,41 @@ def _v0112_checks() -> None:
     check("v0112:review-headings", all(heading.casefold() in review.casefold() for heading in headings), "required v0.11.2 review sections are present")
     index_result = _run([sys.executable, "scripts/validation/validate_review_index_v0112.py"], ROOT)
     check("v0112:review-index", index_result.returncode == 0, _result_detail(index_result) or "v0.11.2 review index is hash-valid")
+
+
+def _v0120_checks() -> None:
+    """Validate the local read-only observability dashboard increment."""
+    evidence = ROOT / "docs" / "evidence" / "observability-v0120"
+    required = [
+        "REVIEW-v0.12.0.md", "docs/test-coverage-matrix-v0.12.0.md", "schemas/current-state.json", "schemas/review-index-v0.12.0.json",
+        "src/ugas/observability/__init__.py", "src/ugas/observability/events.py", "src/ugas/observability/store.py", "src/ugas/observability/system_metrics.py", "src/ugas/observability/process_metrics.py", "src/ugas/observability/asset_activity.py", "src/ugas/observability/service.py", "src/ugas/observability/dashboard_app.py", "src/ugas/observability/static/index.html", "src/ugas/observability/static/dashboard.css", "src/ugas/observability/static/dashboard.js",
+        "scripts/validation/validate_state_consistency_v0120.py", "scripts/validation/build_review_index_v0120.py", "scripts/validation/validate_review_index_v0120.py", "tests/test_observability_v0120.py",
+        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.11.2.json", "docs/evidence/state-consistency-v0120.json", "docs/evidence/observability-v0120/external-review-v0112.json",
+    ]
+    required += [f"docs/evidence/observability-v0120/{name}" for name in ("dashboard-startup.json", "system-idle.json", "command-event.json", "file-activity.json", "api-snapshots.json", "security.json", "animation-regression-v0112.json", "test-results.json", "validation-results.json", "publication.json", "dashboard-overview.png", "dashboard-system-pipeline.png", "dashboard-assets-activity.png", "dashboard-qa-events.png", "dashboard-mobile.png")]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0120:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json"); schema = load_json(ROOT / "schemas/current-state.json"); validate_instance(state, schema)
+        consistency = validate_state_consistency_v0120(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.0.md").read_text(encoding="utf-8"))
+        check("v0120:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.12.0 state is consistent")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0120:state-consistency", False, str(exc))
+    try:
+        external = load_json(evidence / "external-review-v0112.json")
+        check("v0120:external-approval", external.get("decision") == "APPROVED_PILOT" and external.get("artifact_contract", {}).get("frame_count") == 12 and external.get("artifact_contract", {}).get("width") == 512 and external.get("artifact_contract", {}).get("height") == 512 and external.get("production_approval") is False and external.get("production_routing") == "BLOCKED", "v0.11.2 external pilot decision is explicitly bounded")
+        review = (ROOT / "REVIEW-v0.12.0.md").read_text(encoding="utf-8")
+        headings = tuple(f"{index}." for index in range(1, 21))
+        check("v0120:review-headings", all(f"## {heading}" in review for heading in headings), "mandatory v0.12.0 review sections are present")
+        check("v0120:scope-text", all(literal in review for literal in ("local-only", "read-only", "production_routing=BLOCKED", "APPROVED_PILOT", "external_review_observability_dashboard_v0120")), "review records local, read-only and production boundaries")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v0120:review", False, str(exc))
+    contracts = (ROOT / "src/ugas/observability/dashboard_app.py").read_text(encoding="utf-8") if (ROOT / "src/ugas/observability/dashboard_app.py").is_file() else ""
+    check("v0120:api-contract", all(route in contracts for route in ("/api/status", "/api/system", "/api/processes", "/api/jobs", "/api/assets/recent", "/api/qa", "/api/events", "/api/health", "/api/stream", "/api/preview/")), "required read-only JSON, SSE and preview routes are present")
+    check("v0120:security-contract", "127.0.0.1" in contracts and "shell=True" not in (ROOT / "src/ugas/observability/system_metrics.py").read_text(encoding="utf-8"), "loopback default and explicit subprocess boundary are present")
+    index_result = _run([sys.executable, "scripts/validation/validate_review_index_v0120.py"], ROOT)
+    check("v0120:review-index", index_result.returncode == 0, _result_detail(index_result) or "v0.12.0 review index is hash-valid")
 
 
 def main() -> int:
@@ -1982,13 +2018,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.11.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.11.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.11.2")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.12.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.12.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.12.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

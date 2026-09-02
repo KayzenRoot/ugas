@@ -1,5 +1,9 @@
 # UGAS roadmap
 
+## v0.12.0 - local realtime observability dashboard MVP
+
+Add a local-only, read-only, near-real-time operations dashboard launched by `ugas dashboard`. Keep SQLite telemetry bounded, stream events with SSE, sample CPU/RAM/disk/GPU/process state with explicit unsupported fallbacks, watch only approved UGAS roots, and surface canonical state/QA/review evidence without replacing it. Record the v0.11.2 external decision as `APPROVED_PILOT`, keep `production_approved=false` and `production_routing=BLOCKED`, and wait for `external_review_observability_dashboard_v0120`. No new asset family, animation edit, generation job or remote telemetry is authorized.
+
 ## v0.11.2 - QA integrity and scope recovery correction
 
 Recover the active QA scope after the rejected v0.11.1 correction. Restore v0.11.0 `motion_tracks` and `key_pose_bindings` exactly, bind body gates to declared semantic thresholds, require fail-closed attack-v1 comparison, use relational weapon-arc gates, and qualify NC-01..NC-10. Preserve rejected v0.11.1 history, prove byte-identical pixels/package to v0.11.0, require external visual review, and keep production routing blocked.

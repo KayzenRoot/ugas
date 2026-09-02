@@ -44,6 +44,7 @@ from .reference_edit import (
     runtime_plausibility,
 )
 from .workflow_registry import bind_workflow, load_workflow, validate_api_workflow
+from .observability.service import current_service
 
 
 class GenerationError(RuntimeError):
@@ -115,6 +116,9 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
         prompts={"positive": prompt, "negative": ""}, seed=seed, dimensions={"width": width, "height": height},
         parameters={"endpoint": client.base_url, "model_variant": model.get("variant"), "workflow_parameters": workflow_record.get("parameters", {}), "compatibility": compatibility}, input_hashes=input_hashes)
     validated = transition(job, "validated"); persist(validated, output_dir)
+    observer = current_service()
+    if observer:
+        observer.emit(category="job", source="generation", action="started", status="RUNNING", message="generation job validated and starting", job_id=validated["job_id"], metadata={"workflow": workflow_id, "model": model_id, "output_dir": str(output_dir)})
     try:
         job = validated
         job_id = job["job_id"]
@@ -129,6 +133,8 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
             if first_poll_at is None:
                 first_poll_at = _now()
         job = transition(job, "queued"); job = transition(job, "running")
+        if observer:
+            observer.emit(category="stage", source="generation", action="running", status="RUNNING", message="provider job is running", job_id=job_id, metadata={"prompt_id": prompt_id, "stage": "provider"})
         history = client.poll_history(prompt_id, on_poll=mark_first_poll); completed_at = _now(); outputs = client.fetch_history_outputs(history)
         if not outputs: raise GenerationError("ComfyUI history contained no retrievable output")
         runtime_ms = round((time.perf_counter() - started) * 1000, 3)
@@ -160,12 +166,17 @@ def _run_job(repo_root: Path, client: ComfyUIClient, workflow: dict, *, output_d
             target.write_bytes(item["data"]); target_outputs.append({**item, "path": str(target), "qa": validate_output(target, width=width, height=height)})
         job["execution_evidence"]["output_paths"] = [{"path": item["path"], "sha256": sha256(Path(item["path"])), "filename": item.get("filename"), "subfolder": item.get("subfolder", ""), "type": item.get("type", "output")} for item in target_outputs]
         job_path = persist(job, output_dir)
+        if observer:
+            observer.emit(category="job", source="generation", action="completed", status="SUCCEEDED", message="generation job completed", job_id=job_id, metadata={"output_count": len(target_outputs), "runtime_ms": job["execution_evidence"].get("runtime_ms")})
         return {"job": job, "job_path": str(job_path)}, target_outputs
     except (ComfyUIError, OSError, KeyError, GenerationError) as exc:
         job["error"] = str(exc)
         try: job = transition(job, "failed", error=str(exc))
         except Exception: job["state"] = "failed"
-        persist(job, output_dir); raise GenerationError(str(exc)) from exc
+        persist(job, output_dir)
+        if observer:
+            observer.emit(category="job", severity="error", source="generation", action="failed", status="FAILED", message="generation job failed", job_id=job.get("job_id"), metadata={"error_type": type(exc).__name__})
+        raise GenerationError(str(exc)) from exc
 
 
 def generate_image(repo_root: Path, *, endpoint: str, prompt: str, profile: str = "generic-2d",

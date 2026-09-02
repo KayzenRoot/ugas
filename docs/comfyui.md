@@ -1,6 +1,6 @@
-# ComfyUI integration notes - UGAS v0.11.2
+# ComfyUI integration notes - UGAS v0.12.0
 
-The active release is v0.11.2 and the deterministic QA-integrity/scope-recovery cutout-rig lane executes without ComfyUI generation. The v0.8.0/v0.7.3/v0.9.0/v0.9.1/v0.10.0/v0.11.0 structural and runtime/model/custom-node records below remain historical; v0.11.1 remains rejected history.
+The active release is v0.12.0. The local observability dashboard probes ComfyUI read-only and never starts generation; the deterministic QA-integrity/scope-recovery cutout-rig lane from v0.11.2 remains historical. The v0.8.0/v0.7.3/v0.9.0/v0.9.1/v0.10.0/v0.11.0 structural and runtime/model/custom-node records below remain historical; v0.11.1 remains rejected history.
 
 The v0.6.0 release records the bounded SDXL ControlNet/IP-Adapter runtime qualification. The ComfyUI/RTX 5050 and A/C/R evidence below is historical and remains unchanged. v0.8.1 reuses v0.7.1 parts and the v0.7.3 structural core as immutable inputs, uses deterministic skeleton interpolation plus Pillow transforms, and has zero ComfyUI generation jobs; it remains blocked from production routing until external visual review.
 

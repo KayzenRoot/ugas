@@ -1,4 +1,4 @@
-"""UGAS v0.10.0 machine-readable CLI."""
+"""UGAS v0.12.0 machine-readable CLI."""
 
 from __future__ import annotations
 
@@ -36,6 +36,8 @@ from .multiview import qualify_multiref, generate_directional_anchors, generate_
 from .openpose_guides import ensure_openpose_guides, render_openpose_evidence
 from .pose_control import qualify_native_reference_order
 from .refcontrol import qualify_refcontrol
+from .observability.dashboard_app import run_dashboard
+from .observability.service import ObservabilityService
 
 
 def _repo_root() -> Path:
@@ -100,7 +102,7 @@ def _common_generation(parser: argparse.ArgumentParser) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio 0.10.0")
+    parser = argparse.ArgumentParser(prog="ugas", description="Universal Game Asset Studio")
     parser.add_argument("--version", action="version", version=UGAS_VERSION)
     _json_flag(parser)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -142,13 +144,17 @@ def build_parser() -> argparse.ArgumentParser:
     cutout_qualify = cutout_sub.add_parser("qualify-sam2"); _json_flag(cutout_qualify)
     cutout_build = cutout_sub.add_parser("build"); cutout_build.add_argument("--asset-id", required=True); _json_flag(cutout_build)
     cutout_pose = cutout_sub.add_parser("pose-pilot"); cutout_pose.add_argument("--poses", default="q0,q1,q2"); _json_flag(cutout_pose)
+    dashboard = sub.add_parser("dashboard", help="start the local read-only observability dashboard")
+    dashboard.add_argument("--host", default="127.0.0.1", help="loopback host only (default: 127.0.0.1)")
+    dashboard.add_argument("--port", type=int, default=8765, help="local HTTP port (default: 8765; use 0 for ephemeral smoke tests)")
+    dashboard.add_argument("--no-open", action="store_true", help="do not open the local browser")
+    _json_flag(dashboard)
     return parser
 
 
-def main(argv: list[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
-    root = _repo_root()
+def _dispatch(args: argparse.Namespace, root: Path) -> int:
     try:
+        if args.command == "dashboard": return run_dashboard(root, host=args.host, port=args.port, no_open=args.no_open, service=__import__("ugas.observability.service", fromlist=["current_service"]).current_service())
         if args.command == "install": _json(install_consumer(root, args.consumer_root, args.profile, args.policy, args.force)); return 0
         if args.command == "inspect": _json(resolve_project_context(args.consumer_root, args.dimension, args.profile).to_dict()); return 0
         if args.command == "route": _json(route_request(args.request, policy=args.policy, engine=args.engine, providers={"provider-comfyui": args.comfyui, "provider-remote-render-node": args.render_node, "provider-huggingface": args.huggingface})); return 0
@@ -231,6 +237,23 @@ def main(argv: list[str] | None = None) -> int:
         _json({"status": "error", "error_type": type(exc).__name__, "error": str(exc)})
         return 2
     return 2
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    root = _repo_root()
+    service = ObservabilityService(root)
+    command_argv = list(argv) if argv is not None else sys.argv[1:]
+    try:
+        with service.command(command_argv) as job_id:
+            result = _dispatch(args, root)
+            service.finish_command(job_id, success=result == 0)
+            return result
+    except Exception as exc:
+        _json({"status": "error", "error_type": type(exc).__name__, "error": str(exc)})
+        return 2
+    finally:
+        service.close()
 
 
 if __name__ == "__main__":

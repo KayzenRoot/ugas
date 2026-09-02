@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "universal-game-asset-studio"
-version = "0.11.2"
+version = "0.12.0"
 description = "Provider-agnostic bootstrap infrastructure for game asset production."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -17,3 +17,6 @@ ugas = "ugas.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+ugas = ["observability/static/*"]

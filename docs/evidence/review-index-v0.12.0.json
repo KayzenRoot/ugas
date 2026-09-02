@@ -1,0 +1,515 @@
+{
+  "schema_version": "0.12.0",
+  "version": "0.12.0",
+  "branch": "main",
+  "review_subject": {
+    "baseline_commit": "bc1252992ff5b38096b7e9bd58b5ffe5cee41ffc",
+    "implementation_base_commit": "bc1252992ff5b38096b7e9bd58b5ffe5cee41ffc",
+    "previous_release_commit": "bc1252992ff5b38096b7e9bd58b5ffe5cee41ffc",
+    "repository_ref": "https://github.com/csn1985-ship-it/ugas.git"
+  },
+  "publication": {
+    "index_build_git_head": "bc1252992ff5b38096b7e9bd58b5ffe5cee41ffc",
+    "index_build_dirty_state": "dirty_before_publication_commit",
+    "final_head_must_be_resolved_by_external_reviewer": true,
+    "executor_cannot_self_assert_final_head": true
+  },
+  "review_file": "REVIEW-v0.12.0.md",
+  "current_state": "docs/evidence/current-state.json",
+  "tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "count": 333,
+    "passed": 333,
+    "failed": 0,
+    "status": "passed"
+  },
+  "validation": {
+    "command": "python scripts/validation/run_validation.py",
+    "checks": 1568,
+    "passed": 1568,
+    "failed": 0,
+    "status": "passed"
+  },
+  "artifact_set": {
+    "manifest_algorithm": "sha256-canonical-path-list-v1",
+    "artifacts": [
+      {
+        "path": "CHECKPOINT.md",
+        "sha256": "0ed79dc472201d4f6df63fc25f25478f77fa581055227e45630d9bfa0a848414",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "INSTALL.md",
+        "sha256": "db3d150065fc47e91f79c6fe9e1bbb58af5aaf486135a08e9ee9a9c200ee33ab",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "3063da31fa8f07caa7a7815c9a4fcd0cf0b30b3e1e7f90b18974fe36a255b0aa",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "README.md",
+        "sha256": "f98d539a66288cac67b5ae97882c095e6a6b035de354a65e217ed5f91d343535",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "REVIEW-v0.12.0.md",
+        "sha256": "dd0397e17c56a418216611c6ff64eea1295d62db31a42d126bd4864026b42934",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/2d-master-pipeline.md",
+        "sha256": "fcef6ce1e23a403da25d5627e99d56b2b9e1832b18ead2041d94d93656c00b51",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/comfyui.md",
+        "sha256": "f57894c922226c63084765029999b6801e2e4bbe18b62f057802defc81fdf650",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-preview.gif",
+        "sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7",
+        "media_type": "image/gif",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/attack-front-v2-spritesheet.png",
+        "sha256": "6d3942761bdcfb336816470502ce4a40459ad67fc629f54e1600afcdadaf3377",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-00-V0-ready.png",
+        "sha256": "bb6ca7ce9d4485c87315f2f9486c6e23a37f25f2f28c6e2ef068eee7049b7803",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-01-V1-anticipation-early.png",
+        "sha256": "3bd3148d3359c492ee77f7d7e5dd7514bf9f6bea6e0a80195d85376f9af541ac",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-02-V2-anticipation.png",
+        "sha256": "9029bfc0d3439535c347abcbab63ba874c886f4425505b22fb4d2404bd4c6962",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-03-V3-windup-peak.png",
+        "sha256": "b2355579b9339716cfab415dbde4f27611866e3cc021dd960017a02862d5fed5",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-04-V4-strike-start.png",
+        "sha256": "e6ab96a9068247a00100a033c7bd92d96bff4ff5617545dcdce87a59b6fdba52",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-05-V5-strike-mid.png",
+        "sha256": "8dac3747948e33c20e70ce4f0c7130be35847a132ef1a5644831925dbfc54112",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-06-V6-strike-contact.png",
+        "sha256": "e7afef710e3554b7a44af720ea9b667b42aa1c9d8f0467b7870c838e3f86669c",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-07-V7-follow-through.png",
+        "sha256": "a0e7aa7b17f66057b5261b6397f8cef7ead137931fe67ecfe4a14a53ed5fa867",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-08-V8-follow-through-late.png",
+        "sha256": "319b95cf466fc35aab3e3fffbb55407f106bac5608a3683c5cba8ae2bfa033fb",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-09-V9-recovery-early.png",
+        "sha256": "58affbc10df1687c734cbe0b43e775be6397e928e9422cfb00d31bc4fd565c26",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-10-V10-recovery-late.png",
+        "sha256": "76a79b94d74295da3db88e38d52a282c1b557451b46211cd5a5a661f756a0519",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0112/attack-front-v2/visual/target-detected-overlays/frame-11-V11-ready-end.png",
+        "sha256": "1820b22556b4c598b027d795a04199f961511b58b36d1c69f909bd300c0be68b",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/current-state-v0.11.2.json",
+        "sha256": "618d32a2e5560cd57ee16a293a2ed95309fb401ec95c5cf30edaa638d3eb95b0",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/current-state.json",
+        "sha256": "4f59ab1f52528552531a1c22fdef9b724337c50acc709bb6cb4cccbd33ad6c28",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/animation-regression-v0112.json",
+        "sha256": "704c2f33eb12bcb47d33e6ebf95043f40253801ee61ccb221f2e7b089465ea79",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/api-snapshots.json",
+        "sha256": "4ccbb1a7b6542a3b90ed1f6722f2a9c655fcef0ccec9b76764c4b999871f3fc2",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/command-event.json",
+        "sha256": "da4f6278edf1706e8494816e36c716f90e92b0812eff5e332fd0fa587765f681",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/dashboard-assets-activity.png",
+        "sha256": "7b27a9a8a97ecef3901eaa304bcb746333fa0b2d18993100df7404be5b782592",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/dashboard-mobile.png",
+        "sha256": "b64c89c50493197dcc80590140a0c7a0e470b7951d4eea1bbf5e54973d9df11a",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/dashboard-overview.png",
+        "sha256": "17717ae41e20e5793f63e231e49cdf3d2c70d065f64ce088a4d56cc423efa03f",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/dashboard-qa-events.png",
+        "sha256": "61245fdd7aa71f946a24e14b5bc1a5f1b23929479cf996dc6ce0a0a980c799b4",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/dashboard-startup.json",
+        "sha256": "927a129d338ce5348b33c7f30175989b55c59c5d4ba9b1f1d94f9a07ee793d2a",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/dashboard-system-pipeline.png",
+        "sha256": "52287b8131011d33f31ca1de8745794e6fd54cf4bd48ad3e2e52a67a60cd526e",
+        "media_type": "image/png",
+        "role": "visual"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/external-review-v0112.json",
+        "sha256": "7cde61e3527815cf273840d0bb5bed49586a61fb6188a0aaf658e560a8000106",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/file-activity.json",
+        "sha256": "2fa420577becab3ef2176fc4bd0d91a3020c7dabd61f9acdc11590544550c3dc",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/security.json",
+        "sha256": "49e74a36d33cb5015a23d8006651d54412ed78e0632febb5903b9dabc436aab3",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/system-idle.json",
+        "sha256": "78aa3e011b3002981661a75db9d78f23747a74371739988979a849742805975b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/test-results.json",
+        "sha256": "dbdd81e02015317af4981a672760e25b250acdf62dfbe9c8189cda50424258ae",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/observability-v0120/validation-results.json",
+        "sha256": "2f80be32f43792e4eaf779e7322809209416f189648edf4223c4d83eb33f9a01",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/state-consistency-v0112.json",
+        "sha256": "0dd0636e3ddbd2bf753193a6a72358894e18c03ddb76c280ed2818d28aa22669",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/evidence/state-consistency-v0120.json",
+        "sha256": "39711d32032faeea4a65a93758c614972ad5afb5b2ac394aa990e3846f9f71da",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/roadmap.md",
+        "sha256": "056a889752a8b2eddd3a28bafb3a0cdc46d4887e4564b0bded527a9ffbd35189",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "docs/test-coverage-matrix-v0.12.0.md",
+        "sha256": "272413a158d1fbeb1bf9db7d8fd8b2983b0cca749e64b52bc32cf92838876205",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "package.json",
+        "sha256": "f1860fc49186484d76b55a9ccb80e0e352780369b43fe5cdce2b97ba68679b13",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "profiles/animation/attack-front-v2-v0.11.0.json",
+        "sha256": "bc84ff047df9eb5eb4e11e89d7ff9570925f2025d016358afde94c2a1683b579",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "profiles/animation/attack-front-v2.json",
+        "sha256": "5f35c886b076da4bc7bbcc8be4bf84681c667b15af68936f142fe6b74f65c99a",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "pyproject.toml",
+        "sha256": "3c56fcb8c7e3fa677597f4778fd0debfbc8c2063cb255ea5beb0c76655b95b45",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state-v0.11.2.json",
+        "sha256": "0d896564f6dc1d1e169577ba2b349481e8cb20210c82804ca9978e94e2697edd",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/current-state.json",
+        "sha256": "bd3303c5ff67ac910a373183a99badbfd913dce9084470d235808a02525b0e0b",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "schemas/review-index-v0.12.0.json",
+        "sha256": "b6e2980c850c0121ad60f22aa66855048bcebe317687af4714565cc995318860",
+        "media_type": "application/json",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/build_review_index_v0120.py",
+        "sha256": "5bdac18095b5d876d92e6272e3964a4c6166cc7792e60dc72963734771143fc1",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/run_validation.py",
+        "sha256": "ceba3b932d62bc378093b2d676892509f6a7c270ea2ef9df53a46549321ed11a",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_review_index_v0120.py",
+        "sha256": "1d00d4467dad2887fcc02e6d7475d40ad0c69bbac95c1504db33c464575988f8",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_state_consistency.py",
+        "sha256": "3004306bb94c3334aaa10a605ffde8ba16750a7a2cf1f55c631658df1db4cc39",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "scripts/validation/validate_state_consistency_v0120.py",
+        "sha256": "f00c2f65aa29455e2ce64058882b0e64ca8ad63e7866e7699ea6573e56ff433f",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/__init__.py",
+        "sha256": "181aa37cc09e87505219261045a0eea8d9eb018399ec519850b741efa4c66ad3",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/cli.py",
+        "sha256": "59dfca7c154ce4033703137ee28de54fb23882c698b6127438b949823a21f857",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/constants.py",
+        "sha256": "fe0998217d5a6279436c4c4ddb6aaf5556aa0ec62a96199d37a93e1ba2198f48",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/generation.py",
+        "sha256": "f06f17d2a4d827b442c3998aa19fe09400200ea190fade4139407023d45e350c",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/__init__.py",
+        "sha256": "a09564076e9e757d68bfe3b93f29f9f921016fb11d78a9df27947c661c9bec2d",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/asset_activity.py",
+        "sha256": "48301ceb919375c8173be3925d962e592e42e0050209ee49c4d77bee50873527",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/dashboard_app.py",
+        "sha256": "231f4ec7e7c658ad92761b3e03f297e4d745e80b27ab17ee1a7e9dc121e4e4f6",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/events.py",
+        "sha256": "1257b829a4f9f5e873e349bef8352efc1681d26ef54c6ffbf730d645b643d1d5",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/process_metrics.py",
+        "sha256": "c9b5188895afe18012626da0717b888293b5dc76125b33b057747fabf3b933ec",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/service.py",
+        "sha256": "30ef41275496c869c5eceafc3d55b0623e56df8ec4cd945485d570238dac056a",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/static/dashboard.css",
+        "sha256": "56603489c2c663e105ddf99cbc3535f216add7982d9f6e4c58db367364601383",
+        "media_type": "text/css",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/static/dashboard.js",
+        "sha256": "022ae4839efd62ed099d69ac8a43927844528bb1e7b584200c8e7d158034ac2e",
+        "media_type": "text/javascript",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/static/index.html",
+        "sha256": "5056b266a2409b071f6e884a72503e09a3263931dc73b6700017ed225b6646fe",
+        "media_type": "text/html",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/store.py",
+        "sha256": "3ec3f4c9b5aca265b6a5122962d169825aa629c2c4c9958559acfcc9ad379a1d",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/observability/system_metrics.py",
+        "sha256": "fbeb77113202ced388b2120875be7d6bb8fd32f2eb7bad67e9c88af215178233",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "src/ugas/state_consistency_v0120.py",
+        "sha256": "00ec100797fdee1e568428c8777bbdfd714721b352498a853c7577f98ff916ac",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      },
+      {
+        "path": "tests/test_observability_v0120.py",
+        "sha256": "1aa22df295e09c0a524c21f4b0e845ec9420ee34de53ab7fcf078fb2dd1d434a",
+        "media_type": "text/plain",
+        "role": "runtime-or-governance"
+      }
+    ],
+    "artifact_set_sha256": "8e168b6f0b3829010f7ef21cae92098adff2ad76108d40a0a3196d2da3ef52f5",
+    "evidence_count": 71,
+    "visual_count": 19
+  },
+  "required_visual_sets": [
+    "attack-front-v2-preview.gif",
+    "attack-front-v2-spritesheet.png",
+    "docs/evidence/observability-v0120/dashboard-assets-activity.png",
+    "docs/evidence/observability-v0120/dashboard-mobile.png",
+    "docs/evidence/observability-v0120/dashboard-overview.png",
+    "docs/evidence/observability-v0120/dashboard-qa-events.png",
+    "docs/evidence/observability-v0120/dashboard-system-pipeline.png",
+    "frame-00-V0-ready.png",
+    "frame-01-V1-anticipation-early.png",
+    "frame-02-V2-anticipation.png",
+    "frame-03-V3-windup-peak.png",
+    "frame-04-V4-strike-start.png",
+    "frame-05-V5-strike-mid.png",
+    "frame-06-V6-strike-contact.png",
+    "frame-07-V7-follow-through.png",
+    "frame-08-V8-follow-through-late.png",
+    "frame-09-V9-recovery-early.png",
+    "frame-10-V10-recovery-late.png",
+    "frame-11-V11-ready-end.png"
+  ],
+  "forbidden_artifacts": [
+    "*.zip",
+    "*.safetensors",
+    "*.ckpt",
+    "*.gguf",
+    "*.onnx",
+    "public bind",
+    "telemetry upload",
+    "new asset families",
+    "animation pixel changes",
+    "production promotion",
+    "self-referential head_commit claim"
+  ],
+  "external_visual_review": {
+    "status": "REQUIRED",
+    "attack_front_v2_approval": "APPROVED_PILOT",
+    "observability_dashboard_approval": "REQUIRED"
+  },
+  "production_routing": "BLOCKED",
+  "scope_boundary": {
+    "local_only": true,
+    "read_only": true,
+    "telemetry_upload": false,
+    "new_generation": 0,
+    "new_asset_family": false,
+    "animation_pixels_changed": false
+  }
+}

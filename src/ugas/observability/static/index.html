@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>UGAS / Local Operations</title>
+  <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">U</span><div><p class="eyebrow">UNIVERSAL GAME ASSET STUDIO</p><h1>Local Operations</h1></div></div>
+    <div class="connection" aria-live="polite"><span id="connection-dot" class="status-dot offline"></span><span id="connection-state">OFFLINE</span><span id="last-update" class="muted">waiting for telemetry</span></div>
+  </header>
+  <main class="shell">
+    <section class="hero-grid">
+      <article class="panel overview-panel"><div class="panel-heading"><div><p class="eyebrow">OVERVIEW</p><h2>Pipeline posture</h2></div><span id="health-badge" class="badge neutral">CHECKING</span></div><div id="overview" class="overview-grid"></div></article>
+      <article class="panel health-panel"><div class="panel-heading"><div><p class="eyebrow">HEALTH / ALERTS</p><h2>Local guardrails</h2></div><span id="alert-count" class="badge neutral">0 alerts</span></div><div id="alerts" class="alerts"></div></article>
+    </section>
+    <section class="metrics-grid">
+      <article class="panel metric-panel"><div class="panel-heading"><div><p class="eyebrow">SYSTEM</p><h2>Machine telemetry</h2></div><span class="panel-age" id="system-age">-</span></div><div id="system-metrics" class="metric-list"></div><div class="sparkline-wrap"><div class="metric-label">CPU history <span class="unit">percent</span></div><div id="cpu-chart" class="sparkline" aria-label="CPU history"></div></div></article>
+      <article class="panel metric-panel"><div class="panel-heading"><div><p class="eyebrow">GPU / VRAM</p><h2>Accelerator state</h2></div><span class="panel-age" id="gpu-age">-</span></div><div id="gpu-metrics" class="metric-list"></div><div class="sparkline-wrap"><div class="metric-label">GPU history <span class="unit">percent</span></div><div id="gpu-chart" class="sparkline" aria-label="GPU history"></div></div></article>
+      <article class="panel pipeline-panel"><div class="panel-heading"><div><p class="eyebrow">LIVE PIPELINE</p><h2>What UGAS is doing</h2></div><span id="job-badge" class="badge neutral">IDLE</span></div><div id="pipeline" class="pipeline-content"></div></article>
+    </section>
+    <section class="content-grid">
+      <article class="panel assets-panel"><div class="panel-heading"><div><p class="eyebrow">ASSET ACTIVITY</p><h2>Recent files &amp; evidence</h2></div><span class="panel-age" id="assets-age">-</span></div><div id="assets" class="asset-list"></div></article>
+      <article class="panel preview-panel"><div class="panel-heading"><div><p class="eyebrow">SAFE PREVIEW</p><h2>Selected artifact</h2></div><span id="preview-kind" class="badge neutral">NONE</span></div><div id="preview" class="preview-frame"><span class="muted">Select a recent image, GIF or WebP artifact.</span></div></article>
+    </section>
+    <section class="content-grid lower-grid">
+      <article class="panel qa-panel"><div class="panel-heading"><div><p class="eyebrow">QA &amp; GATES</p><h2>Canonical evidence</h2></div><span id="qa-badge" class="badge neutral">CHECKING</span></div><div id="qa" class="qa-content"></div></article>
+      <article class="panel history-panel"><div class="panel-heading"><div><p class="eyebrow">HISTORY</p><h2>Recent jobs</h2></div></div><div id="history" class="history-list"></div></article>
+    </section>
+    <section class="panel events-panel"><div class="panel-heading"><div><p class="eyebrow">LOGS / EVENTS</p><h2>Structured timeline</h2></div><span id="event-count" class="panel-age">-</span></div><div class="filters" role="group" aria-label="Event filters"><label>Search <input id="event-search" type="search" placeholder="message, action or source"></label><label>Category <select id="event-category"><option value="">All</option><option>system</option><option>process</option><option>command</option><option>job</option><option>stage</option><option>file</option><option>asset</option><option>qa</option><option>provider</option><option>error</option><option>governance</option></select></label><label>Severity <select id="event-severity"><option value="">All</option><option>debug</option><option>info</option><option>warning</option><option>error</option><option>critical</option></select></label></div><div id="events" class="event-list"></div></section>
+  </main>
+  <footer class="footer"><span>LOCAL ONLY / READ ONLY / NO TELEMETRY UPLOAD</span><span>UGAS <span id="footer-version">-</span></span></footer>
+  <script src="/static/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "captured_at": "2026-09-02T01:19:36Z",
+  "source": ".ugas/runtime/dashboard-startup.json",
+  "status": "DASHBOARD_STARTED",
+  "dashboard_url": "http://127.0.0.1:8765/",
+  "version": "0.12.0",
+  "pid": 4172,
+  "telemetry_db": "D:\\Projeto Codexx\\ugas\\.ugas\\runtime\\telemetry.db",
+  "gpu": {
+    "status": "GPU_AVAILABLE",
+    "capability": "NVIDIA_SMI",
+    "reason": null,
+    "timestamp": "2026-09-02T01:19:24Z",
+    "device": {
+      "name": "NVIDIA GeForce RTX 5050",
+      "utilization_percent": 0.0,
+      "vram_used_mb": 1542.0,
+      "vram_total_mb": 8151.0,
+      "temperature_c": 42.0,
+      "power_draw_w": 47.84
+    }
+  },
+  "provider": {
+    "endpoint": "http://127.0.0.1:8188",
+    "status": "DOWN",
+    "health": "UNAVAILABLE",
+    "reason": "URLError: local endpoint unavailable",
+    "checked_at": "2026-09-02T01:19:24Z"
+  },
+  "shutdown": "CTRL+C"
+}

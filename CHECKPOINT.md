@@ -1,8 +1,12 @@
-# UGAS checkpoint - v0.11.2
+# UGAS checkpoint - v0.12.0
 
-**STATUS:** `CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED`
-**VERSION:** `0.11.2`
-**PHASE:** `REUSABLE_DETERMINISTIC_ANIMATION_RUNTIME`
+## v0.12.0 local realtime observability dashboard
+
+The active increment is `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`. The v0.11.2 external visual result is recorded as `APPROVED_PILOT` for pilot/pipeline only; it is not production approval. The local dashboard is read-only, local-only and near-real-time, with `production_approved=false` and `production_routing=BLOCKED`. It exposes canonical state, QA, system/GPU/process telemetry, jobs, allowlisted file activity, safe previews, bounded SQLite events and SSE. The next action is `external_review_observability_dashboard_v0120`; no new asset family or animation is authorized.
+
+**STATUS:** `LOCAL_REALTIME_OBSERVABILITY_DASHBOARD_MVP_TECHNICALLY_QUALIFIED`
+**VERSION:** `0.12.0`
+**PHASE:** `LOCAL_REALTIME_OBSERVABILITY`
 
 ## Current state
 

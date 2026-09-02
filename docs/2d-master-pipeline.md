@@ -1,8 +1,8 @@
-# 2D master pipeline v0.11.2
+# 2D master pipeline v0.12.0
 
-The active release is the v0.11.2 QA integrity and scope recovery correction over the immutable v0.11.0 generic motion-quality runtime and the rejected v0.11.1 history. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; only the active QA integrity lane for front `attack-front-v2` is corrected and production routing remains blocked.
+The active release is the v0.12.0 local realtime observability increment over the immutable v0.11.2 technical result and the rejected v0.11.1 history. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
 
-This release does not run diffusion or SAM2. It restores `motion_tracks` and `key_pose_bindings` exactly from the v0.11.0 baseline and corrects only QA integrity: semantic body-threshold binding, fail-closed attack-v1 comparison, relational weapon-arc gates, and NC-01..NC-10 evidence. The 12 source-only frames, 12 fps timing, markers, pixels and package remain byte-identical to v0.11.0. The current lane is locally technically qualified but requires external attack-v2 visual review before authorization.
+This release does not run diffusion or SAM2. It adds a local SQLite/SSE observability boundary, safe allowlisted file activity, non-fabricating system/GPU fallbacks, read-only API and static dashboard UI. The 12 source-only v0.11.2 frames, 12 fps timing, markers, pixels and package remain byte-identical to v0.11.0. The external v0.11.2 result is recorded as `APPROVED_PILOT`; v0.12.0 dashboard review remains required before the next capability.
 
 O pipeline mantém o R4 aprovado como anchor imutável e separa identidade, pose, transparência, execução e revisão humana.
 

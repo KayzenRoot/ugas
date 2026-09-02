@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.12.0",
+  "evidence_type": "immutable_external_review_entry",
+  "reviewed_artifact": "docs/evidence/animation-runtime-v0112/attack-front-v2-preview.gif",
+  "artifact_contract": {"frame_count": 12, "width": 512, "height": 512, "byte_identical_to": "v0.11.0"},
+  "decision": "APPROVED_PILOT",
+  "approval_scope": "pilot_and_pipeline_only",
+  "production_approval": false,
+  "production_routing": "BLOCKED",
+  "observations": ["attack arc is readable; hit and follow-through are visually present", "recovery is coherent and returns toward ready stance", "feet remain visually stable with no obvious foot sliding", "no critical wrist/elbow break, severe sword snap, waist/pelvis hole or source-pixel artifact observed"],
+  "non_blocking_note": "torso/pelvis participation remains restrained; a later animation-quality iteration may increase impact, but v0.12.0 does not modify this animation",
+  "recorded_before_dashboard": true,
+  "immutable": true,
+  "source": "PROMPT-UGAS-v0.12.0-LOCAL-REALTIME-OBSERVABILITY-DASHBOARD-MVP.pdf"
+}

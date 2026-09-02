@@ -14,8 +14,8 @@ from ugas.schema_validation import validate_instance, validate_schema_document
 
 
 def main() -> int:
-    state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-    schema = json.loads((ROOT / "schemas/current-state.json").read_text(encoding="utf-8"))
+    state = json.loads((ROOT / "docs/evidence/current-state-v0.11.2.json").read_text(encoding="utf-8"))
+    schema = json.loads((ROOT / "schemas/current-state-v0.11.2.json").read_text(encoding="utf-8"))
     validate_schema_document(schema)
     validate_instance(state, schema)
     result = validate_state_consistency(
@@ -24,7 +24,7 @@ def main() -> int:
         (ROOT / "REVIEW-v0.11.2.md").read_text(encoding="utf-8"),
     )
     evidence = {"schema_version": "0.11.2", "validator": "src/ugas/state_consistency_v0112.py", **result}
-    (ROOT / "docs/evidence/state-consistency.json").write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (ROOT / "docs/evidence/state-consistency-v0112.json").write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(evidence, indent=2, ensure_ascii=False))
     return 0 if result["status"] == "CUTOUT_ANIMATION_RUNTIME_V2_ATTACK_FRONT_TECHNICALLY_QUALIFIED" else 2
 

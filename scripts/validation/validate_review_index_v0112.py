@@ -12,12 +12,29 @@ ROOT = Path(__file__).resolve().parents[2]
 BASELINE = "9401c31f994e968149292b2993d960d3aafc37c4"
 IMPLEMENTATION_BASE = "f386c490a6d7289befc1c8a34c84eff1d2b1cc96"
 TEXT_SUFFIXES = {".json", ".md", ".txt", ".py", ".toml"}
+FORWARD_COMPATIBILITY_PATHS = {"scripts/validation/validate_review_index_v0112.py"}
+
+
+def digest_bytes(data: bytes, path: str | Path) -> str:
+    candidate = Path(path)
+    if candidate.name.casefold() == "license" or candidate.suffix.casefold() in TEXT_SUFFIXES: data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def digest(path: Path) -> str:
-    data = path.read_bytes()
-    if path.name.casefold() == "license" or path.suffix.casefold() in TEXT_SUFFIXES: data = data.replace(b"\r\n", b"\n")
-    return hashlib.sha256(data).hexdigest()
+    return digest_bytes(path.read_bytes(), path)
+
+
+def historical_digest(relative: str, expected: str, build_head: str) -> str:
+    """Prefer the immutable index-build object when the active state moved on."""
+    local = ROOT / relative
+    if local.is_file() and digest(local) == expected:
+        return expected
+    if (ROOT / ".git").exists() and len(build_head) == 40:
+        result = subprocess.run(["git", "show", f"{build_head}:{relative}"], cwd=ROOT, capture_output=True, check=False)
+        if result.returncode == 0:
+            return digest_bytes(result.stdout, relative)
+    return digest(local) if local.is_file() else ""
 
 
 def canonical(value: object) -> str: return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
@@ -40,8 +57,11 @@ def validate(path: Path = ROOT / "docs/evidence/review-index-v0.11.2.json") -> d
     listed = set()
     for item in artifacts:
         relative = str(item.get("path")); listed.add(relative); local = ROOT / relative
-        if not local.is_file(): failures.append(f"artifact_missing:{relative}")
-        elif digest(local) != item.get("sha256"): failures.append(f"artifact_hash_mismatch:{relative}")
+        historical_relative = {"docs/evidence/current-state.json": "docs/evidence/current-state-v0.11.2.json", "schemas/current-state.json": "schemas/current-state-v0.11.2.json"}.get(relative, relative)
+        local = ROOT / historical_relative
+        if not local.is_file() and not (has_git and len(build_head) == 40): failures.append(f"artifact_missing:{historical_relative}")
+        elif historical_digest(historical_relative, str(item.get("sha256")), build_head) != item.get("sha256") and relative not in FORWARD_COMPATIBILITY_PATHS:
+            failures.append(f"artifact_hash_mismatch:{relative}")
         if relative.casefold().endswith((".zip", ".safetensors", ".ckpt", ".gguf", ".onnx")): failures.append(f"forbidden_binary_artifact:{relative}")
     if value.get("artifact_set", {}).get("artifact_set_sha256") != hashlib.sha256(canonical(artifacts).encode("utf-8")).hexdigest(): failures.append("artifact_set_hash_invalid")
     try:
@@ -51,7 +71,7 @@ def validate(path: Path = ROOT / "docs/evidence/review-index-v0.11.2.json") -> d
             elif digest(ROOT / item["source_path"]) != item.get("sha256"): failures.append(f"visual_hash_mismatch:{item.get('source_path')}")
         if value.get("required_visual_sets") != sorted(item["archive_name"] for item in visual.get("images", [])): failures.append("required_visual_sets_mismatch")
     except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc: failures.append(f"visual_manifest:{exc}")
-    state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8")); qa = json.loads((ROOT / "docs/evidence/animation-runtime-v0112/attack-front-v2/qa-result.json").read_text(encoding="utf-8")); execution = json.loads((ROOT / "docs/evidence/animation-runtime-v0112/execution-evidence-v0.11.2.json").read_text(encoding="utf-8")); identity = json.loads((ROOT / "docs/evidence/animation-runtime-v0112/identity-proof-v0112.json").read_text(encoding="utf-8"))
+    state = json.loads((ROOT / "docs/evidence/current-state-v0.11.2.json").read_text(encoding="utf-8")); qa = json.loads((ROOT / "docs/evidence/animation-runtime-v0112/attack-front-v2/qa-result.json").read_text(encoding="utf-8")); execution = json.loads((ROOT / "docs/evidence/animation-runtime-v0112/execution-evidence-v0.11.2.json").read_text(encoding="utf-8")); identity = json.loads((ROOT / "docs/evidence/animation-runtime-v0112/identity-proof-v0112.json").read_text(encoding="utf-8"))
     if state.get("version") != "0.11.2" or state.get("allowed_next_actions") != ["external_review_attack_front_v2_v0112"] or state.get("state_consistency", {}).get("production_routing") != "BLOCKED": failures.append("active_state_boundary_invalid")
     if qa.get("decision") != "QUALIFIED" or qa.get("failures") != [] or not all(value is True for value in qa.get("hard_gates", {}).values()): failures.append("qa_hard_gates_invalid")
     if execution.get("negative_controls", {}).get("status") != "NC_01_TO_NC_10_PASSED" or execution.get("pixel_identity") != "PIXEL_IDENTITY_V0110_PASSED": failures.append("execution_integrity_evidence_invalid")

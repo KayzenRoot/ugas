@@ -1,0 +1,149 @@
+{
+  "captured_at": "2026-09-02T01:19:38Z",
+  "api_status": 200,
+  "system": {
+    "timestamp": "2026-09-02T01:19:36Z",
+    "cpu": {
+      "percent": 36.05,
+      "logical_cpus": 8,
+      "status": "AVAILABLE"
+    },
+    "memory": {
+      "used_bytes": 10396450816,
+      "total_bytes": 16964046848,
+      "percent": 61.29,
+      "status": "AVAILABLE"
+    },
+    "disk": {
+      "used_bytes": 378933698560,
+      "free_bytes": 619268706304,
+      "total_bytes": 998202404864,
+      "percent": 37.96,
+      "status": "AVAILABLE",
+      "volume": "D:\\"
+    },
+    "gpu": {
+      "status": "GPU_AVAILABLE",
+      "capability": "NVIDIA_SMI",
+      "reason": null,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5050",
+        "utilization_percent": 0.0,
+        "vram_used_mb": 1547.0,
+        "vram_total_mb": 8151.0,
+        "temperature_c": 42.0,
+        "power_draw_w": 47.86,
+        "processes": [
+          {
+            "pid": "1732",
+            "process_name": "[Insufficient Permissions]",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "8972",
+            "process_name": "C:\\Windows\\System32\\ShellHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "8908",
+            "process_name": "C:\\Windows\\explorer.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "8216",
+            "process_name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "10120",
+            "process_name": "C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "10104",
+            "process_name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "11544",
+            "process_name": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "12672",
+            "process_name": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.107\\msedgewebview2.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "10176",
+            "process_name": "C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "14440",
+            "process_name": "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.825.6671.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "15664",
+            "process_name": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "1504",
+            "process_name": "C:\\Program Files\\Parsec\\parsecd.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "18040",
+            "process_name": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.107\\msedgewebview2.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "17416",
+            "process_name": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "8488",
+            "process_name": "C:\\Windows\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "5156",
+            "process_name": "[Insufficient Permissions]",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "10860",
+            "process_name": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "10480",
+            "process_name": "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "7200",
+            "process_name": "C:\\Windows\\System32\\ApplicationFrameHost.exe",
+            "memory_used_mb": null
+          },
+          {
+            "pid": "7396",
+            "process_name": "C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe",
+            "memory_used_mb": null
+          }
+        ]
+      },
+      "timestamp": "2026-09-02T01:19:36Z"
+    },
+    "ugas_process": {
+      "pid": 4172,
+      "cpu_percent": null,
+      "rss_bytes": null,
+      "status": "UNAVAILABLE",
+      "reason": "optional process metrics dependency not installed"
+    }
+  }
+}
