@@ -9,7 +9,7 @@
   "pull_request": {
     "number": 0,
     "base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
-    "head_sha": "cb251299a86d6734f7328c68a107d02a1b891f2a",
+    "head_sha": "6a9b63e761e95fbf602e5658f53fdcdf7d0a2f69",
     "merge_base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
     "head_branch": "codex/v0.12.4-github-ci-governance-recovery",
     "base_branch": "main"
@@ -61,6 +61,18 @@
       "deletions": 0
     },
     {
+      "path": "docs/2d-master-pipeline.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 1
+    },
+    {
+      "path": "docs/comfyui.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 1
+    },
+    {
       "path": "docs/evidence/current-state-v0.12.3.json",
       "status": "A",
       "additions": 19,
@@ -97,6 +109,18 @@
       "deletions": 0
     },
     {
+      "path": "docs/evidence/github-governance-v0124/github-review-manifest-local.json",
+      "status": "A",
+      "additions": 487,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/github-review-manifest.json",
+      "status": "A",
+      "additions": 487,
+      "deletions": 0
+    },
+    {
       "path": "docs/evidence/github-governance-v0124/governance-consistency-v0124.json",
       "status": "A",
       "additions": 14,
@@ -106,6 +130,12 @@
       "path": "docs/evidence/github-governance-v0124/historical/v0.11.2/CHECKPOINT.md",
       "status": "A",
       "additions": 66,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/manifest-validation-v0124.json",
+      "status": "A",
+      "additions": 8,
       "deletions": 0
     },
     {
@@ -237,7 +267,7 @@
     {
       "path": "scripts/validation/run_validation.py",
       "status": "M",
-      "additions": 73,
+      "additions": 100,
       "deletions": 70
     },
     {
@@ -350,9 +380,9 @@
     }
   ],
   "change_statistics": {
-    "files": 54,
-    "additions": 1610,
-    "deletions": 208
+    "files": 59,
+    "additions": 2625,
+    "deletions": 210
   },
   "current_state": {
     "path": "docs/evidence/current-state.json",
@@ -377,75 +407,75 @@
   },
   "tests": {
     "schema_version": "0.12.4",
-    "command": "not-run-in-local-builder",
-    "log_path": "not-run",
-    "exit_code": 99,
-    "parse_status": "not_run",
-    "count": null,
-    "passed": null,
-    "failed": null,
-    "status": "not_run"
+    "command": "python -m unittest discover -s tests -q",
+    "log_path": "ugas-tests.log",
+    "exit_code": 0,
+    "parse_status": "parsed",
+    "count": 363,
+    "passed": 363,
+    "failed": 0,
+    "status": "passed"
   },
   "validation": {
     "schema_version": "0.12.4",
-    "command": "not-run-in-local-builder",
-    "log_path": "not-run",
-    "exit_code": 99,
-    "parse_status": "not_run",
-    "checks": null,
-    "passed": null,
-    "failed": null,
-    "status": "not_run"
+    "command": "python scripts/validation/run_validation.py",
+    "log_path": "ugas-validation.log",
+    "exit_code": 0,
+    "parse_status": "parsed",
+    "checks": 1686,
+    "passed": 1686,
+    "failed": 0,
+    "status": "passed"
   },
-  "overall_status": "FAIL",
+  "overall_status": "PASS",
   "gates": [
     {
       "id": "unit_tests",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "passed"
     },
     {
       "id": "official_validation",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "passed"
     },
     {
       "id": "state_consistency",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
     },
     {
       "id": "capability_matrix",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
     },
     {
       "id": "visual_transport",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
     },
     {
       "id": "workflow_validation",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
     },
     {
       "id": "manifest_validation",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
     },
     {
       "id": "security",
-      "status": "NOT_RUN",
-      "exit_code": null,
-      "detail": "awaiting full v0.12.4 evidence recording"
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
     }
   ],
   "review_index": {
