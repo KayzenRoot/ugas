@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 from typing import Any, Mapping
@@ -158,7 +159,14 @@ class ActiveEvidenceCache:
 
     def _git(self, args: list[str]) -> tuple[bool, str]:
         try:
-            result = subprocess.run(["git", *args], cwd=self.repo_root, capture_output=True, text=True, timeout=self._GIT_COMMAND_TIMEOUT_SECONDS, check=False, shell=False)
+            command = ["git"]
+            # The repository is a Windows worktree exposed to a Linux
+            # container. Normalize CRLF before asking Git for porcelain status
+            # so line-ending filters do not become a false dirty-worktree gap.
+            if os.environ.get("UGAS_CONTAINERIZED") == "1":
+                command.extend(["-c", "core.autocrlf=true"])
+            command.extend(args)
+            result = subprocess.run(command, cwd=self.repo_root, capture_output=True, text=True, timeout=self._GIT_COMMAND_TIMEOUT_SECONDS, check=False, shell=False)
             return result.returncode == 0, result.stdout.strip()
         except (OSError, subprocess.TimeoutExpired):
             return False, ""
