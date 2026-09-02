@@ -15,7 +15,7 @@
     "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
-    "external_visual_review": {"type": "object", "required": ["attack_front_v2", "observability_dashboard"], "properties": {"attack_front_v2": {"const": "APPROVED_PILOT"}, "observability_dashboard": {"const": "REQUIRED"}}},
+    "external_visual_review": {"type": "object", "additionalProperties": false, "required": ["attack_front_v2", "observability_dashboard"], "properties": {"attack_front_v2": {"const": "APPROVED_PILOT"}, "observability_dashboard": {"const": "REQUIRED"}}},
     "always_on_dashboard_policy": {"const": "ENABLED"},
     "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
     "new_generation": {"const": 0},

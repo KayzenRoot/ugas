@@ -126,7 +126,7 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._read_only_rejection()
 
     def _read_only_rejection(self) -> None:
-        self._send_json({"status": "READ_ONLY", "error": "dashboard API is read-only in v0.12.2"}, HTTPStatus.METHOD_NOT_ALLOWED)
+        self._send_json({"status": "READ_ONLY", "error": "dashboard API is read-only in v0.12.3"}, HTTPStatus.METHOD_NOT_ALLOWED)
 
     def _stream(self, service: ObservabilityService) -> None:
         subscriber = service.subscribe()

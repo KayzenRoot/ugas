@@ -1,0 +1,107 @@
+name: UGAS GitHub review evidence
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ugas-review-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review-evidence:
+    name: UGAS Review / evidence
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: src
+      BASE_REF: ${{ github.event.pull_request.base.sha || github.event.repository.default_branch }}
+      HEAD_REF: ${{ github.event.pull_request.head.sha || github.sha }}
+      HEAD_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      PR_NUMBER: ${{ github.event.pull_request.number || 0 }}
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install project reproducibly
+        run: python -m pip install --disable-pip-version-check .
+      - name: Run unit tests and capture totals
+        run: |
+          set -o pipefail
+          python -m unittest discover -s tests -q 2>&1 | tee "$RUNNER_TEMP/ugas-tests.log"
+      - name: Run official validation and capture totals
+        run: |
+          set -o pipefail
+          python scripts/validation/run_validation.py 2>&1 | tee "$RUNNER_TEMP/ugas-validation.log"
+      - name: Record actual test and validation totals
+        run: |
+          python scripts/validation/record_v0123_results.py \
+            --test-log "$RUNNER_TEMP/ugas-tests.log" \
+            --validation-log "$RUNNER_TEMP/ugas-validation.log" \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence"
+      - name: Validate active state and capability matrix
+        run: |
+          python scripts/validation/validate_state_consistency.py
+          python scripts/validation/validate_v1_capability_matrix.py
+      - name: Build review manifests
+        run: |
+          python scripts/validation/build_github_review_manifest.py \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence" \
+            --base-ref "$BASE_REF" \
+            --head-ref "$HEAD_REF" \
+            --head-branch "$HEAD_BRANCH" \
+            --pr-number "$PR_NUMBER" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0123.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0123.json"
+      - name: Validate review manifest and visual hashes
+        run: |
+          python scripts/validation/validate_github_review_manifest.py \
+            "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest.json" \
+            "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json"
+      - name: Assemble bounded evidence artifact
+        run: |
+          set -euo pipefail
+          artifact="$RUNNER_TEMP/ugas-review-artifact"
+          mkdir -p "$artifact/visuals" "$artifact/state" "$artifact/matrix" "$artifact/governance"
+          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest.json" "$artifact/github-review-manifest.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" "$artifact/visual-manifest.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0123.json" "$artifact/test-results-v0123.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0123.json" "$artifact/validation-results-v0123.json"
+          cp docs/evidence/current-state.json "$artifact/state/current-state.json"
+          cp docs/evidence/review-index-v0.12.2.json "$artifact/state/review-index-v0.12.2.json"
+          cp docs/evidence/state-consistency-v0123.json "$artifact/state/state-consistency-v0123.json"
+          cp docs/evidence/github-review-v0123/v1-capability-matrix-validation.json "$artifact/matrix/v1-capability-matrix-validation.json"
+          cp docs/evidence/github-review-v0123/governance-consistency-v0123.json "$artifact/governance/governance-consistency-v0123.json" 2>/dev/null || true
+          cp docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png "$artifact/visuals/dashboard-docker-overview-v0122.png"
+          cp docs/evidence/observability-v0122/dashboard-docker-live-activity-v0122.png "$artifact/visuals/dashboard-docker-live-activity-v0122.png"
+      - name: Write GitHub Step Summary
+        if: always()
+        run: |
+          {
+            echo '## UGAS GitHub-native review evidence'
+            echo "- Base: \`$BASE_REF\`"
+            echo "- Head: \`$HEAD_REF\`"
+            echo '- Checks: unit/validation, state consistency, capability matrix, review manifest'
+            echo '- Visual evidence: dashboard-docker-overview-v0122.png, dashboard-docker-live-activity-v0122.png'
+            echo '- Production: \`production_approved=false\`, \`production_routing=BLOCKED\`'
+            echo '- Artifact: \`ugas-review-evidence-pr-${PR_NUMBER}-${HEAD_REF}\`'
+            echo '- Gaps are recorded in the machine manifest; the external reviewer resolves approval.'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload bounded GitHub review artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ugas-review-evidence-pr-${{ github.event.pull_request.number || 'manual' }}-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/ugas-review-artifact
+          if-no-files-found: error
+          retention-days: 21

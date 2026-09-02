@@ -1,8 +1,10 @@
-# UGAS 0.12.2
+# UGAS 0.12.3
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão. O release ativo corrige a integridade do cache QA e mantém um dashboard Dockerizado, read-only, near-real-time e local, sem telemetria remota.
+Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão. O release ativo profissionaliza a revisão GitHub-native, mantém o dashboard Dockerizado always-on, read-only e local, e não habilita produção.
 
-O v0.12.0 e o v0.12.1 permanecem preservados como rejected history. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
+O v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
+
+[![UGAS CI](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-ci.yml/badge.svg?branch=main)](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-ci.yml) [![UGAS review evidence](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-review.yml/badge.svg?branch=main)](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-review.yml)
 
 ## Quick start
 
@@ -24,9 +26,13 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.12.2.md](REVIEW-v0.12.2.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.12.3.md](REVIEW-v0.12.3.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
-## v0.12.2 QA cache and Docker always-on local observability
+## v0.12.3 GitHub-native review and always-on finalization
+
+The active gate is `GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED`. Use the feature branch -> PR -> GitHub Actions -> external review sequence described in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded artifact with machine manifests and the v0.12.2 dashboard PNGs so external review can stay entirely on GitHub. `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` remains a post-approval candidate only.
+
+## Historical v0.12.2 QA cache and Docker always-on local observability
 
 O dashboard Dockerizado fica em `http://127.0.0.1:8765/`, usa `restart: unless-stopped`, monta o repositório somente para leitura e `.ugas/runtime` para persistência SQLite WAL. A aplicação só aceita `0.0.0.0` dentro do container confiável (`UGAS_CONTAINERIZED=1`); invocações nativas continuam loopback-only. Use `pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1` para build/start e `scripts/docker/ensure-dashboard-online.ps1` para autostart idempotente.
 
@@ -34,7 +40,7 @@ O banco local fica em `.ugas/runtime/telemetry.db` (SQLite WAL) e é ignorado pe
 
 ## ALWAYS_ON_DASHBOARD_POLICY
 
-Depois de aprovado tecnicamente, o dashboard deve permanecer online durante o desenvolvimento. Após qualquer alteração de observabilidade/runtime, execute `docker compose -f compose.yaml -f compose.gpu.yaml up -d --build` e verifique `/api/status` e `/api/health`. A política é local, read-only e não inicia nem migra o ComfyUI.
+Depois de aprovado tecnicamente, o dashboard deve permanecer online durante o desenvolvimento. Após qualquer alteração de observabilidade/runtime, execute o ensure/up idempotente e verifique `/api/status` e `/api/health`. A política é local, read-only e não inicia nem migra o ComfyUI.
 
 ## v0.12.1 local observability (rejected history)
 

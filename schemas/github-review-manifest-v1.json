@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS GitHub-native review manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_type",
+    "repository",
+    "pull_request",
+    "scope",
+    "changed_files",
+    "change_statistics",
+    "current_state",
+    "tests",
+    "validation",
+    "review_index",
+    "visual_manifest",
+    "known_gaps",
+    "dashboard_policy",
+    "production_boundary",
+    "security_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "manifest_type": {"const": "github-native-review"},
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "default_branch"],
+      "properties": {
+        "name": {"const": "csn1985-ship-it/ugas"},
+        "url": {"const": "https://github.com/csn1985-ship-it/ugas"},
+        "default_branch": {"const": "main"}
+      }
+    },
+    "pull_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["number", "base_sha", "head_sha", "merge_base_sha", "head_branch", "base_branch"],
+      "properties": {
+        "number": {"type": "integer", "minimum": 0},
+        "base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "merge_base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "head_branch": {"type": "string", "minLength": 1},
+        "base_branch": {"const": "main"}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "phase", "current_gate", "allowed_next_actions", "new_generation"],
+      "properties": {
+        "version": {"const": "0.12.3"},
+        "phase": {"const": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE"},
+        "current_gate": {"const": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED"},
+        "allowed_next_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "new_generation": {"const": 0}
+      }
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "status"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "status": {"enum": ["A", "M", "D", "R"]},
+          "additions": {"type": "integer", "minimum": 0},
+          "deletions": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "change_statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["files", "additions", "deletions"],
+      "properties": {
+        "files": {"type": "integer", "minimum": 0},
+        "additions": {"type": "integer", "minimum": 0},
+        "deletions": {"type": "integer", "minimum": 0}
+      }
+    },
+    "current_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "version", "phase", "current_gate", "production_approved", "production_routing", "external_visual_review", "allowed_next_actions"],
+      "properties": {
+        "path": {"const": "docs/evidence/current-state.json"},
+        "version": {"const": "0.12.3"},
+        "phase": {"const": "GITHUB_NATIVE_REVIEW_INFRASTRUCTURE"},
+        "current_gate": {"const": "GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED"},
+        "production_approved": {"const": false},
+        "production_routing": {"const": "BLOCKED"},
+        "external_visual_review": {"type": "object", "additionalProperties": false, "required": ["attack_front_v2", "observability_dashboard"], "properties": {"attack_front_v2": {"const": "APPROVED_PILOT"}, "observability_dashboard": {"const": "REQUIRED"}}},
+        "allowed_next_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "tests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "command", "count", "passed", "failed", "status"],
+      "properties": {
+        "schema_version": {"const": "0.12.3"},
+        "command": {"type": "string"},
+        "count": {"type": "integer", "minimum": 1},
+        "passed": {"type": "integer", "minimum": 1},
+        "failed": {"const": 0},
+        "status": {"const": "passed"}
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "command", "checks", "passed", "failed", "status"],
+      "properties": {
+        "schema_version": {"const": "0.12.3"},
+        "command": {"type": "string"},
+        "checks": {"type": "integer", "minimum": 1},
+        "passed": {"type": "integer", "minimum": 1},
+        "failed": {"const": 0},
+        "status": {"const": "passed"}
+      }
+    },
+    "review_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["historical_path", "historical_version", "status", "active_manifest_path"],
+      "properties": {
+        "historical_path": {"const": "docs/evidence/review-index-v0.12.2.json"},
+        "historical_version": {"const": "0.12.2"},
+        "status": {"enum": ["PRESERVED_BASELINE_VALIDATED", "PRESERVED_BASELINE_REHEARSAL"]},
+        "active_manifest_path": {"const": "github-review-manifest.json"}
+      }
+    },
+    "visual_manifest": {"const": "visual-manifest.json"},
+    "known_gaps": {"type": "array", "items": {"type": "string"}},
+    "dashboard_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["always_on", "runtime_mode", "local_only", "url", "must_remain_online_at_stop"],
+      "properties": {
+        "always_on": {"const": true},
+        "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
+        "local_only": {"const": true},
+        "url": {"const": "http://127.0.0.1:8765/"},
+        "must_remain_online_at_stop": {"const": true}
+      }
+    },
+    "production_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approved", "routing"],
+      "properties": {"approved": {"const": false}, "routing": {"const": "BLOCKED"}}
+    },
+    "security_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["secrets_included", "model_weights_included", "telemetry_db_included", "local_credentials_included"],
+      "properties": {"secrets_included": {"const": false}, "model_weights_included": {"const": false}, "telemetry_db_included": {"const": false}, "local_credentials_included": {"const": false}}
+    }
+  }
+}

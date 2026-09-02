@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.12.3",
+  "repository": "csn1985-ship-it/ugas",
+  "default_branch": "main",
+  "remote": "https://github.com/csn1985-ship-it/ugas.git",
+  "baseline_head": "6b956b9299f3a2f75280f17706c38c59e3714034",
+  "feature_branch": "codex/v0.12.3-github-native-review",
+  "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.3-github-native-review",
+  "remote_branch_present": false,
+  "workflow_presence": {
+    "baseline": false,
+    "working_tree": true,
+    "required": [
+      ".github/workflows/ugas-ci.yml",
+      ".github/workflows/ugas-review.yml"
+    ]
+  },
+  "ruleset_presence": {
+    "api_status": 200,
+    "existing_named_ruleset": false,
+    "error": null
+  },
+  "authentication": {
+    "gh_cli_present": false,
+    "api_token_present": false,
+    "credential_values_recorded": false
+  },
+  "permission_gaps": [
+    {
+      "code": "GITHUB_PR_CREATE_GAP",
+      "reason": "No authenticated gh CLI or GH_TOKEN/GITHUB_TOKEN/GITHUB_PAT is available to create the PR.",
+      "remediation": "Install GitHub CLI and run gh auth login, or provide a token with pull-requests:write for csn1985-ship-it/ugas.",
+      "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.3-github-native-review"
+    },
+    {
+      "code": "GITHUB_RULESET_GAP",
+      "reason": "No authenticated GitHub API/CLI credential is available to configure the main ruleset.",
+      "remediation": "Authenticate with repository administration:write and configure a main ruleset requiring PR plus the two stable checks, while blocking deletion and force-push."
+    },
+    {
+      "code": "CODEOWNERS_GAP",
+      "reason": "No repository-owner/reviewer identity was resolvable without guessing; CODEOWNERS was not created.",
+      "remediation": "Add .github/CODEOWNERS only after a valid repository owner/reviewer account is confirmed."
+    }
+  ],
+  "operations": {},
+  "status": "READY_WITH_EXPLICIT_GITHUB_GAPS"
+}

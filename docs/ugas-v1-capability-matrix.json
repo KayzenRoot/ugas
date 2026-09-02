@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "version": "0.12.3",
+  "capabilities": [
+    {"id": "core_2d_generation", "capability": "Core 2D generation / master / transparency / provenance", "status": "Existing foundation", "planned_order": "Preserve"},
+    {"id": "deterministic_cutout_rig", "capability": "Deterministic cutout rig + walk/idle/attack pilots", "status": "Pilot-qualified history", "planned_order": "Preserve"},
+    {"id": "local_always_on_observability", "capability": "Local always-on observability", "status": "Technically qualified; external visual review pending", "planned_order": "Close now"},
+    {"id": "github_native_review_infrastructure", "capability": "GitHub-native review infrastructure", "status": "This increment", "planned_order": "v0.12.3"},
+    {"id": "run_front_v1", "capability": "Run animation - front", "status": "NEXT NECESSARY", "planned_order": "v0.13.0 candidate"},
+    {"id": "hit_reaction_front", "capability": "Hit reaction - front", "status": "Pending", "planned_order": "after run"},
+    {"id": "death_animation_front", "capability": "Death animation - front", "status": "Pending", "planned_order": "after hit"},
+    {"id": "multi_direction_animation_runtime", "capability": "Multi-direction animation/runtime", "status": "Pending", "planned_order": "after front library proves reusable"},
+    {"id": "equipment_outfits", "capability": "Equipment / outfits", "status": "Pending", "planned_order": "later V1"},
+    {"id": "creatures_monsters", "capability": "Creatures / monsters", "status": "Pending", "planned_order": "later V1"},
+    {"id": "items_props", "capability": "Items / props", "status": "Pending", "planned_order": "later V1"},
+    {"id": "environment_tilesets", "capability": "Environment / tilesets", "status": "Pending", "planned_order": "later V1"},
+    {"id": "maps_minimap_assets", "capability": "Maps / minimap assets", "status": "Pending", "planned_order": "later V1"},
+    {"id": "ui_asset_family", "capability": "UI asset family", "status": "Pending", "planned_order": "later V1"},
+    {"id": "vfx_asset_family", "capability": "VFX asset family", "status": "Pending", "planned_order": "later V1"},
+    {"id": "orchestration_runtime_hardening", "capability": "Orchestration / runtime integration / hardening", "status": "Pending", "planned_order": "V1 completion gates"}
+  ],
+  "next_candidate": "RUN_FRONT_V1",
+  "production_routing": "BLOCKED",
+  "new_generation": 0
+}
