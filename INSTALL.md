@@ -1,4 +1,4 @@
-# Installing UGAS 0.12.3
+# Installing UGAS 0.12.4
 
 ## Requirements
 
@@ -31,9 +31,9 @@ The v0.12.3 runtime keeps the v0.12.2 Dockerized local read-only HTTP/SSE servic
 
 The UI reports `N/A`, `UNAVAILABLE`, `TIMEOUT`, `GPU_CONTAINER_RUNTIME_GAP` or `STALE_LAST_KNOWN` with a reason when the NVIDIA stack, process metrics or ComfyUI endpoint is not available. QA reports current/validated HEAD, worktree state and cache fingerprint, and cannot remain PASS across repository changes. It does not start a generation job, and untrusted values are rendered through DOM text nodes. See [REVIEW-v0.12.2.md](REVIEW-v0.12.2.md) and `docs/evidence/observability-v0122/` for the runtime proof.
 
-## v0.12.3 governance and always-on boundary
+## v0.12.4 governance and always-on boundary
 
-The v0.11.2 external visual decision is recorded as `APPROVED_PILOT` only. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the only next action is `external_review_github_native_v0123_and_dashboard_v0122`. The v0.12.0, v0.12.1 and v0.12.2 correction histories are preserved separately. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` requires the Docker service to remain running after executor STOP.
+The v0.12.4 dashboard visual decision is forward-only `APPROVED_PILOT`, bound to the PR #1 artifact and existing v0.12.2 visual hashes. `production_approved=false` and `production_routing=BLOCKED` remain authoritative in `docs/evidence/current-state.json`; the only next action is `external_review_github_ci_governance_v0124`. The v0.12.0 through v0.12.3 correction histories are preserved separately. `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` requires the Docker service to remain running after executor STOP.
 
 ## v0.11.2 QA integrity and scope recovery
 

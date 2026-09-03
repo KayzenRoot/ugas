@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.12.4",
+  "repository": "csn1985-ship-it/ugas",
+  "default_branch": "main",
+  "baseline_head": "877ede34afadd631764887ad6c5fb941ca4371a8",
+  "feature_branch": "codex/v0.12.4-github-ci-governance-recovery",
+  "head_sha": "50268dccda4c9037732129a4218f1b6e891cb365",
+  "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.4-github-ci-governance-recovery",
+  "remote_branch_present": true,
+  "pull_request": {"number": 2, "state": "OPEN", "url": "https://github.com/csn1985-ship-it/ugas/pull/2", "head_sha": "50268dccda4c9037732129a4218f1b6e891cb365"},
+  "authentication": {"gh_cli_present": true, "authenticated": true, "credential_values_recorded": false},
+  "permission_gaps": [{"code": "CODEOWNERS_GAP", "reason": "No reviewer identity was guessed or fabricated; CODEOWNERS was not created.", "remediation": "Add .github/CODEOWNERS only after a valid reviewer identity is explicitly confirmed."}],
+  "ruleset": {"status": "CONFIGURED_READ_BACK", "ruleset_id": 22159732, "protected": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"], "block_deletion": true, "block_force_push": true},
+  "status": "READY_FOR_EXTERNAL_REVIEW",
+  "credential_values_recorded": false
+}

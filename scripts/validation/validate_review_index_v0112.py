@@ -13,6 +13,7 @@ BASELINE = "9401c31f994e968149292b2993d960d3aafc37c4"
 IMPLEMENTATION_BASE = "f386c490a6d7289befc1c8a34c84eff1d2b1cc96"
 TEXT_SUFFIXES = {".json", ".md", ".txt", ".py", ".toml"}
 FORWARD_COMPATIBILITY_PATHS = {"scripts/validation/validate_review_index_v0112.py"}
+HISTORICAL_BYTES_ROOT = ROOT / "docs/evidence/github-governance-v0124/historical/v0.11.2"
 
 
 def digest_bytes(data: bytes, path: str | Path) -> str:
@@ -25,8 +26,16 @@ def digest(path: Path) -> str:
     return digest_bytes(path.read_bytes(), path)
 
 
-def historical_digest(relative: str, expected: str, build_head: str) -> str:
-    """Prefer the immutable index-build object when the active state moved on."""
+def historical_digest(relative: str, expected: str, build_head: str, historical_root: Path = HISTORICAL_BYTES_ROOT) -> str:
+    """Resolve a historical hash without binding it to today's active files.
+
+    A normal checkout prefers the exact index-build Git object.  An archived
+    or no-git snapshot cannot perform that lookup, so the v0.12.4 governance
+    slice bundles the immutable historical bytes that were needed to resolve
+    the index.  Falling back to today's mutable file would make a no-git
+    snapshot appear valid for the wrong-era content and is intentionally not
+    allowed.
+    """
     local = ROOT / relative
     if local.is_file() and digest(local) == expected:
         return expected
@@ -34,7 +43,10 @@ def historical_digest(relative: str, expected: str, build_head: str) -> str:
         result = subprocess.run(["git", "show", f"{build_head}:{relative}"], cwd=ROOT, capture_output=True, check=False)
         if result.returncode == 0:
             return digest_bytes(result.stdout, relative)
-    return digest(local) if local.is_file() else ""
+    bundled = historical_root / relative
+    if bundled.is_file():
+        return digest(bundled)
+    return ""
 
 
 def canonical(value: object) -> str: return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)

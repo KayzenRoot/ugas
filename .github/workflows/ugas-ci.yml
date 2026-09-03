@@ -46,10 +46,14 @@ jobs:
         env:
           PYTHONPATH: src
         run: python scripts/validation/validate_v1_capability_matrix.py
-      - name: Active GitHub review manifest validation
+      - name: Workflow structure validation
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_github_review_manifest.py
+        run: python scripts/validation/validate_github_workflows_v0124.py --root .
+      - name: Active GitHub governance review manifest validation
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_github_review_manifest_v0124.py
 
   docker-smoke:
     name: UGAS CI / docker-smoke
@@ -57,12 +61,17 @@ jobs:
     env:
       UGAS_DASHBOARD_PORT: '18765'
       UGAS_REPO_PATH: ${{ github.workspace }}
-      UGAS_RUNTIME_PATH: ${{ runner.temp }}/ugas-runtime
     steps:
       - name: Checkout full history
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
+      - name: Prepare isolated CI runtime directory
+        run: |
+          mkdir -p "$UGAS_REPO_PATH/.ugas/runtime"
+          mkdir -p "$RUNNER_TEMP/ugas-runtime"
+          chmod 0777 "$RUNNER_TEMP/ugas-runtime"
+          echo "UGAS_RUNTIME_PATH=$RUNNER_TEMP/ugas-runtime" >> "$GITHUB_ENV"
       - name: Compose config
         run: docker compose -f compose.yaml config
       - name: Build dashboard image

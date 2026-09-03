@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.12.4",
+  "validator": "src/ugas/state_consistency_v0124.py",
+  "status": "GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.12.4",
+    "phase": "GITHUB_CI_GOVERNANCE_RECOVERY",
+    "current_gate": "GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.12.4-github-ci-governance-recovery",
+    "baseline_head": "877ede34afadd631764887ad6c5fb941ca4371a8",
+    "next_action": [
+      "external_review_github_ci_governance_v0124"
+    ],
+    "production_routing": "BLOCKED",
+    "production_approved": false
+  }
+}

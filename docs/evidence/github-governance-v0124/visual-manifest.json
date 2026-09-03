@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "manifest_type": "review-visual-transport",
+  "source_policy": "immutable-v0.12.2-source-byte-preserved",
+  "transport_policy": "decoded-pixel-equivalent-png-only",
+  "visuals": [
+    {
+      "source_path": "docs/evidence/observability-v0122/dashboard-docker-overview-v0122.png",
+      "source_media_type": "image/jpeg",
+      "source_size": 290758,
+      "source_sha256": "08fed596faeeeef8803006dfe38c0635405ec7399097d40508a73a415b732f23",
+      "transport_path": "docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png",
+      "transport_media_type": "image/png",
+      "transport_signature": "89504E470D0A1A0A",
+      "transport_size": 1223985,
+      "transport_sha256": "d129beed2d1d1b8630b8be57e44489594135b46d1ef783f79ebcc518a49a86f3",
+      "width": 1265,
+      "height": 3310,
+      "source_decoded_pixel_sha256": "3e960601e4b1eb167c5f1446a0404349c6c585aa73ca4209fe83b507ceee9ec6",
+      "transport_decoded_pixel_sha256": "3e960601e4b1eb167c5f1446a0404349c6c585aa73ca4209fe83b507ceee9ec6",
+      "decoded_pixel_equal": true
+    },
+    {
+      "source_path": "docs/evidence/observability-v0122/dashboard-docker-live-activity-v0122.png",
+      "source_media_type": "image/jpeg",
+      "source_size": 282118,
+      "source_sha256": "5f8ad61744942a00300b92816913c1e8fc970e1f716a33f3962df0918c47338a",
+      "transport_path": "docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png",
+      "transport_media_type": "image/png",
+      "transport_signature": "89504E470D0A1A0A",
+      "transport_size": 1169263,
+      "transport_sha256": "ec08a8566541113a974d0e5d309ac16596ff62475c5c28ebe136e1aada370a87",
+      "width": 1265,
+      "height": 3233,
+      "source_decoded_pixel_sha256": "37636b4687a1b580eba3bd35831f2af0a7384e29839e50efa4a4f3fbd0c7fe7b",
+      "transport_decoded_pixel_sha256": "37636b4687a1b580eba3bd35831f2af0a7384e29839e50efa4a4f3fbd0c7fe7b",
+      "decoded_pixel_equal": true
+    }
+  ]
+}

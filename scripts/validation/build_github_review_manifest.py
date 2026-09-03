@@ -26,13 +26,13 @@ VISUALS = (
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 
 
-def _run(args: list[str]) -> str:
-    result = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", check=True)
+def _run(args: list[str], root: Path = ROOT) -> str:
+    result = subprocess.run(args, cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace", check=True)
     return result.stdout.strip()
 
 
-def _resolve(ref: str) -> str:
-    value = _run(["git", "rev-parse", ref])
+def _resolve(ref: str, root: Path = ROOT) -> str:
+    value = _run(["git", "rev-parse", ref], root)
     if not HEX40.fullmatch(value):
         raise ValueError(f"git ref did not resolve to a commit SHA: {ref}")
     return value
@@ -58,10 +58,10 @@ def _event_values() -> dict[str, Any]:
     }
 
 
-def _changed_files(base: str, head: str) -> tuple[list[dict[str, Any]], int, int]:
+def _changed_files(base: str, head: str, root: Path = ROOT) -> tuple[list[dict[str, Any]], int, int]:
     records: list[dict[str, Any]] = []
-    names = _run(["git", "diff", "--name-status", "--find-renames", f"{base}..{head}"]).splitlines()
-    numstat = _run(["git", "diff", "--numstat", "--find-renames", f"{base}..{head}"]).splitlines()
+    names = _run(["git", "diff", "--name-status", "--find-renames", f"{base}..{head}"], root).splitlines()
+    numstat = _run(["git", "diff", "--numstat", "--find-renames", f"{base}..{head}"], root).splitlines()
     stats: dict[str, tuple[int, int]] = {}
     for line in numstat:
         parts = line.split("\t")
@@ -83,7 +83,7 @@ def _changed_files(base: str, head: str) -> tuple[list[dict[str, Any]], int, int
 
     # Local rehearsal happens before the feature commit, so include tracked
     # working-tree changes and untracked files.  On Actions these are empty.
-    local_names = _run(["git", "diff", "--name-status", "--find-renames", base]).splitlines()
+    local_names = _run(["git", "diff", "--name-status", "--find-renames", base], root).splitlines()
     known = {item["path"] for item in records}
     for line in local_names:
         parts = line.split("\t")
@@ -94,11 +94,11 @@ def _changed_files(base: str, head: str) -> tuple[list[dict[str, Any]], int, int
             additions, deletions = stats.get(path, (0, 0))
             records.append({"path": path, "status": status, "additions": additions, "deletions": deletions})
             known.add(path)
-    for path in _run(["git", "ls-files", "--others", "--exclude-standard"]).splitlines():
+    for path in _run(["git", "ls-files", "--others", "--exclude-standard"], root).splitlines():
         normalized = path.replace("\\", "/")
         if normalized in known or normalized.startswith("tmp/") or normalized.startswith(".ugas/"):
             continue
-        source = ROOT / normalized
+        source = root / normalized
         if not source.is_file():
             continue
         additions = len(source.read_text(encoding="utf-8", errors="replace").splitlines()) if source.suffix.casefold() not in {".png", ".gif", ".jpg", ".jpeg"} else 0
@@ -154,22 +154,25 @@ def _known_gaps(args: argparse.Namespace, event: dict[str, Any], pr_number: int)
     return sorted(gaps), {"source": source, "pr_number": pr_number, "pr_available": pr_number > 0, "explicit_gap_input": bool(args.known_gap or args.preflight_json)}
 
 
-def build(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any]]:
+def build(args: argparse.Namespace, repo_root: Path | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+    # Live PR builds remain strict and Git-bound.  Tests and historical
+    # snapshots may inject an isolated temporary Git fixture explicitly.
+    root = Path(repo_root or getattr(args, "repository_root", None) or ROOT).resolve()
     event = _event_values()
     base_ref = args.base_ref or event.get("base_ref") or BASELINE
     head_ref = args.head_ref or event.get("head_ref") or "HEAD"
-    base = _resolve(base_ref)
-    head = _resolve(head_ref)
-    merge_base = _resolve(_run(["git", "merge-base", base, head]))
-    changed, additions, deletions = _changed_files(base, head)
-    state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+    base = _resolve(base_ref, root)
+    head = _resolve(head_ref, root)
+    merge_base = _resolve(_run(["git", "merge-base", base, head], root), root)
+    changed, additions, deletions = _changed_files(base, head, root)
+    state = json.loads((root / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
     tests = _load_result(Path(args.tests_json)) if args.tests_json else {"schema_version": "0.12.3", "command": "not-run-in-local-builder", "log_path": "not-run", "exit_code": 0, "parse_status": "not_run", "count": None, "passed": None, "failed": None, "status": "not_run"}
     validation = _load_result(Path(args.validation_json), validation=True) if args.validation_json else {"schema_version": "0.12.3", "command": "not-run-in-local-builder", "log_path": "not-run", "exit_code": 0, "parse_status": "not_run", "checks": None, "passed": None, "failed": None, "status": "not_run"}
-    visual_path = Path(args.visual_manifest) if args.visual_manifest else ROOT / "docs/evidence/github-review-v0123/visual-manifest.json"
+    visual_path = Path(args.visual_manifest) if args.visual_manifest else root / "docs/evidence/github-review-v0123/visual-manifest.json"
     visual_manifest = json.loads(visual_path.read_text(encoding="utf-8"))
     if not isinstance(visual_manifest, dict) or not isinstance(visual_manifest.get("visuals"), list):
         raise ValueError(f"visual manifest must contain a visuals array: {visual_path}")
-    branch = args.head_branch or event.get("head_branch") or _run(["git", "branch", "--show-current"]) or BRANCH
+    branch = args.head_branch or event.get("head_branch") or _run(["git", "branch", "--show-current"], root) or BRANCH
     pr_number = args.pr_number if args.pr_number is not None else int(event.get("number") or 0)
     known_gaps, gap_context = _known_gaps(args, event, pr_number)
     gate_result = _load_gates(Path(args.gates_json) if args.gates_json else None, tests, validation)

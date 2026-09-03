@@ -41,8 +41,48 @@ def decoded_pixel_hash(image: Image.Image) -> str:
     return sha256_bytes(payload)
 
 
+def _load_authoritative_visuals() -> dict[str, dict[str, Any]]:
+    """Load manifest-bound transport metadata without rewriting committed bytes."""
+    for manifest_path in (
+        ROOT / "docs/evidence/github-governance-v0124/visual-manifest.json",
+        OUTPUT_DIR / "visual-manifest.json",
+    ):
+        if not manifest_path.is_file():
+            continue
+        try:
+            payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        items = payload.get("visuals")
+        if not isinstance(items, list):
+            continue
+        bound: dict[str, dict[str, Any]] = {}
+        for item in items:
+            if isinstance(item, dict) and isinstance(item.get("source_path"), str):
+                bound[item["source_path"]] = item
+        if bound:
+            return bound
+    return {}
+
+
+def _committed_transport_entry(source_name: str, transport: Path, bound: dict[str, Any]) -> dict[str, Any] | None:
+    if bound.get("source_path") != source_name:
+        return None
+    if bound.get("transport_path") != transport.relative_to(ROOT).as_posix():
+        return None
+    if not transport.is_file():
+        return None
+    transport_bytes = transport.read_bytes()
+    if bound.get("transport_size") != len(transport_bytes):
+        return None
+    if bound.get("transport_sha256") != sha256_bytes(transport_bytes):
+        return None
+    return dict(bound)
+
+
 def build_manifest() -> dict[str, Any]:
     TRANSPORT_DIR.mkdir(parents=True, exist_ok=True)
+    authoritative = _load_authoritative_visuals()
     visuals: list[dict[str, Any]] = []
     for source_name in SOURCES:
         source = ROOT / source_name
@@ -54,6 +94,10 @@ def build_manifest() -> dict[str, Any]:
             raise ValueError(f"historical source is not JPEG/JFIF: {source_name}")
         transport_name = f"{source.stem}-transport.png"
         transport = TRANSPORT_DIR / transport_name
+        preserved = _committed_transport_entry(source_name, transport, authoritative.get(source_name, {}))
+        if preserved is not None:
+            visuals.append(preserved)
+            continue
         with Image.open(source) as decoded:
             decoded.load()
             source_pixels = decoded_pixel_hash(decoded)

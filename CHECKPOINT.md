@@ -1,10 +1,12 @@
-# UGAS checkpoint - v0.12.3
+# UGAS checkpoint - v0.12.4
 
-## v0.12.3 GitHub-native review infrastructure
+## v0.12.4 GitHub CI and governance recovery
 
-The active phase is `GITHUB_NATIVE_REVIEW_INFRASTRUCTURE` and the active increment is `GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED`. GitHub is now the canonical review surface for PR diffs, stable Actions checks, machine manifests and bounded visual evidence. The local dashboard remains `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` in `DOCKER_ALWAYS_ON_LOCAL` mode at `http://127.0.0.1:8765/`. `production_approved=false`, `production_routing=BLOCKED` and `new_generation=0` remain authoritative. The only allowed next action is `external_review_github_native_v0123_and_dashboard_v0122`; after external approval, `RUN_FRONT_V1` is the next functional candidate.
+The active phase is `GITHUB_CI_GOVERNANCE_RECOVERY` and the gate is `GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED`: PR #2 is open at the reviewed head with all required GitHub checks green. It remains open for external Sol review and is not merged. The branch is `codex/v0.12.4-github-ci-governance-recovery` from remote main baseline `877ede34afadd631764887ad6c5fb941ca4371a8`. `GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY`, `GITHUB_REVIEW_MODE=PR_FIRST`, `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, and `DOCKER_ALWAYS_ON_LOCAL` are authoritative.
 
-The feature branch is `codex/v0.12.3-github-native-review` from baseline `6b956b9299f3a2f75280f17706c38c59e3714034`. The executor must stop with the PR open, checks green or with explicit infrastructure permission gaps, dashboard online and no merge to `main`. No new asset family, animation, provider, ComfyUI migration or production route is authorized.
+PR #1 remains an immutable governance incident: v0.12.3 was merged before external approval while the real review workflow was red. The machine record is `docs/evidence/github-governance-v0124/pr1-premature-merge.json`. The dashboard decision is forward-only `observability_dashboard_external_visual=APPROVED_PILOT`, bound to the PR #1 artifact and the existing v0.12.2 source/transport hashes; it is visual/pilot approval only.
+
+The only allowed next action is `external_review_github_ci_governance_v0124`; `RUN_FRONT_V1` remains the next necessary functional candidate but is not executed here. `production_approved=false`, `production_routing=BLOCKED` and `new_generation=0` remain authoritative. Do not directly modify `main`, rewrite PR #1 history, merge before explicit Sol approval, create assets, execute animation, enable production or migrate ComfyUI.
 
 ## Historical v0.12.2 QA cache integrity + Docker always-on local observability
 

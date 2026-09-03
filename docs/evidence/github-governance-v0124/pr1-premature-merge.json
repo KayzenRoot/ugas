@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.12.4",
+  "record_type": "immutable-governance-incident",
+  "repository": "csn1985-ship-it/ugas",
+  "classification": "GOVERNANCE_ORDER_VIOLATION_AND_FAILED_CHECK_MERGE",
+  "pr": {
+    "number": 1,
+    "base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
+    "head_sha": "2f8d04f03a6f4de0ead7683899f945cd60d5000f",
+    "merge_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
+    "merged_at": "2026-09-02T21:17:00Z"
+  },
+  "review_workflow": {"run_id": "33684049540", "conclusion": "FAILURE", "artifact_created_at": "2026-09-02T21:19:27Z"},
+  "review_artifact": {"id": "9867524286", "name": "ugas-review-evidence-pr-1-2f8d04f03a6f4de0ead7683899f945cd60d5000f", "digest": "sha256:6ffe21738ed7960aabb5cd874cc44c4030a3b5fee0463f58c004805637a4d6d2", "uploaded": true},
+  "real_validation": {"checks": 1670, "passed": 1667, "failed": 3, "exit_code": 1, "overall_status": "FAIL", "official_validation": "FAIL", "unit": "PASS", "state": "PASS", "matrix": "PASS", "visual": "PASS", "manifest": "PASS", "security": "PASS"},
+  "main_protection_at_incident": {"protected": false, "rulesets": []},
+  "facts_only": true,
+  "causality_assigned": false,
+  "historical_record_immutable": true
+}

@@ -1,0 +1,550 @@
+{
+  "schema_version": "1.1",
+  "manifest_type": "github-ci-governance-review",
+  "repository": {
+    "name": "csn1985-ship-it/ugas",
+    "url": "https://github.com/csn1985-ship-it/ugas",
+    "default_branch": "main"
+  },
+  "pull_request": {
+    "number": 2,
+    "base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
+    "head_sha": "50268dccda4c9037732129a4218f1b6e891cb365",
+    "merge_base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
+    "head_branch": "codex/v0.12.4-github-ci-governance-recovery",
+    "base_branch": "main"
+  },
+  "scope": {
+    "version": "0.12.4",
+    "phase": "GITHUB_CI_GOVERNANCE_RECOVERY",
+    "current_gate": "GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED",
+    "allowed_next_actions": [
+      "external_review_github_ci_governance_v0124"
+    ],
+    "new_generation": 0
+  },
+  "changed_files": [
+    {
+      "path": ".cursor/rules/codex-global-windows.mdc",
+      "status": "A",
+      "additions": 33,
+      "deletions": 0
+    },
+    {
+      "path": ".cursor/rules/ugas-project.mdc",
+      "status": "A",
+      "additions": 23,
+      "deletions": 0
+    },
+    {
+      "path": ".github/workflows/ugas-ci.yml",
+      "status": "M",
+      "additions": 12,
+      "deletions": 3
+    },
+    {
+      "path": ".github/workflows/ugas-review.yml",
+      "status": "M",
+      "additions": 53,
+      "deletions": 35
+    },
+    {
+      "path": "CHECKPOINT.md",
+      "status": "M",
+      "additions": 6,
+      "deletions": 4
+    },
+    {
+      "path": "INSTALL.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "README.md",
+      "status": "M",
+      "additions": 5,
+      "deletions": 5
+    },
+    {
+      "path": "REVIEW-v0.12.4.md",
+      "status": "A",
+      "additions": 48,
+      "deletions": 0
+    },
+    {
+      "path": "_smoke_decoded.txt",
+      "status": "A",
+      "additions": 495,
+      "deletions": 0
+    },
+    {
+      "path": "docs/2d-master-pipeline.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 1
+    },
+    {
+      "path": "docs/comfyui.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 1
+    },
+    {
+      "path": "docs/evidence/current-state-v0.12.3.json",
+      "status": "A",
+      "additions": 19,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/current-state-v0.12.4.json",
+      "status": "A",
+      "additions": 20,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/current-state.json",
+      "status": "M",
+      "additions": 13,
+      "deletions": 12
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/dashboard-external-visual-approval.json",
+      "status": "A",
+      "additions": 17,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/gate-results-v0124.json",
+      "status": "A",
+      "additions": 54,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/github-preflight.json",
+      "status": "A",
+      "additions": 16,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/github-review-manifest-local.json",
+      "status": "A",
+      "additions": 550,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/github-review-manifest.json",
+      "status": "A",
+      "additions": 550,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/governance-consistency-v0124.json",
+      "status": "A",
+      "additions": 14,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/historical/v0.11.2/CHECKPOINT.md",
+      "status": "A",
+      "additions": 66,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/manifest-validation-v0124.json",
+      "status": "A",
+      "additions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/negative-controls-v0124.json",
+      "status": "A",
+      "additions": 18,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/pr-handoff-v0124.json",
+      "status": "A",
+      "additions": 162,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/pr1-premature-merge.json",
+      "status": "A",
+      "additions": 20,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/ruleset-readback.json",
+      "status": "A",
+      "additions": 18,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/security-validation-v0124.json",
+      "status": "A",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/state-consistency-v0124.json",
+      "status": "A",
+      "additions": 18,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/test-results-v0124.json",
+      "status": "A",
+      "additions": 11,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/validation-results-v0124.json",
+      "status": "A",
+      "additions": 11,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/visual-manifest.json",
+      "status": "A",
+      "additions": 40,
+      "deletions": 0
+    },
+    {
+      "path": "docs/evidence/github-governance-v0124/workflow-validation.json",
+      "status": "A",
+      "additions": 22,
+      "deletions": 0
+    },
+    {
+      "path": "docs/github-review-protocol.md",
+      "status": "M",
+      "additions": 4,
+      "deletions": 2
+    },
+    {
+      "path": "docs/roadmap.md",
+      "status": "M",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "package.json",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "pyproject.toml",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "schemas/current-state-v0.12.4.json",
+      "status": "A",
+      "additions": 27,
+      "deletions": 0
+    },
+    {
+      "path": "schemas/current-state.json",
+      "status": "M",
+      "additions": 13,
+      "deletions": 12
+    },
+    {
+      "path": "schemas/github-review-manifest-v0124.json",
+      "status": "A",
+      "additions": 29,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/github/merge_policy_v0124.py",
+      "status": "A",
+      "additions": 40,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/github/ugas-pr-handoff.ps1",
+      "status": "A",
+      "additions": 192,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/build_github_review_manifest.py",
+      "status": "M",
+      "additions": 21,
+      "deletions": 18
+    },
+    {
+      "path": "scripts/validation/build_github_review_manifest_v0124.py",
+      "status": "A",
+      "additions": 124,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/build_review_visual_transport_v0123.py",
+      "status": "M",
+      "additions": 44,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/enforce_github_review_v0124.py",
+      "status": "A",
+      "additions": 35,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/record_v0124_results.py",
+      "status": "A",
+      "additions": 65,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/run_validation.py",
+      "status": "M",
+      "additions": 106,
+      "deletions": 70
+    },
+    {
+      "path": "scripts/validation/validate_github_review_manifest_v0124.py",
+      "status": "A",
+      "additions": 80,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_github_review_security_v0124.py",
+      "status": "A",
+      "additions": 53,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_github_workflows_v0124.py",
+      "status": "A",
+      "additions": 91,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_governance_v0124.py",
+      "status": "A",
+      "additions": 42,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/validate_review_index_v0112.py",
+      "status": "M",
+      "additions": 15,
+      "deletions": 3
+    },
+    {
+      "path": "scripts/validation/validate_state_consistency.py",
+      "status": "M",
+      "additions": 6,
+      "deletions": 6
+    },
+    {
+      "path": "src/ugas/__init__.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/cli.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/constants.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/observability/dashboard_app.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "src/ugas/observability/qa_integrity.py",
+      "status": "M",
+      "additions": 4,
+      "deletions": 4
+    },
+    {
+      "path": "src/ugas/state_consistency_v0124.py",
+      "status": "A",
+      "additions": 139,
+      "deletions": 0
+    },
+    {
+      "path": "tests/test_bootstrap.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "tests/test_github_governance_v0124.py",
+      "status": "A",
+      "additions": 98,
+      "deletions": 0
+    },
+    {
+      "path": "tests/test_github_review_integrity_v0123.py",
+      "status": "M",
+      "additions": 49,
+      "deletions": 17
+    },
+    {
+      "path": "tests/test_observability_v0120.py",
+      "status": "M",
+      "additions": 7,
+      "deletions": 4
+    },
+    {
+      "path": "tests/test_reference_edit_fidelity_v043.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "tests/test_regressions_v040.py",
+      "status": "M",
+      "additions": 1,
+      "deletions": 1
+    }
+  ],
+  "change_statistics": {
+    "files": 65,
+    "additions": 3633,
+    "deletions": 212
+  },
+  "current_state": {
+    "path": "docs/evidence/current-state.json",
+    "version": "0.12.4",
+    "phase": "GITHUB_CI_GOVERNANCE_RECOVERY",
+    "current_gate": "GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "external_visual_review": {
+      "attack_front_v2": "APPROVED_PILOT",
+      "observability_dashboard": "APPROVED_PILOT"
+    },
+    "allowed_next_actions": [
+      "external_review_github_ci_governance_v0124"
+    ]
+  },
+  "incident": {
+    "pr_number": 1,
+    "classification": "GOVERNANCE_ORDER_VIOLATION_AND_FAILED_CHECK_MERGE",
+    "artifact_id": "9867524286",
+    "artifact_digest": "sha256:6ffe21738ed7960aabb5cd874cc44c4030a3b5fee0463f58c004805637a4d6d2"
+  },
+  "tests": {
+    "schema_version": "0.12.4",
+    "command": "python -m unittest discover -s tests -q",
+    "log_path": "ugas-tests.log",
+    "exit_code": 0,
+    "parse_status": "parsed",
+    "count": 364,
+    "passed": 364,
+    "failed": 0,
+    "status": "passed"
+  },
+  "validation": {
+    "schema_version": "0.12.4",
+    "command": "python scripts/validation/run_validation.py",
+    "log_path": "ugas-validation.log",
+    "exit_code": 0,
+    "parse_status": "parsed",
+    "checks": 1696,
+    "passed": 1696,
+    "failed": 0,
+    "status": "passed"
+  },
+  "overall_status": "PASS",
+  "gates": [
+    {
+      "id": "unit_tests",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "passed"
+    },
+    {
+      "id": "official_validation",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "passed"
+    },
+    {
+      "id": "state_consistency",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "capability_matrix",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "visual_transport",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "workflow_validation",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "manifest_validation",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "security",
+      "status": "PASS",
+      "exit_code": 0,
+      "detail": "exit_code=0"
+    }
+  ],
+  "review_index": {
+    "historical_path": "docs/evidence/review-index-v0.12.2.json",
+    "historical_version": "0.12.2",
+    "status": "PRESERVED_BASELINE_VALIDATED",
+    "active_manifest_path": "github-review-manifest.json"
+  },
+  "visual_manifest": "visual-manifest.json",
+  "known_gaps": [
+    "CODEOWNERS_GAP"
+  ],
+  "gap_context": {
+    "source": "local_rehearsal",
+    "pr_number": 2,
+    "pr_available": true,
+    "explicit_gap_input": true
+  },
+  "dashboard_policy": {
+    "always_on": true,
+    "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
+    "local_only": true,
+    "url": "http://127.0.0.1:8765/",
+    "must_remain_online_at_stop": true
+  },
+  "production_boundary": {
+    "approved": false,
+    "routing": "BLOCKED"
+  },
+  "security_boundary": {
+    "secrets_included": false,
+    "model_weights_included": false,
+    "telemetry_db_included": false,
+    "local_credentials_included": false
+  }
+}

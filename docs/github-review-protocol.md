@@ -2,7 +2,7 @@
 
 ## Canonical flow
 
-All v0.12.3+ implementation rounds follow:
+All v0.12.4+ implementation rounds follow:
 
 `feature branch from verified baseline -> Pull Request -> GitHub Actions -> external review -> approval -> merge`
 
@@ -29,7 +29,9 @@ The review workflow pins checkout, setup-python and upload-artifact to immutable
 
 ## Governance boundaries
 
-The active state is v0.12.3 `GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED`, with `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, `DOCKER_ALWAYS_ON_LOCAL` and `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`. The only allowed next action is `external_review_github_native_v0123_and_dashboard_v0122`. `RUN_FRONT_V1` is the next candidate after external approval, not an action in this increment.
+The active state is v0.12.4 `GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR` until a real corrective PR is green, with `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, `DOCKER_ALWAYS_ON_LOCAL` and `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`. The only allowed next action is `external_review_github_ci_governance_v0124`. `RUN_FRONT_V1` remains the next candidate after this gate, not an action in this increment.
+
+`GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED` and `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY` are permanent policy. Codex handles routine branch, push, PR, check, log, correction and ruleset operations when authenticated; user interaction is reserved for irreducible account consent/authentication. `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true` is fail-closed: red or pending required checks, missing exact-head external approval, or a changed PR head are absolute merge blockers.
 
 Historical v0.12.2/v0.12.1 evidence is preserved and is not rewritten. External review and production approval are never inferred from local green tests, a healthy container or an uploaded artifact.
 

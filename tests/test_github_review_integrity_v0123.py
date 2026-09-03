@@ -7,9 +7,12 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import sys
+import subprocess
 import tempfile
 import unittest
+from contextlib import contextmanager
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts/validation"))
@@ -31,6 +34,32 @@ EXPECTED_SOURCE_HASHES = {
 
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+@contextmanager
+def isolated_git_fixture():
+    """Provide the builder with a tiny explicit Git context.
+
+    These integrity tests also run from GitHub's historical/no-git snapshots;
+    they must never accidentally resolve refs from the developer worktree.
+    """
+
+    with tempfile.TemporaryDirectory() as directory:
+        repo = Path(directory)
+        (repo / "docs/evidence").mkdir(parents=True)
+        shutil.copyfile(ROOT / "docs/evidence/current-state-v0.12.3.json", repo / "docs/evidence/current-state.json")
+        (repo / "fixture.txt").write_text("base\n", encoding="utf-8")
+        subprocess.run(["git", "init", "--quiet"], cwd=repo, check=True, capture_output=True)
+        subprocess.run(["git", "config", "user.email", "ugas-tests@example.invalid"], cwd=repo, check=True)
+        subprocess.run(["git", "config", "user.name", "UGAS Tests"], cwd=repo, check=True)
+        subprocess.run(["git", "add", "fixture.txt", "docs/evidence/current-state.json"], cwd=repo, check=True)
+        subprocess.run(["git", "commit", "--quiet", "-m", "fixture base"], cwd=repo, check=True)
+        base = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
+        (repo / "change.txt").write_text("head\n", encoding="utf-8")
+        subprocess.run(["git", "add", "change.txt"], cwd=repo, check=True)
+        subprocess.run(["git", "commit", "--quiet", "-m", "fixture head"], cwd=repo, check=True)
+        head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
+        yield repo, base, head
 
 
 class GithubReviewIntegrityTests(unittest.TestCase):
@@ -66,7 +95,7 @@ class GithubReviewIntegrityTests(unittest.TestCase):
         self.assertIsNone(malformed["failed"])
 
     def test_failed_gate_produces_schema_valid_fail_manifest(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
+        with isolated_git_fixture() as (repo, base, head), tempfile.TemporaryDirectory() as directory:
             temp = Path(directory)
             tests_path = temp / "tests.json"
             validation_path = temp / "validation.json"
@@ -83,8 +112,8 @@ class GithubReviewIntegrityTests(unittest.TestCase):
             )
             gates_path.write_text(json.dumps({"schema_version": "0.12.3", "overall_status": "FAIL", "gates": gates}), encoding="utf-8")
             args = argparse.Namespace(
-                base_ref="6b956b9299f3a2f75280f17706c38c59e3714034",
-                head_ref="HEAD",
+                base_ref=base,
+                head_ref=head,
                 head_branch="codex/v0.12.3-github-native-review",
                 pr_number=0,
                 tests_json=str(tests_path),
@@ -93,8 +122,9 @@ class GithubReviewIntegrityTests(unittest.TestCase):
                 visual_manifest=str(VISUAL_MANIFEST_PATH),
                 preflight_json=None,
                 known_gap=None,
+                repository_root=str(repo),
             )
-            manifest, _ = build(args)
+            manifest, _ = build(args, repo)
             self.assertEqual("FAIL", manifest["overall_status"])
             schema = read_json(ROOT / "schemas/github-review-manifest-v1.json")
             validate_instance(manifest, schema)
@@ -112,19 +142,21 @@ class GithubReviewIntegrityTests(unittest.TestCase):
         self.assertNotIn("GITHUB_PR_CREATE_GAP", gaps)
         self.assertEqual("local_rehearsal", context["source"])
 
-        base_args = argparse.Namespace(
-            base_ref="6b956b9299f3a2f75280f17706c38c59e3714034",
-            head_ref="HEAD",
-            head_branch="codex/v0.12.3-github-native-review",
-            pr_number=0,
-            tests_json=None,
-            validation_json=None,
-            gates_json=None,
-            visual_manifest=str(VISUAL_MANIFEST_PATH),
-            preflight_json=None,
-            known_gap=None,
-        )
-        manifest, _ = build(base_args)
+        with isolated_git_fixture() as (repo, base, head):
+            base_args = argparse.Namespace(
+                base_ref=base,
+                head_ref=head,
+                head_branch="codex/v0.12.3-github-native-review",
+                pr_number=0,
+                tests_json=None,
+                validation_json=None,
+                gates_json=None,
+                visual_manifest=str(VISUAL_MANIFEST_PATH),
+                preflight_json=None,
+                known_gap=None,
+                repository_root=str(repo),
+            )
+            manifest, _ = build(base_args, repo)
         invalid = copy.deepcopy(manifest)
         invalid["pull_request"]["number"] = 12
         invalid["gap_context"]["pr_number"] = 12

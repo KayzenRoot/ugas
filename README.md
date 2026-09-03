@@ -1,6 +1,6 @@
-# UGAS 0.12.3
+# UGAS 0.12.4
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão. O release ativo profissionaliza a revisão GitHub-native, mantém o dashboard Dockerizado always-on, read-only e local, e não habilita produção.
+Universal Game Asset Studio: pipeline local-first para assets 2D com ComfyUI nativo, evidência reproduzível, transparência e governança de revisão. O release ativo recupera CI/governança GitHub após o incidente do PR #1, mantém o dashboard Dockerizado always-on, read-only e local, e não habilita produção.
 
 O v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
 
@@ -26,11 +26,11 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.12.3.md](REVIEW-v0.12.3.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.12.4.md](REVIEW-v0.12.4.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
-## v0.12.3 GitHub-native review and always-on finalization
+## v0.12.4 GitHub CI and governance recovery
 
-The active gate is `GITHUB_NATIVE_REVIEW_READY_TECHNICALLY_QUALIFIED`. Use the feature branch -> PR -> GitHub Actions -> external review sequence described in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded artifact with machine manifests and the v0.12.2 dashboard PNGs so external review can stay entirely on GitHub. `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` remains a post-approval candidate only.
+The active phase is `GITHUB_CI_GOVERNANCE_RECOVERY`; the local gate is `GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR` until real corrective-PR checks are green. Use the new branch -> PR -> GitHub Actions -> external review sequence described in [docs/github-review-protocol.md](docs/github-review-protocol.md). The workflow produces a bounded artifact, repairs repository-owned failures and never merges before explicit Sol approval. `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` remains a post-gate candidate only.
 
 ## Historical v0.12.2 QA cache and Docker always-on local observability
 

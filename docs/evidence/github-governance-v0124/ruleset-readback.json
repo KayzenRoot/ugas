@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.12.4",
+  "repository": "csn1985-ship-it/ugas",
+  "target_branch": "main",
+  "status": "CONFIGURED_READ_BACK",
+  "protected": true,
+  "ruleset_id": 22159732,
+  "ruleset_name": "UGAS main PR protection v0.12.4",
+  "enforcement": "active",
+  "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"],
+  "pull_request_required": true,
+  "required_review_thread_resolution": true,
+  "block_deletion": true,
+  "block_force_push": true,
+  "readback_source": "GitHub API readback after authenticated gh token",
+  "capability_gap": null,
+  "credential_values_recorded": false
+}
