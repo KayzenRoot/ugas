@@ -1,0 +1,384 @@
+{
+  "schema_version": "0.13.1",
+  "animation_id": "run-front-v1",
+  "status": "RUN_FOOT_GROUND_QA_PASSED",
+  "frames": [
+    {
+      "frame": 0,
+      "support_side": "left",
+      "swing_side": null,
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "planted",
+          "projected_ground_y": 463.0,
+          "expected_sole_y": 463.0,
+          "actual_sole_y": 462.0,
+          "sole_error_px": -1.0,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 1.0,
+          "ankle_x": 309.4539
+        },
+        "right": {
+          "role": "trail",
+          "projected_ground_y": 463.0,
+          "expected_sole_y": 462.671673,
+          "actual_sole_y": 462.0,
+          "sole_error_px": -0.671673,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 1.0,
+          "ankle_x": 234.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    },
+    {
+      "frame": 1,
+      "support_side": "left",
+      "swing_side": null,
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "planted",
+          "projected_ground_y": 463.683722,
+          "expected_sole_y": 463.683722,
+          "actual_sole_y": 463.0,
+          "sole_error_px": -0.683722,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 0.683722,
+          "ankle_x": 309.4539
+        },
+        "right": {
+          "role": "trail",
+          "projected_ground_y": 463.683722,
+          "expected_sole_y": 462.527839,
+          "actual_sole_y": 462.0,
+          "sole_error_px": -0.527839,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 1.683722,
+          "ankle_x": 238.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    },
+    {
+      "frame": 2,
+      "support_side": "right",
+      "swing_side": "left",
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "swing",
+          "projected_ground_y": 485.592429,
+          "expected_sole_y": 460.113938,
+          "actual_sole_y": 460.0,
+          "sole_error_px": -0.113938,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 25.592429,
+          "ankle_x": 317.4539
+        },
+        "right": {
+          "role": "planted",
+          "projected_ground_y": 462.192429,
+          "expected_sole_y": 462.192429,
+          "actual_sole_y": 462.0,
+          "sole_error_px": -0.192429,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 0.192429,
+          "ankle_x": 234.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    },
+    {
+      "frame": 3,
+      "support_side": null,
+      "swing_side": null,
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "flight",
+          "projected_ground_y": 462.55,
+          "expected_sole_y": 451.833934,
+          "actual_sole_y": 452.0,
+          "sole_error_px": 0.166066,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 10.55,
+          "ankle_x": 321.4539
+        },
+        "right": {
+          "role": "flight",
+          "projected_ground_y": 462.55,
+          "expected_sole_y": 451.875803,
+          "actual_sole_y": 452.0,
+          "sole_error_px": 0.124197,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 10.55,
+          "ankle_x": 234.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    },
+    {
+      "frame": 4,
+      "support_side": "right",
+      "swing_side": null,
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "trail",
+          "projected_ground_y": 462.1,
+          "expected_sole_y": 461.820756,
+          "actual_sole_y": 462.0,
+          "sole_error_px": 0.179244,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 0.1,
+          "ankle_x": 317.4539
+        },
+        "right": {
+          "role": "planted",
+          "projected_ground_y": 462.1,
+          "expected_sole_y": 462.1,
+          "actual_sole_y": 462.0,
+          "sole_error_px": -0.1,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 0.1,
+          "ankle_x": 234.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    },
+    {
+      "frame": 5,
+      "support_side": "right",
+      "swing_side": null,
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "trail",
+          "projected_ground_y": 466.522905,
+          "expected_sole_y": 462.158538,
+          "actual_sole_y": 462.0,
+          "sole_error_px": -0.158538,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 4.522905,
+          "ankle_x": 313.4539
+        },
+        "right": {
+          "role": "planted",
+          "projected_ground_y": 466.522905,
+          "expected_sole_y": 466.522905,
+          "actual_sole_y": 466.0,
+          "sole_error_px": -0.522905,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 0.522905,
+          "ankle_x": 234.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    },
+    {
+      "frame": 6,
+      "support_side": "left",
+      "swing_side": "right",
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "planted",
+          "projected_ground_y": 462.46408,
+          "expected_sole_y": 462.46408,
+          "actual_sole_y": 462.0,
+          "sole_error_px": -0.46408,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 0.46408,
+          "ankle_x": 309.4539
+        },
+        "right": {
+          "role": "swing",
+          "projected_ground_y": 485.86408,
+          "expected_sole_y": 461.015199,
+          "actual_sole_y": 460.0,
+          "sole_error_px": -1.015199,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 25.86408,
+          "ankle_x": 242.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    },
+    {
+      "frame": 7,
+      "support_side": null,
+      "swing_side": null,
+      "ground_reference_y": 462.55,
+      "feet": {
+        "left": {
+          "role": "flight",
+          "projected_ground_y": 462.55,
+          "expected_sole_y": 454.854665,
+          "actual_sole_y": 454.0,
+          "sole_error_px": -0.854665,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 8.55,
+          "ankle_x": 309.4539
+        },
+        "right": {
+          "role": "flight",
+          "projected_ground_y": 462.55,
+          "expected_sole_y": 453.251888,
+          "actual_sole_y": 453.0,
+          "sole_error_px": -0.251888,
+          "ground_penetration_px": 0.0,
+          "visible_clearance_px": 9.55,
+          "ankle_x": 234.1367
+        }
+      },
+      "thresholds": {
+        "sole_error_max_px": 3.0,
+        "ground_penetration_max_px": 1.5,
+        "swing_clearance_min_px": 4.0,
+        "flight_clearance_min_px": 8.0
+      },
+      "hard_gates": {
+        "left": true,
+        "right": true
+      },
+      "status": "RUN_FOOT_GROUND_QA_PASSED"
+    }
+  ],
+  "contact": {
+    "contact_windows": [
+      {
+        "from_frame": 0,
+        "to_frame": 1,
+        "side": "left",
+        "ankle_slip_px": 0.0,
+        "gate": true
+      },
+      {
+        "from_frame": 4,
+        "to_frame": 5,
+        "side": "right",
+        "ankle_slip_px": 0.0,
+        "gate": true
+      }
+    ],
+    "threshold_px": 2.5,
+    "hard_gates": {
+      "all_contact_windows": true
+    },
+    "status": "RUN_CONTACT_FOOT_QA_PASSED"
+  },
+  "flight": {
+    "flight_frames": [
+      3,
+      7
+    ],
+    "threshold_px": 8.0,
+    "frames": [
+      {
+        "frame": 3,
+        "support_side": null,
+        "roles": [
+          "flight",
+          "flight"
+        ],
+        "ground_reference_available": true,
+        "threshold_finite": true,
+        "both_feet_clear": true,
+        "no_support_role": true
+      },
+      {
+        "frame": 7,
+        "support_side": null,
+        "roles": [
+          "flight",
+          "flight"
+        ],
+        "ground_reference_available": true,
+        "threshold_finite": true,
+        "both_feet_clear": true,
+        "no_support_role": true
+      }
+    ],
+    "hard_gates": {
+      "flight_frames_present": true,
+      "flight_threshold_finite": true,
+      "flight_no_support_role": true,
+      "flight_ground_reference_available": true,
+      "flight_both_feet_clear": true
+    },
+    "status": "RUN_FLIGHT_SEMANTIC_QA_PASSED"
+  },
+  "ground_reference_y": 462.55
+}

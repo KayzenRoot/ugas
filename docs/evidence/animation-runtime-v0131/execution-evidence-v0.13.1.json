@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.13.1",
+  "prompt": "PROMPT-CORRETIVO-UGAS-v0.13.1-RUN-FRONT-FLIGHT-QA-VISUAL-INTEGRITY",
+  "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "execution_head_commit": "c658a2984bbee7c0b257b7537e840c07a80eee1e",
+  "pr_number": 3,
+  "reviewed_head_sha": "c658a2984bbee7c0b257b7537e840c07a80eee1e",
+  "animation_id": "run-front-v1",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 8,
+  "fps": 12,
+  "loop": true,
+  "gif_encoded_frame_durations_ms": [
+    80,
+    90,
+    80,
+    90,
+    80,
+    90,
+    80,
+    80
+  ],
+  "gif_total_cycle_ms": 670,
+  "gif_effective_fps": 11.940299,
+  "motion_tracks_sha256": "0f390eecff21a70322fd8d7c6c4c46e48bd6598f3dba5953cbbdf43abd93631f",
+  "event_markers_sha256": "1a0932b37987b2652059b09195eb71b13613990aac014b60a1bdbf05de3b15bc",
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "external_visual": "REQUIRED",
+  "negative_controls": "NC_01_TO_NC_12_PASSED",
+  "approved_assets_untouched": "APPROVED_ASSETS_UNTOUCHED",
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0131/run-front-v1/package-manifest.json",
+    "sha256": "bb7e067014f711581c85271632e91f87c76b2c53a7408981aee9b5b9defe914c",
+    "preview_gif": {
+      "path": "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-preview-v0131.gif",
+      "sha256": "27c80ccb89d2388e62b31bede35e31e118265862b80cbf9d04eb694dd676d7da"
+    },
+    "sprite_sheet": {
+      "path": "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-spritesheet-v0131.png",
+      "sha256": "186cdd2376d954e6619add35df42c34990ddb2c6ace61862d909ea144038fdee"
+    }
+  },
+  "review_artifacts": {
+    "visual_manifest": "docs/evidence/animation-runtime-v0131/run-front-visual-manifest-v0131.json",
+    "phase_marker_sheet": "docs/evidence/animation-runtime-v0131/run-front-phase-markers-v0131.png",
+    "negative_controls": "docs/evidence/animation-runtime-v0131/run-front-gate-negative-controls-v0131.json"
+  },
+  "historical_v0130_preserved": true,
+  "next_capability_started": false,
+  "executor_does_not_claim_visual_approval": true
+}

@@ -343,6 +343,8 @@ class ObservabilityService:
         if self._closed: return
         self._closed = True; self._stop.set()
         if self._worker and self._worker.is_alive(): self._worker.join(timeout=2)
+        self._probe_executor.shutdown(wait=True, cancel_futures=True)
+        self.store.close()
         self._probe_executor.shutdown(wait=False, cancel_futures=True); self.store.close()
 
     def _read_json(self, path: Path) -> tuple[dict[str, Any] | None, str | None]:

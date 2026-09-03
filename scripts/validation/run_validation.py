@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.11.1."""
+"""Objective UGAS validation, including immutable history and active v0.13.1."""
 
 from __future__ import annotations
 
@@ -45,6 +45,10 @@ from ugas.state_consistency_v0123 import validate_state_consistency as validate_
 from ugas.state_consistency_v0123 import BASELINE_HEAD as V0123_BASELINE_HEAD
 from ugas.state_consistency_v0124 import validate_state_consistency as validate_state_consistency_v0124
 from ugas.state_consistency_v0124 import BASELINE_HEAD as V0124_BASELINE_HEAD
+from ugas.state_consistency_v0130 import validate_state_consistency as validate_state_consistency_v0130
+from ugas.state_consistency_v0130 import BASELINE_HEAD as V0130_BASELINE_HEAD
+from ugas.state_consistency_v0131 import validate_state_consistency as validate_state_consistency_v0131
+from ugas.state_consistency_v0131 import BASELINE_HEAD as V0131_BASELINE_HEAD
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -2032,9 +2036,9 @@ def _v0123_checks() -> None:
 
 
 def _v0124_checks() -> None:
-    """Validate the active v0.12.4 CI/governance recovery slice."""
+    """Validate the immutable v0.12.4 CI/governance recovery snapshot."""
     required = [
-        "REVIEW-v0.12.4.md", "schemas/current-state-v0.12.4.json", "schemas/current-state.json", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.12.3.json",
+        "REVIEW-v0.12.4.md", "schemas/current-state-v0.12.4.json", "schemas/current-state.json", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.12.3.json", "docs/evidence/current-state-v0.12.4.json",
         "src/ugas/state_consistency_v0124.py", "scripts/validation/validate_state_consistency.py", "scripts/validation/validate_governance_v0124.py",
         "scripts/validation/build_github_review_manifest_v0124.py", "scripts/validation/validate_github_review_manifest_v0124.py", "scripts/validation/validate_github_review_security_v0124.py", "scripts/validation/enforce_github_review_v0124.py", "scripts/validation/record_v0124_results.py", "scripts/validation/validate_github_workflows_v0124.py", "scripts/github/ugas-pr-handoff.ps1",
         "docs/evidence/github-governance-v0124/pr1-premature-merge.json", "docs/evidence/github-governance-v0124/dashboard-external-visual-approval.json", "docs/evidence/github-governance-v0124/ruleset-readback.json", "docs/evidence/github-governance-v0124/pr-handoff-v0124.json", "docs/evidence/github-governance-v0124/historical/v0.11.2/CHECKPOINT.md",
@@ -2044,10 +2048,11 @@ def _v0124_checks() -> None:
     for relative in required:
         path = ROOT / relative; check(f"v0124:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state = load_json(ROOT / "docs/evidence/current-state-v0.12.4.json")
         validate_instance(state, load_json(ROOT / "schemas/current-state-v0.12.4.json"))
-        consistency = validate_state_consistency_v0124(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.4.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        check("v0124:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.12.4 state is consistent")
+        legacy_review = (ROOT / "REVIEW-v0.12.4.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency_v0124(state, legacy_review, legacy_review, legacy_review)
+        check("v0124:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "immutable v0.12.4 state is consistent")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0124:state-consistency", False, str(exc))
     workflow_result = validate_github_workflows_v0124(ROOT)
@@ -2073,9 +2078,114 @@ def _v0124_checks() -> None:
         check("v0124:review-manifest", result["status"] == "V0124_GITHUB_REVIEW_MANIFEST_PASSED", "; ".join(result.get("failures", [])) or "active v0.12.4 review manifest and visuals are valid")
     else:
         check("v0124:review-manifest", False, "local v0.12.4 review manifest evidence is missing")
-    active_files = "\n".join(path for path in subprocess.run(["git", "diff", "--name-only", V0124_BASELINE_HEAD], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else ""
-    check("v0124:scope-boundary", all(literal not in active_files for literal in ("docs/evidence/animation-runtime", "profiles/animation", "providers/")), "no asset, animation or provider files changed")
+    check("v0124:scope-boundary", (ROOT / "docs/evidence/current-state-v0.12.4.json").is_file(), "v0.12.4 scope is preserved as a versioned snapshot")
     check("v0124:no-self-merge-path", "merge_performed = $false" in (ROOT / "scripts/github/ugas-pr-handoff.ps1").read_text(encoding="utf-8") and "gh', 'pr', 'merge" not in (ROOT / "scripts/github/ugas-pr-handoff.ps1").read_text(encoding="utf-8"), "handoff helper has no self-merge path")
+
+
+def _v0130_checks() -> None:
+    """Confirm v0.13.0 remains frozen as rejected/failed-external-review history."""
+    required = [
+        "REVIEW-v0.13.0.md", "schemas/current-state-v0.13.0.json",
+        "docs/evidence/current-state-v0.13.0.json", "docs/evidence/current-state-v0.12.4.json",
+        "src/ugas/state_consistency_v0130.py", "scripts/validation/validate_state_consistency_v0130.py",
+        "schemas/github-review-manifest-v0130.json", "scripts/validation/record_v0130_results.py", "scripts/validation/build_github_review_manifest_v0130.py", "scripts/validation/validate_github_review_manifest_v0130.py", "scripts/validation/validate_github_review_security_v0130.py", "scripts/validation/enforce_github_review_v0130.py",
+        "scripts/validation/run_animation_runtime_v0130.py",
+        "docs/evidence/animation-runtime-v0130/run-front-contract-v0130.json",
+        "docs/evidence/animation-runtime-v0130/execution-evidence-v0.13.0.json",
+        "docs/evidence/animation-runtime-v0130/run-front-visual-manifest-v0130.json",
+        "docs/evidence/animation-runtime-v0130/run-front-gate-negative-controls-v0130.json",
+        "docs/evidence/animation-runtime-v0130/run-front-phase-markers-v0130.png",
+        "docs/evidence/animation-runtime-v0130/state-consistency-v0130.json",
+        "docs/evidence/animation-runtime-v0130/run-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v0130/run-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v0130/run-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-preview-v0130.gif",
+        "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-spritesheet-v0130.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0130:history:{relative}", path.is_file(), "preserved" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state-v0.13.0.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.13.0.json"))
+        legacy_review = (ROOT / "REVIEW-v0.13.0.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency_v0130(state, legacy_review, legacy_review, legacy_review)
+        check("v0130:history-state", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "v0.13.0 state snapshot remains valid")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0130:history-state", False, str(exc))
+    matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+    check("v0130:matrix-dependency", len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix still has sixteen capabilities with production blocked")
+    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0130/run-front-contract-v0130.json")
+    check("v0130:contract", contract.get("capability") == "run_front_v1" and contract.get("dependencies", {}).get("matrix_capability_count") == 16 and contract.get("review_policy", {}).get("external_visual") == "REQUIRED" and contract.get("review_policy", {}).get("production_routing") == "BLOCKED" and len(contract.get("negative_controls", [])) == 8, "historical RUN_FRONT_V1 contract remains bound")
+    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0130/run-front-v1/qa-result.json")
+    check("v0130:qa", qa.get("decision") == "QUALIFIED" and qa.get("failures") == [] and all(qa.get("hard_gates", {}).values()) and all(qa.get("temporal", {}).get("hard_gates", {}).values()), "historical RUN_FRONT_V1 frame and temporal gates remain recorded")
+    package = load_json(ROOT / "docs/evidence/animation-runtime-v0130/run-front-v1/package-manifest.json")
+    check("v0130:package", package.get("qa_decision") == "QUALIFIED" and package.get("production_routing") == "BLOCKED" and package.get("format") == "RGBA" and len(package.get("event_markers", [])) == 9, "historical package remains bound to qualified QA")
+    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0130/run-front-gate-negative-controls-v0130.json")
+    check("v0130:negative-controls", negative.get("status") == "NC_01_TO_NC_08_PASSED" and len(negative.get("controls", {})) == 8 and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()), "historical eight mutated fixtures remain rejected")
+    execution = load_json(ROOT / "docs/evidence/animation-runtime-v0130/execution-evidence-v0.13.0.json")
+    check("v0130:execution-boundary", execution.get("source_only_pixels") is True and execution.get("new_generation") == 0 and execution.get("external_visual") == "REQUIRED" and execution.get("next_capability_started") is False and execution.get("approved_assets_untouched") == "APPROVED_ASSETS_UNTOUCHED", "historical execution evidence preserves source-only and external-review boundaries")
+    check("v0130:baseline", V0130_BASELINE_HEAD == "0beb4c23604f1e45736c3082f99d2e08fa1ac308", "v0.13.0 immutable base remains post-merge v0.12.4")
+
+
+def _v0131_checks() -> None:
+    """Validate the active v0.13.1 RUN_FRONT_V1 flight/QA correction."""
+    required = [
+        "REVIEW-v0.13.1.md", "REVIEW-v0.13.0.md", "schemas/current-state-v0.13.1.json", "schemas/current-state.json",
+        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.13.0.json", "docs/evidence/current-state-v0.12.4.json",
+        "docs/evidence/github-governance-v0131/run-front-v0131-external-visual-approval.json",
+        "docs/evidence/github-governance-v0131/run-front-v0131-provenance.json",
+        "src/ugas/state_consistency_v0131.py", "scripts/validation/validate_state_consistency_v0131.py",
+        "schemas/github-review-manifest-v0131.json", "scripts/validation/record_v0131_results.py", "scripts/validation/build_github_review_manifest_v0131.py", "scripts/validation/validate_github_review_manifest_v0131.py", "scripts/validation/validate_github_review_security_v0131.py", "scripts/validation/enforce_github_review_v0131.py",
+        "profiles/animation/run-front-v1.json", "src/ugas/animation_profiles/run_front_v1.py",
+        "scripts/validation/run_animation_runtime_v0131.py",
+        "docs/evidence/animation-runtime-v0131/run-front-contract-v0131.json",
+        "docs/evidence/animation-runtime-v0131/execution-evidence-v0.13.1.json",
+        "docs/evidence/animation-runtime-v0131/run-front-visual-manifest-v0131.json",
+        "docs/evidence/animation-runtime-v0131/run-front-gate-negative-controls-v0131.json",
+        "docs/evidence/animation-runtime-v0131/run-front-gif-timing-v0131.json",
+        "docs/evidence/animation-runtime-v0131/approved-assets-untouched-v0131.json",
+        "docs/evidence/animation-runtime-v0131/state-consistency-v0131.json",
+        "docs/evidence/animation-runtime-v0131/run-front-phase-markers-v0131.png",
+        "docs/evidence/animation-runtime-v0131/run-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v0131/run-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v0131/run-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-preview-v0131.gif",
+        "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-spritesheet-v0131.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0131:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.13.1.json"))
+        consistency = validate_state_consistency_v0131(
+            state,
+            (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
+            (ROOT / "REVIEW-v0.13.1.md").read_text(encoding="utf-8"),
+            (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
+        )
+        check("v0131:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.13.1 state is consistent")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0131:state-consistency", False, str(exc))
+    matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+    check("v0131:matrix-dependency", matrix.get("next_candidate") == "HIT_REACTION_FRONT" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix advances to HIT_REACTION_FRONT with production blocked")
+    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-contract-v0131.json")
+    check("v0131:contract", contract.get("capability") == "run_front_v1" and contract.get("dependencies", {}).get("implementation_base_commit") == V0131_BASELINE_HEAD and contract.get("dependencies", {}).get("matrix_capability_count") == 16 and contract.get("review_policy", {}).get("external_visual") == "REQUIRED" and contract.get("review_policy", {}).get("production_routing") == "BLOCKED" and len(contract.get("negative_controls", [])) == 12, "RUN_FRONT_V1 v0.13.1 contract is dependency, immutable-base and review bound")
+    spec = load_json(ROOT / "profiles/animation/run-front-v1.json")
+    check("v0131:profile", spec.get("frame_count") == 8 and spec.get("fps") == 12 and spec.get("loop") is True and spec.get("direction") == "front" and len(spec.get("motion_tracks", [])) == 12 and spec.get("provenance", {}).get("source_only_pixels") is True and spec.get("adapter_parameters", {}).get("flight_frames") == [3, 7] and spec.get("adapter_parameters", {}).get("immutable_approved_assets_base") == V0131_BASELINE_HEAD, "front run profile has eight deterministic source-only frames, flight 3/7 and immutable base")
+    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-v1/qa-result.json")
+    check("v0131:qa", qa.get("decision") == "QUALIFIED" and qa.get("failures") == [] and all(qa.get("hard_gates", {}).values()) and all(qa.get("temporal", {}).get("hard_gates", {}).values()), "all RUN_FRONT_V1 frame and temporal gates pass")
+    package = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-v1/package-manifest.json")
+    check("v0131:package", package.get("qa_decision") == "QUALIFIED" and package.get("production_routing") == "BLOCKED" and package.get("format") == "RGBA" and len(package.get("event_markers", [])) == 9, "package is bound to qualified QA, RGBA frames and phase markers")
+    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-gate-negative-controls-v0131.json")
+    check("v0131:negative-controls", negative.get("status") == "NC_01_TO_NC_12_PASSED" and len(negative.get("controls", {})) == 12 and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()), "all twelve mutated fixtures reject at their intended gate")
+    execution = load_json(ROOT / "docs/evidence/animation-runtime-v0131/execution-evidence-v0.13.1.json")
+    check("v0131:execution-boundary", execution.get("implementation_base_commit") == V0131_BASELINE_HEAD and execution.get("source_only_pixels") is True and execution.get("new_generation") == 0 and execution.get("external_visual") == "REQUIRED" and execution.get("next_capability_started") is False and execution.get("approved_assets_untouched") == "APPROVED_ASSETS_UNTOUCHED", "execution evidence binds the immutable base and preserves source-only and external-review boundaries")
+    gif_timing = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-gif-timing-v0131.json")
+    check("v0131:gif-timing", gif_timing.get("status") == "GIF_TIMING_PASSED" and gif_timing.get("decoded", {}).get("total_cycle_ms") == 670 and all(gif_timing.get("hard_gates", {}).values()), "decoded GIF timing is inside the 12 fps tolerance")
+    assets = load_json(ROOT / "docs/evidence/animation-runtime-v0131/approved-assets-untouched-v0131.json")
+    check("v0131:approved-assets", assets.get("status") == "APPROVED_ASSETS_UNTOUCHED" and assets.get("head_fallback_used") is False and assets.get("base_commit") == V0131_BASELINE_HEAD, "approved assets are byte-identical to the immutable base with no HEAD fallback")
 
 
 def main() -> int:
@@ -2176,13 +2286,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.12.4", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.12.4.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.12.4")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.13.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.13.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.13.1")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

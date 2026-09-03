@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active v0.13.0 RUN_FRONT_V1 state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "version": {"type": "string"},
+    "phase": {"type": "string"},
+    "previous_release": {"type": "object", "additionalProperties": false, "required": ["version", "review", "evidence"], "properties": {"version": {"type": "string"}, "review": {"type": "string"}, "evidence": {"type": "string"}}},
+    "current_gate": {"type": "string"},
+    "stop_reason": {"type": ["string", "null"]},
+    "allowed_next_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "production_approved": {"type": "boolean"},
+    "production_routing": {"type": "string"},
+    "external_visual_review": {"type": "object", "additionalProperties": false, "required": ["attack_front_v2", "observability_dashboard", "run_front_v1"], "properties": {"attack_front_v2": {"type": "string"}, "observability_dashboard": {"type": "string"}, "run_front_v1": {"type": "string"}}},
+    "always_on_dashboard_policy": {"type": "string"},
+    "runtime_mode": {"type": "string"},
+    "new_generation": {"type": "integer", "minimum": 0},
+    "review": {"type": "object", "additionalProperties": false, "required": ["repository", "baseline_head", "feature_branch", "execution_mode", "merge_policy", "no_self_merge_until_external_approval", "direct_main_push_forbidden", "pr_number", "pr_state", "real_pr_checks_green"], "properties": {"repository": {"type": "string"}, "baseline_head": {"type": "string", "minLength": 40}, "feature_branch": {"type": "string"}, "execution_mode": {"type": "string"}, "merge_policy": {"type": "string"}, "no_self_merge_until_external_approval": {"type": "boolean"}, "direct_main_push_forbidden": {"type": "boolean"}, "pr_number": {"type": "integer", "minimum": 0}, "pr_state": {"type": "string"}, "real_pr_checks_green": {"type": "boolean"}}},
+    "incident": {"type": "object", "additionalProperties": true},
+    "evidence": {"type": "object", "additionalProperties": true},
+    "state_consistency": {"type": "object", "additionalProperties": true}
+  }
+}

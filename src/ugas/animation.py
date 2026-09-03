@@ -108,6 +108,62 @@ def normalized_timing(spec: Mapping[str, Any]) -> dict[str, float]:
     return {"fps": 1000.0 / duration, "per_frame_duration_ms": duration}
 
 
+def gif_frame_durations_ms(spec: Mapping[str, Any]) -> list[int]:
+    """Return GIF encoder durations in milliseconds (centisecond-valid values)."""
+    count = int(spec["frame_count"])
+    declared = (spec.get("package_profile") or {}).get("gif_frame_durations_ms")
+    if declared is not None:
+        values = [int(item) for item in declared]
+        if len(values) != count:
+            raise AnimationContractError("gif_frame_durations_ms_length_mismatch")
+        if any(value <= 0 or value % 10 != 0 for value in values):
+            raise AnimationContractError("gif_frame_durations_ms_must_be_positive_centiseconds")
+        return values
+    duration = int(round(normalized_timing(spec)["per_frame_duration_ms"] / 10.0)) * 10
+    return [max(20, duration)] * count
+
+
+def decode_gif_timing(path: Path) -> dict[str, Any]:
+    """Decode actual GIF frame durations after encode; durations are milliseconds."""
+    with Image.open(path) as image:
+        frame_count = int(getattr(image, "n_frames", 1) or 1)
+        loop = image.info.get("loop", 1)
+        durations = []
+        for index in range(frame_count):
+            image.seek(index)
+            durations.append(int(image.info.get("duration", 0)))
+    total = int(sum(durations))
+    return {
+        "frame_count": frame_count,
+        "loop": loop,
+        "durations_ms": durations,
+        "total_cycle_ms": total,
+        "effective_fps": round((1000.0 * frame_count / total), 6) if total else 0.0,
+    }
+
+
+def gif_timing_within_tolerance(spec: Mapping[str, Any], decoded: Mapping[str, Any]) -> dict[str, Any]:
+    """Fail closed if encoded GIF cadence is outside the declared tolerance."""
+    timing = (spec.get("package_profile") or {}).get("gif_timing") or {}
+    total_min = timing.get("total_cycle_ms_min")
+    total_max = timing.get("total_cycle_ms_max")
+    fps_min = timing.get("effective_fps_min")
+    fps_max = timing.get("effective_fps_max")
+    gates = {
+        "declared_timing_present": all(isinstance(value, (int, float)) and math.isfinite(float(value)) for value in (total_min, total_max, fps_min, fps_max)),
+        "frame_count": int(decoded.get("frame_count") or 0) == int(spec["frame_count"]),
+        "loop_enabled": decoded.get("loop") in {0, "0"},
+        "total_cycle_in_tolerance": False,
+        "effective_fps_in_tolerance": False,
+    }
+    if gates["declared_timing_present"]:
+        total = float(decoded.get("total_cycle_ms") or 0)
+        fps = float(decoded.get("effective_fps") or 0)
+        gates["total_cycle_in_tolerance"] = float(total_min) <= total <= float(total_max)
+        gates["effective_fps_in_tolerance"] = float(fps_min) <= fps <= float(fps_max)
+    return {"decoded": dict(decoded), "hard_gates": gates, "status": "GIF_TIMING_PASSED" if all(gates.values()) else "GIF_TIMING_GAP"}
+
+
 def event_markers_for_spec(spec: Mapping[str, Any]) -> list[dict[str, Any]]:
     """Return the frozen, profile-agnostic timeline markers."""
     markers = spec.get("event_markers", [])
@@ -305,16 +361,27 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
         sheet.alpha_composite(image.resize((cell_w, cell_h), Image.Resampling.LANCZOS), ((index % columns) * cell_w, (index // columns) * cell_h))
     sprite_path = manifest_path.parent / str(profile.get("sprite_name", "spritesheet.png"))
     sheet.save(sprite_path, format="PNG", optimize=False)
-    timing = normalized_timing(spec)
-    fps, duration = timing["fps"], timing["per_frame_duration_ms"]
+    gif_durations = gif_frame_durations_ms(spec)
     gif_path = manifest_path.parent / str(profile.get("gif_name", "preview.gif"))
     gif_frames = [_checkerboard(image).convert("RGB") for image in images]
-    gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=int(round(duration)), loop=0, disposal=2, optimize=False)
+    gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=gif_durations, loop=0, disposal=2, optimize=False)
+    decoded_gif = decode_gif_timing(gif_path)
+    gif_check = gif_timing_within_tolerance(spec, decoded_gif)
+    if (spec.get("package_profile") or {}).get("gif_timing") and gif_check["status"] != "GIF_TIMING_PASSED":
+        raise AnimationContractError(f"gif_timing_outside_tolerance:{gif_check}")
+    encoded_average = (decoded_gif["total_cycle_ms"] / max(1, decoded_gif["frame_count"])) if decoded_gif["frame_count"] else 0.0
+    fps, duration = decoded_gif["effective_fps"], encoded_average
+    gif_fields = {
+        "gif_encoded_frame_durations_ms": decoded_gif["durations_ms"],
+        "gif_total_cycle_ms": decoded_gif["total_cycle_ms"],
+        "gif_effective_fps": decoded_gif["effective_fps"],
+        "gif_nominal_fps": float(spec["fps"]) if "fps" in spec else decoded_gif["effective_fps"],
+    }
     metadata_path = manifest_path.parent / "metadata.json"
-    metadata = {"schema_version": "animation-package-1.0", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "format": "RGBA", "frames": manifest["frames"], "parameters_frozen_before_render": True, "adapter_metadata": dict(qa.get("package_metadata", {}))}
+    metadata = {"schema_version": "animation-package-1.0", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "format": "RGBA", "frames": manifest["frames"], "parameters_frozen_before_render": True, "adapter_metadata": dict(qa.get("package_metadata", {})), **gif_fields}
     metadata.update(expected_motion_tracks)
     metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    package = {"schema_version": "animation-package-1.0", "package_id": f"ugas-{spec['animation_id']}-package", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "format": "RGBA", "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "sprite_sheet": {"path": _relative(sprite_path, root), "sha256": digest_file(sprite_path)}, "metadata": {"path": _relative(metadata_path, root), "sha256": digest_file(metadata_path)}, "preview_gif": {"path": _relative(gif_path, root), "sha256": digest_file(gif_path)}, "registry_state": "pilot/technical-qualified", "production_approved": False, "production_routing": "BLOCKED", "qa_status": qa["status"], "qa_decision": qa["decision"], "adapter_metadata": dict(qa.get("package_metadata", {})), "source_rig_revision": spec["asset_revision_id"], "source_rig_sha256": digest_file(root / spec["source_rig_ref"]), "r4_source_sha256": spec["provenance"]["source_sha256"]}
+    package = {"schema_version": "animation-package-1.0", "package_id": f"ugas-{spec['animation_id']}-package", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "format": "RGBA", "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "sprite_sheet": {"path": _relative(sprite_path, root), "sha256": digest_file(sprite_path)}, "metadata": {"path": _relative(metadata_path, root), "sha256": digest_file(metadata_path)}, "preview_gif": {"path": _relative(gif_path, root), "sha256": digest_file(gif_path)}, "registry_state": "pilot/technical-qualified", "production_approved": False, "production_routing": "BLOCKED", "qa_status": qa["status"], "qa_decision": qa["decision"], "adapter_metadata": dict(qa.get("package_metadata", {})), "source_rig_revision": spec["asset_revision_id"], "source_rig_sha256": digest_file(root / spec["source_rig_ref"]), "r4_source_sha256": spec["provenance"]["source_sha256"], **gif_fields}
     package.update(expected_motion_tracks)
     package_path = manifest_path.parent / "package-manifest.json"
     package_path.write_text(json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

@@ -57,6 +57,10 @@
     "adapter_metadata": {"type": "object"},
     "source_rig_revision": {"type": "string"},
     "source_rig_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-    "r4_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    "r4_source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "gif_encoded_frame_durations_ms": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+    "gif_total_cycle_ms": {"type": "number", "minimum": 0},
+    "gif_effective_fps": {"type": "number", "exclusiveMinimum": 0},
+    "gif_nominal_fps": {"type": "number", "exclusiveMinimum": 0}
   }
 }

@@ -27,8 +27,11 @@ def main() -> int:
     if ids.index("github_native_review_infrastructure") >= ids.index("run_front_v1"):
         failures.append("run-front-must-follow-review-infrastructure")
     run_front = next(item for item in capabilities if item["id"] == "run_front_v1")
-    if run_front["status"] != "NEXT NECESSARY" or value["next_candidate"] != "RUN_FRONT_V1":
-        failures.append("next-candidate-is-not-run-front-v1")
+    hit_reaction = next(item for item in capabilities if item["id"] == "hit_reaction_front")
+    if run_front["status"] != "APPROVED_PILOT":
+        failures.append("run-front-must-be-approved-pilot")
+    if hit_reaction["status"] != "NEXT NECESSARY" or value["next_candidate"] != "HIT_REACTION_FRONT":
+        failures.append("next-candidate-is-not-hit-reaction-front")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}

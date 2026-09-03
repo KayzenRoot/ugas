@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.13.0",
+  "animation_id": "run-front-v1",
+  "status": "RUN_CADENCE_PHASE_PASSED",
+  "phase_order": [
+    "R0-contact-left",
+    "R1-support-left",
+    "R2-passing-left",
+    "R3-flight-left",
+    "R4-contact-right",
+    "R5-support-right",
+    "R6-passing-right",
+    "R7-flight-right"
+  ],
+  "contact_frames": [
+    0,
+    4
+  ],
+  "passing_frames": [
+    2,
+    6
+  ],
+  "flight_frames": [
+    3,
+    7
+  ],
+  "cadence_phase": {
+    "left_stride_x": [
+      0.0,
+      0.0,
+      8.0,
+      12.0,
+      8.0,
+      4.0,
+      0.0,
+      0.0
+    ],
+    "right_stride_x": [
+      0.0,
+      4.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      8.0,
+      0.0
+    ],
+    "hard_gates": {
+      "left_passing_excursion": true,
+      "right_passing_excursion": true,
+      "left_and_right_passing_are_distinct": true
+    }
+  }
+}

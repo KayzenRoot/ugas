@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.13.0",
+  "validator": "src/ugas/state_consistency_v0130.py",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.13.0",
+    "phase": "RUN_FRONT_V1",
+    "current_gate": "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.13.0-run-front-v1",
+    "baseline_head": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "next_action": [
+      "external_visual_review_run_front_v1"
+    ],
+    "external_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "new_generation": 0
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "animation-spec-1.0",
+  "animation_id": "run-front-v1",
+  "asset_revision_id": "r4-cutout-rig-v071",
+  "direction": "front",
+  "frame_count": 8,
+  "fps": 12,
+  "loop": true,
+  "event_markers": [
+    {"event_id": "left_contact", "frame": 0, "kind": "contact"},
+    {"event_id": "left_support", "frame": 1, "kind": "support"},
+    {"event_id": "left_passing", "frame": 2, "kind": "passing"},
+    {"event_id": "left_flight", "frame": 3, "kind": "flight"},
+    {"event_id": "right_contact", "frame": 4, "kind": "contact"},
+    {"event_id": "right_support", "frame": 5, "kind": "support"},
+    {"event_id": "right_passing", "frame": 6, "kind": "passing"},
+    {"event_id": "loop_closure", "frame": 7, "kind": "loop-closure"},
+    {"event_id": "right_flight", "frame": 7, "kind": "flight"}
+  ],
+  "motion_tracks": [
+    {"track_id": "root_shift_x", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": 6}, {"frame": 2, "value": 12}, {"frame": 3, "value": 6}, {"frame": 4, "value": 0}, {"frame": 5, "value": -6}, {"frame": 6, "value": -12}, {"frame": 7, "value": 0}], "clamp_policy": "clamp"},
+    {"track_id": "root_shift_y", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": -3}, {"frame": 2, "value": -2}, {"frame": 3, "value": -9}, {"frame": 4, "value": 0}, {"frame": 5, "value": 2}, {"frame": 6, "value": -2}, {"frame": 7, "value": -3}], "clamp_policy": "clamp"},
+    {"track_id": "torso_rotation_deg", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": 2}, {"frame": 2, "value": 4}, {"frame": 3, "value": 2}, {"frame": 4, "value": 0}, {"frame": 5, "value": -2}, {"frame": 6, "value": -4}, {"frame": 7, "value": 0}], "clamp_policy": "clamp"},
+    {"track_id": "torso_lean_x", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": 1}, {"frame": 2, "value": 2}, {"frame": 3, "value": 1}, {"frame": 4, "value": 0}, {"frame": 5, "value": -1}, {"frame": 6, "value": -2}, {"frame": 7, "value": 0}], "clamp_policy": "clamp"},
+    {"track_id": "left_arm_swing_deg", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": 8}, {"frame": 2, "value": 12}, {"frame": 3, "value": 6}, {"frame": 4, "value": 0}, {"frame": 5, "value": -8}, {"frame": 6, "value": -12}, {"frame": 7, "value": 0}], "clamp_policy": "clamp"},
+    {"track_id": "right_arm_swing_deg", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": -8}, {"frame": 2, "value": -12}, {"frame": 3, "value": -6}, {"frame": 4, "value": 0}, {"frame": 5, "value": 8}, {"frame": 6, "value": 12}, {"frame": 7, "value": 0}], "clamp_policy": "clamp"},
+    {"track_id": "head_counter_rotation_deg", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": -2}, {"frame": 1, "value": -1}, {"frame": 2, "value": 0}, {"frame": 3, "value": 1}, {"frame": 4, "value": 2}, {"frame": 5, "value": 1}, {"frame": 6, "value": 0}, {"frame": 7, "value": -1}], "clamp_policy": "clamp"},
+    {"track_id": "sword_rotation_deg", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 10}, {"frame": 1, "value": 10}, {"frame": 2, "value": 30}, {"frame": 3, "value": 30}, {"frame": 4, "value": 10}, {"frame": 5, "value": 10}, {"frame": 6, "value": 10}, {"frame": 7, "value": 10}], "clamp_policy": "clamp"},
+    {"track_id": "left_stride_x", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": 0}, {"frame": 2, "value": 8}, {"frame": 3, "value": 12}, {"frame": 4, "value": 8}, {"frame": 5, "value": 4}, {"frame": 6, "value": 0}, {"frame": 7, "value": 0}], "clamp_policy": "clamp"},
+    {"track_id": "right_stride_x", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": 4}, {"frame": 2, "value": 0}, {"frame": 3, "value": 0}, {"frame": 4, "value": 0}, {"frame": 5, "value": 0}, {"frame": 6, "value": 8}, {"frame": 7, "value": 0}], "clamp_policy": "clamp"},
+    {"track_id": "left_lift_y", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": 0}, {"frame": 1, "value": 0}, {"frame": 2, "value": -10}, {"frame": 3, "value": -18}, {"frame": 4, "value": -4}, {"frame": 5, "value": 0}, {"frame": 6, "value": 0}, {"frame": 7, "value": -16}], "clamp_policy": "clamp"},
+    {"track_id": "right_lift_y", "value_type": "scalar", "interpolation": "linear", "keyframes": [{"frame": 0, "value": -4}, {"frame": 1, "value": 0}, {"frame": 2, "value": 0}, {"frame": 3, "value": -16}, {"frame": 4, "value": 0}, {"frame": 5, "value": 0}, {"frame": 6, "value": -10}, {"frame": 7, "value": -18}], "clamp_policy": "clamp"}
+  ],
+  "source_rig_ref": "docs/evidence/r4-cutout-rig-v071.json",
+  "key_pose_bindings": [
+    {"frame": 0, "phase": "R0-contact-left", "target_hash": "318ce6ef3e108b85acfb484c35463c83f695dc1fbf09d9a0c8a6191aa5213260"},
+    {"frame": 2, "phase": "R2-passing-left", "target_hash": "2dd08d500ec4d3374336cc5d96d83f5a6727b1ab0718b7ed6e804c6fd089bbdf"},
+    {"frame": 4, "phase": "R4-contact-right", "target_hash": "73f29485d8a8b0bf842827dff5aefb28b36ee6c457d6a76f6f701640c0c06532"},
+    {"frame": 6, "phase": "R6-passing-right", "target_hash": "d66c70e4de7ccbcea78539417eae8ac3e2977d9810d111fb9e0712e978908a07"}
+  ],
+  "interpolation_profile": {"method": "linear-declarative-tracks-then-source-calibrated-two-bone-projection", "parameters_frozen_before_render": true, "parameters": {"pixel_interpolation": false, "image_inputs_used": false, "track_sampling_before_first_png": true}},
+  "root_motion_profile": {"method": "source-anchored-running-root-bob-and-horizontal-excursion", "limits": {"horizontal_range_px": 22, "vertical_range_px": 15, "loop_root_step_px": 8}},
+  "foot_policy": {"method": "source-alpha-sole-anchor-with-contact-window-and-flight-clearance", "both_feet_required": true, "limits": {"contact_ankle_slip_max_px": 2.5, "sole_error_max_px": 3.0, "ground_penetration_max_px": 1.5, "swing_clearance_min_px": 4.0, "flight_clearance_min_px": 8.0}},
+  "z_order_profile": {"method": "constant-approved-front-cutout-depth-plan", "switches_allowed": false, "constant_order": ["right_shin_foot", "right_thigh", "left_forearm_hand", "left_upper_arm", "torso_pelvis", "left_thigh", "left_shin_foot", "right_upper_arm", "right_forearm_hand", "head", "sword"]},
+  "presentation_transform": {"method": "single-global-uniform-scale-and-translation", "uniform_scale": 0.9, "anchor": {"x": 256, "y": 256}, "translation": {"x": 0, "y": 0}, "frozen_before_render": true},
+  "qa_profile": {"profile_id": "run-front-v1-independent-gates", "feature_flags": {"schema": true, "tracks": true, "loop_closure": true, "cadence": true, "foot_ground": true, "flight_clearance": true, "body_root": true, "opposition": true, "continuity": true, "package_integrity": true, "negative_controls": true}, "thresholds": {"alpha_safe_margin_px": 24, "sole_error_max_px": 3.0, "ground_penetration_max_px": 1.5, "swing_clearance_min_px": 4.0, "swing_ground_depth_px": 26.0, "flight_clearance_min_px": 8.0, "contact_ankle_slip_max_px": 2.5, "minimum_stride_excursion_px": 4.0, "root_path_min_px": 45.0, "root_horizontal_range_min_px": 20.0, "root_vertical_range_min_px": 10.0, "run_vs_walk_path_ratio_min": 3.0, "torso_rotation_range_min_deg": 4.0, "opposition_transition_min_count": 4, "joint_angle_step_max_deg": 42.0, "angular_acceleration_max_deg_per_frame2": 70.0, "loop_joint_step_max_px": 38.0, "loop_root_step_max_px": 8.0, "foreground_height_variation_max": 0.12}},
+  "package_profile": {"cell_size": {"width": 512, "height": 512}, "columns": 4, "rows": 2, "format": "RGBA", "gif_review_only": true, "sprite_name": "run-front-spritesheet-v0131.png", "gif_name": "run-front-preview-v0131.gif", "gif_frame_durations_ms": [80, 90, 80, 90, 80, 90, 80, 80], "gif_timing": {"total_cycle_ms_min": 660, "total_cycle_ms_max": 680, "effective_fps_min": 11.7, "effective_fps_max": 12.2}},
+  "provenance": {"source_image": "docs/evidence/reference-edit-selected-transparent.png", "source_parts_dir": "docs/evidence/r4-cutout-parts-v071", "source_masks_dir": "docs/evidence/r4-cutout-refined-masks-v071", "source_skeleton": "docs/evidence/r4-source-skeleton-v071.json", "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798", "source_manifests": ["docs/evidence/r4-cutout-rig-v071.json", "docs/evidence/r4-cutout-refined-masks-v071-manifest.json"], "sam2_used": false, "comfyui_generation_jobs": 0, "diffusion_used": false, "source_only_pixels": true},
+  "forbidden_operations": ["sam2_rerun", "comfyui_generation", "diffusion", "controlnet", "ip_adapter", "pixel_interpolation", "manual_pixel_edit", "production_routing", "hit_reaction_front", "death_animation_front", "multi_direction_animation_runtime", "equipment_outfits", "creatures_monsters", "items_props", "environment_tilesets", "ui_asset_family", "vfx_asset_family"],
+  "runtime_adapter": "ugas.animation_profiles.run_front_v1",
+  "adapter_parameters": {"contract_ref": "docs/evidence/animation-runtime-v0131/run-front-contract-v0131.json", "contact_frames": [0, 4], "contact_sides": ["left", "right"], "passing_frames": [2, 6], "flight_frames": [3, 7], "source_asset_policy": "reuse-approved-r4-cutout-without-pixel-modification", "immutable_approved_assets_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308"}
+}

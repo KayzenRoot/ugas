@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.13.0",
+  "contract_id": "run-front-v1-source-only-contract",
+  "capability": "run_front_v1",
+  "target": "RUN_FRONT_V1",
+  "dependencies": {
+    "matrix_next_candidate": "RUN_FRONT_V1",
+    "matrix_capability_count": 16,
+    "matrix_production_routing": "BLOCKED",
+    "matrix_new_generation": 0,
+    "required_source_rig": "r4-cutout-rig-v071",
+    "required_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "required_runtime": "generic-animation-runtime-v1"
+  },
+  "source_policy": {
+    "source_only_pixels": true,
+    "sam2_runs": 0,
+    "comfyui_generation_jobs": 0,
+    "diffusion_runs": 0,
+    "canonical_assets_immutable": true,
+    "new_generation": 0,
+    "forbidden": ["HIT_REACTION_FRONT", "DEATH_ANIMATION_FRONT", "multi_direction", "equipment", "creatures", "items", "environments", "ui", "vfx", "production_routing"]
+  },
+  "phase_contract": {
+    "frame_count": 8,
+    "fps": 12,
+    "contact_frames": [0, 4],
+    "contact_sides": ["left", "right"],
+    "passing_frames": [2, 6],
+    "flight_frames": [3, 7],
+    "loop_edge": [7, 0],
+    "opposite_contact_half_cycle": true
+  },
+  "quality_gates": {
+    "schema_and_track_validity": true,
+    "loop_closure": true,
+    "cadence_and_phase_alternation": true,
+    "foot_ground_and_contact": true,
+    "body_root_participation": true,
+    "arm_leg_opposition": true,
+    "continuity_and_interpolation": true,
+    "package_integrity": true
+  },
+  "negative_controls": [
+    "break_loop",
+    "zero_root_and_torso",
+    "foot_slide",
+    "duplicate_leg_phase",
+    "invert_arm_opposition",
+    "angular_jump",
+    "remove_dependency_hash",
+    "false_gate_in_package"
+  ],
+  "review_policy": {
+    "external_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "pr_merge": "FORBIDDEN",
+    "next_capability": "NOT_STARTED"
+  }
+}

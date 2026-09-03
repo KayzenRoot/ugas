@@ -1,6 +1,6 @@
-# 2D master pipeline v0.12.4
+# 2D master pipeline v0.13.1
 
-The active slice is `GITHUB_CI_GOVERNANCE_RECOVERY` for v0.12.4: GitHub-first corrective PR governance, immutable incident evidence and CI/no-Git snapshot integrity. `DOCKER_ALWAYS_ON_LOCAL` remains online for the read-only dashboard, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` is not executed. The only next action is `external_review_github_ci_governance_v0124`; v0.12.3 below is preserved historical context.
+The active slice is `RUN_FRONT_V1` for v0.13.1: a GitHub-first, source-only deterministic front run after the authorized v0.12.4 merge and the rejected v0.13.0 visual review. It has eight frames at 12 fps, twelve declarative tracks, real airborne frames 3 and 7, fail-closed body, foot, flight, opposition, continuity, loop, immutable-base asset and GIF-timing gates. `DOCKER_ALWAYS_ON_LOCAL` remains online, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `external_visual=REQUIRED`; v0.13.0 and v0.12.4 below are preserved historical context.
 
 The active release is v0.12.3 GitHub-native review infrastructure over the historical v0.12.2 Docker always-on observer and rejected v0.12.1/v0.12.0 dashboards. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
 

@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.13.1",
+  "record_type": "run_front_v0131_superseding_provenance",
+  "implementation_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "rejected_reviewed_head": "c658a2984bbee7c0b257b7537e840c07a80eee1e",
+  "final_approved_head": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+  "rejected_attempt": {
+    "version": "0.13.0",
+    "classification": "REJECTED_HISTORICAL_ATTEMPT",
+    "review": "REVIEW-v0.13.0.md",
+    "state": "docs/evidence/current-state-v0.13.0.json",
+    "evidence": "docs/evidence/animation-runtime-v0130/",
+    "is_previous_approved_release": false
+  },
+  "previous_approved_release": {
+    "version": "0.12.4",
+    "review": "REVIEW-v0.12.4.md",
+    "state": "docs/evidence/current-state-v0.12.4.json",
+    "merge_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308"
+  },
+  "approved_pilot": {
+    "version": "0.13.1",
+    "classification": "APPROVED_PILOT",
+    "review": "REVIEW-v0.13.1.md",
+    "pr_number": 3,
+    "technical_evidence": "docs/evidence/animation-runtime-v0131/",
+    "decision": "APPROVED_PILOT / APPROVED_TO_MERGE"
+  },
+  "immutable_historical_evidence_edited": false
+}

@@ -1,6 +1,18 @@
-# UGAS checkpoint - v0.12.4
+# UGAS checkpoint - v0.13.1
 
-## v0.12.4 GitHub CI and governance recovery
+## v0.13.1 RUN_FRONT_V1 approved pilot / APPROVED_TO_MERGE
+
+The active phase is RUN_FRONT_V1 and the technical gate remains CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED. Sol external review recorded run_front_v1=APPROVED_PILOT and APPROVED_TO_MERGE for PR #3 at exact head f3d68faa5524392e66aee2fc2a450b9da8fa734b. The last approved release before this merge is 0.12.4; v0.13.0 is a rejected historical attempt, not a previous approved release. The immutable implementation base is 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=HIT_REACTION_FRONT.
+
+v0.13.1 technical evidence under docs/evidence/animation-runtime-v0131/ is frozen and not rewritten. The forward-only approval and provenance records are under docs/evidence/github-governance-v0131/. new_generation=0, production_approved=false, production_routing=BLOCKED.
+
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The only allowed next action is hit_reaction_front after the governed merge of PR #3. Do not enable production or start DEATH_ANIMATION_FRONT.
+
+## Historical v0.13.0 RUN_FRONT_V1
+
+The v0.13.0 slice produced a technically qualified eight-frame front run under docs/evidence/animation-runtime-v0130/, but external visual review rejected it: frames 3 and 7 were declared flight while a support foot remained planted, approved-asset identity compared the worktree to HEAD, the GIF claimed 12 fps while encoding 80 ms frames, and execution evidence bound the current HEAD instead of the immutable base. That evidence is frozen historical rejected/failed-external-review material and is not rewritten.
+
+## Historical v0.12.4 GitHub CI and governance recovery
 
 The active phase is `GITHUB_CI_GOVERNANCE_RECOVERY` and the gate is `GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED`: PR #2 is open at the reviewed head with all required GitHub checks green. It remains open for external Sol review and is not merged. The branch is `codex/v0.12.4-github-ci-governance-recovery` from remote main baseline `877ede34afadd631764887ad6c5fb941ca4371a8`. `GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY`, `GITHUB_REVIEW_MODE=PR_FIRST`, `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, and `DOCKER_ALWAYS_ON_LOCAL` are authoritative.
 
