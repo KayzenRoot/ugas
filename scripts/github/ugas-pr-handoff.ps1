@@ -84,7 +84,8 @@ if ($failures.Count -gt 0) {
     exit 1
 }
 
-$prs = Invoke-GhJson @('pr', 'list', '--repo', $Repository, '--state', 'open', '--base', $Base, '--head', $branchValue, '--json', 'number,url,state,headRefOid,baseRefName')
+$headFilter = if ($Repository -match '^([^/]+)/([^/]+)$') { "$($Matches[1]):$branchValue" } else { $branchValue }
+$prs = Invoke-GhJson @('pr', 'list', '--repo', $Repository, '--state', 'open', '--base', $Base, '--head', $headFilter, '--json', 'number,url,state,headRefOid,baseRefName')
 if ($prs.code -ne 0) {
     Write-Result @{ schema_version = '0.12.4'; status = 'GITHUB_PR_CREATE_GAP'; repository = $Repository; branch = $branchValue; head_sha = $headSha; reason = 'gh_pr_list_failed'; detail = $prs.raw; credential_values_recorded = $false }
     exit 3
@@ -101,13 +102,24 @@ The executor leaves this PR open. No merge is authorized before explicit Sol app
 '@
     $createdResult = Invoke-GhJson @('pr', 'create', '--repo', $Repository, '--base', $Base, '--head', $branchValue, '--title', 'v0.12.4 GitHub CI and governance recovery', '--body', $body)
     if ($createdResult.code -ne 0) {
-        Write-Result @{ schema_version = '0.12.4'; status = 'GITHUB_PR_CREATE_GAP'; repository = $Repository; branch = $branchValue; head_sha = $headSha; reason = 'gh_pr_create_failed'; detail = $createdResult.raw; credential_values_recorded = $false }
-        exit 3
+        if ($createdResult.raw -match 'already exists') {
+            $prs = Invoke-GhJson @('pr', 'list', '--repo', $Repository, '--state', 'open', '--base', $Base, '--head', $headFilter, '--json', 'number,url,state,headRefOid,baseRefName')
+            if ($prs.code -eq 0 -and $prs.value -and $prs.value.Count -gt 0) {
+                $pr = $prs.value[0]
+            } else {
+                Write-Result @{ schema_version = '0.12.4'; status = 'GITHUB_PR_CREATE_GAP'; repository = $Repository; branch = $branchValue; head_sha = $headSha; reason = 'gh_pr_create_failed_existing_pr_unresolved'; detail = $createdResult.raw; credential_values_recorded = $false }
+                exit 3
+            }
+        } else {
+            Write-Result @{ schema_version = '0.12.4'; status = 'GITHUB_PR_CREATE_GAP'; repository = $Repository; branch = $branchValue; head_sha = $headSha; reason = 'gh_pr_create_failed'; detail = $createdResult.raw; credential_values_recorded = $false }
+            exit 3
+        }
+    } else {
+        $prUrl = [regex]::Match($createdResult.raw, 'https://github\.com/[^\s]+/pull/\d+').Value
+        $prNumber = [int]([regex]::Match($prUrl, '/pull/(\d+)$').Groups[1].Value)
+        $pr = @{ number = $prNumber; url = $prUrl; state = 'OPEN'; headRefOid = $headSha; baseRefName = $Base }
+        $created = $true
     }
-    $prUrl = [regex]::Match($createdResult.raw, 'https://github\.com/[^\s]+/pull/\d+').Value
-    $prNumber = [int]([regex]::Match($prUrl, '/pull/(\d+)$').Groups[1].Value)
-    $pr = @{ number = $prNumber; url = $prUrl; state = 'OPEN'; headRefOid = $headSha; baseRefName = $Base }
-    $created = $true
 }
 $prNumber = [int]$pr.number
 $prView = Invoke-GhJson @('pr', 'view', $prNumber, '--repo', $Repository, '--json', 'number,url,state,headRefOid,baseRefOid,baseRefName,headRefName')

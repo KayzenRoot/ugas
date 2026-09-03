@@ -2,11 +2,17 @@
   "schema_version": "0.12.4",
   "repository": "csn1985-ship-it/ugas",
   "target_branch": "main",
-  "status": "NOT_CONFIGURED_AUTH_REQUIRED",
+  "status": "NOT_CONFIGURED",
   "protected": false,
   "rulesets": [],
   "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"],
-  "readback_source": "GitHub API/CLI readback is required before claiming protection",
+  "readback_source": "GitHub API readback after authenticated gh token; create attempt returned HTTP 422 Validation Failed",
   "capability_gap": "RULESET_CAPABILITY_GAP",
+  "create_attempt": {
+    "attempted": true,
+    "http_status": 422,
+    "error": "gh: Validation Failed (HTTP 422)",
+    "ruleset_name": "UGAS main PR protection v0.12.4"
+  },
   "credential_values_recorded": false
 }
