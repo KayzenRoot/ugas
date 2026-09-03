@@ -45,6 +45,8 @@ def validate_workflow(path: Path, *, kind: str) -> dict[str, Any]:
             failures.append("docker-smoke-runner-cleanup-missing")
         if "docker compose -f compose.yaml down" in text or "--volumes" in text:
             failures.append("persistent-dashboard-teardown-forbidden")
+        if re.search(r"UGAS_RUNTIME_PATH:\s*\$\{\{\s*runner\.", text):
+            failures.append("job-env-runner-context-invalid")
     elif kind == "review":
         if "UGAS Review / evidence" not in text:
             failures.append("stable-review-job-missing")

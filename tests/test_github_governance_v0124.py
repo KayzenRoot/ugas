@@ -68,6 +68,15 @@ class GithubGovernanceRecoveryTests(unittest.TestCase):
             result = workflow_validator.validate_workflow(path, kind="ci")
             self.assertEqual("FAIL", result["status"])
 
+    def test_wf_nc_01_job_env_runner_context_is_rejected(self) -> None:
+        text = (ROOT / ".github/workflows/ugas-ci.yml").read_text(encoding="utf-8")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "invalid-runner.yml"
+            path.write_text(text.replace("${{ github.workspace }}/.ci-ugas-runtime", "${{ runner.temp }}/ugas-runtime"), encoding="utf-8")
+            result = workflow_validator.validate_workflow(path, kind="ci")
+            self.assertEqual("FAIL", result["status"])
+            self.assertIn("job-env-runner-context-invalid", result["failures"])
+
     def test_state_nc_01_production_and_generation_are_blocked(self) -> None:
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
