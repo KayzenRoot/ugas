@@ -2,7 +2,7 @@
 
 ## Active decision
 
-The active capability is `DEATH_ANIMATION_FRONT` on `codex/v0.15.0-death-animation-front`, based on main merge commit `98ebd95564216fbbee222aab630b73b5ff6f298d`. The technical gate is `CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED`. The eight-frame front pilot is source-only, deterministic, 12 fps and non-looping. `CAPABILITY_COUNT=16`, `next_candidate=DEATH_ANIMATION_FRONT`, and `death_animation_front=REQUIRED` for external visual review; this document does not grant approval.
+The active capability is `DEATH_ANIMATION_FRONT` on `codex/v0.15.0-death-animation-front`, based on main merge commit `98ebd95564216fbbee222aab630b73b5ff6f298d`. The technical gate is `CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED`. The eight-frame front pilot is source-only, deterministic, 12 fps and non-looping. `CAPABILITY_COUNT=16`, `next_candidate=DEATH_ANIMATION_FRONT`, and `death_animation_front=REQUIRED` for external visual review; this document does not grant approval. [PR #5](https://github.com/csn1985-ship-it/ugas/pull/5) is OPEN at head `00483643e071a948ddd7f2b288181edf9e09471d`.
 
 PR #4 for `HIT_REACTION_FRONT` is `MERGED` at `98ebd95564216fbbee222aab630b73b5ff6f298d`, with merged head `761ed5296e05571fdfbed1da04cfb7815049fa87` and technical-approved head `a3e37865f260c5a6cd56743e1d4b9131fcb12cda`. `HIT_REACTION_FRONT=APPROVED_PILOT` and `RUN_FRONT_V1=APPROVED_PILOT` remain historical pilot decisions; the approved RUN head is `f3d68faa5524392e66aee2fc2a450b9da8fa734b`.
 

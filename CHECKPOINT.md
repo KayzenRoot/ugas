@@ -2,7 +2,7 @@
 
 ## v0.15.0 DEATH_ANIMATION_FRONT — in progress (PR open, awaiting Sol review)
 
-The active phase is DEATH_ANIMATION_FRONT on branch codex/v0.15.0-death-animation-front. PR #4 is MERGED at merge_commit=98ebd95564216fbbee222aab630b73b5ff6f298d (merged_head=761ed5296e05571fdfbed1da04cfb7815049fa87, technical_approved_head=a3e37865f260c5a6cd56743e1d4b9131fcb12cda). The new v0.15.0 PR is NOT_CREATED locally and must be opened automatically after the final local gates; then it must remain OPEN for Sol review. Do not merge v0.15.0 without Sol approval.
+The active phase is DEATH_ANIMATION_FRONT on branch codex/v0.15.0-death-animation-front. PR #4 is MERGED at merge_commit=98ebd95564216fbbee222aab630b73b5ff6f298d (merged_head=761ed5296e05571fdfbed1da04cfb7815049fa87, technical_approved_head=a3e37865f260c5a6cd56743e1d4b9131fcb12cda). The v0.15.0 PR is OPEN as [PR #5](https://github.com/csn1985-ship-it/ugas/pull/5) at head 00483643e071a948ddd7f2b288181edf9e09471d and awaiting the required checks before Sol review. Do not merge v0.15.0 without Sol approval.
 
 **Integrity repair:** A post-merge bookkeeping commit (761ed529...) mutated docs/evidence/animation-runtime-v0141/state-consistency-v0141.json inside the frozen evidence directory. The file has been restored byte-identically to the approved head (git blob 9bbc85bd...). A forward-only repair provenance record is at docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json. Git history is not rewritten.
 
