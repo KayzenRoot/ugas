@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.14.1",
+  "pr_number": 4,
+  "pr_state": "OPEN",
+  "base": "main",
+  "head_sha": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+  "required_sha_match": true,
+  "github_review_manifest_is_authority_for_final_head": true,
+  "committed_self_referential_evidence_is_not_final_head_authority": true,
+  "required_checks": {
+    "UGAS CI / unit-and-validation": {
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33760222527/job/100664405418"
+    },
+    "UGAS CI / docker-smoke": {
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33760222527/job/100664406129"
+    },
+    "UGAS Review / evidence": {
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33760222521/job/100664405900"
+    }
+  },
+  "review_artifact": {
+    "id": "9895353035",
+    "name": "ugas-review-evidence-pr-4-a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+    "digest": "sha256:ebcfbed6eb33fbfbbcedd952b9f9e60d7c2976bd649b963c6fa343bf020a3da9",
+    "workflow_run_id": 33760222521
+  },
+  "status": "PR4_EXACT_HEAD_GREEN_READY_FOR_GOVERNED_MERGE_AFTER_BOOKKEEPING"
+}

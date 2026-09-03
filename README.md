@@ -31,7 +31,7 @@ Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-
 
 ## v0.14.1 HIT_REACTION_FRONT package integrity
 
-The active phase is HIT_REACTION_FRONT and the local gate is HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. This correction keeps the reviewed six-frame hit content and fixes non-loop GIF package integrity. PR #4 remains OPEN.
+The active phase is HIT_REACTION_FRONT and the local gate is HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Sol recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda.
 
 ## Historical v0.14.0 HIT_REACTION_FRONT technically qualified
 

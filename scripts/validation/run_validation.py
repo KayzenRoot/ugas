@@ -2240,6 +2240,8 @@ def _v0141_checks() -> None:
     required = [
         "REVIEW-v0.14.1.md", "REVIEW-v0.14.0.md", "schemas/current-state.json",
         "docs/evidence/current-state.json", "docs/evidence/current-state-v0.14.0.json",
+        "docs/evidence/github-governance-v0141/hit-front-v0141-external-visual-approval.json",
+        "docs/evidence/github-governance-v0141/hit-front-v0141-provenance.json",
         "src/ugas/state_consistency_v0141.py", "scripts/validation/validate_state_consistency_v0141.py",
         "schemas/github-review-manifest-v0141.json", "scripts/validation/record_v0141_results.py", "scripts/validation/build_github_review_manifest_v0141.py", "scripts/validation/validate_github_review_manifest_v0141.py", "scripts/validation/validate_github_review_security_v0141.py", "scripts/validation/enforce_github_review_v0141.py",
         "profiles/animation/hit-front-v1.json", "src/ugas/animation_profiles/hit_front_v1.py",
@@ -2276,7 +2278,7 @@ def _v0141_checks() -> None:
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0141:state-consistency", False, str(exc))
     matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-    check("v0141:matrix-dependency", matrix.get("next_candidate") == "HIT_REACTION_FRONT" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix keeps HIT_REACTION_FRONT with production blocked")
+    check("v0141:matrix-dependency", matrix.get("next_candidate") == "DEATH_ANIMATION_FRONT" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix advances to DEATH_ANIMATION_FRONT with production blocked")
     contract = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-contract-v0141.json")
     check("v0141:contract", contract.get("capability") == "hit_reaction_front" and contract.get("dependencies", {}).get("implementation_base_commit") == V0141_BASELINE_HEAD and contract.get("gif_loop_semantics", {}).get("loop_1_is_not_non_loop") is True and len(contract.get("negative_controls", [])) == 10 and len(contract.get("loop_negative_controls", [])) == 5, "HIT_REACTION_FRONT v0.14.1 contract binds loop semantics without dropping HIT NCs")
     spec = load_json(ROOT / "profiles/animation/hit-front-v1.json")

@@ -1,4 +1,4 @@
-"""Fail-closed state checks for the v0.14.1 HIT_REACTION_FRONT package-integrity correction."""
+"""Fail-closed state checks for the v0.14.1 HIT_REACTION_FRONT approved-pilot closure."""
 
 from __future__ import annotations
 
@@ -8,12 +8,13 @@ from typing import Any, Mapping
 CURRENT_VERSION = "0.14.1"
 CURRENT_PHASE = "HIT_REACTION_FRONT"
 CURRENT_GATE = "HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED"
-NEXT_ACTION = "external_review_hit_reaction_front_v0141"
-VISUAL_CONTENT = "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW"
+NEXT_ACTION = "death_animation_front"
+VISUAL_CONTENT = "APPROVED_PILOT"
 BASELINE_HEAD = "0beb4c23604f1e45736c3082f99d2e08fa1ac308"
 FEATURE_BRANCH = "codex/v0.14.0-hit-reaction-front"
 RUN_APPROVED_HEAD = "f3d68faa5524392e66aee2fc2a450b9da8fa734b"
 REJECTED_REVIEWED_HEAD = "c059e24a4fa215882fac4b36991f7860f185a920"
+APPROVED_HEAD = "a3e37865f260c5a6cd56743e1d4b9131fcb12cda"
 BRANCH_BASE = "ebcf0b587628dcd33c316378fb2815f616172ffa"
 
 
@@ -36,7 +37,7 @@ def validate_state_consistency(
     if state.get("current_gate") != CURRENT_GATE:
         failures.append("current_gate_invalid")
     if state.get("hit_reaction_front_visual_content") != VISUAL_CONTENT:
-        failures.append("visual_content_must_remain_approved_pilot_pending_package_review")
+        failures.append("visual_content_must_be_approved_pilot")
     if state.get("production_approved") is not False or state.get("production_routing") != "BLOCKED":
         failures.append("production_must_remain_blocked")
     if state.get("always_on_dashboard_policy") != "ENABLED" or state.get("runtime_mode") != "DOCKER_ALWAYS_ON_LOCAL":
@@ -44,7 +45,7 @@ def validate_state_consistency(
     if state.get("new_generation") != 0:
         failures.append("new_generation_must_remain_zero")
     if state.get("allowed_next_actions") != [NEXT_ACTION]:
-        failures.append("next_action_must_be_external_review_hit_reaction_front_v0141")
+        failures.append("next_action_must_be_death_animation_front")
 
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
     if previous.get("version") != "0.13.1":
@@ -52,8 +53,8 @@ def validate_state_consistency(
     external = state.get("external_visual_review") if isinstance(state.get("external_visual_review"), Mapping) else {}
     if external.get("run_front_v1") != "APPROVED_PILOT":
         failures.append("run_front_external_visual_review_must_remain_approved_pilot")
-    if external.get("hit_reaction_front") != "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY":
-        failures.append("hit_reaction_front_must_be_approved_pilot_content_pending_package_integrity")
+    if external.get("hit_reaction_front") != "APPROVED_PILOT":
+        failures.append("hit_reaction_front_must_be_approved_pilot")
     if external.get("attack_front_v2") != "APPROVED_PILOT" or external.get("observability_dashboard") != "APPROVED_PILOT":
         failures.append("historical_external_decisions_missing")
 
@@ -66,14 +67,16 @@ def validate_state_consistency(
     }
     failures.extend(f"review:{key}" for key, expected in expected_review.items() if review.get(key) != expected)
     pr_state = review.get("pr_state")
-    if pr_state != "OPEN":
-        failures.append("review_pr_state_must_remain_open")
+    if pr_state not in {"OPEN", "MERGED"}:
+        failures.append("review_pr_state_must_remain_open_or_merged")
     if review.get("pr_number") != 4:
         failures.append("review_pr_number_must_remain_4")
     if review.get("rejected_reviewed_head") != REJECTED_REVIEWED_HEAD:
         failures.append("rejected_reviewed_head_must_bind_c059e24")
-    if review.get("merge_authorization") == "APPROVED_TO_MERGE":
-        failures.append("v0141_must_not_claim_merge_authorization")
+    if review.get("approved_head_sha") != APPROVED_HEAD:
+        failures.append("approved_head_must_be_a3e37865")
+    if review.get("merge_authorization") != "APPROVED_TO_MERGE":
+        failures.append("merge_authorization_missing")
 
     nested = state.get("state_consistency") if isinstance(state.get("state_consistency"), Mapping) else {}
     nested_expected = {
@@ -84,9 +87,9 @@ def validate_state_consistency(
         "telemetry_upload": False, "new_generation": 0, "source_only_pixels": True,
         "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0,
         "run_front_v1_external_visual": "APPROVED_PILOT",
-        "hit_reaction_front_external_visual": "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY",
+        "hit_reaction_front_external_visual": "APPROVED_PILOT",
         "hit_reaction_front_visual_content": VISUAL_CONTENT,
-        "capability_matrix_next_candidate": "HIT_REACTION_FRONT",
+        "capability_matrix_next_candidate": "DEATH_ANIMATION_FRONT",
         "capability_count": 16, "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
         "always_on_dashboard_policy": "ENABLED", "allowed_next_actions": [NEXT_ACTION],
         "next_capability_started": False,
@@ -94,7 +97,7 @@ def validate_state_consistency(
     failures.extend(f"state_consistency:{key}" for key, expected in nested_expected.items() if nested.get(key) != expected)
 
     evidence = state.get("evidence") if isinstance(state.get("evidence"), Mapping) else {}
-    for key in ("historical_v0140_state", "historical_v0131_state", "historical_v0130_state", "capability_matrix", "contract", "execution", "visual_manifest", "negative_controls", "loop_negative_controls", "visual_preservation"):
+    for key in ("historical_v0140_state", "historical_v0131_state", "historical_v0130_state", "capability_matrix", "contract", "execution", "visual_manifest", "negative_controls", "loop_negative_controls", "visual_preservation", "external_approval", "provenance"):
         if not evidence.get(key):
             failures.append(f"evidence_missing:{key}")
 
@@ -103,15 +106,15 @@ def validate_state_consistency(
         active_sources.append(roadmap_text.split("## Historical", 1)[0])
     required_literals = (
         "0.14.1", CURRENT_PHASE, "HIT_REACTION_FRONT", CURRENT_GATE, NEXT_ACTION,
-        "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW",
+        "hit_reaction_front=APPROVED_PILOT", "APPROVED_TO_MERGE",
         "run_front_v1=APPROVED_PILOT",
         "production_approved=false", "production_routing=BLOCKED", "new_generation=0",
         "CAPABILITY_COUNT=16", "GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED",
         "USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY",
         "NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true",
         "ALWAYS_ON_DASHBOARD_POLICY=ENABLED", "DOCKER_ALWAYS_ON_LOCAL",
-        "0.13.1", "0.14.0", RUN_APPROVED_HEAD, REJECTED_REVIEWED_HEAD,
-        "Do not merge", "DEATH_ANIMATION_FRONT",
+        "0.13.1", "0.14.0", RUN_APPROVED_HEAD, REJECTED_REVIEWED_HEAD, APPROVED_HEAD,
+        "DEATH_ANIMATION_FRONT", "PR #4",
     )
     combined = "\n".join(active_sources)
     for literal in required_literals:

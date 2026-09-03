@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.14.1",
+  "record_type": "hit_reaction_front_v0141_superseding_provenance",
+  "implementation_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "branch_base_commit": "ebcf0b587628dcd33c316378fb2815f616172ffa",
+  "rejected_reviewed_head": "c059e24a4fa215882fac4b36991f7860f185a920",
+  "final_approved_head": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+  "github_review_manifest_is_authority_for_final_head": true,
+  "committed_self_referential_evidence_is_not_final_head_authority": true,
+  "rejected_attempt": {
+    "version": "0.14.0",
+    "classification": "REJECTED_HISTORICAL_PACKAGE_INTEGRITY_ATTEMPT",
+    "review": "REVIEW-v0.14.0.md",
+    "state": "docs/evidence/current-state-v0.14.0.json",
+    "evidence": "docs/evidence/animation-runtime-v0140/",
+    "defect": "explicit_netscape_loop_count_1_on_nonloop_spec",
+    "is_previous_approved_release": false
+  },
+  "previous_approved_release": {
+    "version": "0.13.1",
+    "review": "REVIEW-v0.13.1.md",
+    "state": "docs/evidence/current-state-v0.13.1.json",
+    "approved_head": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+    "classification": "APPROVED_PILOT"
+  },
+  "approved_pilot": {
+    "version": "0.14.1",
+    "classification": "APPROVED_PILOT",
+    "review": "REVIEW-v0.14.1.md",
+    "pr_number": 4,
+    "technical_evidence": "docs/evidence/animation-runtime-v0141/",
+    "decision": "APPROVED_PILOT / APPROVED_TO_MERGE",
+    "artifact": "ugas-review-evidence-pr-4-a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+    "artifact_digest": "sha256:ebcfbed6eb33fbfbbcedd952b9f9e60d7c2976bd649b963c6fa343bf020a3da9"
+  },
+  "immutable_historical_evidence_edited": false
+}

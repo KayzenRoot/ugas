@@ -1,8 +1,10 @@
 # UGAS roadmap
 
-## v0.14.1 - HIT_REACTION_FRONT package integrity (active: HIT_REACTION_FRONT)
+## v0.14.1 - HIT_REACTION_FRONT approved pilot / APPROVED_TO_MERGE (active: HIT_REACTION_FRONT)
 
-Correct only non-loop GIF package integrity on open PR #4. The active gate is HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Frame content remains APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW. The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. run_front_v1=APPROVED_PILOT remains bound to f3d68faa5524392e66aee2fc2a450b9da8fa734b. CAPABILITY_COUNT=16, next_candidate=HIT_REACTION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. The branch codex/v0.14.0-hit-reaction-front stays GitHub-first: require exact-head success for UGAS CI / unit-and-validation, UGAS CI / docker-smoke and UGAS Review / evidence, then leave PR #4 OPEN for external_review_hit_reaction_front_v0141. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. Do not merge. No production enablement or DEATH_ANIMATION_FRONT is authorized.
+Sol external review recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda. The technical gate remains HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Visual content is inherited from the v0.14.0 review; v0.14.1 froze the corrected non-loop GIF. run_front_v1=APPROVED_PILOT remains bound to f3d68faa5524392e66aee2fc2a450b9da8fa734b. The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. CAPABILITY_COUNT=16, next_candidate=DEATH_ANIMATION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. After the governed merge of PR #4 the only allowed next action is death_animation_front. No production enablement or MULTI_DIRECTION_ANIMATION_RUNTIME is authorized.
+
+## Historical v0.14.1 - HIT_REACTION_FRONT package integrity
 
 ## Historical v0.14.0 - HIT_REACTION_FRONT technically qualified
 

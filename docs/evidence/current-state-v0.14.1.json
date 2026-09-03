@@ -8,8 +8,8 @@
     "evidence": "docs/evidence/current-state-v0.13.1.json"
   },
   "current_gate": "HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED",
-  "stop_reason": "PACKAGE_INTEGRITY_CORRECTION_AWAITING_NARROW_RE_REVIEW",
-  "allowed_next_actions": ["external_review_hit_reaction_front_v0141"],
+  "stop_reason": "EXTERNAL_VISUAL_APPROVED_GOVERNED_MERGE_AUTHORIZED",
+  "allowed_next_actions": ["death_animation_front"],
   "forbidden_actions": [
     "direct_main_push",
     "force_push_or_history_rewrite",
@@ -18,24 +18,22 @@
     "sam2_rerun",
     "comfyui_generation",
     "diffusion",
-    "death_animation_front",
     "multi_direction_animation_runtime",
     "equipment_outfits",
     "creatures_monsters",
     "items_props",
     "environment_tilesets",
     "ui_asset_family",
-    "vfx_asset_family",
-    "merge_before_external_visual_approval"
+    "vfx_asset_family"
   ],
   "production_approved": false,
   "production_routing": "BLOCKED",
-  "hit_reaction_front_visual_content": "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW",
+  "hit_reaction_front_visual_content": "APPROVED_PILOT",
   "external_visual_review": {
     "attack_front_v2": "APPROVED_PILOT",
     "observability_dashboard": "APPROVED_PILOT",
     "run_front_v1": "APPROVED_PILOT",
-    "hit_reaction_front": "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY"
+    "hit_reaction_front": "APPROVED_PILOT"
   },
   "always_on_dashboard_policy": "ENABLED",
   "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
@@ -51,7 +49,9 @@
     "pr_number": 4,
     "pr_state": "OPEN",
     "real_pr_checks_green": true,
-    "rejected_reviewed_head": "c059e24a4fa215882fac4b36991f7860f185a920"
+    "rejected_reviewed_head": "c059e24a4fa215882fac4b36991f7860f185a920",
+    "approved_head_sha": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+    "merge_authorization": "APPROVED_TO_MERGE"
   },
   "incident": {
     "classification": "GOVERNANCE_ORDER_VIOLATION_AND_FAILED_CHECK_MERGE",
@@ -77,7 +77,9 @@
     "visual_preservation": "docs/evidence/animation-runtime-v0141/hit-front-visual-preservation-v0141.json",
     "state_consistency": "docs/evidence/animation-runtime-v0141/state-consistency-v0141.json",
     "run_front_approval": "docs/evidence/github-governance-v0131/run-front-v0131-external-visual-approval.json",
-    "run_front_provenance": "docs/evidence/github-governance-v0131/run-front-v0131-provenance.json"
+    "run_front_provenance": "docs/evidence/github-governance-v0131/run-front-v0131-provenance.json",
+    "external_approval": "docs/evidence/github-governance-v0141/hit-front-v0141-external-visual-approval.json",
+    "provenance": "docs/evidence/github-governance-v0141/hit-front-v0141-provenance.json"
   },
   "state_consistency": {
     "status": "HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED",
@@ -97,13 +99,13 @@
     "comfyui_generation_jobs": 0,
     "diffusion_runs": 0,
     "run_front_v1_external_visual": "APPROVED_PILOT",
-    "hit_reaction_front_external_visual": "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY",
-    "hit_reaction_front_visual_content": "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW",
-    "capability_matrix_next_candidate": "HIT_REACTION_FRONT",
+    "hit_reaction_front_external_visual": "APPROVED_PILOT",
+    "hit_reaction_front_visual_content": "APPROVED_PILOT",
+    "capability_matrix_next_candidate": "DEATH_ANIMATION_FRONT",
     "capability_count": 16,
     "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
     "always_on_dashboard_policy": "ENABLED",
-    "allowed_next_actions": ["external_review_hit_reaction_front_v0141"],
+    "allowed_next_actions": ["death_animation_front"],
     "next_capability_started": false
   }
 }

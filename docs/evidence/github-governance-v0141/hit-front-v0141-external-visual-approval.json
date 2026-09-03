@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.14.1",
+  "decision_type": "external_hit_reaction_front_visual_and_package_integrity",
+  "decision": "APPROVED_PILOT",
+  "merge_authorization": "APPROVED_TO_MERGE",
+  "scope": "visual_and_pilot_only",
+  "reviewer": "Sol external review",
+  "repository": "csn1985-ship-it/ugas",
+  "pr_number": 4,
+  "reviewed_head_sha": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+  "immutable_implementation_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "github_review_manifest_is_authority_for_final_head": true,
+  "committed_self_referential_evidence_is_not_final_head_authority": true,
+  "source_artifact": {
+    "id": "9895353035",
+    "name": "ugas-review-evidence-pr-4-a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+    "digest": "sha256:ebcfbed6eb33fbfbbcedd952b9f9e60d7c2976bd649b963c6fa343bf020a3da9",
+    "workflow_run_id": 33760222521
+  },
+  "required_checks": {
+    "UGAS CI / unit-and-validation": "SUCCESS",
+    "UGAS CI / docker-smoke": "SUCCESS",
+    "UGAS Review / evidence": "SUCCESS"
+  },
+  "bindings": {
+    "preview_gif_path": "docs/evidence/animation-runtime-v0141/hit-front-v1/hit-front-preview-v0141.gif",
+    "preview_gif_sha256": "095b92dae1fb3cfa9157228fc9f57936670ce6d0e59fae08eadae8d157209081",
+    "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "motion_tracks_sha256": "d79159af2f93aee0817fc04a029170f0819b883ddfc01bc956c6d1378bebec1d",
+    "visual_preservation_status": "HIT_VISUAL_PRESERVED",
+    "immutable_approved_assets_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308"
+  },
+  "visual_content_inheritance": {
+    "status": "APPROVED_PILOT",
+    "inherited_from": "v0.14.0 external visual content review",
+    "reason": "v0.14.1 independently proves identical RGBA pixels, target hashes, motion tracks, spritesheet pixels, GIF frame pixels and durations; only the NETSCAPE repeat extension changed"
+  },
+  "observations": [
+    "technical_github_checks_green_at_exact_head",
+    "package_integrity_nonloop_gif_omits_netscape_extension",
+    "visual_pixels_preserved_from_v0140_reviewed_content"
+  ],
+  "does_not_approve": ["production_routing", "new_generation", "death_animation_front_pixels", "multi_direction_animation_runtime"],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "historical_sources_rewritten": false,
+  "v0140_rejected_evidence_rewritten": false,
+  "v0141_technical_evidence_rewritten": false
+}

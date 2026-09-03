@@ -1,5 +1,11 @@
 # UGAS v0.14.1 — HIT_REACTION_FRONT package integrity correction
 
+## External visual decision
+
+Sol external review recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda. Technical GitHub checks were green; package integrity omitted the non-loop NETSCAPE extension while preserving reviewed HIT pixels. Visual content is inherited from the v0.14.0 review. Production remains production_approved=false, production_routing=BLOCKED. The last approved release before this merge is 0.13.1 (run_front_v1=APPROVED_PILOT). v0.14.0 remains a rejected historical package attempt. The capability matrix now has CAPABILITY_COUNT=16 and next_candidate=DEATH_ANIMATION_FRONT. The only allowed next action after governed merge is death_animation_front.
+
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The GitHub review manifest/artifact is the authority for the exact PR #4 head; committed self-referential evidence files are not final-head authority.
+
 The active phase is HIT_REACTION_FRONT. The current gate is HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Frame content remains APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW. This correction does not merge PR #4 and does not start DEATH_ANIMATION_FRONT.
 
 The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. run_front_v1=APPROVED_PILOT remains bound to f3d68faa5524392e66aee2fc2a450b9da8fa734b from approved 0.13.1. v0.14.0 evidence is frozen rejected technical history. CAPABILITY_COUNT=16, next_candidate=HIT_REACTION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false.
