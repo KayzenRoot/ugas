@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts/validation"))
 
 from ugas.animation import decode_gif_timing, encode_gif, gif_frame_durations_ms, gif_timing_within_tolerance, inspect_gif_loop_extension, load_spec
-from run_animation_runtime_v0141 import IMMUTABLE_BASE, REJECTED_REVIEWED_HEAD, _loop_negative_controls, _record_v0140_baseline
+from run_animation_runtime_v0141 import IMMUTABLE_BASE, REJECTED_REVIEWED_HEAD, _loop_negative_controls, _record_v0140_baseline, png_rgba_pixel_sha256
 
 
 class HitFrontV0141Tests(unittest.TestCase):
@@ -81,6 +81,14 @@ class HitFrontV0141Tests(unittest.TestCase):
         self.assertEqual(gif_timing_within_tolerance(self.spec, decoded_infinite)["status"], "GIF_TIMING_GAP")
         self.assertEqual(gif_timing_within_tolerance(self.spec, decoded_one)["status"], "GIF_TIMING_GAP")
         self.assertEqual(gif_timing_within_tolerance(self.spec, decoded_absent)["status"], "GIF_TIMING_PASSED")
+
+    def test_frozen_and_corrected_frame_pixels_match(self) -> None:
+        frozen = ROOT / "docs/evidence/animation-runtime-v0140/hit-front-v1"
+        live = ROOT / "docs/evidence/animation-runtime-v0141/hit-front-v1"
+        for index in range(6):
+            name = f"frame-{index:02d}.png"
+            self.assertEqual(png_rgba_pixel_sha256(frozen / name), png_rgba_pixel_sha256(live / name))
+        self.assertEqual(png_rgba_pixel_sha256(frozen / "hit-front-spritesheet-v0140.png"), png_rgba_pixel_sha256(live / "hit-front-spritesheet-v0141.png"))
 
     def test_v0141_contract_keeps_hit_ncs_and_adds_loop_ncs(self) -> None:
         contract = json.loads((ROOT / "docs/evidence/animation-runtime-v0141/hit-front-contract-v0141.json").read_text(encoding="utf-8"))

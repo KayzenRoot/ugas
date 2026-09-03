@@ -70,6 +70,17 @@ def write_json(path: Path, value: Any) -> None:
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def workdir() -> Path:
+    path = ROOT / "tmp"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def png_rgba_pixel_sha256(path: Path) -> str:
+    with Image.open(path) as image:
+        return digest_bytes(image.convert("RGBA").tobytes())
+
+
 def _git_rev(name: str) -> str:
     result = subprocess.run(["git", "rev-parse", name], cwd=ROOT, capture_output=True, text=True, check=False)
     if result.returncode != 0 or len(result.stdout.strip()) != 40:
@@ -105,8 +116,10 @@ def _record_v0140_baseline() -> dict[str, Any]:
         "rejected_reviewed_head": REJECTED_REVIEWED_HEAD,
         "motion_tracks_sha256": targets["motion_tracks_sha256"],
         "target_hashes": [item["target_joint_sha256"] for item in targets["targets"]],
-        "frame_rgba_sha256": [item["rgba_sha256"] for item in manifest["frames"]],
-        "spritesheet_sha256": digest(frozen_pkg / "hit-front-spritesheet-v0140.png"),
+        "frame_png_file_sha256": [item["rgba_sha256"] for item in manifest["frames"]],
+        "frame_rgba_sha256": [png_rgba_pixel_sha256(ROOT / item["path"]) for item in manifest["frames"]],
+        "spritesheet_file_sha256": digest(frozen_pkg / "hit-front-spritesheet-v0140.png"),
+        "spritesheet_sha256": png_rgba_pixel_sha256(frozen_pkg / "hit-front-spritesheet-v0140.png"),
         "gif_sha256": digest(gif_path),
         "gif_durations_ms": decoded["durations_ms"],
         "gif_frame_pixel_sha256": gif_frame_pixel_hashes(gif_path),
@@ -175,7 +188,7 @@ def _hit_negative_controls(spec: dict[str, Any], context: dict[str, Any], prepar
     else:
         controls["NC-09_source_dependency_hash_removed"] = {"gate": "source_dependency_hash", "status": "ACCEPTED"}
 
-    with tempfile.TemporaryDirectory(prefix="ugas-v0141-package-nc-", dir=ROOT / "tmp") as directory:
+    with tempfile.TemporaryDirectory(prefix="ugas-v0141-package-nc-", dir=workdir()) as directory:
         temp = Path(directory)
         temp_manifest = temp / "compiled-manifest.json"
         temp_manifest.write_bytes(manifest_path.read_bytes())
@@ -206,7 +219,7 @@ def _loop_negative_controls(hit_spec: dict[str, Any], run_spec: dict[str, Any]) 
     run_frames = [Image.new("RGB", (16, 16), (20, 40 + index * 15, 18)) for index in range(int(run_spec["frame_count"]))]
     run_durations = gif_frame_durations_ms(run_spec)
     controls: dict[str, Any] = {}
-    with tempfile.TemporaryDirectory(prefix="ugas-v0141-loop-nc-", dir=ROOT / "tmp") as directory:
+    with tempfile.TemporaryDirectory(prefix="ugas-v0141-loop-nc-", dir=workdir()) as directory:
         temp = Path(directory)
         cases = [
             ("NC-LOOP-01_infinite_extension_on_nonloop", hit_spec, frames, durations, 0, "REJECTED"),
@@ -248,7 +261,7 @@ def _run_front_loop_regression(run_spec: dict[str, Any]) -> dict[str, Any]:
 
     gif_frames = [_checkerboard(Image.open(path).convert("RGBA")).convert("RGB") for path in frozen_frames]
     durations = gif_frame_durations_ms(run_spec)
-    with tempfile.TemporaryDirectory(prefix="ugas-v0141-run-loop-", dir=ROOT / "tmp") as directory:
+    with tempfile.TemporaryDirectory(prefix="ugas-v0141-run-loop-", dir=workdir()) as directory:
         gif_path = Path(directory) / "run-front-loop-regression.gif"
         encode_gif(gif_frames, gif_path, durations, loop=True)
         decoded = decode_gif_timing(gif_path)
@@ -264,36 +277,50 @@ def _run_front_loop_regression(run_spec: dict[str, Any]) -> dict[str, Any]:
 
 
 def _visual_preservation(baseline: dict[str, Any], manifest: dict[str, Any], package: dict[str, Any], prepared: dict[str, Any], gif_path: Path) -> dict[str, Any]:
-    new_frames = [item["rgba_sha256"] for item in manifest["frames"]]
+    new_frame_pixels = [png_rgba_pixel_sha256(ROOT / item["path"]) for item in manifest["frames"]]
+    new_frame_files = [item["rgba_sha256"] for item in manifest["frames"]]
     new_targets = [item["target_joint_sha256"] for item in prepared["targets"]]
-    new_sheet = package["sprite_sheet"]["sha256"]
+    sheet_path = ROOT / package["sprite_sheet"]["path"]
+    new_sheet_pixels = png_rgba_pixel_sha256(sheet_path)
+    new_sheet_file = package["sprite_sheet"]["sha256"]
     new_gif = decode_gif_timing(gif_path)
-    new_pixels = gif_frame_pixel_hashes(gif_path)
+    new_gif_pixels = gif_frame_pixel_hashes(gif_path)
     comparisons = {
-        "frame_rgba_sha256_identical": new_frames == baseline["frame_rgba_sha256"],
+        "frame_rgba_sha256_identical": new_frame_pixels == baseline["frame_rgba_sha256"],
         "target_hashes_identical": new_targets == baseline["target_hashes"],
         "motion_tracks_sha256_identical": prepared["track_hash"] == baseline["motion_tracks_sha256"],
-        "spritesheet_sha256_identical": new_sheet == baseline["spritesheet_sha256"],
-        "gif_frame_pixel_sequence_identical": new_pixels == baseline["gif_frame_pixel_sha256"],
+        "spritesheet_sha256_identical": new_sheet_pixels == baseline["spritesheet_sha256"],
+        "gif_frame_pixel_sequence_identical": new_gif_pixels == baseline["gif_frame_pixel_sha256"],
         "gif_durations_identical": new_gif["durations_ms"] == baseline["gif_durations_ms"],
         "gif_repeat_extension_changed": (not new_gif["loop_extension_present"]) and baseline["gif_loop_extension_present"] is True,
+        "frame_png_file_sha256_identical": new_frame_files == baseline.get("frame_png_file_sha256"),
+        "spritesheet_file_sha256_identical": new_sheet_file == baseline.get("spritesheet_file_sha256"),
     }
-    invalidated = not all(comparisons[key] for key in comparisons if key != "gif_repeat_extension_changed") or not comparisons["gif_repeat_extension_changed"]
+    content_keys = (
+        "frame_rgba_sha256_identical",
+        "target_hashes_identical",
+        "motion_tracks_sha256_identical",
+        "spritesheet_sha256_identical",
+        "gif_frame_pixel_sequence_identical",
+        "gif_durations_identical",
+    )
+    content_preserved = all(comparisons[key] for key in content_keys)
     return {
         "schema_version": "0.14.1",
-        "status": "VISUAL_REVIEW_INVALIDATED" if not all(comparisons[key] for key in comparisons if key != "gif_repeat_extension_changed") else "HIT_VISUAL_PRESERVED",
+        "status": "HIT_VISUAL_PRESERVED" if content_preserved else "VISUAL_REVIEW_INVALIDATED",
         "comparisons": comparisons,
         "baseline": {key: baseline[key] for key in ("motion_tracks_sha256", "target_hashes", "frame_rgba_sha256", "spritesheet_sha256", "gif_durations_ms", "gif_loop_extension_present", "gif_loop_count")},
         "corrected": {
             "motion_tracks_sha256": prepared["track_hash"],
             "target_hashes": new_targets,
-            "frame_rgba_sha256": new_frames,
-            "spritesheet_sha256": new_sheet,
+            "frame_rgba_sha256": new_frame_pixels,
+            "spritesheet_sha256": new_sheet_pixels,
             "gif_durations_ms": new_gif["durations_ms"],
             "gif_loop_extension_present": new_gif["loop_extension_present"],
             "gif_loop_count": new_gif["loop_count"],
         },
-        "invalidated": invalidated and not all(comparisons[key] for key in ("frame_rgba_sha256_identical", "target_hashes_identical", "motion_tracks_sha256_identical", "spritesheet_sha256_identical", "gif_frame_pixel_sequence_identical", "gif_durations_identical")),
+        "png_container_note": "Decoded RGBA pixels are authoritative. PNG file bytes may differ across Pillow/zlib platforms.",
+        "invalidated": not content_preserved,
     }
 
 
