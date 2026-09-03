@@ -30,8 +30,8 @@ def main() -> int:
     hit_reaction = next(item for item in capabilities if item["id"] == "hit_reaction_front")
     if run_front["status"] != "APPROVED_PILOT":
         failures.append("run-front-must-be-approved-pilot")
-    if hit_reaction["status"] != "NEXT NECESSARY" or value["next_candidate"] != "HIT_REACTION_FRONT":
-        failures.append("next-candidate-is-not-hit-reaction-front")
+    if hit_reaction["status"] != "Technically qualified; external visual review pending" or value["next_candidate"] != "HIT_REACTION_FRONT":
+        failures.append("hit-reaction-front-must-be-technically-qualified-pending-external-review")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}

@@ -1,0 +1,289 @@
+{
+  "schema_version": "0.14.0",
+  "review_state": "hit-front-v1-technically-qualified",
+  "review_subject": {
+    "animation_id": "hit-front-v1",
+    "direction": "front",
+    "frame_count": 6,
+    "fps": 12,
+    "loop": false,
+    "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "event_markers": [
+    {
+      "event_id": "impact_onset",
+      "frame": 0,
+      "kind": "impact"
+    },
+    {
+      "event_id": "recoil_peak",
+      "frame": 2,
+      "kind": "recoil"
+    },
+    {
+      "event_id": "recovery_start",
+      "frame": 3,
+      "kind": "recovery"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 5,
+      "kind": "recovery"
+    }
+  ],
+  "event_markers_sha256": "b77b72cd87cf1e055363a60aafe7ed3195adaf379142d7c82b0c0f1a257915eb",
+  "motion_tracks_sha256": "d79159af2f93aee0817fc04a029170f0819b883ddfc01bc956c6d1378bebec1d",
+  "gif_timing": {
+    "frame_count": 6,
+    "loop": 1,
+    "durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "total_cycle_ms": 500,
+    "effective_fps": 12.0
+  },
+  "images": [
+    {
+      "frame": 0,
+      "phase": "H0-impact-onset",
+      "source_path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-00.png",
+      "rgba_sha256": "6f3baae9c818b1f31d7f35eb49007be8449ab51b3c281312ff6504035970e589",
+      "target_hash": "1dd865edf2cab586f169ff6cf5a38b222a52c1a0e2d25fcf704ede551e2292dd",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "impact_onset",
+          "frame": 0,
+          "kind": "impact"
+        }
+      ]
+    },
+    {
+      "frame": 1,
+      "phase": "H1-recoil-acceleration",
+      "source_path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-01.png",
+      "rgba_sha256": "30ef4f91584ddf609d614ee957ecd4b964578f9b00c67ab188b007f71fc46e27",
+      "target_hash": "c085781e56d5e18c7fb56c566ed57255582fec2617823de4eb428acbfc7ce5e2",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": []
+    },
+    {
+      "frame": 2,
+      "phase": "H2-recoil-peak",
+      "source_path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-02.png",
+      "rgba_sha256": "6def881a2b9ef64a0ad00c38cdcfb42b3f4453a9506bb51cb9954b9b51cbc64d",
+      "target_hash": "63ae8f1a0dafeb763865a42583489005788b8b32a596f20dc83b68ac488aa642",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "recoil_peak",
+          "frame": 2,
+          "kind": "recoil"
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "phase": "H3-stagger-settle",
+      "source_path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-03.png",
+      "rgba_sha256": "48ff6826ce25921a52851f4b499dbcb5a2ea6627833bae5246edafcd05d77442",
+      "target_hash": "fceb1766ccb3bb74df85d030d369a3890194930fb4d7c28c7181f51aeb4e9df8",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "recovery_start",
+          "frame": 3,
+          "kind": "recovery"
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "phase": "H4-recovery",
+      "source_path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-04.png",
+      "rgba_sha256": "29321568173ae7e28dd65a930486da165b61ca8c4abb4e6bfc6e4ce3ded21675",
+      "target_hash": "5b89ff5ce0af4816d063ded8f2d5667a0d35306b2071a52c1faa36958b6756c6",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": []
+    },
+    {
+      "frame": 5,
+      "phase": "H5-recovery-complete",
+      "source_path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-05.png",
+      "rgba_sha256": "7ada093a378991dceda97234addefd46ffe3b7d0c689b0091f01259ea6345c1c",
+      "target_hash": "ecd679fea5e88295d75df37d3c4d5e22354a67d48b43004a3864fce0eadf2fef",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "recovery_complete",
+          "frame": 5,
+          "kind": "recovery"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/hit-front-preview-v0140.gif",
+      "sha256": "32d9323deaa64af9035cec577f5893cf7f96e5ee4599e5127648345bbea080e7",
+      "media_type": "image/gif",
+      "role": "review-gif",
+      "events": [
+        {
+          "event_id": "impact_onset",
+          "frame": 0,
+          "kind": "impact"
+        },
+        {
+          "event_id": "recoil_peak",
+          "frame": 2,
+          "kind": "recoil"
+        },
+        {
+          "event_id": "recovery_start",
+          "frame": 3,
+          "kind": "recovery"
+        },
+        {
+          "event_id": "recovery_complete",
+          "frame": 5,
+          "kind": "recovery"
+        }
+      ],
+      "gif_encoded_frame_durations_ms": [
+        80,
+        90,
+        80,
+        90,
+        80,
+        80
+      ],
+      "gif_total_cycle_ms": 500,
+      "gif_effective_fps": 12.0
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/hit-front-spritesheet-v0140.png",
+      "sha256": "2aca24577011c37482d1face4b76fdd1f9bace28b6977e80e11ea9c63fce41e4",
+      "media_type": "image/png",
+      "role": "compiled-rgba-spritesheet",
+      "events": [
+        {
+          "event_id": "impact_onset",
+          "frame": 0,
+          "kind": "impact"
+        },
+        {
+          "event_id": "recoil_peak",
+          "frame": 2,
+          "kind": "recoil"
+        },
+        {
+          "event_id": "recovery_start",
+          "frame": 3,
+          "kind": "recovery"
+        },
+        {
+          "event_id": "recovery_complete",
+          "frame": 5,
+          "kind": "recovery"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-phase-markers-v0140.png",
+      "sha256": "c78f423caca4a30a3aff33d6c825087a6197bfcd626ee745913a3fe419500eb9",
+      "media_type": "image/png",
+      "role": "phase-marker-review-sheet",
+      "events": [
+        {
+          "event_id": "impact_onset",
+          "frame": 0,
+          "kind": "impact"
+        },
+        {
+          "event_id": "recoil_peak",
+          "frame": 2,
+          "kind": "recoil"
+        },
+        {
+          "event_id": "recovery_start",
+          "frame": 3,
+          "kind": "recovery"
+        },
+        {
+          "event_id": "recovery_complete",
+          "frame": 5,
+          "kind": "recovery"
+        }
+      ]
+    }
+  ],
+  "marker_frames": [
+    {
+      "frame": 0,
+      "phase": "H0-impact-onset",
+      "events": [
+        "impact_onset"
+      ],
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/visual/phase-markers/frame-00-H0-impact-onset.png",
+      "sha256": "22944d19a40f62532f46026b51032cf726a149afa13c68dea46f5f4a3a73ef1a"
+    },
+    {
+      "frame": 1,
+      "phase": "H1-recoil-acceleration",
+      "events": [],
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/visual/phase-markers/frame-01-H1-recoil-acceleration.png",
+      "sha256": "cd43d3bc8234a8274969424886d018f4831a8206c07e7582c0f4f7ce279fba71"
+    },
+    {
+      "frame": 2,
+      "phase": "H2-recoil-peak",
+      "events": [
+        "recoil_peak"
+      ],
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/visual/phase-markers/frame-02-H2-recoil-peak.png",
+      "sha256": "3a87360227c6625ad489be2ecdefca7b06efe685c423009d40cc2e8f4bf56739"
+    },
+    {
+      "frame": 3,
+      "phase": "H3-stagger-settle",
+      "events": [
+        "recovery_start"
+      ],
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/visual/phase-markers/frame-03-H3-stagger-settle.png",
+      "sha256": "47be8c061cc1c01fe2abb9a62171ce599eae44f6fa3be3578e7806c8d4d860db"
+    },
+    {
+      "frame": 4,
+      "phase": "H4-recovery",
+      "events": [],
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/visual/phase-markers/frame-04-H4-recovery.png",
+      "sha256": "86f095cdcadd0b9cd2ee8fffe789d488ccd80fc5190571a1e4bc6acfe95c3121"
+    },
+    {
+      "frame": 5,
+      "phase": "H5-recovery-complete",
+      "events": [
+        "recovery_complete"
+      ],
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/visual/phase-markers/frame-05-H5-recovery-complete.png",
+      "sha256": "7032cb0a0d07dc5133f833b0ca655971dc897b3072cc77fd6ed1ca287dc775e4"
+    }
+  ],
+  "source_only_pixels": true,
+  "external_visual": "REQUIRED",
+  "production_routing": "BLOCKED",
+  "package_manifest": {
+    "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/package-manifest.json",
+    "sha256": "9cbecf24dc7bb87db71a13cdb22a49efe0e6334069ff6701d6520fd644d46aec"
+  }
+}

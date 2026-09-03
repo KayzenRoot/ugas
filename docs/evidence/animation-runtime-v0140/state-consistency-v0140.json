@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.14.0",
+  "validator": "src/ugas/state_consistency_v0140.py",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_HIT_REACTION_FRONT_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.14.0",
+    "phase": "HIT_REACTION_FRONT",
+    "current_gate": "CUTOUT_ANIMATION_RUNTIME_V1_HIT_REACTION_FRONT_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.14.0-hit-reaction-front",
+    "baseline_head": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "next_action": [
+      "external_visual_review_hit_reaction_front"
+    ],
+    "external_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "new_generation": 0
+  }
+}

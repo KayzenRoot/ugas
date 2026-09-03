@@ -9,7 +9,7 @@ This matrix is a planning contract for the next functional rounds. v0.12.3 imple
 | `local_always_on_observability` | Local always-on observability | Technically qualified; external visual review pending | Close now |
 | `github_native_review_infrastructure` | GitHub-native review infrastructure | This increment | v0.12.3 |
 | `run_front_v1` | Run animation - front | APPROVED_PILOT | v0.13.1 closed |
-| `hit_reaction_front` | Hit reaction - front | NEXT NECESSARY | after run |
+| `hit_reaction_front` | Hit reaction - front | Technically qualified; external visual review pending | v0.14.0 |
 | `death_animation_front` | Death animation - front | Pending | after hit |
 | `multi_direction_animation_runtime` | Multi-direction animation/runtime | Pending | after front library proves reusable |
 | `equipment_outfits` | Equipment / outfits | Pending | later V1 |
@@ -23,4 +23,4 @@ This matrix is a planning contract for the next functional rounds. v0.12.3 imple
 
 ## Freeze and gate
 
-The next functional candidate after v0.13.1 RUN_FRONT_V1 closure is `HIT_REACTION_FRONT`. Until that increment completes external review, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `hit_reaction_front`.
+The next functional candidate after v0.13.1 RUN_FRONT_V1 closure is `HIT_REACTION_FRONT`. Until that increment completes external review, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `external_visual_review_hit_reaction_front`.

@@ -1,6 +1,6 @@
-# 2D master pipeline v0.13.1
+# 2D master pipeline v0.14.0
 
-The active slice is `RUN_FRONT_V1` for v0.13.1: a GitHub-first, source-only deterministic front run after the authorized v0.12.4 merge and the rejected v0.13.0 visual review. It has eight frames at 12 fps, twelve declarative tracks, real airborne frames 3 and 7, fail-closed body, foot, flight, opposition, continuity, loop, immutable-base asset and GIF-timing gates. `DOCKER_ALWAYS_ON_LOCAL` remains online, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `external_visual=REQUIRED`; v0.13.0 and v0.12.4 below are preserved historical context.
+The active slice is `HIT_REACTION_FRONT` for v0.14.0: a GitHub-first, source-only deterministic front hit reaction after the authorized v0.13.1 RUN_FRONT_V1 approved-pilot merge. It has six non-looping frames at 12 fps, twelve declarative tracks, dual planted feet, unique recoil peak at H2, fail-closed impact/recoil/recovery/foot/weapon/continuity, immutable-base asset and GIF-timing gates. `DOCKER_ALWAYS_ON_LOCAL` remains online, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `hit_reaction_front=REQUIRED`; v0.13.1, v0.13.0 and v0.12.4 below are preserved historical context.
 
 The active release is v0.12.3 GitHub-native review infrastructure over the historical v0.12.2 Docker always-on observer and rejected v0.12.1/v0.12.0 dashboards. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
 

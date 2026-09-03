@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.13.1 - RUN_FRONT_V1 approved pilot / APPROVED_TO_MERGE (active: RUN_FRONT_V1)
+## v0.14.0 - HIT_REACTION_FRONT (active: HIT_REACTION_FRONT)
+
+Execute only HIT_REACTION_FRONT after the governed 0.13.1 merge. The active gate is CUTOUT_ANIMATION_RUNTIME_V1_HIT_REACTION_FRONT_TECHNICALLY_QUALIFIED. Six source-only front frames at 12 fps, non-looping, dual-foot planted, unique recoil peak at H2, recovery at H5. run_front_v1=APPROVED_PILOT remains bound to f3d68faa5524392e66aee2fc2a450b9da8fa734b. hit_reaction_front=REQUIRED. CAPABILITY_COUNT=16, next_candidate=HIT_REACTION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. The branch codex/v0.14.0-hit-reaction-front is GitHub-first: open a PR from post-merge main, require exact-head success for UGAS CI / unit-and-validation, UGAS CI / docker-smoke and UGAS Review / evidence, then leave the PR OPEN for external_visual_review_hit_reaction_front. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. Do not merge. No production enablement or DEATH_ANIMATION_FRONT is authorized.
+
+## Historical v0.13.1 - RUN_FRONT_V1 approved pilot / APPROVED_TO_MERGE
 
 Sol external review recorded run_front_v1=APPROVED_PILOT and APPROVED_TO_MERGE for PR #3 at exact head f3d68faa5524392e66aee2fc2a450b9da8fa734b. The technical gate remains CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED. The last approved release is 0.12.4; v0.13.0 is a rejected historical attempt. CAPABILITY_COUNT=16, next_candidate=HIT_REACTION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. After the governed merge of PR #3 the only allowed next action is hit_reaction_front. No production enablement or DEATH_ANIMATION_FRONT is authorized.
 

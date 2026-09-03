@@ -1,4 +1,4 @@
-# Installing UGAS 0.13.1
+# Installing UGAS 0.14.0
 
 ## Requirements
 
@@ -15,7 +15,7 @@ $env:PYTHONPATH = "src"
 python scripts/validation/validate_state_consistency.py
 python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
-python scripts/validation/run_animation_runtime_v0131.py
+python scripts/validation/run_animation_runtime_v0140.py
 python scripts/validation/run_observability_v0122.py
 python scripts/validation/build_review_index_v0122.py --json
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open

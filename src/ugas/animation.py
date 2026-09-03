@@ -152,7 +152,7 @@ def gif_timing_within_tolerance(spec: Mapping[str, Any], decoded: Mapping[str, A
     gates = {
         "declared_timing_present": all(isinstance(value, (int, float)) and math.isfinite(float(value)) for value in (total_min, total_max, fps_min, fps_max)),
         "frame_count": int(decoded.get("frame_count") or 0) == int(spec["frame_count"]),
-        "loop_enabled": decoded.get("loop") in {0, "0"},
+        "loop_enabled": (decoded.get("loop") in {0, "0"}) == bool(spec["loop"]),
         "total_cycle_in_tolerance": False,
         "effective_fps_in_tolerance": False,
     }
@@ -364,7 +364,7 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     gif_durations = gif_frame_durations_ms(spec)
     gif_path = manifest_path.parent / str(profile.get("gif_name", "preview.gif"))
     gif_frames = [_checkerboard(image).convert("RGB") for image in images]
-    gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=gif_durations, loop=0, disposal=2, optimize=False)
+    gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=gif_durations, loop=0 if spec["loop"] else 1, disposal=2, optimize=False)
     decoded_gif = decode_gif_timing(gif_path)
     gif_check = gif_timing_within_tolerance(spec, decoded_gif)
     if (spec.get("package_profile") or {}).get("gif_timing") and gif_check["status"] != "GIF_TIMING_PASSED":

@@ -1,0 +1,193 @@
+{
+  "schema_version": "0.14.0",
+  "status": "NC_01_TO_NC_10_PASSED",
+  "controls": {
+    "NC-01_zero_recoil": {
+      "gate": "recoil_magnitude",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": true,
+        "impact_causality": false,
+        "recoil_magnitude": false,
+        "unique_recoil_peak": false,
+        "recovery_convergence": false,
+        "dual_foot_support": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": true,
+        "not_death_like_collapse": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-02_anticipatory_motion_before_impact": {
+      "gate": "impact_causality",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": true,
+        "impact_causality": false,
+        "recoil_magnitude": true,
+        "unique_recoil_peak": true,
+        "recovery_convergence": true,
+        "dual_foot_support": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": false,
+        "not_death_like_collapse": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-03_wrong_recoil_peak": {
+      "gate": "unique_recoil_peak",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": true,
+        "impact_causality": false,
+        "recoil_magnitude": true,
+        "unique_recoil_peak": false,
+        "recovery_convergence": true,
+        "dual_foot_support": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": false,
+        "not_death_like_collapse": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-04_no_recovery": {
+      "gate": "recovery_convergence",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": false,
+        "impact_causality": true,
+        "recoil_magnitude": true,
+        "unique_recoil_peak": false,
+        "recovery_convergence": false,
+        "dual_foot_support": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": true,
+        "not_death_like_collapse": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-05_foot_slide_or_teleport": {
+      "gate": "foot_contact_windows",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": true,
+        "impact_causality": true,
+        "recoil_magnitude": true,
+        "unique_recoil_peak": true,
+        "recovery_convergence": true,
+        "dual_foot_support": true,
+        "foot_contact_windows": false,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": true,
+        "not_death_like_collapse": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-06_angular_jump": {
+      "gate": "angular_continuity",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": true,
+        "impact_causality": true,
+        "recoil_magnitude": true,
+        "unique_recoil_peak": true,
+        "recovery_convergence": true,
+        "dual_foot_support": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": true,
+        "not_death_like_collapse": true,
+        "angular_continuity": false,
+        "angular_acceleration_continuity": false,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-07_weapon_snap_or_wrist_break": {
+      "gate": "weapon_wrist_continuity",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": true,
+        "impact_causality": true,
+        "recoil_magnitude": true,
+        "unique_recoil_peak": true,
+        "recovery_convergence": true,
+        "dual_foot_support": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": false,
+        "not_death_like_collapse": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-08_death_like_collapse": {
+      "gate": "not_death_like_collapse",
+      "status": "REJECTED",
+      "hard_gates": {
+        "frame_count_six_non_loop": true,
+        "all_target_hashes_distinct": true,
+        "impact_causality": true,
+        "recoil_magnitude": true,
+        "unique_recoil_peak": true,
+        "recovery_convergence": true,
+        "dual_foot_support": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "weapon_wrist_continuity": false,
+        "not_death_like_collapse": false,
+        "angular_continuity": false,
+        "angular_acceleration_continuity": false,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "non_loop_has_no_closing_requirement": true
+      }
+    },
+    "NC-09_source_dependency_hash_removed": {
+      "gate": "source_dependency_hash",
+      "status": "REJECTED",
+      "error": "ValueError"
+    },
+    "NC-10_synthetic_false_gate_in_package": {
+      "gate": "package_qualified_qa",
+      "status": "REJECTED",
+      "error": "AnimationContractError"
+    }
+  },
+  "source": "scripts/validation/run_animation_runtime_v0140.py independent fixture mutations"
+}

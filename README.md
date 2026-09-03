@@ -1,8 +1,8 @@
-# UGAS 0.13.1
+# UGAS 0.14.0
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente RUN_FRONT_V1 determinístico sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente HIT_REACTION_FRONT determinístico sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
-O v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
+O v0.13.1 permanece o piloto aprovado de RUN_FRONT_V1. O v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
 
 [![UGAS CI](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-ci.yml/badge.svg?branch=main)](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-ci.yml) [![UGAS review evidence](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-review.yml/badge.svg?branch=main)](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-review.yml)
 
@@ -13,7 +13,7 @@ $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
 python scripts/validation/validate_state_consistency.py
 python scripts/validation/run_validation.py
-python scripts/validation/run_animation_runtime_v0131.py
+python scripts/validation/run_animation_runtime_v0140.py
 python scripts/validation/run_observability_v0122.py
 python scripts/validation/build_review_index_v0122.py --json
 python scripts/validation/validate_review_index_v0122.py docs/evidence/review-index-v0.12.2.json
@@ -27,7 +27,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.13.1.md](REVIEW-v0.13.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.14.0.md](REVIEW-v0.14.0.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
 ## v0.13.1 RUN_FRONT_V1 flight/QA visual integrity
 

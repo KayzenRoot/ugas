@@ -1,0 +1,1200 @@
+{
+  "schema_version": "animation-package-1.0",
+  "animation_id": "hit-front-v1",
+  "direction": "front",
+  "frame_count": 6,
+  "fps": 12.0,
+  "per_frame_duration_ms": 83.33333333333333,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "impact_onset",
+      "frame": 0,
+      "kind": "impact"
+    },
+    {
+      "event_id": "recoil_peak",
+      "frame": 2,
+      "kind": "recoil"
+    },
+    {
+      "event_id": "recovery_start",
+      "frame": 3,
+      "kind": "recovery"
+    },
+    {
+      "event_id": "recovery_complete",
+      "frame": 5,
+      "kind": "recovery"
+    }
+  ],
+  "event_markers_sha256": "b77b72cd87cf1e055363a60aafe7ed3195adaf379142d7c82b0c0f1a257915eb",
+  "cell_size": {
+    "width": 512,
+    "height": 512
+  },
+  "sheet_size": {
+    "width": 1536,
+    "height": 1024
+  },
+  "format": "RGBA",
+  "frames": [
+    {
+      "index": 0,
+      "phase": "H0-impact-onset",
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-00.png",
+      "rgba_sha256": "6f3baae9c818b1f31d7f35eb49007be8449ab51b3c281312ff6504035970e589",
+      "target_hash": "1dd865edf2cab586f169ff6cf5a38b222a52c1a0e2d25fcf704ede551e2292dd",
+      "metadata": {
+        "phase": "H0-impact-onset",
+        "target_hash": "1dd865edf2cab586f169ff6cf5a38b222a52c1a0e2d25fcf704ede551e2292dd",
+        "presentation_target_hash": "47bf6d38bdbe23c0188213ce7d67352622d533f4b5de1fec48ab1d0987f03684",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 326.817589,
+              "y": 131.99484
+            },
+            "shoulder_right": {
+              "x": 232.45231,
+              "y": 126.68787
+            },
+            "elbow_left": {
+              "x": 339.080572,
+              "y": 199.985555
+            },
+            "elbow_right": {
+              "x": 213.990865,
+              "y": 192.035483
+            },
+            "wrist_left": {
+              "x": 349.718365,
+              "y": 266.52721
+            },
+            "wrist_right": {
+              "x": 203.218691,
+              "y": 257.008119
+            },
+            "hip_left": {
+              "x": 302.146367,
+              "y": 256.664604
+            },
+            "hip_right": {
+              "x": 248.940333,
+              "y": 254.899396
+            },
+            "knee_left": {
+              "x": 327.313709,
+              "y": 354.044372
+            },
+            "knee_right": {
+              "x": 230.325915,
+              "y": 351.049562
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 279.291052,
+              "y": 81.917549
+            },
+            "neck": {
+              "x": 275.830935,
+              "y": 114.097377
+            },
+            "pelvis": {
+              "x": 275.54335,
+              "y": 255.782
+            },
+            "shoulder_center": {
+              "x": 279.63495,
+              "y": 129.341355
+            },
+            "weapon_tip": {
+              "x": 133.653593,
+              "y": 449.471112
+            }
+          },
+          "phase": "H0-impact-onset",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only-hit-reaction",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false,
+            "image_inputs_used_for_motion": false
+          },
+          "frame_index": 0,
+          "motion_tracks_sample": {
+            "root_shift_x": 4.0,
+            "root_shift_y": 3.0,
+            "torso_rotation_deg": 3.0,
+            "torso_lean_x": 2.0,
+            "left_arm_swing_deg": 2.0,
+            "right_arm_swing_deg": -1.0,
+            "head_counter_rotation_deg": 0.0,
+            "sword_rotation_deg": 8.0,
+            "left_stride_x": 0.0,
+            "right_stride_x": 0.0,
+            "left_lift_y": 0.0,
+            "right_lift_y": 0.0
+          },
+          "target_joint_sha256": "1dd865edf2cab586f169ff6cf5a38b222a52c1a0e2d25fcf704ede551e2292dd"
+        }
+      }
+    },
+    {
+      "index": 1,
+      "phase": "H1-recoil-acceleration",
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-01.png",
+      "rgba_sha256": "30ef4f91584ddf609d614ee957ecd4b964578f9b00c67ab188b007f71fc46e27",
+      "target_hash": "c085781e56d5e18c7fb56c566ed57255582fec2617823de4eb428acbfc7ce5e2",
+      "metadata": {
+        "phase": "H1-recoil-acceleration",
+        "target_hash": "c085781e56d5e18c7fb56c566ed57255582fec2617823de4eb428acbfc7ce5e2",
+        "presentation_target_hash": "6f72b688cc4e975046672d03d182654fe0693cbc4951efa7c0ba32adfaeeb382",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 347.411237,
+              "y": 140.934732
+            },
+            "shoulder_right": {
+              "x": 253.867579,
+              "y": 127.423481
+            },
+            "elbow_left": {
+              "x": 346.475675,
+              "y": 210.016153
+            },
+            "elbow_right": {
+              "x": 235.406134,
+              "y": 192.771094
+            },
+            "wrist_left": {
+              "x": 344.221275,
+              "y": 277.365038
+            },
+            "wrist_right": {
+              "x": 224.63396,
+              "y": 257.74373
+            },
+            "hip_left": {
+              "x": 311.96821,
+              "y": 262.979851
+            },
+            "hip_right": {
+              "x": 259.11849,
+              "y": 256.584149
+            },
+            "knee_left": {
+              "x": 343.344051,
+              "y": 358.540151
+            },
+            "knee_right": {
+              "x": 233.029009,
+              "y": 350.9806
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 293.932303,
+              "y": 85.998989
+            },
+            "neck": {
+              "x": 290.528356,
+              "y": 118.184808
+            },
+            "pelvis": {
+              "x": 285.54335,
+              "y": 259.782
+            },
+            "shoulder_center": {
+              "x": 300.639408,
+              "y": 134.179106
+            },
+            "weapon_tip": {
+              "x": 141.812779,
+              "y": 444.885277
+            }
+          },
+          "phase": "H1-recoil-acceleration",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only-hit-reaction",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false,
+            "image_inputs_used_for_motion": false
+          },
+          "frame_index": 1,
+          "motion_tracks_sample": {
+            "root_shift_x": 10.0,
+            "root_shift_y": 7.0,
+            "torso_rotation_deg": 8.0,
+            "torso_lean_x": 6.0,
+            "left_arm_swing_deg": 8.0,
+            "right_arm_swing_deg": -6.0,
+            "head_counter_rotation_deg": -2.0,
+            "sword_rotation_deg": 12.0,
+            "left_stride_x": 0.0,
+            "right_stride_x": 0.0,
+            "left_lift_y": 0.0,
+            "right_lift_y": 0.0
+          },
+          "target_joint_sha256": "c085781e56d5e18c7fb56c566ed57255582fec2617823de4eb428acbfc7ce5e2"
+        }
+      }
+    },
+    {
+      "index": 2,
+      "phase": "H2-recoil-peak",
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-02.png",
+      "rgba_sha256": "6def881a2b9ef64a0ad00c38cdcfb42b3f4453a9506bb51cb9954b9b51cbc64d",
+      "target_hash": "63ae8f1a0dafeb763865a42583489005788b8b32a596f20dc83b68ac488aa642",
+      "metadata": {
+        "phase": "H2-recoil-peak",
+        "target_hash": "63ae8f1a0dafeb763865a42583489005788b8b32a596f20dc83b68ac488aa642",
+        "presentation_target_hash": "7f4307ff380fa68aae3badaaa1899f1fdcaf272266056d98a8678bedabffe987",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 369.49524,
+              "y": 151.052745
+            },
+            "shoulder_right": {
+              "x": 277.876335,
+              "y": 127.837535
+            },
+            "elbow_left": {
+              "x": 354.217287,
+              "y": 218.430057
+            },
+            "elbow_right": {
+              "x": 257.145537,
+              "y": 192.501045
+            },
+            "wrist_left": {
+              "x": 338.00953,
+              "y": 283.838491
+            },
+            "wrist_right": {
+              "x": 244.112413,
+              "y": 257.058158
+            },
+            "hip_left": {
+              "x": 321.489185,
+              "y": 268.724483
+            },
+            "hip_right": {
+              "x": 269.597515,
+              "y": 256.839517
+            },
+            "knee_left": {
+              "x": 354.681827,
+              "y": 363.669008
+            },
+            "knee_right": {
+              "x": 244.681621,
+              "y": 351.5525
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 308.593923,
+              "y": 89.221735
+            },
+            "neck": {
+              "x": 306.157571,
+              "y": 121.495223
+            },
+            "pelvis": {
+              "x": 295.54335,
+              "y": 262.782
+            },
+            "shoulder_center": {
+              "x": 323.685788,
+              "y": 139.44514
+            },
+            "weapon_tip": {
+              "x": 142.183317,
+              "y": 434.517353
+            }
+          },
+          "phase": "H2-recoil-peak",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only-hit-reaction",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false,
+            "image_inputs_used_for_motion": false
+          },
+          "frame_index": 2,
+          "motion_tracks_sample": {
+            "root_shift_x": 16.0,
+            "root_shift_y": 10.0,
+            "torso_rotation_deg": 14.0,
+            "torso_lean_x": 10.0,
+            "left_arm_swing_deg": 14.0,
+            "right_arm_swing_deg": -10.0,
+            "head_counter_rotation_deg": -6.0,
+            "sword_rotation_deg": 16.0,
+            "left_stride_x": 0.0,
+            "right_stride_x": 0.0,
+            "left_lift_y": 0.0,
+            "right_lift_y": 0.0
+          },
+          "target_joint_sha256": "63ae8f1a0dafeb763865a42583489005788b8b32a596f20dc83b68ac488aa642"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "phase": "H3-stagger-settle",
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-03.png",
+      "rgba_sha256": "48ff6826ce25921a52851f4b499dbcb5a2ea6627833bae5246edafcd05d77442",
+      "target_hash": "fceb1766ccb3bb74df85d030d369a3890194930fb4d7c28c7181f51aeb4e9df8",
+      "metadata": {
+        "phase": "H3-stagger-settle",
+        "target_hash": "fceb1766ccb3bb74df85d030d369a3890194930fb4d7c28c7181f51aeb4e9df8",
+        "presentation_target_hash": "02eaf8c0c521d64731d1a93afc1b103e0b2912e64dbd4b84c1cd0e83f06b5fe6",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 351.475985,
+              "y": 141.032577
+            },
+            "shoulder_right": {
+              "x": 258.182378,
+              "y": 125.890821
+            },
+            "elbow_left": {
+              "x": 346.926263,
+              "y": 209.970361
+            },
+            "elbow_right": {
+              "x": 239.720933,
+              "y": 191.238434
+            },
+            "wrist_left": {
+              "x": 341.150184,
+              "y": 277.10896
+            },
+            "wrist_right": {
+              "x": 228.948759,
+              "y": 256.21107
+            },
+            "hip_left": {
+              "x": 313.908375,
+              "y": 262.440541
+            },
+            "hip_right": {
+              "x": 261.178325,
+              "y": 255.123459
+            },
+            "knee_left": {
+              "x": 343.455234,
+              "y": 358.58209
+            },
+            "knee_right": {
+              "x": 243.270871,
+              "y": 351.407799
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 293.702966,
+              "y": 84.856524
+            },
+            "neck": {
+              "x": 293.467347,
+              "y": 117.220984
+            },
+            "pelvis": {
+              "x": 287.54335,
+              "y": 258.782
+            },
+            "shoulder_center": {
+              "x": 304.829182,
+              "y": 133.461699
+            },
+            "weapon_tip": {
+              "x": 139.646885,
+              "y": 440.348198
+            }
+          },
+          "phase": "H3-stagger-settle",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only-hit-reaction",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false,
+            "image_inputs_used_for_motion": false
+          },
+          "frame_index": 3,
+          "motion_tracks_sample": {
+            "root_shift_x": 11.0,
+            "root_shift_y": 6.0,
+            "torso_rotation_deg": 9.0,
+            "torso_lean_x": 7.0,
+            "left_arm_swing_deg": 10.0,
+            "right_arm_swing_deg": -7.0,
+            "head_counter_rotation_deg": -8.0,
+            "sword_rotation_deg": 14.0,
+            "left_stride_x": 0.0,
+            "right_stride_x": 0.0,
+            "left_lift_y": 0.0,
+            "right_lift_y": 0.0
+          },
+          "target_joint_sha256": "fceb1766ccb3bb74df85d030d369a3890194930fb4d7c28c7181f51aeb4e9df8"
+        }
+      }
+    },
+    {
+      "index": 4,
+      "phase": "H4-recovery",
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-04.png",
+      "rgba_sha256": "29321568173ae7e28dd65a930486da165b61ca8c4abb4e6bfc6e4ce3ded21675",
+      "target_hash": "5b89ff5ce0af4816d063ded8f2d5667a0d35306b2071a52c1faa36958b6756c6",
+      "metadata": {
+        "phase": "H4-recovery",
+        "target_hash": "5b89ff5ce0af4816d063ded8f2d5667a0d35306b2071a52c1faa36958b6756c6",
+        "presentation_target_hash": "2a101747632352955e3fcfba7cd54e7b272e3b1f142a85b4dee41099b2159f31",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 331.970163,
+              "y": 132.908553
+            },
+            "shoulder_right": {
+              "x": 237.711876,
+              "y": 125.95549
+            },
+            "elbow_left": {
+              "x": 339.460482,
+              "y": 201.589068
+            },
+            "elbow_right": {
+              "x": 220.393716,
+              "y": 191.615347
+            },
+            "wrist_left": {
+              "x": 345.43065,
+              "y": 268.710687
+            },
+            "wrist_right": {
+              "x": 210.757111,
+              "y": 256.766088
+            },
+            "hip_left": {
+              "x": 305.126911,
+              "y": 257.128756
+            },
+            "hip_right": {
+              "x": 251.959789,
+              "y": 254.435244
+            },
+            "knee_left": {
+              "x": 329.983792,
+              "y": 354.588234
+            },
+            "knee_right": {
+              "x": 235.540248,
+              "y": 350.984452
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 281.192024,
+              "y": 81.768311
+            },
+            "neck": {
+              "x": 279.77061,
+              "y": 114.102401
+            },
+            "pelvis": {
+              "x": 278.54335,
+              "y": 255.782
+            },
+            "shoulder_center": {
+              "x": 284.84102,
+              "y": 129.432022
+            },
+            "weapon_tip": {
+              "x": 137.843666,
+              "y": 447.985689
+            }
+          },
+          "phase": "H4-recovery",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only-hit-reaction",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false,
+            "image_inputs_used_for_motion": false
+          },
+          "frame_index": 4,
+          "motion_tracks_sample": {
+            "root_shift_x": 6.0,
+            "root_shift_y": 3.0,
+            "torso_rotation_deg": 4.0,
+            "torso_lean_x": 3.0,
+            "left_arm_swing_deg": 5.0,
+            "right_arm_swing_deg": -3.0,
+            "head_counter_rotation_deg": -4.0,
+            "sword_rotation_deg": 10.0,
+            "left_stride_x": 0.0,
+            "right_stride_x": 0.0,
+            "left_lift_y": 0.0,
+            "right_lift_y": 0.0
+          },
+          "target_joint_sha256": "5b89ff5ce0af4816d063ded8f2d5667a0d35306b2071a52c1faa36958b6756c6"
+        }
+      }
+    },
+    {
+      "index": 5,
+      "phase": "H5-recovery-complete",
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/frame-05.png",
+      "rgba_sha256": "7ada093a378991dceda97234addefd46ffe3b7d0c689b0091f01259ea6345c1c",
+      "target_hash": "ecd679fea5e88295d75df37d3c4d5e22354a67d48b43004a3864fce0eadf2fef",
+      "metadata": {
+        "phase": "H5-recovery-complete",
+        "target_hash": "ecd679fea5e88295d75df37d3c4d5e22354a67d48b43004a3864fce0eadf2fef",
+        "presentation_target_hash": "acfbe9e3fcb6de40dc58bdbdffc32132420ede5efa7faad75a58c8044a14f7a9",
+        "z_order": [
+          "right_shin_foot",
+          "right_thigh",
+          "left_forearm_hand",
+          "left_upper_arm",
+          "torso_pelvis",
+          "left_thigh",
+          "left_shin_foot",
+          "right_upper_arm",
+          "right_forearm_hand",
+          "head",
+          "sword"
+        ],
+        "target": {
+          "joints": {
+            "shoulder_left": {
+              "x": 319.466244,
+              "y": 128.280803
+            },
+            "shoulder_right": {
+              "x": 224.97324,
+              "y": 126.270366
+            },
+            "elbow_left": {
+              "x": 334.094599,
+              "y": 195.802128
+            },
+            "elbow_right": {
+              "x": 208.80364,
+              "y": 192.222466
+            },
+            "wrist_left": {
+              "x": 347.048181,
+              "y": 261.931994
+            },
+            "wrist_right": {
+              "x": 200.30554,
+              "y": 257.531466
+            },
+            "hip_left": {
+              "x": 299.160963,
+              "y": 253.735634
+            },
+            "hip_right": {
+              "x": 245.925737,
+              "y": 253.828366
+            },
+            "knee_left": {
+              "x": 317.200262,
+              "y": 352.684095
+            },
+            "knee_right": {
+              "x": 233.529792,
+              "y": 350.976148
+            },
+            "ankle_left": {
+              "x": 309.4539,
+              "y": 448.5532
+            },
+            "ankle_right": {
+              "x": 234.1367,
+              "y": 447.4095
+            },
+            "nose": {
+              "x": 273.421735,
+              "y": 79.835109
+            },
+            "neck": {
+              "x": 270.951589,
+              "y": 112.106027
+            },
+            "pelvis": {
+              "x": 272.54335,
+              "y": 253.782
+            },
+            "shoulder_center": {
+              "x": 272.219742,
+              "y": 127.275584
+            },
+            "weapon_tip": {
+              "x": 137.499681,
+              "y": 452.305002
+            }
+          },
+          "phase": "H5-recovery-complete",
+          "view": "front",
+          "orientation": "front",
+          "generator": {
+            "kind": "deterministic-skeleton-only-hit-reaction",
+            "parameters_frozen_before_render": true,
+            "pixel_interpolation": false,
+            "image_inputs_used_for_motion": false
+          },
+          "frame_index": 5,
+          "motion_tracks_sample": {
+            "root_shift_x": 2.0,
+            "root_shift_y": 1.0,
+            "torso_rotation_deg": 1.0,
+            "torso_lean_x": 1.0,
+            "left_arm_swing_deg": 2.0,
+            "right_arm_swing_deg": -1.0,
+            "head_counter_rotation_deg": -1.0,
+            "sword_rotation_deg": 8.0,
+            "left_stride_x": 0.0,
+            "right_stride_x": 0.0,
+            "left_lift_y": 0.0,
+            "right_lift_y": 0.0
+          },
+          "target_joint_sha256": "ecd679fea5e88295d75df37d3c4d5e22354a67d48b43004a3864fce0eadf2fef"
+        }
+      }
+    }
+  ],
+  "parameters_frozen_before_render": true,
+  "adapter_metadata": {
+    "phase_markers": [
+      {
+        "event_id": "impact_onset",
+        "frame": 0,
+        "kind": "impact"
+      },
+      {
+        "event_id": "recoil_peak",
+        "frame": 2,
+        "kind": "recoil"
+      },
+      {
+        "event_id": "recovery_start",
+        "frame": 3,
+        "kind": "recovery"
+      },
+      {
+        "event_id": "recovery_complete",
+        "frame": 5,
+        "kind": "recovery"
+      }
+    ],
+    "motion_quality_layer": "generic.motion_tracks",
+    "source_only_renderer": "source-affine-resample-and-alpha-composite"
+  },
+  "gif_encoded_frame_durations_ms": [
+    80,
+    90,
+    80,
+    90,
+    80,
+    80
+  ],
+  "gif_total_cycle_ms": 500,
+  "gif_effective_fps": 12.0,
+  "gif_nominal_fps": 12.0,
+  "motion_tracks": [
+    {
+      "track_id": "root_shift_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 4.0
+        },
+        {
+          "frame": 1,
+          "value": 10.0
+        },
+        {
+          "frame": 2,
+          "value": 16.0
+        },
+        {
+          "frame": 3,
+          "value": 11.0
+        },
+        {
+          "frame": 4,
+          "value": 6.0
+        },
+        {
+          "frame": 5,
+          "value": 2.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "root_shift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 3.0
+        },
+        {
+          "frame": 1,
+          "value": 7.0
+        },
+        {
+          "frame": 2,
+          "value": 10.0
+        },
+        {
+          "frame": 3,
+          "value": 6.0
+        },
+        {
+          "frame": 4,
+          "value": 3.0
+        },
+        {
+          "frame": 5,
+          "value": 1.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 3.0
+        },
+        {
+          "frame": 1,
+          "value": 8.0
+        },
+        {
+          "frame": 2,
+          "value": 14.0
+        },
+        {
+          "frame": 3,
+          "value": 9.0
+        },
+        {
+          "frame": 4,
+          "value": 4.0
+        },
+        {
+          "frame": 5,
+          "value": 1.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_lean_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 2.0
+        },
+        {
+          "frame": 1,
+          "value": 6.0
+        },
+        {
+          "frame": 2,
+          "value": 10.0
+        },
+        {
+          "frame": 3,
+          "value": 7.0
+        },
+        {
+          "frame": 4,
+          "value": 3.0
+        },
+        {
+          "frame": 5,
+          "value": 1.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 2.0
+        },
+        {
+          "frame": 1,
+          "value": 8.0
+        },
+        {
+          "frame": 2,
+          "value": 14.0
+        },
+        {
+          "frame": 3,
+          "value": 10.0
+        },
+        {
+          "frame": 4,
+          "value": 5.0
+        },
+        {
+          "frame": 5,
+          "value": 2.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": -1.0
+        },
+        {
+          "frame": 1,
+          "value": -6.0
+        },
+        {
+          "frame": 2,
+          "value": -10.0
+        },
+        {
+          "frame": 3,
+          "value": -7.0
+        },
+        {
+          "frame": 4,
+          "value": -3.0
+        },
+        {
+          "frame": 5,
+          "value": -1.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "head_counter_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": -2.0
+        },
+        {
+          "frame": 2,
+          "value": -6.0
+        },
+        {
+          "frame": 3,
+          "value": -8.0
+        },
+        {
+          "frame": 4,
+          "value": -4.0
+        },
+        {
+          "frame": 5,
+          "value": -1.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "sword_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 8.0
+        },
+        {
+          "frame": 1,
+          "value": 12.0
+        },
+        {
+          "frame": 2,
+          "value": 16.0
+        },
+        {
+          "frame": 3,
+          "value": 14.0
+        },
+        {
+          "frame": 4,
+          "value": 10.0
+        },
+        {
+          "frame": 5,
+          "value": 8.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 0.0
+        },
+        {
+          "frame": 2,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 0.0
+        },
+        {
+          "frame": 2,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 0.0
+        },
+        {
+          "frame": 2,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 0.0
+        },
+        {
+          "frame": 2,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    }
+  ],
+  "motion_tracks_sha256": "d79159af2f93aee0817fc04a029170f0819b883ddfc01bc956c6d1378bebec1d"
+}

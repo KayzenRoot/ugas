@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.14.0",
+  "prompt": "UGAS-v0.14.0-HIT-REACTION-FRONT",
+  "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "execution_head_commit": "ebcf0b587628dcd33c316378fb2815f616172ffa",
+  "run_front_approved_head_sha": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+  "animation_id": "hit-front-v1",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_HIT_REACTION_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 6,
+  "fps": 12,
+  "loop": false,
+  "gif_encoded_frame_durations_ms": [
+    80,
+    90,
+    80,
+    90,
+    80,
+    80
+  ],
+  "gif_total_cycle_ms": 500,
+  "gif_effective_fps": 12.0,
+  "motion_tracks_sha256": "d79159af2f93aee0817fc04a029170f0819b883ddfc01bc956c6d1378bebec1d",
+  "event_markers_sha256": "b77b72cd87cf1e055363a60aafe7ed3195adaf379142d7c82b0c0f1a257915eb",
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "external_visual": "REQUIRED",
+  "negative_controls": "NC_01_TO_NC_10_PASSED",
+  "approved_assets_untouched": "APPROVED_ASSETS_UNTOUCHED",
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/package-manifest.json",
+    "sha256": "9cbecf24dc7bb87db71a13cdb22a49efe0e6334069ff6701d6520fd644d46aec",
+    "preview_gif": {
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/hit-front-preview-v0140.gif",
+      "sha256": "32d9323deaa64af9035cec577f5893cf7f96e5ee4599e5127648345bbea080e7"
+    },
+    "sprite_sheet": {
+      "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/hit-front-spritesheet-v0140.png",
+      "sha256": "2aca24577011c37482d1face4b76fdd1f9bace28b6977e80e11ea9c63fce41e4"
+    }
+  },
+  "review_artifacts": {
+    "visual_manifest": "docs/evidence/animation-runtime-v0140/hit-front-visual-manifest-v0140.json",
+    "phase_marker_sheet": "docs/evidence/animation-runtime-v0140/hit-front-phase-markers-v0140.png",
+    "negative_controls": "docs/evidence/animation-runtime-v0140/hit-front-gate-negative-controls-v0140.json"
+  },
+  "historical_v0130_preserved": true,
+  "historical_v0131_preserved": true,
+  "next_capability_started": false,
+  "executor_does_not_claim_visual_approval": true
+}
