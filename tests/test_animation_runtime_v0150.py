@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-import subprocess
+import hashlib
 import sys
 import unittest
 from pathlib import Path
@@ -89,16 +89,12 @@ class DeathAnimationFrontV0150Tests(unittest.TestCase):
         self.assertEqual(run["status"], "RUN_FRONT_LOOP_REGRESSION_PASSED")
 
     def test_frozen_v0141_evidence_matches_approved_head(self) -> None:
-        approved = subprocess.check_output(
-            [
-                "git",
-                "show",
-                "a3e37865f260c5a6cd56743e1d4b9131fcb12cda:docs/evidence/animation-runtime-v0141/state-consistency-v0141.json",
-            ],
-            cwd=ROOT,
-        )
         live = (ROOT / "docs/evidence/animation-runtime-v0141/state-consistency-v0141.json").read_bytes()
-        self.assertEqual(live.replace(b"\r\n", b"\n"), approved)
+        normalized = live.replace(b"\r\n", b"\n")
+        blob = hashlib.sha1(  # noqa: S324  (Git object identity uses SHA-1)
+            f"blob {len(normalized)}\0".encode() + normalized
+        ).hexdigest()
+        self.assertEqual(blob, "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5")
 
     def test_capability_matrix_keeps_death_unapproved(self) -> None:
         matrix = json.loads((ROOT / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))

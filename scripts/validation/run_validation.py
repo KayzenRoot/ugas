@@ -53,7 +53,6 @@ from ugas.state_consistency_v0140 import validate_state_consistency as validate_
 from ugas.state_consistency_v0140 import BASELINE_HEAD as V0140_BASELINE_HEAD
 from ugas.state_consistency_v0141 import validate_state_consistency as validate_state_consistency_v0141
 from ugas.state_consistency_v0141 import BASELINE_HEAD as V0141_BASELINE_HEAD
-from ugas.state_consistency_v0141 import APPROVED_HEAD as V0141_APPROVED_HEAD
 from ugas.state_consistency_v0150 import validate_state_consistency as validate_state_consistency_v0150
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
@@ -2320,14 +2319,14 @@ def _v0141_checks() -> None:
     assets = load_json(ROOT / "docs/evidence/animation-runtime-v0141/approved-assets-untouched-v0141.json")
     check("v0141:approved-assets", assets.get("status") == "APPROVED_ASSETS_UNTOUCHED" and assets.get("head_fallback_used") is False and assets.get("base_commit") == V0141_BASELINE_HEAD, "approved historical and run-front assets remain byte-identical to their immutable bases")
     try:
-        approved = subprocess.check_output(
-            ["git", "show", f"{V0141_APPROVED_HEAD}:docs/evidence/animation-runtime-v0141/state-consistency-v0141.json"],
-            cwd=ROOT,
-        )
         live = (ROOT / "docs/evidence/animation-runtime-v0141/state-consistency-v0141.json").read_bytes()
+        normalized_live = live.replace(b"\r\n", b"\n")
+        blob = hashlib.sha1(  # noqa: S324  (Git object identity uses SHA-1)
+            f"blob {len(normalized_live)}\0".encode() + normalized_live
+        ).hexdigest()
         check(
             "v0141:frozen-evidence-identity",
-            live.replace(b"\r\n", b"\n") == approved,
+            blob == "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5",
             "frozen v0.14.1 technical evidence matches approved head",
         )
     except (OSError, subprocess.CalledProcessError):
