@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.14.1",
+  "animation_id": "hit-front-v1",
+  "status": "HIT_TEMPORAL_QA_PASSED",
+  "metrics": {
+    "root_path_length_px": 45.966296,
+    "peak_displacement_px": 27.856777,
+    "recovery_displacement_px": 3.162278,
+    "recovery_to_peak_ratio": 0.113519,
+    "max_joint_angle_step_deg": 13.616311,
+    "max_angular_acceleration_deg_per_frame2": 18.04419,
+    "foreground_height_variation": 0.007447
+  },
+  "hard_gates": {
+    "frame_count_six_non_loop": true,
+    "all_target_hashes_distinct": true,
+    "impact_causality": true,
+    "recoil_magnitude": true,
+    "unique_recoil_peak": true,
+    "recovery_convergence": true,
+    "dual_foot_support": true,
+    "foot_contact_windows": true,
+    "foot_ground_all_frames": true,
+    "weapon_wrist_continuity": true,
+    "not_death_like_collapse": true,
+    "angular_continuity": true,
+    "angular_acceleration_continuity": true,
+    "nonfinite_and_gap_free": true,
+    "foreground_height_stability": true,
+    "non_loop_has_no_closing_requirement": true
+  },
+  "recoil": {
+    "rest_pelvis": {
+      "x": 269.54335,
+      "y": 252.782
+    },
+    "pelvis_displacements_px": [
+      6.708204,
+      17.464249,
+      27.856777,
+      18.973666,
+      9.486833,
+      3.162278
+    ],
+    "peak_frame": 2,
+    "recovery_to_peak_ratio": 0.113519,
+    "root_shift_x": [
+      4.0,
+      10.0,
+      16.0,
+      11.0,
+      6.0,
+      2.0
+    ],
+    "root_shift_y": [
+      3.0,
+      7.0,
+      10.0,
+      6.0,
+      3.0,
+      1.0
+    ],
+    "torso_rotation_deg": [
+      3.0,
+      8.0,
+      14.0,
+      9.0,
+      4.0,
+      1.0
+    ]
+  },
+  "weapon": {
+    "source_length_px": 204.649228,
+    "lengths_px": [
+      204.649228,
+      204.649228,
+      204.649228,
+      204.649228,
+      204.649227,
+      204.649227
+    ],
+    "max_length_delta_px": 1e-06,
+    "max_angle_step_deg": 6.0,
+    "max_wrist_step_px": 21.427899,
+    "hard_gates": {
+      "weapon_length_stable": true,
+      "weapon_angle_continuity": true,
+      "wrist_continuity": true,
+      "tip_finite": true
+    },
+    "status": "HIT_WEAPON_QA_PASSED"
+  }
+}

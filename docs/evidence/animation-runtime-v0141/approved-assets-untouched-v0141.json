@@ -1,0 +1,156 @@
+{
+  "schema_version": "0.14.1",
+  "status": "APPROVED_ASSETS_UNTOUCHED",
+  "base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "run_front_approved_head": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+  "head_fallback_used": false,
+  "historical": {
+    "schema_version": "0.14.0",
+    "status": "APPROVED_ASSETS_UNTOUCHED",
+    "base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "comparison": "git show 0beb4c23604f1e45736c3082f99d2e08fa1ac308:path",
+    "head_fallback_used": false,
+    "checks": [
+      {
+        "path": "profiles/animation/walk-front-v1.json",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "3bf376286192ef3d68ab72cd055ad6e35393ad4d6514fb1a574488c9ca5884b5",
+        "base_sha256": "3bf376286192ef3d68ab72cd055ad6e35393ad4d6514fb1a574488c9ca5884b5"
+      },
+      {
+        "path": "profiles/animation/idle-front-v1.json",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "1f859eedd0a97eaca6ac1345e31801b747db6230e95f494aad86e8d34a664470",
+        "base_sha256": "1f859eedd0a97eaca6ac1345e31801b747db6230e95f494aad86e8d34a664470"
+      },
+      {
+        "path": "profiles/animation/attack-front-v1.json",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+        "base_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d"
+      },
+      {
+        "path": "profiles/animation/attack-front-v2.json",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "5f35c886b076da4bc7bbcc8be4bf84681c667b15af68936f142fe6b74f65c99a",
+        "base_sha256": "5f35c886b076da4bc7bbcc8be4bf84681c667b15af68936f142fe6b74f65c99a"
+      },
+      {
+        "path": "docs/evidence/walk-front-v081/walk-front-spritesheet-v081.png",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "58da93252731e10622fbd3966158ef11411e4e307f6b066979c60c7c8acd0f1a",
+        "base_sha256": "58da93252731e10622fbd3966158ef11411e4e307f6b066979c60c7c8acd0f1a"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-preview.gif",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7",
+        "base_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7"
+      }
+    ],
+    "failures": []
+  },
+  "run_front": {
+    "schema_version": "0.14.0",
+    "status": "APPROVED_ASSETS_UNTOUCHED",
+    "base_commit": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+    "comparison": "git show f3d68faa5524392e66aee2fc2a450b9da8fa734b:path",
+    "head_fallback_used": false,
+    "checks": [
+      {
+        "path": "profiles/animation/run-front-v1.json",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "d102d7f6f02f8ba9d23c7d470a12b8500d3ef268ad7b210ed398d922e44da21f",
+        "base_sha256": "d102d7f6f02f8ba9d23c7d470a12b8500d3ef268ad7b210ed398d922e44da21f"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-preview-v0131.gif",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "27c80ccb89d2388e62b31bede35e31e118265862b80cbf9d04eb694dd676d7da",
+        "base_sha256": "27c80ccb89d2388e62b31bede35e31e118265862b80cbf9d04eb694dd676d7da"
+      },
+      {
+        "path": "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-spritesheet-v0131.png",
+        "present": true,
+        "byte_identical_to_base": true,
+        "current_sha256": "186cdd2376d954e6619add35df42c34990ddb2c6ace61862d909ea144038fdee",
+        "base_sha256": "186cdd2376d954e6619add35df42c34990ddb2c6ace61862d909ea144038fdee"
+      }
+    ],
+    "failures": []
+  },
+  "checks": [
+    {
+      "path": "profiles/animation/walk-front-v1.json",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "3bf376286192ef3d68ab72cd055ad6e35393ad4d6514fb1a574488c9ca5884b5",
+      "base_sha256": "3bf376286192ef3d68ab72cd055ad6e35393ad4d6514fb1a574488c9ca5884b5"
+    },
+    {
+      "path": "profiles/animation/idle-front-v1.json",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "1f859eedd0a97eaca6ac1345e31801b747db6230e95f494aad86e8d34a664470",
+      "base_sha256": "1f859eedd0a97eaca6ac1345e31801b747db6230e95f494aad86e8d34a664470"
+    },
+    {
+      "path": "profiles/animation/attack-front-v1.json",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d",
+      "base_sha256": "8634852cba11a545668587251f775c248f712174a483b9a05cfd8d2117bf6f0d"
+    },
+    {
+      "path": "profiles/animation/attack-front-v2.json",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "5f35c886b076da4bc7bbcc8be4bf84681c667b15af68936f142fe6b74f65c99a",
+      "base_sha256": "5f35c886b076da4bc7bbcc8be4bf84681c667b15af68936f142fe6b74f65c99a"
+    },
+    {
+      "path": "docs/evidence/walk-front-v081/walk-front-spritesheet-v081.png",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "58da93252731e10622fbd3966158ef11411e4e307f6b066979c60c7c8acd0f1a",
+      "base_sha256": "58da93252731e10622fbd3966158ef11411e4e307f6b066979c60c7c8acd0f1a"
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0110/attack-front-v2/attack-front-v2-preview.gif",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7",
+      "base_sha256": "ef02fbf99356ca07fee3ac00de8e5a7938b65175dfd16591c3bf414bd077a7b7"
+    },
+    {
+      "path": "profiles/animation/run-front-v1.json",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "d102d7f6f02f8ba9d23c7d470a12b8500d3ef268ad7b210ed398d922e44da21f",
+      "base_sha256": "d102d7f6f02f8ba9d23c7d470a12b8500d3ef268ad7b210ed398d922e44da21f"
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-preview-v0131.gif",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "27c80ccb89d2388e62b31bede35e31e118265862b80cbf9d04eb694dd676d7da",
+      "base_sha256": "27c80ccb89d2388e62b31bede35e31e118265862b80cbf9d04eb694dd676d7da"
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-spritesheet-v0131.png",
+      "present": true,
+      "byte_identical_to_base": true,
+      "current_sha256": "186cdd2376d954e6619add35df42c34990ddb2c6ace61862d909ea144038fdee",
+      "base_sha256": "186cdd2376d954e6619add35df42c34990ddb2c6ace61862d909ea144038fdee"
+    }
+  ],
+  "failures": []
+}

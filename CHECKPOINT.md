@@ -1,6 +1,14 @@
-# UGAS checkpoint - v0.14.0
+# UGAS checkpoint - v0.14.1
 
-## v0.14.0 HIT_REACTION_FRONT technically qualified
+## v0.14.1 HIT_REACTION_FRONT package integrity technically qualified
+
+The active phase is HIT_REACTION_FRONT and the current gate is HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Frame content is APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW. The previous approved release is 0.13.1 RUN_FRONT_V1 at reviewed head f3d68faa5524392e66aee2fc2a450b9da8fa734b (run_front_v1=APPROVED_PILOT). The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. v0.14.0 remains frozen rejected technical history. The immutable implementation base remains 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=HIT_REACTION_FRONT.
+
+This correction fixes non-loop GIF package integrity: spec.loop=false must encode without a NETSCAPE repeat extension, the decoder must distinguish extension absence from explicit loop=1, and loop_contract_matches / loop_extension_presence_matches / loop_count_matches fail closed. HIT motion, frame RGBA hashes and spritesheet pixels stay identical. new_generation=0, production_approved=false, production_routing=BLOCKED.
+
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The only allowed next action is external_review_hit_reaction_front_v0141. Do not merge. Do not start DEATH_ANIMATION_FRONT. Do not enable production. Animação genérica não autoriza execução fora de HIT_REACTION_FRONT neste slice; no other animation or direction is authorized.
+
+## Historical v0.14.0 HIT_REACTION_FRONT technically qualified
 
 The active phase is HIT_REACTION_FRONT and the current gate is CUTOUT_ANIMATION_RUNTIME_V1_HIT_REACTION_FRONT_TECHNICALLY_QUALIFIED. The previous approved release is 0.13.1 RUN_FRONT_V1 at reviewed head f3d68faa5524392e66aee2fc2a450b9da8fa734b (run_front_v1=APPROVED_PILOT). hit_reaction_front=REQUIRED. The immutable implementation base remains 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=HIT_REACTION_FRONT.
 

@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.14.1",
+  "animation_id": "hit-front-v1",
+  "source_length_px": 204.649228,
+  "lengths_px": [
+    204.649228,
+    204.649228,
+    204.649228,
+    204.649228,
+    204.649227,
+    204.649227
+  ],
+  "max_length_delta_px": 1e-06,
+  "max_angle_step_deg": 6.0,
+  "max_wrist_step_px": 21.427899,
+  "hard_gates": {
+    "weapon_length_stable": true,
+    "weapon_angle_continuity": true,
+    "wrist_continuity": true,
+    "tip_finite": true
+  },
+  "status": "HIT_WEAPON_QA_PASSED"
+}

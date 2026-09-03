@@ -1,4 +1,4 @@
-# UGAS 0.14.0
+# UGAS 0.14.1
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente HIT_REACTION_FRONT determinístico sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
@@ -13,7 +13,7 @@ $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
 python scripts/validation/validate_state_consistency.py
 python scripts/validation/run_validation.py
-python scripts/validation/run_animation_runtime_v0140.py
+python scripts/validation/run_animation_runtime_v0141.py
 python scripts/validation/run_observability_v0122.py
 python scripts/validation/build_review_index_v0122.py --json
 python scripts/validation/validate_review_index_v0122.py docs/evidence/review-index-v0.12.2.json
@@ -27,7 +27,13 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.14.0.md](REVIEW-v0.14.0.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.14.1.md](REVIEW-v0.14.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+
+## v0.14.1 HIT_REACTION_FRONT package integrity
+
+The active phase is HIT_REACTION_FRONT and the local gate is HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. This correction keeps the reviewed six-frame hit content and fixes non-loop GIF package integrity. PR #4 remains OPEN.
+
+## Historical v0.14.0 HIT_REACTION_FRONT technically qualified
 
 ## v0.13.1 RUN_FRONT_V1 flight/QA visual integrity
 

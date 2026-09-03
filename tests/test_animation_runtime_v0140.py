@@ -54,10 +54,11 @@ class HitFrontV0140Tests(unittest.TestCase):
         self.assertFalse(temporal["hard_gates"]["impact_causality"])
 
     def test_gif_timing_requires_non_loop_encode(self) -> None:
-        decoded = {"frame_count": 6, "loop": 0, "durations_ms": [80, 90, 80, 90, 80, 80], "total_cycle_ms": 500, "effective_fps": 12.0}
+        decoded = {"frame_count": 6, "loop": 0, "loop_extension_present": True, "loop_count": 0, "durations_ms": [80, 90, 80, 90, 80, 80], "total_cycle_ms": 500, "effective_fps": 12.0}
         result = gif_timing_within_tolerance(self.spec, decoded)
         self.assertEqual(result["status"], "GIF_TIMING_GAP")
-        self.assertFalse(result["hard_gates"]["loop_enabled"])
+        self.assertFalse(result["hard_gates"]["loop_contract_matches"])
+        self.assertFalse(result["hard_gates"]["loop_extension_presence_matches"])
 
     def test_invalid_immutable_baseline_fails_closed(self) -> None:
         result = _approved_assets_untouched("0" * 40)

@@ -37,7 +37,7 @@ jobs:
       - name: Active state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0140.py
+        run: python scripts/validation/validate_state_consistency_v0141.py
       - name: Official validation
         env:
           PYTHONPATH: src
@@ -45,7 +45,7 @@ jobs:
       - name: HIT_REACTION_FRONT deterministic runtime and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_animation_runtime_v0140.py
+        run: python scripts/validation/run_animation_runtime_v0141.py
       - name: V1 capability matrix validation
         env:
           PYTHONPATH: src

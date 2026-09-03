@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.14.1",
+  "status": "RUN_FRONT_LOOP_REGRESSION_PASSED",
+  "decoded": {
+    "frame_count": 8,
+    "loop_extension_present": true,
+    "loop_count": 0,
+    "loop": 0,
+    "pillow_loop": 0,
+    "netscape_offset": 784,
+    "raw_subblock_hex": "0301000000",
+    "durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "total_cycle_ms": 670,
+    "effective_fps": 11.940299
+  },
+  "hard_gates": {
+    "declared_timing_present": true,
+    "frame_count": true,
+    "loop_extension_presence_matches": true,
+    "loop_count_matches": true,
+    "loop_contract_matches": true,
+    "total_cycle_in_tolerance": true,
+    "effective_fps_in_tolerance": true
+  },
+  "source_frames": [
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-00.png",
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-01.png",
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-02.png",
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-03.png",
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-04.png",
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-05.png",
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-06.png",
+    "docs/evidence/animation-runtime-v0131/run-front-v1/frame-07.png"
+  ],
+  "v0131_evidence_rewritten": false
+}
