@@ -2,7 +2,7 @@
 
 ## v0.12.4 GitHub CI and governance recovery
 
-The active phase is `GITHUB_CI_GOVERNANCE_RECOVERY` and the local gate is `GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR`; it becomes technically qualified only after a real corrective PR has all required GitHub checks green. The branch is `codex/v0.12.4-github-ci-governance-recovery` from remote main baseline `877ede34afadd631764887ad6c5fb941ca4371a8`. `GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY`, `GITHUB_REVIEW_MODE=PR_FIRST`, `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, and `DOCKER_ALWAYS_ON_LOCAL` are authoritative.
+The active phase is `GITHUB_CI_GOVERNANCE_RECOVERY` and the gate is `GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED`: PR #2 is open at the reviewed head with all required GitHub checks green. It remains open for external Sol review and is not merged. The branch is `codex/v0.12.4-github-ci-governance-recovery` from remote main baseline `877ede34afadd631764887ad6c5fb941ca4371a8`. `GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY`, `GITHUB_REVIEW_MODE=PR_FIRST`, `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, and `DOCKER_ALWAYS_ON_LOCAL` are authoritative.
 
 PR #1 remains an immutable governance incident: v0.12.3 was merged before external approval while the real review workflow was red. The machine record is `docs/evidence/github-governance-v0124/pr1-premature-merge.json`. The dashboard decision is forward-only `observability_dashboard_external_visual=APPROVED_PILOT`, bound to the PR #1 artifact and the existing v0.12.2 source/transport hashes; it is visual/pilot approval only.
 

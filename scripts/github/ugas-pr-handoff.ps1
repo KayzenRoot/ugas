@@ -50,9 +50,9 @@ function New-RulesetPayload() {
         rules = @(
             @{ type = 'pull_request'; parameters = @{ dismiss_stale_reviews_on_push = $true; require_code_owner_review = $false; required_approving_review_count = 0; require_last_push_approval = $false; required_review_thread_resolution = $true } },
             @{ type = 'required_status_checks'; parameters = @{ required_status_checks = @(
-                @{ context = 'UGAS CI / unit-and-validation'; integration_id = -1 },
-                @{ context = 'UGAS CI / docker-smoke'; integration_id = -1 },
-                @{ context = 'UGAS Review / evidence'; integration_id = -1 }
+                @{ context = 'UGAS CI / unit-and-validation' },
+                @{ context = 'UGAS CI / docker-smoke' },
+                @{ context = 'UGAS Review / evidence' }
             ); strict_required_status_checks_policy = $true } },
             @{ type = 'deletion' },
             @{ type = 'non_fast_forward' }
@@ -84,7 +84,10 @@ if ($failures.Count -gt 0) {
     exit 1
 }
 
-$headFilter = if ($Repository -match '^([^/]+)/([^/]+)$') { "$($Matches[1]):$branchValue" } else { $branchValue }
+# For a same-repository PR, gh expects the plain branch name. The owner:name
+# form is for cross-repository heads and makes an existing same-repository PR
+# look absent, which breaks idempotent handoff.
+$headFilter = $branchValue
 $prs = Invoke-GhJson @('pr', 'list', '--repo', $Repository, '--state', 'open', '--base', $Base, '--head', $headFilter, '--json', 'number,url,state,headRefOid,baseRefName')
 if ($prs.code -ne 0) {
     Write-Result @{ schema_version = '0.12.4'; status = 'GITHUB_PR_CREATE_GAP'; repository = $Repository; branch = $branchValue; head_sha = $headSha; reason = 'gh_pr_list_failed'; detail = $prs.raw; credential_values_recorded = $false }

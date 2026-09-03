@@ -2,7 +2,7 @@
 
 ## STATUS
 
-The corrective slice is `GITHUB_CI_GOVERNANCE_RECOVERY` with local gate `GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR`. The branch is `codex/v0.12.4-github-ci-governance-recovery`, based on the verified remote `main` merge commit `877ede34afadd631764887ad6c5fb941ca4371a8`. `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` remains the next necessary functional candidate after this gate; it was not executed.
+The corrective slice is `GITHUB_CI_GOVERNANCE_RECOVERY` with gate `GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED`. The branch is `codex/v0.12.4-github-ci-governance-recovery`, based on the verified remote `main` merge commit `877ede34afadd631764887ad6c5fb941ca4371a8`. PR #2 is OPEN at the exact reviewed head with all three required GitHub checks green; the PR remains open for external Sol review and is not merged. `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` remains the next necessary functional candidate after this gate; it was not executed.
 
 ## PR #1 INCIDENT
 
@@ -33,7 +33,7 @@ Sol performs external review from GitHub whenever connector permissions allow. C
 
 ## VALIDATION AND GOVERNANCE
 
-The active state/schema are v0.12.4. The local state remains `GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR` until the real corrective PR exists and all required GitHub checks are green; only then may it become `GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED`. The current state keeps `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` and `DOCKER_ALWAYS_ON_LOCAL`.
+The active state/schema are v0.12.4. The real corrective PR exists and all required GitHub checks are green, so the gate is `GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED`. The current state keeps `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED` and `DOCKER_ALWAYS_ON_LOCAL`.
 
 Required negative controls are `GOV-NC-01`, `GOV-NC-02`, `CI-NC-01`, `CI-NC-02`, `HIST-NC-01`, `WF-NC-01`, `ART-NC-01` and `STATE-NC-01`. Local test/validation results and the workflow/ruleset readback are under `docs/evidence/github-governance-v0124/`. Historical v0.12.1/v0.12.2/v0.12.3 facts remain separated from current status.
 

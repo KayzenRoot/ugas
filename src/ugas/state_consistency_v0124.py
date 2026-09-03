@@ -70,6 +70,15 @@ def validate_state_consistency(
         failures.append("no_self_merge_policy_missing")
     if review.get("direct_main_push_forbidden") is not True:
         failures.append("direct_main_push_policy_missing")
+    if state.get("current_gate") == QUALIFIED_GATE:
+        if not isinstance(review.get("pr_number"), int) or review.get("pr_number", 0) <= 0:
+            failures.append("qualified_gate_requires_open_pr_number")
+        if review.get("pr_state") != "OPEN":
+            failures.append("qualified_gate_requires_open_pr")
+        if review.get("real_pr_checks_green") is not True:
+            failures.append("qualified_gate_requires_green_real_pr_checks")
+    elif review.get("real_pr_checks_green") is not False:
+        failures.append("ready_gate_cannot_claim_green_real_pr_checks")
 
     incident = state.get("incident") if isinstance(state.get("incident"), Mapping) else {}
     if incident.get("classification") != INCIDENT_CLASSIFICATION:
@@ -92,7 +101,7 @@ def validate_state_consistency(
     failures.extend(f"state_consistency:{key}" for key, expected in expected_nested.items() if nested.get(key) != expected)
 
     evidence = state.get("evidence") if isinstance(state.get("evidence"), Mapping) else {}
-    for key in ("incident", "dashboard_visual_approval", "workflow_validation", "ruleset_readback", "tests", "validation", "negative_controls"):
+    for key in ("incident", "dashboard_visual_approval", "workflow_validation", "ruleset_readback", "pr_handoff", "tests", "validation", "negative_controls"):
         if not evidence.get(key):
             failures.append(f"evidence_missing:{key}")
 

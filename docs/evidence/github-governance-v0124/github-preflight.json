@@ -4,14 +4,13 @@
   "default_branch": "main",
   "baseline_head": "877ede34afadd631764887ad6c5fb941ca4371a8",
   "feature_branch": "codex/v0.12.4-github-ci-governance-recovery",
+  "head_sha": "c9837e429d8027cba78a92f3a79d59a04dc4e99a",
   "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.4-github-ci-governance-recovery",
   "remote_branch_present": true,
-  "authentication": {"gh_cli_present": true, "authenticated": false, "credential_values_recorded": false},
-  "permission_gaps": [
-    {"code": "GITHUB_PR_CREATE_GAP", "reason": "gh is installed but no authenticated GitHub host is available.", "remediation": "Authenticate gh with pull-request write permission for csn1985-ship-it/ugas.", "compare_url": "https://github.com/csn1985-ship-it/ugas/compare/main...codex/v0.12.4-github-ci-governance-recovery"},
-    {"code": "RULESET_CAPABILITY_GAP", "reason": "main protection cannot be configured until authenticated owner/admin access is available.", "remediation": "Authenticate owner/admin access and configure/read back the strongest practical main ruleset."},
-    {"code": "CODEOWNERS_GAP", "reason": "No reviewer identity was guessed or fabricated.", "remediation": "Add CODEOWNERS only after a confirmed owner/reviewer identity is available."}
-  ],
-  "status": "BLOCKED_GITHUB_AUTH",
+  "pull_request": {"number": 2, "state": "OPEN", "url": "https://github.com/csn1985-ship-it/ugas/pull/2", "head_sha": "c9837e429d8027cba78a92f3a79d59a04dc4e99a8"},
+  "authentication": {"gh_cli_present": true, "authenticated": true, "credential_values_recorded": false},
+  "permission_gaps": [{"code": "CODEOWNERS_GAP", "reason": "No reviewer identity was guessed or fabricated; CODEOWNERS was not created.", "remediation": "Add .github/CODEOWNERS only after a valid reviewer identity is explicitly confirmed."}],
+  "ruleset": {"status": "CONFIGURED_READ_BACK", "ruleset_id": 22159732, "protected": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"], "block_deletion": true, "block_force_push": true},
+  "status": "READY_FOR_EXTERNAL_REVIEW",
   "credential_values_recorded": false
 }

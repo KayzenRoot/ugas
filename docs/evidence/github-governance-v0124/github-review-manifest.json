@@ -7,9 +7,9 @@
     "default_branch": "main"
   },
   "pull_request": {
-    "number": 0,
+    "number": 2,
     "base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
-    "head_sha": "a206f3b86be6fcdfcbea717006bcc7111c7ada88",
+    "head_sha": "c9837e429d8027cba78a92f3a79d59a04dc4e99a",
     "merge_base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
     "head_branch": "codex/v0.12.4-github-ci-governance-recovery",
     "base_branch": "main"
@@ -17,7 +17,7 @@
   "scope": {
     "version": "0.12.4",
     "phase": "GITHUB_CI_GOVERNANCE_RECOVERY",
-    "current_gate": "GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR",
+    "current_gate": "GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED",
     "allowed_next_actions": [
       "external_review_github_ci_governance_v0124"
     ],
@@ -39,8 +39,8 @@
     {
       "path": ".github/workflows/ugas-ci.yml",
       "status": "M",
-      "additions": 6,
-      "deletions": 2
+      "additions": 12,
+      "deletions": 3
     },
     {
       "path": ".github/workflows/ugas-review.yml",
@@ -70,6 +70,12 @@
       "path": "REVIEW-v0.12.4.md",
       "status": "A",
       "additions": 48,
+      "deletions": 0
+    },
+    {
+      "path": "_smoke_decoded.txt",
+      "status": "A",
+      "additions": 495,
       "deletions": 0
     },
     {
@@ -157,6 +163,12 @@
       "deletions": 0
     },
     {
+      "path": "docs/evidence/github-governance-v0124/pr-handoff-v0124.json",
+      "status": "A",
+      "additions": 162,
+      "deletions": 0
+    },
+    {
       "path": "docs/evidence/github-governance-v0124/pr1-premature-merge.json",
       "status": "A",
       "additions": 20,
@@ -165,7 +177,7 @@
     {
       "path": "docs/evidence/github-governance-v0124/ruleset-readback.json",
       "status": "A",
-      "additions": 12,
+      "additions": 18,
       "deletions": 0
     },
     {
@@ -255,7 +267,7 @@
     {
       "path": "scripts/github/ugas-pr-handoff.ps1",
       "status": "A",
-      "additions": 177,
+      "additions": 189,
       "deletions": 0
     },
     {
@@ -268,6 +280,12 @@
       "path": "scripts/validation/build_github_review_manifest_v0124.py",
       "status": "A",
       "additions": 124,
+      "deletions": 0
+    },
+    {
+      "path": "scripts/validation/build_review_visual_transport_v0123.py",
+      "status": "M",
+      "additions": 44,
       "deletions": 0
     },
     {
@@ -303,7 +321,7 @@
     {
       "path": "scripts/validation/validate_github_workflows_v0124.py",
       "status": "A",
-      "additions": 87,
+      "additions": 91,
       "deletions": 0
     },
     {
@@ -369,7 +387,7 @@
     {
       "path": "tests/test_github_governance_v0124.py",
       "status": "A",
-      "additions": 88,
+      "additions": 98,
       "deletions": 0
     },
     {
@@ -398,15 +416,15 @@
     }
   ],
   "change_statistics": {
-    "files": 62,
-    "additions": 2843,
-    "deletions": 210
+    "files": 65,
+    "additions": 3582,
+    "deletions": 211
   },
   "current_state": {
     "path": "docs/evidence/current-state.json",
     "version": "0.12.4",
     "phase": "GITHUB_CI_GOVERNANCE_RECOVERY",
-    "current_gate": "GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR",
+    "current_gate": "GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED",
     "production_approved": false,
     "production_routing": "BLOCKED",
     "external_visual_review": {
@@ -429,8 +447,8 @@
     "log_path": "ugas-tests.log",
     "exit_code": 0,
     "parse_status": "parsed",
-    "count": 363,
-    "passed": 363,
+    "count": 364,
+    "passed": 364,
     "failed": 0,
     "status": "passed"
   },
@@ -440,8 +458,8 @@
     "log_path": "ugas-validation.log",
     "exit_code": 0,
     "parse_status": "parsed",
-    "checks": 1694,
-    "passed": 1694,
+    "checks": 1696,
+    "passed": 1696,
     "failed": 0,
     "status": "passed"
   },
@@ -504,15 +522,12 @@
   },
   "visual_manifest": "visual-manifest.json",
   "known_gaps": [
-    "CODEOWNERS_GAP",
-    "GITHUB_PR_CREATE_GAP",
-    "LOCAL_REHEARSAL_PR_NOT_AVAILABLE",
-    "RULESET_CAPABILITY_GAP"
+    "CODEOWNERS_GAP"
   ],
   "gap_context": {
     "source": "local_rehearsal",
-    "pr_number": 0,
-    "pr_available": false,
+    "pr_number": 2,
+    "pr_available": true,
     "explicit_gap_input": true
   },
   "dashboard_policy": {

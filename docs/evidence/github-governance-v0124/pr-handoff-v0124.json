@@ -1,0 +1,162 @@
+{
+  "credential_values_recorded": false,
+  "branch": "codex/v0.12.4-github-ci-governance-recovery",
+  "created": false,
+  "pr_state": "OPEN",
+  "merge_performed": false,
+  "schema_version": "0.12.4",
+  "pr_url": "https://github.com/csn1985-ship-it/ugas/pull/2",
+  "head_sha": "c9837e429d8027cba78a92f3a79d59a04dc4e99a",
+  "artifacts": {
+    "id": 9875192205,
+    "node_id": "MDg6QXJ0aWZhY3Q5ODc1MTkyMjA1",
+    "name": "ugas-review-evidence-pr-2-c9837e429d8027cba78a92f3a79d59a04dc4e99a",
+    "size_in_bytes": 2409347,
+    "url": "https://api.github.com/repos/csn1985-ship-it/ugas/actions/artifacts/9875192205",
+    "archive_download_url": "https://api.github.com/repos/csn1985-ship-it/ugas/actions/artifacts/9875192205/zip",
+    "expired": false,
+    "digest": "sha256:d45ad3633248c999cac0358b6212bc9ae9bbcd2689776605d0bb8b0cd48b31e6",
+    "created_at": "2026-09-03T02:00:16Z",
+    "updated_at": "2026-09-03T02:00:16Z",
+    "expires_at": "2026-09-24T02:00:15Z",
+    "workflow_run": {
+      "id": 33705616411,
+      "repository_id": 1350189779,
+      "head_repository_id": 1350189779,
+      "head_branch": "codex/v0.12.4-github-ci-governance-recovery",
+      "head_sha": "c9837e429d8027cba78a92f3a79d59a04dc4e99a"
+    }
+  },
+  "workflow_runs": [
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T01:55:43Z",
+      "databaseId": 33705616489,
+      "headSha": "c9837e429d8027cba78a92f3a79d59a04dc4e99a",
+      "status": "completed",
+      "updatedAt": "2026-09-03T02:00:15Z",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33705616489",
+      "workflowName": ".github/workflows/ugas-ci.yml"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-09-03T01:55:43Z",
+      "databaseId": 33705616411,
+      "headSha": "c9837e429d8027cba78a92f3a79d59a04dc4e99a",
+      "status": "completed",
+      "updatedAt": "2026-09-03T02:00:22Z",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33705616411",
+      "workflowName": "UGAS GitHub review evidence"
+    }
+  ],
+  "checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/csn1985-ship-it/ugas/actions/runs/33705616489/job/100493968580",
+      "name": "UGAS CI / unit-and-validation",
+      "state": "SUCCESS",
+      "workflow": ".github/workflows/ugas-ci.yml"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/csn1985-ship-it/ugas/actions/runs/33705616411/job/100493967947",
+      "name": "UGAS Review / evidence",
+      "state": "SUCCESS",
+      "workflow": "UGAS GitHub review evidence"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/csn1985-ship-it/ugas/actions/runs/33705616489/job/100493968394",
+      "name": "UGAS CI / docker-smoke",
+      "state": "SUCCESS",
+      "workflow": ".github/workflows/ugas-ci.yml"
+    }
+  ],
+  "failed_or_pending_checks": [],
+  "status": "READY_FOR_EXTERNAL_REVIEW",
+  "required_checks": [
+    "UGAS CI / unit-and-validation",
+    "UGAS CI / docker-smoke",
+    "UGAS Review / evidence"
+  ],
+  "repository": "csn1985-ship-it/ugas",
+  "ruleset": {
+    "status": "CONFIGURED_READ_BACK",
+    "capability_gap": null,
+    "protected": true,
+    "credential_values_recorded": false,
+    "rulesets": {
+      "id": 22159732,
+      "name": "UGAS main PR protection v0.12.4",
+      "target": "branch",
+      "source_type": "Repository",
+      "source": "csn1985-ship-it/ugas",
+      "enforcement": "active",
+      "conditions": {
+        "ref_name": {
+          "exclude": [],
+          "include": [
+            "refs/heads/main"
+          ]
+        }
+      },
+      "rules": [
+        {
+          "type": "pull_request",
+          "parameters": {
+            "required_approving_review_count": 0,
+            "dismiss_stale_reviews_on_push": true,
+            "required_reviewers": [],
+            "require_code_owner_review": false,
+            "require_last_push_approval": false,
+            "required_review_thread_resolution": true,
+            "require_extra_approval_for_unattributed_changes": true,
+            "allowed_merge_methods": [
+              "merge",
+              "squash",
+              "rebase"
+            ]
+          }
+        },
+        {
+          "type": "required_status_checks",
+          "parameters": {
+            "strict_required_status_checks_policy": true,
+            "do_not_enforce_on_create": false,
+            "required_status_checks": [
+              {
+                "context": "UGAS CI / unit-and-validation"
+              },
+              {
+                "context": "UGAS CI / docker-smoke"
+              },
+              {
+                "context": "UGAS Review / evidence"
+              }
+            ]
+          }
+        },
+        {
+          "type": "deletion"
+        },
+        {
+          "type": "non_fast_forward"
+        }
+      ],
+      "node_id": "RRS_lACqUmVwb3NpdG9yec5QekLTzgFSIXQ",
+      "created_at": "2026-09-02T23:07:16.466-03:00",
+      "updated_at": "2026-09-02T23:07:16.498-03:00",
+      "bypass_actors": [],
+      "current_user_can_bypass": "never",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/csn1985-ship-it/ugas/rulesets/22159732"
+        },
+        "html": {
+          "href": "https://github.com/csn1985-ship-it/ugas/rules/22159732"
+        }
+      }
+    }
+  },
+  "pr_number": 2
+}

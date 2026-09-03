@@ -139,7 +139,10 @@ class GovernanceAndCliTests(unittest.TestCase):
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         from ugas.state_consistency_v0124 import validate_state_consistency as validate_state_consistency_v0124
         result = validate_state_consistency_v0124(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.12.4.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        self.assertEqual("GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR", result["status"])
+        self.assertIn(result["status"], {
+            "GITHUB_CI_GOVERNANCE_RECOVERY_READY_FOR_PR",
+            "GITHUB_CI_GOVERNANCE_RECOVERY_TECHNICALLY_QUALIFIED",
+        })
         mutant = dict(state); mutant["production_approved"] = True
         self.assertIn("production_approved_must_remain_false", validate_state_consistency_v0124(mutant, "", "")["failures"])
 
