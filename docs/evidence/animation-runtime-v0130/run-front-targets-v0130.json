@@ -1,0 +1,827 @@
+{
+  "schema_version": "0.13.0",
+  "animation_id": "run-front-v1",
+  "phase_order": [
+    "R0-contact-left",
+    "R1-support-left",
+    "R2-passing-left",
+    "R3-flight-left",
+    "R4-contact-right",
+    "R5-support-right",
+    "R6-passing-right",
+    "R7-flight-right"
+  ],
+  "targets": [
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 296.1561,
+          "y": 252.2711
+        },
+        "hip_right": {
+          "x": 242.9306,
+          "y": 253.2929
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 268.704243,
+          "y": 78.798652
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 252.782
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 125.522302,
+          "y": 449.844093
+        }
+      },
+      "phase": "R0-contact-left",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 0,
+      "motion_tracks_sample": {
+        "root_shift_x": 0.0,
+        "root_shift_y": 0.0,
+        "torso_rotation_deg": 0.0,
+        "torso_lean_x": 0.0,
+        "left_arm_swing_deg": 0.0,
+        "right_arm_swing_deg": 0.0,
+        "head_counter_rotation_deg": -2.0,
+        "sword_rotation_deg": 10.0,
+        "left_stride_x": 0.0,
+        "right_stride_x": 0.0,
+        "left_lift_y": 0.0,
+        "right_lift_y": 0.0
+      },
+      "target_joint_sha256": "6b8edf261800a4d37ba2be83ec83d610f91a20af67799e487600641c7f64a11b"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 325.649396,
+          "y": 125.118835
+        },
+        "shoulder_right": {
+          "x": 231.20587,
+          "y": 121.459574
+        },
+        "elbow_left": {
+          "x": 331.939934,
+          "y": 193.919614
+        },
+        "elbow_right": {
+          "x": 222.01872,
+          "y": 188.740565
+        },
+        "wrist_left": {
+          "x": 336.737759,
+          "y": 261.135203
+        },
+        "wrist_right": {
+          "x": 220.393823,
+          "y": 254.580089
+        },
+        "hip_left": {
+          "x": 303.157718,
+          "y": 250.200183
+        },
+        "hip_right": {
+          "x": 249.928982,
+          "y": 249.363817
+        },
+        "knee_left": {
+          "x": 306.407784,
+          "y": 351.5924
+        },
+        "knee_right": {
+          "x": 243.955571,
+          "y": 349.14904
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 238.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 278.575367,
+          "y": 75.84476
+        },
+        "neck": {
+          "x": 275.891247,
+          "y": 108.098586
+        },
+        "pelvis": {
+          "x": 276.54335,
+          "y": 249.782
+        },
+        "shoulder_center": {
+          "x": 278.427633,
+          "y": 123.289205
+        },
+        "weapon_tip": {
+          "x": 171.327671,
+          "y": 453.260282
+        }
+      },
+      "phase": "R1-support-left",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 1,
+      "motion_tracks_sample": {
+        "root_shift_x": 6.0,
+        "root_shift_y": -3.0,
+        "torso_rotation_deg": 2.0,
+        "torso_lean_x": 1.0,
+        "left_arm_swing_deg": 8.0,
+        "right_arm_swing_deg": -8.0,
+        "head_counter_rotation_deg": -1.0,
+        "sword_rotation_deg": 10.0,
+        "left_stride_x": 0.0,
+        "right_stride_x": 4.0,
+        "left_lift_y": 0.0,
+        "right_lift_y": 0.0
+      },
+      "target_joint_sha256": "c6686e85c0d1d6729802b44e06b9fb4a135d29cb24722d97ee05c82fe4d2b93e"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 336.970163,
+          "y": 122.908553
+        },
+        "shoulder_right": {
+          "x": 242.711876,
+          "y": 115.95549
+        },
+        "elbow_left": {
+          "x": 336.034601,
+          "y": 191.989974
+        },
+        "elbow_right": {
+          "x": 235.878396,
+          "y": 183.516122
+        },
+        "wrist_left": {
+          "x": 333.780201,
+          "y": 259.338859
+        },
+        "wrist_right": {
+          "x": 236.552255,
+          "y": 249.372246
+        },
+        "hip_left": {
+          "x": 310.126911,
+          "y": 247.128756
+        },
+        "hip_right": {
+          "x": 256.959789,
+          "y": 244.435244
+        },
+        "knee_left": {
+          "x": 336.314783,
+          "y": 344.239052
+        },
+        "knee_right": {
+          "x": 245.427615,
+          "y": 346.702004
+        },
+        "ankle_left": {
+          "x": 317.4539,
+          "y": 438.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 288.444074,
+          "y": 71.946228
+        },
+        "neck": {
+          "x": 284.77061,
+          "y": 104.102401
+        },
+        "pelvis": {
+          "x": 283.54335,
+          "y": 245.782
+        },
+        "shoulder_center": {
+          "x": 289.84102,
+          "y": 119.432021
+        },
+        "weapon_tip": {
+          "x": 128.492015,
+          "y": 423.166063
+        }
+      },
+      "phase": "R2-passing-left",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 2,
+      "motion_tracks_sample": {
+        "root_shift_x": 12.0,
+        "root_shift_y": -7.0,
+        "torso_rotation_deg": 4.0,
+        "torso_lean_x": 2.0,
+        "left_arm_swing_deg": 12.0,
+        "right_arm_swing_deg": -12.0,
+        "head_counter_rotation_deg": 0.0,
+        "sword_rotation_deg": 30.0,
+        "left_stride_x": 8.0,
+        "right_stride_x": 0.0,
+        "left_lift_y": -10.0,
+        "right_lift_y": 0.0
+      },
+      "target_joint_sha256": "682aa4f4a35c6cafd6606fc61e033e5fa0d5e63b7208aad25dddce0e5183b00e"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 325.649396,
+          "y": 125.118835
+        },
+        "shoulder_right": {
+          "x": 231.20587,
+          "y": 121.459574
+        },
+        "elbow_left": {
+          "x": 334.337214,
+          "y": 193.658166
+        },
+        "elbow_right": {
+          "x": 219.676244,
+          "y": 188.378952
+        },
+        "wrist_left": {
+          "x": 341.477907,
+          "y": 260.665367
+        },
+        "wrist_right": {
+          "x": 215.754571,
+          "y": 254.12166
+        },
+        "hip_left": {
+          "x": 303.157718,
+          "y": 250.200183
+        },
+        "hip_right": {
+          "x": 249.928982,
+          "y": 249.363817
+        },
+        "knee_left": {
+          "x": 348.155644,
+          "y": 340.152398
+        },
+        "knee_right": {
+          "x": 241.940134,
+          "y": 349.148398
+        },
+        "ankle_left": {
+          "x": 321.4539,
+          "y": 432.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 279.699374,
+          "y": 75.958083
+        },
+        "neck": {
+          "x": 275.891247,
+          "y": 108.098586
+        },
+        "pelvis": {
+          "x": 276.54335,
+          "y": 249.782
+        },
+        "shoulder_center": {
+          "x": 278.427633,
+          "y": 123.289205
+        },
+        "weapon_tip": {
+          "x": 95.834316,
+          "y": 419.954223
+        }
+      },
+      "phase": "R3-flight-left",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 3,
+      "motion_tracks_sample": {
+        "root_shift_x": 6.0,
+        "root_shift_y": -3.0,
+        "torso_rotation_deg": 2.0,
+        "torso_lean_x": 1.0,
+        "left_arm_swing_deg": 6.0,
+        "right_arm_swing_deg": -6.0,
+        "head_counter_rotation_deg": 1.0,
+        "sword_rotation_deg": 30.0,
+        "left_stride_x": 12.0,
+        "right_stride_x": 0.0,
+        "left_lift_y": -16.0,
+        "right_lift_y": 0.0
+      },
+      "target_joint_sha256": "df6007f564137584940bb118898672bebce3055fd1d261bc5ccb673b2bb8b158"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 296.1561,
+          "y": 252.2711
+        },
+        "hip_right": {
+          "x": 242.9306,
+          "y": 253.2929
+        },
+        "knee_left": {
+          "x": 321.981979,
+          "y": 349.478292
+        },
+        "knee_right": {
+          "x": 236.19,
+          "y": 350.9961
+        },
+        "ankle_left": {
+          "x": 317.4539,
+          "y": 445.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 270.954723,
+          "y": 78.99543
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 252.782
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 125.522302,
+          "y": 449.844093
+        }
+      },
+      "phase": "R4-contact-right",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 4,
+      "motion_tracks_sample": {
+        "root_shift_x": 0.0,
+        "root_shift_y": 0.0,
+        "torso_rotation_deg": 0.0,
+        "torso_lean_x": 0.0,
+        "left_arm_swing_deg": 0.0,
+        "right_arm_swing_deg": 0.0,
+        "head_counter_rotation_deg": 2.0,
+        "sword_rotation_deg": 10.0,
+        "left_stride_x": 8.0,
+        "right_stride_x": 0.0,
+        "left_lift_y": -3.0,
+        "right_lift_y": 0.0
+      },
+      "target_joint_sha256": "5f96e57a2d3cf75b752770299590f3e2ccf07119c6d38e63785414f12f921abf"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 302.833713,
+          "y": 127.997043
+        },
+        "shoulder_right": {
+          "x": 208.36499,
+          "y": 130.934744
+        },
+        "elbow_left": {
+          "x": 332.276137,
+          "y": 190.497137
+        },
+        "elbow_right": {
+          "x": 185.390097,
+          "y": 194.835368
+        },
+        "wrist_left": {
+          "x": 359.773703,
+          "y": 252.018177
+        },
+        "wrist_right": {
+          "x": 170.111901,
+          "y": 258.898305
+        },
+        "hip_left": {
+          "x": 289.122058,
+          "y": 254.34264
+        },
+        "hip_right": {
+          "x": 235.964642,
+          "y": 257.22136
+        },
+        "knee_left": {
+          "x": 311.54562,
+          "y": 352.390578
+        },
+        "knee_right": {
+          "x": 215.012997,
+          "y": 352.88943
+        },
+        "ankle_left": {
+          "x": 313.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 447.4095
+        },
+        "nose": {
+          "x": 261.087429,
+          "y": 81.935531
+        },
+        "neck": {
+          "x": 258.133198,
+          "y": 114.165738
+        },
+        "pelvis": {
+          "x": 262.54335,
+          "y": 255.782
+        },
+        "shoulder_center": {
+          "x": 255.599352,
+          "y": 129.465893
+        },
+        "weapon_tip": {
+          "x": 80.810027,
+          "y": 443.035433
+        }
+      },
+      "phase": "R5-support-right",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 5,
+      "motion_tracks_sample": {
+        "root_shift_x": -6.0,
+        "root_shift_y": 3.0,
+        "torso_rotation_deg": -2.0,
+        "torso_lean_x": -1.0,
+        "left_arm_swing_deg": -8.0,
+        "right_arm_swing_deg": 8.0,
+        "head_counter_rotation_deg": 1.0,
+        "sword_rotation_deg": 10.0,
+        "left_stride_x": 4.0,
+        "right_stride_x": 0.0,
+        "left_lift_y": 0.0,
+        "right_lift_y": 0.0
+      },
+      "target_joint_sha256": "aa09d9497e5716364bc63878e782b8c183f4ec836b954edfed5687f7394a4534"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 291.349539,
+          "y": 130.668773
+        },
+        "shoulder_right": {
+          "x": 197.040887,
+          "y": 136.901595
+        },
+        "elbow_left": {
+          "x": 327.163713,
+          "y": 189.748913
+        },
+        "elbow_right": {
+          "x": 171.84989,
+          "y": 199.96148
+        },
+        "wrist_left": {
+          "x": 360.941345,
+          "y": 248.058657
+        },
+        "wrist_right": {
+          "x": 154.345237,
+          "y": 263.452191
+        },
+        "hip_left": {
+          "x": 282.055634,
+          "y": 257.415933
+        },
+        "hip_right": {
+          "x": 229.031066,
+          "y": 262.148067
+        },
+        "knee_left": {
+          "x": 314.789126,
+          "y": 352.519733
+        },
+        "knee_right": {
+          "x": 194.254855,
+          "y": 353.701145
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 242.1367,
+          "y": 437.4095
+        },
+        "nose": {
+          "x": 251.218124,
+          "y": 85.930957
+        },
+        "neck": {
+          "x": 249.255172,
+          "y": 118.236694
+        },
+        "pelvis": {
+          "x": 255.54335,
+          "y": 259.782
+        },
+        "shoulder_center": {
+          "x": 244.195213,
+          "y": 133.785184
+        },
+        "weapon_tip": {
+          "x": 58.67147,
+          "y": 444.360557
+        }
+      },
+      "phase": "R6-passing-right",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 6,
+      "motion_tracks_sample": {
+        "root_shift_x": -12.0,
+        "root_shift_y": 7.0,
+        "torso_rotation_deg": -4.0,
+        "torso_lean_x": -2.0,
+        "left_arm_swing_deg": -12.0,
+        "right_arm_swing_deg": 12.0,
+        "head_counter_rotation_deg": 0.0,
+        "sword_rotation_deg": 10.0,
+        "left_stride_x": 0.0,
+        "right_stride_x": 8.0,
+        "left_lift_y": 0.0,
+        "right_lift_y": -10.0
+      },
+      "target_joint_sha256": "09d02aa3b691e8443084ff00f57539fd7deca82550578327b5302bce3151565b"
+    },
+    {
+      "joints": {
+        "shoulder_left": {
+          "x": 314.2688,
+          "y": 126.481
+        },
+        "shoulder_right": {
+          "x": 219.7551,
+          "y": 126.12
+        },
+        "elbow_left": {
+          "x": 332.4109,
+          "y": 193.1442
+        },
+        "elbow_right": {
+          "x": 203.5855,
+          "y": 192.0721
+        },
+        "wrist_left": {
+          "x": 348.8077,
+          "y": 258.5055
+        },
+        "wrist_right": {
+          "x": 195.0874,
+          "y": 257.3811
+        },
+        "hip_left": {
+          "x": 296.1561,
+          "y": 252.2711
+        },
+        "hip_right": {
+          "x": 242.9306,
+          "y": 253.2929
+        },
+        "knee_left": {
+          "x": 304.6358,
+          "y": 352.4924
+        },
+        "knee_right": {
+          "x": 216.513521,
+          "y": 347.598196
+        },
+        "ankle_left": {
+          "x": 309.4539,
+          "y": 448.5532
+        },
+        "ankle_right": {
+          "x": 234.1367,
+          "y": 442.4095
+        },
+        "nose": {
+          "x": 269.268065,
+          "y": 78.833109
+        },
+        "neck": {
+          "x": 267.012,
+          "y": 111.1197
+        },
+        "pelvis": {
+          "x": 269.54335,
+          "y": 252.782
+        },
+        "shoulder_center": {
+          "x": 267.01195,
+          "y": 126.3005
+        },
+        "weapon_tip": {
+          "x": 125.522302,
+          "y": 449.844093
+        }
+      },
+      "phase": "R7-flight-right",
+      "view": "front",
+      "orientation": "front",
+      "generator": {
+        "kind": "deterministic-skeleton-only-run-cycle",
+        "parameters_frozen_before_render": true,
+        "pixel_interpolation": false,
+        "image_inputs_used_for_motion": false
+      },
+      "frame_index": 7,
+      "motion_tracks_sample": {
+        "root_shift_x": 0.0,
+        "root_shift_y": 0.0,
+        "torso_rotation_deg": 0.0,
+        "torso_lean_x": 0.0,
+        "left_arm_swing_deg": 0.0,
+        "right_arm_swing_deg": 0.0,
+        "head_counter_rotation_deg": -1.0,
+        "sword_rotation_deg": 10.0,
+        "left_stride_x": 0.0,
+        "right_stride_x": 0.0,
+        "left_lift_y": 0.0,
+        "right_lift_y": -5.0
+      },
+      "target_joint_sha256": "8809d05e338dd54634f8e92d9560a66a8b904442b342dccb55b71eb458b9336b"
+    }
+  ],
+  "target_hashes": [
+    "6b8edf261800a4d37ba2be83ec83d610f91a20af67799e487600641c7f64a11b",
+    "c6686e85c0d1d6729802b44e06b9fb4a135d29cb24722d97ee05c82fe4d2b93e",
+    "682aa4f4a35c6cafd6606fc61e033e5fa0d5e63b7208aad25dddce0e5183b00e",
+    "df6007f564137584940bb118898672bebce3055fd1d261bc5ccb673b2bb8b158",
+    "5f96e57a2d3cf75b752770299590f3e2ccf07119c6d38e63785414f12f921abf",
+    "aa09d9497e5716364bc63878e782b8c183f4ec836b954edfed5687f7394a4534",
+    "09d02aa3b691e8443084ff00f57539fd7deca82550578327b5302bce3151565b",
+    "8809d05e338dd54634f8e92d9560a66a8b904442b342dccb55b71eb458b9336b"
+  ],
+  "key_pose_bindings": [
+    {
+      "frame": 0,
+      "phase": "R0-contact-left",
+      "target_hash": "6b8edf261800a4d37ba2be83ec83d610f91a20af67799e487600641c7f64a11b"
+    },
+    {
+      "frame": 2,
+      "phase": "R2-passing-left",
+      "target_hash": "682aa4f4a35c6cafd6606fc61e033e5fa0d5e63b7208aad25dddce0e5183b00e"
+    },
+    {
+      "frame": 4,
+      "phase": "R4-contact-right",
+      "target_hash": "5f96e57a2d3cf75b752770299590f3e2ccf07119c6d38e63785414f12f921abf"
+    },
+    {
+      "frame": 6,
+      "phase": "R6-passing-right",
+      "target_hash": "09d02aa3b691e8443084ff00f57539fd7deca82550578327b5302bce3151565b"
+    }
+  ],
+  "motion_tracks_sha256": "9d0980503640431e64f422b5ba8ff96fc42730022fd5f437eb8a169919f18b72",
+  "parameters_frozen_before_render": true,
+  "source_only_pixels": true
+}

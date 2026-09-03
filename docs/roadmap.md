@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.12.4 - GitHub CI and governance recovery (active: `GITHUB_CI_GOVERNANCE_RECOVERY`)
+## v0.13.0 - RUN_FRONT_V1 (active: RUN_FRONT_V1)
+
+After merge PR #2 at exact approved head, reread the canonical matrix and execute only its next_candidate RUN_FRONT_V1. The source-only deterministic increment is eight front-facing frames at 12 fps with twelve declarative motion tracks and explicit contact/support/passing/flight phases. CAPABILITY_COUNT=16, production_routing=BLOCKED, new_generation=0, production_approved=false, and external_visual=REQUIRED. The branch codex/v0.13.0-run-front-v1 is GitHub-first: create a PR from post-merge main, require exact-head success for UGAS CI / unit-and-validation, UGAS CI / docker-smoke and UGAS Review / evidence, then leave the PR OPEN for external visual review. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. No production enablement or next capability is authorized.
+
+## Historical v0.12.4 - GitHub CI and governance recovery
 
 Recover GitHub-first development after the premature v0.12.3 merge. Start from remote main `877ede34afadd631764887ad6c5fb941ca4371a8` on a new corrective branch, fix the three real historical snapshot/no-git validation defects, prove stable PR-triggered `UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke` and `UGAS Review / evidence` checks, and leave corrective PR #2 open without merge. Record the immutable PR #1 incident, record `observability_dashboard_external_visual=APPROVED_PILOT` bound to the existing artifact/visual hashes, configure and read back the active main protection ruleset, and keep the local Docker dashboard online under `DOCKER_ALWAYS_ON_LOCAL`. `GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY`, `NO_SELF_MERGE_UNTIL_EXTERNAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `RUN_FRONT_V1` remain outside this slice. The gate is technically qualified; the only next action is `external_review_github_ci_governance_v0124`.
 

@@ -79,11 +79,11 @@ class GithubGovernanceRecoveryTests(unittest.TestCase):
             self.assertIn("job-env-runner-context-invalid", result["failures"])
 
     def test_state_nc_01_production_and_generation_are_blocked(self) -> None:
-        state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-        checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
-        review = (ROOT / "REVIEW-v0.12.4.md").read_text(encoding="utf-8")
+        state = json.loads((ROOT / "docs/evidence/current-state-v0.12.4.json").read_text(encoding="utf-8"))
+        checkpoint = (ROOT / "REVIEW-v0.12.4.md").read_text(encoding="utf-8")
+        review = checkpoint
         mutant = copy.deepcopy(state); mutant["production_approved"] = True
-        result = validate_state_consistency(mutant, checkpoint, review, (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        result = validate_state_consistency(mutant, checkpoint, review, checkpoint)
         self.assertIn("production_approved_must_remain_false", result["failures"])
         mutant = copy.deepcopy(state); mutant["new_generation"] = 1
         self.assertIn("new_generation_must_remain_zero", validate_state_consistency(mutant, checkpoint, review, "")["failures"])

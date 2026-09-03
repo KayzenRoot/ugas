@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.13.0",
+  "prompt": "UGAS-v0.13.0-RUN-FRONT-V1",
+  "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "animation_id": "run-front-v1",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 8,
+  "fps": 12,
+  "loop": true,
+  "motion_tracks_sha256": "9d0980503640431e64f422b5ba8ff96fc42730022fd5f437eb8a169919f18b72",
+  "event_markers_sha256": "1a0932b37987b2652059b09195eb71b13613990aac014b60a1bdbf05de3b15bc",
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "external_visual": "REQUIRED",
+  "negative_controls": "NC_01_TO_NC_08_PASSED",
+  "approved_assets_untouched": "APPROVED_ASSETS_UNTOUCHED",
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0130/run-front-v1/package-manifest.json",
+    "sha256": "ac476b7d88667271676d4332ffa5e7088565f8e0bbdf06414392c61e50aff7f2",
+    "preview_gif": {
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-preview-v0130.gif",
+      "sha256": "b2420d9b26275b86b18b588fe54de47d7c69063a5c8c3d06f2355e27ad5bace9"
+    },
+    "sprite_sheet": {
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-spritesheet-v0130.png",
+      "sha256": "a8146b465d073cd96f15bad9bef3bc6cea56acc7932ab63b8ce883448bf5d65f"
+    }
+  },
+  "review_artifacts": {
+    "visual_manifest": "docs/evidence/animation-runtime-v0130/run-front-visual-manifest-v0130.json",
+    "phase_marker_sheet": "docs/evidence/animation-runtime-v0130/run-front-phase-markers-v0130.png",
+    "negative_controls": "docs/evidence/animation-runtime-v0130/run-front-gate-negative-controls-v0130.json"
+  },
+  "next_capability_started": false
+}

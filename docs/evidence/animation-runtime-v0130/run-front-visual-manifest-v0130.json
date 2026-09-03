@@ -1,0 +1,436 @@
+{
+  "schema_version": "0.13.0",
+  "review_state": "run-front-v1-technically-qualified",
+  "review_subject": {
+    "animation_id": "run-front-v1",
+    "direction": "front",
+    "frame_count": 8,
+    "fps": 12,
+    "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "event_markers": [
+    {
+      "event_id": "left_contact",
+      "frame": 0,
+      "kind": "contact"
+    },
+    {
+      "event_id": "left_support",
+      "frame": 1,
+      "kind": "support"
+    },
+    {
+      "event_id": "left_passing",
+      "frame": 2,
+      "kind": "passing"
+    },
+    {
+      "event_id": "left_flight",
+      "frame": 3,
+      "kind": "flight"
+    },
+    {
+      "event_id": "right_contact",
+      "frame": 4,
+      "kind": "contact"
+    },
+    {
+      "event_id": "right_support",
+      "frame": 5,
+      "kind": "support"
+    },
+    {
+      "event_id": "right_passing",
+      "frame": 6,
+      "kind": "passing"
+    },
+    {
+      "event_id": "loop_closure",
+      "frame": 7,
+      "kind": "loop-closure"
+    },
+    {
+      "event_id": "right_flight",
+      "frame": 7,
+      "kind": "flight"
+    }
+  ],
+  "event_markers_sha256": "1a0932b37987b2652059b09195eb71b13613990aac014b60a1bdbf05de3b15bc",
+  "motion_tracks_sha256": "9d0980503640431e64f422b5ba8ff96fc42730022fd5f437eb8a169919f18b72",
+  "images": [
+    {
+      "frame": 0,
+      "phase": "R0-contact-left",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-00.png",
+      "rgba_sha256": "e8c5fb3c8e9fcccfa5e09bfd42cdf90d6b6371623941b5b3c6fcbfac2821070c",
+      "target_hash": "6b8edf261800a4d37ba2be83ec83d610f91a20af67799e487600641c7f64a11b",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "left_contact",
+          "frame": 0,
+          "kind": "contact"
+        }
+      ]
+    },
+    {
+      "frame": 1,
+      "phase": "R1-support-left",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-01.png",
+      "rgba_sha256": "03db883f1da4b72f6ca6a05b36b0401477d5df8b27bf430438ea76124abccc91",
+      "target_hash": "c6686e85c0d1d6729802b44e06b9fb4a135d29cb24722d97ee05c82fe4d2b93e",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "left_support",
+          "frame": 1,
+          "kind": "support"
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "phase": "R2-passing-left",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-02.png",
+      "rgba_sha256": "d0949b8c658d8328a37aebdbff78b6851b893197e23a2d21eeaaad1c1397086b",
+      "target_hash": "682aa4f4a35c6cafd6606fc61e033e5fa0d5e63b7208aad25dddce0e5183b00e",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "left_passing",
+          "frame": 2,
+          "kind": "passing"
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "phase": "R3-flight-left",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-03.png",
+      "rgba_sha256": "bb045d041a315d3f1f1284a8801613b801f78dfb13a992cf6effe4a0c6e48bab",
+      "target_hash": "df6007f564137584940bb118898672bebce3055fd1d261bc5ccb673b2bb8b158",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "left_flight",
+          "frame": 3,
+          "kind": "flight"
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "phase": "R4-contact-right",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-04.png",
+      "rgba_sha256": "f8cb83cc9c9680e27f881238115a5459a1751d5735872af1cd3cc95bc51828da",
+      "target_hash": "5f96e57a2d3cf75b752770299590f3e2ccf07119c6d38e63785414f12f921abf",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "right_contact",
+          "frame": 4,
+          "kind": "contact"
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "phase": "R5-support-right",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-05.png",
+      "rgba_sha256": "d26ba7daf1567f126a528b7f92cd78ac00b13e147f5085fb5fdef055c7e5374e",
+      "target_hash": "aa09d9497e5716364bc63878e782b8c183f4ec836b954edfed5687f7394a4534",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "right_support",
+          "frame": 5,
+          "kind": "support"
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "phase": "R6-passing-right",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-06.png",
+      "rgba_sha256": "d53a0b2a166bbbcdd23c3aac57540b5ee22fdd9341a00342072082a9681f15c1",
+      "target_hash": "09d02aa3b691e8443084ff00f57539fd7deca82550578327b5302bce3151565b",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "right_passing",
+          "frame": 6,
+          "kind": "passing"
+        }
+      ]
+    },
+    {
+      "frame": 7,
+      "phase": "R7-flight-right",
+      "source_path": "docs/evidence/animation-runtime-v0130/run-front-v1/frame-07.png",
+      "rgba_sha256": "9c615f3081344bc5162d7a58cfa4d3ff72d72fc9cb7d40703d2d8a76439d9a3d",
+      "target_hash": "8809d05e338dd54634f8e92d9560a66a8b904442b342dccb55b71eb458b9336b",
+      "media_type": "image/png",
+      "role": "compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "loop_closure",
+          "frame": 7,
+          "kind": "loop-closure"
+        },
+        {
+          "event_id": "right_flight",
+          "frame": 7,
+          "kind": "flight"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-preview-v0130.gif",
+      "sha256": "b2420d9b26275b86b18b588fe54de47d7c69063a5c8c3d06f2355e27ad5bace9",
+      "media_type": "image/gif",
+      "role": "review-gif",
+      "events": [
+        {
+          "event_id": "left_contact",
+          "frame": 0,
+          "kind": "contact"
+        },
+        {
+          "event_id": "left_support",
+          "frame": 1,
+          "kind": "support"
+        },
+        {
+          "event_id": "left_passing",
+          "frame": 2,
+          "kind": "passing"
+        },
+        {
+          "event_id": "left_flight",
+          "frame": 3,
+          "kind": "flight"
+        },
+        {
+          "event_id": "right_contact",
+          "frame": 4,
+          "kind": "contact"
+        },
+        {
+          "event_id": "right_support",
+          "frame": 5,
+          "kind": "support"
+        },
+        {
+          "event_id": "right_passing",
+          "frame": 6,
+          "kind": "passing"
+        },
+        {
+          "event_id": "loop_closure",
+          "frame": 7,
+          "kind": "loop-closure"
+        },
+        {
+          "event_id": "right_flight",
+          "frame": 7,
+          "kind": "flight"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-spritesheet-v0130.png",
+      "sha256": "a8146b465d073cd96f15bad9bef3bc6cea56acc7932ab63b8ce883448bf5d65f",
+      "media_type": "image/png",
+      "role": "compiled-rgba-spritesheet",
+      "events": [
+        {
+          "event_id": "left_contact",
+          "frame": 0,
+          "kind": "contact"
+        },
+        {
+          "event_id": "left_support",
+          "frame": 1,
+          "kind": "support"
+        },
+        {
+          "event_id": "left_passing",
+          "frame": 2,
+          "kind": "passing"
+        },
+        {
+          "event_id": "left_flight",
+          "frame": 3,
+          "kind": "flight"
+        },
+        {
+          "event_id": "right_contact",
+          "frame": 4,
+          "kind": "contact"
+        },
+        {
+          "event_id": "right_support",
+          "frame": 5,
+          "kind": "support"
+        },
+        {
+          "event_id": "right_passing",
+          "frame": 6,
+          "kind": "passing"
+        },
+        {
+          "event_id": "loop_closure",
+          "frame": 7,
+          "kind": "loop-closure"
+        },
+        {
+          "event_id": "right_flight",
+          "frame": 7,
+          "kind": "flight"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0130/run-front-phase-markers-v0130.png",
+      "sha256": "9a353e280c608b5b55d817a87f6fe59e1f18dc6277843f7dc87f314496196389",
+      "media_type": "image/png",
+      "role": "phase-marker-review-sheet",
+      "events": [
+        {
+          "event_id": "left_contact",
+          "frame": 0,
+          "kind": "contact"
+        },
+        {
+          "event_id": "left_support",
+          "frame": 1,
+          "kind": "support"
+        },
+        {
+          "event_id": "left_passing",
+          "frame": 2,
+          "kind": "passing"
+        },
+        {
+          "event_id": "left_flight",
+          "frame": 3,
+          "kind": "flight"
+        },
+        {
+          "event_id": "right_contact",
+          "frame": 4,
+          "kind": "contact"
+        },
+        {
+          "event_id": "right_support",
+          "frame": 5,
+          "kind": "support"
+        },
+        {
+          "event_id": "right_passing",
+          "frame": 6,
+          "kind": "passing"
+        },
+        {
+          "event_id": "loop_closure",
+          "frame": 7,
+          "kind": "loop-closure"
+        },
+        {
+          "event_id": "right_flight",
+          "frame": 7,
+          "kind": "flight"
+        }
+      ]
+    }
+  ],
+  "marker_frames": [
+    {
+      "frame": 0,
+      "phase": "R0-contact-left",
+      "events": [
+        "left_contact"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-00-R0-contact-left.png",
+      "sha256": "21fb663a2af60a7511be4e872af51b75591fe8231b663208a3ff8a3c00262575"
+    },
+    {
+      "frame": 1,
+      "phase": "R1-support-left",
+      "events": [
+        "left_support"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-01-R1-support-left.png",
+      "sha256": "69b45bb632e29c38e97338bf17a44dd18a9994571962ad25bfa3df52df65504f"
+    },
+    {
+      "frame": 2,
+      "phase": "R2-passing-left",
+      "events": [
+        "left_passing"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-02-R2-passing-left.png",
+      "sha256": "4e4852f6d1172da0b9fafbc07fb997ba1c150dbf656cfdb98dfbcbfef644eae8"
+    },
+    {
+      "frame": 3,
+      "phase": "R3-flight-left",
+      "events": [
+        "left_flight"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-03-R3-flight-left.png",
+      "sha256": "572820ceffc45e420241e4ed78d2995ca80ae2c93bc8b72b00e44abed03e3361"
+    },
+    {
+      "frame": 4,
+      "phase": "R4-contact-right",
+      "events": [
+        "right_contact"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-04-R4-contact-right.png",
+      "sha256": "bb5c5a1c05061f63e87cbe36b10e1ed51895078c9689cd42b76e7212a8f486f3"
+    },
+    {
+      "frame": 5,
+      "phase": "R5-support-right",
+      "events": [
+        "right_support"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-05-R5-support-right.png",
+      "sha256": "8c2aab3958d6066b8be4696d2013df9801f9aba310ccb78800453f87c7d08956"
+    },
+    {
+      "frame": 6,
+      "phase": "R6-passing-right",
+      "events": [
+        "right_passing"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-06-R6-passing-right.png",
+      "sha256": "f979fc4e15c1deee749284de1ee6e8a5501608d7a94fab05bb604aa7a2b2bcf9"
+    },
+    {
+      "frame": 7,
+      "phase": "R7-flight-right",
+      "events": [
+        "loop_closure",
+        "right_flight"
+      ],
+      "path": "docs/evidence/animation-runtime-v0130/run-front-v1/visual/phase-markers/frame-07-R7-flight-right.png",
+      "sha256": "5333935cf3a46253f3a575a23b0651c0c36f45d2b5983cbf887338a8ef274973"
+    }
+  ],
+  "source_only_pixels": true,
+  "external_visual": "REQUIRED",
+  "production_routing": "BLOCKED",
+  "package_manifest": {
+    "path": "docs/evidence/animation-runtime-v0130/run-front-v1/package-manifest.json",
+    "sha256": "ac476b7d88667271676d4332ffa5e7088565f8e0bbdf06414392c61e50aff7f2"
+  }
+}

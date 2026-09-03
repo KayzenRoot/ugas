@@ -1,0 +1,621 @@
+{
+  "schema_version": "animation-package-1.0",
+  "package_id": "ugas-run-front-v1-package",
+  "animation_id": "run-front-v1",
+  "direction": "front",
+  "frame_count": 8,
+  "fps": 12.0,
+  "per_frame_duration_ms": 83.33333333333333,
+  "loop": true,
+  "event_markers": [
+    {
+      "event_id": "left_contact",
+      "frame": 0,
+      "kind": "contact"
+    },
+    {
+      "event_id": "left_support",
+      "frame": 1,
+      "kind": "support"
+    },
+    {
+      "event_id": "left_passing",
+      "frame": 2,
+      "kind": "passing"
+    },
+    {
+      "event_id": "left_flight",
+      "frame": 3,
+      "kind": "flight"
+    },
+    {
+      "event_id": "right_contact",
+      "frame": 4,
+      "kind": "contact"
+    },
+    {
+      "event_id": "right_support",
+      "frame": 5,
+      "kind": "support"
+    },
+    {
+      "event_id": "right_passing",
+      "frame": 6,
+      "kind": "passing"
+    },
+    {
+      "event_id": "loop_closure",
+      "frame": 7,
+      "kind": "loop-closure"
+    },
+    {
+      "event_id": "right_flight",
+      "frame": 7,
+      "kind": "flight"
+    }
+  ],
+  "event_markers_sha256": "1a0932b37987b2652059b09195eb71b13613990aac014b60a1bdbf05de3b15bc",
+  "format": "RGBA",
+  "cell_size": {
+    "width": 512,
+    "height": 512
+  },
+  "sheet_size": {
+    "width": 2048,
+    "height": 1024
+  },
+  "sprite_sheet": {
+    "path": "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-spritesheet-v0130.png",
+    "sha256": "a8146b465d073cd96f15bad9bef3bc6cea56acc7932ab63b8ce883448bf5d65f"
+  },
+  "metadata": {
+    "path": "docs/evidence/animation-runtime-v0130/run-front-v1/metadata.json",
+    "sha256": "ed9df63b7239ca5a59c9fe8bd001921ae53cd50674c44ccf7caa1dee2f68a6b6"
+  },
+  "preview_gif": {
+    "path": "docs/evidence/animation-runtime-v0130/run-front-v1/run-front-preview-v0130.gif",
+    "sha256": "b2420d9b26275b86b18b588fe54de47d7c69063a5c8c3d06f2355e27ad5bace9"
+  },
+  "registry_state": "pilot/technical-qualified",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "qa_status": "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED",
+  "qa_decision": "QUALIFIED",
+  "adapter_metadata": {
+    "phase_markers": [
+      {
+        "event_id": "left_contact",
+        "frame": 0,
+        "kind": "contact"
+      },
+      {
+        "event_id": "left_support",
+        "frame": 1,
+        "kind": "support"
+      },
+      {
+        "event_id": "left_passing",
+        "frame": 2,
+        "kind": "passing"
+      },
+      {
+        "event_id": "left_flight",
+        "frame": 3,
+        "kind": "flight"
+      },
+      {
+        "event_id": "right_contact",
+        "frame": 4,
+        "kind": "contact"
+      },
+      {
+        "event_id": "right_support",
+        "frame": 5,
+        "kind": "support"
+      },
+      {
+        "event_id": "right_passing",
+        "frame": 6,
+        "kind": "passing"
+      },
+      {
+        "event_id": "loop_closure",
+        "frame": 7,
+        "kind": "loop-closure"
+      },
+      {
+        "event_id": "right_flight",
+        "frame": 7,
+        "kind": "flight"
+      }
+    ],
+    "motion_quality_layer": "generic.motion_tracks",
+    "source_only_renderer": "source-affine-resample-and-alpha-composite"
+  },
+  "source_rig_revision": "r4-cutout-rig-v071",
+  "source_rig_sha256": "f1faea6d9925572d062943434eeea25f48e6c7eef704022eaee331c0d3d5a851",
+  "r4_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "motion_tracks": [
+    {
+      "track_id": "root_shift_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 6.0
+        },
+        {
+          "frame": 2,
+          "value": 12.0
+        },
+        {
+          "frame": 3,
+          "value": 6.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": -6.0
+        },
+        {
+          "frame": 6,
+          "value": -12.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "root_shift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": -3.0
+        },
+        {
+          "frame": 2,
+          "value": -7.0
+        },
+        {
+          "frame": 3,
+          "value": -3.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 3.0
+        },
+        {
+          "frame": 6,
+          "value": 7.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 2.0
+        },
+        {
+          "frame": 2,
+          "value": 4.0
+        },
+        {
+          "frame": 3,
+          "value": 2.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": -2.0
+        },
+        {
+          "frame": 6,
+          "value": -4.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_lean_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 1.0
+        },
+        {
+          "frame": 2,
+          "value": 2.0
+        },
+        {
+          "frame": 3,
+          "value": 1.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": -1.0
+        },
+        {
+          "frame": 6,
+          "value": -2.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 8.0
+        },
+        {
+          "frame": 2,
+          "value": 12.0
+        },
+        {
+          "frame": 3,
+          "value": 6.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": -8.0
+        },
+        {
+          "frame": 6,
+          "value": -12.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": -8.0
+        },
+        {
+          "frame": 2,
+          "value": -12.0
+        },
+        {
+          "frame": 3,
+          "value": -6.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 8.0
+        },
+        {
+          "frame": 6,
+          "value": 12.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "head_counter_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": -2.0
+        },
+        {
+          "frame": 1,
+          "value": -1.0
+        },
+        {
+          "frame": 2,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 1.0
+        },
+        {
+          "frame": 4,
+          "value": 2.0
+        },
+        {
+          "frame": 5,
+          "value": 1.0
+        },
+        {
+          "frame": 6,
+          "value": 0.0
+        },
+        {
+          "frame": 7,
+          "value": -1.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "sword_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 10.0
+        },
+        {
+          "frame": 1,
+          "value": 10.0
+        },
+        {
+          "frame": 2,
+          "value": 30.0
+        },
+        {
+          "frame": 3,
+          "value": 30.0
+        },
+        {
+          "frame": 4,
+          "value": 10.0
+        },
+        {
+          "frame": 5,
+          "value": 10.0
+        },
+        {
+          "frame": 6,
+          "value": 10.0
+        },
+        {
+          "frame": 7,
+          "value": 10.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 0.0
+        },
+        {
+          "frame": 2,
+          "value": 8.0
+        },
+        {
+          "frame": 3,
+          "value": 12.0
+        },
+        {
+          "frame": 4,
+          "value": 8.0
+        },
+        {
+          "frame": 5,
+          "value": 4.0
+        },
+        {
+          "frame": 6,
+          "value": 0.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 4.0
+        },
+        {
+          "frame": 2,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        },
+        {
+          "frame": 6,
+          "value": 8.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 0.0
+        },
+        {
+          "frame": 2,
+          "value": -10.0
+        },
+        {
+          "frame": 3,
+          "value": -16.0
+        },
+        {
+          "frame": 4,
+          "value": -3.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        },
+        {
+          "frame": 6,
+          "value": 0.0
+        },
+        {
+          "frame": 7,
+          "value": 0.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 0.0
+        },
+        {
+          "frame": 2,
+          "value": 0.0
+        },
+        {
+          "frame": 3,
+          "value": 0.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        },
+        {
+          "frame": 6,
+          "value": -10.0
+        },
+        {
+          "frame": 7,
+          "value": -5.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    }
+  ],
+  "motion_tracks_sha256": "9d0980503640431e64f422b5ba8ff96fc42730022fd5f437eb8a169919f18b72"
+}

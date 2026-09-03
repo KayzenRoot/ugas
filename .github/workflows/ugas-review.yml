@@ -80,7 +80,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_state_consistency.py
+          python scripts/validation/validate_state_consistency_v0130.py
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/state-consistency.exit"
           exit "$code"
@@ -94,6 +94,17 @@ jobs:
           python scripts/validation/validate_v1_capability_matrix.py
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/capability-matrix.exit"
+          exit "$code"
+      - name: Run RUN_FRONT_V1 runtime and negative controls
+        id: run_front_runtime
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/run_animation_runtime_v0130.py 2>&1 | tee "$RUNNER_TEMP/run-front-v0130.log"
+          code=${PIPESTATUS[0]}
+          printf '%s\n' "$code" > "$RUNNER_TEMP/run-front-v0130.exit"
           exit "$code"
       - name: Validate workflow structure
         id: workflow_validation
@@ -219,6 +230,9 @@ jobs:
           copy_if_present docs/evidence/github-governance-v0124/governance-consistency-v0124.json "$artifact/governance/governance-consistency-v0124.json"
           copy_if_present "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log"
           copy_if_present "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log"
+          copy_if_present "$RUNNER_TEMP/run-front-v0130.log" "$artifact/logs/run-front-v0130.log"
+          copy_if_present "$RUNNER_TEMP/run-front-v0130.exit" "$artifact/logs/run-front-v0130.exit"
+          if test -d docs/evidence/animation-runtime-v0130; then cp -R docs/evidence/animation-runtime-v0130 "$artifact/run-front-v0130"; fi
           copy_if_present docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png "$artifact/visuals/dashboard-docker-overview-v0122-transport.png"
           copy_if_present docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png "$artifact/visuals/dashboard-docker-live-activity-v0122-transport.png"
       - name: Validate bounded artifact security
@@ -294,6 +308,7 @@ jobs:
             echo '- Gates: unit tests, official validation, state, matrix, visual transport, manifest, security'
             echo '- Evidence assembly and upload are failure-safe and use `always()`.'
             echo '- Visual evidence: dedicated true-PNG transport copies with source provenance.'
+            echo '- RUN_FRONT_V1 evidence: source-only frames, phase markers, GIF, package and negative controls are included.'
             echo '- Production: `production_approved=false`, `production_routing=BLOCKED`'
             echo "- Artifact: \`ugas-review-evidence-pr-${PR_NUMBER}-${HEAD_REF}\`"
           } >> "$GITHUB_STEP_SUMMARY"
@@ -312,3 +327,4 @@ jobs:
             --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest.json" \
             --manifest-validation "$RUNNER_TEMP/final-manifest-validation.json" \
             --security "$RUNNER_TEMP/security-results-v0124.json"
+          test "$(cat "$RUNNER_TEMP/run-front-v0130.exit" 2>/dev/null || echo 99)" -eq 0
