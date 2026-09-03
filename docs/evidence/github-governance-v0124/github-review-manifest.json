@@ -9,7 +9,7 @@
   "pull_request": {
     "number": 0,
     "base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
-    "head_sha": "6a9b63e761e95fbf602e5658f53fdcdf7d0a2f69",
+    "head_sha": "a206f3b86be6fcdfcbea717006bcc7111c7ada88",
     "merge_base_sha": "877ede34afadd631764887ad6c5fb941ca4371a8",
     "head_branch": "codex/v0.12.4-github-ci-governance-recovery",
     "base_branch": "main"
@@ -24,6 +24,18 @@
     "new_generation": 0
   },
   "changed_files": [
+    {
+      "path": ".cursor/rules/codex-global-windows.mdc",
+      "status": "A",
+      "additions": 33,
+      "deletions": 0
+    },
+    {
+      "path": ".cursor/rules/ugas-project.mdc",
+      "status": "A",
+      "additions": 23,
+      "deletions": 0
+    },
     {
       "path": ".github/workflows/ugas-ci.yml",
       "status": "M",
@@ -99,7 +111,7 @@
     {
       "path": "docs/evidence/github-governance-v0124/gate-results-v0124.json",
       "status": "A",
-      "additions": 14,
+      "additions": 54,
       "deletions": 0
     },
     {
@@ -111,13 +123,13 @@
     {
       "path": "docs/evidence/github-governance-v0124/github-review-manifest-local.json",
       "status": "A",
-      "additions": 487,
+      "additions": 535,
       "deletions": 0
     },
     {
       "path": "docs/evidence/github-governance-v0124/github-review-manifest.json",
       "status": "A",
-      "additions": 487,
+      "additions": 535,
       "deletions": 0
     },
     {
@@ -157,6 +169,12 @@
       "deletions": 0
     },
     {
+      "path": "docs/evidence/github-governance-v0124/security-validation-v0124.json",
+      "status": "A",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
       "path": "docs/evidence/github-governance-v0124/state-consistency-v0124.json",
       "status": "A",
       "additions": 18,
@@ -165,13 +183,13 @@
     {
       "path": "docs/evidence/github-governance-v0124/test-results-v0124.json",
       "status": "A",
-      "additions": 1,
+      "additions": 11,
       "deletions": 0
     },
     {
       "path": "docs/evidence/github-governance-v0124/validation-results-v0124.json",
       "status": "A",
-      "additions": 1,
+      "additions": 11,
       "deletions": 0
     },
     {
@@ -380,8 +398,8 @@
     }
   ],
   "change_statistics": {
-    "files": 59,
-    "additions": 2625,
+    "files": 62,
+    "additions": 2843,
     "deletions": 210
   },
   "current_state": {
@@ -422,8 +440,8 @@
     "log_path": "ugas-validation.log",
     "exit_code": 0,
     "parse_status": "parsed",
-    "checks": 1686,
-    "passed": 1686,
+    "checks": 1694,
+    "passed": 1694,
     "failed": 0,
     "status": "passed"
   },
