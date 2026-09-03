@@ -14,7 +14,7 @@ try {
     & docker compose -f compose.yaml build dashboard
     if ($LASTEXITCODE -ne 0) { throw "DASHBOARD_BUILD_FAILED" }
 
-    $gpuOutput = & docker run --rm --gpus all --entrypoint nvidia-smi ugas-dashboard:0.12.3 --query-gpu=name --format=csv,noheader 2>&1
+    $gpuOutput = & docker run --rm --gpus all --entrypoint nvidia-smi ugas-dashboard:0.13.0 --query-gpu=name --format=csv,noheader 2>&1
     $gpuAvailable = ($LASTEXITCODE -eq 0 -and [bool](($gpuOutput -join "").Trim()))
     $composeFiles = @("-f", "compose.yaml")
     if ($gpuAvailable) { $composeFiles += @("-f", "compose.gpu.yaml") }
