@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.14.1",
+  "decoded": {
+    "frame_count": 6,
+    "loop_extension_present": false,
+    "loop_count": null,
+    "loop": null,
+    "pillow_loop": null,
+    "netscape_offset": null,
+    "raw_subblock_hex": null,
+    "durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "total_cycle_ms": 500,
+    "effective_fps": 12.0
+  },
+  "hard_gates": {
+    "declared_timing_present": true,
+    "frame_count": true,
+    "loop_extension_presence_matches": true,
+    "loop_count_matches": true,
+    "loop_contract_matches": true,
+    "total_cycle_in_tolerance": true,
+    "effective_fps_in_tolerance": true
+  },
+  "status": "GIF_TIMING_PASSED",
+  "package_metadata": {
+    "fps": 12.0,
+    "per_frame_duration_ms": 83.33333333333333,
+    "gif_encoded_frame_durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "gif_total_cycle_ms": 500,
+    "gif_effective_fps": 12.0,
+    "gif_loop_extension_present": false,
+    "gif_loop_count": null
+  }
+}

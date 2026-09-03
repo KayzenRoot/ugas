@@ -1,6 +1,6 @@
-# ComfyUI integration notes - UGAS v0.13.1
+# ComfyUI integration notes - UGAS v0.14.1
 
-The active v0.13.1 slice is RUN_FRONT_V1 source-only deterministic animation, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. The only next action is `external_visual_review_run_front_v1`; the v0.13.0, v0.12.4 and older ComfyUI material below is historical.
+The active v0.14.1 slice is HIT_REACTION_FRONT package-integrity correction, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. The only next action is `external_review_hit_reaction_front_v0141`; the v0.14.0, v0.13.1, v0.13.0, v0.12.4 and older ComfyUI material below is historical.
 
 The active release is v0.12.3. The historical v0.12.2 Dockerized local observability dashboard probes the host ComfyUI endpoint read-only at `http://host.docker.internal:8188`, exposes endpoint health with checked_at/reason and preserves stale-last-known data after timeout; it never starts generation. The v0.12.0 and v0.12.1 dashboards remain rejected history. The deterministic QA-integrity/scope-recovery cutout-rig lane from v0.11.2 remains historical. The v0.8.0/v0.7.3/v0.9.0/v0.9.1/v0.10.0/v0.11.0 structural and runtime/model/custom-node records below remain historical; v0.11.1 remains rejected history.
 

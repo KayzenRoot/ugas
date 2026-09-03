@@ -1,0 +1,106 @@
+{
+  "schema_version": "0.14.0",
+  "contract_id": "hit-front-v1-source-only-recoil-recovery-contract",
+  "capability": "hit_reaction_front",
+  "target": "HIT_REACTION_FRONT",
+  "dependencies": {
+    "matrix_next_candidate": "HIT_REACTION_FRONT",
+    "matrix_capability_count": 16,
+    "matrix_production_routing": "BLOCKED",
+    "matrix_new_generation": 0,
+    "required_source_rig": "r4-cutout-rig-v071",
+    "required_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "required_runtime": "generic-animation-runtime-v1",
+    "immutable_approved_assets_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "run_front_approved_head_sha": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+    "run_front_merge_commit": "ebcf0b587628dcd33c316378fb2815f616172ffa",
+    "previous_approved_release": "0.13.1"
+  },
+  "source_policy": {
+    "source_only_pixels": true,
+    "sam2_runs": 0,
+    "comfyui_generation_jobs": 0,
+    "diffusion_runs": 0,
+    "canonical_assets_immutable": true,
+    "new_generation": 0,
+    "forbidden": ["DEATH_ANIMATION_FRONT", "multi_direction", "equipment", "creatures", "items", "environments", "ui", "vfx", "production_routing"]
+  },
+  "phase_contract": {
+    "frame_count": 6,
+    "fps": 12,
+    "loop": false,
+    "phases": ["H0-impact-onset", "H1-recoil-acceleration", "H2-recoil-peak", "H3-stagger-settle", "H4-recovery", "H5-recovery-complete"],
+    "recoil_peak_frame": 2,
+    "recovery_complete_frame": 5,
+    "required_markers": [
+      {"event_id": "impact_onset", "frame": 0},
+      {"event_id": "recoil_peak", "frame": 2},
+      {"event_id": "recovery_start", "frame": 3},
+      {"event_id": "recovery_complete", "frame": 5}
+    ],
+    "support": "dual-foot-planted",
+    "no_closing_transition": true
+  },
+  "quality_gates": {
+    "schema_and_track_validity": true,
+    "impact_causality": true,
+    "recoil_magnitude": true,
+    "unique_recoil_peak": true,
+    "recovery_convergence": true,
+    "foot_ground_and_contact": true,
+    "angular_and_acceleration_continuity": true,
+    "weapon_wrist_continuity": true,
+    "not_death_like_collapse": true,
+    "package_integrity": true,
+    "immutable_approved_assets": true,
+    "gif_timing_truthfulness": true
+  },
+  "thresholds_frozen_before_first_png": {
+    "impact_onset_min_root_x_px": 3.0,
+    "recoil_peak_displacement_min_px": 12.0,
+    "root_path_min_px": 18.0,
+    "recovery_to_peak_ratio_max": 0.55,
+    "contact_ankle_slip_max_px": 2.5,
+    "sole_error_max_px": 3.0,
+    "ground_penetration_max_px": 1.5,
+    "joint_angle_step_max_deg": 42.0,
+    "angular_acceleration_max_deg_per_frame2": 70.0,
+    "weapon_length_delta_max_px": 4.0,
+    "weapon_angle_step_max_deg": 35.0,
+    "wrist_step_max_px": 28.0,
+    "death_torso_rotation_max_deg": 22.0,
+    "death_root_drop_max_px": 14.0,
+    "alpha_safe_margin_px": 24.0,
+    "foreground_height_variation_max": 0.15,
+    "rationale": "H0 already carries an immediate same-sign impact (min 3px root_x) so the first visible change is the hit, not a wind-up. Peak displacement 12px at H2 is measured from the source rest pelvis, not from a scalar claim. Recovery H5 must be at most 55% of peak displacement and must not be pose-identical to H0. Dual planted feet reuse the run contact slip (2.5px) and sole (3.0px) budgets. Each planted sole is judged against its own source-alpha projected ground for that frame (same as RUN_FRONT_V1 planted support); skating is the independent ankle-slip window, not a shared mean plane that would punish two-bone shin rotation during a legal crouch. Death-like collapse is rejected when torso rotation exceeds 22deg, root drop exceeds 14px, or the head center falls to or below the pelvis. Weapon length may drift 4px from the source wrist-to-tip while angle/wrist steps stay inside the same continuity family as RUN_FRONT_V1."
+  },
+  "gif_timing": {
+    "nominal_fps": 12,
+    "nominal_cycle_ms": 500,
+    "encoded_frame_durations_ms": [80, 90, 80, 90, 80, 80],
+    "total_cycle_ms_min": 490,
+    "total_cycle_ms_max": 510,
+    "effective_fps_min": 11.7,
+    "effective_fps_max": 12.3,
+    "loop": false
+  },
+  "negative_controls": [
+    "zero_recoil",
+    "anticipatory_motion_before_impact",
+    "wrong_recoil_peak",
+    "no_recovery",
+    "foot_slide_or_teleport",
+    "angular_jump",
+    "weapon_snap_or_wrist_break",
+    "death_like_collapse",
+    "source_dependency_hash_removed",
+    "synthetic_false_gate_in_package"
+  ],
+  "review_policy": {
+    "external_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "pr_merge": "FORBIDDEN",
+    "next_capability": "NOT_STARTED"
+  }
+}

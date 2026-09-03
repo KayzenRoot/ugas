@@ -61,6 +61,8 @@
     "gif_encoded_frame_durations_ms": {"type": "array", "items": {"type": "integer", "minimum": 0}},
     "gif_total_cycle_ms": {"type": "number", "minimum": 0},
     "gif_effective_fps": {"type": "number", "exclusiveMinimum": 0},
-    "gif_nominal_fps": {"type": "number", "exclusiveMinimum": 0}
+    "gif_nominal_fps": {"type": "number", "exclusiveMinimum": 0},
+    "gif_loop_extension_present": {"type": "boolean"},
+    "gif_loop_count": {"type": ["integer", "null"], "minimum": 0}
   }
 }

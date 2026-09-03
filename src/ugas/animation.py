@@ -123,36 +123,97 @@ def gif_frame_durations_ms(spec: Mapping[str, Any]) -> list[int]:
     return [max(20, duration)] * count
 
 
+NETSCAPE20 = b"NETSCAPE2.0"
+
+
+def inspect_gif_loop_extension(path: Path) -> dict[str, Any]:
+    """Read the NETSCAPE2.0 repeat extension from GIF bytes without Pillow defaults."""
+    data = Path(path).read_bytes()
+    marker = data.find(NETSCAPE20)
+    if marker < 0:
+        return {"loop_extension_present": False, "loop_count": None, "netscape_offset": None, "raw_subblock_hex": None}
+    rest = data[marker + len(NETSCAPE20):]
+    loop_count = None
+    raw = rest[:5] if len(rest) >= 5 else rest
+    if len(rest) >= 4 and rest[0] == 0x03 and rest[1] == 0x01:
+        loop_count = int(rest[2]) | (int(rest[3]) << 8)
+    return {"loop_extension_present": True, "loop_count": loop_count, "netscape_offset": marker, "raw_subblock_hex": raw.hex()}
+
+
+def encode_gif(frames: list[Image.Image], path: Path, durations: list[int], *, loop: bool) -> None:
+    """Encode a GIF. Infinite loop uses Pillow loop=0; non-loop omits the loop argument entirely."""
+    kwargs: dict[str, Any] = {
+        "format": "GIF",
+        "save_all": True,
+        "append_images": frames[1:],
+        "duration": durations,
+        "disposal": 2,
+        "optimize": False,
+    }
+    if loop:
+        kwargs["loop"] = 0
+    frames[0].save(path, **kwargs)
+
+
 def decode_gif_timing(path: Path) -> dict[str, Any]:
-    """Decode actual GIF frame durations after encode; durations are milliseconds."""
+    """Decode actual GIF frame durations and explicit loop-extension presence after encode."""
+    extension = inspect_gif_loop_extension(path)
     with Image.open(path) as image:
         frame_count = int(getattr(image, "n_frames", 1) or 1)
-        loop = image.info.get("loop", 1)
+        pillow_loop = image.info["loop"] if "loop" in image.info else None
         durations = []
         for index in range(frame_count):
             image.seek(index)
             durations.append(int(image.info.get("duration", 0)))
     total = int(sum(durations))
+    loop_count = extension["loop_count"] if extension["loop_extension_present"] else None
     return {
         "frame_count": frame_count,
-        "loop": loop,
+        "loop_extension_present": extension["loop_extension_present"],
+        "loop_count": loop_count,
+        "loop": loop_count,
+        "pillow_loop": pillow_loop,
+        "netscape_offset": extension["netscape_offset"],
+        "raw_subblock_hex": extension["raw_subblock_hex"],
         "durations_ms": durations,
         "total_cycle_ms": total,
         "effective_fps": round((1000.0 * frame_count / total), 6) if total else 0.0,
     }
 
 
+def gif_loop_contract_gates(spec: Mapping[str, Any], decoded: Mapping[str, Any]) -> dict[str, bool]:
+    """Fail closed: absence of a loop extension is not the same as explicit loop=1."""
+    want_loop = bool(spec["loop"])
+    present = decoded.get("loop_extension_present")
+    count = decoded.get("loop_count")
+    if present is True:
+        extension_matches = want_loop is True
+        count_matches = want_loop is True and count == 0
+    elif present is False:
+        extension_matches = want_loop is False
+        count_matches = want_loop is False and count is None
+    else:
+        extension_matches = False
+        count_matches = False
+    return {
+        "loop_extension_presence_matches": extension_matches,
+        "loop_count_matches": count_matches,
+        "loop_contract_matches": extension_matches and count_matches,
+    }
+
+
 def gif_timing_within_tolerance(spec: Mapping[str, Any], decoded: Mapping[str, Any]) -> dict[str, Any]:
-    """Fail closed if encoded GIF cadence is outside the declared tolerance."""
+    """Fail closed if encoded GIF cadence or loop-extension contract is outside the declared spec."""
     timing = (spec.get("package_profile") or {}).get("gif_timing") or {}
     total_min = timing.get("total_cycle_ms_min")
     total_max = timing.get("total_cycle_ms_max")
     fps_min = timing.get("effective_fps_min")
     fps_max = timing.get("effective_fps_max")
+    loop_gates = gif_loop_contract_gates(spec, decoded)
     gates = {
         "declared_timing_present": all(isinstance(value, (int, float)) and math.isfinite(float(value)) for value in (total_min, total_max, fps_min, fps_max)),
         "frame_count": int(decoded.get("frame_count") or 0) == int(spec["frame_count"]),
-        "loop_enabled": decoded.get("loop") in {0, "0"},
+        **loop_gates,
         "total_cycle_in_tolerance": False,
         "effective_fps_in_tolerance": False,
     }
@@ -364,7 +425,7 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
     gif_durations = gif_frame_durations_ms(spec)
     gif_path = manifest_path.parent / str(profile.get("gif_name", "preview.gif"))
     gif_frames = [_checkerboard(image).convert("RGB") for image in images]
-    gif_frames[0].save(gif_path, format="GIF", save_all=True, append_images=gif_frames[1:], duration=gif_durations, loop=0, disposal=2, optimize=False)
+    encode_gif(gif_frames, gif_path, gif_durations, loop=bool(spec["loop"]))
     decoded_gif = decode_gif_timing(gif_path)
     gif_check = gif_timing_within_tolerance(spec, decoded_gif)
     if (spec.get("package_profile") or {}).get("gif_timing") and gif_check["status"] != "GIF_TIMING_PASSED":
@@ -376,6 +437,8 @@ def package_compiled(manifest_path: Path, root: Path | None = None) -> Path:
         "gif_total_cycle_ms": decoded_gif["total_cycle_ms"],
         "gif_effective_fps": decoded_gif["effective_fps"],
         "gif_nominal_fps": float(spec["fps"]) if "fps" in spec else decoded_gif["effective_fps"],
+        "gif_loop_extension_present": decoded_gif["loop_extension_present"],
+        "gif_loop_count": decoded_gif["loop_count"],
     }
     metadata_path = manifest_path.parent / "metadata.json"
     metadata = {"schema_version": "animation-package-1.0", "animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": len(images), "fps": fps, "per_frame_duration_ms": duration, "loop": bool(spec["loop"]), "event_markers": expected_markers, "event_markers_sha256": expected_marker_hash, "cell_size": {"width": cell_w, "height": cell_h}, "sheet_size": {"width": columns * cell_w, "height": rows * cell_h}, "format": "RGBA", "frames": manifest["frames"], "parameters_frozen_before_render": True, "adapter_metadata": dict(qa.get("package_metadata", {})), **gif_fields}

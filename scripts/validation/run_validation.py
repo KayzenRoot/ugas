@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.13.1."""
+"""Objective UGAS validation, including immutable history and active v0.14.1."""
 
 from __future__ import annotations
 
@@ -49,6 +49,10 @@ from ugas.state_consistency_v0130 import validate_state_consistency as validate_
 from ugas.state_consistency_v0130 import BASELINE_HEAD as V0130_BASELINE_HEAD
 from ugas.state_consistency_v0131 import validate_state_consistency as validate_state_consistency_v0131
 from ugas.state_consistency_v0131 import BASELINE_HEAD as V0131_BASELINE_HEAD
+from ugas.state_consistency_v0140 import validate_state_consistency as validate_state_consistency_v0140
+from ugas.state_consistency_v0140 import BASELINE_HEAD as V0140_BASELINE_HEAD
+from ugas.state_consistency_v0141 import validate_state_consistency as validate_state_consistency_v0141
+from ugas.state_consistency_v0141 import BASELINE_HEAD as V0141_BASELINE_HEAD
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -2129,10 +2133,10 @@ def _v0130_checks() -> None:
 
 
 def _v0131_checks() -> None:
-    """Validate the active v0.13.1 RUN_FRONT_V1 flight/QA correction."""
+    """Confirm v0.13.1 remains frozen as the approved RUN_FRONT_V1 pilot history."""
     required = [
-        "REVIEW-v0.13.1.md", "REVIEW-v0.13.0.md", "schemas/current-state-v0.13.1.json", "schemas/current-state.json",
-        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.13.0.json", "docs/evidence/current-state-v0.12.4.json",
+        "REVIEW-v0.13.1.md", "REVIEW-v0.13.0.md", "schemas/current-state-v0.13.1.json",
+        "docs/evidence/current-state-v0.13.1.json", "docs/evidence/current-state-v0.13.0.json", "docs/evidence/current-state-v0.12.4.json",
         "docs/evidence/github-governance-v0131/run-front-v0131-external-visual-approval.json",
         "docs/evidence/github-governance-v0131/run-front-v0131-provenance.json",
         "src/ugas/state_consistency_v0131.py", "scripts/validation/validate_state_consistency_v0131.py",
@@ -2155,37 +2159,146 @@ def _v0131_checks() -> None:
     ]
     for relative in required:
         path = ROOT / relative
-        check(f"v0131:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+        check(f"v0131:history:{relative}", path.is_file(), "preserved" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state-v0.13.1.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.13.1.json"))
+        legacy_review = (ROOT / "REVIEW-v0.13.1.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency_v0131(state, legacy_review, legacy_review, legacy_review)
+        check("v0131:history-state", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "v0.13.1 state snapshot remains valid")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0131:history-state", False, str(exc))
+    matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+    check("v0131:matrix-dependency", len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix still has sixteen capabilities with production blocked")
+    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-contract-v0131.json")
+    check("v0131:contract", contract.get("capability") == "run_front_v1" and contract.get("dependencies", {}).get("implementation_base_commit") == V0131_BASELINE_HEAD and contract.get("dependencies", {}).get("matrix_capability_count") == 16 and contract.get("review_policy", {}).get("external_visual") == "REQUIRED" and contract.get("review_policy", {}).get("production_routing") == "BLOCKED" and len(contract.get("negative_controls", [])) == 12, "historical RUN_FRONT_V1 v0.13.1 contract remains bound")
+    spec = load_json(ROOT / "profiles/animation/run-front-v1.json")
+    check("v0131:profile", spec.get("frame_count") == 8 and spec.get("fps") == 12 and spec.get("loop") is True and spec.get("direction") == "front" and len(spec.get("motion_tracks", [])) == 12 and spec.get("provenance", {}).get("source_only_pixels") is True and spec.get("adapter_parameters", {}).get("flight_frames") == [3, 7] and spec.get("adapter_parameters", {}).get("immutable_approved_assets_base") == V0131_BASELINE_HEAD, "historical front run profile remains eight deterministic source-only frames")
+    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-v1/qa-result.json")
+    check("v0131:qa", qa.get("decision") == "QUALIFIED" and qa.get("failures") == [] and all(qa.get("hard_gates", {}).values()) and all(qa.get("temporal", {}).get("hard_gates", {}).values()), "historical RUN_FRONT_V1 frame and temporal gates remain recorded")
+    package = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-v1/package-manifest.json")
+    check("v0131:package", package.get("qa_decision") == "QUALIFIED" and package.get("production_routing") == "BLOCKED" and package.get("format") == "RGBA" and len(package.get("event_markers", [])) == 9, "historical package remains bound to qualified QA")
+    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-gate-negative-controls-v0131.json")
+    check("v0131:negative-controls", negative.get("status") == "NC_01_TO_NC_12_PASSED" and len(negative.get("controls", {})) == 12 and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()), "historical twelve mutated fixtures remain rejected")
+    execution = load_json(ROOT / "docs/evidence/animation-runtime-v0131/execution-evidence-v0.13.1.json")
+    check("v0131:execution-boundary", execution.get("implementation_base_commit") == V0131_BASELINE_HEAD and execution.get("source_only_pixels") is True and execution.get("new_generation") == 0 and execution.get("external_visual") == "REQUIRED" and execution.get("next_capability_started") is False and execution.get("approved_assets_untouched") == "APPROVED_ASSETS_UNTOUCHED", "historical execution evidence preserves source-only and external-review boundaries")
+    gif_timing = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-gif-timing-v0131.json")
+    check("v0131:gif-timing", gif_timing.get("status") == "GIF_TIMING_PASSED" and gif_timing.get("decoded", {}).get("total_cycle_ms") == 670 and all(gif_timing.get("hard_gates", {}).values()), "historical decoded GIF timing remains inside the 12 fps tolerance")
+    assets = load_json(ROOT / "docs/evidence/animation-runtime-v0131/approved-assets-untouched-v0131.json")
+    check("v0131:approved-assets", assets.get("status") == "APPROVED_ASSETS_UNTOUCHED" and assets.get("head_fallback_used") is False and assets.get("base_commit") == V0131_BASELINE_HEAD, "historical approved assets remain byte-identical to the immutable base")
+
+
+def _v0140_checks() -> None:
+    """Confirm v0.14.0 remains frozen as rejected package-integrity history."""
+    required = [
+        "REVIEW-v0.14.0.md", "REVIEW-v0.13.1.md", "schemas/current-state-v0.14.0.json",
+        "docs/evidence/current-state-v0.14.0.json", "docs/evidence/current-state-v0.13.1.json",
+        "src/ugas/state_consistency_v0140.py", "scripts/validation/validate_state_consistency_v0140.py",
+        "schemas/github-review-manifest-v0140.json", "scripts/validation/record_v0140_results.py", "scripts/validation/build_github_review_manifest_v0140.py", "scripts/validation/validate_github_review_manifest_v0140.py", "scripts/validation/validate_github_review_security_v0140.py", "scripts/validation/enforce_github_review_v0140.py",
+        "scripts/validation/run_animation_runtime_v0140.py",
+        "docs/evidence/animation-runtime-v0140/hit-front-contract-v0140.json",
+        "docs/evidence/animation-runtime-v0140/execution-evidence-v0.14.0.json",
+        "docs/evidence/animation-runtime-v0140/hit-front-visual-manifest-v0140.json",
+        "docs/evidence/animation-runtime-v0140/hit-front-gate-negative-controls-v0140.json",
+        "docs/evidence/animation-runtime-v0140/hit-front-gif-timing-v0140.json",
+        "docs/evidence/animation-runtime-v0140/approved-assets-untouched-v0140.json",
+        "docs/evidence/animation-runtime-v0140/state-consistency-v0140.json",
+        "docs/evidence/animation-runtime-v0140/hit-front-phase-markers-v0140.png",
+        "docs/evidence/animation-runtime-v0140/hit-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v0140/hit-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v0140/hit-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v0140/hit-front-v1/hit-front-preview-v0140.gif",
+        "docs/evidence/animation-runtime-v0140/hit-front-v1/hit-front-spritesheet-v0140.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0140:history:{relative}", path.is_file(), "preserved" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state-v0.14.0.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.14.0.json"))
+        legacy_review = (ROOT / "REVIEW-v0.14.0.md").read_text(encoding="utf-8")
+        consistency = validate_state_consistency_v0140(state, legacy_review, legacy_review, legacy_review)
+        check("v0140:history-state", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "v0.14.0 state snapshot remains valid")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0140:history-state", False, str(exc))
+    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0140/hit-front-contract-v0140.json")
+    check("v0140:contract", contract.get("capability") == "hit_reaction_front" and contract.get("dependencies", {}).get("implementation_base_commit") == V0140_BASELINE_HEAD and len(contract.get("negative_controls", [])) == 10, "historical HIT_REACTION_FRONT v0.14.0 contract remains bound")
+    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0140/hit-front-v1/qa-result.json")
+    check("v0140:qa", qa.get("decision") == "QUALIFIED" and qa.get("failures") == [], "historical HIT_REACTION_FRONT frame gates remain recorded")
+    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0140/hit-front-gate-negative-controls-v0140.json")
+    check("v0140:negative-controls", negative.get("status") == "NC_01_TO_NC_10_PASSED" and len(negative.get("controls", {})) == 10, "historical ten mutated fixtures remain rejected")
+    execution = load_json(ROOT / "docs/evidence/animation-runtime-v0140/execution-evidence-v0.14.0.json")
+    check("v0140:execution-boundary", execution.get("source_only_pixels") is True and execution.get("new_generation") == 0 and execution.get("next_capability_started") is False, "historical execution evidence preserves source-only boundaries")
+    gif_timing = load_json(ROOT / "docs/evidence/animation-runtime-v0140/hit-front-gif-timing-v0140.json")
+    check("v0140:false-green-loop", gif_timing.get("decoded", {}).get("loop") == 1, "frozen rejected GIF still records explicit loop=1")
+    assets = load_json(ROOT / "docs/evidence/animation-runtime-v0140/approved-assets-untouched-v0140.json")
+    check("v0140:approved-assets", assets.get("status") == "APPROVED_ASSETS_UNTOUCHED" and assets.get("head_fallback_used") is False, "historical approved-asset identity remains recorded")
+
+
+def _v0141_checks() -> None:
+    """Validate the active v0.14.1 HIT_REACTION_FRONT package-integrity correction."""
+    required = [
+        "REVIEW-v0.14.1.md", "REVIEW-v0.14.0.md", "schemas/current-state.json",
+        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.14.0.json",
+        "docs/evidence/github-governance-v0141/hit-front-v0141-external-visual-approval.json",
+        "docs/evidence/github-governance-v0141/hit-front-v0141-provenance.json",
+        "src/ugas/state_consistency_v0141.py", "scripts/validation/validate_state_consistency_v0141.py",
+        "schemas/github-review-manifest-v0141.json", "scripts/validation/record_v0141_results.py", "scripts/validation/build_github_review_manifest_v0141.py", "scripts/validation/validate_github_review_manifest_v0141.py", "scripts/validation/validate_github_review_security_v0141.py", "scripts/validation/enforce_github_review_v0141.py",
+        "profiles/animation/hit-front-v1.json", "src/ugas/animation_profiles/hit_front_v1.py",
+        "scripts/validation/run_animation_runtime_v0141.py",
+        "docs/evidence/animation-runtime-v0141/hit-front-contract-v0141.json",
+        "docs/evidence/animation-runtime-v0141/execution-evidence-v0.14.1.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-visual-manifest-v0141.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-gate-negative-controls-v0141.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-loop-negative-controls-v0141.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-gif-timing-v0141.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-gif-loop-semantics-v0141.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-visual-preservation-v0141.json",
+        "docs/evidence/animation-runtime-v0141/approved-assets-untouched-v0141.json",
+        "docs/evidence/animation-runtime-v0141/state-consistency-v0141.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v0141/hit-front-v1/hit-front-preview-v0141.gif",
+        "docs/evidence/animation-runtime-v0141/hit-front-v1/hit-front-spritesheet-v0141.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0141:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
         state = load_json(ROOT / "docs/evidence/current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.13.1.json"))
-        consistency = validate_state_consistency_v0131(
+        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        consistency = validate_state_consistency_v0141(
             state,
             (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-            (ROOT / "REVIEW-v0.13.1.md").read_text(encoding="utf-8"),
+            (ROOT / "REVIEW-v0.14.1.md").read_text(encoding="utf-8"),
             (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
         )
-        check("v0131:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.13.1 state is consistent")
+        check("v0141:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.14.1 state is consistent")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
-        check("v0131:state-consistency", False, str(exc))
+        check("v0141:state-consistency", False, str(exc))
     matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-    check("v0131:matrix-dependency", matrix.get("next_candidate") == "HIT_REACTION_FRONT" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix advances to HIT_REACTION_FRONT with production blocked")
-    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-contract-v0131.json")
-    check("v0131:contract", contract.get("capability") == "run_front_v1" and contract.get("dependencies", {}).get("implementation_base_commit") == V0131_BASELINE_HEAD and contract.get("dependencies", {}).get("matrix_capability_count") == 16 and contract.get("review_policy", {}).get("external_visual") == "REQUIRED" and contract.get("review_policy", {}).get("production_routing") == "BLOCKED" and len(contract.get("negative_controls", [])) == 12, "RUN_FRONT_V1 v0.13.1 contract is dependency, immutable-base and review bound")
-    spec = load_json(ROOT / "profiles/animation/run-front-v1.json")
-    check("v0131:profile", spec.get("frame_count") == 8 and spec.get("fps") == 12 and spec.get("loop") is True and spec.get("direction") == "front" and len(spec.get("motion_tracks", [])) == 12 and spec.get("provenance", {}).get("source_only_pixels") is True and spec.get("adapter_parameters", {}).get("flight_frames") == [3, 7] and spec.get("adapter_parameters", {}).get("immutable_approved_assets_base") == V0131_BASELINE_HEAD, "front run profile has eight deterministic source-only frames, flight 3/7 and immutable base")
-    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-v1/qa-result.json")
-    check("v0131:qa", qa.get("decision") == "QUALIFIED" and qa.get("failures") == [] and all(qa.get("hard_gates", {}).values()) and all(qa.get("temporal", {}).get("hard_gates", {}).values()), "all RUN_FRONT_V1 frame and temporal gates pass")
-    package = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-v1/package-manifest.json")
-    check("v0131:package", package.get("qa_decision") == "QUALIFIED" and package.get("production_routing") == "BLOCKED" and package.get("format") == "RGBA" and len(package.get("event_markers", [])) == 9, "package is bound to qualified QA, RGBA frames and phase markers")
-    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-gate-negative-controls-v0131.json")
-    check("v0131:negative-controls", negative.get("status") == "NC_01_TO_NC_12_PASSED" and len(negative.get("controls", {})) == 12 and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()), "all twelve mutated fixtures reject at their intended gate")
-    execution = load_json(ROOT / "docs/evidence/animation-runtime-v0131/execution-evidence-v0.13.1.json")
-    check("v0131:execution-boundary", execution.get("implementation_base_commit") == V0131_BASELINE_HEAD and execution.get("source_only_pixels") is True and execution.get("new_generation") == 0 and execution.get("external_visual") == "REQUIRED" and execution.get("next_capability_started") is False and execution.get("approved_assets_untouched") == "APPROVED_ASSETS_UNTOUCHED", "execution evidence binds the immutable base and preserves source-only and external-review boundaries")
-    gif_timing = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-gif-timing-v0131.json")
-    check("v0131:gif-timing", gif_timing.get("status") == "GIF_TIMING_PASSED" and gif_timing.get("decoded", {}).get("total_cycle_ms") == 670 and all(gif_timing.get("hard_gates", {}).values()), "decoded GIF timing is inside the 12 fps tolerance")
-    assets = load_json(ROOT / "docs/evidence/animation-runtime-v0131/approved-assets-untouched-v0131.json")
-    check("v0131:approved-assets", assets.get("status") == "APPROVED_ASSETS_UNTOUCHED" and assets.get("head_fallback_used") is False and assets.get("base_commit") == V0131_BASELINE_HEAD, "approved assets are byte-identical to the immutable base with no HEAD fallback")
+    check("v0141:matrix-dependency", matrix.get("next_candidate") == "DEATH_ANIMATION_FRONT" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix advances to DEATH_ANIMATION_FRONT with production blocked")
+    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-contract-v0141.json")
+    check("v0141:contract", contract.get("capability") == "hit_reaction_front" and contract.get("dependencies", {}).get("implementation_base_commit") == V0141_BASELINE_HEAD and contract.get("gif_loop_semantics", {}).get("loop_1_is_not_non_loop") is True and len(contract.get("negative_controls", [])) == 10 and len(contract.get("loop_negative_controls", [])) == 5, "HIT_REACTION_FRONT v0.14.1 contract binds loop semantics without dropping HIT NCs")
+    spec = load_json(ROOT / "profiles/animation/hit-front-v1.json")
+    check("v0141:profile", spec.get("frame_count") == 6 and spec.get("fps") == 12 and spec.get("loop") is False and spec.get("direction") == "front" and len(spec.get("motion_tracks", [])) == 12 and spec.get("provenance", {}).get("source_only_pixels") is True and spec.get("adapter_parameters", {}).get("immutable_approved_assets_base") == V0141_BASELINE_HEAD, "front hit profile remains six deterministic source-only non-loop frames")
+    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-v1/qa-result.json")
+    check("v0141:qa", qa.get("decision") == "QUALIFIED" and qa.get("failures") == [] and all(qa.get("hard_gates", {}).values()) and all(qa.get("temporal", {}).get("hard_gates", {}).values()), "all HIT_REACTION_FRONT frame and temporal gates pass")
+    package = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-v1/package-manifest.json")
+    check("v0141:package", package.get("qa_decision") == "QUALIFIED" and package.get("production_routing") == "BLOCKED" and package.get("format") == "RGBA" and package.get("loop") is False and package.get("gif_loop_extension_present") is False and package.get("gif_loop_count") is None, "package is bound to qualified QA and omits the GIF repeat extension")
+    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-gate-negative-controls-v0141.json")
+    check("v0141:negative-controls", negative.get("status") == "NC_01_TO_NC_10_PASSED" and len(negative.get("controls", {})) == 10 and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()), "all ten mutated HIT fixtures reject at their intended gate")
+    loop_nc = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-loop-negative-controls-v0141.json")
+    check("v0141:loop-negative-controls", loop_nc.get("status") == "NC_LOOP_01_TO_05_PASSED" and len(loop_nc.get("controls", {})) == 5 and all(item.get("match") is True for item in loop_nc.get("controls", {}).values()), "all five real encoded loop fixtures match the fail-closed contract")
+    execution = load_json(ROOT / "docs/evidence/animation-runtime-v0141/execution-evidence-v0.14.1.json")
+    check("v0141:execution-boundary", execution.get("implementation_base_commit") == V0141_BASELINE_HEAD and execution.get("branch_base_commit") == "ebcf0b587628dcd33c316378fb2815f616172ffa" and execution.get("rejected_reviewed_head") == "c059e24a4fa215882fac4b36991f7860f185a920" and execution.get("source_only_pixels") is True and execution.get("new_generation") == 0 and execution.get("next_capability_started") is False and execution.get("gif_loop_extension_present") is False, "execution evidence separates provenance fields and omits the non-loop GIF extension")
+    gif_timing = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-gif-timing-v0141.json")
+    check("v0141:gif-timing", gif_timing.get("status") == "GIF_TIMING_PASSED" and gif_timing.get("hard_gates", {}).get("loop_contract_matches") is True and gif_timing.get("decoded", {}).get("loop_extension_present") is False, "decoded GIF timing and non-loop extension contract pass")
+    preservation = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-visual-preservation-v0141.json")
+    check("v0141:visual-preservation", preservation.get("status") == "HIT_VISUAL_PRESERVED" and preservation.get("comparisons", {}).get("frame_rgba_sha256_identical") is True and preservation.get("comparisons", {}).get("gif_repeat_extension_changed") is True, "reviewed HIT pixels remain identical while only GIF repeat semantics change")
+    assets = load_json(ROOT / "docs/evidence/animation-runtime-v0141/approved-assets-untouched-v0141.json")
+    check("v0141:approved-assets", assets.get("status") == "APPROVED_ASSETS_UNTOUCHED" and assets.get("head_fallback_used") is False and assets.get("base_commit") == V0141_BASELINE_HEAD, "approved historical and run-front assets remain byte-identical to their immutable bases")
 
 
 def main() -> int:
@@ -2286,13 +2399,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.13.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.13.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.13.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.14.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.14.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.14.1")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

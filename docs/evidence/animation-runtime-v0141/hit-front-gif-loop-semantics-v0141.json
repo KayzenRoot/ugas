@@ -1,0 +1,58 @@
+{
+  "schema_version": "0.14.1",
+  "status": "GIF_LOOP_SEMANTICS_PASSED",
+  "inspect": {
+    "loop_extension_present": false,
+    "loop_count": null,
+    "netscape_offset": null,
+    "raw_subblock_hex": null
+  },
+  "decoded": {
+    "frame_count": 6,
+    "loop_extension_present": false,
+    "loop_count": null,
+    "loop": null,
+    "pillow_loop": null,
+    "netscape_offset": null,
+    "raw_subblock_hex": null,
+    "durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "total_cycle_ms": 500,
+    "effective_fps": 12.0
+  },
+  "spec_loop": false,
+  "rejected_v0140_gif": {
+    "path": "docs/evidence/animation-runtime-v0140/hit-front-v1/hit-front-preview-v0140.gif",
+    "inspect": {
+      "loop_extension_present": true,
+      "loop_count": 1,
+      "netscape_offset": 784,
+      "raw_subblock_hex": "0301010000"
+    },
+    "decoded": {
+      "frame_count": 6,
+      "loop_extension_present": true,
+      "loop_count": 1,
+      "loop": 1,
+      "pillow_loop": 1,
+      "netscape_offset": 784,
+      "raw_subblock_hex": "0301010000",
+      "durations_ms": [
+        80,
+        90,
+        80,
+        90,
+        80,
+        80
+      ],
+      "total_cycle_ms": 500,
+      "effective_fps": 12.0
+    }
+  }
+}

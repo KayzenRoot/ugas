@@ -1,6 +1,22 @@
-# UGAS checkpoint - v0.13.1
+# UGAS checkpoint - v0.14.1
 
-## v0.13.1 RUN_FRONT_V1 approved pilot / APPROVED_TO_MERGE
+## v0.14.1 HIT_REACTION_FRONT approved pilot / APPROVED_TO_MERGE
+
+The active phase is HIT_REACTION_FRONT and the technical gate remains HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Sol external review recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda. Visual content is inherited from the v0.14.0 review because v0.14.1 proves identical RGBA pixels, targets, motion tracks, spritesheet pixels, GIF frame pixels and durations; only the NETSCAPE repeat extension was removed. The previous approved release is 0.13.1 RUN_FRONT_V1 at reviewed head f3d68faa5524392e66aee2fc2a450b9da8fa734b (run_front_v1=APPROVED_PILOT). The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. v0.14.0 remains frozen rejected package-integrity history. The immutable implementation base remains 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=DEATH_ANIMATION_FRONT.
+
+v0.14.1 technical evidence under docs/evidence/animation-runtime-v0141/ is frozen and not rewritten. The forward-only approval and provenance records are under docs/evidence/github-governance-v0141/. new_generation=0, production_approved=false, production_routing=BLOCKED.
+
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The only allowed next action is death_animation_front after the governed merge of PR #4. Do not enable production or start MULTI_DIRECTION_ANIMATION_RUNTIME. Animação genérica não autoriza execução fora de DEATH_ANIMATION_FRONT após o merge; no other animation or direction is authorized.
+
+## Historical v0.14.0 HIT_REACTION_FRONT technically qualified
+
+The active phase is HIT_REACTION_FRONT and the current gate is CUTOUT_ANIMATION_RUNTIME_V1_HIT_REACTION_FRONT_TECHNICALLY_QUALIFIED. The previous approved release is 0.13.1 RUN_FRONT_V1 at reviewed head f3d68faa5524392e66aee2fc2a450b9da8fa734b (run_front_v1=APPROVED_PILOT). hit_reaction_front=REQUIRED. The immutable implementation base remains 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=HIT_REACTION_FRONT.
+
+This slice is six source-only front hit-reaction frames at 12 fps, non-looping, dual-foot planted, with impact at H0, unique recoil peak at H2 and recovery at H5. v0.13.1 and v0.13.0 technical evidence is frozen and not rewritten. new_generation=0, production_approved=false, production_routing=BLOCKED.
+
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The only allowed next action is external_visual_review_hit_reaction_front. Do not merge. Do not start DEATH_ANIMATION_FRONT. Do not enable production.
+
+## Historical v0.13.1 RUN_FRONT_V1 approved pilot / APPROVED_TO_MERGE
 
 The active phase is RUN_FRONT_V1 and the technical gate remains CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED. Sol external review recorded run_front_v1=APPROVED_PILOT and APPROVED_TO_MERGE for PR #3 at exact head f3d68faa5524392e66aee2fc2a450b9da8fa734b. The last approved release before this merge is 0.12.4; v0.13.0 is a rejected historical attempt, not a previous approved release. The immutable implementation base is 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=HIT_REACTION_FRONT.
 
@@ -35,6 +51,10 @@ The active increment is `LOCAL_ALWAYS_ON_OBSERVABILITY_DASHBOARD_TECHNICALLY_QUA
 ## Historical v0.12.1 rejected history
 
 The v0.12.1 dashboard implementation and its evidence remain preserved as rejected history in `REVIEW-v0.12.1.md`, `docs/evidence/observability-v0121/`, `docs/evidence/current-state-v0.12.1.json` and `docs/evidence/review-index-v0.12.1.json`. The v0.12.2 correction does not rewrite those records.
+
+## Current state
+
+The machine-authoritative active state is [docs/evidence/current-state.json](docs/evidence/current-state.json). Animação genérica não autoriza execução fora de HIT_REACTION_FRONT neste slice; no other animation or direction is authorized. Production remains blocked.
 
 ## v0.12.1 observability integrity, security and live pipeline correction (rejected history)
 

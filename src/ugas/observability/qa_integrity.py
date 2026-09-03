@@ -11,12 +11,12 @@ import subprocess
 from typing import Any, Mapping
 
 from ..schema_validation import validate_instance, validate_schema_document
-from ..state_consistency_v0131 import validate_state_consistency
+from ..state_consistency_v0141 import validate_state_consistency
 
-# The active state/review moved to v0.13.1.  The v0.12.2 index remains the
+# The active state/review moved to v0.14.1.  The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
-ACTIVE_VERSION = "0.13.1"
-ACTIVE_REVIEW = "REVIEW-v0.13.1.md"
+ACTIVE_VERSION = "0.14.1"
+ACTIVE_REVIEW = "REVIEW-v0.14.1.md"
 ACTIVE_INDEX = "review-index-v0.12.2.json"
 ACTIVE_EVIDENCE_DIR = "observability-v0122"
 

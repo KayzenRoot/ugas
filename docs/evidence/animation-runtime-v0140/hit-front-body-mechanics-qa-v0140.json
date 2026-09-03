@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.14.0",
+  "animation_id": "hit-front-v1",
+  "metrics": {
+    "root_path_length_px": 45.966296,
+    "peak_displacement_px": 27.856777,
+    "recovery_displacement_px": 3.162278,
+    "recovery_to_peak_ratio": 0.113519,
+    "max_joint_angle_step_deg": 13.616311,
+    "max_angular_acceleration_deg_per_frame2": 18.04419,
+    "foreground_height_variation": 0.007447
+  },
+  "recoil": {
+    "rest_pelvis": {
+      "x": 269.54335,
+      "y": 252.782
+    },
+    "pelvis_displacements_px": [
+      6.708204,
+      17.464249,
+      27.856777,
+      18.973666,
+      9.486833,
+      3.162278
+    ],
+    "peak_frame": 2,
+    "recovery_to_peak_ratio": 0.113519,
+    "root_shift_x": [
+      4.0,
+      10.0,
+      16.0,
+      11.0,
+      6.0,
+      2.0
+    ],
+    "root_shift_y": [
+      3.0,
+      7.0,
+      10.0,
+      6.0,
+      3.0,
+      1.0
+    ],
+    "torso_rotation_deg": [
+      3.0,
+      8.0,
+      14.0,
+      9.0,
+      4.0,
+      1.0
+    ]
+  },
+  "hard_gates": {
+    "impact_causality": true,
+    "recoil_magnitude": true,
+    "unique_recoil_peak": true,
+    "recovery_convergence": true,
+    "not_death_like_collapse": true
+  },
+  "status": "HIT_BODY_MECHANICS_QA_PASSED"
+}
