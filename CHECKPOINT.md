@@ -1,12 +1,12 @@
 # UGAS checkpoint - v0.13.1
 
-## v0.13.1 RUN_FRONT_V1 flight/QA visual integrity
+## v0.13.1 RUN_FRONT_V1 approved pilot / APPROVED_TO_MERGE
 
-The active phase is RUN_FRONT_V1 and the gate is CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED. v0.13.0 is not approved; PR #3 remains OPEN and must not be merged. The immutable implementation base is 0beb4c23604f1e45736c3082f99d2e08fa1ac308; the v0.12.4 completion remains immutable in docs/evidence/current-state-v0.12.4.json and the rejected v0.13.0 state remains in docs/evidence/current-state-v0.13.0.json. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=RUN_FRONT_V1.
+The active phase is RUN_FRONT_V1 and the technical gate remains CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED. Sol external review recorded run_front_v1=APPROVED_PILOT and APPROVED_TO_MERGE for PR #3 at exact head f3d68faa5524392e66aee2fc2a450b9da8fa734b. The last approved release before this merge is 0.12.4; v0.13.0 is a rejected historical attempt, not a previous approved release. The immutable implementation base is 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=HIT_REACTION_FRONT.
 
-The only executed capability is the deterministic source-only front run: eight frames at 12 fps, looping, using the approved R4 cutout source, twelve declarative motion tracks, explicit contact/support/passing/flight markers, real airborne frames 3 and 7 with no support foot, source-alpha contact-ground reference, root/body participation, arm-leg opposition, continuity, loop closure, immutable-base approved-asset identity, and decoded GIF timing. All local gates and NC_01_TO_NC_12 passed; evidence is under docs/evidence/animation-runtime-v0131/. new_generation=0, production_approved=false, production_routing=BLOCKED, and external_visual=REQUIRED.
+v0.13.1 technical evidence under docs/evidence/animation-runtime-v0131/ is frozen and not rewritten. The forward-only approval and provenance records are under docs/evidence/github-governance-v0131/. new_generation=0, production_approved=false, production_routing=BLOCKED.
 
-GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The branch is codex/v0.13.0-run-front-v1 from post-merge main. The only allowed next action is external_visual_review_run_front_v1. Update PR #3, wait for exact-head GitHub checks, leave it OPEN, and do not merge, enable production or start the next capability.
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The only allowed next action is hit_reaction_front after the governed merge of PR #3. Do not enable production or start DEATH_ANIMATION_FRONT.
 
 ## Historical v0.13.0 RUN_FRONT_V1
 

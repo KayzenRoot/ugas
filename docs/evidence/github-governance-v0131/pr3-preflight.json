@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.13.1",
+  "pr_number": 3,
+  "pr_state": "OPEN",
+  "base": "main",
+  "head_sha": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+  "required_sha_match": true,
+  "required_checks": {
+    "UGAS CI / unit-and-validation": {
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33743356507/job/100610141086"
+    },
+    "UGAS CI / docker-smoke": {
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33743356507/job/100610141140"
+    },
+    "UGAS Review / evidence": {
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/csn1985-ship-it/ugas/actions/runs/33743356494/job/100610141155"
+    }
+  },
+  "review_artifact": {
+    "id": "9888834439",
+    "name": "ugas-review-evidence-pr-3-f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+    "digest": "sha256:51759dcd7e39aff179967275e7a2873bc2e5c8dc777c83e5429a111c3a058127"
+  },
+  "status": "PR3_EXACT_HEAD_GREEN_READY_FOR_GOVERNED_MERGE_AFTER_BOOKKEEPING"
+}

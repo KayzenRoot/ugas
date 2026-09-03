@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.13.1 - RUN_FRONT_V1 flight/QA visual integrity (active: RUN_FRONT_V1)
+## v0.13.1 - RUN_FRONT_V1 approved pilot / APPROVED_TO_MERGE (active: RUN_FRONT_V1)
+
+Sol external review recorded run_front_v1=APPROVED_PILOT and APPROVED_TO_MERGE for PR #3 at exact head f3d68faa5524392e66aee2fc2a450b9da8fa734b. The technical gate remains CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED. The last approved release is 0.12.4; v0.13.0 is a rejected historical attempt. CAPABILITY_COUNT=16, next_candidate=HIT_REACTION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. After the governed merge of PR #3 the only allowed next action is hit_reaction_front. No production enablement or DEATH_ANIMATION_FRONT is authorized.
+
+## Historical v0.13.1 - RUN_FRONT_V1 flight/QA visual integrity
 
 Correct the rejected v0.13.0 front run without merging PR #3. The active gate is CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED. Keep RUN_FRONT_V1 as eight source-only front frames at 12 fps with twelve declarative motion tracks, real airborne frames 3 and 7, immutable-base approved-asset identity, and decoded GIF timing. CAPABILITY_COUNT=16, production_routing=BLOCKED, new_generation=0, production_approved=false, and external_visual=REQUIRED. The branch codex/v0.13.0-run-front-v1 remains GitHub-first: update PR #3 from post-merge main 0beb4c23604f1e45736c3082f99d2e08fa1ac308, require exact-head success for UGAS CI / unit-and-validation, UGAS CI / docker-smoke and UGAS Review / evidence, then leave the PR OPEN for external_visual_review_run_front_v1. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. No production enablement or next capability is authorized.
 

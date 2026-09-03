@@ -1,5 +1,13 @@
 # UGAS v0.13.1 — RUN_FRONT_V1 flight/QA visual integrity correction
 
+## External visual decision
+
+Sol external review recorded run_front_v1=APPROVED_PILOT and APPROVED_TO_MERGE for PR #3 at exact head f3d68faa5524392e66aee2fc2a450b9da8fa734b. Technical GitHub checks were green; visual review confirmed real flight at F3/F7 and acceptable pilot readability. Production remains production_approved=false, production_routing=BLOCKED. The last approved release before this merge is 0.12.4. v0.13.0 remains a rejected historical attempt. The capability matrix now has CAPABILITY_COUNT=16 and next_candidate=HIT_REACTION_FRONT. The only allowed next action after governed merge is hit_reaction_front.
+
+Non-blocking debt: the front run is pilot-qualified but remains deliberately conservative in torso/arm exaggeration; future style tuning must not rewrite the approved pilot evidence.
+
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative.
+
 ## Scope and authorization
 
 This is the active UGAS-v0.13.1-RUN-FRONT-FLIGHT-QA-VISUAL-INTEGRITY slice. v0.13.0 is not approved; it remains historical rejected/failed-external-review evidence. PR #3 stays OPEN. Do not merge. Do not start HIT/DEATH/multi-direction or any next capability.

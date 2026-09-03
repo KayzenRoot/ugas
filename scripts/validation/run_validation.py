@@ -2114,7 +2114,7 @@ def _v0130_checks() -> None:
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0130:history-state", False, str(exc))
     matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-    check("v0130:matrix-dependency", matrix.get("next_candidate") == "RUN_FRONT_V1" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix still authorizes only RUN_FRONT_V1 with production blocked")
+    check("v0130:matrix-dependency", len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix still has sixteen capabilities with production blocked")
     contract = load_json(ROOT / "docs/evidence/animation-runtime-v0130/run-front-contract-v0130.json")
     check("v0130:contract", contract.get("capability") == "run_front_v1" and contract.get("dependencies", {}).get("matrix_capability_count") == 16 and contract.get("review_policy", {}).get("external_visual") == "REQUIRED" and contract.get("review_policy", {}).get("production_routing") == "BLOCKED" and len(contract.get("negative_controls", [])) == 8, "historical RUN_FRONT_V1 contract remains bound")
     qa = load_json(ROOT / "docs/evidence/animation-runtime-v0130/run-front-v1/qa-result.json")
@@ -2133,6 +2133,8 @@ def _v0131_checks() -> None:
     required = [
         "REVIEW-v0.13.1.md", "REVIEW-v0.13.0.md", "schemas/current-state-v0.13.1.json", "schemas/current-state.json",
         "docs/evidence/current-state.json", "docs/evidence/current-state-v0.13.0.json", "docs/evidence/current-state-v0.12.4.json",
+        "docs/evidence/github-governance-v0131/run-front-v0131-external-visual-approval.json",
+        "docs/evidence/github-governance-v0131/run-front-v0131-provenance.json",
         "src/ugas/state_consistency_v0131.py", "scripts/validation/validate_state_consistency_v0131.py",
         "schemas/github-review-manifest-v0131.json", "scripts/validation/record_v0131_results.py", "scripts/validation/build_github_review_manifest_v0131.py", "scripts/validation/validate_github_review_manifest_v0131.py", "scripts/validation/validate_github_review_security_v0131.py", "scripts/validation/enforce_github_review_v0131.py",
         "profiles/animation/run-front-v1.json", "src/ugas/animation_profiles/run_front_v1.py",
@@ -2167,7 +2169,7 @@ def _v0131_checks() -> None:
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0131:state-consistency", False, str(exc))
     matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-    check("v0131:matrix-dependency", matrix.get("next_candidate") == "RUN_FRONT_V1" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix still authorizes only RUN_FRONT_V1 with production blocked")
+    check("v0131:matrix-dependency", matrix.get("next_candidate") == "HIT_REACTION_FRONT" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix advances to HIT_REACTION_FRONT with production blocked")
     contract = load_json(ROOT / "docs/evidence/animation-runtime-v0131/run-front-contract-v0131.json")
     check("v0131:contract", contract.get("capability") == "run_front_v1" and contract.get("dependencies", {}).get("implementation_base_commit") == V0131_BASELINE_HEAD and contract.get("dependencies", {}).get("matrix_capability_count") == 16 and contract.get("review_policy", {}).get("external_visual") == "REQUIRED" and contract.get("review_policy", {}).get("production_routing") == "BLOCKED" and len(contract.get("negative_controls", [])) == 12, "RUN_FRONT_V1 v0.13.1 contract is dependency, immutable-base and review bound")
     spec = load_json(ROOT / "profiles/animation/run-front-v1.json")

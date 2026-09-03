@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.13.1",
+  "decision_type": "external_run_front_visual",
+  "decision": "APPROVED_PILOT",
+  "merge_authorization": "APPROVED_TO_MERGE",
+  "scope": "visual_and_pilot_only",
+  "reviewer": "Sol external review",
+  "repository": "csn1985-ship-it/ugas",
+  "pr_number": 3,
+  "reviewed_head_sha": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+  "immutable_implementation_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "source_artifact": {
+    "id": "9888834439",
+    "name": "ugas-review-evidence-pr-3-f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+    "digest": "sha256:51759dcd7e39aff179967275e7a2873bc2e5c8dc777c83e5429a111c3a058127",
+    "workflow_run_id": 33743356494
+  },
+  "required_checks": {
+    "UGAS CI / unit-and-validation": "SUCCESS",
+    "UGAS CI / docker-smoke": "SUCCESS",
+    "UGAS Review / evidence": "SUCCESS"
+  },
+  "bindings": {
+    "preview_gif_path": "docs/evidence/animation-runtime-v0131/run-front-v1/run-front-preview-v0131.gif",
+    "preview_gif_sha256": "27c80ccb89d2388e62b31bede35e31e118265862b80cbf9d04eb694dd676d7da",
+    "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "immutable_approved_assets_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308"
+  },
+  "observations": [
+    "technical_github_checks_green_at_exact_head",
+    "real_flight_visible_at_frames_3_and_7",
+    "pilot_readability_acceptable"
+  ],
+  "non_blocking_debt": "front run is pilot-qualified but remains deliberately conservative in torso/arm exaggeration; future style tuning must not rewrite the approved pilot evidence",
+  "does_not_approve": ["production_routing", "new_generation", "hit_reaction_front_pixels", "death_animation_front"],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "historical_sources_rewritten": false,
+  "v0130_rejected_evidence_rewritten": false,
+  "v0131_technical_evidence_rewritten": false
+}
