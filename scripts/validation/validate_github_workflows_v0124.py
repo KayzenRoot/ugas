@@ -47,6 +47,8 @@ def validate_workflow(path: Path, *, kind: str) -> dict[str, Any]:
             failures.append("persistent-dashboard-teardown-forbidden")
         if re.search(r"UGAS_RUNTIME_PATH:\s*\$\{\{\s*runner\.", text):
             failures.append("job-env-runner-context-invalid")
+        if "mkdir -p \"$UGAS_REPO_PATH/.ugas/runtime\"" not in text:
+            failures.append("docker-smoke-runtime-mountpoint-missing")
     elif kind == "review":
         if "UGAS Review / evidence" not in text:
             failures.append("stable-review-job-missing")
