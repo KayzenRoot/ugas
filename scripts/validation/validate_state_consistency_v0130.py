@@ -1,4 +1,4 @@
-"""Run the active v0.13.0 RUN_FRONT_V1 state gate and persist evidence."""
+"""Validate the frozen historical v0.13.0 RUN_FRONT_V1 snapshot. Does not rewrite live state."""
 
 from __future__ import annotations
 
@@ -14,20 +14,17 @@ from ugas.state_consistency_v0130 import validate_state_consistency
 
 
 def main() -> int:
-    state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-    schema = json.loads((ROOT / "schemas/current-state.json").read_text(encoding="utf-8"))
+    state = json.loads((ROOT / "docs/evidence/current-state-v0.13.0.json").read_text(encoding="utf-8"))
+    schema = json.loads((ROOT / "schemas/current-state-v0.13.0.json").read_text(encoding="utf-8"))
     validate_schema_document(schema)
     validate_instance(state, schema)
-    result = validate_state_consistency(
-        state,
-        (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-        (ROOT / "REVIEW-v0.13.0.md").read_text(encoding="utf-8"),
-        (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
-    )
+    review = (ROOT / "REVIEW-v0.13.0.md").read_text(encoding="utf-8")
+    result = validate_state_consistency(state, review, review, review)
     evidence = {"schema_version": "0.13.0", "validator": "src/ugas/state_consistency_v0130.py", **result}
     destination = ROOT / "docs/evidence/animation-runtime-v0130/state-consistency-v0130.json"
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if destination.is_file() and result["status"] != "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED":
+        print(json.dumps(evidence, indent=2, ensure_ascii=False))
+        return 2
     print(json.dumps(evidence, indent=2, ensure_ascii=False))
     return 0 if result["status"] == "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED" else 2
 

@@ -1,0 +1,173 @@
+{
+  "schema_version": "0.13.1",
+  "animation_id": "run-front-v1",
+  "status": "RUN_TEMPORAL_QA_PASSED",
+  "metrics": {
+    "root_path_length_px": 68.366127,
+    "walk_baseline_root_path_length_px": 20.25798,
+    "run_vs_walk_path_ratio": 3.374775,
+    "root_horizontal_range_px": 28.0,
+    "root_vertical_range_px": 11.0,
+    "max_joint_angle_step_deg": 41.857738,
+    "max_angular_acceleration_deg_per_frame2": 52.696822,
+    "max_loop_joint_step_px": 35.415296,
+    "loop_root_step_px": 3.0,
+    "foreground_height_variation": 0.024907,
+    "opposition_transitions": 7
+  },
+  "hard_gates": {
+    "cadence_has_two_opposite_contacts": true,
+    "passing_frames_are_declared": true,
+    "flight_frames_are_declared": true,
+    "flight_no_support_role": true,
+    "flight_both_feet_clear": true,
+    "cadence_phase_alternates": true,
+    "all_target_hashes_distinct": true,
+    "root_path_meets_run_minimum": true,
+    "root_horizontal_range_meets_run_minimum": true,
+    "root_vertical_range_meets_run_minimum": true,
+    "root_motion_exceeds_walk_baseline": true,
+    "body_root_participation": true,
+    "arm_leg_opposition": true,
+    "foot_contact_windows": true,
+    "foot_ground_all_frames": true,
+    "angular_continuity": true,
+    "angular_acceleration_continuity": true,
+    "nonfinite_and_gap_free": true,
+    "foreground_height_stability": true,
+    "loop_all_core_joints_close": true,
+    "loop_root_close": true,
+    "loop_phase_zero_and_last_are_not_duplicate": true
+  },
+  "cadence_phase": {
+    "left_stride_x": [
+      0.0,
+      0.0,
+      8.0,
+      12.0,
+      8.0,
+      4.0,
+      0.0,
+      0.0
+    ],
+    "right_stride_x": [
+      0.0,
+      4.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      8.0,
+      0.0
+    ],
+    "hard_gates": {
+      "left_passing_excursion": true,
+      "right_passing_excursion": true,
+      "left_and_right_passing_are_distinct": true
+    }
+  },
+  "arm_opposition": {
+    "pairs": [
+      {
+        "from_frame": 7,
+        "to_frame": 0,
+        "left_delta_deg": 10.0,
+        "right_delta_deg": -6.0,
+        "opposed": true
+      },
+      {
+        "from_frame": 0,
+        "to_frame": 1,
+        "left_delta_deg": 6.0,
+        "right_delta_deg": -2.0,
+        "opposed": true
+      },
+      {
+        "from_frame": 1,
+        "to_frame": 2,
+        "left_delta_deg": -8.0,
+        "right_delta_deg": 4.0,
+        "opposed": true
+      },
+      {
+        "from_frame": 2,
+        "to_frame": 3,
+        "left_delta_deg": -8.0,
+        "right_delta_deg": 4.0,
+        "opposed": true
+      },
+      {
+        "from_frame": 3,
+        "to_frame": 4,
+        "left_delta_deg": -10.0,
+        "right_delta_deg": 6.0,
+        "opposed": true
+      },
+      {
+        "from_frame": 4,
+        "to_frame": 5,
+        "left_delta_deg": -6.0,
+        "right_delta_deg": 2.0,
+        "opposed": true
+      },
+      {
+        "from_frame": 5,
+        "to_frame": 6,
+        "left_delta_deg": 16.0,
+        "right_delta_deg": -8.0,
+        "opposed": true
+      },
+      {
+        "from_frame": 6,
+        "to_frame": 7,
+        "left_delta_deg": 0.0,
+        "right_delta_deg": 0.0,
+        "opposed": false
+      }
+    ],
+    "hard_gates": {
+      "minimum_opposed_transitions": true
+    }
+  },
+  "flight": {
+    "flight_frames": [
+      3,
+      7
+    ],
+    "threshold_px": 8.0,
+    "frames": [
+      {
+        "frame": 3,
+        "support_side": null,
+        "roles": [
+          "flight",
+          "flight"
+        ],
+        "ground_reference_available": true,
+        "threshold_finite": true,
+        "both_feet_clear": true,
+        "no_support_role": true
+      },
+      {
+        "frame": 7,
+        "support_side": null,
+        "roles": [
+          "flight",
+          "flight"
+        ],
+        "ground_reference_available": true,
+        "threshold_finite": true,
+        "both_feet_clear": true,
+        "no_support_role": true
+      }
+    ],
+    "hard_gates": {
+      "flight_frames_present": true,
+      "flight_threshold_finite": true,
+      "flight_no_support_role": true,
+      "flight_ground_reference_available": true,
+      "flight_both_feet_clear": true
+    },
+    "status": "RUN_FLIGHT_SEMANTIC_QA_PASSED"
+  }
+}

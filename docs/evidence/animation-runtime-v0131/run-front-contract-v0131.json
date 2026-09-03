@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.13.1",
+  "contract_id": "run-front-v1-source-only-flight-qa-contract",
+  "capability": "run_front_v1",
+  "target": "RUN_FRONT_V1",
+  "dependencies": {
+    "matrix_next_candidate": "RUN_FRONT_V1",
+    "matrix_capability_count": 16,
+    "matrix_production_routing": "BLOCKED",
+    "matrix_new_generation": 0,
+    "required_source_rig": "r4-cutout-rig-v071",
+    "required_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "required_runtime": "generic-animation-runtime-v1",
+    "immutable_approved_assets_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "reviewed_head_sha": "c658a2984bbee7c0b257b7537e840c07a80eee1e",
+    "pr_number": 3
+  },
+  "source_policy": {
+    "source_only_pixels": true,
+    "sam2_runs": 0,
+    "comfyui_generation_jobs": 0,
+    "diffusion_runs": 0,
+    "canonical_assets_immutable": true,
+    "new_generation": 0,
+    "forbidden": ["HIT_REACTION_FRONT", "DEATH_ANIMATION_FRONT", "multi_direction", "equipment", "creatures", "items", "environments", "ui", "vfx", "production_routing"]
+  },
+  "phase_contract": {
+    "frame_count": 8,
+    "fps": 12,
+    "contact_frames": [0, 4],
+    "contact_sides": ["left", "right"],
+    "passing_frames": [2, 6],
+    "flight_frames": [3, 7],
+    "flight_support_side": null,
+    "loop_edge": [7, 0],
+    "opposite_contact_half_cycle": true
+  },
+  "quality_gates": {
+    "schema_and_track_validity": true,
+    "loop_closure": true,
+    "cadence_and_phase_alternation": true,
+    "foot_ground_and_contact": true,
+    "flight_both_feet_clear": true,
+    "body_root_participation": true,
+    "arm_leg_opposition": true,
+    "continuity_and_interpolation": true,
+    "package_integrity": true,
+    "immutable_approved_assets": true,
+    "gif_timing_truthfulness": true
+  },
+  "flight_clearance": {
+    "threshold_px": 8.0,
+    "rationale": "Both rendered soles on frames 3 and 7 must sit at least 8 presentation pixels above the independently projected contact ground plane (mean of F0 left and F4 right source-alpha soles). Eight pixels is twice the existing swing-clearance minimum and remains visible at 0.9 scale without interpolated pixels."
+  },
+  "loop_edge_joint_step": {
+    "threshold_px": 38.0,
+    "rationale": "The 7->0 edge is now a real flight-to-contact landing. Airborne ankles travel at least the flight-clearance distance, so the previous 28px loop-joint cap calibrated against a non-airborne F7 is invalid under the corrected semantic model."
+  },
+  "gif_timing": {
+    "nominal_fps": 12,
+    "nominal_cycle_ms": 666.667,
+    "encoded_frame_durations_ms": [80, 90, 80, 90, 80, 90, 80, 80],
+    "total_cycle_ms_min": 660,
+    "total_cycle_ms_max": 680,
+    "effective_fps_min": 11.7,
+    "effective_fps_max": 12.2
+  },
+  "negative_controls": [
+    "break_loop",
+    "zero_root_and_torso",
+    "flight_support_or_clearance",
+    "foot_slide",
+    "duplicate_leg_phase",
+    "invert_arm_opposition",
+    "angular_jump",
+    "remove_dependency_hash",
+    "false_gate_in_package",
+    "mutate_approved_historical_asset",
+    "unavailable_immutable_baseline",
+    "gif_duration_outside_tolerance"
+  ],
+  "review_policy": {
+    "external_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "pr_merge": "FORBIDDEN",
+    "next_capability": "NOT_STARTED"
+  }
+}

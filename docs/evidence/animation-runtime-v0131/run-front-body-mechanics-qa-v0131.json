@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.13.1",
+  "animation_id": "run-front-v1",
+  "metrics": {
+    "root_path_length_px": 68.366127,
+    "walk_baseline_root_path_length_px": 20.25798,
+    "run_vs_walk_path_ratio": 3.374775,
+    "root_horizontal_range_px": 28.0,
+    "root_vertical_range_px": 11.0,
+    "max_joint_angle_step_deg": 41.857738,
+    "max_angular_acceleration_deg_per_frame2": 52.696822,
+    "max_loop_joint_step_px": 35.415296,
+    "loop_root_step_px": 3.0,
+    "foreground_height_variation": 0.024907,
+    "opposition_transitions": 7
+  },
+  "hard_gates": {
+    "root_path_meets_run_minimum": true,
+    "root_horizontal_range_meets_run_minimum": true,
+    "root_vertical_range_meets_run_minimum": true,
+    "root_motion_exceeds_walk_baseline": true,
+    "body_root_participation": true,
+    "arm_leg_opposition": true
+  },
+  "status": "RUN_BODY_MECHANICS_QA_PASSED"
+}

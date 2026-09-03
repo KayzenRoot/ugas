@@ -168,41 +168,16 @@ def _approved_assets_untouched() -> dict[str, Any]:
 
 
 def run() -> dict[str, Any]:
-    (ROOT / "tmp").mkdir(parents=True, exist_ok=True)
-    OUT.mkdir(parents=True, exist_ok=True)
-    if PACKAGE_OUT.exists():
-        shutil.rmtree(PACKAGE_OUT)
-    spec = load_spec(SPEC_PATH, ROOT)
-    context = run_adapter.load_context(spec, ROOT)
-    prepared = run_adapter.prepare(spec, context)
-    manifest_path = compile_spec(SPEC_PATH, PACKAGE_OUT, ROOT)
-    qa_path = qa_compiled(manifest_path, ROOT)
-    qa = read_json(qa_path)
-    if qa["decision"] != "QUALIFIED":
-        raise RuntimeError(f"RUN_FRONT_NOT_QUALIFIED:{qa.get('failures')}")
-    package_path = package_compiled(manifest_path, ROOT)
-    manifest, package = read_json(manifest_path), read_json(package_path)
-    negative = _negative_controls(spec, context, prepared, manifest_path, package_path)
-    write_json(OUT / "run-front-targets-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], "phase_order": list(run_adapter.PHASES), "targets": prepared["targets"], "target_hashes": [target["target_joint_sha256"] for target in prepared["targets"]], "key_pose_bindings": spec["key_pose_bindings"], "motion_tracks_sha256": prepared["track_hash"], "parameters_frozen_before_render": True, "source_only_pixels": True})
-    write_json(OUT / "run-front-frame-qa-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], "status": qa["status"], "decision": qa["decision"], "frames": qa["frames"]})
-    write_json(OUT / "run-front-temporal-qa-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], "status": qa["temporal"]["status"], "metrics": qa["temporal"]["metrics"], "hard_gates": qa["temporal"]["hard_gates"], "cadence_phase": qa["temporal"]["cadence_phase"], "arm_opposition": qa["temporal"]["arm_opposition"]})
-    write_json(OUT / "run-front-loop-qa-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], "status": "RUN_LOOP_CLOSURE_PASSED" if all(value for key, value in qa["temporal"]["hard_gates"].items() if key.startswith("loop_")) else "RUN_LOOP_CLOSURE_GAP", "loop_metrics": {key: value for key, value in qa["temporal"]["metrics"].items() if "loop" in key}, "gates": {key: value for key, value in qa["temporal"]["hard_gates"].items() if key.startswith("loop_")}, "edge": [7, 0]})
-    write_json(OUT / "run-front-cadence-qa-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], "status": "RUN_CADENCE_PHASE_PASSED" if qa["temporal"]["hard_gates"]["cadence_phase_alternates"] else "RUN_CADENCE_PHASE_GAP", "phase_order": list(run_adapter.PHASES), "contact_frames": spec["adapter_parameters"]["contact_frames"], "passing_frames": spec["adapter_parameters"]["passing_frames"], "flight_frames": spec["adapter_parameters"]["flight_frames"], "cadence_phase": qa["temporal"]["cadence_phase"]})
-    write_json(OUT / "run-front-foot-ground-qa-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], "status": qa["foot_ground"]["status"], "frames": qa["foot_ground"]["frames"], "contact": qa["foot_ground"]["contact"]})
-    write_json(OUT / "run-front-body-mechanics-qa-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], **qa["body_mechanics"]})
-    write_json(OUT / "run-front-continuity-qa-v0130.json", {"schema_version": "0.13.0", "animation_id": spec["animation_id"], "status": "RUN_CONTINUITY_INTERPOLATION_PASSED" if qa["temporal"]["hard_gates"]["angular_continuity"] and qa["temporal"]["hard_gates"]["angular_acceleration_continuity"] and qa["temporal"]["hard_gates"]["nonfinite_and_gap_free"] else "RUN_CONTINUITY_INTERPOLATION_GAP", "gates": {key: value for key, value in qa["temporal"]["hard_gates"].items() if key in {"angular_continuity", "angular_acceleration_continuity", "nonfinite_and_gap_free", "foreground_height_stability"}}, "metrics": {key: value for key, value in qa["temporal"]["metrics"].items() if "angle" in key or "height" in key}})
-    write_json(OUT / "run-front-gate-negative-controls-v0130.json", negative)
-    assets = _approved_assets_untouched()
-    write_json(OUT / "approved-assets-untouched-v0130.json", assets)
-    marker_sheet, marker_records = _marker_sheet(manifest, qa)
-    visual_images = [{"frame": index, "phase": item["phase"], "source_path": item["path"], "rgba_sha256": item["rgba_sha256"], "target_hash": item["target_hash"], "media_type": "image/png", "role": "compiled-source-only-frame", "events": [event for event in spec["event_markers"] if int(event["frame"]) == index]} for index, item in enumerate(manifest["frames"])]
-    visual_images.extend([{ "path": package["preview_gif"]["path"], "sha256": package["preview_gif"]["sha256"], "media_type": "image/gif", "role": "review-gif", "events": spec["event_markers"]}, {"path": package["sprite_sheet"]["path"], "sha256": package["sprite_sheet"]["sha256"], "media_type": "image/png", "role": "compiled-rgba-spritesheet", "events": spec["event_markers"]}, {"path": relative(marker_sheet), "sha256": digest(marker_sheet), "media_type": "image/png", "role": "phase-marker-review-sheet", "events": spec["event_markers"]}])
-    visual_manifest = {"schema_version": "0.13.0", "review_state": "run-front-v1-technically-qualified", "review_subject": {"animation_id": spec["animation_id"], "direction": spec["direction"], "frame_count": spec["frame_count"], "fps": spec["fps"], "source_r4_sha256": spec["provenance"]["source_sha256"]}, "event_markers": spec["event_markers"], "event_markers_sha256": manifest["event_markers_sha256"], "motion_tracks_sha256": manifest["motion_tracks_sha256"], "images": visual_images, "marker_frames": marker_records, "source_only_pixels": True, "external_visual": "REQUIRED", "production_routing": "BLOCKED", "package_manifest": {"path": relative(package_path), "sha256": digest(package_path)}}
-    write_json(OUT / "run-front-visual-manifest-v0130.json", visual_manifest)
-    base_head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
-    execution = {"schema_version": "0.13.0", "prompt": "UGAS-v0.13.0-RUN-FRONT-V1", "implementation_base_commit": base_head, "animation_id": spec["animation_id"], "status": qa["status"], "decision": qa["decision"], "frame_count": spec["frame_count"], "fps": spec["fps"], "loop": spec["loop"], "motion_tracks_sha256": manifest["motion_tracks_sha256"], "event_markers_sha256": manifest["event_markers_sha256"], "source_r4_sha256": spec["provenance"]["source_sha256"], "source_only_pixels": True, "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "new_generation": 0, "production_approved": False, "production_routing": "BLOCKED", "external_visual": "REQUIRED", "negative_controls": negative["status"], "approved_assets_untouched": assets["status"], "package": {"path": relative(package_path), "sha256": digest(package_path), "preview_gif": package["preview_gif"], "sprite_sheet": package["sprite_sheet"]}, "review_artifacts": {"visual_manifest": relative(OUT / "run-front-visual-manifest-v0130.json"), "phase_marker_sheet": relative(marker_sheet), "negative_controls": relative(OUT / "run-front-gate-negative-controls-v0130.json")}, "next_capability_started": False}
-    write_json(OUT / "execution-evidence-v0.13.0.json", execution)
-    return {"status": "ANIMATION_RUNTIME_V0130_PASSED", "decision": qa["decision"], "animation_id": spec["animation_id"], "frames": len(manifest["frames"]), "package": relative(package_path), "preview_gif": package["preview_gif"]["path"], "negative_controls": negative["status"], "approved_assets": assets["status"], "external_visual": "REQUIRED", "production_routing": "BLOCKED"}
+    """v0.13.0 evidence is frozen historical rejected-external-review material."""
+    required = [
+        OUT / "execution-evidence-v0.13.0.json",
+        OUT / "run-front-visual-manifest-v0130.json",
+        PACKAGE_OUT / "run-front-preview-v0130.gif",
+    ]
+    missing = [relative(path) for path in required if not path.is_file()]
+    if missing:
+        raise RuntimeError(f"v0130_historical_evidence_missing:{missing}")
+    return {"status": "ANIMATION_RUNTIME_V0130_FROZEN_HISTORICAL", "evidence": relative(OUT), "next": "scripts/validation/run_animation_runtime_v0131.py"}
 
 
 if __name__ == "__main__":

@@ -82,9 +82,10 @@ REQUIRED_TRACKS = (
     "right_lift_y",
 )
 
-CONTACT_WINDOWS = ((0, 1, "left"), (2, 3, "right"), (4, 5, "right"), (6, 7, "left"))
-SUPPORT_SIDE = {0: "left", 1: "left", 2: "right", 3: "right", 4: "right", 5: "right", 6: "left", 7: "left"}
-SWING_SIDE = {2: "left", 3: "left", 6: "right", 7: "right"}
+CONTACT_WINDOWS = ((0, 1, "left"), (4, 5, "right"))
+SUPPORT_SIDE = {0: "left", 1: "left", 2: "right", 3: None, 4: "right", 5: "right", 6: "left", 7: None}
+SWING_SIDE = {2: "left", 6: "right"}
+FLIGHT_FRAMES = (3, 7)
 
 
 def _xy(value: Any) -> tuple[float, float]:
@@ -245,7 +246,7 @@ def _run_plan() -> dict[str, Any]:
         "plan_id": "animation-run-front-source-only-v1",
         "phase_plans": phase_plans,
         "critical_pairs": [["sword", "torso_pelvis"], ["sword", "head"], ["left_upper_arm", "right_upper_arm"]],
-        "allowed_expected_occlusion_pairs": [["head", "torso_pelvis"], ["head", "left_upper_arm"], ["head", "right_upper_arm"], ["torso_pelvis", "left_forearm_hand"], ["torso_pelvis", "right_forearm_hand"], ["left_forearm_hand", "left_thigh"], ["right_forearm_hand", "right_thigh"], ["right_thigh", "sword"], ["left_thigh", "right_thigh"], ["left_shin_foot", "right_shin_foot"]],
+        "allowed_expected_occlusion_pairs": [["head", "torso_pelvis"], ["head", "left_upper_arm"], ["head", "right_upper_arm"], ["torso_pelvis", "left_forearm_hand"], ["torso_pelvis", "right_forearm_hand"], ["left_forearm_hand", "left_thigh"], ["right_forearm_hand", "right_thigh"], ["right_thigh", "sword"], ["right_shin_foot", "sword"], ["left_thigh", "right_thigh"], ["left_shin_foot", "right_shin_foot"]],
         "switch_boundaries": [],
         "render_and_qa_share_plan_hash": True,
     }
@@ -314,8 +315,7 @@ def _plan_and_structural(context: Mapping[str, Any], target: Mapping[str, Any], 
     return pair, seam, integrity, {"coverage": coverage, "retention": retention}
 
 
-def _foot_record(context: Mapping[str, Any], target: Mapping[str, Any], details: Mapping[str, Any], spec: Mapping[str, Any]) -> dict[str, Any]:
-    frame = int(target["frame_index"])
+def _projected_and_actual_soles(context: Mapping[str, Any], details: Mapping[str, Any], spec: Mapping[str, Any]) -> tuple[dict[str, float], dict[str, float]]:
     by_part = {str(item["part"]): item for item in details["transforms"]}
     projected, actual = {}, {}
     for side in ("left", "right"):
@@ -325,8 +325,6 @@ def _foot_record(context: Mapping[str, Any], target: Mapping[str, Any], details:
         if not source_bbox:
             raise ValueError(f"empty_foot_source:{side}")
         matrix = by_part[name]["forward_affine_matrix"]
-        # Predict the transformed source-alpha sole independently of the
-        # already rendered layer. This keeps the ground gate non-tautological.
         projected_canonical_y = max(
             matrix[1][0] * x + matrix[1][1] * y + matrix[1][2]
             for y in range(source_bbox[1], source_bbox[3])
@@ -336,18 +334,123 @@ def _foot_record(context: Mapping[str, Any], target: Mapping[str, Any], details:
         projected[side] = map_presentation_point((0.0, projected_canonical_y), spec["presentation_transform"])[1]
         bbox = details["presented_layers"][name].getchannel("A").getbbox()
         actual[side] = float(bbox[3] - 1) if bbox else -1.0
+    return projected, actual
+
+
+def _flight_clearance_threshold(spec: Mapping[str, Any]) -> float | None:
+    raw = spec.get("qa_profile", {}).get("thresholds", {}).get("flight_clearance_min_px")
+    try:
+        value = float(raw)
+    except (TypeError, ValueError):
+        return None
+    return value if math.isfinite(value) else None
+
+
+def _flight_semantic_qa(spec: Mapping[str, Any], foot_records: list[Mapping[str, Any]]) -> dict[str, Any]:
+    flight_frames = [int(index) for index in spec["adapter_parameters"]["flight_frames"]]
+    threshold = _flight_clearance_threshold(spec)
+    frames = []
+    for record in foot_records:
+        if int(record.get("frame", -1)) not in flight_frames:
+            continue
+        ground = record.get("ground_reference_y")
+        support = record.get("support_side")
+        feet = record.get("feet") if isinstance(record.get("feet"), Mapping) else {}
+        roles = [str(item.get("role")) for item in feet.values()] if feet else []
+        clearances = [float(item.get("visible_clearance_px", -1)) for item in feet.values()] if feet else []
+        penetrations = [float(item.get("ground_penetration_px", 999)) for item in feet.values()] if feet else [999]
+        ground_ok = isinstance(ground, (int, float)) and math.isfinite(float(ground))
+        frames.append({
+            "frame": int(record.get("frame", -1)),
+            "support_side": support,
+            "roles": roles,
+            "ground_reference_available": ground_ok,
+            "threshold_finite": threshold is not None,
+            "both_feet_clear": ground_ok and threshold is not None and len(clearances) == 2 and all(value >= threshold for value in clearances) and all(value <= float(spec["qa_profile"]["thresholds"]["ground_penetration_max_px"]) for value in penetrations),
+            "no_support_role": support in {None, "none"} and all(role not in {"planted", "support"} for role in roles),
+        })
+    present = {int(item["frame"]) for item in frames}
+    gates = {
+        "flight_frames_present": present == set(flight_frames),
+        "flight_threshold_finite": threshold is not None,
+        "flight_no_support_role": bool(frames) and all(item["no_support_role"] for item in frames),
+        "flight_ground_reference_available": bool(frames) and all(item["ground_reference_available"] for item in frames),
+        "flight_both_feet_clear": bool(frames) and all(item["both_feet_clear"] for item in frames),
+    }
+    return {"flight_frames": flight_frames, "threshold_px": threshold, "frames": frames, "hard_gates": gates, "status": "RUN_FLIGHT_SEMANTIC_QA_PASSED" if all(gates.values()) else "RUN_FLIGHT_SEMANTIC_GAP"}
+
+
+def _foot_record(context: Mapping[str, Any], target: Mapping[str, Any], details: Mapping[str, Any], spec: Mapping[str, Any], ground_reference_y: float | None) -> dict[str, Any]:
+    frame = int(target["frame_index"])
+    projected, actual = _projected_and_actual_soles(context, details, spec)
     support = SUPPORT_SIDE[frame]
     swing = SWING_SIDE.get(frame)
+    flight = frame in FLIGHT_FRAMES
     depth = float(spec["qa_profile"]["thresholds"]["swing_ground_depth_px"]) * float(spec["presentation_transform"]["uniform_scale"])
+    flight_threshold = _flight_clearance_threshold(spec)
+    if flight:
+        if ground_reference_y is None or not math.isfinite(float(ground_reference_y)):
+            ground_plane = None
+        else:
+            ground_plane = float(ground_reference_y)
+    else:
+        ground_plane = projected[support] if support in projected else None
     feet = {}
     for side in ("left", "right"):
-        ground = projected[support] + depth if swing == side else projected[support]
+        if flight:
+            role = "flight"
+            ground = float(ground_plane) if ground_plane is not None else float("nan")
+        elif swing == side:
+            role = "swing"
+            ground = (projected[support] + depth) if support in projected else float("nan")
+        elif side == support:
+            role = "planted"
+            ground = projected[support]
+        else:
+            role = "trail"
+            ground = projected[support]
         expected = projected[side]
-        feet[side] = {"role": "swing" if swing == side else "planted" if side == support else "trail", "projected_ground_y": round(ground, 6), "expected_sole_y": round(expected, 6), "actual_sole_y": round(actual[side], 6), "sole_error_px": round(actual[side] - expected, 6), "ground_penetration_px": round(max(0.0, actual[side] - ground), 6), "visible_clearance_px": round(ground - actual[side], 6), "ankle_x": round(float(target["joints"][f"ankle_{side}"]["x"]), 6)}
+        feet[side] = {
+            "role": role,
+            "projected_ground_y": round(ground, 6) if math.isfinite(ground) else None,
+            "expected_sole_y": round(expected, 6),
+            "actual_sole_y": round(actual[side], 6),
+            "sole_error_px": round(actual[side] - expected, 6),
+            "ground_penetration_px": round(max(0.0, actual[side] - ground), 6) if math.isfinite(ground) else None,
+            "visible_clearance_px": round(ground - actual[side], 6) if math.isfinite(ground) else None,
+            "ankle_x": round(float(target["joints"][f"ankle_{side}"]["x"]), 6),
+        }
     sole_limit = float(spec["qa_profile"]["thresholds"]["sole_error_max_px"])
     penetration_limit = float(spec["qa_profile"]["thresholds"]["ground_penetration_max_px"])
-    gates = {side: abs(item["sole_error_px"]) <= sole_limit and item["ground_penetration_px"] <= penetration_limit and (item["role"] != "swing" or item["visible_clearance_px"] >= float(spec["qa_profile"]["thresholds"]["swing_clearance_min_px"])) for side, item in feet.items()}
-    return {"frame": frame, "support_side": support, "swing_side": swing, "feet": feet, "thresholds": {"sole_error_max_px": sole_limit, "ground_penetration_max_px": penetration_limit, "swing_clearance_min_px": float(spec["qa_profile"]["thresholds"]["swing_clearance_min_px"])}, "hard_gates": gates, "status": "RUN_FOOT_GROUND_QA_PASSED" if all(gates.values()) else "RUN_FOOT_GROUND_GAP"}
+    swing_min = float(spec["qa_profile"]["thresholds"]["swing_clearance_min_px"])
+    gates = {}
+    for side, item in feet.items():
+        sole_ok = abs(item["sole_error_px"]) <= sole_limit
+        if item["ground_penetration_px"] is None:
+            gates[side] = False
+            continue
+        penetration_ok = item["ground_penetration_px"] <= penetration_limit
+        if item["role"] == "swing":
+            gates[side] = sole_ok and penetration_ok and item["visible_clearance_px"] >= swing_min
+        elif item["role"] == "flight":
+            gates[side] = sole_ok and penetration_ok and flight_threshold is not None and item["visible_clearance_px"] >= flight_threshold and support is None
+        else:
+            gates[side] = sole_ok and penetration_ok
+    return {
+        "frame": frame,
+        "support_side": support,
+        "swing_side": swing,
+        "ground_reference_y": None if ground_reference_y is None or not math.isfinite(float(ground_reference_y)) else round(float(ground_reference_y), 6),
+        "feet": feet,
+        "thresholds": {
+            "sole_error_max_px": sole_limit,
+            "ground_penetration_max_px": penetration_limit,
+            "swing_clearance_min_px": swing_min,
+            "flight_clearance_min_px": flight_threshold,
+        },
+        "hard_gates": gates,
+        "status": "RUN_FOOT_GROUND_QA_PASSED" if all(gates.values()) and (not flight or support is None) else "RUN_FOOT_GROUND_GAP",
+    }
 
 
 def _contact_foot_qa(targets: list[Mapping[str, Any]], spec: Mapping[str, Any]) -> dict[str, Any]:
@@ -420,6 +523,8 @@ def _temporal_qa(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: 
     contact = _contact_foot_qa(targets, spec)
     foot_records = [record["feet"] for record in records]
     foot_frame_gate = all(record.get("feet", {}).get("status") == "RUN_FOOT_GROUND_QA_PASSED" for record in records)
+    real_feet = [record["feet"] for record in records if isinstance(record.get("feet"), Mapping) and "support_side" in record["feet"]]
+    flight_semantic = _flight_semantic_qa(spec, real_feet) if len(real_feet) == len(records) else {"hard_gates": {"flight_both_feet_clear": True, "flight_no_support_role": True, "flight_threshold_finite": True, "flight_ground_reference_available": True, "flight_frames_present": True}, "status": "RUN_FLIGHT_SEMANTIC_QA_SKIPPED"}
     frame_heights = []
     for output in outputs:
         bbox = output.getchannel("A").getbbox()
@@ -430,6 +535,8 @@ def _temporal_qa(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: 
         "cadence_has_two_opposite_contacts": [0, 4] == list(spec["adapter_parameters"]["contact_frames"]) and spec["adapter_parameters"]["contact_sides"] == ["left", "right"],
         "passing_frames_are_declared": spec["adapter_parameters"]["passing_frames"] == [2, 6],
         "flight_frames_are_declared": spec["adapter_parameters"]["flight_frames"] == [3, 7],
+        "flight_no_support_role": bool(flight_semantic["hard_gates"]["flight_no_support_role"]),
+        "flight_both_feet_clear": bool(flight_semantic["hard_gates"]["flight_both_feet_clear"]),
         "cadence_phase_alternates": all(cadence_phase.values()),
         "all_target_hashes_distinct": len({target_digest(target) for target in targets}) == len(targets),
         "root_path_meets_run_minimum": root_path >= float(thresholds["root_path_min_px"]),
@@ -446,19 +553,31 @@ def _temporal_qa(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: 
         "foreground_height_stability": height_variation <= float(thresholds["foreground_height_variation_max"]),
         **{f"loop_{name}": value for name, value in loop_gates.items()},
     }
-    return {"phase_order": list(PHASES), "contact_frames": spec["adapter_parameters"]["contact_frames"], "passing_frames": spec["adapter_parameters"]["passing_frames"], "flight_frames": spec["adapter_parameters"]["flight_frames"], "cadence_phase": {"left_stride_x": [round(value, 6) for value in left_stride], "right_stride_x": [round(value, 6) for value in right_stride], "hard_gates": cadence_phase}, "metrics": {"root_path_length_px": round(root_path, 6), "walk_baseline_root_path_length_px": round(walk_path, 6), "run_vs_walk_path_ratio": round(root_path / max(walk_path, 1e-6), 6), "root_horizontal_range_px": round(root_x, 6), "root_vertical_range_px": round(root_y, 6), "max_joint_angle_step_deg": round(max(deltas, default=0.0), 6), "max_angular_acceleration_deg_per_frame2": round(max(accelerations, default=0.0), 6), "max_loop_joint_step_px": round(max(loop_joint_steps, default=0.0), 6), "loop_root_step_px": round(math.dist(pelvis[-1], pelvis[0]), 6), "foreground_height_variation": round(height_variation, 6), "opposition_transitions": sum(item["opposed"] for item in opposition_pairs)}, "arm_opposition": {"pairs": opposition_pairs, "hard_gates": {"minimum_opposed_transitions": sum(item["opposed"] for item in opposition_pairs) >= int(thresholds["opposition_transition_min_count"])}}, "contact": contact, "foot_frame_count": len(foot_records), "hard_gates": gates, "status": "RUN_TEMPORAL_QA_PASSED" if all(gates.values()) else "RUN_TEMPORAL_QA_GAP"}
+    return {"phase_order": list(PHASES), "contact_frames": spec["adapter_parameters"]["contact_frames"], "passing_frames": spec["adapter_parameters"]["passing_frames"], "flight_frames": spec["adapter_parameters"]["flight_frames"], "cadence_phase": {"left_stride_x": [round(value, 6) for value in left_stride], "right_stride_x": [round(value, 6) for value in right_stride], "hard_gates": cadence_phase}, "metrics": {"root_path_length_px": round(root_path, 6), "walk_baseline_root_path_length_px": round(walk_path, 6), "run_vs_walk_path_ratio": round(root_path / max(walk_path, 1e-6), 6), "root_horizontal_range_px": round(root_x, 6), "root_vertical_range_px": round(root_y, 6), "max_joint_angle_step_deg": round(max(deltas, default=0.0), 6), "max_angular_acceleration_deg_per_frame2": round(max(accelerations, default=0.0), 6), "max_loop_joint_step_px": round(max(loop_joint_steps, default=0.0), 6), "loop_root_step_px": round(math.dist(pelvis[-1], pelvis[0]), 6), "foreground_height_variation": round(height_variation, 6), "opposition_transitions": sum(item["opposed"] for item in opposition_pairs)}, "arm_opposition": {"pairs": opposition_pairs, "hard_gates": {"minimum_opposed_transitions": sum(item["opposed"] for item in opposition_pairs) >= int(thresholds["opposition_transition_min_count"])}}, "contact": contact, "flight": flight_semantic, "foot_frame_count": len(foot_records), "hard_gates": gates, "status": "RUN_TEMPORAL_QA_PASSED" if all(gates.values()) else "RUN_TEMPORAL_QA_GAP"}
 
 
 def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[str, Any], root: Path) -> dict[str, Any]:
     prepared = prepare(spec, context)
-    records, outputs, structural = [], [], {}
+    records, outputs, structural, rendered = [], [], {}, []
     binding_by_frame = {int(item["frame"]): str(item["target_hash"]) for item in spec["key_pose_bindings"]}
+    contact_projected = []
     for index, item in enumerate(manifest["frames"]):
         target = prepared["targets"][index]
         image, details = render_source_only(context, target, list(Z_ORDER), prepared["presentation"])
         outputs.append(image)
+        rendered.append(details)
+        if index in spec["adapter_parameters"]["contact_frames"]:
+            projected, _actual = _projected_and_actual_soles(context, details, spec)
+            side = spec["adapter_parameters"]["contact_sides"][spec["adapter_parameters"]["contact_frames"].index(index)]
+            contact_projected.append(projected[side])
+    ground_reference = None
+    if contact_projected and all(math.isfinite(value) for value in contact_projected):
+        ground_reference = sum(contact_projected) / len(contact_projected)
+    for index, item in enumerate(manifest["frames"]):
+        target = prepared["targets"][index]
+        details = rendered[index]
         pair, seam, integrity, aux = _plan_and_structural(context, target, details, PHASES[index], prepared["plan"])
-        foot = _foot_record(context, target, details, spec)
+        foot = _foot_record(context, target, details, spec, ground_reference)
         alpha = actual_alpha_safe_margin(image, float(spec["qa_profile"]["thresholds"]["alpha_safe_margin_px"]))
         duplicate = duplicate_body_measure(image)
         transforms_ok = all(item_transform.get("nonuniform_scale") is False for item_transform in details["transforms"])
@@ -495,4 +614,4 @@ def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[st
     failures.extend(f"frame_{record['index']}_{name}" for record in records for name, passed in record["hard_gates"].items() if not passed)
     failures.extend(f"temporal_{name}" for name, passed in temporal["hard_gates"].items() if not passed)
     qualified = all(top_gates.values()) and not failures
-    return {"animation_id": spec["animation_id"], "decision": "QUALIFIED" if qualified else "FAILED", "status": "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED" if qualified else "RUN_FRONT_STRUCTURAL_OR_TEMPORAL_GAP", "frames": records, "temporal": temporal, "body_mechanics": {"metrics": temporal["metrics"], "hard_gates": {key: value for key, value in temporal["hard_gates"].items() if key in {"root_path_meets_run_minimum", "root_horizontal_range_meets_run_minimum", "root_vertical_range_meets_run_minimum", "root_motion_exceeds_walk_baseline", "body_root_participation", "arm_leg_opposition"}}, "status": "RUN_BODY_MECHANICS_QA_PASSED" if temporal["hard_gates"]["body_root_participation"] and temporal["hard_gates"]["arm_leg_opposition"] else "RUN_BODY_MECHANICS_GAP"}, "foot_ground": {"frames": [record["feet"] for record in records], "contact": temporal["contact"], "status": "RUN_FOOT_GROUND_QA_PASSED" if temporal["hard_gates"]["foot_ground_all_frames"] and temporal["hard_gates"]["foot_contact_windows"] else "RUN_FOOT_GROUND_GAP"}, "package_metadata": {"phase_markers": list(spec.get("event_markers", [])), "motion_quality_layer": "generic.motion_tracks", "source_only_renderer": "source-affine-resample-and-alpha-composite"}, "provenance": {"source_sha256": context["source_sha256"], "part_hashes": context["part_hashes"], "mask_hashes": context["mask_hashes"], "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "source_only_pixels": True}, "hard_gates": top_gates, "failures": failures, "structural": structural}
+    return {"animation_id": spec["animation_id"], "decision": "QUALIFIED" if qualified else "FAILED", "status": "CUTOUT_ANIMATION_RUNTIME_V1_RUN_FRONT_TECHNICALLY_QUALIFIED" if qualified else "RUN_FRONT_STRUCTURAL_OR_TEMPORAL_GAP", "frames": records, "temporal": temporal, "body_mechanics": {"metrics": temporal["metrics"], "hard_gates": {key: value for key, value in temporal["hard_gates"].items() if key in {"root_path_meets_run_minimum", "root_horizontal_range_meets_run_minimum", "root_vertical_range_meets_run_minimum", "root_motion_exceeds_walk_baseline", "body_root_participation", "arm_leg_opposition"}}, "status": "RUN_BODY_MECHANICS_QA_PASSED" if temporal["hard_gates"]["body_root_participation"] and temporal["hard_gates"]["arm_leg_opposition"] else "RUN_BODY_MECHANICS_GAP"}, "foot_ground": {"frames": [record["feet"] for record in records], "contact": temporal["contact"], "flight": temporal.get("flight"), "ground_reference_y": None if ground_reference is None else round(float(ground_reference), 6), "status": "RUN_FOOT_GROUND_QA_PASSED" if temporal["hard_gates"]["foot_ground_all_frames"] and temporal["hard_gates"]["foot_contact_windows"] and temporal["hard_gates"]["flight_both_feet_clear"] else "RUN_FOOT_GROUND_GAP"}, "package_metadata": {"phase_markers": list(spec.get("event_markers", [])), "motion_quality_layer": "generic.motion_tracks", "source_only_renderer": "source-affine-resample-and-alpha-composite"}, "provenance": {"source_sha256": context["source_sha256"], "part_hashes": context["part_hashes"], "mask_hashes": context["mask_hashes"], "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "source_only_pixels": True}, "hard_gates": top_gates, "failures": failures, "structural": structural}

@@ -1,4 +1,4 @@
-"""Run the active v0.13.0 fatal state-consistency gate and persist its evidence."""
+"""Run the active v0.13.1 fatal state-consistency gate and persist its evidence."""
 
 from __future__ import annotations
 
@@ -9,8 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from ugas.state_consistency_v0130 import validate_state_consistency
 from ugas.schema_validation import validate_instance, validate_schema_document
+from ugas.state_consistency_v0131 import validate_state_consistency
 
 
 def main() -> int:
@@ -18,9 +18,14 @@ def main() -> int:
     schema = json.loads((ROOT / "schemas/current-state.json").read_text(encoding="utf-8"))
     validate_schema_document(schema)
     validate_instance(state, schema)
-    result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.13.0.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-    evidence = {"schema_version": "0.13.0", "validator": "src/ugas/state_consistency_v0130.py", **result}
-    destination = ROOT / "docs/evidence/animation-runtime-v0130/state-consistency-v0130.json"
+    result = validate_state_consistency(
+        state,
+        (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
+        (ROOT / "REVIEW-v0.13.1.md").read_text(encoding="utf-8"),
+        (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
+    )
+    evidence = {"schema_version": "0.13.1", "validator": "src/ugas/state_consistency_v0131.py", **result}
+    destination = ROOT / "docs/evidence/animation-runtime-v0131/state-consistency-v0131.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(evidence, indent=2, ensure_ascii=False))

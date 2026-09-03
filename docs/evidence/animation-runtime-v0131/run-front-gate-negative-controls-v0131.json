@@ -1,0 +1,215 @@
+{
+  "schema_version": "0.13.1",
+  "status": "NC_01_TO_NC_12_PASSED",
+  "controls": {
+    "NC-01_break_loop": {
+      "gate": "loop_root_close",
+      "status": "REJECTED",
+      "hard_gates": {
+        "cadence_has_two_opposite_contacts": true,
+        "passing_frames_are_declared": true,
+        "flight_frames_are_declared": true,
+        "flight_no_support_role": true,
+        "flight_both_feet_clear": true,
+        "cadence_phase_alternates": true,
+        "all_target_hashes_distinct": true,
+        "root_path_meets_run_minimum": true,
+        "root_horizontal_range_meets_run_minimum": true,
+        "root_vertical_range_meets_run_minimum": true,
+        "root_motion_exceeds_walk_baseline": true,
+        "body_root_participation": true,
+        "arm_leg_opposition": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "loop_all_core_joints_close": true,
+        "loop_root_close": false,
+        "loop_phase_zero_and_last_are_not_duplicate": true
+      }
+    },
+    "NC-02_zero_root_and_torso": {
+      "gate": "body_root_participation",
+      "status": "REJECTED",
+      "hard_gates": {
+        "cadence_has_two_opposite_contacts": true,
+        "passing_frames_are_declared": true,
+        "flight_frames_are_declared": true,
+        "flight_no_support_role": true,
+        "flight_both_feet_clear": true,
+        "cadence_phase_alternates": true,
+        "all_target_hashes_distinct": true,
+        "root_path_meets_run_minimum": false,
+        "root_horizontal_range_meets_run_minimum": false,
+        "root_vertical_range_meets_run_minimum": false,
+        "root_motion_exceeds_walk_baseline": false,
+        "body_root_participation": false,
+        "arm_leg_opposition": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "angular_continuity": false,
+        "angular_acceleration_continuity": false,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "loop_all_core_joints_close": false,
+        "loop_root_close": true,
+        "loop_phase_zero_and_last_are_not_duplicate": true
+      }
+    },
+    "NC-03_flight_support_or_clearance": {
+      "gate": "flight_both_feet_clear",
+      "status": "REJECTED",
+      "hard_gates": {
+        "flight_frames_present": true,
+        "flight_threshold_finite": true,
+        "flight_no_support_role": false,
+        "flight_ground_reference_available": true,
+        "flight_both_feet_clear": false
+      }
+    },
+    "NC-04_foot_slide": {
+      "gate": "foot_contact_windows",
+      "status": "REJECTED",
+      "hard_gates": {
+        "cadence_has_two_opposite_contacts": true,
+        "passing_frames_are_declared": true,
+        "flight_frames_are_declared": true,
+        "flight_no_support_role": true,
+        "flight_both_feet_clear": true,
+        "cadence_phase_alternates": true,
+        "all_target_hashes_distinct": true,
+        "root_path_meets_run_minimum": true,
+        "root_horizontal_range_meets_run_minimum": true,
+        "root_vertical_range_meets_run_minimum": true,
+        "root_motion_exceeds_walk_baseline": true,
+        "body_root_participation": true,
+        "arm_leg_opposition": true,
+        "foot_contact_windows": false,
+        "foot_ground_all_frames": true,
+        "angular_continuity": false,
+        "angular_acceleration_continuity": false,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "loop_all_core_joints_close": true,
+        "loop_root_close": true,
+        "loop_phase_zero_and_last_are_not_duplicate": true
+      }
+    },
+    "NC-05_duplicate_leg_phase": {
+      "gate": "cadence_phase_alternates",
+      "status": "REJECTED",
+      "hard_gates": {
+        "cadence_has_two_opposite_contacts": true,
+        "passing_frames_are_declared": true,
+        "flight_frames_are_declared": true,
+        "flight_no_support_role": true,
+        "flight_both_feet_clear": true,
+        "cadence_phase_alternates": false,
+        "all_target_hashes_distinct": true,
+        "root_path_meets_run_minimum": true,
+        "root_horizontal_range_meets_run_minimum": true,
+        "root_vertical_range_meets_run_minimum": true,
+        "root_motion_exceeds_walk_baseline": true,
+        "body_root_participation": true,
+        "arm_leg_opposition": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "loop_all_core_joints_close": true,
+        "loop_root_close": true,
+        "loop_phase_zero_and_last_are_not_duplicate": true
+      }
+    },
+    "NC-06_invert_arm_opposition": {
+      "gate": "arm_leg_opposition",
+      "status": "REJECTED",
+      "hard_gates": {
+        "cadence_has_two_opposite_contacts": true,
+        "passing_frames_are_declared": true,
+        "flight_frames_are_declared": true,
+        "flight_no_support_role": true,
+        "flight_both_feet_clear": true,
+        "cadence_phase_alternates": true,
+        "all_target_hashes_distinct": true,
+        "root_path_meets_run_minimum": true,
+        "root_horizontal_range_meets_run_minimum": true,
+        "root_vertical_range_meets_run_minimum": true,
+        "root_motion_exceeds_walk_baseline": true,
+        "body_root_participation": true,
+        "arm_leg_opposition": false,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "angular_continuity": true,
+        "angular_acceleration_continuity": true,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "loop_all_core_joints_close": true,
+        "loop_root_close": true,
+        "loop_phase_zero_and_last_are_not_duplicate": true
+      }
+    },
+    "NC-07_angular_jump": {
+      "gate": "angular_continuity",
+      "status": "REJECTED",
+      "hard_gates": {
+        "cadence_has_two_opposite_contacts": true,
+        "passing_frames_are_declared": true,
+        "flight_frames_are_declared": true,
+        "flight_no_support_role": true,
+        "flight_both_feet_clear": true,
+        "cadence_phase_alternates": true,
+        "all_target_hashes_distinct": true,
+        "root_path_meets_run_minimum": true,
+        "root_horizontal_range_meets_run_minimum": true,
+        "root_vertical_range_meets_run_minimum": true,
+        "root_motion_exceeds_walk_baseline": true,
+        "body_root_participation": true,
+        "arm_leg_opposition": true,
+        "foot_contact_windows": true,
+        "foot_ground_all_frames": true,
+        "angular_continuity": false,
+        "angular_acceleration_continuity": false,
+        "nonfinite_and_gap_free": true,
+        "foreground_height_stability": true,
+        "loop_all_core_joints_close": true,
+        "loop_root_close": true,
+        "loop_phase_zero_and_last_are_not_duplicate": true
+      }
+    },
+    "NC-08_remove_dependency_hash": {
+      "gate": "source_dependency_hash",
+      "status": "REJECTED",
+      "error": "ValueError"
+    },
+    "NC-09_false_gate_in_package": {
+      "gate": "package_qualified_qa",
+      "status": "REJECTED",
+      "error": "AnimationContractError"
+    },
+    "NC-10_mutate_approved_historical_asset": {
+      "gate": "approved_asset_integrity",
+      "status": "REJECTED"
+    },
+    "NC-11_unavailable_immutable_baseline": {
+      "gate": "approved_asset_baseline_fail_closed",
+      "status": "REJECTED"
+    },
+    "NC-12_gif_duration_outside_tolerance": {
+      "gate": "gif_timing_package_integrity",
+      "status": "REJECTED",
+      "hard_gates": {
+        "declared_timing_present": true,
+        "frame_count": true,
+        "loop_enabled": true,
+        "total_cycle_in_tolerance": false,
+        "effective_fps_in_tolerance": false
+      }
+    }
+  },
+  "source": "scripts/validation/run_animation_runtime_v0131.py independent fixture mutations"
+}
