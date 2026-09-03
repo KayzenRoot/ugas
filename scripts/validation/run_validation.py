@@ -2086,6 +2086,7 @@ def _v0130_checks() -> None:
         "REVIEW-v0.13.0.md", "schemas/current-state-v0.13.0.json", "schemas/current-state.json",
         "docs/evidence/current-state.json", "docs/evidence/current-state-v0.12.4.json",
         "src/ugas/state_consistency_v0130.py", "scripts/validation/validate_state_consistency_v0130.py",
+        "schemas/github-review-manifest-v0130.json", "scripts/validation/record_v0130_results.py", "scripts/validation/build_github_review_manifest_v0130.py", "scripts/validation/validate_github_review_manifest_v0130.py", "scripts/validation/validate_github_review_security_v0130.py", "scripts/validation/enforce_github_review_v0130.py",
         "profiles/animation/run-front-v1.json", "src/ugas/animation_profiles/run_front_v1.py",
         "scripts/validation/run_animation_runtime_v0130.py",
         "docs/evidence/animation-runtime-v0130/run-front-contract-v0130.json",
