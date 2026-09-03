@@ -70,6 +70,7 @@ jobs:
         run: |
           mkdir -p "$UGAS_REPO_PATH/.ugas/runtime"
           mkdir -p "$RUNNER_TEMP/ugas-runtime"
+          chmod 0777 "$RUNNER_TEMP/ugas-runtime"
           echo "UGAS_RUNTIME_PATH=$RUNNER_TEMP/ugas-runtime" >> "$GITHUB_ENV"
       - name: Compose config
         run: docker compose -f compose.yaml config
