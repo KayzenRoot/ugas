@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.15.0",
+  "status": "HIT_NONLOOP_REGRESSION_PASSED",
+  "decoded": {
+    "frame_count": 6,
+    "loop_extension_present": false,
+    "loop_count": null,
+    "loop": null,
+    "pillow_loop": null,
+    "netscape_offset": null,
+    "raw_subblock_hex": null,
+    "durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "total_cycle_ms": 500,
+    "effective_fps": 12.0
+  },
+  "hard_gates": {
+    "declared_timing_present": true,
+    "frame_count": true,
+    "loop_extension_presence_matches": true,
+    "loop_count_matches": true,
+    "loop_contract_matches": true,
+    "total_cycle_in_tolerance": true,
+    "effective_fps_in_tolerance": true
+  },
+  "source": "docs/evidence/animation-runtime-v0141/hit-front-v1/hit-front-preview-v0141.gif",
+  "v0141_evidence_rewritten": false
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.15.0",
+  "validator": "src/ugas/state_consistency_v0150.py",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.15.0",
+    "phase": "DEATH_ANIMATION_FRONT",
+    "current_gate": "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.15.0-death-animation-front",
+    "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+    "next_action": [
+      "external_visual_review_death_animation_front"
+    ],
+    "death_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "pr4_state": "MERGED",
+    "new_pr_state": "NOT_CREATED",
+    "frozen_v0141_blob": "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5"
+  }
+}

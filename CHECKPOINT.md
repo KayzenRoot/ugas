@@ -1,12 +1,18 @@
-# UGAS checkpoint - v0.14.1
+# UGAS checkpoint - v0.15.0
 
-## v0.14.1 HIT_REACTION_FRONT approved pilot / APPROVED_TO_MERGE
+## v0.15.0 DEATH_ANIMATION_FRONT — in progress (PR open, awaiting Sol review)
 
-The active phase is HIT_REACTION_FRONT and the technical gate remains HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Sol external review recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda. Visual content is inherited from the v0.14.0 review because v0.14.1 proves identical RGBA pixels, targets, motion tracks, spritesheet pixels, GIF frame pixels and durations; only the NETSCAPE repeat extension was removed. The previous approved release is 0.13.1 RUN_FRONT_V1 at reviewed head f3d68faa5524392e66aee2fc2a450b9da8fa734b (run_front_v1=APPROVED_PILOT). The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. v0.14.0 remains frozen rejected package-integrity history. The immutable implementation base remains 0beb4c23604f1e45736c3082f99d2e08fa1ac308. The canonical capability matrix has CAPABILITY_COUNT=16 and next_candidate=DEATH_ANIMATION_FRONT.
+The active phase is DEATH_ANIMATION_FRONT on branch codex/v0.15.0-death-animation-front. PR #4 is MERGED at merge_commit=98ebd95564216fbbee222aab630b73b5ff6f298d (merged_head=761ed5296e05571fdfbed1da04cfb7815049fa87, technical_approved_head=a3e37865f260c5a6cd56743e1d4b9131fcb12cda). The new v0.15.0 PR is NOT_CREATED locally and must be opened automatically after the final local gates; then it must remain OPEN for Sol review. Do not merge v0.15.0 without Sol approval.
 
-v0.14.1 technical evidence under docs/evidence/animation-runtime-v0141/ is frozen and not rewritten. The forward-only approval and provenance records are under docs/evidence/github-governance-v0141/. new_generation=0, production_approved=false, production_routing=BLOCKED.
+**Integrity repair:** A post-merge bookkeeping commit (761ed529...) mutated docs/evidence/animation-runtime-v0141/state-consistency-v0141.json inside the frozen evidence directory. The file has been restored byte-identically to the approved head (git blob 9bbc85bd...). A forward-only repair provenance record is at docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json. Git history is not rewritten.
 
-GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED, and DOCKER_ALWAYS_ON_LOCAL are authoritative. The only allowed next action is death_animation_front after the governed merge of PR #4. Do not enable production or start MULTI_DIRECTION_ANIMATION_RUNTIME. Animação genérica não autoriza execução fora de DEATH_ANIMATION_FRONT após o merge; no other animation or direction is authorized.
+v0.14.1 technical evidence under docs/evidence/animation-runtime-v0141/ is frozen and restored to approved-head byte identity. v0141_frozen_evidence=RESTORED_AND_VERIFIED. new_generation=0, production_approved=false, production_routing=BLOCKED. next_candidate=DEATH_ANIMATION_FRONT.
+
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, ALWAYS_ON_DASHBOARD_POLICY=ENABLED. Do not start MULTI_DIRECTION_ANIMATION_RUNTIME.
+
+## Historical v0.14.1 HIT_REACTION_FRONT approved pilot / MERGED
+
+Sol external review recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda. PR #4 merged at 98ebd95564216fbbee222aab630b73b5ff6f298d. The previous approved release is 0.13.1 RUN_FRONT_V1 at reviewed head f3d68faa5524392e66aee2fc2a450b9da8fa734b (run_front_v1=APPROVED_PILOT). The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. v0.14.0 remains frozen rejected package-integrity history. The immutable implementation base remains 0beb4c23604f1e45736c3082f99d2e08fa1ac308.
 
 ## Historical v0.14.0 HIT_REACTION_FRONT technically qualified
 

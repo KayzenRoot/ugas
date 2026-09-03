@@ -1,6 +1,6 @@
-# UGAS 0.14.1
+# UGAS 0.15.0
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente HIT_REACTION_FRONT determinístico sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente DEATH_ANIMATION_FRONT determinístico sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
 O v0.13.1 permanece o piloto aprovado de RUN_FRONT_V1. O v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
 
@@ -11,9 +11,9 @@ O v0.13.1 permanece o piloto aprovado de RUN_FRONT_V1. O v0.13.0, v0.12.0, v0.12
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
-python scripts/validation/validate_state_consistency.py
+python scripts/validation/validate_state_consistency_v0150.py
 python scripts/validation/run_validation.py
-python scripts/validation/run_animation_runtime_v0141.py
+python scripts/validation/run_animation_runtime_v0150.py
 python scripts/validation/run_observability_v0122.py
 python scripts/validation/build_review_index_v0122.py --json
 python scripts/validation/validate_review_index_v0122.py docs/evidence/review-index-v0.12.2.json
@@ -27,11 +27,11 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.14.1.md](REVIEW-v0.14.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.15.0.md](REVIEW-v0.15.0.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
-## v0.14.1 HIT_REACTION_FRONT package integrity
+## v0.15.0 DEATH_ANIMATION_FRONT
 
-The active phase is HIT_REACTION_FRONT and the local gate is HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Sol recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda.
+The active phase is DEATH_ANIMATION_FRONT and the local gate is CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED. The eight-frame, 12 fps, non-looping source-only death pilot is technically qualified; external visual review remains REQUIRED. PR #4 HIT_REACTION_FRONT is MERGED at 98ebd95564216fbbee222aab630b73b5ff6f298d. `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`.
 
 ## Historical v0.14.0 HIT_REACTION_FRONT technically qualified
 
