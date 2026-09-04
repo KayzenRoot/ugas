@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "version": "0.12.3",
+  "version": "0.16.0",
   "capabilities": [
     {"id": "core_2d_generation", "capability": "Core 2D generation / master / transparency / provenance", "status": "Existing foundation", "planned_order": "Preserve"},
     {"id": "deterministic_cutout_rig", "capability": "Deterministic cutout rig + walk/idle/attack pilots", "status": "Pilot-qualified history", "planned_order": "Preserve"},
@@ -8,8 +8,8 @@
     {"id": "github_native_review_infrastructure", "capability": "GitHub-native review infrastructure", "status": "This increment", "planned_order": "v0.12.3"},
     {"id": "run_front_v1", "capability": "Run animation - front", "status": "APPROVED_PILOT", "planned_order": "v0.13.1 closed"},
     {"id": "hit_reaction_front", "capability": "Hit reaction - front", "status": "APPROVED_PILOT", "planned_order": "v0.14.1 closed"},
-    {"id": "death_animation_front", "capability": "Death animation - front", "status": "TECHNICALLY_QUALIFIED_EXTERNAL_VISUAL_REQUIRED", "planned_order": "current"},
-    {"id": "multi_direction_animation_runtime", "capability": "Multi-direction animation/runtime", "status": "Pending", "planned_order": "after front library proves reusable"},
+    {"id": "death_animation_front", "capability": "Death animation - front", "status": "APPROVED_PILOT", "planned_order": "v0.15.1 closed"},
+    {"id": "multi_direction_animation_runtime", "capability": "Multi-direction animation/runtime", "status": "TECHNICALLY_QUALIFIED_FOUNDATION", "planned_order": "current / next necessary"},
     {"id": "equipment_outfits", "capability": "Equipment / outfits", "status": "Pending", "planned_order": "later V1"},
     {"id": "creatures_monsters", "capability": "Creatures / monsters", "status": "Pending", "planned_order": "later V1"},
     {"id": "items_props", "capability": "Items / props", "status": "Pending", "planned_order": "later V1"},
@@ -19,7 +19,7 @@
     {"id": "vfx_asset_family", "capability": "VFX asset family", "status": "Pending", "planned_order": "later V1"},
     {"id": "orchestration_runtime_hardening", "capability": "Orchestration / runtime integration / hardening", "status": "Pending", "planned_order": "V1 completion gates"}
   ],
-  "next_candidate": "DEATH_ANIMATION_FRONT",
+  "next_candidate": "MULTI_DIRECTION_ANIMATION_RUNTIME",
   "production_routing": "BLOCKED",
   "new_generation": 0
 }

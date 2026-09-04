@@ -1,0 +1,104 @@
+{
+  "status": "DIRECTION_QUANTIZATION_PASSED",
+  "contract": {
+    "coordinate_convention": {
+      "x_positive": "east",
+      "y_positive": "south",
+      "angle_zero": "east",
+      "angle_positive": "clockwise"
+    },
+    "canonical_directions": [
+      "south",
+      "south_east",
+      "east",
+      "north_east",
+      "north",
+      "north_west",
+      "west",
+      "south_west"
+    ],
+    "aliases": {
+      "back": "north",
+      "back-left": "north_west",
+      "back-right": "north_east",
+      "back_left": "north_west",
+      "back_right": "north_east",
+      "down": "south",
+      "e": "east",
+      "front": "south",
+      "front-left": "south_west",
+      "front-right": "south_east",
+      "front_left": "south_west",
+      "front_right": "south_east",
+      "left": "west",
+      "n": "north",
+      "ne": "north_east",
+      "northeast": "north_east",
+      "northwest": "north_west",
+      "nw": "north_west",
+      "right": "east",
+      "s": "south",
+      "se": "south_east",
+      "southeast": "south_east",
+      "southwest": "south_west",
+      "sw": "south_west",
+      "up": "north",
+      "w": "west"
+    },
+    "sector_order_clockwise_from_east": [
+      "east",
+      "south_east",
+      "south",
+      "south_west",
+      "west",
+      "north_west",
+      "north",
+      "north_east"
+    ],
+    "sector_width_degrees": 45,
+    "boundary_policy": "lower-inclusive-upper-exclusive-after-22.5-degree-clockwise-offset",
+    "zero_vector_policy": "retained_facing_only-or-explicit-unresolved-never-defaults"
+  },
+  "vectors": [
+    {
+      "dx": 1,
+      "dy": 0,
+      "direction": "east"
+    },
+    {
+      "dx": 1,
+      "dy": 1,
+      "direction": "south_east"
+    },
+    {
+      "dx": 0,
+      "dy": 1,
+      "direction": "south"
+    },
+    {
+      "dx": -1,
+      "dy": 1,
+      "direction": "south_west"
+    },
+    {
+      "dx": -1,
+      "dy": 0,
+      "direction": "west"
+    },
+    {
+      "dx": -1,
+      "dy": -1,
+      "direction": "north_west"
+    },
+    {
+      "dx": 0,
+      "dy": -1,
+      "direction": "north"
+    },
+    {
+      "dx": 1,
+      "dy": -1,
+      "direction": "north_east"
+    }
+  ]
+}

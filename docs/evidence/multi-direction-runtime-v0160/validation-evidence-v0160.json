@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.16.0",
+  "status": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
+  "gates": {
+    "direction_schema_valid": {
+      "passed": true,
+      "detail": "coverage and frozen contract use canonical eight"
+    },
+    "vector_quantization_deterministic": {
+      "passed": true,
+      "detail": "screen-space cardinal and diagonal vectors repeat identically"
+    },
+    "alias_mapping_unambiguous": {
+      "passed": true,
+      "detail": "front and named aliases map one-to-one"
+    },
+    "zero_vector_does_not_guess": {
+      "passed": true,
+      "detail": "zero is unresolved unless retained facing is explicit"
+    },
+    "coverage_manifest_truthful": {
+      "passed": true,
+      "detail": "six approved front profiles are declared as south only and hash-valid"
+    },
+    "missing_direction_fails_closed": {
+      "passed": true,
+      "detail": "missing real direction returns no asset"
+    },
+    "fallback_is_explicit_and_nonproduction": {
+      "passed": true,
+      "detail": "preview fallback is explicit and non-production"
+    },
+    "mirror_requires_explicit_permission": {
+      "passed": true,
+      "detail": "no mirror is selected by default"
+    },
+    "mirror_unsafe_asymmetry_rejected": {
+      "passed": true,
+      "detail": "only manifest-declared mirror-safe pairs may preview mirror"
+    },
+    "direction_in_cache_key": {
+      "passed": true,
+      "detail": "cache key contains capability, canonical direction, variant and revision"
+    },
+    "asset_hash_matches_manifest": {
+      "passed": true,
+      "detail": "all six manifest hashes match repository bytes"
+    },
+    "capability_and_direction_match_asset_metadata": {
+      "passed": true,
+      "detail": "metadata repeats the complete resolver identity"
+    },
+    "front_to_south_backward_compatibility": {
+      "passed": true,
+      "detail": "front alias and canonical south resolve the same approved record"
+    },
+    "existing_front_assets_byte_unchanged": {
+      "passed": true,
+      "detail": "approved front profile bytes remain bound to v0.15.1 hashes"
+    },
+    "production_routing_blocked": {
+      "passed": true,
+      "detail": "active state remains pilot-only and production-blocked"
+    },
+    "synthetic_fixture_not_in_production_registry": {
+      "passed": true,
+      "detail": "eight unique hash-bound fixture identities are review-only and absent from production registries"
+    },
+    "negative_controls_reject": {
+      "passed": true,
+      "detail": ""
+    }
+  },
+  "passed": 17,
+  "failed": 0,
+  "production_coverage": [
+    "south"
+  ],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0
+}

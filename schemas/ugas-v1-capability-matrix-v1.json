@@ -6,7 +6,7 @@
   "required": ["schema_version", "version", "capabilities", "next_candidate", "production_routing", "new_generation"],
   "properties": {
     "schema_version": {"const": "1.0"},
-    "version": {"const": "0.12.3"},
+    "version": {"const": "0.16.0"},
     "capabilities": {
       "type": "array",
       "minItems": 1,
@@ -22,7 +22,7 @@
         }
       }
     },
-    "next_candidate": {"const": "DEATH_ANIMATION_FRONT"},
+    "next_candidate": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME"},
     "production_routing": {"const": "BLOCKED"},
     "new_generation": {"const": 0}
   }

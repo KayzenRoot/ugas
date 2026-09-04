@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active v0.16.0 MULTI_DIRECTION_ANIMATION_RUNTIME state",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "allowed_next_actions", "production_approved", "production_routing", "new_generation", "review", "external_visual_review", "state_consistency"],
+  "properties": {
+    "schema_version": {"const": "0.16.0"},
+    "version": {"const": "0.16.0"},
+    "phase": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME"},
+    "previous_release": {
+      "type": "object",
+      "required": ["version", "review", "evidence"],
+      "properties": {"version": {"const": "0.15.1"}, "review": {"const": "REVIEW-v0.15.1.md"}, "evidence": {"const": "docs/evidence/current-state-v0.15.1.json"}}
+    },
+    "current_gate": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED"},
+    "allowed_next_actions": {"const": ["external_review_multi_direction_runtime_v0160"]},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "new_generation": {"const": 0},
+    "external_visual_review": {"type": "object", "properties": {"multi_direction_animation_runtime": {"const": "REQUIRED"}}},
+    "review": {
+      "type": "object",
+      "required": ["repository", "branch_base_commit", "feature_branch", "pr_number", "pr_state", "real_pr_checks_green", "no_self_merge_until_external_approval"],
+      "properties": {
+        "repository": {"const": "KayzenRoot/ugas"},
+        "branch_base_commit": {"const": "514a17818469b567966293db808cafbf708f8311"},
+        "feature_branch": {"const": "codex/v0.16.0-multi-direction-runtime-foundation"},
+        "pr_number": {"const": 0},
+        "pr_state": {"const": "NOT_CREATED"},
+        "real_pr_checks_green": {"const": false},
+        "no_self_merge_until_external_approval": {"const": true}
+      }
+    },
+    "state_consistency": {
+      "type": "object",
+      "required": ["status", "version", "phase", "current_gate", "production_routing", "production_approved", "new_generation", "allowed_next_actions"],
+      "properties": {
+        "status": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED"},
+        "version": {"const": "0.16.0"},
+        "phase": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME"},
+        "current_gate": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED"},
+        "production_routing": {"const": "BLOCKED"},
+        "production_approved": {"const": false},
+        "new_generation": {"const": 0},
+        "allowed_next_actions": {"const": ["external_review_multi_direction_runtime_v0160"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "status": "DIRECTION_FALLBACK_QA_PASSED",
+  "missing": {
+    "requested_direction": "north",
+    "resolved_direction": null,
+    "asset_id": null,
+    "path": null,
+    "provenance_hash": null,
+    "fallback_mode": "FAIL_CLOSED",
+    "mirror_mode": "NONE",
+    "capability_id": "death_animation_front",
+    "variant": "default",
+    "asset_revision_id": null,
+    "cache_key": "death_animation_front|north|default|ANY|production",
+    "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+    "production_safe": false
+  },
+  "preview": {
+    "requested_direction": "north",
+    "resolved_direction": "south",
+    "asset_id": "death-front-v1-v0151",
+    "path": "profiles/animation/death-front-v151.json",
+    "provenance_hash": "b492e604fb633f8ca202e12adfbc706eaf79ee9b963c5e9369a311a55baadbf3",
+    "fallback_mode": "EXPLICIT_PREVIEW_FALLBACK",
+    "mirror_mode": "NONE",
+    "capability_id": "death_animation_front",
+    "variant": "default",
+    "asset_revision_id": "r4-cutout-rig-v071",
+    "cache_key": "death_animation_front|north|default|ANY|preview:1:0",
+    "error_code": null,
+    "production_safe": false
+  }
+}

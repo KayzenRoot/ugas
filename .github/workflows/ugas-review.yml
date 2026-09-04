@@ -37,11 +37,10 @@ jobs:
         if: always()
         continue-on-error: true
         run: python -m pip install --disable-pip-version-check .
-      - name: Prepare evidence directory
+      - name: Prepare evidence directories
         if: always()
-        run: mkdir -p "$RUNNER_TEMP/ugas-review-evidence"
+        run: mkdir -p "$RUNNER_TEMP/ugas-review-evidence" "$RUNNER_TEMP/ugas-review-artifact"
       - name: Build true-PNG review transport
-        id: visual_transport
         if: always()
         continue-on-error: true
         run: |
@@ -52,7 +51,6 @@ jobs:
           printf '%s\n' "$code" > "$RUNNER_TEMP/visual-transport.exit"
           exit "$code"
       - name: Run unit tests and capture totals
-        id: unit_tests
         if: always()
         continue-on-error: true
         shell: bash
@@ -63,7 +61,6 @@ jobs:
           printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-tests.exit"
           exit "$code"
       - name: Run official validation and capture totals
-        id: official_validation
         if: always()
         continue-on-error: true
         shell: bash
@@ -73,19 +70,27 @@ jobs:
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-validation.exit"
           exit "$code"
-      - name: Validate active v0.15.1 state
-        id: state_consistency
+      - name: Validate active v0.16.0 state
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_state_consistency_v0151.py
+          python scripts/validation/validate_state_consistency_v0160.py
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/state-consistency.exit"
           exit "$code"
+      - name: Validate multi-direction runtime foundation
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/validate_direction_runtime_v0160.py
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/direction-runtime.exit"
+          exit "$code"
       - name: Validate V1 capability matrix
-        id: capability_matrix
         if: always()
         continue-on-error: true
         shell: bash
@@ -95,19 +100,17 @@ jobs:
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/capability-matrix.exit"
           exit "$code"
-      - name: Run DEATH_ANIMATION_FRONT runtime and regressions
-        id: death_runtime
+      - name: Run approved front compatibility regression
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/run_animation_runtime_v0151.py 2>&1 | tee "$RUNNER_TEMP/death-front-v0151.log"
+          python scripts/validation/run_animation_runtime_v0151.py 2>&1 | tee "$RUNNER_TEMP/front-compatibility-v0151.log"
           code=${PIPESTATUS[0]}
-          printf '%s\n' "$code" > "$RUNNER_TEMP/death-front-v0151.exit"
+          printf '%s\n' "$code" > "$RUNNER_TEMP/front-compatibility.exit"
           exit "$code"
       - name: Validate workflow structure
-        id: workflow_validation
         if: always()
         continue-on-error: true
         shell: bash
@@ -118,99 +121,56 @@ jobs:
           printf '%s\n' "$code" > "$RUNNER_TEMP/workflow-validation.exit"
           exit "$code"
       - name: Validate visual transport and MIME signatures
-        id: visual_validation
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_review_visual_transport_v0123.py \
-            docs/evidence/github-review-v0123/visual-manifest.json \
-            --result-output "$RUNNER_TEMP/prebuild-visual-validation.json"
+          python scripts/validation/validate_review_visual_transport_v0123.py docs/evidence/github-review-v0123/visual-manifest.json --result-output "$RUNNER_TEMP/prebuild-visual-validation.json"
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/visual-validation.exit"
           exit "$code"
-      - name: Record v0.15.1 test, validation and gate results
+      - name: Record initial v0.16.0 results
         if: always()
         continue-on-error: true
         shell: bash
         run: |
-          python scripts/validation/record_v0151_results.py \
-            --test-log "$RUNNER_TEMP/ugas-tests.log" \
-            --validation-log "$RUNNER_TEMP/ugas-validation.log" \
+          python scripts/validation/record_v0160_results.py \
+            --test-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" \
             --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
             --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
             --state-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
+            --direction-exit-code "$(cat "$RUNNER_TEMP/direction-runtime.exit" 2>/dev/null || echo 99)" \
             --matrix-exit-code "$(cat "$RUNNER_TEMP/capability-matrix.exit" 2>/dev/null || echo 99)" \
-            --runtime-log "$RUNNER_TEMP/death-front-v0151.log" \
-            --runtime-exit-code "$(cat "$RUNNER_TEMP/death-front-v0151.exit" 2>/dev/null || echo 99)" \
-            --recovery-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
+            --front-compatibility-exit-code "$(cat "$RUNNER_TEMP/front-compatibility.exit" 2>/dev/null || echo 99)" \
             --visual-exit-code "$(cat "$RUNNER_TEMP/visual-validation.exit" 2>/dev/null || echo 99)" \
             --workflow-exit-code "$(cat "$RUNNER_TEMP/workflow-validation.exit" 2>/dev/null || echo 99)" \
-            --manifest-exit-code 99 \
-            --security-exit-code 99 \
-            --output-dir "$RUNNER_TEMP/ugas-review-evidence"
-      - name: Build v0.15.1 review manifest before enforcement
-        id: build_manifest
+            --manifest-exit-code 99 --security-exit-code 99 --output-dir "$RUNNER_TEMP/ugas-review-evidence"
+      - name: Build v0.16.0 review manifest before enforcement
         if: always()
         continue-on-error: true
         run: |
-          python scripts/validation/build_github_review_manifest_v0151.py \
-            --output-dir "$RUNNER_TEMP/ugas-review-evidence" \
-            --base-ref "$BASE_REF" \
-            --head-ref "$HEAD_REF" \
-            --head-branch "$HEAD_BRANCH" \
-            --pr-number "$PR_NUMBER" \
-            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0151.json" \
-            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0151.json" \
-            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0151.json" \
+          python scripts/validation/build_github_review_manifest_v0160.py \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence" --base-ref "$BASE_REF" --head-ref "$HEAD_REF" \
+            --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0160.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0160.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0160.json" \
             --visual-manifest "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
-            --preflight-json docs/evidence/github-governance-v0124/github-preflight.json
-      - name: Validate v0.15.1 review manifest before artifact assembly
-        id: prebuild_manifest_validation
+            --front-compatibility-exit "$RUNNER_TEMP/front-compatibility.exit"
+      - name: Validate v0.16.0 review manifest before artifact assembly
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_github_review_manifest_v0151.py \
-            "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0151.json" \
+          python scripts/validation/validate_github_review_manifest_v0160.py \
+            "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0160.json" \
             "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
             --result-output "$RUNNER_TEMP/prebuild-manifest-validation.json"
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/manifest-validation.exit"
           exit "$code"
-      - name: Record final manifest gate result
-        if: always()
-        continue-on-error: true
-        shell: bash
-        run: |
-          python scripts/validation/record_v0151_results.py \
-            --test-log "$RUNNER_TEMP/ugas-tests.log" \
-            --validation-log "$RUNNER_TEMP/ugas-validation.log" \
-            --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
-            --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
-            --state-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
-            --matrix-exit-code "$(cat "$RUNNER_TEMP/capability-matrix.exit" 2>/dev/null || echo 99)" \
-            --runtime-log "$RUNNER_TEMP/death-front-v0151.log" \
-            --runtime-exit-code "$(cat "$RUNNER_TEMP/death-front-v0151.exit" 2>/dev/null || echo 99)" \
-            --recovery-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
-            --visual-exit-code "$(cat "$RUNNER_TEMP/visual-validation.exit" 2>/dev/null || echo 99)" \
-            --workflow-exit-code "$(cat "$RUNNER_TEMP/workflow-validation.exit" 2>/dev/null || echo 99)" \
-            --manifest-exit-code "$(cat "$RUNNER_TEMP/manifest-validation.exit" 2>/dev/null || echo 99)" \
-            --security-exit-code 99 \
-            --output-dir "$RUNNER_TEMP/ugas-review-evidence"
-          python scripts/validation/build_github_review_manifest_v0151.py \
-            --output-dir "$RUNNER_TEMP/ugas-review-evidence" \
-            --base-ref "$BASE_REF" \
-            --head-ref "$HEAD_REF" \
-            --head-branch "$HEAD_BRANCH" \
-            --pr-number "$PR_NUMBER" \
-            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0151.json" \
-            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0151.json" \
-            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0151.json" \
-            --visual-manifest "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
-            --preflight-json docs/evidence/github-governance-v0124/github-preflight.json
       - name: Assemble bounded evidence artifact
         if: always()
         continue-on-error: true
@@ -218,115 +178,105 @@ jobs:
         run: |
           set +e
           artifact="$RUNNER_TEMP/ugas-review-artifact"
-          mkdir -p "$artifact/visuals" "$artifact/state" "$artifact/matrix" "$artifact/governance" "$artifact/logs"
+          mkdir -p "$artifact/visuals" "$artifact/state" "$artifact/direction-runtime" "$artifact/governance" "$artifact/logs"
           copy_if_present() { test -f "$1" && cp "$1" "$2"; }
-          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0151.json" "$artifact/github-review-manifest-v0151.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0160.json" "$artifact/github-review-manifest-v0160.json"
           copy_if_present "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" "$artifact/visual-manifest.json"
-          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/test-results-v0151.json" "$artifact/test-results-v0151.json"
-          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0151.json" "$artifact/validation-results-v0151.json"
-          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0151.json" "$artifact/gate-results-v0151.json"
-          copy_if_present "$RUNNER_TEMP/prebuild-manifest-validation.json" "$artifact/manifest-validation-results-v0151.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/test-results-v0160.json" "$artifact/test-results-v0160.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0160.json" "$artifact/validation-results-v0160.json"
+          copy_if_present "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0160.json" "$artifact/gate-results-v0160.json"
+          copy_if_present "$RUNNER_TEMP/prebuild-manifest-validation.json" "$artifact/manifest-validation-results-v0160.json"
           copy_if_present docs/evidence/current-state.json "$artifact/state/current-state.json"
+          copy_if_present docs/evidence/current-state-v0.15.1.json "$artifact/state/current-state-v0.15.1.json"
           copy_if_present docs/evidence/current-state-v0.15.0.json "$artifact/state/current-state-v0.15.0.json"
-          copy_if_present docs/evidence/animation-runtime-v0151/state-consistency-v0151.json "$artifact/state/state-consistency-v0151.json"
-          copy_if_present docs/evidence/animation-runtime-v0151/capability-matrix-validation-v0151.json "$artifact/matrix/capability-matrix-validation-v0151.json"
-          copy_if_present docs/evidence/animation-runtime-v0151/frozen-evidence-integrity-v0151.json "$artifact/governance/frozen-evidence-integrity-v0151.json"
-          copy_if_present docs/evidence/current-state-v0.14.1.json "$artifact/state/current-state-v0.14.1.json"
-          copy_if_present docs/evidence/review-index-v0.12.2.json "$artifact/state/review-index-v0.12.2.json"
-          copy_if_present docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json "$artifact/governance/hit-front-v0141-post-merge-integrity-repair.json"
-          copy_if_present docs/evidence/github-governance-v0124/pr1-premature-merge.json "$artifact/governance/pr1-premature-merge.json"
+          copy_if_present docs/evidence/multi-direction-runtime-v0160/state-consistency-v0160.json "$artifact/direction-runtime/state-consistency-v0160.json"
+          copy_if_present docs/evidence/multi-direction-runtime-v0160/validation-evidence-v0160.json "$artifact/direction-runtime/validation-evidence-v0160.json"
+          copy_if_present docs/evidence/multi-direction-runtime-v0160/negative-controls-v0160.json "$artifact/direction-runtime/negative-controls-v0160.json"
+          copy_if_present docs/evidence/multi-direction-runtime-v0160/coverage-manifest-v0160.json "$artifact/direction-runtime/coverage-manifest-v0160.json"
+          copy_if_present docs/evidence/multi-direction-runtime-v0160/direction-contract-v0160.json "$artifact/direction-runtime/direction-contract-v0160.json"
+          copy_if_present docs/evidence/multi-direction-runtime-v0160/synthetic-fixture-manifest-v0160.json "$artifact/direction-runtime/synthetic-fixture-manifest-v0160.json"
+          copy_if_present docs/evidence/multi-direction-runtime-v0160/synthetic-direction-contact-sheet-v0160.png "$artifact/direction-runtime/synthetic-direction-contact-sheet-v0160.png"
+          copy_if_present docs/evidence/review-index-v0.12.2.json "$artifact/governance/review-index-v0.12.2.json"
           copy_if_present "$RUNNER_TEMP/workflow-validation.json" "$artifact/governance/workflow-validation.json"
           copy_if_present "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log"
           copy_if_present "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log"
-          copy_if_present "$RUNNER_TEMP/death-front-v0151.log" "$artifact/logs/death-front-v0151.log"
-          copy_if_present "$RUNNER_TEMP/death-front-v0151.exit" "$artifact/logs/death-front-v0151.exit"
-          if test -d docs/evidence/animation-runtime-v0151; then cp -R docs/evidence/animation-runtime-v0151 "$artifact/death-front-v0151"; fi
-          if test -d docs/evidence/animation-runtime-v0150; then cp -R docs/evidence/animation-runtime-v0150 "$artifact/death-front-v0150"; fi
-          if test -d docs/evidence/animation-runtime-v0141; then cp -R docs/evidence/animation-runtime-v0141 "$artifact/hit-front-v0141-frozen"; fi
-          if test -d docs/evidence/animation-runtime-v0140; then cp -R docs/evidence/animation-runtime-v0140 "$artifact/hit-front-v0140-historical"; fi
-          if test -d docs/evidence/animation-runtime-v0131; then cp -R docs/evidence/animation-runtime-v0131 "$artifact/run-front-v0131"; fi
-          copy_if_present docs/evidence/github-review-v0123/visuals/dashboard-docker-overview-v0122-transport.png "$artifact/visuals/dashboard-docker-overview-v0122-transport.png"
-          copy_if_present docs/evidence/github-review-v0123/visuals/dashboard-docker-live-activity-v0122-transport.png "$artifact/visuals/dashboard-docker-live-activity-v0122-transport.png"
+          copy_if_present "$RUNNER_TEMP/front-compatibility-v0151.log" "$artifact/logs/front-compatibility-v0151.log"
+          copy_if_present "$RUNNER_TEMP/front-compatibility.exit" "$artifact/logs/front-compatibility.exit"
+          copy_if_present docs/evidence/github-governance-v0151/death-front-v0151-external-visual-approval.json "$artifact/governance/death-front-v0151-external-visual-approval.json"
+          copy_if_present docs/evidence/github-governance-v0151/death-front-v0151-provenance.json "$artifact/governance/death-front-v0151-provenance.json"
+          if test -d docs/evidence/animation-runtime-v0150; then cp -R docs/evidence/animation-runtime-v0150 "$artifact/governance/v0150-rejected-history"; fi
+          if test -d docs/evidence/animation-runtime-v0151; then cp -R docs/evidence/animation-runtime-v0151 "$artifact/governance/v0151-approved-history"; fi
           exit 0
       - name: Validate bounded artifact security
-        id: security
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_github_review_security_v0151.py \
+          python scripts/validation/validate_github_review_security_v0160.py \
             --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" \
-            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0151.json" \
-            --output "$RUNNER_TEMP/security-results-v0151.json"
+            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0160.json" \
+            --output "$RUNNER_TEMP/security-results-v0160.json"
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/security.exit"
           exit "$code"
-      - name: Re-record security result and finalize manifest
+      - name: Record final results and refresh manifest
         if: always()
         continue-on-error: true
         shell: bash
         run: |
-          python scripts/validation/record_v0151_results.py \
-            --test-log "$RUNNER_TEMP/ugas-tests.log" \
-            --validation-log "$RUNNER_TEMP/ugas-validation.log" \
+          python scripts/validation/record_v0160_results.py \
+            --test-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" \
             --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
             --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
             --state-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
+            --direction-exit-code "$(cat "$RUNNER_TEMP/direction-runtime.exit" 2>/dev/null || echo 99)" \
             --matrix-exit-code "$(cat "$RUNNER_TEMP/capability-matrix.exit" 2>/dev/null || echo 99)" \
-            --runtime-log "$RUNNER_TEMP/death-front-v0151.log" \
-            --runtime-exit-code "$(cat "$RUNNER_TEMP/death-front-v0151.exit" 2>/dev/null || echo 99)" \
-            --recovery-exit-code "$(cat "$RUNNER_TEMP/state-consistency.exit" 2>/dev/null || echo 99)" \
+            --front-compatibility-exit-code "$(cat "$RUNNER_TEMP/front-compatibility.exit" 2>/dev/null || echo 99)" \
             --visual-exit-code "$(cat "$RUNNER_TEMP/visual-validation.exit" 2>/dev/null || echo 99)" \
             --workflow-exit-code "$(cat "$RUNNER_TEMP/workflow-validation.exit" 2>/dev/null || echo 99)" \
             --manifest-exit-code "$(cat "$RUNNER_TEMP/manifest-validation.exit" 2>/dev/null || echo 99)" \
             --security-exit-code "$(cat "$RUNNER_TEMP/security.exit" 2>/dev/null || echo 99)" \
             --output-dir "$RUNNER_TEMP/ugas-review-evidence"
-          python scripts/validation/build_github_review_manifest_v0151.py \
-            --output-dir "$RUNNER_TEMP/ugas-review-evidence" \
-            --base-ref "$BASE_REF" \
-            --head-ref "$HEAD_REF" \
-            --head-branch "$HEAD_BRANCH" \
-            --pr-number "$PR_NUMBER" \
-            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0151.json" \
-            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0151.json" \
-            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0151.json" \
+          python scripts/validation/build_github_review_manifest_v0160.py \
+            --output-dir "$RUNNER_TEMP/ugas-review-evidence" --base-ref "$BASE_REF" --head-ref "$HEAD_REF" \
+            --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0160.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0160.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0160.json" \
             --visual-manifest "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" \
-            --preflight-json docs/evidence/github-governance-v0124/github-preflight.json
-          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0151.json" "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0151.json"
+            --front-compatibility-exit "$RUNNER_TEMP/front-compatibility.exit"
+          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0160.json" "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0160.json"
           cp "$RUNNER_TEMP/ugas-review-evidence/visual-manifest.json" "$RUNNER_TEMP/ugas-review-artifact/visual-manifest.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0151.json" "$RUNNER_TEMP/ugas-review-artifact/test-results-v0151.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0151.json" "$RUNNER_TEMP/ugas-review-artifact/validation-results-v0151.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0151.json" "$RUNNER_TEMP/ugas-review-artifact/gate-results-v0151.json"
-          cp "$RUNNER_TEMP/security-results-v0151.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0151.json"
-      - name: Final v0.15.1 manifest validation
-        id: final_manifest_validation
+          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0160.json" "$RUNNER_TEMP/ugas-review-artifact/test-results-v0160.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0160.json" "$RUNNER_TEMP/ugas-review-artifact/validation-results-v0160.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0160.json" "$RUNNER_TEMP/ugas-review-artifact/gate-results-v0160.json"
+          cp "$RUNNER_TEMP/security-results-v0160.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0160.json"
+      - name: Final v0.16.0 manifest validation
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_github_review_manifest_v0151.py \
-            "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0151.json" \
+          python scripts/validation/validate_github_review_manifest_v0160.py \
+            "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0160.json" \
             "$RUNNER_TEMP/ugas-review-artifact/visual-manifest.json" \
-            --result-output "$RUNNER_TEMP/final-manifest-validation-v0151.json"
+            --result-output "$RUNNER_TEMP/final-manifest-validation-v0160.json"
           code=$?
-          cp "$RUNNER_TEMP/final-manifest-validation-v0151.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0151.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/final-manifest-validation-v0160.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0160.json" 2>/dev/null || true
           printf '%s\n' "$code" > "$RUNNER_TEMP/final-manifest-validation.exit"
           exit "$code"
       - name: Write GitHub Step Summary
         if: always()
         run: |
           {
-            echo '## UGAS GitHub-native v0.15.1 review evidence'
+            echo '## UGAS GitHub-native v0.16.0 multi-direction runtime review evidence'
             echo "- Base: \`$BASE_REF\`"
             echo "- Head: \`$HEAD_REF\`"
             echo "- PR number: \`$PR_NUMBER\`"
-            echo '- Gates: unit tests, official validation, state, matrix, death runtime, recovery integrity, visual transport, manifest, security'
-            echo '- Evidence assembly and upload are failure-safe and use `always()`.'
-            echo '- DEATH_ANIMATION_FRONT evidence: source-only frames, collapse QA, phase markers, GIF, package and negative controls.'
-            echo '- v0.14.1 integrity repair evidence is included and bound to approved head a3e37865....'
-            echo '- Production: `production_approved=false`, `production_routing=BLOCKED`'
+            echo '- Gates: unit, official validation, active state, direction foundation, matrix, front compatibility, visual transport, workflow, manifest and security.'
+            echo '- Production: `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`.'
+            echo '- Real directional coverage: `south` only; synthetic eight-direction fixtures are test-only.'
             echo "- Artifact: \`ugas-review-evidence-pr-${PR_NUMBER}-${HEAD_REF}\`"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload bounded GitHub review artifact
@@ -340,9 +290,9 @@ jobs:
       - name: Enforce final review result after artifact upload
         if: always()
         run: |
-          python scripts/validation/enforce_github_review_v0151.py \
-            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0151.json" \
-            --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0151.json" \
-            --security "$RUNNER_TEMP/security-results-v0151.json" \
-            --death-runtime-exit "$RUNNER_TEMP/death-front-v0151.exit" \
-            --recovery-exit "$RUNNER_TEMP/state-consistency.exit"
+          python scripts/validation/enforce_github_review_v0160.py \
+            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0160.json" \
+            --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0160.json" \
+            --security "$RUNNER_TEMP/security-results-v0160.json" \
+            --direction-exit "$RUNNER_TEMP/direction-runtime.exit" \
+            --front-compatibility-exit "$RUNNER_TEMP/front-compatibility.exit"

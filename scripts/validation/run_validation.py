@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.15.1."""
+"""Objective UGAS validation, including immutable history and active v0.16.0."""
 
 from __future__ import annotations
 
@@ -55,6 +55,7 @@ from ugas.state_consistency_v0141 import validate_state_consistency as validate_
 from ugas.state_consistency_v0141 import BASELINE_HEAD as V0141_BASELINE_HEAD
 from ugas.state_consistency_v0150 import validate_state_consistency as validate_state_consistency_v0150
 from ugas.state_consistency_v0151 import validate_state_consistency as validate_state_consistency_v0151
+from ugas.state_consistency_v0160 import validate_state_consistency as validate_state_consistency_v0160
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -2298,7 +2299,7 @@ def _v0141_checks() -> None:
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0141:state-consistency", False, str(exc))
     matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-    check("v0141:matrix-dependency", matrix.get("next_candidate") == "DEATH_ANIMATION_FRONT" and len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix advances to DEATH_ANIMATION_FRONT with production blocked")
+    check("v0141:matrix-dependency", len(matrix.get("capabilities", [])) == 16 and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "canonical matrix retains sixteen capabilities with production blocked")
     contract = load_json(ROOT / "docs/evidence/animation-runtime-v0141/hit-front-contract-v0141.json")
     check("v0141:contract", contract.get("capability") == "hit_reaction_front" and contract.get("dependencies", {}).get("implementation_base_commit") == V0141_BASELINE_HEAD and contract.get("gif_loop_semantics", {}).get("loop_1_is_not_non_loop") is True and len(contract.get("negative_controls", [])) == 10 and len(contract.get("loop_negative_controls", [])) == 5, "HIT_REACTION_FRONT v0.14.1 contract binds loop semantics without dropping HIT NCs")
     spec = load_json(ROOT / "profiles/animation/hit-front-v1.json")
@@ -2401,11 +2402,10 @@ def _v0150_checks() -> None:
     matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
     check(
         "v0150:matrix-dependency",
-        matrix.get("next_candidate") == "DEATH_ANIMATION_FRONT"
-        and len(matrix.get("capabilities", [])) == 16
+        len(matrix.get("capabilities", [])) == 16
         and matrix.get("production_routing") == "BLOCKED"
         and matrix.get("new_generation") == 0,
-        "death remains the sole next candidate with production blocked",
+        "canonical matrix retains the full capability order with production blocked",
     )
     matrix_validation = load_json(ROOT / "docs/evidence/animation-runtime-v0150/capability-matrix-validation-v0150.json")
     check(
@@ -2513,11 +2513,11 @@ def _v0150_checks() -> None:
 
 
 def _v0151_checks() -> None:
-    """Validate the active v0.15.1 DEATH_ANIMATION_FRONT correction."""
+    """Validate the immutable approved v0.15.1 DEATH_ANIMATION_FRONT history."""
     required = [
         "REVIEW-v0.15.1.md",
         "schemas/current-state-v0151.json",
-        "docs/evidence/current-state.json",
+        "docs/evidence/current-state-v0.15.1.json",
         "docs/evidence/current-state-v0.15.0.json",
         "src/ugas/state_consistency_v0151.py",
         "scripts/validation/validate_state_consistency_v0151.py",
@@ -2570,18 +2570,16 @@ def _v0151_checks() -> None:
         check(f"v0151:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
 
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state = load_json(ROOT / "docs/evidence/current-state-v0.15.1.json")
         validate_instance(state, load_json(ROOT / "schemas/current-state-v0151.json"))
-        consistency = validate_state_consistency_v0151(
-            state,
-            (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-            (ROOT / "REVIEW-v0.15.1.md").read_text(encoding="utf-8"),
-            (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
-        )
         check(
             "v0151:state-consistency",
-            consistency["status"] == state["current_gate"] and consistency["failures"] == [],
-            "; ".join(consistency["failures"]) or "active v0.15.1 state is consistent",
+            state.get("version") == "0.15.1"
+            and state.get("phase") == "DEATH_ANIMATION_FRONT"
+            and state.get("previous_release", {}).get("version") == "0.14.1"
+            and state.get("death_animation_front_visual_content") == "APPROVED_PILOT"
+            and state.get("review", {}).get("merge_authorization") == "APPROVED_TO_MERGE",
+            "approved v0.15.1 state snapshot remains preserved",
         )
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0151:state-consistency", False, str(exc))
@@ -2703,6 +2701,65 @@ def _v0151_checks() -> None:
     )
 
 
+def _v0160_checks() -> None:
+    """Validate the active v0.16.0 multi-direction runtime foundation."""
+    required = [
+        "REVIEW-v0.16.0.md",
+        "schemas/current-state-v0160.json",
+        "schemas/direction-runtime-v0160.json",
+        "docs/evidence/current-state.json",
+        "docs/evidence/current-state-v0.15.1.json",
+        "src/ugas/direction_runtime.py",
+        "src/ugas/state_consistency_v0160.py",
+        "scripts/validation/validate_state_consistency_v0160.py",
+        "scripts/validation/validate_direction_runtime_v0160.py",
+        "scripts/validation/build_direction_fixture_pack_v0160.py",
+        "scripts/validation/record_v0160_results.py",
+        "scripts/validation/build_github_review_manifest_v0160.py",
+        "scripts/validation/validate_github_review_manifest_v0160.py",
+        "scripts/validation/validate_github_review_security_v0160.py",
+        "scripts/validation/enforce_github_review_v0160.py",
+        "schemas/github-review-manifest-v0160.json",
+        ".github/workflows/ugas-ci.yml",
+        ".github/workflows/ugas-review.yml",
+        "tests/test_direction_runtime_v0160.py",
+        "docs/evidence/multi-direction-runtime-v0160/direction-contract-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/coverage-manifest-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/validation-evidence-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/negative-controls-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/synthetic-fixture-manifest-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/synthetic-direction-contact-sheet-v0160.png",
+        "docs/evidence/multi-direction-runtime-v0160/state-consistency-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/capability-matrix-validation-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/direction-quantization-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/alias-mapping-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/fallback-qa-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/mirror-qa-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/cache-key-qa-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/provenance-qa-v0160.json",
+        "docs/evidence/multi-direction-runtime-v0160/fixture-qa-v0160.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0160:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0160.json"))
+        consistency = validate_state_consistency_v0160(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.16.0.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0160:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.16.0 state is consistent")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0160:state-consistency", False, str(exc))
+    try:
+        validation = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0160/validation-evidence-v0160.json")
+        negative = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0160/negative-controls-v0160.json")
+        fixture = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0160/synthetic-fixture-manifest-v0160.json")
+        check("v0160:foundation-gates", validation.get("status") == "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and validation.get("failed") == 0 and validation.get("production_coverage") == ["south"] and validation.get("production_routing") == "BLOCKED", "all direction foundation gates pass with south-only production coverage")
+        check("v0160:negative-controls", negative.get("status") == "DIR_NC_01_TO_12_PASSED" and len(negative.get("controls", {})) == 12 and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()), "DIR-NC-01 through DIR-NC-12 reject their mutations")
+        check("v0160:fixtures", fixture.get("manifest_type") == "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE" and fixture.get("direction_count") == 8 and fixture.get("unique_identity_count") == 8 and len({item.get("sha256") for item in fixture.get("fixtures", [])}) == 8 and fixture.get("production_registry") is False, "eight unique synthetic asymmetric identities remain test-only")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v0160:evidence", False, str(exc))
+
+
 def main() -> int:
     required = [
         "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.5.3.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "docs/test-coverage-matrix-v0.5.3.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/pose-metric-calibration.json", "docs/evidence/pose-metric-calibration-contact-sheet.png", "docs/evidence/pose-metric-negative-controls-contact-sheet.png", "docs/evidence/pose-qa-estimator-qualification.json", "docs/evidence/pose-qa-estimator-model.json", "docs/evidence/v052-refcontrol-baseline-contact.png", "docs/evidence/v053-pose-detection-overlay-contact.png", "docs/evidence/v053-pose-error-table.json", "docs/evidence/v053-provider-qualification.json", "docs/evidence/execution-evidence-v0.5.3.json", "docs/evidence/review-visuals-v0.5.3.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
@@ -2801,13 +2858,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.15.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.15.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.15.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.16.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.16.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.16.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
