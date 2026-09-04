@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.15.1",
+  "contract_id": "death-front-v1-ground-contact-determinism-correction-contract",
+  "capability": "death_animation_front",
+  "target": "DEATH_ANIMATION_FRONT",
+  "correction_of": {
+    "version": "0.15.0",
+    "review_status": "REJECTED_REVIEWED_HEAD",
+    "findings": [
+      "F-01 root-y threshold was used as a false-green ground-contact gate",
+      "F-02 D7 remained visually leaning with both feet planted",
+      "F-03 determinism compared the same rendered files twice",
+      "F-04 active repository identity must be KayzenRoot/ugas after transfer"
+    ],
+    "historical_evidence_immutable": true
+  },
+  "source_policy": {
+    "source_only_pixels": true,
+    "new_generation": 0,
+    "sam2_runs": 0,
+    "comfyui_generation_jobs": 0,
+    "diffusion_runs": 0,
+    "canonical_assets_immutable": true,
+    "forbidden": [
+      "multi_direction",
+      "equipment",
+      "creatures",
+      "items",
+      "environments",
+      "ui",
+      "vfx",
+      "production_routing",
+      "hit_or_run_asset_mutation",
+      "frozen_evidence_mutation_after_external_approval",
+      "pixel_interpolation",
+      "replacement_pixels"
+    ]
+  },
+  "phase_contract": {
+    "frame_count": 8,
+    "fps": 12,
+    "loop": false,
+    "phases": [
+      "D0-lethal-impact-onset",
+      "D1-destabilization",
+      "D2-buckle",
+      "D3-collapse-descent",
+      "D4-ground-contact-transition",
+      "D5-settling",
+      "D6-final-collapse",
+      "D7-corpse-hold"
+    ],
+    "required_markers": [
+      {"event_id": "lethal_impact_onset", "frame": 0},
+      {"event_id": "collapse_start", "frame": 2},
+      {"event_id": "ground_contact", "frame": 4},
+      {"event_id": "final_pose", "frame": 7}
+    ],
+    "ground_contact_frame": 4,
+    "final_pose_frame": 7,
+    "no_closing_transition": true
+  },
+  "support_contact_semantics": {
+    "ground_reference": "single D0 projected source-alpha sole reference frozen before first corrected PNG",
+    "body_measurement": "ground_reference_y minus rendered named-region alpha bottom",
+    "body_regions": ["torso_pelvis", "left_forearm_hand", "right_forearm_hand", "left_thigh", "right_thigh", "head"],
+    "body_contact_tolerance_px": 8.0,
+    "body_contact_penetration_max_px": 4.0,
+    "states_are_declarative_and_per_frame": true,
+    "root_shift_is_secondary_collapse_metric": true,
+    "terminal_requirement": "D6 and D7 grounded_terminal=true with measured stable body contact, non-neutral pose and no recovery",
+    "d7_foot_requirement": "both feet lifted; no dual-foot-planted terminal interpretation"
+    ,"collapse_occlusion_contract": {
+      "pairs": [["torso_pelvis", "left_shin_foot"], ["torso_pelvis", "right_shin_foot"], ["left_upper_arm", "left_thigh"], ["left_upper_arm", "left_shin_foot"], ["left_forearm_hand", "left_shin_foot"], ["right_forearm_hand", "sword"]],
+      "rule": "explicitly-authorized-source-only-overlap-for-D5-D7-grounded-collapse",
+      "critical_collisions_remain_forbidden": true
+    }
+  },
+  "quality_gates": {
+    "marker_matches_measured_body_contact_transition": true,
+    "contact_state_transition_valid": true,
+    "final_pose_grounded_terminal": true,
+    "ground_reference_stable": true,
+    "death_vs_hit_includes_grounded_semantics": true,
+    "continuity_foot_body_weapon_source_only": true,
+    "true_two_run_target_frame_sheet_gif_determinism": true,
+    "nc_01_to_nc_16_fail_closed": true,
+    "approved_assets_untouched": true,
+    "frozen_evidence_untouched": true,
+    "gif_timing_and_non_loop_semantics": true,
+    "repository_transfer_provenance": true,
+    "production_blocked": true
+  },
+  "thresholds_frozen_before_first_corrected_png": {
+    "lethal_onset_min_root_x_px": 3.0,
+    "lethal_onset_min_root_y_px": 4.0,
+    "collapse_start_displacement_min_px": 16.0,
+    "root_path_min_px": 28.0,
+    "root_drop_secondary_only": true,
+    "terminal_residual_max_px": 4.0,
+    "terminal_to_peak_ratio_min": 0.90,
+    "hit_death_torso_rotation_max_deg": 22.0,
+    "hit_death_root_drop_max_px": 14.0,
+    "death_vs_hit_recovery_min_px": 20.0,
+    "death_vs_hit_separation_ratio_min": 8.0,
+    "body_contact_tolerance_px": 8.0,
+    "body_contact_penetration_max_px": 4.0,
+    "foot_planted_tolerance_px": 10.0,
+    "foot_penetration_max_px": 8.0,
+    "foot_lifted_clearance_min_px": 12.0,
+    "contact_step_max_px": 48.0,
+    "joint_angle_step_max_deg": 58.0,
+    "angular_acceleration_max_deg_per_frame2": 95.0,
+    "weapon_length_delta_max_px": 4.0,
+    "weapon_angle_step_max_deg": 35.0,
+    "wrist_step_max_px": 42.0,
+    "alpha_safe_margin_px": 24.0,
+    "collapse_height_reduction_min": 0.04,
+    "rationale": "The contact thresholds are frozen before corrected rendering. D4 is accepted only when a named non-foot region's rendered alpha bottom enters the fixed D0 ground band; root displacement cannot satisfy this gate. D6-D7 require explicit grounded_terminal declarations, stable measured body contact and lifted feet. Contact continuity is checked only across the declared contact regime so the intentional D3-to-D4 impact is not mislabeled as a teleport. Existing R4 source pixels and prior approved HIT/RUN evidence remain immutable."
+  },
+  "negative_controls": [
+    "NC-01_no_collapse",
+    "NC-02_hit_like_recovery",
+    "NC-03_root_drop_without_body_contact",
+    "NC-04_wrong_ground_contact_marker",
+    "NC-05_final_pose_not_grounded",
+    "NC-06_final_pose_not_terminal",
+    "NC-07_final_pose_hit_like_or_combat_ready",
+    "NC-08_foot_or_body_contact_teleport",
+    "NC-09_angular_jump",
+    "NC-10_weapon_snap_or_wrist_break",
+    "NC-11_explicit_loop_extension_on_nonloop",
+    "NC-12_source_dependency_hash_removed",
+    "NC-13_synthetic_false_gate_in_package",
+    "NC-14_approved_hit_or_run_asset_mutation",
+    "NC-15_frozen_evidence_mutation_after_external_approval",
+    "NC-16_nondeterministic_second_render"
+  ],
+  "review_policy": {
+    "external_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "pr_number": 5,
+    "pr_merge": "FORBIDDEN",
+    "next_capability": "NOT_STARTED",
+    "next_action": "external_visual_review_death_animation_front_v0151"
+  },
+  "repository_transfer": {
+    "active_repository": "KayzenRoot/ugas",
+    "active_url": "https://github.com/KayzenRoot/ugas",
+    "historical_repository": "csn1985-ship-it/ugas",
+    "historical_owner_evidence_preserved": true,
+    "required_ruleset_ref": "refs/heads/main",
+    "required_checks": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"],
+    "current_user_can_bypass": "never",
+    "codeowners_gap": "CODEOWNERS_GAP"
+  }
+}

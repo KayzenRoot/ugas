@@ -1,0 +1,723 @@
+{
+  "schema_version": "animation-spec-1.0",
+  "animation_id": "death-front-v1-v0151",
+  "asset_revision_id": "r4-cutout-rig-v071",
+  "direction": "front",
+  "frame_count": 8,
+  "fps": 12,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "lethal_impact_onset",
+      "frame": 0,
+      "kind": "lethal"
+    },
+    {
+      "event_id": "collapse_start",
+      "frame": 2,
+      "kind": "collapse"
+    },
+    {
+      "event_id": "ground_contact",
+      "frame": 4,
+      "kind": "contact"
+    },
+    {
+      "event_id": "final_pose",
+      "frame": 7,
+      "kind": "terminal"
+    }
+  ],
+  "motion_tracks": [
+    {
+      "track_id": "root_shift_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 3
+        },
+        {
+          "frame": 1,
+          "value": 5
+        },
+        {
+          "frame": 2,
+          "value": 8
+        },
+        {
+          "frame": 3,
+          "value": 12
+        },
+        {
+          "frame": 4,
+          "value": 8
+        },
+        {
+          "frame": 5,
+          "value": 2
+        },
+        {
+          "frame": 6,
+          "value": -10
+        },
+        {
+          "frame": 7,
+          "value": -10
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "root_shift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 6
+        },
+        {
+          "frame": 1,
+          "value": 12
+        },
+        {
+          "frame": 2,
+          "value": 20
+        },
+        {
+          "frame": 3,
+          "value": 28
+        },
+        {
+          "frame": 4,
+          "value": 90
+        },
+        {
+          "frame": 5,
+          "value": 96.6667
+        },
+        {
+          "frame": 6,
+          "value": 110
+        },
+        {
+          "frame": 7,
+          "value": 110
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 3
+        },
+        {
+          "frame": 1,
+          "value": 10
+        },
+        {
+          "frame": 2,
+          "value": 20
+        },
+        {
+          "frame": 3,
+          "value": 32
+        },
+        {
+          "frame": 4,
+          "value": 60
+        },
+        {
+          "frame": 5,
+          "value": 70
+        },
+        {
+          "frame": 6,
+          "value": 90
+        },
+        {
+          "frame": 7,
+          "value": 90
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_lean_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 1,
+          "value": 2
+        },
+        {
+          "frame": 2,
+          "value": 4
+        },
+        {
+          "frame": 3,
+          "value": 6
+        },
+        {
+          "frame": 4,
+          "value": 8
+        },
+        {
+          "frame": 5,
+          "value": 10
+        },
+        {
+          "frame": 6,
+          "value": 12
+        },
+        {
+          "frame": 7,
+          "value": 12
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 2
+        },
+        {
+          "frame": 1,
+          "value": 4
+        },
+        {
+          "frame": 2,
+          "value": 6
+        },
+        {
+          "frame": 3,
+          "value": 8
+        },
+        {
+          "frame": 4,
+          "value": -45
+        },
+        {
+          "frame": 5,
+          "value": -30
+        },
+        {
+          "frame": 6,
+          "value": -20
+        },
+        {
+          "frame": 7,
+          "value": -20
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": -2
+        },
+        {
+          "frame": 1,
+          "value": -4
+        },
+        {
+          "frame": 2,
+          "value": -6
+        },
+        {
+          "frame": 3,
+          "value": -7
+        },
+        {
+          "frame": 4,
+          "value": -5
+        },
+        {
+          "frame": 5,
+          "value": -5
+        },
+        {
+          "frame": 6,
+          "value": -5
+        },
+        {
+          "frame": 7,
+          "value": -5
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "head_counter_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": -1
+        },
+        {
+          "frame": 1,
+          "value": -3
+        },
+        {
+          "frame": 2,
+          "value": -5
+        },
+        {
+          "frame": 3,
+          "value": -6
+        },
+        {
+          "frame": 4,
+          "value": -7
+        },
+        {
+          "frame": 5,
+          "value": -8
+        },
+        {
+          "frame": 6,
+          "value": -8
+        },
+        {
+          "frame": 7,
+          "value": -8
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "sword_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 8
+        },
+        {
+          "frame": 1,
+          "value": 10
+        },
+        {
+          "frame": 2,
+          "value": 12
+        },
+        {
+          "frame": 3,
+          "value": 14
+        },
+        {
+          "frame": 4,
+          "value": 16
+        },
+        {
+          "frame": 5,
+          "value": 16
+        },
+        {
+          "frame": 6,
+          "value": 17
+        },
+        {
+          "frame": 7,
+          "value": 19
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 40
+        },
+        {
+          "frame": 1,
+          "value": 40
+        },
+        {
+          "frame": 2,
+          "value": 40
+        },
+        {
+          "frame": 3,
+          "value": 40
+        },
+        {
+          "frame": 4,
+          "value": 40
+        },
+        {
+          "frame": 5,
+          "value": 40
+        },
+        {
+          "frame": 6,
+          "value": 40
+        },
+        {
+          "frame": 7,
+          "value": 40
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 40
+        },
+        {
+          "frame": 1,
+          "value": 40
+        },
+        {
+          "frame": 2,
+          "value": 40
+        },
+        {
+          "frame": 3,
+          "value": 40
+        },
+        {
+          "frame": 4,
+          "value": 40
+        },
+        {
+          "frame": 5,
+          "value": 40
+        },
+        {
+          "frame": 6,
+          "value": 40
+        },
+        {
+          "frame": 7,
+          "value": 40
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 16
+        },
+        {
+          "frame": 1,
+          "value": 16
+        },
+        {
+          "frame": 2,
+          "value": 16
+        },
+        {
+          "frame": 3,
+          "value": 16
+        },
+        {
+          "frame": 4,
+          "value": 30
+        },
+        {
+          "frame": 5,
+          "value": 0
+        },
+        {
+          "frame": 6,
+          "value": -80
+        },
+        {
+          "frame": 7,
+          "value": -80
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 16
+        },
+        {
+          "frame": 1,
+          "value": 16
+        },
+        {
+          "frame": 2,
+          "value": 16
+        },
+        {
+          "frame": 3,
+          "value": 0
+        },
+        {
+          "frame": 4,
+          "value": 0
+        },
+        {
+          "frame": 5,
+          "value": 0
+        },
+        {
+          "frame": 6,
+          "value": -70
+        },
+        {
+          "frame": 7,
+          "value": -70
+        }
+      ],
+      "clamp_policy": "clamp"
+    }
+  ],
+  "source_rig_ref": "docs/evidence/r4-cutout-rig-v071.json",
+  "key_pose_bindings": [
+    {
+      "frame": 0,
+      "phase": "D0-lethal-impact-onset",
+      "target_hash": "bed92b6b7479051a3448694aa30bb5da551d206c1a971996be17f66ca173e7e4"
+    },
+    {
+      "frame": 4,
+      "phase": "D4-ground-contact-transition",
+      "target_hash": "6ac530837f076f4c73db926aeddfbbe3e0b0d95335ef2b233578e9584a41ae50"
+    },
+    {
+      "frame": 7,
+      "phase": "D7-corpse-hold",
+      "target_hash": "9c44bffc024c0f722ed8da78e172d32c8415923b78c6977cbc9bdc6126a7891d"
+    }
+  ],
+  "interpolation_profile": {
+    "method": "linear-declarative-tracks-then-source-calibrated-two-bone-projection",
+    "parameters_frozen_before_render": true,
+    "parameters": {
+      "pixel_interpolation": false,
+      "image_inputs_used": false,
+      "track_sampling_before_first_png": true
+    }
+  },
+  "root_motion_profile": {
+    "method": "source-anchored-irreversible-collapse-with-measured-body-ground-contact",
+    "limits": {
+      "horizontal_range_px": 28,
+      "vertical_range_px": 110
+    }
+  },
+  "foot_policy": {
+    "method": "explicit-rendered-support-state-with-terminal-body-contact",
+    "both_feet_required": false,
+    "limits": {
+      "contact_ankle_slip_max_px": 2.5,
+      "sole_error_max_px": 3.0,
+      "ground_penetration_max_px": 1.5
+    }
+  },
+  "z_order_profile": {
+    "method": "constant-approved-front-cutout-depth-plan",
+    "switches_allowed": false,
+    "constant_order": [
+      "right_shin_foot",
+      "right_thigh",
+      "left_forearm_hand",
+      "left_upper_arm",
+      "torso_pelvis",
+      "left_thigh",
+      "left_shin_foot",
+      "right_upper_arm",
+      "right_forearm_hand",
+      "head",
+      "sword"
+    ]
+  },
+  "presentation_transform": {
+    "method": "single-global-uniform-scale-and-translation",
+    "uniform_scale": 0.9,
+    "anchor": {
+      "x": 256,
+      "y": 256
+    },
+    "translation": {
+      "x": 0,
+      "y": 0
+    },
+    "frozen_before_render": true
+  },
+  "qa_profile": {
+    "profile_id": "death-front-v151-independent-contact-and-determinism-gates",
+    "feature_flags": {
+      "schema": true,
+      "tracks": true,
+      "collapse": true,
+      "irreversibility": true,
+      "ground_contact": true,
+      "terminal_pose": true,
+      "foot_ground": true,
+      "continuity": true,
+      "weapon": true,
+      "package_integrity": true,
+      "negative_controls": true
+    },
+    "thresholds": {
+      "alpha_safe_margin_px": 24,
+      "sole_error_max_px": 3.0,
+      "ground_penetration_max_px": 1.5,
+      "body_contact_tolerance_px": 8.0,
+      "body_contact_penetration_max_px": 4.0,
+      "foot_planted_tolerance_px": 10.0,
+      "foot_penetration_max_px": 8.0,
+      "foot_lifted_clearance_min_px": 12.0,
+      "contact_step_max_px": 48.0,
+      "contact_ankle_slip_max_px": 2.5,
+      "lethal_onset_min_root_x_px": 3.0,
+      "lethal_onset_min_root_y_px": 4.0,
+      "collapse_start_displacement_min_px": 16.0,
+      "root_path_min_px": 28.0,
+      "ground_contact_min_drop_px": 32.0,
+      "terminal_residual_max_px": 4.0,
+      "terminal_to_peak_ratio_min": 0.9,
+      "hit_death_torso_rotation_max_deg": 22.0,
+      "hit_death_root_drop_max_px": 14.0,
+      "death_vs_hit_recovery_min_px": 20.0,
+      "death_vs_hit_separation_ratio_min": 8.0,
+      "joint_angle_step_max_deg": 58.0,
+      "angular_acceleration_max_deg_per_frame2": 95.0,
+      "weapon_length_delta_max_px": 4.0,
+      "weapon_angle_step_max_deg": 35.0,
+      "wrist_step_max_px": 42.0,
+      "collapse_height_reduction_min": 0.04
+    }
+  },
+  "package_profile": {
+    "cell_size": {
+      "width": 512,
+      "height": 512
+    },
+    "columns": 4,
+    "rows": 2,
+    "format": "RGBA",
+    "gif_review_only": true,
+    "sprite_name": "death-front-spritesheet-v0151.png",
+    "gif_name": "death-front-preview-v0151.gif",
+    "gif_frame_durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "gif_timing": {
+      "total_cycle_ms_min": 650,
+      "total_cycle_ms_max": 690,
+      "effective_fps_min": 11.7,
+      "effective_fps_max": 12.3
+    }
+  },
+  "provenance": {
+    "source_image": "docs/evidence/reference-edit-selected-transparent.png",
+    "source_parts_dir": "docs/evidence/r4-cutout-parts-v071",
+    "source_masks_dir": "docs/evidence/r4-cutout-refined-masks-v071",
+    "source_skeleton": "docs/evidence/r4-source-skeleton-v071.json",
+    "source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "source_manifests": [
+      "docs/evidence/r4-cutout-rig-v071.json",
+      "docs/evidence/r4-cutout-refined-masks-v071-manifest.json"
+    ],
+    "sam2_used": false,
+    "comfyui_generation_jobs": 0,
+    "diffusion_used": false,
+    "source_only_pixels": true
+  },
+  "forbidden_operations": [
+    "sam2_rerun",
+    "comfyui_generation",
+    "diffusion",
+    "controlnet",
+    "ip_adapter",
+    "pixel_interpolation",
+    "manual_pixel_edit",
+    "production_routing",
+    "hit_reaction_front_mutation",
+    "run_front_v1_mutation",
+    "frozen_evidence_mutation_after_external_approval",
+    "multi_direction_animation_runtime",
+    "equipment_outfits",
+    "creatures_monsters",
+    "items_props",
+    "environment_tilesets",
+    "ui_asset_family",
+    "vfx_asset_family"
+  ],
+  "runtime_adapter": "ugas.animation_profiles.death_front_v151",
+  "adapter_parameters": {
+    "contract_ref": "docs/evidence/animation-runtime-v0151/death-front-contract-v0151.json",
+    "ground_contact_frame": 4,
+    "final_pose_frame": 7,
+    "support_mode": "explicit-foot-support-and-body-contact-state",
+    "source_asset_policy": "reuse-approved-r4-cutout-without-pixel-modification",
+    "immutable_approved_assets_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+    "hit_recovery_target_hash": "ecd679fea5e88295d75df37d3c4d5e22354a67d48b43004a3864fce0eadf2fef",
+    "contact_contract": {
+      "ground_reference_policy": "freeze-one-D0-projected-sole-reference-before-first-corrected-PNG",
+      "body_contact_regions": ["torso_pelvis", "left_forearm_hand", "right_forearm_hand", "left_thigh", "right_thigh", "head"],
+      "collapse_occlusion_contract": {
+        "pairs": [["torso_pelvis", "left_shin_foot"], ["torso_pelvis", "right_shin_foot"], ["left_upper_arm", "left_thigh"], ["left_upper_arm", "left_shin_foot"], ["left_forearm_hand", "left_shin_foot"], ["right_forearm_hand", "sword"]],
+        "rule": "explicitly-authorized-source-only-overlap-for-D5-D7-grounded-collapse",
+        "rationale": "The terminal body lies onto the former support limbs and the sword remains attached at the right wrist. These pairs are declared before rendering; critical collisions remain forbidden and all other overlaps remain fail-closed."
+      },
+      "states": [
+        {"frame": 0, "state_id": "upright_lethal_support", "foot_support_mode": "dual_foot", "foot_support": {"left": "planted", "right": "planted"}, "body_contact_class": "suspended", "body_contact_regions": [], "grounded_terminal": false},
+        {"frame": 1, "state_id": "destabilizing_support", "foot_support_mode": "dual_foot", "foot_support": {"left": "planted", "right": "planted"}, "body_contact_class": "suspended", "body_contact_regions": [], "grounded_terminal": false},
+        {"frame": 2, "state_id": "buckle_support", "foot_support_mode": "dual_foot", "foot_support": {"left": "planted", "right": "planted"}, "body_contact_class": "suspended", "body_contact_regions": [], "grounded_terminal": false},
+        {"frame": 3, "state_id": "collapse_descent_support", "foot_support_mode": "dual_foot", "foot_support": {"left": "planted", "right": "planted"}, "body_contact_class": "suspended", "body_contact_regions": [], "grounded_terminal": false},
+        {"frame": 4, "state_id": "body_contact_transition", "foot_support_mode": "dual_foot", "foot_support": {"left": "planted", "right": "planted"}, "body_contact_class": "body_contact_transition", "body_contact_regions": ["left_forearm_hand"], "grounded_terminal": false},
+        {"frame": 5, "state_id": "settling_body_contact", "foot_support_mode": "right_foot", "foot_support": {"left": "lifted", "right": "planted"}, "body_contact_class": "settling_body_contact", "body_contact_regions": ["left_forearm_hand"], "grounded_terminal": false},
+        {"frame": 6, "state_id": "grounded_terminal", "foot_support_mode": "no_foot", "foot_support": {"left": "lifted", "right": "lifted"}, "body_contact_class": "grounded_terminal", "body_contact_regions": ["left_forearm_hand", "left_thigh"], "grounded_terminal": true},
+        {"frame": 7, "state_id": "grounded_terminal_hold", "foot_support_mode": "no_foot", "foot_support": {"left": "lifted", "right": "lifted"}, "body_contact_class": "grounded_terminal", "body_contact_regions": ["left_forearm_hand", "left_thigh"], "grounded_terminal": true}
+      ]
+    }
+  }
+}
