@@ -57,6 +57,7 @@ from ugas.state_consistency_v0150 import validate_state_consistency as validate_
 from ugas.state_consistency_v0151 import validate_state_consistency as validate_state_consistency_v0151
 from ugas.state_consistency_v0160 import validate_state_consistency as validate_state_consistency_v0160
 from ugas.state_consistency_v0161 import validate_state_consistency as validate_state_consistency_v0161
+from ugas.state_consistency_v0162 import validate_state_consistency as validate_state_consistency_v0162
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -2755,7 +2756,7 @@ def _v0160_history_checks() -> None:
 
 
 def _v0161_checks() -> None:
-    """Validate the active v0.16.1 direction-runtime integrity correction."""
+    """Validate frozen v0.16.1 evidence without treating it as active state."""
     required = [
         "REVIEW-v0.16.1.md",
         "schemas/current-state-v0161.json",
@@ -2790,10 +2791,8 @@ def _v0161_checks() -> None:
         path = ROOT / relative
         check(f"v0161:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state-v0161.json"))
-        consistency = validate_state_consistency_v0161(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.16.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        check("v0161:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.16.1 state is consistent")
+        consistency = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0161/state-consistency-v0161.json")
+        check("v0161:frozen-state-consistency", consistency.get("status") == "MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED" and consistency.get("failures") == [], "v0.16.1 state-consistency evidence remains frozen history")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0161:state-consistency", False, str(exc))
     try:
@@ -2813,6 +2812,75 @@ def _v0161_checks() -> None:
         check("v0161:fixtures", fixture.get("schema_version") == "0.16.1" and fixture.get("direction_count") == 8 and fixture.get("unique_identity_count") == 8 and fixture.get("production_registry") is False, "synthetic eight-direction fixture remains test-only")
     except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
         check("v0161:evidence", False, str(exc))
+
+
+def _v0162_checks() -> None:
+    """Validate the active v0.16.2 cache/state correction."""
+    required = [
+        "REVIEW-v0.16.2.md",
+        "schemas/current-state-v0162.json",
+        "schemas/direction-runtime-v0162.json",
+        "schemas/github-review-manifest-v0162.json",
+        "docs/evidence/current-state.json",
+        "src/ugas/direction_runtime.py",
+        "src/ugas/state_consistency_v0162.py",
+        "scripts/validation/validate_state_consistency_v0162.py",
+        "scripts/validation/validate_direction_runtime_v0162.py",
+        "tests/test_direction_runtime_v0162.py",
+        "docs/evidence/multi-direction-runtime-v0162/v0161-rejection-correction-record-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/direction-contract-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/coverage-manifest-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/validation-evidence-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/negative-controls-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/invalid-vector-qa-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/test-only-production-safety-qa-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/test-only-cache-mode-qa-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/cache-unresolved-class-qa-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/cache-order-negative-controls-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/synthetic-fixture-manifest-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/state-consistency-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/direction-quantization-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/alias-mapping-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/fallback-qa-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/mirror-qa-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/provenance-qa-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/resolution-evidence-v0162.json",
+        "docs/evidence/multi-direction-runtime-v0162/fixture-qa-v0162.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0162:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0162.json"))
+        consistency = validate_state_consistency_v0162(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.16.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0162:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.16.2 state is consistent")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0162:state-consistency", False, str(exc))
+    try:
+        contract = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/direction-contract-v0162.json")
+        coverage = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/coverage-manifest-v0162.json")
+        validation = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/validation-evidence-v0162.json")
+        negative = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/negative-controls-v0162.json")
+        cache_qa = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/cache-unresolved-class-qa-v0162.json")
+        cache_order = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/cache-order-negative-controls-v0162.json")
+        cache_mode = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/test-only-cache-mode-qa-v0162.json")
+        correction = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/v0161-rejection-correction-record-v0162.json")
+        fixture = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/synthetic-fixture-manifest-v0162.json")
+        check("v0162:previous-release", state.get("previous_release", {}).get("version") == "0.15.1" and state.get("correction_history", {}).get("v0.16.0", {}).get("status") == "CORRECTION_REQUIRED" and state.get("correction_history", {}).get("v0.16.1", {}).get("status") == "CORRECTION_REQUIRED", "approved v0.15.1 and separately rejected v0.16.0/v0.16.1 are recorded")
+        check("v0162:cache-contract", contract.get("schema_version") == "0.16.2" and contract.get("cache_identity", {}).get("unresolved_class_in_key") is True and set(contract.get("cache_identity", {}).get("classes", [])) == {"UNKNOWN_DIRECTION_UNRESOLVED", "ZERO_VECTOR_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED"}, "unresolved normalization classes are explicit cache identity")
+        check("v0162:coverage-binding", coverage.get("schema_version") == "0.16.2" and coverage.get("production_registry") is True and {item.get("direction") for item in coverage.get("assets", [])} == {"south"} and coverage.get("carried_forward_from", {}).get("path", "").endswith("coverage-manifest-v0161.json"), "south-only coverage is carried forward without fabricated directional art")
+        check("v0162:validation", validation.get("status") == "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED" and validation.get("failed") == 0 and validation.get("production_coverage") == ["south"] and validation.get("cache_negative_controls", {}).get("status") == "CACHE_NC_01_TO_05_PASSED", "all v0.16.2 direction/cache gates pass")
+        controls = negative.get("controls", {})
+        check("v0162:real-negative-controls", negative.get("status") == "DIR_NC_01_TO_12_PASSED" and len(controls) == 12 and all(item.get("rejected") is True and item.get("status") == "REJECTED" and item.get("mutation") and item.get("target_gate") and isinstance(item.get("observed"), dict) and "result" in item["observed"] and "error_code" in item["observed"] for item in controls.values()), "all twelve direction controls record real mutations and observed rejections")
+        order_controls = cache_order.get("controls", {})
+        check("v0162:cache-order-controls", cache_order.get("status") == "CACHE_NC_01_TO_05_PASSED" and len(order_controls) == 5 and all(item.get("rejected") is True and item.get("status") == "REJECTED" and item.get("request_order") and item.get("cache_keys") for item in order_controls.values()), "all five order-sensitive cache controls pass with key and counter evidence")
+        check("v0162:cache-mode", cache_mode.get("status") == "TEST_ONLY_CACHE_MODE_QA_PASSED" and cache_mode.get("non_production_exact", {}).get("production_safe") is False and "registry_mode=test" in cache_mode.get("non_production_exact", {}).get("cache_key", "") and "registry_mode=production" not in cache_mode.get("non_production_exact", {}).get("cache_key", ""), "test-only observability metadata is truthful")
+        check("v0162:cache-qa", cache_qa.get("status") == "CACHE_UNRESOLVED_CLASS_QA_PASSED" and len(set(cache_qa.get("keys", {}).values())) == 3, "unknown, zero and invalid classes have three distinct cache identities")
+        check("v0162:rejection-record", correction.get("version") == "0.16.1" and correction.get("status") == "CORRECTION_REQUIRED" and correction.get("rejected_reviewed_head") == "2513d9f6f8a55345e74d9c0afb5dab22f9d84705", "v0.16.1 rejected head is preserved in forward-only history")
+        check("v0162:fixtures", fixture.get("schema_version") == "0.16.2" and fixture.get("direction_count") == 8 and fixture.get("unique_identity_count") == 8 and fixture.get("production_registry") is False, "synthetic eight-direction fixture remains test-only")
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        check("v0162:evidence", False, str(exc))
 
 
 def main() -> int:
@@ -2913,13 +2981,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.16.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.16.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.16.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.16.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.16.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.16.2")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

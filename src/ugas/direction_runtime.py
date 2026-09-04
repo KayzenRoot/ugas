@@ -36,7 +36,7 @@ CANONICAL_DIRECTIONS = (
 )
 
 _TEXT_SUFFIXES = {".json", ".md", ".txt", ".py", ".toml", ".js", ".html", ".css"}
-_SUPPORTED_MANIFEST_VERSIONS = {"0.16.0", "0.16.1"}
+_SUPPORTED_MANIFEST_VERSIONS = {"0.16.0", "0.16.1", "0.16.2"}
 
 
 def _provenance_digest(path: Path) -> str:
@@ -195,6 +195,8 @@ def direction_contract() -> dict[str, Any]:
         "zero_vector_policy": "retained_facing_only-or-explicit-unresolved-never-defaults",
         "normalization_outcomes": ["DIRECTION_ID", "VECTOR_QUANTIZED", "ZERO_VECTOR_RETAINED_FACING", "ZERO_VECTOR_UNRESOLVED", "UNKNOWN_DIRECTION_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED"],
         "invalid_vector_policy": "non-finite-non-numeric-missing-components-and-malformed-tuples-never-use-retained-facing",
+        "cache_identity_policy": "unresolved-normalization-outcome-is-part-of-cache-key",
+        "cache_mode_policy": "request-mode-and-registry-mode-are-separate-cache-key-fields",
     }
 
 
@@ -232,8 +234,29 @@ class DirectionResolution:
         }
 
 
-def _cache_key(capability_id: str, direction: str | None, variant: str, asset_revision_id: str | None, *, mode: str) -> str:
-    return "|".join((capability_id, direction or "UNRESOLVED", variant, asset_revision_id or "ANY", mode))
+def _cache_key(
+    capability_id: str,
+    direction: str | None,
+    variant: str,
+    asset_revision_id: str | None,
+    *,
+    normalization_class: str | None,
+    request_mode: str,
+    registry_mode: str,
+) -> str:
+    direction_key = direction or "UNRESOLVED"
+    if direction is None:
+        direction_key = f"{direction_key}:{normalization_class or 'UNKNOWN'}"
+    return "|".join(
+        (
+            capability_id,
+            direction_key,
+            variant,
+            asset_revision_id or "ANY",
+            f"request_mode={request_mode}",
+            f"registry_mode={registry_mode}",
+        )
+    )
 
 
 class DirectionResolver:
@@ -244,6 +267,8 @@ class DirectionResolver:
         self._mirror_pairs = {canonicalize_direction(k): canonicalize_direction(v) for k, v in (mirror_pairs or {}).items()}
         self.production_registry = production_registry
         self._cache: dict[str, DirectionResolution] = {}
+        self._cache_hits = 0
+        self._cache_misses = 0
         for raw in assets:
             item = dict(raw)
             capability = str(item.get("capability_id", ""))
@@ -274,8 +299,14 @@ class DirectionResolver:
     def cache_keys(self) -> tuple[str, ...]:
         return tuple(sorted(self._cache))
 
+    def cache_stats(self) -> dict[str, int]:
+        """Return cache hit/miss counters for auditable runtime QA."""
+        return {"hits": self._cache_hits, "misses": self._cache_misses, "entries": len(self._cache)}
+
     def clear_cache(self) -> None:
         self._cache.clear()
+        self._cache_hits = 0
+        self._cache_misses = 0
 
     def _result(self, *, requested: str | None, resolved: str | None, item: Mapping[str, Any] | None, capability_id: str, variant: str, revision: str | None, fallback_mode: str, mirror_mode: str, cache_key: str, error_code: str | None, production_safe: bool) -> DirectionResolution:
         return DirectionResolution(requested, resolved, item.get("asset_id") if item else None, item.get("path") if item else None, item.get("provenance_hash") if item else None, fallback_mode, mirror_mode, capability_id, variant, revision, cache_key, error_code, production_safe)
@@ -283,10 +314,21 @@ class DirectionResolver:
     def resolve(self, capability_id: str, direction: Any, *, variant: str = "default", asset_revision_id: str | None = None, retained_facing: Any = None, allow_preview_fallback: bool = False, allow_mirror: bool = False) -> DirectionResolution:
         normalization = normalize_direction_result(direction, retained_facing)
         requested = normalization.direction
-        mode = "production" if not allow_preview_fallback and not allow_mirror else f"preview:{int(allow_preview_fallback)}:{int(allow_mirror)}"
-        key = _cache_key(str(capability_id), requested, str(variant), asset_revision_id, mode=mode)
+        request_mode = "direct" if not allow_preview_fallback and not allow_mirror else f"preview:{int(allow_preview_fallback)}:{int(allow_mirror)}"
+        registry_mode = "production" if self.production_registry else "test"
+        key = _cache_key(
+            str(capability_id),
+            requested,
+            str(variant),
+            asset_revision_id,
+            normalization_class=normalization.outcome if requested is None else None,
+            request_mode=request_mode,
+            registry_mode=registry_mode,
+        )
         if key in self._cache:
+            self._cache_hits += 1
             return self._cache[key]
+        self._cache_misses += 1
         if requested is None:
             unresolved_mode = "INVALID_VECTOR_UNRESOLVED" if normalization.outcome == "INVALID_VECTOR_UNRESOLVED" else "UNRESOLVED"
             result = self._result(requested=None, resolved=None, item=None, capability_id=str(capability_id), variant=str(variant), revision=asset_revision_id, fallback_mode=unresolved_mode, mirror_mode="NONE", cache_key=key, error_code=normalization.error_code or "DIRECTION_UNRESOLVED", production_safe=False)

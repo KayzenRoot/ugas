@@ -1,0 +1,243 @@
+{
+  "status": "DIR_NC_01_TO_12_PASSED",
+  "control_count": 12,
+  "controls": {
+    "DIR-NC-01": {
+      "mutation": "unknown_direction_id=sideways",
+      "target_gate": "normalize_direction/resolve",
+      "observed": {
+        "result": {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:UNKNOWN_DIRECTION_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_UNRESOLVED",
+          "production_safe": false
+        },
+        "error_code": "DIRECTION_UNRESOLVED"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-02": {
+      "mutation": "zero_vector_without_retained_facing=(0,0)",
+      "target_gate": "zero_vector_policy",
+      "observed": {
+        "result": {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:ZERO_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_UNRESOLVED",
+          "production_safe": false
+        },
+        "error_code": "DIRECTION_UNRESOLVED"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-03": {
+      "mutation": "boundary_quantization_wrong_sector=expected east at +22.5 degrees",
+      "target_gate": "deterministic_sector_quantization",
+      "observed": {
+        "result": "south_east",
+        "error_code": null,
+        "expected_sector": "east"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-04": {
+      "mutation": "silent_front_fallback=request north in production/default resolver",
+      "target_gate": "production_missing_direction",
+      "observed": {
+        "result": {
+          "requested_direction": "north",
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "FAIL_CLOSED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": "r4-cutout-rig-v071",
+          "cache_key": "death_animation_front|north|default|r4-cutout-rig-v071|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+          "production_safe": false
+        },
+        "error_code": "DIRECTION_ASSET_UNAVAILABLE"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-05": {
+      "mutation": "wrong_direction_manifest_binding=metadata direction north for south asset",
+      "target_gate": "manifest_identity",
+      "observed": {
+        "result": null,
+        "error_code": "capability_and_direction_match_asset_metadata"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-06": {
+      "mutation": "stale_cache_wrong_direction=resolve south then north",
+      "target_gate": "direction_aware_cache",
+      "observed": {
+        "result": {
+          "requested_direction": "north",
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "FAIL_CLOSED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": "r4-cutout-rig-v071",
+          "cache_key": "death_animation_front|north|default|r4-cutout-rig-v071|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+          "production_safe": false
+        },
+        "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+        "south_cache_key": "death_animation_front|south|default|r4-cutout-rig-v071|request_mode=direct|registry_mode=production",
+        "north_cache_key": "death_animation_front|north|default|r4-cutout-rig-v071|request_mode=direct|registry_mode=production"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-07": {
+      "mutation": "mirror_without_permission=request west with allow_mirror=false",
+      "target_gate": "explicit_mirror_policy",
+      "observed": {
+        "result": {
+          "requested_direction": "west",
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "FAIL_CLOSED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|west|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+          "production_safe": false
+        },
+        "error_code": "DIRECTION_ASSET_UNAVAILABLE"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-08": {
+      "mutation": "asymmetric_fixture_with_mirror_safe=false=request west with mirror",
+      "target_gate": "mirror_safety",
+      "observed": {
+        "result": {
+          "requested_direction": "west",
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "FAIL_CLOSED",
+          "mirror_mode": "NONE",
+          "capability_id": "qa_fixture",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "qa_fixture|west|default|ANY|request_mode=preview:0:1|registry_mode=production",
+          "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+          "production_safe": false
+        },
+        "error_code": "DIRECTION_ASSET_UNAVAILABLE"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-09": {
+      "mutation": "asset_hash_mutation=replace declared hash with zeros",
+      "target_gate": "provenance_hash_validation",
+      "observed": {
+        "result": [
+          "hash:profiles/animation/idle-front-v1.json"
+        ],
+        "error_code": "PROVENANCE_HASH_MISMATCH"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-10": {
+      "mutation": "capability_mismatch=manifest capability wrong_capability with old metadata",
+      "target_gate": "capability_identity",
+      "observed": {
+        "result": null,
+        "error_code": "capability_and_direction_match_asset_metadata"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-11": {
+      "mutation": "test_only_fixture_in_production_registry=test_only=true",
+      "target_gate": "production_registry_boundary",
+      "observed": {
+        "result": null,
+        "error_code": "test_only_fixture_cannot_enter_production_registry"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "DIR-NC-12": {
+      "mutation": "production_routing_enabled=production_approved=true,routing=ENABLED",
+      "target_gate": "active_state_production_gate",
+      "observed": {
+        "result": {
+          "status": "STATE_CONSISTENCY_FAILED",
+          "schema_version": "0.16.2",
+          "failures": [
+            "production_must_remain_blocked"
+          ],
+          "checked": {
+            "version": "0.16.2",
+            "phase": "MULTI_DIRECTION_ANIMATION_RUNTIME",
+            "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED",
+            "feature_branch": "codex/v0.16.0-multi-direction-runtime-foundation",
+            "branch_base_commit": "514a17818469b567966293db808cafbf708f8311",
+            "next_action": [
+              "external_review_multi_direction_runtime_v0162"
+            ],
+            "direction_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+            "real_directional_coverage": "SOUTH_ONLY",
+            "production_routing": "ENABLED",
+            "new_generation": 0,
+            "pr_number": 6,
+            "pr_state": "OPEN",
+            "real_pr_checks_green": false
+          }
+        },
+        "error_code": "production_must_remain_blocked"
+      },
+      "rejected": true,
+      "status": "REJECTED"
+    }
+  },
+  "method": "each control constructs or mutates runtime input and records the observed rejection",
+  "carried_forward_from": {
+    "path": "docs/evidence/multi-direction-runtime-v0161/negative-controls-v0161.json",
+    "sha256": "67c2539d3cc77de1663a337510e11efa5ade8b82f1a30fa368fd0586b2c0ec95"
+  }
+}

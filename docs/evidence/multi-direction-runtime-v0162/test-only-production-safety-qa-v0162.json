@@ -1,0 +1,19 @@
+{
+  "status": "TEST_ONLY_PRODUCTION_SAFETY_QA_PASSED",
+  "non_production_exact": {
+    "requested_direction": "south",
+    "resolved_direction": "south",
+    "asset_id": "qa-south",
+    "path": "tests/fixtures/qa.png",
+    "provenance_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "fallback_mode": "NONE",
+    "mirror_mode": "NONE",
+    "capability_id": "qa_fixture",
+    "variant": "default",
+    "asset_revision_id": "qa-r1",
+    "cache_key": "qa_fixture|south|default|ANY|request_mode=direct|registry_mode=test",
+    "error_code": null,
+    "production_safe": false
+  },
+  "production_registry_error": "test_only_fixture_cannot_enter_production_registry"
+}

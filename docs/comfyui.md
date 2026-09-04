@@ -1,6 +1,6 @@
-# ComfyUI integration notes - UGAS v0.16.1
+# ComfyUI integration notes - UGAS v0.16.2
 
-The active v0.16.1 slice is MULTI_DIRECTION_ANIMATION_RUNTIME integrity correction, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. PR #6 is OPEN and the only next action is `external_review_multi_direction_runtime_v0161`; the v0.16.0 record is `CORRECTION_REQUIRED`. The v0.15.1, v0.15.0, v0.14.1 and older ComfyUI material below is historical.
+The active v0.16.2 slice is MULTI_DIRECTION_ANIMATION_RUNTIME cache/state correction, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. PR #6 is OPEN and the only next action is `external_review_multi_direction_runtime_v0162`; the v0.16.0 and v0.16.1 records are `CORRECTION_REQUIRED`. The v0.15.1, v0.15.0, v0.14.1 and older ComfyUI material below is historical.
 
 The active release is v0.12.3. The historical v0.12.2 Dockerized local observability dashboard probes the host ComfyUI endpoint read-only at `http://host.docker.internal:8188`, exposes endpoint health with checked_at/reason and preserves stale-last-known data after timeout; it never starts generation. The v0.12.0 and v0.12.1 dashboards remain rejected history. The deterministic QA-integrity/scope-recovery cutout-rig lane from v0.11.2 remains historical. The v0.8.0/v0.7.3/v0.9.0/v0.9.1/v0.10.0/v0.11.0 structural and runtime/model/custom-node records below remain historical; v0.11.1 remains rejected history.
 

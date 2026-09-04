@@ -1,0 +1,106 @@
+{
+  "schema_version": "0.16.2",
+  "status": "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "gates": {
+    "direction_schema_valid": {
+      "passed": true,
+      "detail": "forward manifest and frozen contract use canonical eight"
+    },
+    "vector_quantization_deterministic": {
+      "passed": true,
+      "detail": "screen-space cardinal and diagonal vectors repeat identically"
+    },
+    "alias_mapping_unambiguous": {
+      "passed": true,
+      "detail": "front and named aliases map one-to-one"
+    },
+    "zero_vector_does_not_guess": {
+      "passed": true,
+      "detail": "only finite numeric zero may use explicit retained facing"
+    },
+    "invalid_vectors_never_retain": {
+      "passed": true,
+      "detail": "non-finite, nonnumeric, missing and malformed vectors stay invalid even with retained facing"
+    },
+    "coverage_manifest_truthful": {
+      "passed": true,
+      "detail": "six approved front profiles are carried forward as south-only and hash-valid"
+    },
+    "missing_direction_fails_closed": {
+      "passed": true,
+      "detail": "missing real direction returns no asset"
+    },
+    "fallback_is_explicit_and_nonproduction": {
+      "passed": true,
+      "detail": "preview fallback is explicit and non-production"
+    },
+    "mirror_requires_explicit_permission": {
+      "passed": true,
+      "detail": "no mirror is selected by default"
+    },
+    "mirror_unsafe_asymmetry_rejected": {
+      "passed": true,
+      "detail": "only manifest-declared mirror-safe pairs may preview mirror"
+    },
+    "direction_in_cache_key": {
+      "passed": true,
+      "detail": "cache key contains capability, canonical direction, variant and revision"
+    },
+    "asset_hash_matches_manifest": {
+      "passed": true,
+      "detail": "all carried-forward manifest hashes match repository bytes"
+    },
+    "capability_and_direction_match_asset_metadata": {
+      "passed": true,
+      "detail": "metadata repeats the complete resolver identity"
+    },
+    "front_to_south_backward_compatibility": {
+      "passed": true,
+      "detail": "front alias and canonical south resolve the same approved record"
+    },
+    "existing_front_assets_byte_unchanged": {
+      "passed": true,
+      "detail": "approved front profile bytes remain bound to v0.15.1 hashes"
+    },
+    "unresolved_cache_class_isolation": {
+      "passed": true,
+      "detail": "order-sensitive unresolved classes retain their semantic outcomes and distinct keys"
+    },
+    "unresolved_cache_key_is_explicit": {
+      "passed": true,
+      "detail": "each unresolved normalization class is visible in its cache identity"
+    },
+    "test_only_cache_mode_truthful": {
+      "passed": true,
+      "detail": "test-only exact resolution reports direct/test cache context and never production registry mode"
+    },
+    "negative_controls_reject": {
+      "passed": true,
+      "detail": ""
+    },
+    "state_previous_release_truthful": {
+      "passed": true,
+      "detail": "active state names v0.15.1 as approved previous release and keeps v0.16.0/v0.16.1 separate rejected history"
+    },
+    "production_routing_blocked": {
+      "passed": true,
+      "detail": "active state remains pilot-only, production-blocked and generation-free"
+    }
+  },
+  "passed": 21,
+  "failed": 0,
+  "production_coverage": [
+    "south"
+  ],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "negative_controls": {
+    "status": "DIR_NC_01_TO_12_PASSED",
+    "count": 12
+  },
+  "cache_negative_controls": {
+    "status": "CACHE_NC_01_TO_05_PASSED",
+    "count": 5
+  }
+}

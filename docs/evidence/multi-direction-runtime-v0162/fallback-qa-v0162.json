@@ -1,0 +1,37 @@
+{
+  "status": "DIRECTION_FALLBACK_QA_PASSED",
+  "missing": {
+    "requested_direction": "north",
+    "resolved_direction": null,
+    "asset_id": null,
+    "path": null,
+    "provenance_hash": null,
+    "fallback_mode": "FAIL_CLOSED",
+    "mirror_mode": "NONE",
+    "capability_id": "death_animation_front",
+    "variant": "default",
+    "asset_revision_id": null,
+    "cache_key": "death_animation_front|north|default|ANY|request_mode=direct|registry_mode=production",
+    "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+    "production_safe": false
+  },
+  "preview": {
+    "requested_direction": "north",
+    "resolved_direction": "south",
+    "asset_id": "death-front-v1-v0151",
+    "path": "profiles/animation/death-front-v151.json",
+    "provenance_hash": "07e8b597b6c1d7f445167af46b84901df701afce90c7faf8a19b522eeb51b335",
+    "fallback_mode": "EXPLICIT_PREVIEW_FALLBACK",
+    "mirror_mode": "NONE",
+    "capability_id": "death_animation_front",
+    "variant": "default",
+    "asset_revision_id": "r4-cutout-rig-v071",
+    "cache_key": "death_animation_front|north|default|ANY|request_mode=preview:1:0|registry_mode=production",
+    "error_code": null,
+    "production_safe": false
+  },
+  "carried_forward_from": {
+    "path": "docs/evidence/multi-direction-runtime-v0161/fallback-qa-v0161.json",
+    "sha256": "2c7ea4fc2db808ea0ecf8c613647e9cb1e9495e3bbeb93b27a432af1b5bd86f4"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "schema_version": "0.16.2",
+  "contract": "MULTI_DIRECTION_ANIMATION_RUNTIME",
+  "status": "CACHE_AND_STATE_CORRECTION_TECHNICALLY_QUALIFIED",
+  "canonical_directions": [
+    {
+      "id": "south",
+      "aliases": [
+        "front",
+        "down",
+        "s"
+      ],
+      "semantic": "front/down"
+    },
+    {
+      "id": "south_east",
+      "aliases": [
+        "front_right",
+        "southeast",
+        "se"
+      ],
+      "semantic": "front-right"
+    },
+    {
+      "id": "east",
+      "aliases": [
+        "right",
+        "e"
+      ],
+      "semantic": "right"
+    },
+    {
+      "id": "north_east",
+      "aliases": [
+        "back_right",
+        "northeast",
+        "ne"
+      ],
+      "semantic": "back-right"
+    },
+    {
+      "id": "north",
+      "aliases": [
+        "back",
+        "up",
+        "n"
+      ],
+      "semantic": "back/up"
+    },
+    {
+      "id": "north_west",
+      "aliases": [
+        "back_left",
+        "northwest",
+        "nw"
+      ],
+      "semantic": "back-left"
+    },
+    {
+      "id": "west",
+      "aliases": [
+        "left",
+        "w"
+      ],
+      "semantic": "left"
+    },
+    {
+      "id": "south_west",
+      "aliases": [
+        "front_left",
+        "southwest",
+        "sw"
+      ],
+      "semantic": "front-left"
+    }
+  ],
+  "coordinate_convention": {
+    "x_positive": "east",
+    "y_positive": "south",
+    "angle_zero": "east",
+    "angle_positive": "clockwise"
+  },
+  "quantization": {
+    "sector_order_clockwise_from_east": [
+      "east",
+      "south_east",
+      "south",
+      "south_west",
+      "west",
+      "north_west",
+      "north",
+      "north_east"
+    ],
+    "sector_width_degrees": 45,
+    "boundary_degrees": [
+      22.5,
+      67.5,
+      112.5,
+      157.5,
+      202.5,
+      247.5,
+      292.5,
+      337.5
+    ],
+    "boundary_policy": "upper-clockwise-sector-wins",
+    "zero_vector": "retained_facing_only-or-explicit-unresolved",
+    "invalid_vector": "INVALID_VECTOR_UNRESOLVED-even-with-retained-facing"
+  },
+  "normalization_outcomes": [
+    "DIRECTION_ID",
+    "VECTOR_QUANTIZED",
+    "ZERO_VECTOR_RETAINED_FACING",
+    "ZERO_VECTOR_UNRESOLVED",
+    "UNKNOWN_DIRECTION_UNRESOLVED",
+    "INVALID_VECTOR_UNRESOLVED"
+  ],
+  "asset_contract": {
+    "minimum_key": [
+      "capability_id",
+      "direction",
+      "variant",
+      "asset_revision_id"
+    ],
+    "resolver_result": [
+      "requested_direction",
+      "resolved_direction",
+      "asset_id",
+      "path",
+      "provenance_hash",
+      "fallback_mode",
+      "mirror_mode",
+      "production_safe"
+    ]
+  },
+  "fallback_policy": {
+    "default": "DIRECTION_ASSET_UNAVAILABLE",
+    "preview_testing": "EXPLICIT_PREVIEW_FALLBACK",
+    "production": "FAIL_CLOSED"
+  },
+  "mirror_policy": {
+    "implicit": false,
+    "requires_manifest_pair": true,
+    "requires_explicit_request": true,
+    "unsafe_by_default": [
+      "weapon",
+      "asymmetric_armor",
+      "text",
+      "logo",
+      "accessories",
+      "wounds",
+      "arcs"
+    ]
+  },
+  "production_coverage": {
+    "real_directional_artwork": [
+      "south"
+    ],
+    "front_alias": "south",
+    "unavailable_directions_do_not_claim_artwork": true
+  },
+  "scope_boundary": {
+    "synthetic_fixture": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE",
+    "telemetry_upload": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "next_capability_started": false
+  },
+  "cache_identity": {
+    "unresolved_class_in_key": true,
+    "classes": [
+      "UNKNOWN_DIRECTION_UNRESOLVED",
+      "ZERO_VECTOR_UNRESOLVED",
+      "INVALID_VECTOR_UNRESOLVED"
+    ],
+    "unresolved_results_cached": true
+  },
+  "cache_mode": {
+    "request_mode": [
+      "direct",
+      "preview:0:1",
+      "preview:1:0",
+      "preview:1:1"
+    ],
+    "registry_mode": [
+      "production",
+      "test"
+    ]
+  },
+  "carried_forward_from": {
+    "path": "docs/evidence/multi-direction-runtime-v0161/direction-contract-v0161.json",
+    "sha256": "58a6d7369538fbf13c7c166a9fe2087bd574fbb728f663dc160d7211d95761b7"
+  }
+}

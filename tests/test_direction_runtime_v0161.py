@@ -77,12 +77,14 @@ class DirectionRuntimeV0161Tests(unittest.TestCase):
                 self.assertIn("error_code", record["observed"])
         self.assertNotIn("positive_gate_boolean", json.dumps(evidence))
 
-    def test_active_state_records_real_pr_and_blocks_production(self) -> None:
+    def test_v0161_state_evidence_is_frozen_and_active_state_advanced(self) -> None:
         state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
-        self.assertEqual(state["version"], "0.16.1")
+        frozen = json.loads((EVIDENCE / "state-consistency-v0161.json").read_text(encoding="utf-8"))
+        self.assertEqual(frozen["status"], "MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED")
+        self.assertEqual(state["version"], "0.16.2")
         self.assertEqual(state["review"]["pr_number"], 6)
         self.assertEqual(state["review"]["pr_state"], "OPEN")
-        self.assertTrue(state["review"]["real_pr_checks_green"])
+        self.assertFalse(state["review"]["real_pr_checks_green"])
         self.assertEqual(state["review"]["feature_branch"], "codex/v0.16.0-multi-direction-runtime-foundation")
         self.assertFalse(state["production_approved"])
         self.assertEqual(state["production_routing"], "BLOCKED")
