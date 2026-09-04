@@ -292,7 +292,12 @@ def _temporal(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: Map
         "contact_state_transition_valid": bool(transition["contact_state_transition_valid"]),
         "final_pose_grounded_terminal": bool(transition["final_pose_grounded_terminal"]),
         "ground_reference_stable": bool(transition["ground_reference_stable"]),
-        "contact_teleport_free": contact_continuity["gate"],
+        # A contact path is only continuous when the measured region/state
+        # sequence remains the declared sequence as well as staying within
+        # the per-step pixel budget.  This makes a disappearing/reappearing
+        # contact fail closed even if no two adjacent frames share that body
+        # region to compare.
+        "contact_teleport_free": contact_continuity["gate"] and bool(transition["contact_state_transition_valid"]),
         "weapon_wrist_continuity": weapon["status"] == "DEATH_WEAPON_QA_PASSED",
         "angular_continuity": max(deltas, default=999.0) <= float(thresholds["joint_angle_step_max_deg"]),
         "angular_acceleration_continuity": max(accelerations, default=999.0) <= float(thresholds["angular_acceleration_max_deg_per_frame2"]),
