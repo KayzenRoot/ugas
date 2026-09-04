@@ -1,96 +1,19 @@
 {
   "schema_version": "0.15.1",
   "animation_id": "death-front-v1-v0151",
-  "status": "DEATH_TEMPORAL_QA_PASSED",
-  "metrics": {
-    "root_path_length_px": 113.118604,
-    "terminal_displacement_px": 110.01818,
-    "collapse_start_displacement_px": 23.323808,
-    "terminal_to_peak_ratio": 1.0,
-    "terminal_residual_px": 0.0,
-    "max_joint_angle_step_deg": 57.670216,
-    "max_angular_acceleration_deg_per_frame2": 53.815126,
-    "collapse_height_reduction": 0.377404
-  },
-  "hard_gates": {
-    "frame_count_eight_non_loop": true,
-    "all_target_hashes_distinct": true,
-    "lethal_onset_immediate": true,
-    "collapse_progression": true,
-    "irreversible_death": true,
-    "terminal_stability": true,
-    "death_like_collapse": true,
-    "death_vs_hit_or_neutral": true,
-    "marker_matches_measured_body_contact_transition": true,
-    "ground_contact_marker_matches_actual_transition": true,
-    "contact_state_transition_valid": true,
-    "support_state_classification_valid": true,
-    "final_pose_grounded_terminal": true,
-    "terminal_pose_physically_supported": true,
-    "body_contact_persists_to_terminal": true,
-    "ground_reference_stable": true,
-    "global_ground_reference_valid": true,
-    "foot_ground_truthfulness": true,
-    "death_vs_hit_semantic_separation": true,
-    "contact_teleport_free": true,
-    "weapon_wrist_continuity": true,
-    "angular_continuity": true,
-    "angular_acceleration_continuity": true,
-    "nonfinite_and_gap_free": true,
-    "collapse_visible_in_bbox": true,
-    "non_loop_has_no_closing_requirement": true
-  },
-  "collapse": {
-    "rest_pelvis": {
-      "x": 269.54335,
-      "y": 252.782
+  "status": "DEATH_VS_HIT_SEMANTIC_SEPARATION_PASSED",
+  "death": {
+    "metrics": {
+      "root_path_length_px": 113.118604,
+      "terminal_displacement_px": 110.01818,
+      "collapse_start_displacement_px": 23.323808,
+      "terminal_to_peak_ratio": 1.0,
+      "terminal_residual_px": 0.0,
+      "max_joint_angle_step_deg": 57.670216,
+      "max_angular_acceleration_deg_per_frame2": 53.815126,
+      "collapse_height_reduction": 0.377404
     },
-    "pelvis_displacements_px": [
-      6.708204,
-      13.892444,
-      23.323808,
-      33.286634,
-      91.411159,
-      97.40868,
-      110.01818,
-      110.01818
-    ],
-    "root_shift_x": [
-      3.0,
-      5.0,
-      8.0,
-      12.0,
-      8.0,
-      2.0,
-      -10.0,
-      -10.0
-    ],
-    "root_shift_y": [
-      6.0,
-      12.0,
-      20.0,
-      28.0,
-      90.0,
-      96.6667,
-      110.0,
-      110.0
-    ],
-    "torso_rotation_deg": [
-      3.0,
-      10.0,
-      20.0,
-      32.0,
-      60.0,
-      70.0,
-      90.0,
-      90.0
-    ],
-    "terminal_residual_px": 0.0,
-    "terminal_to_peak_ratio": 1.0,
-    "root_motion_is_secondary_to_measured_contact": true
-  },
-  "contact": {
-    "transition": {
+    "contact": {
       "marker_frame": 4,
       "declared_first_body_contact_frame": 4,
       "measured_first_body_contact_frame": 4,
@@ -251,103 +174,13 @@
         }
       ]
     },
-    "continuity": {
-      "threshold_px": 48.0,
-      "steps": [
-        {
-          "from_frame": 0,
-          "to_frame": 1,
-          "region": "left_foot",
-          "anchor_delta_px": 1.0,
-          "gate": true
-        },
-        {
-          "from_frame": 0,
-          "to_frame": 1,
-          "region": "right_foot",
-          "anchor_delta_px": 1.118034,
-          "gate": true
-        },
-        {
-          "from_frame": 1,
-          "to_frame": 2,
-          "region": "left_foot",
-          "anchor_delta_px": 3.605551,
-          "gate": true
-        },
-        {
-          "from_frame": 1,
-          "to_frame": 2,
-          "region": "right_foot",
-          "anchor_delta_px": 1.802776,
-          "gate": true
-        },
-        {
-          "from_frame": 2,
-          "to_frame": 3,
-          "region": "left_foot",
-          "anchor_delta_px": 5.385165,
-          "gate": true
-        },
-        {
-          "from_frame": 2,
-          "to_frame": 3,
-          "region": "right_foot",
-          "anchor_delta_px": 13.793114,
-          "gate": true
-        },
-        {
-          "from_frame": 3,
-          "to_frame": 4,
-          "region": "left_foot",
-          "anchor_delta_px": 10.547512,
-          "gate": true
-        },
-        {
-          "from_frame": 3,
-          "to_frame": 4,
-          "region": "right_foot",
-          "anchor_delta_px": 10.049876,
-          "gate": true
-        },
-        {
-          "from_frame": 4,
-          "to_frame": 5,
-          "region": "left_forearm_hand",
-          "bottom_delta_px": 5.0,
-          "gate": true
-        },
-        {
-          "from_frame": 4,
-          "to_frame": 5,
-          "region": "right_foot",
-          "anchor_delta_px": 0.0,
-          "gate": true
-        },
-        {
-          "from_frame": 5,
-          "to_frame": 6,
-          "region": "left_forearm_hand",
-          "bottom_delta_px": 2.0,
-          "gate": true
-        },
-        {
-          "from_frame": 6,
-          "to_frame": 7,
-          "region": "left_forearm_hand",
-          "bottom_delta_px": 0.0,
-          "gate": true
-        },
-        {
-          "from_frame": 6,
-          "to_frame": 7,
-          "region": "left_thigh",
-          "bottom_delta_px": 0.0,
-          "gate": true
-        }
-      ],
-      "gate": true,
-      "status": "CONTACT_CONTINUITY_PASSED"
-    }
-  }
+    "hard_gate": true
+  },
+  "immutable_hit_authority": {
+    "profile": "profiles/animation/hit-front-v1.json",
+    "evidence": "docs/evidence/animation-runtime-v0141/hit-front-v1",
+    "approved_head": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+    "mutation": false
+  },
+  "separation_basis": "contact/support state and terminal grounding plus displacement; displacement alone is insufficient"
 }

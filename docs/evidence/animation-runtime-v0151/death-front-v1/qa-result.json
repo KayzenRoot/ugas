@@ -21,6 +21,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -43,31 +44,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 285.0,
+            "center_x": 273.0,
             "ground_clearance_px": 194.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 309.0,
+            "center_x": 331.5,
             "ground_clearance_px": 170.883091,
             "contact": false
           },
           "right_forearm_hand": {
             "bottom_y": 301.0,
+            "center_x": 214.0,
             "ground_clearance_px": 178.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 388.0,
+            "center_x": 305.0,
             "ground_clearance_px": 91.883091,
             "contact": false
           },
           "right_thigh": {
             "bottom_y": 354.0,
+            "center_x": 249.0,
             "ground_clearance_px": 125.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 139.0,
+            "center_x": 270.0,
             "ground_clearance_px": 340.883091,
             "contact": false
           }
@@ -88,7 +95,10 @@
             "center_x": 340.5,
             "ground_clearance_px": 3.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 0.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -97,7 +107,10 @@
             "center_x": 262.5,
             "ground_clearance_px": -2.116909,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 0.0,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -105,11 +118,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -2276,6 +2291,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -2298,31 +2314,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 290.0,
+            "center_x": 284.5,
             "ground_clearance_px": 189.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 321.0,
+            "center_x": 332.0,
             "ground_clearance_px": 158.883091,
             "contact": false
           },
           "right_forearm_hand": {
             "bottom_y": 301.0,
+            "center_x": 222.5,
             "ground_clearance_px": 178.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 391.0,
+            "center_x": 308.0,
             "ground_clearance_px": 88.883091,
             "contact": false
           },
           "right_thigh": {
             "bottom_y": 355.0,
+            "center_x": 251.5,
             "ground_clearance_px": 124.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 149.0,
+            "center_x": 289.0,
             "ground_clearance_px": 330.883091,
             "contact": false
           }
@@ -2343,7 +2365,10 @@
             "center_x": 340.5,
             "ground_clearance_px": 4.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 0.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -2352,7 +2377,10 @@
             "center_x": 263.0,
             "ground_clearance_px": -1.116909,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 0.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -2360,11 +2388,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -4530,6 +4560,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -4552,31 +4583,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 297.0,
+            "center_x": 300.5,
             "ground_clearance_px": 182.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 334.0,
+            "center_x": 330.5,
             "ground_clearance_px": 145.883091,
             "contact": false
           },
           "right_forearm_hand": {
             "bottom_y": 298.0,
+            "center_x": 235.5,
             "ground_clearance_px": 181.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 393.0,
+            "center_x": 323.0,
             "ground_clearance_px": 86.883091,
             "contact": false
           },
           "right_thigh": {
             "bottom_y": 357.0,
+            "center_x": 257.0,
             "ground_clearance_px": 122.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 166.0,
+            "center_x": 314.5,
             "ground_clearance_px": 313.883091,
             "contact": false
           }
@@ -4597,7 +4634,10 @@
             "center_x": 343.5,
             "ground_clearance_px": 2.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 3.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -4606,7 +4646,10 @@
             "center_x": 264.5,
             "ground_clearance_px": -0.116909,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 2.0,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -4614,11 +4657,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -6785,6 +6830,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -6807,31 +6853,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 302.0,
+            "center_x": 318.5,
             "ground_clearance_px": 177.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 343.0,
+            "center_x": 327.5,
             "ground_clearance_px": 136.883091,
             "contact": false
           },
           "right_forearm_hand": {
             "bottom_y": 294.0,
+            "center_x": 249.5,
             "ground_clearance_px": 185.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 398.0,
+            "center_x": 318.0,
             "ground_clearance_px": 81.883091,
             "contact": false
           },
           "right_thigh": {
             "bottom_y": 357.0,
+            "center_x": 249.5,
             "ground_clearance_px": 122.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 190.0,
+            "center_x": 344.5,
             "ground_clearance_px": 289.883091,
             "contact": false
           }
@@ -6852,7 +6904,10 @@
             "center_x": 341.5,
             "ground_clearance_px": 7.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 1.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -6861,7 +6916,10 @@
             "center_x": 255.0,
             "ground_clearance_px": 9.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 7.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -6869,11 +6927,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -9044,6 +9104,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -9068,31 +9129,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 359.0,
+            "center_x": 332.5,
             "ground_clearance_px": 120.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 474.0,
+            "center_x": 398.0,
             "ground_clearance_px": 5.883091,
             "contact": true
           },
           "right_forearm_hand": {
             "bottom_y": 315.0,
+            "center_x": 263.0,
             "ground_clearance_px": 164.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 441.0,
+            "center_x": 292.0,
             "ground_clearance_px": 38.883091,
             "contact": false
           },
           "right_thigh": {
             "bottom_y": 386.0,
+            "center_x": 241.0,
             "ground_clearance_px": 93.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 301.0,
+            "center_x": 399.0,
             "ground_clearance_px": 178.883091,
             "contact": false
           }
@@ -9115,7 +9182,10 @@
             "center_x": 331.0,
             "ground_clearance_px": 8.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 9.5,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -9124,7 +9194,10 @@
             "center_x": 245.0,
             "ground_clearance_px": 8.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 17.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -9132,11 +9205,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -11307,6 +11382,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -11331,31 +11407,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 367.0,
+            "center_x": 328.5,
             "ground_clearance_px": 112.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 479.0,
+            "center_x": 348.0,
             "ground_clearance_px": 0.883091,
             "contact": true
           },
           "right_forearm_hand": {
             "bottom_y": 314.0,
+            "center_x": 266.5,
             "ground_clearance_px": 165.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 458.0,
+            "center_x": 276.0,
             "ground_clearance_px": 21.883091,
             "contact": false
           },
           "right_thigh": {
             "bottom_y": 388.0,
+            "center_x": 240.5,
             "ground_clearance_px": 91.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 332.0,
+            "center_x": 410.5,
             "ground_clearance_px": 147.883091,
             "contact": false
           }
@@ -11378,7 +11460,10 @@
             "center_x": 317.5,
             "ground_clearance_px": 31.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 23.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -11387,7 +11472,10 @@
             "center_x": 245.0,
             "ground_clearance_px": 8.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 17.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -11395,11 +11483,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -13572,6 +13662,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -13597,31 +13688,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 396.0,
+            "center_x": 316.5,
             "ground_clearance_px": 83.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 477.0,
+            "center_x": 288.0,
             "ground_clearance_px": 2.883091,
             "contact": true
           },
           "right_forearm_hand": {
             "bottom_y": 315.0,
+            "center_x": 274.0,
             "ground_clearance_px": 164.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 478.0,
+            "center_x": 306.5,
             "ground_clearance_px": 1.883091,
             "contact": true
           },
           "right_thigh": {
             "bottom_y": 372.0,
+            "center_x": 238.0,
             "ground_clearance_px": 107.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 394.0,
+            "center_x": 421.5,
             "ground_clearance_px": 85.883091,
             "contact": false
           }
@@ -13645,7 +13742,10 @@
             "center_x": 334.5,
             "ground_clearance_px": 32.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 6.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "lifted",
@@ -13654,7 +13754,10 @@
             "center_x": 243.0,
             "ground_clearance_px": 82.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 19.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -13662,11 +13765,13 @@
           "right": "lifted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -15837,6 +15942,7 @@
         "seam": true,
         "retention": true,
         "support_state_matches_rendered": true,
+        "foot_ground_truthfulness": true,
         "body_contact_region_measured": true,
         "no_duplicate_body": true,
         "front_facing": true,
@@ -15862,31 +15968,37 @@
         "regions": {
           "torso_pelvis": {
             "bottom_y": 396.0,
+            "center_x": 316.5,
             "ground_clearance_px": 83.883091,
             "contact": false
           },
           "left_forearm_hand": {
             "bottom_y": 477.0,
+            "center_x": 288.0,
             "ground_clearance_px": 2.883091,
             "contact": true
           },
           "right_forearm_hand": {
             "bottom_y": 315.0,
+            "center_x": 274.0,
             "ground_clearance_px": 164.883091,
             "contact": false
           },
           "left_thigh": {
             "bottom_y": 478.0,
+            "center_x": 306.5,
             "ground_clearance_px": 1.883091,
             "contact": true
           },
           "right_thigh": {
             "bottom_y": 372.0,
+            "center_x": 238.0,
             "ground_clearance_px": 107.883091,
             "contact": false
           },
           "head": {
             "bottom_y": 394.0,
+            "center_x": 421.5,
             "ground_clearance_px": 85.883091,
             "contact": false
           }
@@ -15910,7 +16022,10 @@
             "center_x": 334.5,
             "ground_clearance_px": 32.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 6.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "lifted",
@@ -15919,7 +16034,10 @@
             "center_x": 243.0,
             "ground_clearance_px": 82.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 19.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -15927,11 +16045,13 @@
           "right": "lifted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       "alpha": {
@@ -18168,8 +18288,14 @@
         ],
         "marker_matches_measured_body_contact_transition": true,
         "contact_state_transition_valid": true,
+        "support_state_classification_valid": true,
         "final_pose_grounded_terminal": true,
+        "terminal_pose_physically_supported": true,
+        "body_contact_persists_to_terminal": true,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "ground_contact_marker_matches_actual_transition": true,
         "no_premature_body_contact": true,
         "declared_regions_match_measured": true,
         "terminal_grounded_frames": [
@@ -18188,7 +18314,19 @@
             "right": 482.0
           },
           "ground_reference_y": 479.883091,
-          "recomputed_per_frame": false
+          "recomputed_per_frame": false,
+          "fixed_world_contact_points": {
+            "left": {
+              "x": 340.5,
+              "y": 476.0,
+              "source_frame": 0
+            },
+            "right": {
+              "x": 262.5,
+              "y": 482.0,
+              "source_frame": 0
+            }
+          }
         },
         "declared_states": [
           {
@@ -18431,9 +18569,16 @@
       "death_like_collapse": true,
       "death_vs_hit_or_neutral": true,
       "marker_matches_measured_body_contact_transition": true,
+      "ground_contact_marker_matches_actual_transition": true,
       "contact_state_transition_valid": true,
+      "support_state_classification_valid": true,
       "final_pose_grounded_terminal": true,
+      "terminal_pose_physically_supported": true,
+      "body_contact_persists_to_terminal": true,
       "ground_reference_stable": true,
+      "global_ground_reference_valid": true,
+      "foot_ground_truthfulness": true,
+      "death_vs_hit_semantic_separation": true,
       "contact_teleport_free": true,
       "weapon_wrist_continuity": true,
       "angular_continuity": true,
@@ -18624,8 +18769,14 @@
         ],
         "marker_matches_measured_body_contact_transition": true,
         "contact_state_transition_valid": true,
+        "support_state_classification_valid": true,
         "final_pose_grounded_terminal": true,
+        "terminal_pose_physically_supported": true,
+        "body_contact_persists_to_terminal": true,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "ground_contact_marker_matches_actual_transition": true,
         "no_premature_body_contact": true,
         "declared_regions_match_measured": true,
         "terminal_grounded_frames": [
@@ -18644,7 +18795,19 @@
             "right": 482.0
           },
           "ground_reference_y": 479.883091,
-          "recomputed_per_frame": false
+          "recomputed_per_frame": false,
+          "fixed_world_contact_points": {
+            "left": {
+              "x": 340.5,
+              "y": 476.0,
+              "source_frame": 0
+            },
+            "right": {
+              "x": 262.5,
+              "y": 482.0,
+              "source_frame": 0
+            }
+          }
         },
         "declared_states": [
           {
@@ -18861,7 +19024,8 @@
       "marker_matches_measured_body_contact_transition": true,
       "contact_state_transition_valid": true,
       "final_pose_grounded_terminal": true,
-      "ground_reference_stable": true
+      "ground_reference_stable": true,
+      "foot_ground_truthfulness": true
     },
     "status": "DEATH_BODY_MECHANICS_QA_PASSED"
   },
@@ -18877,7 +19041,10 @@
             "center_x": 340.5,
             "ground_clearance_px": 3.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 0.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -18886,7 +19053,10 @@
             "center_x": 262.5,
             "ground_clearance_px": -2.116909,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 0.0,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -18894,11 +19064,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       {
@@ -18911,7 +19083,10 @@
             "center_x": 340.5,
             "ground_clearance_px": 4.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 0.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -18920,7 +19095,10 @@
             "center_x": 263.0,
             "ground_clearance_px": -1.116909,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 0.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -18928,11 +19106,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       {
@@ -18945,7 +19125,10 @@
             "center_x": 343.5,
             "ground_clearance_px": 2.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 3.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -18954,7 +19137,10 @@
             "center_x": 264.5,
             "ground_clearance_px": -0.116909,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 2.0,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -18962,11 +19148,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       {
@@ -18979,7 +19167,10 @@
             "center_x": 341.5,
             "ground_clearance_px": 7.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 1.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -18988,7 +19179,10 @@
             "center_x": 255.0,
             "ground_clearance_px": 9.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 7.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -18996,11 +19190,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       {
@@ -19013,7 +19209,10 @@
             "center_x": 331.0,
             "ground_clearance_px": 8.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 9.5,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -19022,7 +19221,10 @@
             "center_x": 245.0,
             "ground_clearance_px": 8.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 17.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -19030,11 +19232,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       {
@@ -19047,7 +19251,10 @@
             "center_x": 317.5,
             "ground_clearance_px": 31.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 23.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "planted",
@@ -19056,7 +19263,10 @@
             "center_x": 245.0,
             "ground_clearance_px": 8.883091,
             "planted_gate": true,
-            "lifted_gate": false
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 17.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -19064,11 +19274,13 @@
           "right": "planted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       {
@@ -19081,7 +19293,10 @@
             "center_x": 334.5,
             "ground_clearance_px": 32.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 6.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "lifted",
@@ -19090,7 +19305,10 @@
             "center_x": 243.0,
             "ground_clearance_px": 82.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 19.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -19098,11 +19316,13 @@
           "right": "lifted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       },
       {
@@ -19115,7 +19335,10 @@
             "center_x": 334.5,
             "ground_clearance_px": 32.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 340.5,
+            "world_contact_drift_px": 6.0,
+            "world_contact_truthful": true
           },
           "right": {
             "declared_role": "lifted",
@@ -19124,7 +19347,10 @@
             "center_x": 243.0,
             "ground_clearance_px": 82.883091,
             "planted_gate": false,
-            "lifted_gate": true
+            "lifted_gate": true,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 19.5,
+            "world_contact_truthful": true
           }
         },
         "measured_support": {
@@ -19132,11 +19358,13 @@
           "right": "lifted"
         },
         "state_matches_rendered": true,
+        "fixed_world_contact_truthful": true,
         "ground_reference_y": 479.883091,
         "thresholds": {
           "planted_tolerance_px": 10.0,
           "penetration_max_px": 8.0,
-          "lifted_clearance_min_px": 12.0
+          "lifted_clearance_min_px": 12.0,
+          "world_contact_drift_max_px": 24.0
         }
       }
     ],
@@ -19153,8 +19381,14 @@
         ],
         "marker_matches_measured_body_contact_transition": true,
         "contact_state_transition_valid": true,
+        "support_state_classification_valid": true,
         "final_pose_grounded_terminal": true,
+        "terminal_pose_physically_supported": true,
+        "body_contact_persists_to_terminal": true,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "ground_contact_marker_matches_actual_transition": true,
         "no_premature_body_contact": true,
         "declared_regions_match_measured": true,
         "terminal_grounded_frames": [
@@ -19173,7 +19407,19 @@
             "right": 482.0
           },
           "ground_reference_y": 479.883091,
-          "recomputed_per_frame": false
+          "recomputed_per_frame": false,
+          "fixed_world_contact_points": {
+            "left": {
+              "x": 340.5,
+              "y": 476.0,
+              "source_frame": 0
+            },
+            "right": {
+              "x": 262.5,
+              "y": 482.0,
+              "source_frame": 0
+            }
+          }
         },
         "declared_states": [
           {
@@ -19384,6 +19630,32 @@
       }
     },
     "ground_reference_y": 479.883091,
+    "ground_reference": {
+      "method": "single-frozen-D0-projected-source-alpha-sole-reference",
+      "source_frame": 0,
+      "projected_sole_y": {
+        "left": 477.039285,
+        "right": 482.726898
+      },
+      "D0_actual_sole_y": {
+        "left": 476.0,
+        "right": 482.0
+      },
+      "ground_reference_y": 479.883091,
+      "recomputed_per_frame": false,
+      "fixed_world_contact_points": {
+        "left": {
+          "x": 340.5,
+          "y": 476.0,
+          "source_frame": 0
+        },
+        "right": {
+          "x": 262.5,
+          "y": 482.0,
+          "source_frame": 0
+        }
+      }
+    },
     "status": "DEATH_SUPPORT_STATE_QA_PASSED"
   },
   "weapon": {
@@ -32846,8 +33118,8 @@
     }
   ],
   "event_markers_sha256": "f78d9d3349b559bc544b58a4eaa31935d971509052f0e749ec9a8b0bcfe64485",
-  "spec_sha256": "01c82f54a28887eade42d42ef7a4cd81fb927f8478cee90ffe3c1e6903c49307",
-  "compiled_manifest_sha256": "4041665e8e2e04718d75a7131291f5ce01eedee8ea740cb97a89281098cf45fd",
+  "spec_sha256": "b492e604fb633f8ca202e12adfbc706eaf79ee9b963c5e9369a311a55baadbf3",
+  "compiled_manifest_sha256": "2d5704d459d645e05679f9f059b3f1e853272afede5e1c1879efb8e63df7d18d",
   "motion_tracks": [
     {
       "track_id": "root_shift_x",

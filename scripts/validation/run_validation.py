@@ -2538,6 +2538,11 @@ def _v0151_checks() -> None:
         "docs/evidence/animation-runtime-v0151/death-front-temporal-qa-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-body-ground-contact-qa-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-support-state-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-contact-state-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-ground-reference-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-foot-ground-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-terminal-support-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-death-vs-hit-qa-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-continuity-qa-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-weapon-qa-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-gate-negative-controls-v0151.json",
@@ -2546,6 +2551,8 @@ def _v0151_checks() -> None:
         "docs/evidence/animation-runtime-v0151/run-front-loop-regression-v0151.json",
         "docs/evidence/animation-runtime-v0151/approved-assets-untouched-v0151.json",
         "docs/evidence/animation-runtime-v0151/frozen-evidence-integrity-v0151.json",
+        "docs/evidence/animation-runtime-v0151/v0141-provenance-sha256-correction-v0151.json",
+        "docs/evidence/animation-runtime-v0151/v0150-rejection-record-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-determinism-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-gif-timing-v0151.json",
         "docs/evidence/animation-runtime-v0151/death-front-gif-loop-semantics-v0151.json",
@@ -2602,6 +2609,7 @@ def _v0151_checks() -> None:
         and contract.get("phase_contract", {}).get("fps") == 12
         and contract.get("phase_contract", {}).get("loop") is False
         and len(contract.get("negative_controls", [])) == 16
+        and len(contract.get("ground_contact_negative_controls", [])) == 6
         and contract.get("review_policy", {}).get("external_visual") == "REQUIRED"
         and contract.get("repository_transfer", {}).get("active_repository") == "KayzenRoot/ugas"
         and contract.get("repository_transfer", {}).get("codeowners_gap") == "CODEOWNERS_GAP",
@@ -2635,6 +2643,14 @@ def _v0151_checks() -> None:
         and len(negative.get("controls", {})) == 16
         and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()),
         "NC-01 through NC-16 reject their mutations",
+    )
+    ground_contact_negative = negative.get("ground_contact_controls", {})
+    check(
+        "v0151:ground-contact-negative-controls",
+        ground_contact_negative.get("status") == "NC_GC_01_TO_NC_GC_06_PASSED"
+        and len(ground_contact_negative.get("controls", {})) == 6
+        and all(item.get("status") == "REJECTED" for item in ground_contact_negative.get("controls", {}).values()),
+        "NC-GC-01 through NC-GC-06 reject their real contact/support mutations",
     )
     loop_nc = load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-loop-negative-controls-v0151.json")
     check(
@@ -2673,6 +2689,17 @@ def _v0151_checks() -> None:
         load_json(ROOT / "docs/evidence/animation-runtime-v0151/approved-assets-untouched-v0151.json").get("status") == "APPROVED_ASSETS_UNTOUCHED"
         and load_json(ROOT / "docs/evidence/animation-runtime-v0151/frozen-evidence-integrity-v0151.json").get("status") == "FROZEN_V0141_EVIDENCE_RESTORED_AND_VERIFIED",
         "approved assets and frozen historical evidence remain intact",
+    )
+    check(
+        "v0151:contact-and-provenance-evidence",
+        load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-contact-state-v0151.json").get("status") == "DEATH_CONTACT_STATE_QA_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-ground-reference-v0151.json").get("status") == "GLOBAL_GROUND_REFERENCE_VALID"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-foot-ground-qa-v0151.json").get("hard_gates", {}).get("foot_ground_truthfulness") is True
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-terminal-support-qa-v0151.json").get("status") == "DEATH_TERMINAL_SUPPORT_QA_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-death-vs-hit-qa-v0151.json").get("status") == "DEATH_VS_HIT_SEMANTIC_SEPARATION_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/v0141-provenance-sha256-correction-v0151.json").get("status") == "V0141_PROVENANCE_SHA256_CORRECTION_RECORDED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/v0150-rejection-record-v0151.json").get("status") == "V0150_EXTERNAL_VISUAL_FAILED_TECHNICAL_QA_REJECTED_BY_EXTERNAL_REVIEW",
+        "new ground/contact, terminal, death-vs-HIT, provenance and rejection records pass",
     )
 
 

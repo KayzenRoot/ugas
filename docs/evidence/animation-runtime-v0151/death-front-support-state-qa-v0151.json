@@ -122,7 +122,10 @@
           "center_x": 340.5,
           "ground_clearance_px": 3.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 0.0,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "planted",
@@ -131,7 +134,10 @@
           "center_x": 262.5,
           "ground_clearance_px": -2.116909,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 0.0,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -139,11 +145,13 @@
         "right": "planted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     },
     {
@@ -156,7 +164,10 @@
           "center_x": 340.5,
           "ground_clearance_px": 4.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 0.0,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "planted",
@@ -165,7 +176,10 @@
           "center_x": 263.0,
           "ground_clearance_px": -1.116909,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 0.5,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -173,11 +187,13 @@
         "right": "planted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     },
     {
@@ -190,7 +206,10 @@
           "center_x": 343.5,
           "ground_clearance_px": 2.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 3.0,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "planted",
@@ -199,7 +218,10 @@
           "center_x": 264.5,
           "ground_clearance_px": -0.116909,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 2.0,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -207,11 +229,13 @@
         "right": "planted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     },
     {
@@ -224,7 +248,10 @@
           "center_x": 341.5,
           "ground_clearance_px": 7.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 1.0,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "planted",
@@ -233,7 +260,10 @@
           "center_x": 255.0,
           "ground_clearance_px": 9.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 7.5,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -241,11 +271,13 @@
         "right": "planted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     },
     {
@@ -258,7 +290,10 @@
           "center_x": 331.0,
           "ground_clearance_px": 8.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 9.5,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "planted",
@@ -267,7 +302,10 @@
           "center_x": 245.0,
           "ground_clearance_px": 8.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 17.5,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -275,11 +313,13 @@
         "right": "planted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     },
     {
@@ -292,7 +332,10 @@
           "center_x": 317.5,
           "ground_clearance_px": 31.883091,
           "planted_gate": false,
-          "lifted_gate": true
+          "lifted_gate": true,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 23.0,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "planted",
@@ -301,7 +344,10 @@
           "center_x": 245.0,
           "ground_clearance_px": 8.883091,
           "planted_gate": true,
-          "lifted_gate": false
+          "lifted_gate": false,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 17.5,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -309,11 +355,13 @@
         "right": "planted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     },
     {
@@ -326,7 +374,10 @@
           "center_x": 334.5,
           "ground_clearance_px": 32.883091,
           "planted_gate": false,
-          "lifted_gate": true
+          "lifted_gate": true,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 6.0,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "lifted",
@@ -335,7 +386,10 @@
           "center_x": 243.0,
           "ground_clearance_px": 82.883091,
           "planted_gate": false,
-          "lifted_gate": true
+          "lifted_gate": true,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 19.5,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -343,11 +397,13 @@
         "right": "lifted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     },
     {
@@ -360,7 +416,10 @@
           "center_x": 334.5,
           "ground_clearance_px": 32.883091,
           "planted_gate": false,
-          "lifted_gate": true
+          "lifted_gate": true,
+          "fixed_world_reference_x": 340.5,
+          "world_contact_drift_px": 6.0,
+          "world_contact_truthful": true
         },
         "right": {
           "declared_role": "lifted",
@@ -369,7 +428,10 @@
           "center_x": 243.0,
           "ground_clearance_px": 82.883091,
           "planted_gate": false,
-          "lifted_gate": true
+          "lifted_gate": true,
+          "fixed_world_reference_x": 262.5,
+          "world_contact_drift_px": 19.5,
+          "world_contact_truthful": true
         }
       },
       "measured_support": {
@@ -377,11 +439,13 @@
         "right": "lifted"
       },
       "state_matches_rendered": true,
+      "fixed_world_contact_truthful": true,
       "ground_reference_y": 479.883091,
       "thresholds": {
         "planted_tolerance_px": 10.0,
         "penetration_max_px": 8.0,
-        "lifted_clearance_min_px": 12.0
+        "lifted_clearance_min_px": 12.0,
+        "world_contact_drift_max_px": 24.0
       }
     }
   ],

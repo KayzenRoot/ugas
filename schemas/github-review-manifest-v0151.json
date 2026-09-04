@@ -60,7 +60,7 @@
       "properties": {
         "version": {"const": "0.15.1"},
         "phase": {"const": "DEATH_ANIMATION_FRONT"},
-        "current_gate": {"const": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED"},
+        "current_gate": {"const": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED"},
         "allowed_next_actions": {"const": ["external_visual_review_death_animation_front"]},
         "new_generation": {"const": 0}
       }
@@ -106,7 +106,7 @@
         "path": {"const": "docs/evidence/current-state.json"},
         "version": {"const": "0.15.1"},
         "phase": {"const": "DEATH_ANIMATION_FRONT"},
-        "current_gate": {"const": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED"},
+        "current_gate": {"const": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED"},
         "production_approved": {"const": false},
         "production_routing": {"const": "BLOCKED"},
         "external_visual_review": {"type": "object"},
@@ -157,7 +157,7 @@
     "death_front_evidence": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["contract", "execution", "visual_manifest", "targets", "frame_qa", "temporal_qa", "negative_controls", "preview_gif", "spritesheet", "phase_marker_sheet"],
+      "required": ["contract", "execution", "visual_manifest", "targets", "frame_qa", "temporal_qa", "negative_controls", "contact_state", "ground_reference", "foot_ground_qa", "terminal_support_qa", "death_vs_hit_qa", "provenance_hash_correction", "v0150_rejection", "preview_gif", "spritesheet", "phase_marker_sheet"],
       "properties": {
         "contract": {"type": "string", "minLength": 1},
         "execution": {"type": "string", "minLength": 1},
@@ -166,6 +166,13 @@
         "frame_qa": {"type": "string", "minLength": 1},
         "temporal_qa": {"type": "string", "minLength": 1},
         "negative_controls": {"type": "string", "minLength": 1},
+        "contact_state": {"type": "string", "minLength": 1},
+        "ground_reference": {"type": "string", "minLength": 1},
+        "foot_ground_qa": {"type": "string", "minLength": 1},
+        "terminal_support_qa": {"type": "string", "minLength": 1},
+        "death_vs_hit_qa": {"type": "string", "minLength": 1},
+        "provenance_hash_correction": {"type": "string", "minLength": 1},
+        "v0150_rejection": {"type": "string", "minLength": 1},
         "preview_gif": {"type": "string", "minLength": 1},
         "spritesheet": {"type": "string", "minLength": 1},
         "phase_marker_sheet": {"type": "string", "minLength": 1}
@@ -174,10 +181,11 @@
     "recovery_evidence": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["repair_provenance", "frozen_state_consistency", "approved_head"],
+      "required": ["repair_provenance", "frozen_state_consistency", "approved_head", "provenance_hash_correction"],
       "properties": {
         "repair_provenance": {"type": "string", "minLength": 1},
         "frozen_state_consistency": {"type": "string", "minLength": 1},
+        "provenance_hash_correction": {"type": "string", "minLength": 1},
         "approved_head": {"const": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda"},
         "merge_commit": {"const": "98ebd95564216fbbee222aab630b73b5ff6f298d"}
       }

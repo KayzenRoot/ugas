@@ -31,7 +31,7 @@ Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-
 
 ## v0.15.1 DEATH_ANIMATION_FRONT corrective slice
 
-The active phase is DEATH_ANIMATION_FRONT and the local gate is DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED. The eight-frame, 12 fps, non-looping source-only correction is technically qualified; external visual review remains REQUIRED. PR #5 remains OPEN on `KayzenRoot/ugas`; the rejected v0.15.0 reviewed head is preserved unchanged. `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`.
+The active phase is DEATH_ANIMATION_FRONT and the local gate is DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED. The eight-frame, 12 fps, non-looping source-only correction is technically qualified; external visual review remains REQUIRED. PR #5 remains OPEN on `KayzenRoot/ugas`; the rejected v0.15.0 reviewed head is preserved unchanged. `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`.
 
 ## Historical v0.15.0 DEATH_ANIMATION_FRONT rejected review
 

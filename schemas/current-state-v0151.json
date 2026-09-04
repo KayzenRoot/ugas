@@ -39,7 +39,7 @@
         "evidence": {"type": "string"}
       }
     },
-    "current_gate": {"const": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED"},
+    "current_gate": {"const": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED"},
     "stop_reason": {"type": ["string", "null"]},
     "allowed_next_actions": {"const": ["external_visual_review_death_animation_front"]},
     "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},

@@ -15,9 +15,16 @@
         "death_like_collapse": false,
         "death_vs_hit_or_neutral": false,
         "marker_matches_measured_body_contact_transition": false,
+        "ground_contact_marker_matches_actual_transition": false,
         "contact_state_transition_valid": false,
+        "support_state_classification_valid": false,
         "final_pose_grounded_terminal": false,
+        "terminal_pose_physically_supported": false,
+        "body_contact_persists_to_terminal": false,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "death_vs_hit_semantic_separation": false,
         "contact_teleport_free": false,
         "weapon_wrist_continuity": true,
         "angular_continuity": false,
@@ -40,9 +47,16 @@
         "death_like_collapse": true,
         "death_vs_hit_or_neutral": false,
         "marker_matches_measured_body_contact_transition": false,
+        "ground_contact_marker_matches_actual_transition": false,
         "contact_state_transition_valid": false,
+        "support_state_classification_valid": false,
         "final_pose_grounded_terminal": false,
+        "terminal_pose_physically_supported": false,
+        "body_contact_persists_to_terminal": false,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "death_vs_hit_semantic_separation": false,
         "contact_teleport_free": false,
         "weapon_wrist_continuity": true,
         "angular_continuity": true,
@@ -67,9 +81,16 @@
         "death_like_collapse": true,
         "death_vs_hit_or_neutral": true,
         "marker_matches_measured_body_contact_transition": false,
+        "ground_contact_marker_matches_actual_transition": false,
         "contact_state_transition_valid": false,
+        "support_state_classification_valid": false,
         "final_pose_grounded_terminal": false,
+        "terminal_pose_physically_supported": false,
+        "body_contact_persists_to_terminal": false,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "death_vs_hit_semantic_separation": true,
         "contact_teleport_free": false,
         "weapon_wrist_continuity": true,
         "angular_continuity": false,
@@ -92,9 +113,16 @@
         "death_like_collapse": true,
         "death_vs_hit_or_neutral": true,
         "marker_matches_measured_body_contact_transition": false,
+        "ground_contact_marker_matches_actual_transition": false,
         "contact_state_transition_valid": true,
+        "support_state_classification_valid": true,
         "final_pose_grounded_terminal": true,
+        "terminal_pose_physically_supported": true,
+        "body_contact_persists_to_terminal": true,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "death_vs_hit_semantic_separation": true,
         "contact_teleport_free": true,
         "weapon_wrist_continuity": true,
         "angular_continuity": true,
@@ -117,9 +145,16 @@
         "death_like_collapse": true,
         "death_vs_hit_or_neutral": true,
         "marker_matches_measured_body_contact_transition": true,
+        "ground_contact_marker_matches_actual_transition": true,
         "contact_state_transition_valid": false,
+        "support_state_classification_valid": false,
         "final_pose_grounded_terminal": false,
+        "terminal_pose_physically_supported": false,
+        "body_contact_persists_to_terminal": true,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "death_vs_hit_semantic_separation": true,
         "contact_teleport_free": false,
         "weapon_wrist_continuity": true,
         "angular_continuity": true,
@@ -142,9 +177,16 @@
         "death_like_collapse": true,
         "death_vs_hit_or_neutral": true,
         "marker_matches_measured_body_contact_transition": true,
+        "ground_contact_marker_matches_actual_transition": true,
         "contact_state_transition_valid": false,
+        "support_state_classification_valid": false,
         "final_pose_grounded_terminal": false,
+        "terminal_pose_physically_supported": false,
+        "body_contact_persists_to_terminal": true,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "death_vs_hit_semantic_separation": true,
         "contact_teleport_free": false,
         "weapon_wrist_continuity": true,
         "angular_continuity": true,
@@ -167,9 +209,16 @@
         "death_like_collapse": true,
         "death_vs_hit_or_neutral": false,
         "marker_matches_measured_body_contact_transition": false,
+        "ground_contact_marker_matches_actual_transition": false,
         "contact_state_transition_valid": false,
+        "support_state_classification_valid": false,
         "final_pose_grounded_terminal": false,
+        "terminal_pose_physically_supported": false,
+        "body_contact_persists_to_terminal": false,
         "ground_reference_stable": true,
+        "global_ground_reference_valid": true,
+        "foot_ground_truthfulness": true,
+        "death_vs_hit_semantic_separation": false,
         "contact_teleport_free": false,
         "weapon_wrist_continuity": true,
         "angular_continuity": true,
@@ -194,8 +243,14 @@
           ],
           "marker_matches_measured_body_contact_transition": true,
           "contact_state_transition_valid": false,
+          "support_state_classification_valid": false,
           "final_pose_grounded_terminal": true,
+          "terminal_pose_physically_supported": true,
+          "body_contact_persists_to_terminal": true,
           "ground_reference_stable": true,
+          "global_ground_reference_valid": true,
+          "foot_ground_truthfulness": true,
+          "ground_contact_marker_matches_actual_transition": true,
           "no_premature_body_contact": true,
           "declared_regions_match_measured": false,
           "terminal_grounded_frames": [
@@ -214,7 +269,19 @@
               "right": 482.0
             },
             "ground_reference_y": 479.883091,
-            "recomputed_per_frame": false
+            "recomputed_per_frame": false,
+            "fixed_world_contact_points": {
+              "left": {
+                "x": 340.5,
+                "y": 476.0,
+                "source_frame": 0
+              },
+              "right": {
+                "x": 262.5,
+                "y": 482.0,
+                "source_frame": 0
+              }
+            }
           },
           "declared_states": [
             {
@@ -529,8 +596,156 @@
         },
         "all_fields_match": false
       },
-      "mutation_path": "tmp/ugas-v0151-determinism-nc-l9le4hq7/mutated-frame-00.png"
+      "mutation_path": "tmp/ugas-v0151-determinism-nc-zl6frr17/mutated-frame-00.png"
     }
+  },
+  "ground_contact_controls": {
+    "schema_version": "0.15.1",
+    "status": "NC_GC_01_TO_NC_GC_06_PASSED",
+    "controls": {
+      "NC-GC-01_marker_without_new_contact": {
+        "gate": "ground_contact_marker_matches_actual_transition",
+        "status": "REJECTED",
+        "measured_first_body_contact_frame": 6,
+        "marker_frame": 4
+      },
+      "NC-GC-02_support_regime_never_changes": {
+        "gate": "support_state_classification_valid",
+        "status": "REJECTED",
+        "measured_support": [
+          {
+            "left": "planted",
+            "right": "planted"
+          },
+          {
+            "left": "planted",
+            "right": "planted"
+          },
+          {
+            "left": "planted",
+            "right": "planted"
+          },
+          {
+            "left": "planted",
+            "right": "planted"
+          },
+          {
+            "left": "planted",
+            "right": "planted"
+          },
+          {
+            "left": "lifted",
+            "right": "planted"
+          },
+          {
+            "left": "lifted",
+            "right": "lifted"
+          },
+          {
+            "left": "lifted",
+            "right": "lifted"
+          }
+        ]
+      },
+      "NC-GC-03_root_drop_only": {
+        "gate": "ground_contact_marker_matches_actual_transition",
+        "status": "REJECTED",
+        "root_shift_y": [
+          6.0,
+          12.0,
+          20.0,
+          28.0,
+          50.0,
+          50.0,
+          50.0,
+          50.0
+        ],
+        "measured_first_body_contact_frame": null
+      },
+      "NC-GC-04_fake_contact_then_rebound": {
+        "gate": "body_contact_persists_to_terminal",
+        "status": "REJECTED",
+        "terminal_body_contact": [
+          false,
+          false
+        ],
+        "terminal_support": [
+          {
+            "left": "lifted",
+            "right": "lifted"
+          },
+          {
+            "left": "lifted",
+            "right": "lifted"
+          }
+        ]
+      },
+      "NC-GC-05_planted_foot_world_drift": {
+        "gate": "foot_ground_truthfulness",
+        "status": "REJECTED",
+        "right_foot": [
+          {
+            "declared_role": "planted",
+            "measured_role": "planted",
+            "bottom_y": 483.0,
+            "center_x": 297.5,
+            "ground_clearance_px": -3.116909,
+            "planted_gate": true,
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 35.0,
+            "world_contact_truthful": false
+          },
+          {
+            "declared_role": "planted",
+            "measured_role": "planted",
+            "bottom_y": 482.0,
+            "center_x": 297.0,
+            "ground_clearance_px": -2.116909,
+            "planted_gate": true,
+            "lifted_gate": false,
+            "fixed_world_reference_x": 262.5,
+            "world_contact_drift_px": 34.5,
+            "world_contact_truthful": false
+          }
+        ]
+      },
+      "NC-GC-06_terminal_suspended_lean": {
+        "gate": "terminal_pose_physically_supported",
+        "status": "REJECTED",
+        "terminal_declared_states": [
+          {
+            "frame": 6,
+            "state_id": "grounded_terminal",
+            "foot_support_mode": "no_foot",
+            "foot_support": {
+              "left": "lifted",
+              "right": "lifted"
+            },
+            "body_contact_class": "suspended",
+            "body_contact_regions": [],
+            "grounded_terminal": false
+          },
+          {
+            "frame": 7,
+            "state_id": "grounded_terminal_hold",
+            "foot_support_mode": "no_foot",
+            "foot_support": {
+              "left": "lifted",
+              "right": "lifted"
+            },
+            "body_contact_class": "suspended",
+            "body_contact_regions": [],
+            "grounded_terminal": false
+          }
+        ],
+        "terminal_body_contact": [
+          true,
+          true
+        ]
+      }
+    },
+    "source": "scripts/validation/run_animation_runtime_v0151.py independent contact/support input mutations"
   },
   "source": "scripts/validation/run_animation_runtime_v0151.py independent semantic, package and decoded-pixel mutations",
   "hit_spec_loop": false

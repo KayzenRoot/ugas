@@ -1,9 +1,9 @@
 {
   "schema_version": "0.15.1",
-  "prompt": "PROMPT-CORRETIVO-UGAS-v0.15.1-DEATH-GROUND-CONTACT-DETERMINISM-VISUAL-INTEGRITY",
+  "prompt": "PROMPT-CORRETIVO-UGAS-v0.15.1-DEATH-GROUND-CONTACT-VISUAL-INTEGRITY",
   "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
   "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
-  "evidence_head_sha": "e3bbc72f100a26caf2ba27f4eeb6f27be82291f1",
+  "evidence_head_sha": "6d696db9a4e244de519dc10b095b4f2accf9e036",
   "hit_approved_head_sha": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
   "run_front_approved_head_sha": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
   "animation_id": "death-front-v1-v0151",
@@ -23,12 +23,26 @@
   "production_approved": false,
   "production_routing": "BLOCKED",
   "external_visual": "REQUIRED",
+  "historical_v0150_review": {
+    "schema_version": "0.15.1",
+    "status": "V0150_EXTERNAL_VISUAL_FAILED_TECHNICAL_QA_REJECTED_BY_EXTERNAL_REVIEW",
+    "historical_candidate": "docs/evidence/animation-runtime-v0150/",
+    "reviewed_head": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
+    "external_visual": "FAILED",
+    "technical_semantic_qa": "REJECTED_BY_EXTERNAL_REVIEW",
+    "green_ci_does_not_override_visual_rejection": true,
+    "historical_evidence_unchanged": true,
+    "correction_policy": "forward_only",
+    "reason": "The reviewed v0.15.0 D6/D7 output remained a suspended sideways lean and D4 did not show real body-ground contact."
+  },
   "negative_controls": "NC_01_TO_NC_16_PASSED",
+  "ground_contact_negative_controls": "NC_GC_01_TO_NC_GC_06_PASSED",
   "loop_negative_controls": "NC_LOOP_01_TO_05_PASSED",
   "run_front_loop_regression": "RUN_FRONT_LOOP_REGRESSION_PASSED",
   "hit_front_nonloop_regression": "HIT_NONLOOP_REGRESSION_PASSED",
   "approved_assets_untouched": "APPROVED_ASSETS_UNTOUCHED",
   "frozen_evidence_integrity": "FROZEN_V0141_EVIDENCE_RESTORED_AND_VERIFIED",
+  "frozen_evidence_provenance_hash": "V0141_PROVENANCE_SHA256_CORRECTION_RECORDED",
   "true_two_run_determinism": "DEATH_DETERMINISM_TRUE_TWO_RUN_PASSED",
   "repository_transfer_provenance": "REPOSITORY_TRANSFER_PROVENANCE_RECORDED",
   "package": {
@@ -47,8 +61,14 @@
     "visual_manifest": "docs/evidence/animation-runtime-v0151/death-front-visual-manifest-v0151.json",
     "phase_marker_sheet": "docs/evidence/animation-runtime-v0151/death-front-phase-markers-v0151.png",
     "negative_controls": "docs/evidence/animation-runtime-v0151/death-front-gate-negative-controls-v0151.json",
-    "body_ground_contact": "docs/evidence/animation-runtime-v0151/death-front-body-ground-contact-qa-v0151.json",
-    "support_state": "docs/evidence/animation-runtime-v0151/death-front-support-state-qa-v0151.json",
+    "contact_state": "docs/evidence/animation-runtime-v0151/death-front-contact-state-v0151.json",
+    "ground_reference": "docs/evidence/animation-runtime-v0151/death-front-ground-reference-v0151.json",
+    "body_mechanics": "docs/evidence/animation-runtime-v0151/death-front-body-mechanics-qa-v0151.json",
+    "foot_ground": "docs/evidence/animation-runtime-v0151/death-front-foot-ground-qa-v0151.json",
+    "terminal_support": "docs/evidence/animation-runtime-v0151/death-front-terminal-support-qa-v0151.json",
+    "death_vs_hit": "docs/evidence/animation-runtime-v0151/death-front-death-vs-hit-qa-v0151.json",
+    "provenance_hash_correction": "docs/evidence/animation-runtime-v0151/v0141-provenance-sha256-correction-v0151.json",
+    "v0150_rejection": "docs/evidence/animation-runtime-v0151/v0150-rejection-record-v0151.json",
     "determinism": "docs/evidence/animation-runtime-v0151/death-front-determinism-v0151.json"
   },
   "historical_v0150_preserved": true,
@@ -57,9 +77,13 @@
   "executor_does_not_claim_visual_approval": true,
   "github_review_manifest_is_authority_for_final_head": true,
   "contact_gate_names": [
-    "marker_matches_measured_body_contact_transition",
-    "contact_state_transition_valid",
-    "final_pose_grounded_terminal",
-    "ground_reference_stable"
+    "global_ground_reference_valid",
+    "support_state_classification_valid",
+    "ground_contact_marker_matches_actual_transition",
+    "body_contact_persists_to_terminal",
+    "terminal_pose_physically_supported",
+    "death_vs_hit_semantic_separation",
+    "terminal_stability",
+    "foot_ground_truthfulness"
   ]
 }

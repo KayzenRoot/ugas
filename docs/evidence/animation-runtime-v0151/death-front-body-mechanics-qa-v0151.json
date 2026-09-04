@@ -73,8 +73,14 @@
       ],
       "marker_matches_measured_body_contact_transition": true,
       "contact_state_transition_valid": true,
+      "support_state_classification_valid": true,
       "final_pose_grounded_terminal": true,
+      "terminal_pose_physically_supported": true,
+      "body_contact_persists_to_terminal": true,
       "ground_reference_stable": true,
+      "global_ground_reference_valid": true,
+      "foot_ground_truthfulness": true,
+      "ground_contact_marker_matches_actual_transition": true,
       "no_premature_body_contact": true,
       "declared_regions_match_measured": true,
       "terminal_grounded_frames": [
@@ -93,7 +99,19 @@
           "right": 482.0
         },
         "ground_reference_y": 479.883091,
-        "recomputed_per_frame": false
+        "recomputed_per_frame": false,
+        "fixed_world_contact_points": {
+          "left": {
+            "x": 340.5,
+            "y": 476.0,
+            "source_frame": 0
+          },
+          "right": {
+            "x": 262.5,
+            "y": 482.0,
+            "source_frame": 0
+          }
+        }
       },
       "declared_states": [
         {
@@ -310,7 +328,8 @@
     "marker_matches_measured_body_contact_transition": true,
     "contact_state_transition_valid": true,
     "final_pose_grounded_terminal": true,
-    "ground_reference_stable": true
+    "ground_reference_stable": true,
+    "foot_ground_truthfulness": true
   },
   "status": "DEATH_BODY_MECHANICS_QA_PASSED"
 }

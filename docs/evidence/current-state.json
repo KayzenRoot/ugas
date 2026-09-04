@@ -7,7 +7,7 @@
     "review": "REVIEW-v0.15.0.md",
     "evidence": "docs/evidence/current-state-v0.15.0.json"
   },
-  "current_gate": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED",
+  "current_gate": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED",
   "stop_reason": "DEATH_ANIMATION_FRONT_V0151_PR5_OPEN_AWAITING_REQUIRED_CHECKS_AND_EXTERNAL_VISUAL_REVIEW",
   "allowed_next_actions": [
     "external_visual_review_death_animation_front_v0151"
@@ -95,16 +95,23 @@
     "v0151_targets": "docs/evidence/animation-runtime-v0151/death-front-targets-v0151.json",
     "v0151_frame_qa": "docs/evidence/animation-runtime-v0151/death-front-frame-qa-v0151.json",
     "v0151_temporal_qa": "docs/evidence/animation-runtime-v0151/death-front-temporal-qa-v0151.json",
+    "v0151_contact_state": "docs/evidence/animation-runtime-v0151/death-front-contact-state-v0151.json",
+    "v0151_ground_reference": "docs/evidence/animation-runtime-v0151/death-front-ground-reference-v0151.json",
+    "v0151_foot_ground_qa": "docs/evidence/animation-runtime-v0151/death-front-foot-ground-qa-v0151.json",
+    "v0151_terminal_support_qa": "docs/evidence/animation-runtime-v0151/death-front-terminal-support-qa-v0151.json",
+    "v0151_death_vs_hit_qa": "docs/evidence/animation-runtime-v0151/death-front-death-vs-hit-qa-v0151.json",
     "v0151_approved_assets": "docs/evidence/animation-runtime-v0151/approved-assets-untouched-v0151.json",
     "v0151_frozen_evidence_integrity": "docs/evidence/animation-runtime-v0151/frozen-evidence-integrity-v0151.json",
+    "v0151_provenance_hash_correction": "docs/evidence/animation-runtime-v0151/v0141-provenance-sha256-correction-v0151.json",
+    "v0150_rejection_record": "docs/evidence/animation-runtime-v0151/v0150-rejection-record-v0151.json",
     "historical_v0150_contract": "docs/evidence/animation-runtime-v0150/death-front-contract-v0150.json",
     "historical_v0150_execution": "docs/evidence/animation-runtime-v0150/execution-evidence-v0.15.0.json"
   },
   "state_consistency": {
-    "status": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED",
+    "status": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED",
     "version": "0.15.1",
     "phase": "DEATH_ANIMATION_FRONT",
-    "current_gate": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED",
+    "current_gate": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED",
     "feature_branch": "codex/v0.15.0-death-animation-front",
     "baseline_head": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
     "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",

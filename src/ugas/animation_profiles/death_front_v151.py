@@ -104,6 +104,18 @@ def _ground_reference(context: Mapping[str, Any], spec: Mapping[str, Any], detai
     if not all(math.isfinite(value) for value in values):
         raise ValueError("v0151_ground_reference_not_finite")
     reference = sum(values) / len(values)
+    fixed_world_contact_points = {}
+    for side in ("left", "right"):
+        layer = details[0]["presented_layers"][f"{side}_shin_foot"]
+        center_x = _bbox_center_x(layer)
+        bottom_y = _bottom(layer)
+        if center_x is None or bottom_y is None or not math.isfinite(center_x) or not math.isfinite(bottom_y):
+            raise ValueError(f"v0151_fixed_{side}_foot_contact_reference_not_finite")
+        fixed_world_contact_points[side] = {
+            "x": round(center_x, 6),
+            "y": round(bottom_y, 6),
+            "source_frame": 0,
+        }
     return reference, {
         "method": "single-frozen-D0-projected-source-alpha-sole-reference",
         "source_frame": 0,
@@ -111,6 +123,7 @@ def _ground_reference(context: Mapping[str, Any], spec: Mapping[str, Any], detai
         "D0_actual_sole_y": {side: round(actual[side], 6) for side in ("left", "right")},
         "ground_reference_y": round(reference, 6),
         "recomputed_per_frame": False,
+        "fixed_world_contact_points": fixed_world_contact_points,
     }
 
 
@@ -121,12 +134,14 @@ def _body_observation(details: Mapping[str, Any], ground_reference: float, thres
     contact_regions: list[str] = []
     for name in BODY_REGIONS:
         bottom = _bottom(details["presented_layers"][name])
+        center_x = _bbox_center_x(details["presented_layers"][name])
         clearance = None if bottom is None else ground_reference - bottom
         contact = bottom is not None and -penetration <= float(clearance) <= tolerance
         if contact:
             contact_regions.append(name)
         regions[name] = {
             "bottom_y": None if bottom is None else round(bottom, 6),
+            "center_x": None if center_x is None else round(center_x, 6),
             "ground_clearance_px": None if clearance is None else round(float(clearance), 6),
             "contact": contact,
         }
@@ -140,13 +155,21 @@ def _body_observation(details: Mapping[str, Any], ground_reference: float, thres
     }
 
 
-def _foot_observation(details: Mapping[str, Any], ground_reference: float, thresholds: Mapping[str, Any], declared: Mapping[str, Any]) -> dict[str, Any]:
+def _foot_observation(
+    details: Mapping[str, Any],
+    ground_reference: float,
+    thresholds: Mapping[str, Any],
+    declared: Mapping[str, Any],
+    ground_metadata: Mapping[str, Any],
+) -> dict[str, Any]:
     planted_tolerance = float(thresholds["foot_planted_tolerance_px"])
     penetration = float(thresholds["foot_penetration_max_px"])
     lifted_min = float(thresholds["foot_lifted_clearance_min_px"])
+    world_drift_limit = float(thresholds["foot_world_contact_drift_max_px"])
     feet: dict[str, Any] = {}
     measured: dict[str, str] = {}
     declared_feet = declared.get("foot_support", {})
+    fixed_points = ground_metadata.get("fixed_world_contact_points", {})
     for side in ("left", "right"):
         name = f"{side}_shin_foot"
         layer = details["presented_layers"][name]
@@ -157,6 +180,12 @@ def _foot_observation(details: Mapping[str, Any], ground_reference: float, thres
         lifted = bottom is not None and float(clearance) >= lifted_min
         measured_role = "planted" if planted else ("lifted" if lifted else "transitional")
         measured[side] = measured_role
+        fixed_point = fixed_points.get(side, {})
+        reference_x = fixed_point.get("x")
+        world_drift = None if center_x is None or reference_x is None else abs(float(center_x) - float(reference_x))
+        world_truthful = measured_role != "planted"
+        if measured_role == "planted":
+            world_truthful = reference_x is not None and world_drift is not None and world_drift <= world_drift_limit
         feet[side] = {
             "declared_role": declared_feet.get(side),
             "measured_role": measured_role,
@@ -165,17 +194,22 @@ def _foot_observation(details: Mapping[str, Any], ground_reference: float, thres
             "ground_clearance_px": None if clearance is None else round(float(clearance), 6),
             "planted_gate": planted,
             "lifted_gate": lifted,
+            "fixed_world_reference_x": None if reference_x is None else round(float(reference_x), 6),
+            "world_contact_drift_px": None if world_drift is None else round(float(world_drift), 6),
+            "world_contact_truthful": world_truthful,
         }
     return {
         "declared_support_mode": declared.get("foot_support_mode"),
         "feet": feet,
         "measured_support": measured,
         "state_matches_rendered": all(feet[side]["declared_role"] == measured[side] for side in ("left", "right")),
+        "fixed_world_contact_truthful": all(feet[side]["world_contact_truthful"] for side in ("left", "right")),
         "ground_reference_y": round(ground_reference, 6),
         "thresholds": {
             "planted_tolerance_px": planted_tolerance,
             "penetration_max_px": penetration,
             "lifted_clearance_min_px": lifted_min,
+            "world_contact_drift_max_px": world_drift_limit,
         },
     }
 
@@ -198,12 +232,18 @@ def _contact_transition(
     expected_regions = [set(map(str, item.get("body_contact_regions", []))) for item in states]
     measured_regions = [set(map(str, item["contact_regions"])) for item in body_records]
     region_match = all(expected_regions[index].issubset(measured_regions[index]) for index in range(len(states)))
-    state_matches = all(foot_records[index]["state_matches_rendered"] and bool(states[index].get("grounded_terminal")) == (index >= 6 and body_records[index]["body_contact"]) for index in range(len(states)))
+    body_state_matches = all(bool(states[index].get("body_contact_regions")) == body_records[index]["body_contact"] for index in range(len(states)))
+    state_matches = all(foot_records[index]["state_matches_rendered"] and body_state_matches and bool(states[index].get("grounded_terminal")) == (index >= 6 and body_records[index]["body_contact"]) for index in range(len(states)))
+    foot_ground_truthfulness = all(record["fixed_world_contact_truthful"] for record in foot_records)
     no_premature_contact = all(not body_records[index]["body_contact"] for index in range(GROUND_CONTACT_FRAME))
     marker_matches = measured_first == int(marker_frame) == GROUND_CONTACT_FRAME and declared_first == GROUND_CONTACT_FRAME and no_premature_contact
     terminal_frames = [6, 7]
     terminal_grounded = all(body_records[index]["body_contact"] and bool(states[index].get("grounded_terminal")) for index in terminal_frames)
     terminal_regions = all(expected_regions[index] and expected_regions[index].issubset(measured_regions[index]) for index in terminal_frames)
+    body_contact_persists = all(body_records[index]["body_contact"] for index in terminal_frames) and all(
+        not (foot_records[index]["measured_support"]["left"] == "planted" and foot_records[index]["measured_support"]["right"] == "planted")
+        for index in terminal_frames
+    )
     reference_stable = (
         ground_metadata.get("source_frame") == 0
         and ground_metadata.get("recomputed_per_frame") is False
@@ -217,8 +257,14 @@ def _contact_transition(
         "measured_body_contact_frames": measured_frames,
         "marker_matches_measured_body_contact_transition": marker_matches,
         "contact_state_transition_valid": state_matches and region_match,
+        "support_state_classification_valid": state_matches and region_match,
         "final_pose_grounded_terminal": terminal_grounded and terminal_regions,
+        "terminal_pose_physically_supported": terminal_grounded and terminal_regions,
+        "body_contact_persists_to_terminal": body_contact_persists,
         "ground_reference_stable": reference_stable,
+        "global_ground_reference_valid": reference_stable,
+        "foot_ground_truthfulness": foot_ground_truthfulness,
+        "ground_contact_marker_matches_actual_transition": marker_matches,
         "no_premature_body_contact": no_premature_contact,
         "declared_regions_match_measured": region_match,
         "terminal_grounded_frames": terminal_frames,
@@ -279,6 +325,7 @@ def _temporal(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: Map
     height_reduction = (frame_heights[0] - frame_heights[FINAL_POSE_FRAME]) / max(1.0, frame_heights[0]) if frame_heights else 0.0
     target_hashes = [legacy.target_digest(target) for target in targets]
     contact_continuity = _contact_continuity(body_records, foot_records, thresholds)
+    death_vs_hit = displacements[7] >= float(thresholds["death_vs_hit_recovery_min_px"]) and displacements[7] >= legacy.HIT_H5_RECOVERY_DISPLACEMENT_PX * float(thresholds["death_vs_hit_separation_ratio_min"]) and target_hashes[7] != legacy.HIT_H5_RECOVERY_TARGET_HASH and target_hashes[7] != target_hashes[0]
     gates = {
         "frame_count_eight_non_loop": int(spec["frame_count"]) == 8 and spec["loop"] is False,
         "all_target_hashes_distinct": len(set(target_hashes)) == len(target_hashes),
@@ -287,11 +334,18 @@ def _temporal(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: Map
         "irreversible_death": irreversible and collapse_ratio >= float(thresholds["terminal_to_peak_ratio_min"]),
         "terminal_stability": terminal_residual <= float(thresholds["terminal_residual_max_px"]),
         "death_like_collapse": death_like,
-        "death_vs_hit_or_neutral": displacements[7] >= float(thresholds["death_vs_hit_recovery_min_px"]) and displacements[7] >= legacy.HIT_H5_RECOVERY_DISPLACEMENT_PX * float(thresholds["death_vs_hit_separation_ratio_min"]) and target_hashes[7] != legacy.HIT_H5_RECOVERY_TARGET_HASH and target_hashes[7] != target_hashes[0],
+        "death_vs_hit_or_neutral": death_vs_hit,
         "marker_matches_measured_body_contact_transition": bool(transition["marker_matches_measured_body_contact_transition"]),
+        "ground_contact_marker_matches_actual_transition": bool(transition["ground_contact_marker_matches_actual_transition"]),
         "contact_state_transition_valid": bool(transition["contact_state_transition_valid"]),
+        "support_state_classification_valid": bool(transition["support_state_classification_valid"]),
         "final_pose_grounded_terminal": bool(transition["final_pose_grounded_terminal"]),
+        "terminal_pose_physically_supported": bool(transition["terminal_pose_physically_supported"]),
+        "body_contact_persists_to_terminal": bool(transition["body_contact_persists_to_terminal"]),
         "ground_reference_stable": bool(transition["ground_reference_stable"]),
+        "global_ground_reference_valid": bool(transition["global_ground_reference_valid"]),
+        "foot_ground_truthfulness": bool(transition["foot_ground_truthfulness"]),
+        "death_vs_hit_semantic_separation": death_vs_hit,
         # A contact path is only continuous when the measured region/state
         # sequence remains the declared sequence as well as staying within
         # the per-step pixel budget.  This makes a disappearing/reappearing
@@ -344,7 +398,7 @@ def observe(spec: Mapping[str, Any], context: Mapping[str, Any], prepared: Mappi
     ground_reference, ground_metadata = _ground_reference(context, spec, details)
     states = _contact_contract(spec)["states"]
     body_records = [_body_observation(detail, ground_reference, spec["qa_profile"]["thresholds"]) for detail in details]
-    foot_records = [_foot_observation(detail, ground_reference, spec["qa_profile"]["thresholds"], states[index]) for index, detail in enumerate(details)]
+    foot_records = [_foot_observation(detail, ground_reference, spec["qa_profile"]["thresholds"], states[index], ground_metadata) for index, detail in enumerate(details)]
     transition = _contact_transition(spec, prepared, body_records, foot_records, ground_reference, ground_metadata)
     temporal = _temporal(spec, context, prepared, outputs, body_records, foot_records, transition)
     return {"outputs": outputs, "details": details, "ground_reference": ground_reference, "ground_metadata": ground_metadata, "body_records": body_records, "foot_records": foot_records, "transition": transition, "temporal": temporal}
@@ -376,6 +430,7 @@ def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[st
             "seam": seam["status"] == "SEAM_TOPOLOGY_PASSED",
             "retention": aux["retention"]["status"] == "RETENTION_OCCLUSION_PASSED",
             "support_state_matches_rendered": foot["state_matches_rendered"],
+            "foot_ground_truthfulness": foot["fixed_world_contact_truthful"],
             "body_contact_region_measured": body["body_contact"] == bool(spec["adapter_parameters"]["contact_contract"]["states"][index].get("body_contact_regions")),
             "no_duplicate_body": duplicate["gate"],
             "front_facing": target.get("orientation") == "front",
@@ -433,8 +488,8 @@ def qa(spec: Mapping[str, Any], context: Mapping[str, Any], manifest: Mapping[st
         "status": "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_V0151_TECHNICALLY_QUALIFIED" if qualified else "DEATH_ANIMATION_FRONT_V0151_STRUCTURAL_SEMANTIC_OR_TEMPORAL_GAP",
         "frames": records,
         "temporal": temporal,
-        "body_mechanics": {"metrics": temporal["metrics"], "collapse": temporal["collapse"], "contact": temporal["contact"], "hard_gates": {key: value for key, value in temporal["hard_gates"].items() if key in {"marker_matches_measured_body_contact_transition", "contact_state_transition_valid", "final_pose_grounded_terminal", "ground_reference_stable", "death_like_collapse", "death_vs_hit_or_neutral", "terminal_stability"}}, "status": "DEATH_BODY_MECHANICS_QA_PASSED" if all(value for key, value in temporal["hard_gates"].items() if key in {"marker_matches_measured_body_contact_transition", "contact_state_transition_valid", "final_pose_grounded_terminal", "ground_reference_stable", "death_like_collapse", "death_vs_hit_or_neutral", "terminal_stability"}) else "DEATH_BODY_MECHANICS_GAP"},
-        "foot_ground": {"frames": [record["feet"] for record in records], "contact": temporal["contact"], "ground_reference_y": round(float(observation["ground_reference"]), 6), "status": "DEATH_SUPPORT_STATE_QA_PASSED" if all(record["feet"]["state_matches_rendered"] for record in records) else "DEATH_SUPPORT_STATE_GAP"},
+        "body_mechanics": {"metrics": temporal["metrics"], "collapse": temporal["collapse"], "contact": temporal["contact"], "hard_gates": {key: value for key, value in temporal["hard_gates"].items() if key in {"marker_matches_measured_body_contact_transition", "contact_state_transition_valid", "final_pose_grounded_terminal", "ground_reference_stable", "foot_ground_truthfulness", "death_like_collapse", "death_vs_hit_or_neutral", "terminal_stability"}}, "status": "DEATH_BODY_MECHANICS_QA_PASSED" if all(value for key, value in temporal["hard_gates"].items() if key in {"marker_matches_measured_body_contact_transition", "contact_state_transition_valid", "final_pose_grounded_terminal", "ground_reference_stable", "foot_ground_truthfulness", "death_like_collapse", "death_vs_hit_or_neutral", "terminal_stability"}) else "DEATH_BODY_MECHANICS_GAP"},
+        "foot_ground": {"frames": [record["feet"] for record in records], "contact": temporal["contact"], "ground_reference_y": round(float(observation["ground_reference"]), 6), "ground_reference": observation["ground_metadata"], "status": "DEATH_SUPPORT_STATE_QA_PASSED" if all(record["feet"]["state_matches_rendered"] and record["feet"]["fixed_world_contact_truthful"] for record in records) else "DEATH_SUPPORT_STATE_GAP"},
         "weapon": temporal["weapon"],
         "package_metadata": package_metadata,
         "provenance": {"source_sha256": context["source_sha256"], "part_hashes": context["part_hashes"], "mask_hashes": context["mask_hashes"], "sam2_runs": 0, "comfyui_generation_jobs": 0, "diffusion_runs": 0, "source_only_pixels": True},

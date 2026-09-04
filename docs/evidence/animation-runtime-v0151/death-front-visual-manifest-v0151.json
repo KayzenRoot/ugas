@@ -384,12 +384,13 @@
     "sha256": "d31abbd055c10527236ccf3fa804b9deaa58f220afc04417b39c67f9a740d495"
   },
   "contact_integrity": {
+    "global_ground_reference_valid": true,
+    "support_state_classification_valid": true,
+    "ground_contact_marker_matches_actual_transition": true,
+    "body_contact_persists_to_terminal": true,
+    "terminal_pose_physically_supported": true,
+    "death_vs_hit_semantic_separation": true,
     "terminal_stability": true,
-    "death_like_collapse": true,
-    "death_vs_hit_or_neutral": true,
-    "marker_matches_measured_body_contact_transition": true,
-    "contact_state_transition_valid": true,
-    "final_pose_grounded_terminal": true,
-    "ground_reference_stable": true
+    "foot_ground_truthfulness": true
   }
 }

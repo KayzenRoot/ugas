@@ -88,11 +88,11 @@ def validate(manifest_path: Path, visual_path: Path, root: Path = ROOT) -> dict[
 
     if scope.get("version") != "0.15.1" or scope.get("phase") != "DEATH_ANIMATION_FRONT":
         failures.append("active-scope-invalid")
-    if scope.get("current_gate") != "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED":
+    if scope.get("current_gate") != "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED":
         failures.append("active-gate-invalid")
     if current_state.get("version") != "0.15.1" or current_state.get("phase") != "DEATH_ANIMATION_FRONT":
         failures.append("current-state-scope-invalid")
-    if current_state.get("current_gate") != "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED":
+    if current_state.get("current_gate") != "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED":
         failures.append("current-state-gate-invalid")
     if current_state.get("production_approved") is not False or current_state.get("production_routing") != "BLOCKED":
         failures.append("production-boundary-invalid")

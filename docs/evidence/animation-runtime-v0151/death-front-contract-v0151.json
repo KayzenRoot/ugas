@@ -69,8 +69,9 @@
     "states_are_declarative_and_per_frame": true,
     "root_shift_is_secondary_collapse_metric": true,
     "terminal_requirement": "D6 and D7 grounded_terminal=true with measured stable body contact, non-neutral pose and no recovery",
-    "d7_foot_requirement": "both feet lifted; no dual-foot-planted terminal interpretation"
-    ,"collapse_occlusion_contract": {
+    "d7_foot_requirement": "both feet lifted; no dual-foot-planted terminal interpretation",
+    "planted_foot_world_contact": "declared planted feet are measured against fixed D0 contact-point x references and the frozen ground y band",
+    "collapse_occlusion_contract": {
       "pairs": [["torso_pelvis", "left_shin_foot"], ["torso_pelvis", "right_shin_foot"], ["left_upper_arm", "left_thigh"], ["left_upper_arm", "left_shin_foot"], ["left_forearm_hand", "left_shin_foot"], ["right_forearm_hand", "sword"]],
       "rule": "explicitly-authorized-source-only-overlap-for-D5-D7-grounded-collapse",
       "critical_collisions_remain_forbidden": true
@@ -78,9 +79,16 @@
   },
   "quality_gates": {
     "marker_matches_measured_body_contact_transition": true,
+    "ground_contact_marker_matches_actual_transition": true,
     "contact_state_transition_valid": true,
+    "support_state_classification_valid": true,
     "final_pose_grounded_terminal": true,
+    "terminal_pose_physically_supported": true,
+    "body_contact_persists_to_terminal": true,
     "ground_reference_stable": true,
+    "global_ground_reference_valid": true,
+    "foot_ground_truthfulness": true,
+    "death_vs_hit_semantic_separation": true,
     "death_vs_hit_includes_grounded_semantics": true,
     "continuity_foot_body_weapon_source_only": true,
     "true_two_run_target_frame_sheet_gif_determinism": true,
@@ -108,6 +116,7 @@
     "foot_planted_tolerance_px": 10.0,
     "foot_penetration_max_px": 8.0,
     "foot_lifted_clearance_min_px": 12.0,
+    "foot_world_contact_drift_max_px": 24.0,
     "contact_step_max_px": 48.0,
     "joint_angle_step_max_deg": 58.0,
     "angular_acceleration_max_deg_per_frame2": 95.0,
@@ -116,7 +125,7 @@
     "wrist_step_max_px": 42.0,
     "alpha_safe_margin_px": 24.0,
     "collapse_height_reduction_min": 0.04,
-    "rationale": "The contact thresholds are frozen before corrected rendering. D4 is accepted only when a named non-foot region's rendered alpha bottom enters the fixed D0 ground band; root displacement cannot satisfy this gate. D6-D7 require explicit grounded_terminal declarations, stable measured body contact and lifted feet. Contact continuity is checked only across the declared contact regime so the intentional D3-to-D4 impact is not mislabeled as a teleport. Existing R4 source pixels and prior approved HIT/RUN evidence remain immutable."
+    "rationale": "The contact thresholds are frozen before corrected rendering. D4 is accepted only when a named non-foot region's rendered alpha bottom enters the fixed D0 ground band; root displacement cannot satisfy this gate. D6-D7 require explicit grounded_terminal declarations, stable measured body contact and lifted feet. The 24 px planted-foot world-contact drift limit is derived from the 62 px maximum source foot alpha width (approximately 0.39 width), allowing the authored collapse arc while rejecting a displaced planted contact. Contact continuity is checked only across the declared contact regime so the intentional D3-to-D4 impact is not mislabeled as a teleport. Existing R4 source pixels and prior approved HIT/RUN evidence remain immutable."
   },
   "negative_controls": [
     "NC-01_no_collapse",
@@ -135,6 +144,14 @@
     "NC-14_approved_hit_or_run_asset_mutation",
     "NC-15_frozen_evidence_mutation_after_external_approval",
     "NC-16_nondeterministic_second_render"
+  ],
+  "ground_contact_negative_controls": [
+    "NC-GC-01_marker_without_new_contact",
+    "NC-GC-02_support_regime_never_changes",
+    "NC-GC-03_root_drop_only",
+    "NC-GC-04_fake_contact_then_rebound",
+    "NC-GC-05_planted_foot_world_drift",
+    "NC-GC-06_terminal_suspended_lean"
   ],
   "review_policy": {
     "external_visual": "REQUIRED",

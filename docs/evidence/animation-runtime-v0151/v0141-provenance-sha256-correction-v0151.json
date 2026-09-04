@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.15.1",
+  "status": "V0141_PROVENANCE_SHA256_CORRECTION_RECORDED",
+  "record_type": "forward_only_superseding_provenance_hash_correction",
+  "correction_of": "docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json",
+  "historical_record_unchanged": true,
+  "byte_authority": {
+    "algorithm": "SHA-256",
+    "authority": "raw bytes returned by git cat-file blob; no text reserialization, JSON formatting, newline conversion, or working-tree autocrlf bytes",
+    "path": "docs/evidence/animation-runtime-v0141/state-consistency-v0141.json",
+    "git_blob_sha1": "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5",
+    "raw_git_blob_byte_count": 683,
+    "raw_git_blob_sha256": "a648710b66fb21c92ba1030b4f86793719792475c0ecd14a7a48aebc951606bb",
+    "independent_reviewer_sha256": "a648710b66fb21c92ba1030b4f86793719792475c0ecd14a7a48aebc951606bb",
+    "raw_git_blob_matches_independent_reviewer": true
+  },
+  "environment_specific_discrepancy": {
+    "working_tree_byte_count": 702,
+    "working_tree_sha256": "36304c14b9fb86be41a258adc0aa962eaecaacfe200d049d66949fca82450dbf",
+    "working_tree_normalized_byte_count": 683,
+    "working_tree_normalized_sha256": "a648710b66fb21c92ba1030b4f86793719792475c0ecd14a7a48aebc951606bb",
+    "normalized_working_tree_matches_raw_git_blob": true,
+    "explanation": "Windows checkout bytes use CRLF while the approved Git blob is LF. The normalized checkout agrees with the raw blob, but the raw Git blob remains the byte authority."
+  },
+  "superseded_values": {
+    "approved_head_sha256": "36304c14b9fb86be41a258adc0aa962eaecaacfe200d049d66949fca82450dbf",
+    "repaired_file_sha256": "36304c14b9fb86be41a258adc0aa962eaecaacfe200d049d66949fca82450dbf",
+    "approved_head_git_blob": "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5",
+    "repaired_file_git_blob": "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5"
+  },
+  "correction": "The old recovery record is preserved. This forward-only record supersedes only its SHA-256 byte claims and binds the Git blob SHA-1 to the independently verified raw-blob SHA-256.",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0
+}

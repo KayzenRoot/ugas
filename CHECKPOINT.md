@@ -10,7 +10,7 @@ v0.14.1 technical evidence under docs/evidence/animation-runtime-v0141/ is froze
 
 GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, ALWAYS_ON_DASHBOARD_POLICY=ENABLED. Do not start MULTI_DIRECTION_ANIMATION_RUNTIME.
 
-The v0.15.1 gate is `DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED`; `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `external_visual_review_death_animation_front_v0151`. `CODEOWNERS_GAP` remains explicit.
+The v0.15.1 gate is `DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED`; `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `external_visual_review_death_animation_front_v0151`. `CODEOWNERS_GAP` remains explicit.
 
 ## Historical v0.14.1 HIT_REACTION_FRONT approved pilot / MERGED
 

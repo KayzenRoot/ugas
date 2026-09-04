@@ -65,6 +65,10 @@ class DeathAnimationFrontV0151Tests(unittest.TestCase):
         self.assertEqual(controls["status"], "NC_01_TO_NC_16_PASSED")
         self.assertEqual(len(controls["controls"]), 16)
         self.assertTrue(all(item["status"] == "REJECTED" for item in controls["controls"].values()))
+        ground_contact = controls["ground_contact_controls"]
+        self.assertEqual(ground_contact["status"], "NC_GC_01_TO_NC_GC_06_PASSED")
+        self.assertEqual(len(ground_contact["controls"]), 6)
+        self.assertTrue(all(item["status"] == "REJECTED" for item in ground_contact["controls"].values()))
 
     def test_measured_body_contact_and_terminal_support_state(self) -> None:
         contact = json.loads(
@@ -81,6 +85,23 @@ class DeathAnimationFrontV0151Tests(unittest.TestCase):
         self.assertEqual(contact["transition"]["measured_body_contact_frames"], [4, 5, 6, 7])
         self.assertEqual(support["states"][6]["foot_support"], {"left": "lifted", "right": "lifted"})
         self.assertTrue(support["state_transition_valid"])
+
+    def test_ground_reference_terminal_and_provenance_records(self) -> None:
+        root = ROOT / "docs/evidence/animation-runtime-v0151"
+        ground = json.loads((root / "death-front-ground-reference-v0151.json").read_text(encoding="utf-8"))
+        terminal = json.loads((root / "death-front-terminal-support-qa-v0151.json").read_text(encoding="utf-8"))
+        separation = json.loads((root / "death-front-death-vs-hit-qa-v0151.json").read_text(encoding="utf-8"))
+        provenance = json.loads((root / "v0141-provenance-sha256-correction-v0151.json").read_text(encoding="utf-8"))
+        rejection = json.loads((root / "v0150-rejection-record-v0151.json").read_text(encoding="utf-8"))
+        self.assertEqual(ground["status"], "GLOBAL_GROUND_REFERENCE_VALID")
+        self.assertFalse(ground["reference"]["recomputed_per_frame"])
+        self.assertEqual(terminal["status"], "DEATH_TERMINAL_SUPPORT_QA_PASSED")
+        self.assertEqual(separation["status"], "DEATH_VS_HIT_SEMANTIC_SEPARATION_PASSED")
+        self.assertEqual(provenance["status"], "V0141_PROVENANCE_SHA256_CORRECTION_RECORDED")
+        self.assertEqual(provenance["byte_authority"]["raw_git_blob_sha256"], "a648710b66fb21c92ba1030b4f86793719792475c0ecd14a7a48aebc951606bb")
+        self.assertTrue(provenance["byte_authority"]["raw_git_blob_matches_independent_reviewer"])
+        self.assertEqual(rejection["external_visual"], "FAILED")
+        self.assertEqual(rejection["technical_semantic_qa"], "REJECTED_BY_EXTERNAL_REVIEW")
 
     def test_true_two_run_determinism_and_nc16_mutation_detection(self) -> None:
         determinism = json.loads(
