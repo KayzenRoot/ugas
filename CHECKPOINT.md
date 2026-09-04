@@ -1,14 +1,16 @@
-# UGAS checkpoint - v0.15.0
+# UGAS checkpoint - v0.15.1
 
-## v0.15.0 DEATH_ANIMATION_FRONT — in progress (PR open, awaiting Sol review)
+## v0.15.1 DEATH_ANIMATION_FRONT — technically qualified, external visual review required
 
-The active phase is DEATH_ANIMATION_FRONT on branch codex/v0.15.0-death-animation-front. PR #4 is MERGED at merge_commit=98ebd95564216fbbee222aab630b73b5ff6f298d (merged_head=761ed5296e05571fdfbed1da04cfb7815049fa87, technical_approved_head=a3e37865f260c5a6cd56743e1d4b9131fcb12cda). The v0.15.0 PR is OPEN as [PR #5](https://github.com/csn1985-ship-it/ugas/pull/5) at head 00483643e071a948ddd7f2b288181edf9e09471d and awaiting the required checks before Sol review. Do not merge v0.15.0 without Sol approval.
+The active phase is DEATH_ANIMATION_FRONT on branch codex/v0.15.0-death-animation-front. The active repository is `KayzenRoot/ugas`. PR #4 is MERGED at merge_commit=98ebd95564216fbbee222aab630b73b5ff6f298d (merged_head=761ed5296e05571fdfbed1da04cfb7815049fa87, technical_approved_head=a3e37865f260c5a6cd56743e1d4b9131fcb12cda). The v0.15.1 correction continues OPEN PR #5 and awaits exact-head required checks and external visual review. The rejected v0.15.0 reviewed head `c573ab020106ee89a36e1edb9bfae8b526d5057e` is preserved unchanged. Do not merge v0.15.1 without Sol approval.
 
 **Integrity repair:** A post-merge bookkeeping commit (761ed529...) mutated docs/evidence/animation-runtime-v0141/state-consistency-v0141.json inside the frozen evidence directory. The file has been restored byte-identically to the approved head (git blob 9bbc85bd...). A forward-only repair provenance record is at docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json. Git history is not rewritten.
 
 v0.14.1 technical evidence under docs/evidence/animation-runtime-v0141/ is frozen and restored to approved-head byte identity. v0141_frozen_evidence=RESTORED_AND_VERIFIED. new_generation=0, production_approved=false, production_routing=BLOCKED. next_candidate=DEATH_ANIMATION_FRONT.
 
 GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, ALWAYS_ON_DASHBOARD_POLICY=ENABLED. Do not start MULTI_DIRECTION_ANIMATION_RUNTIME.
+
+The v0.15.1 gate is `DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED`; `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `external_visual_review_death_animation_front_v0151`. `CODEOWNERS_GAP` remains explicit.
 
 ## Historical v0.14.1 HIT_REACTION_FRONT approved pilot / MERGED
 

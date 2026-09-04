@@ -1,6 +1,6 @@
-# 2D master pipeline v0.15.0
+# 2D master pipeline v0.15.1
 
-The active slice is `DEATH_ANIMATION_FRONT` for v0.15.0: an eight-frame, 12 fps, non-looping, source-only irreversible-collapse pilot after v0.14.1 HIT_REACTION_FRONT was technically/visually approved and PR #4 merged. Non-loop GIFs must omit the NETSCAPE repeat extension. `DOCKER_ALWAYS_ON_LOCAL` remains online, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`. The only next action is `external_visual_review_death_animation_front`; v0.14.1, v0.14.0, v0.13.1, v0.13.0 and v0.12.4 below are preserved historical context.
+The active slice is `DEATH_ANIMATION_FRONT` for v0.15.1: an eight-frame, 12 fps, non-looping, source-only irreversible-collapse correction with measured body-ground contact and true two-run determinism. It follows the rejected v0.15.0 review on the same PR #5; v0.14.1 HIT_REACTION_FRONT remains approved and PR #4 merged. Non-loop GIFs must omit the NETSCAPE repeat extension. `DOCKER_ALWAYS_ON_LOCAL` remains online, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`. The only next action is `external_visual_review_death_animation_front_v0151`; the v0.15.0, v0.14.1, v0.14.0, v0.13.1, v0.13.0 and v0.12.4 materials below are preserved historical context.
 
 The active release is v0.12.3 GitHub-native review infrastructure over the historical v0.12.2 Docker always-on observer and rejected v0.12.1/v0.12.0 dashboards. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
 

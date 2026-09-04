@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.15.1 DEATH_ANIMATION_FRONT GitHub review manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_type",
+    "repository",
+    "pull_request",
+    "scope",
+    "changed_files",
+    "change_statistics",
+    "current_state",
+    "incident",
+    "tests",
+    "validation",
+    "overall_status",
+    "gates",
+    "review_index",
+    "visual_manifest",
+    "death_front_evidence",
+    "recovery_evidence",
+    "known_gaps",
+    "gap_context",
+    "dashboard_policy",
+    "production_boundary",
+    "security_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.3"},
+    "manifest_type": {"const": "github-ci-capability-review"},
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "default_branch"],
+      "properties": {
+        "name": {"const": "KayzenRoot/ugas"},
+        "url": {"const": "https://github.com/KayzenRoot/ugas"},
+        "default_branch": {"const": "main"}
+      }
+    },
+    "pull_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["number", "base_sha", "head_sha", "merge_base_sha", "head_branch", "base_branch"],
+      "properties": {
+        "number": {"type": "integer", "minimum": 0},
+        "base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "merge_base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "head_branch": {"type": "string", "minLength": 1},
+        "base_branch": {"const": "main"}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "phase", "current_gate", "allowed_next_actions", "new_generation"],
+      "properties": {
+        "version": {"const": "0.15.1"},
+        "phase": {"const": "DEATH_ANIMATION_FRONT"},
+        "current_gate": {"const": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED"},
+        "allowed_next_actions": {"const": ["external_visual_review_death_animation_front"]},
+        "new_generation": {"const": 0}
+      }
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "status"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "status": {"enum": ["A", "M", "D", "R"]},
+          "additions": {"type": "integer", "minimum": 0},
+          "deletions": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "change_statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["files", "additions", "deletions"],
+      "properties": {
+        "files": {"type": "integer", "minimum": 0},
+        "additions": {"type": "integer", "minimum": 0},
+        "deletions": {"type": "integer", "minimum": 0}
+      }
+    },
+    "current_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "version",
+        "phase",
+        "current_gate",
+        "production_approved",
+        "production_routing",
+        "external_visual_review",
+        "allowed_next_actions"
+      ],
+      "properties": {
+        "path": {"const": "docs/evidence/current-state.json"},
+        "version": {"const": "0.15.1"},
+        "phase": {"const": "DEATH_ANIMATION_FRONT"},
+        "current_gate": {"const": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED"},
+        "production_approved": {"const": false},
+        "production_routing": {"const": "BLOCKED"},
+        "external_visual_review": {"type": "object"},
+        "allowed_next_actions": {"const": ["external_visual_review_death_animation_front"]}
+      }
+    },
+    "incident": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pr_number", "classification", "artifact_id", "artifact_digest"],
+      "properties": {
+        "pr_number": {"const": 1},
+        "classification": {"const": "GOVERNANCE_ORDER_VIOLATION_AND_FAILED_CHECK_MERGE"},
+        "artifact_id": {"type": "string"},
+        "artifact_digest": {"type": "string"}
+      }
+    },
+    "tests": {"type": "object"},
+    "validation": {"type": "object"},
+    "overall_status": {"enum": ["PASS", "FAIL"]},
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "exit_code", "detail"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["PASS", "FAIL", "NOT_RUN"]},
+          "exit_code": {"type": ["integer", "null"]},
+          "detail": {"type": "string"}
+        }
+      }
+    },
+    "review_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["historical_path", "historical_version", "status", "active_manifest_path"],
+      "properties": {
+        "historical_path": {"const": "docs/evidence/review-index-v0.12.2.json"},
+        "historical_version": {"const": "0.12.2"},
+        "status": {"enum": ["PRESERVED_BASELINE_VALIDATED", "PRESERVED_BASELINE_REHEARSAL"]},
+        "active_manifest_path": {"const": "github-review-manifest-v0151.json"}
+      }
+    },
+    "visual_manifest": {"const": "visual-manifest.json"},
+    "death_front_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract", "execution", "visual_manifest", "targets", "frame_qa", "temporal_qa", "negative_controls", "preview_gif", "spritesheet", "phase_marker_sheet"],
+      "properties": {
+        "contract": {"type": "string", "minLength": 1},
+        "execution": {"type": "string", "minLength": 1},
+        "visual_manifest": {"type": "string", "minLength": 1},
+        "targets": {"type": "string", "minLength": 1},
+        "frame_qa": {"type": "string", "minLength": 1},
+        "temporal_qa": {"type": "string", "minLength": 1},
+        "negative_controls": {"type": "string", "minLength": 1},
+        "preview_gif": {"type": "string", "minLength": 1},
+        "spritesheet": {"type": "string", "minLength": 1},
+        "phase_marker_sheet": {"type": "string", "minLength": 1}
+      }
+    },
+    "recovery_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repair_provenance", "frozen_state_consistency", "approved_head"],
+      "properties": {
+        "repair_provenance": {"type": "string", "minLength": 1},
+        "frozen_state_consistency": {"type": "string", "minLength": 1},
+        "approved_head": {"const": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda"},
+        "merge_commit": {"const": "98ebd95564216fbbee222aab630b73b5ff6f298d"}
+      }
+    },
+    "known_gaps": {"type": "array", "items": {"type": "string"}},
+    "gap_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "pr_number", "pr_available", "explicit_gap_input"],
+      "properties": {
+        "source": {"enum": ["github_event", "local_rehearsal"]},
+        "pr_number": {"type": "integer", "minimum": 0},
+        "pr_available": {"type": "boolean"},
+        "explicit_gap_input": {"type": "boolean"}
+      }
+    },
+    "dashboard_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["always_on", "runtime_mode", "local_only", "url", "must_remain_online_at_stop"],
+      "properties": {
+        "always_on": {"const": true},
+        "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
+        "local_only": {"const": true},
+        "url": {"const": "http://127.0.0.1:8765/"},
+        "must_remain_online_at_stop": {"const": true}
+      }
+    },
+    "production_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approved", "routing"],
+      "properties": {"approved": {"const": false}, "routing": {"const": "BLOCKED"}}
+    },
+    "security_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["secrets_included", "model_weights_included", "telemetry_db_included", "local_credentials_included"],
+      "properties": {
+        "secrets_included": {"const": false},
+        "model_weights_included": {"const": false},
+        "telemetry_db_included": {"const": false},
+        "local_credentials_included": {"const": false}
+      }
+    }
+  }
+}

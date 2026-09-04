@@ -34,10 +34,10 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.15.0 state consistency
+      - name: Active v0.15.1 state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0150.py
+        run: python scripts/validation/validate_state_consistency_v0151.py
       - name: Official validation
         env:
           PYTHONPATH: src
@@ -45,7 +45,7 @@ jobs:
       - name: DEATH_ANIMATION_FRONT runtime, regressions and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_animation_runtime_v0150.py
+        run: python scripts/validation/run_animation_runtime_v0151.py
       - name: V1 capability matrix validation
         env:
           PYTHONPATH: src

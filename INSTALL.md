@@ -1,4 +1,4 @@
-# Installing UGAS 0.15.0
+# Installing UGAS 0.15.1
 
 ## Requirements
 
@@ -12,10 +12,10 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e .
 $env:PYTHONPATH = "src"
-python scripts/validation/validate_state_consistency_v0150.py
+python scripts/validation/validate_state_consistency_v0151.py
 python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
-python scripts/validation/run_animation_runtime_v0150.py
+python scripts/validation/run_animation_runtime_v0151.py
 python scripts/validation/run_observability_v0122.py
 python scripts/validation/build_review_index_v0122.py --json
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open

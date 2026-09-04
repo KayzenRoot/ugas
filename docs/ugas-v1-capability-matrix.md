@@ -1,6 +1,6 @@
-# UGAS V1 capability matrix - v0.15.0
+# UGAS V1 capability matrix - v0.15.1
 
-This matrix is a planning contract for the functional rounds. v0.15.0 technically qualifies the source-only DEATH_ANIMATION_FRONT pilot; external visual review is still REQUIRED and production remains blocked.
+This matrix is a planning contract for the functional rounds. v0.15.1 technically qualifies the corrected source-only DEATH_ANIMATION_FRONT pilot; external visual review is still REQUIRED and production remains blocked. The rejected v0.15.0 evidence remains historical.
 
 | ID | Capability | Status after v0.12.3 | Planned order |
 | --- | --- | --- | --- |

@@ -1,8 +1,12 @@
 # UGAS roadmap
 
-## v0.15.0 - DEATH_ANIMATION_FRONT technically qualified / external review required (active: DEATH_ANIMATION_FRONT)
+## v0.15.1 - DEATH_ANIMATION_FRONT corrective slice technically qualified / external review required (active: DEATH_ANIMATION_FRONT)
 
-The active phase is DEATH_ANIMATION_FRONT and the gate is CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED. The source-only pilot is eight frames at 12 fps, non-looping, with irreversible collapse, explicit ground contact and terminal corpse hold. death_animation_front=REQUIRED; hit_reaction_front=APPROVED_PILOT; run_front_v1=APPROVED_PILOT. PR #4 is MERGED at 98ebd95564216fbbee222aab630b73b5ff6f298d. v0141_frozen_evidence=RESTORED_AND_VERIFIED. CAPABILITY_COUNT=16, next_candidate=DEATH_ANIMATION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. The v0.15.0 PR must remain OPEN for Sol review. Do not merge v0.15.0. Do not start MULTI_DIRECTION_ANIMATION_RUNTIME.
+The active phase is DEATH_ANIMATION_FRONT and the gate is DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED. The source-only correction is eight frames at 12 fps, non-looping, with measured body ground contact, lifted terminal feet and true two-run determinism. death_animation_front=REQUIRED; hit_reaction_front=APPROVED_PILOT; run_front_v1=APPROVED_PILOT. PR #4 is MERGED at 98ebd95564216fbbee222aab630b73b5ff6f298d. v0141_frozen_evidence=RESTORED_AND_VERIFIED. CAPABILITY_COUNT=16, next_candidate=DEATH_ANIMATION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. The active repository is KayzenRoot/ugas and PR #5 must remain OPEN for Sol review. Do not merge v0.15.1. Do not start MULTI_DIRECTION_ANIMATION_RUNTIME. The only allowed next action is external_visual_review_death_animation_front_v0151.
+
+## Historical v0.15.0 - rejected reviewed DEATH_ANIMATION_FRONT
+
+The v0.15.0 death slice and its rejected reviewed head remain frozen under `REVIEW-v0.15.0.md` and `docs/evidence/animation-runtime-v0150/`. The v0.15.1 correction is forward-only.
 
 ## Historical v0.14.1 - HIT_REACTION_FRONT package integrity
 

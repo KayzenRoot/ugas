@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.15.1",
+  "validator": "src/ugas/state_consistency_v0151.py",
+  "status": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.15.1",
+    "phase": "DEATH_ANIMATION_FRONT",
+    "current_gate": "DEATH_ANIMATION_FRONT_SEMANTIC_AND_DETERMINISM_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.15.0-death-animation-front",
+    "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+    "next_action": [
+      "external_visual_review_death_animation_front_v0151"
+    ],
+    "death_visual": "REQUIRED",
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "pr4_state": "MERGED",
+    "new_pr_state": "OPEN",
+    "frozen_v0141_blob": "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5"
+  }
+}
