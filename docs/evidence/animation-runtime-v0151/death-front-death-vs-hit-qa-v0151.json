@@ -1,0 +1,186 @@
+{
+  "schema_version": "0.15.1",
+  "animation_id": "death-front-v1-v0151",
+  "status": "DEATH_VS_HIT_SEMANTIC_SEPARATION_PASSED",
+  "death": {
+    "metrics": {
+      "root_path_length_px": 113.118604,
+      "terminal_displacement_px": 110.01818,
+      "collapse_start_displacement_px": 23.323808,
+      "terminal_to_peak_ratio": 1.0,
+      "terminal_residual_px": 0.0,
+      "max_joint_angle_step_deg": 57.670216,
+      "max_angular_acceleration_deg_per_frame2": 53.815126,
+      "collapse_height_reduction": 0.377404
+    },
+    "contact": {
+      "marker_frame": 4,
+      "declared_first_body_contact_frame": 4,
+      "measured_first_body_contact_frame": 4,
+      "measured_body_contact_frames": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "marker_matches_measured_body_contact_transition": true,
+      "contact_state_transition_valid": true,
+      "support_state_classification_valid": true,
+      "final_pose_grounded_terminal": true,
+      "terminal_pose_physically_supported": true,
+      "body_contact_persists_to_terminal": true,
+      "ground_reference_stable": true,
+      "global_ground_reference_valid": true,
+      "foot_ground_truthfulness": true,
+      "ground_contact_marker_matches_actual_transition": true,
+      "no_premature_body_contact": true,
+      "declared_regions_match_measured": true,
+      "terminal_grounded_frames": [
+        6,
+        7
+      ],
+      "ground_reference": {
+        "method": "single-frozen-D0-projected-source-alpha-sole-reference",
+        "source_frame": 0,
+        "projected_sole_y": {
+          "left": 477.039285,
+          "right": 482.726898
+        },
+        "D0_actual_sole_y": {
+          "left": 476.0,
+          "right": 482.0
+        },
+        "ground_reference_y": 479.883091,
+        "recomputed_per_frame": false,
+        "fixed_world_contact_points": {
+          "left": {
+            "x": 340.5,
+            "y": 476.0,
+            "source_frame": 0
+          },
+          "right": {
+            "x": 262.5,
+            "y": 482.0,
+            "source_frame": 0
+          }
+        }
+      },
+      "declared_states": [
+        {
+          "frame": 0,
+          "state_id": "upright_lethal_support",
+          "foot_support_mode": "dual_foot",
+          "foot_support": {
+            "left": "planted",
+            "right": "planted"
+          },
+          "body_contact_class": "suspended",
+          "body_contact_regions": [],
+          "grounded_terminal": false
+        },
+        {
+          "frame": 1,
+          "state_id": "destabilizing_support",
+          "foot_support_mode": "dual_foot",
+          "foot_support": {
+            "left": "planted",
+            "right": "planted"
+          },
+          "body_contact_class": "suspended",
+          "body_contact_regions": [],
+          "grounded_terminal": false
+        },
+        {
+          "frame": 2,
+          "state_id": "buckle_support",
+          "foot_support_mode": "dual_foot",
+          "foot_support": {
+            "left": "planted",
+            "right": "planted"
+          },
+          "body_contact_class": "suspended",
+          "body_contact_regions": [],
+          "grounded_terminal": false
+        },
+        {
+          "frame": 3,
+          "state_id": "collapse_descent_support",
+          "foot_support_mode": "dual_foot",
+          "foot_support": {
+            "left": "planted",
+            "right": "planted"
+          },
+          "body_contact_class": "suspended",
+          "body_contact_regions": [],
+          "grounded_terminal": false
+        },
+        {
+          "frame": 4,
+          "state_id": "body_contact_transition",
+          "foot_support_mode": "dual_foot",
+          "foot_support": {
+            "left": "planted",
+            "right": "planted"
+          },
+          "body_contact_class": "body_contact_transition",
+          "body_contact_regions": [
+            "left_forearm_hand"
+          ],
+          "grounded_terminal": false
+        },
+        {
+          "frame": 5,
+          "state_id": "settling_body_contact",
+          "foot_support_mode": "right_foot",
+          "foot_support": {
+            "left": "lifted",
+            "right": "planted"
+          },
+          "body_contact_class": "settling_body_contact",
+          "body_contact_regions": [
+            "left_forearm_hand"
+          ],
+          "grounded_terminal": false
+        },
+        {
+          "frame": 6,
+          "state_id": "grounded_terminal",
+          "foot_support_mode": "no_foot",
+          "foot_support": {
+            "left": "lifted",
+            "right": "lifted"
+          },
+          "body_contact_class": "grounded_terminal",
+          "body_contact_regions": [
+            "left_forearm_hand",
+            "left_thigh"
+          ],
+          "grounded_terminal": true
+        },
+        {
+          "frame": 7,
+          "state_id": "grounded_terminal_hold",
+          "foot_support_mode": "no_foot",
+          "foot_support": {
+            "left": "lifted",
+            "right": "lifted"
+          },
+          "body_contact_class": "grounded_terminal",
+          "body_contact_regions": [
+            "left_forearm_hand",
+            "left_thigh"
+          ],
+          "grounded_terminal": true
+        }
+      ]
+    },
+    "hard_gate": true
+  },
+  "immutable_hit_authority": {
+    "profile": "profiles/animation/hit-front-v1.json",
+    "evidence": "docs/evidence/animation-runtime-v0141/hit-front-v1",
+    "approved_head": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+    "mutation": false
+  },
+  "separation_basis": "contact/support state and terminal grounding plus displacement; displacement alone is insufficient"
+}

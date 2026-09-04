@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.15.1",
+  "record_type": "death_animation_front_v0151_superseding_provenance",
+  "implementation_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+  "rejected_reviewed_head": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
+  "final_approved_head": "1ddcdf3b9bf44b390af549c00a0553b850c71976",
+  "github_review_manifest_is_authority_for_final_head": true,
+  "committed_self_referential_evidence_is_not_final_head_authority": true,
+  "rejected_attempt": {
+    "version": "0.15.0",
+    "classification": "REJECTED_HISTORICAL_DEATH_ANIMATION_ATTEMPT",
+    "review": "REVIEW-v0.15.0.md",
+    "state": "docs/evidence/current-state-v0.15.0.json",
+    "evidence": "docs/evidence/animation-runtime-v0150/",
+    "defect": "false_ground_contact_and_non_terminal_visual_pose",
+    "is_previous_approved_release": false
+  },
+  "previous_approved_release": {
+    "version": "0.14.1",
+    "review": "REVIEW-v0.14.1.md",
+    "state": "docs/evidence/current-state-v0.14.1.json",
+    "approved_head": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+    "classification": "APPROVED_PILOT"
+  },
+  "approved_pilot": {
+    "version": "0.15.1",
+    "classification": "APPROVED_PILOT",
+    "review": "REVIEW-v0.15.1.md",
+    "pr_number": 5,
+    "reviewed_head": "1ddcdf3b9bf44b390af549c00a0553b850c71976",
+    "technical_evidence": "docs/evidence/animation-runtime-v0151/",
+    "decision": "APPROVED_PILOT / APPROVED_TO_MERGE",
+    "artifact": "ugas-review-evidence-pr-5-1ddcdf3b9bf44b390af549c00a0553b850c71976",
+    "artifact_digest": "sha256:0524d87c4f208cfc618426147bb0ba63e960a0144a025e7421dffb2d052899a5"
+  },
+  "immutable_historical_evidence_edited": false
+}

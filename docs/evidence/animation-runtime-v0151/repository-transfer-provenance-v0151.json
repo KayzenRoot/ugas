@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.15.1",
+  "status": "REPOSITORY_TRANSFER_PROVENANCE_RECORDED",
+  "active_repository": "KayzenRoot/ugas",
+  "active_url": "https://github.com/KayzenRoot/ugas",
+  "observed_origin_before_correction": "https://csn1985-ship-it@github.com/KayzenRoot/ugas.git",
+  "historical_repository": "csn1985-ship-it/ugas",
+  "historical_owner_evidence_preserved": true,
+  "required_ruleset_ref": "refs/heads/main",
+  "required_checks": [
+    "UGAS CI / unit-and-validation",
+    "UGAS CI / docker-smoke",
+    "UGAS Review / evidence"
+  ],
+  "current_user_can_bypass": "never",
+  "codeowners_gap": "CODEOWNERS_GAP",
+  "production_approved": false,
+  "production_routing": "BLOCKED"
+}

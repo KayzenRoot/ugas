@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active v0.15.0 DEATH_ANIMATION_FRONT state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "version",
+    "phase",
+    "previous_release",
+    "current_gate",
+    "stop_reason",
+    "allowed_next_actions",
+    "forbidden_actions",
+    "production_approved",
+    "production_routing",
+    "external_visual_review",
+    "always_on_dashboard_policy",
+    "runtime_mode",
+    "new_generation",
+    "review",
+    "incident",
+    "evidence",
+    "state_consistency",
+    "hit_reaction_front_visual_content",
+    "death_animation_front_visual_content"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.15.0"},
+    "version": {"const": "0.15.0"},
+    "phase": {"const": "DEATH_ANIMATION_FRONT"},
+    "previous_release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "review", "evidence"],
+      "properties": {
+        "version": {"type": "string"},
+        "review": {"type": "string"},
+        "evidence": {"type": "string"}
+      }
+    },
+    "current_gate": {"const": "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED"},
+    "stop_reason": {"type": ["string", "null"]},
+    "allowed_next_actions": {"const": ["external_visual_review_death_animation_front"]},
+    "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "hit_reaction_front_visual_content": {"const": "APPROVED_PILOT"},
+    "death_animation_front_visual_content": {"const": "REQUIRED"},
+    "external_visual_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attack_front_v2",
+        "observability_dashboard",
+        "run_front_v1",
+        "hit_reaction_front",
+        "death_animation_front"
+      ],
+      "properties": {
+        "attack_front_v2": {"type": "string"},
+        "observability_dashboard": {"type": "string"},
+        "run_front_v1": {"type": "string"},
+        "hit_reaction_front": {"const": "APPROVED_PILOT"},
+        "death_animation_front": {"const": "REQUIRED"}
+      }
+    },
+    "always_on_dashboard_policy": {"const": "ENABLED"},
+    "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
+    "new_generation": {"const": 0},
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "baseline_head",
+        "branch_base_commit",
+        "feature_branch",
+        "execution_mode",
+        "merge_policy",
+        "no_self_merge_until_external_approval",
+        "direct_main_push_forbidden",
+        "pr_number",
+        "pr_state",
+        "real_pr_checks_green",
+        "pr4_number",
+        "pr4_state",
+        "pr4_merge_commit",
+        "pr4_merged_head",
+        "pr4_technical_approved_head"
+      ],
+      "properties": {
+        "repository": {"const": "csn1985-ship-it/ugas"},
+        "baseline_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "branch_base_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "feature_branch": {"const": "codex/v0.15.0-death-animation-front"},
+        "execution_mode": {"const": "GITHUB_PR_FIRST"},
+        "merge_policy": {"const": "NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL"},
+        "no_self_merge_until_external_approval": {"const": true},
+        "direct_main_push_forbidden": {"const": true},
+        "pr_number": {"type": "integer", "minimum": 0},
+        "pr_state": {"enum": ["NOT_CREATED", "OPEN"]},
+        "real_pr_checks_green": {"type": "boolean"},
+        "merge_authorization": {"enum": ["NOT_AUTHORIZED", null]},
+        "rejected_reviewed_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "approved_head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "pr4_number": {"const": 4},
+        "pr4_state": {"const": "MERGED"},
+        "pr4_merge_commit": {"const": "98ebd95564216fbbee222aab630b73b5ff6f298d"},
+        "pr4_merged_head": {"pattern": "^[0-9a-f]{40}$"},
+        "pr4_technical_approved_head": {"const": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda"}
+      }
+    },
+    "incident": {"type": "object", "additionalProperties": true},
+    "evidence": {"type": "object", "additionalProperties": true},
+    "state_consistency": {"type": "object", "additionalProperties": true}
+  }
+}

@@ -11,12 +11,12 @@ import subprocess
 from typing import Any, Mapping
 
 from ..schema_validation import validate_instance, validate_schema_document
-from ..state_consistency_v0141 import validate_state_consistency
+from ..state_consistency_v0151 import validate_state_consistency
 
-# The active state/review moved to v0.14.1.  The v0.12.2 index remains the
+# The active state/review moved to v0.15.1. The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
-ACTIVE_VERSION = "0.14.1"
-ACTIVE_REVIEW = "REVIEW-v0.14.1.md"
+ACTIVE_VERSION = "0.15.1"
+ACTIVE_REVIEW = "REVIEW-v0.15.1.md"
 ACTIVE_INDEX = "review-index-v0.12.2.json"
 ACTIVE_EVIDENCE_DIR = "observability-v0122"
 
@@ -149,6 +149,7 @@ class ActiveEvidenceCache:
         self.state_schema_path = state_schema_path or self.repo_root / "schemas/current-state.json"
         self.checkpoint_path = checkpoint_path or self.repo_root / "CHECKPOINT.md"
         self.review_path = review_path or self.repo_root / ACTIVE_REVIEW
+        self.roadmap_path = self.repo_root / "docs/roadmap.md"
         self.review_index_path = review_index_path or self.repo_root / "docs/evidence" / ACTIVE_INDEX
         self._default_review_index = review_index_path is None
         self.review_index_schema_path = review_index_schema_path or self.repo_root / "schemas/review-index-v0122.json"
@@ -158,7 +159,7 @@ class ActiveEvidenceCache:
         self._generation = 0
 
     def _files(self) -> tuple[Path, ...]:
-        return (self.state_path, self.state_schema_path, self.checkpoint_path, self.review_path, self.review_index_path, self.review_index_schema_path)
+        return (self.state_path, self.state_schema_path, self.checkpoint_path, self.review_path, self.roadmap_path, self.review_index_path, self.review_index_schema_path)
 
     def _git(self, args: list[str]) -> tuple[bool, str]:
         try:
@@ -221,7 +222,12 @@ class ActiveEvidenceCache:
             schema = _load(self.state_schema_path)
             validate_schema_document(schema)
             validate_instance(state, schema)
-            consistency = validate_state_consistency(state, self.checkpoint_path.read_text(encoding="utf-8"), self.review_path.read_text(encoding="utf-8"))
+            consistency = validate_state_consistency(
+                state,
+                self.checkpoint_path.read_text(encoding="utf-8"),
+                self.review_path.read_text(encoding="utf-8"),
+                self.roadmap_path.read_text(encoding="utf-8"),
+            )
             if consistency.get("failures"):
                 failures.extend(f"state:{item}" for item in consistency["failures"])
         except (OSError, json.JSONDecodeError, ValueError, TypeError) as exc:

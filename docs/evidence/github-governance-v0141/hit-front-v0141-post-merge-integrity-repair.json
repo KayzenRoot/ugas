@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.14.1",
+  "record_type": "post_merge_immutable_evidence_integrity_repair",
+  "created_by": "codex/v0.15.0-death-animation-front",
+  "incident_summary": "Bookkeeping commit 761ed529... modified docs/evidence/animation-runtime-v0141/state-consistency-v0141.json after the technical-approved head a3e37865... was recorded. This mutated frozen evidence inside the immutable v0.14.1 evidence directory. The prior provenance record for commit 761ed529... incorrectly asserted immutable_historical_evidence_edited=false. This record supersedes that assertion and documents the forward-only repair.",
+  "technical_approved_head": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+  "bookkeeping_head": "761ed5296e05571fdfbed1da04cfb7815049fa87",
+  "merge_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+  "pr_number": 4,
+  "modified_immutable_path": "docs/evidence/animation-runtime-v0141/state-consistency-v0141.json",
+  "repair_action": "RESTORED_FROM_APPROVED_HEAD",
+  "historical_git_rewritten": false,
+  "blobs": {
+    "approved_head_git_blob": "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5",
+    "approved_head_sha256": "36304c14b9fb86be41a258adc0aa962eaecaacfe200d049d66949fca82450dbf",
+    "bookkeeping_head_git_blob": "f527f9daf0c2dd325f3f425a94e42c88712714ea",
+    "bookkeeping_head_sha256": "847aef3f5649aec87eaea31dda048ce94e76414d215e2abbb6d36ad8d74556e8",
+    "repaired_file_git_blob": "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5",
+    "repaired_file_sha256": "36304c14b9fb86be41a258adc0aa962eaecaacfe200d049d66949fca82450dbf"
+  },
+  "diff_semantic": {
+    "approved_next_action": ["external_review_hit_reaction_front_v0141"],
+    "bookkeeping_next_action": ["death_animation_front"],
+    "approved_visual_content": "APPROVED_PILOT_CONTENT_PENDING_PACKAGE_INTEGRITY_REVIEW",
+    "bookkeeping_visual_content": "APPROVED_PILOT"
+  },
+  "superseded_assertion": {
+    "prior_record": "docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-approval.json (or equivalent bookkeeping record in commit 761ed529...)",
+    "prior_claim": "immutable_historical_evidence_edited=false",
+    "actual_status": "INACCURATE_CLAIM_SUPERSEDED_BY_THIS_RECORD",
+    "explanation": "The bookkeeping commit 761ed529... did edit docs/evidence/animation-runtime-v0141/state-consistency-v0141.json, which falls within the frozen evidence directory established at approved head a3e37865.... The claim immutable_historical_evidence_edited=false was therefore incorrect. This repair record is authoritative for that incident."
+  },
+  "repair_verification": {
+    "repaired_blob_matches_approved_head": true,
+    "git_history_rewritten": false,
+    "repair_commit_branch": "codex/v0.15.0-death-animation-front",
+    "repair_committed_as": "forward_only_new_commit"
+  },
+  "post_repair_active_state": {
+    "pr4_state": "MERGED",
+    "merge_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+    "hit_reaction_front": "APPROVED_PILOT",
+    "run_front_v1": "APPROVED_PILOT",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "next_candidate": "DEATH_ANIMATION_FRONT"
+  }
+}

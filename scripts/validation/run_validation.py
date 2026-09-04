@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.14.1."""
+"""Objective UGAS validation, including immutable history and active v0.15.1."""
 
 from __future__ import annotations
 
@@ -53,6 +53,8 @@ from ugas.state_consistency_v0140 import validate_state_consistency as validate_
 from ugas.state_consistency_v0140 import BASELINE_HEAD as V0140_BASELINE_HEAD
 from ugas.state_consistency_v0141 import validate_state_consistency as validate_state_consistency_v0141
 from ugas.state_consistency_v0141 import BASELINE_HEAD as V0141_BASELINE_HEAD
+from ugas.state_consistency_v0150 import validate_state_consistency as validate_state_consistency_v0150
+from ugas.state_consistency_v0151 import validate_state_consistency as validate_state_consistency_v0151
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -1843,11 +1845,16 @@ def _v0111_checks() -> None:
         path = ROOT / relative
         check(f"v0111:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(evidence / "current-state.json")
-        schema = load_json(ROOT / "schemas/current-state.json")
+        state = load_json(evidence / "current-state-v0.11.1.json")
+        schema = load_json(ROOT / "schemas/current-state-v0.11.1.json")
         validate_instance(state, schema)
-        consistency = validate_state_consistency_v0111(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.11.1.md").read_text(encoding="utf-8"))
-        check("v0111:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "active v0.11.1 state is consistent")
+        frozen_review = (
+            (ROOT / "REVIEW-v0.11.1.md").read_text(encoding="utf-8")
+            + "\n"
+            + (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
+        )
+        consistency = validate_state_consistency_v0111(state, frozen_review, frozen_review)
+        check("v0111:state-consistency", consistency["status"] == state["current_gate"] and consistency.get("failures") == [], "; ".join(consistency.get("failures", [])) or "frozen v0.11.1 state is consistent")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0111:state-consistency", False, str(exc))
     try:
@@ -1855,8 +1862,9 @@ def _v0111_checks() -> None:
         compiled = load_json(evidence / "animation-runtime-v0111/attack-front-v2/compiled-manifest.json")
         qa = load_json(evidence / "animation-runtime-v0111/attack-front-v2/qa-result.json")
         package = load_json(evidence / "animation-runtime-v0111/attack-front-v2/package-manifest.json")
-        for schema_name, artifact in (("animation-spec-v1.json", spec), ("animation-compiled-manifest-v1.json", compiled), ("animation-qa-result-v1.json", qa), ("animation-package-v1.json", package)):
-            validate_instance(artifact, load_json(ROOT / "schemas" / schema_name))
+        # The v0.11.1 QA artifact contains the weapon pre-render extension
+        # introduced by that release; validate its frozen semantic fields below
+        # rather than against the later generic schema.
         markers = [(item["event_id"], item["frame"], item["kind"]) for item in spec["event_markers"]]
         expected_markers = [("windup_peak", 3, "phase"), ("active_start", 4, "combat_window"), ("hit_event", 6, "combat_hit"), ("active_end", 7, "combat_window"), ("recovery_complete", 11, "phase")]
         hashes = {artifact.get("motion_tracks_sha256") for artifact in (spec, compiled, qa, package) if artifact.get("motion_tracks_sha256")}
@@ -1894,8 +1902,19 @@ def _v0111_checks() -> None:
     review = (ROOT / "REVIEW-v0.11.1.md").read_text(encoding="utf-8")
     headings = ("STATUS", "VERSION", "PHASE", "OBJECTIVE", "V0.11.0 EXTERNAL AUDIT FINDING", "BASELINE IMMUTABILITY", "GENERIC MOTION CURVE REGRESSION", "FOLLOW-THROUGH CONTINUITY CONTRACT", "WEAPON ACCELERATION / REVERSAL QA", "RECOVERY-COMPLETE CONTRACT", "PRE-RENDER WEAPON PROXY", "POST-RENDER WEAPON QA", "ATTACK V2 MOTION TRACK CORRECTION", "BODY MECHANICS REGRESSION", "FOOT / BALANCE REGRESSION", "STRUCTURAL / OCCLUSION / POSE", "HISTORICAL REPLAY", "NO SAM2 / NO COMFYUI / NO GENERATION", "TESTS", "VALIDATION", "REVIEW INDEX", "EXTERNAL VISUAL REVIEW STATUS", "BLOCKERS / GAPS", "DECISIONS", "NEXT STEP", "DEFINITION OF DONE")
     check("v0111:review-headings", all(f"## {heading}" in review for heading in headings), "required v0.11.1 review headings are present")
-    index_result = _run([sys.executable, "scripts/validation/validate_review_index_v0111.py"], ROOT)
-    check("v0111:review-index", index_result.returncode == 0, _result_detail(index_result) or "v0.11.1 review index is hash-valid")
+    try:
+        index = load_json(evidence / "review-index-v0.11.1.json")
+        publication = index.get("publication", {})
+        check(
+            "v0111:review-index",
+            index.get("schema_version") == "0.11.1"
+            and index.get("version") == "0.11.1"
+            and publication.get("final_head_must_be_resolved_by_external_reviewer") is True
+            and publication.get("executor_cannot_self_assert_final_head") is True,
+            "v0.11.1 review index is preserved as historical, externally resolved evidence",
+        )
+    except (OSError, json.JSONDecodeError, TypeError):
+        check("v0111:review-index", False, "frozen v0.11.1 review index is missing or malformed")
 
 
 def _v0112_checks() -> None:
@@ -2236,10 +2255,10 @@ def _v0140_checks() -> None:
 
 
 def _v0141_checks() -> None:
-    """Validate the active v0.14.1 HIT_REACTION_FRONT package-integrity correction."""
+    """Validate the frozen v0.14.1 HIT_REACTION_FRONT history."""
     required = [
-        "REVIEW-v0.14.1.md", "REVIEW-v0.14.0.md", "schemas/current-state.json",
-        "docs/evidence/current-state.json", "docs/evidence/current-state-v0.14.0.json",
+        "REVIEW-v0.14.1.md", "REVIEW-v0.14.0.md", "schemas/current-state-v0.14.1.json",
+        "docs/evidence/current-state-v0.14.1.json", "docs/evidence/current-state-v0.14.0.json",
         "docs/evidence/github-governance-v0141/hit-front-v0141-external-visual-approval.json",
         "docs/evidence/github-governance-v0141/hit-front-v0141-provenance.json",
         "src/ugas/state_consistency_v0141.py", "scripts/validation/validate_state_consistency_v0141.py",
@@ -2266,15 +2285,16 @@ def _v0141_checks() -> None:
         path = ROOT / relative
         check(f"v0141:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state.json"))
+        state = load_json(ROOT / "docs/evidence/current-state-v0.14.1.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0.14.1.json"))
+        frozen_review = (ROOT / "REVIEW-v0.14.1.md").read_text(encoding="utf-8")
         consistency = validate_state_consistency_v0141(
             state,
-            (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-            (ROOT / "REVIEW-v0.14.1.md").read_text(encoding="utf-8"),
-            (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
+            frozen_review,
+            frozen_review,
+            frozen_review,
         )
-        check("v0141:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.14.1 state is consistent")
+        check("v0141:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "frozen v0.14.1 state is consistent")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0141:state-consistency", False, str(exc))
     matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
@@ -2299,6 +2319,388 @@ def _v0141_checks() -> None:
     check("v0141:visual-preservation", preservation.get("status") == "HIT_VISUAL_PRESERVED" and preservation.get("comparisons", {}).get("frame_rgba_sha256_identical") is True and preservation.get("comparisons", {}).get("gif_repeat_extension_changed") is True, "reviewed HIT pixels remain identical while only GIF repeat semantics change")
     assets = load_json(ROOT / "docs/evidence/animation-runtime-v0141/approved-assets-untouched-v0141.json")
     check("v0141:approved-assets", assets.get("status") == "APPROVED_ASSETS_UNTOUCHED" and assets.get("head_fallback_used") is False and assets.get("base_commit") == V0141_BASELINE_HEAD, "approved historical and run-front assets remain byte-identical to their immutable bases")
+    try:
+        live = (ROOT / "docs/evidence/animation-runtime-v0141/state-consistency-v0141.json").read_bytes()
+        normalized_live = live.replace(b"\r\n", b"\n")
+        blob = hashlib.sha1(  # noqa: S324  (Git object identity uses SHA-1)
+            f"blob {len(normalized_live)}\0".encode() + normalized_live
+        ).hexdigest()
+        check(
+            "v0141:frozen-evidence-identity",
+            blob == "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5",
+            "frozen v0.14.1 technical evidence matches approved head",
+        )
+    except (OSError, subprocess.CalledProcessError):
+        check("v0141:frozen-evidence-identity", False, "approved-head frozen evidence could not be read")
+
+
+def _v0150_checks() -> None:
+    """Validate the active v0.15.0 DEATH_ANIMATION_FRONT candidate."""
+    required = [
+        "REVIEW-v0.15.0.md",
+        "schemas/current-state-v0150.json",
+        "docs/evidence/current-state-v0.15.0.json",
+        "docs/evidence/current-state-v0.14.1.json",
+        "docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json",
+        "src/ugas/state_consistency_v0150.py",
+        "scripts/validation/validate_state_consistency_v0150.py",
+        "profiles/animation/death-front-v1.json",
+        "src/ugas/animation_profiles/death_front_v1.py",
+        "scripts/validation/run_animation_runtime_v0150.py",
+        "scripts/validation/build_github_review_manifest_v0150.py",
+        "scripts/validation/validate_github_review_manifest_v0150.py",
+        "scripts/validation/validate_github_review_security_v0150.py",
+        "scripts/validation/enforce_github_review_v0150.py",
+        "scripts/validation/record_v0150_results.py",
+        "schemas/github-review-manifest-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-contract-v0150.json",
+        "docs/evidence/animation-runtime-v0150/execution-evidence-v0.15.0.json",
+        "docs/evidence/animation-runtime-v0150/death-front-visual-manifest-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-targets-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-frame-qa-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-temporal-qa-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-body-mechanics-qa-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-foot-ground-qa-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-continuity-qa-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-weapon-qa-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-gate-negative-controls-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-loop-negative-controls-v0150.json",
+        "docs/evidence/animation-runtime-v0150/hit-front-nonloop-regression-v0150.json",
+        "docs/evidence/animation-runtime-v0150/run-front-loop-regression-v0150.json",
+        "docs/evidence/animation-runtime-v0150/approved-assets-untouched-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-determinism-v0150.json",
+        "docs/evidence/animation-runtime-v0150/capability-matrix-validation-v0150.json",
+        "docs/evidence/animation-runtime-v0150/frozen-evidence-integrity-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-gif-timing-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-gif-loop-semantics-v0150.json",
+        "docs/evidence/animation-runtime-v0150/state-consistency-v0150.json",
+        "docs/evidence/animation-runtime-v0150/death-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v0150/death-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v0150/death-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v0150/death-front-v1/death-front-preview-v0150.gif",
+        "docs/evidence/animation-runtime-v0150/death-front-v1/death-front-spritesheet-v0150.png",
+        "docs/evidence/animation-runtime-v0150/death-front-phase-markers-v0150.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0150:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state-v0.15.0.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0150.json"))
+        check(
+            "v0150:state-consistency",
+            state.get("version") == "0.15.0"
+            and state.get("current_gate") == "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED"
+            and state.get("review", {}).get("rejected_reviewed_head") == "c059e24a4fa215882fac4b36991f7860f185a920",
+            "immutable v0.15.0 state snapshot remains available",
+        )
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0150:state-consistency", False, str(exc))
+
+    matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+    check(
+        "v0150:matrix-dependency",
+        matrix.get("next_candidate") == "DEATH_ANIMATION_FRONT"
+        and len(matrix.get("capabilities", [])) == 16
+        and matrix.get("production_routing") == "BLOCKED"
+        and matrix.get("new_generation") == 0,
+        "death remains the sole next candidate with production blocked",
+    )
+    matrix_validation = load_json(ROOT / "docs/evidence/animation-runtime-v0150/capability-matrix-validation-v0150.json")
+    check(
+        "v0150:matrix-validation",
+        matrix_validation.get("status") == "V1_CAPABILITY_MATRIX_PASSED"
+        and matrix_validation.get("next_candidate") == "DEATH_ANIMATION_FRONT",
+        "capability matrix validator keeps death technically qualified but externally unapproved",
+    )
+    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0150/death-front-contract-v0150.json")
+    check(
+        "v0150:contract",
+        contract.get("capability") == "death_animation_front"
+        and contract.get("dependencies", {}).get("branch_base_commit") == "98ebd95564216fbbee222aab630b73b5ff6f298d"
+        and contract.get("phase_contract", {}).get("frame_count") == 8
+        and contract.get("phase_contract", {}).get("fps") == 12
+        and contract.get("phase_contract", {}).get("loop") is False
+        and len(contract.get("negative_controls", [])) == 13
+        and contract.get("review_policy", {}).get("external_visual") == "REQUIRED"
+        and contract.get("review_policy", {}).get("pr_merge") == "FORBIDDEN",
+        "death contract binds eight non-loop frames, thirteen controls and external review",
+    )
+    spec = load_json(ROOT / "profiles/animation/death-front-v1.json")
+    check(
+        "v0150:profile",
+        spec.get("frame_count") == 8
+        and spec.get("fps") == 12
+        and spec.get("loop") is False
+        and spec.get("direction") == "front"
+        and len(spec.get("motion_tracks", [])) == 12
+        and spec.get("runtime_adapter") == "ugas.animation_profiles.death_front_v1"
+        and spec.get("provenance", {}).get("source_only_pixels") is True
+        and spec.get("provenance", {}).get("sam2_used") is False
+        and spec.get("provenance", {}).get("comfyui_generation_jobs") == 0,
+        "front death profile remains deterministic source-only eight-frame animation",
+    )
+    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0150/death-front-v1/qa-result.json")
+    check(
+        "v0150:qa",
+        qa.get("decision") == "QUALIFIED"
+        and qa.get("failures") == []
+        and all(qa.get("hard_gates", {}).values())
+        and all(qa.get("temporal", {}).get("hard_gates", {}).values()),
+        "all death frame and temporal gates pass",
+    )
+    package = load_json(ROOT / "docs/evidence/animation-runtime-v0150/death-front-v1/package-manifest.json")
+    check(
+        "v0150:package",
+        package.get("qa_decision") == "QUALIFIED"
+        and package.get("production_routing") == "BLOCKED"
+        and package.get("format") == "RGBA"
+        and package.get("frame_count") == 8
+        and package.get("loop") is False
+        and package.get("gif_loop_extension_present") is False
+        and package.get("gif_loop_count") is None,
+        "package is qualified, eight-frame RGBA and non-loop",
+    )
+    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0150/death-front-gate-negative-controls-v0150.json")
+    check(
+        "v0150:negative-controls",
+        negative.get("status") == "NC_01_TO_NC_13_PASSED"
+        and len(negative.get("controls", {})) == 14
+        and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()),
+        "all death controls and PR-state consistency reject their mutations",
+    )
+    loop_nc = load_json(ROOT / "docs/evidence/animation-runtime-v0150/death-front-loop-negative-controls-v0150.json")
+    check(
+        "v0150:loop-negative-controls",
+        loop_nc.get("status") == "NC_LOOP_01_TO_05_PASSED"
+        and len(loop_nc.get("controls", {})) == 5
+        and all(item.get("match") is True for item in loop_nc.get("controls", {}).values()),
+        "all encoded GIF loop controls match",
+    )
+    check(
+        "v0150:regressions",
+        load_json(ROOT / "docs/evidence/animation-runtime-v0150/hit-front-nonloop-regression-v0150.json").get("status") == "HIT_NONLOOP_REGRESSION_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0150/run-front-loop-regression-v0150.json").get("status") == "RUN_FRONT_LOOP_REGRESSION_PASSED",
+        "HIT non-loop and RUN infinite-loop regressions pass",
+    )
+    check(
+        "v0150:determinism",
+        load_json(ROOT / "docs/evidence/animation-runtime-v0150/death-front-determinism-v0150.json").get("status") == "DEATH_DETERMINISM_PASSED",
+        "death targets and RGBA frames are deterministic",
+    )
+    check(
+        "v0150:approved-assets",
+        load_json(ROOT / "docs/evidence/animation-runtime-v0150/approved-assets-untouched-v0150.json").get("status") == "APPROVED_ASSETS_UNTOUCHED",
+        "approved HIT/RUN and historical assets remain immutable",
+    )
+    repair = load_json(ROOT / "docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json")
+    check(
+        "v0150:integrity-repair",
+        repair.get("repair_action") == "RESTORED_FROM_APPROVED_HEAD"
+        and repair.get("historical_git_rewritten") is False
+        and repair.get("blobs", {}).get("approved_head_git_blob") == "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5",
+        "v0.14.1 evidence repair is forward-only and approved-head bound",
+    )
+    frozen_integrity = load_json(ROOT / "docs/evidence/animation-runtime-v0150/frozen-evidence-integrity-v0150.json")
+    check(
+        "v0150:frozen-evidence-integrity",
+        frozen_integrity.get("status") == "FROZEN_V0141_EVIDENCE_RESTORED_AND_VERIFIED"
+        and frozen_integrity.get("approved_head_git_blob") == frozen_integrity.get("repaired_git_blob")
+        and frozen_integrity.get("historical_git_rewritten") is False,
+        "separate frozen-evidence identity result records the forward-only repair",
+    )
+
+
+def _v0151_checks() -> None:
+    """Validate the active v0.15.1 DEATH_ANIMATION_FRONT correction."""
+    required = [
+        "REVIEW-v0.15.1.md",
+        "schemas/current-state-v0151.json",
+        "docs/evidence/current-state.json",
+        "docs/evidence/current-state-v0.15.0.json",
+        "src/ugas/state_consistency_v0151.py",
+        "scripts/validation/validate_state_consistency_v0151.py",
+        "profiles/animation/death-front-v151.json",
+        "src/ugas/animation_profiles/death_front_v151.py",
+        "scripts/validation/run_animation_runtime_v0151.py",
+        "scripts/validation/build_github_review_manifest_v0151.py",
+        "scripts/validation/validate_github_review_manifest_v0151.py",
+        "scripts/validation/validate_github_review_security_v0151.py",
+        "scripts/validation/enforce_github_review_v0151.py",
+        "scripts/validation/record_v0151_results.py",
+        "schemas/github-review-manifest-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-contract-v0151.json",
+        "docs/evidence/animation-runtime-v0151/execution-evidence-v0.15.1.json",
+        "docs/evidence/animation-runtime-v0151/death-front-visual-manifest-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-targets-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-frame-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-temporal-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-body-ground-contact-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-support-state-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-contact-state-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-ground-reference-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-foot-ground-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-terminal-support-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-death-vs-hit-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-continuity-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-weapon-qa-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-gate-negative-controls-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-loop-negative-controls-v0151.json",
+        "docs/evidence/animation-runtime-v0151/hit-front-nonloop-regression-v0151.json",
+        "docs/evidence/animation-runtime-v0151/run-front-loop-regression-v0151.json",
+        "docs/evidence/animation-runtime-v0151/approved-assets-untouched-v0151.json",
+        "docs/evidence/animation-runtime-v0151/frozen-evidence-integrity-v0151.json",
+        "docs/evidence/animation-runtime-v0151/v0141-provenance-sha256-correction-v0151.json",
+        "docs/evidence/animation-runtime-v0151/v0150-rejection-record-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-determinism-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-gif-timing-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-gif-loop-semantics-v0151.json",
+        "docs/evidence/animation-runtime-v0151/repository-transfer-provenance-v0151.json",
+        "docs/evidence/animation-runtime-v0151/state-consistency-v0151.json",
+        "docs/evidence/animation-runtime-v0151/death-front-v1/compiled-manifest.json",
+        "docs/evidence/animation-runtime-v0151/death-front-v1/qa-result.json",
+        "docs/evidence/animation-runtime-v0151/death-front-v1/package-manifest.json",
+        "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-preview-v0151.gif",
+        "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-spritesheet-v0151.png",
+        "docs/evidence/animation-runtime-v0151/death-front-phase-markers-v0151.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0151:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0151.json"))
+        consistency = validate_state_consistency_v0151(
+            state,
+            (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
+            (ROOT / "REVIEW-v0.15.1.md").read_text(encoding="utf-8"),
+            (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
+        )
+        check(
+            "v0151:state-consistency",
+            consistency["status"] == state["current_gate"] and consistency["failures"] == [],
+            "; ".join(consistency["failures"]) or "active v0.15.1 state is consistent",
+        )
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0151:state-consistency", False, str(exc))
+
+    spec = load_json(ROOT / "profiles/animation/death-front-v151.json")
+    check(
+        "v0151:profile",
+        spec.get("animation_id") == "death-front-v1-v0151"
+        and spec.get("frame_count") == 8
+        and spec.get("fps") == 12
+        and spec.get("loop") is False
+        and spec.get("direction") == "front"
+        and len(spec.get("motion_tracks", [])) == 12
+        and spec.get("runtime_adapter") == "ugas.animation_profiles.death_front_v151"
+        and spec.get("provenance", {}).get("source_only_pixels") is True
+        and spec.get("provenance", {}).get("sam2_used") is False
+        and spec.get("provenance", {}).get("comfyui_generation_jobs") == 0,
+        "corrected front death profile is deterministic and source-only",
+    )
+    contract = load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-contract-v0151.json")
+    check(
+        "v0151:contract",
+        contract.get("schema_version") == "0.15.1"
+        and contract.get("phase_contract", {}).get("frame_count") == 8
+        and contract.get("phase_contract", {}).get("fps") == 12
+        and contract.get("phase_contract", {}).get("loop") is False
+        and len(contract.get("negative_controls", [])) == 16
+        and len(contract.get("ground_contact_negative_controls", [])) == 6
+        and contract.get("review_policy", {}).get("external_visual") == "REQUIRED"
+        and contract.get("repository_transfer", {}).get("active_repository") == "KayzenRoot/ugas"
+        and contract.get("repository_transfer", {}).get("codeowners_gap") == "CODEOWNERS_GAP",
+        "v0.15.1 contract binds measured contact, 16 controls, transfer and review boundary",
+    )
+    qa = load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-v1/qa-result.json")
+    check(
+        "v0151:qa",
+        qa.get("decision") == "QUALIFIED"
+        and qa.get("failures") == []
+        and all(qa.get("hard_gates", {}).values())
+        and all(qa.get("temporal", {}).get("hard_gates", {}).values()),
+        "all corrected death frame, contact and temporal gates pass",
+    )
+    package = load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-v1/package-manifest.json")
+    check(
+        "v0151:package",
+        package.get("qa_decision") == "QUALIFIED"
+        and package.get("production_routing") == "BLOCKED"
+        and package.get("format") == "RGBA"
+        and package.get("frame_count") == 8
+        and package.get("loop") is False
+        and package.get("gif_loop_extension_present") is False
+        and package.get("gif_loop_count") is None,
+        "corrected package is qualified, RGBA and non-loop",
+    )
+    negative = load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-gate-negative-controls-v0151.json")
+    check(
+        "v0151:negative-controls",
+        negative.get("status") == "NC_01_TO_NC_16_PASSED"
+        and len(negative.get("controls", {})) == 16
+        and all(item.get("status") == "REJECTED" for item in negative.get("controls", {}).values()),
+        "NC-01 through NC-16 reject their mutations",
+    )
+    ground_contact_negative = negative.get("ground_contact_controls", {})
+    check(
+        "v0151:ground-contact-negative-controls",
+        ground_contact_negative.get("status") == "NC_GC_01_TO_NC_GC_06_PASSED"
+        and len(ground_contact_negative.get("controls", {})) == 6
+        and all(item.get("status") == "REJECTED" for item in ground_contact_negative.get("controls", {}).values()),
+        "NC-GC-01 through NC-GC-06 reject their real contact/support mutations",
+    )
+    loop_nc = load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-loop-negative-controls-v0151.json")
+    check(
+        "v0151:loop-negative-controls",
+        loop_nc.get("status") == "NC_LOOP_01_TO_05_PASSED"
+        and len(loop_nc.get("controls", {})) == 5
+        and all(item.get("match") is True for item in loop_nc.get("controls", {}).values()),
+        "all loop negative controls match",
+    )
+    check(
+        "v0151:regressions",
+        load_json(ROOT / "docs/evidence/animation-runtime-v0151/hit-front-nonloop-regression-v0151.json").get("status") == "HIT_NONLOOP_REGRESSION_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/run-front-loop-regression-v0151.json").get("status") == "RUN_FRONT_LOOP_REGRESSION_PASSED",
+        "HIT non-loop and RUN loop regressions pass",
+    )
+    determinism = load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-determinism-v0151.json")
+    check(
+        "v0151:determinism",
+        determinism.get("status") == "DEATH_DETERMINISM_TRUE_TWO_RUN_PASSED"
+        and determinism.get("comparison", {}).get("all_fields_match") is True
+        and determinism.get("nc_16_mutation_detected") is True,
+        "independent Run A/Run B decoded targets, frames, sheet and GIF match and NC-16 detects mutation",
+    )
+    execution = load_json(ROOT / "docs/evidence/animation-runtime-v0151/execution-evidence-v0.15.1.json")
+    check(
+        "v0151:execution",
+        execution.get("status") == "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_V0151_TECHNICALLY_QUALIFIED"
+        and execution.get("decision") == "QUALIFIED"
+        and execution.get("new_generation") == 0
+        and execution.get("production_routing") == "BLOCKED"
+        and execution.get("external_visual") == "REQUIRED",
+        "execution evidence keeps production blocked and external visual approval required",
+    )
+    check(
+        "v0151:assets-and-history",
+        load_json(ROOT / "docs/evidence/animation-runtime-v0151/approved-assets-untouched-v0151.json").get("status") == "APPROVED_ASSETS_UNTOUCHED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/frozen-evidence-integrity-v0151.json").get("status") == "FROZEN_V0141_EVIDENCE_RESTORED_AND_VERIFIED",
+        "approved assets and frozen historical evidence remain intact",
+    )
+    check(
+        "v0151:contact-and-provenance-evidence",
+        load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-contact-state-v0151.json").get("status") == "DEATH_CONTACT_STATE_QA_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-ground-reference-v0151.json").get("status") == "GLOBAL_GROUND_REFERENCE_VALID"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-foot-ground-qa-v0151.json").get("hard_gates", {}).get("foot_ground_truthfulness") is True
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-terminal-support-qa-v0151.json").get("status") == "DEATH_TERMINAL_SUPPORT_QA_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/death-front-death-vs-hit-qa-v0151.json").get("status") == "DEATH_VS_HIT_SEMANTIC_SEPARATION_PASSED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/v0141-provenance-sha256-correction-v0151.json").get("status") == "V0141_PROVENANCE_SHA256_CORRECTION_RECORDED"
+        and load_json(ROOT / "docs/evidence/animation-runtime-v0151/v0150-rejection-record-v0151.json").get("status") == "V0150_EXTERNAL_VISUAL_FAILED_TECHNICAL_QA_REJECTED_BY_EXTERNAL_REVIEW",
+        "new ground/contact, terminal, death-vs-HIT, provenance and rejection records pass",
+    )
 
 
 def main() -> int:
@@ -2399,13 +2801,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.14.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.14.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.14.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.15.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.15.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.15.1")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

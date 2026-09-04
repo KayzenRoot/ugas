@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.15.1",
+  "animation_id": "death-front-v1-v0151",
+  "status": "DEATH_CONTINUITY_INTERPOLATION_PASSED",
+  "gates": {
+    "contact_teleport_free": true,
+    "angular_continuity": true,
+    "angular_acceleration_continuity": true,
+    "nonfinite_and_gap_free": true,
+    "collapse_visible_in_bbox": true
+  },
+  "metrics": {
+    "root_path_length_px": 113.118604,
+    "terminal_displacement_px": 110.01818,
+    "collapse_start_displacement_px": 23.323808,
+    "terminal_to_peak_ratio": 1.0,
+    "terminal_residual_px": 0.0,
+    "max_joint_angle_step_deg": 57.670216,
+    "max_angular_acceleration_deg_per_frame2": 53.815126,
+    "collapse_height_reduction": 0.377404
+  }
+}

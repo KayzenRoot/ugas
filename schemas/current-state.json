@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.14.1 HIT_REACTION_FRONT approved-pilot state",
+  "title": "UGAS active v0.15.1 DEATH_ANIMATION_FRONT state",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency", "hit_reaction_front_visual_content"],
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency", "hit_reaction_front_visual_content", "death_animation_front_visual_content"],
   "properties": {
     "schema_version": {"type": "string"},
     "version": {"type": "string"},
@@ -16,11 +16,12 @@
     "production_approved": {"type": "boolean"},
     "production_routing": {"type": "string"},
     "hit_reaction_front_visual_content": {"type": "string"},
-    "external_visual_review": {"type": "object", "additionalProperties": false, "required": ["attack_front_v2", "observability_dashboard", "run_front_v1", "hit_reaction_front"], "properties": {"attack_front_v2": {"type": "string"}, "observability_dashboard": {"type": "string"}, "run_front_v1": {"type": "string"}, "hit_reaction_front": {"type": "string"}}},
+    "death_animation_front_visual_content": {"type": "string"},
+    "external_visual_review": {"type": "object", "additionalProperties": false, "required": ["attack_front_v2", "observability_dashboard", "run_front_v1", "hit_reaction_front", "death_animation_front"], "properties": {"attack_front_v2": {"type": "string"}, "observability_dashboard": {"type": "string"}, "run_front_v1": {"type": "string"}, "hit_reaction_front": {"type": "string"}, "death_animation_front": {"type": "string"}}},
     "always_on_dashboard_policy": {"type": "string"},
     "runtime_mode": {"type": "string"},
     "new_generation": {"type": "integer", "minimum": 0},
-    "review": {"type": "object", "additionalProperties": false, "required": ["repository", "baseline_head", "feature_branch", "execution_mode", "merge_policy", "no_self_merge_until_external_approval", "direct_main_push_forbidden", "pr_number", "pr_state", "real_pr_checks_green"], "properties": {"repository": {"type": "string"}, "baseline_head": {"type": "string", "minLength": 40}, "feature_branch": {"type": "string"}, "execution_mode": {"type": "string"}, "merge_policy": {"type": "string"}, "no_self_merge_until_external_approval": {"type": "boolean"}, "direct_main_push_forbidden": {"type": "boolean"}, "pr_number": {"type": "integer", "minimum": 0}, "pr_state": {"type": "string"}, "real_pr_checks_green": {"type": "boolean"}, "approved_head_sha": {"type": "string", "minLength": 40}, "rejected_reviewed_head": {"type": "string", "minLength": 40}, "merge_authorization": {"type": "string"}}},
+    "review": {"type": "object", "additionalProperties": false, "required": ["repository", "baseline_head", "branch_base_commit", "feature_branch", "execution_mode", "merge_policy", "no_self_merge_until_external_approval", "direct_main_push_forbidden", "pr_number", "pr_state", "real_pr_checks_green", "pr4_number", "pr4_state", "pr4_merge_commit", "pr4_merged_head", "pr4_technical_approved_head"], "properties": {"repository": {"type": "string"}, "baseline_head": {"type": "string", "minLength": 40}, "branch_base_commit": {"type": "string", "minLength": 40}, "feature_branch": {"type": "string"}, "execution_mode": {"type": "string"}, "merge_policy": {"type": "string"}, "no_self_merge_until_external_approval": {"type": "boolean"}, "direct_main_push_forbidden": {"type": "boolean"}, "pr_number": {"type": "integer", "minimum": 0}, "pr_state": {"type": "string"}, "real_pr_checks_green": {"type": "boolean"}, "approved_head_sha": {"type": "string", "minLength": 40}, "rejected_reviewed_head": {"type": "string", "minLength": 40}, "merge_authorization": {"type": "string"}, "pr4_number": {"type": "integer", "minimum": 0}, "pr4_state": {"type": "string"}, "pr4_merge_commit": {"type": "string", "minLength": 40}, "pr4_merged_head": {"type": "string", "minLength": 40}, "pr4_technical_approved_head": {"type": "string", "minLength": 40}}},
     "incident": {"type": "object", "additionalProperties": true},
     "evidence": {"type": "object", "additionalProperties": true},
     "state_consistency": {"type": "object", "additionalProperties": true}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.15.0",
+  "animation_id": "death-front-v1",
+  "metrics": {
+    "root_path_length_px": 46.589356,
+    "terminal_displacement_px": 51.855569,
+    "collapse_start_displacement_px": 23.323808,
+    "terminal_to_peak_ratio": 1.0,
+    "terminal_residual_px": 1.0,
+    "max_joint_angle_step_deg": 38.022522,
+    "max_angular_acceleration_deg_per_frame2": 34.991882,
+    "collapse_height_reduction": 0.314904
+  },
+  "collapse": {
+    "rest_pelvis": {
+      "x": 269.54335,
+      "y": 252.782
+    },
+    "pelvis_displacements_px": [
+      6.708204,
+      13.892444,
+      23.323808,
+      33.286634,
+      43.266615,
+      47.201695,
+      51.224994,
+      51.855569
+    ],
+    "measured_ground_contact_frame": 4,
+    "terminal_to_peak_ratio": 1.0,
+    "terminal_residual_px": 1.0,
+    "root_shift_x": [
+      3.0,
+      5.0,
+      8.0,
+      12.0,
+      16.0,
+      18.0,
+      20.0,
+      21.0
+    ],
+    "root_shift_y": [
+      6.0,
+      12.0,
+      20.0,
+      28.0,
+      36.0,
+      38.0,
+      40.0,
+      40.0
+    ],
+    "torso_rotation_deg": [
+      3.0,
+      10.0,
+      20.0,
+      32.0,
+      48.0,
+      60.0,
+      70.0,
+      71.0
+    ],
+    "hit_h5_recovery_target_hash": "ecd679fea5e88295d75df37d3c4d5e22354a67d48b43004a3864fce0eadf2fef",
+    "hit_h5_recovery_displacement_px": 3.162278
+  },
+  "hard_gates": {
+    "lethal_onset_immediate": true,
+    "collapse_progression": true,
+    "irreversible_death": true,
+    "ground_contact_matches_support_change": true,
+    "terminal_stability": true,
+    "death_like_collapse": true,
+    "death_vs_hit_or_neutral": true
+  },
+  "status": "DEATH_BODY_MECHANICS_QA_PASSED"
+}

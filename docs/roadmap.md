@@ -1,8 +1,12 @@
 # UGAS roadmap
 
-## v0.14.1 - HIT_REACTION_FRONT approved pilot / APPROVED_TO_MERGE (active: HIT_REACTION_FRONT)
+## v0.15.1 - DEATH_ANIMATION_FRONT corrective slice approved pilot / merge authorized (active: DEATH_ANIMATION_FRONT)
 
-Sol external review recorded hit_reaction_front=APPROVED_PILOT and APPROVED_TO_MERGE for PR #4 at exact head a3e37865f260c5a6cd56743e1d4b9131fcb12cda. The technical gate remains HIT_REACTION_FRONT_PACKAGE_INTEGRITY_TECHNICALLY_QUALIFIED. Visual content is inherited from the v0.14.0 review; v0.14.1 froze the corrected non-loop GIF. run_front_v1=APPROVED_PILOT remains bound to f3d68faa5524392e66aee2fc2a450b9da8fa734b. The rejected reviewed head is c059e24a4fa215882fac4b36991f7860f185a920. CAPABILITY_COUNT=16, next_candidate=DEATH_ANIMATION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. After the governed merge of PR #4 the only allowed next action is death_animation_front. No production enablement or MULTI_DIRECTION_ANIMATION_RUNTIME is authorized.
+The active phase is DEATH_ANIMATION_FRONT and the gate is DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED. The source-only correction is eight frames at 12 fps, non-looping, with measured body ground contact, lifted terminal feet and true two-run determinism. death_animation_front=APPROVED_PILOT; hit_reaction_front=APPROVED_PILOT; run_front_v1=APPROVED_PILOT. Sol approved exact reviewed head 1ddcdf3b9bf44b390af549c00a0553b850c71976 as APPROVED_PILOT / APPROVED_TO_MERGE after exact-head checks and artifact verification. PR #4 is MERGED at 98ebd95564216fbbee222aab630b73b5ff6f298d. v0141_frozen_evidence=RESTORED_AND_VERIFIED. CAPABILITY_COUNT=16, next_candidate=DEATH_ANIMATION_FRONT, production_routing=BLOCKED, new_generation=0, production_approved=false. GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=false, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL remain binding. The active repository is KayzenRoot/ugas and PR #5 remains OPEN only until the governed protected merge. Merge PR #5 through the protected GitHub path. Do not start MULTI_DIRECTION_ANIMATION_RUNTIME before that merge.
+
+## Historical v0.15.0 - rejected reviewed DEATH_ANIMATION_FRONT
+
+The v0.15.0 death slice and its rejected reviewed head remain frozen under `REVIEW-v0.15.0.md` and `docs/evidence/animation-runtime-v0150/`. The v0.15.1 correction is forward-only.
 
 ## Historical v0.14.1 - HIT_REACTION_FRONT package integrity
 

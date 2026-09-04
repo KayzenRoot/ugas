@@ -1,0 +1,396 @@
+{
+  "schema_version": "0.15.1",
+  "review_state": "death-front-v0151-technically-qualified-external-visual-required",
+  "review_subject": {
+    "animation_id": "death-front-v1-v0151",
+    "direction": "front",
+    "frame_count": 8,
+    "fps": 12,
+    "loop": false,
+    "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798"
+  },
+  "event_markers": [
+    {
+      "event_id": "lethal_impact_onset",
+      "frame": 0,
+      "kind": "lethal"
+    },
+    {
+      "event_id": "collapse_start",
+      "frame": 2,
+      "kind": "collapse"
+    },
+    {
+      "event_id": "ground_contact",
+      "frame": 4,
+      "kind": "contact"
+    },
+    {
+      "event_id": "final_pose",
+      "frame": 7,
+      "kind": "terminal"
+    }
+  ],
+  "event_markers_sha256": "f78d9d3349b559bc544b58a4eaa31935d971509052f0e749ec9a8b0bcfe64485",
+  "motion_tracks_sha256": "cd03e0f67a46f7d92b1219f0c04dd061122765e441934cd3d78c0e053928fc99",
+  "gif_timing": {
+    "frame_count": 8,
+    "loop_extension_present": false,
+    "loop_count": null,
+    "loop": null,
+    "pillow_loop": null,
+    "netscape_offset": null,
+    "raw_subblock_hex": null,
+    "durations_ms": [
+      80,
+      90,
+      80,
+      90,
+      80,
+      90,
+      80,
+      80
+    ],
+    "total_cycle_ms": 670,
+    "effective_fps": 11.940299
+  },
+  "images": [
+    {
+      "frame": 0,
+      "phase": "D0-lethal-impact-onset",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-00.png",
+      "rgba_sha256": "84abfc200726fb4650b51e9ae808c15ec00be6260154f10cdcd0a7febc0d4535",
+      "target_hash": "bed92b6b7479051a3448694aa30bb5da551d206c1a971996be17f66ca173e7e4",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "lethal_impact_onset",
+          "frame": 0,
+          "kind": "lethal"
+        }
+      ],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "frame": 1,
+      "phase": "D1-destabilization",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-01.png",
+      "rgba_sha256": "0bbcb9b174911a9b10ce5629d9e47fbc920be686c427ba30d2402e63cf12d62e",
+      "target_hash": "961123b69ab113d18447f68808c32d319e61d7be40e57598143703a465bec943",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "frame": 2,
+      "phase": "D2-buckle",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-02.png",
+      "rgba_sha256": "392b0c51575cb09635121715ea6c8d9bc1bc413da75663eb9e3df46f74aa4096",
+      "target_hash": "1c5b4367dfba4d754adb4bb7947cee16471957faa52161fb92a5a031c20fefe1",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "collapse_start",
+          "frame": 2,
+          "kind": "collapse"
+        }
+      ],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "frame": 3,
+      "phase": "D3-collapse-descent",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-03.png",
+      "rgba_sha256": "aa7e582566df51cc159b4b503c8c68e7891d554ee0ef08a0b66c1192fc2239b0",
+      "target_hash": "942db3766747777c290ced53155919655cef9e496b523ba87411437202fe8e4e",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "frame": 4,
+      "phase": "D4-ground-contact-transition",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-04.png",
+      "rgba_sha256": "ca352c014a37fa09295c066a93c54d1aa5f00fe2e8f2c8799a31050fabb1a1ae",
+      "target_hash": "6ac530837f076f4c73db926aeddfbbe3e0b0d95335ef2b233578e9584a41ae50",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "ground_contact",
+          "frame": 4,
+          "kind": "contact"
+        }
+      ],
+      "body_contact_regions": [
+        "left_forearm_hand"
+      ],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "frame": 5,
+      "phase": "D5-settling",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-05.png",
+      "rgba_sha256": "11a6059b99047610afbd3c90d1e1c540bbfdb2fcec15cf63dbacbbfeeae755b2",
+      "target_hash": "33a23ad53ceeb566a3dc6dfb7e0c80c10e3bbe0892b1e6960a84842c5e1e22c0",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [],
+      "body_contact_regions": [
+        "left_forearm_hand"
+      ],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "frame": 6,
+      "phase": "D6-final-collapse",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-06.png",
+      "rgba_sha256": "ea191a69ee911476d32eadda58d4ca1356cb555dea9e168719cf1f7136ccc0ae",
+      "target_hash": "d57ca978070ddad992ea2a85358b26f593ae34aeaf18a0786cb8c25c48bc1925",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [],
+      "body_contact_regions": [
+        "left_forearm_hand",
+        "left_thigh"
+      ],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "frame": 7,
+      "phase": "D7-corpse-hold",
+      "source_path": "docs/evidence/animation-runtime-v0151/death-front-v1/frame-07.png",
+      "rgba_sha256": "9ae99f0a45f13511f6e4cb20b7c161c8d120b3e46997e7f9ff42b30bd9490bd8",
+      "target_hash": "9c44bffc024c0f722ed8da78e172d32c8415923b78c6977cbc9bdc6126a7891d",
+      "media_type": "image/png",
+      "role": "corrected-compiled-source-only-frame",
+      "events": [
+        {
+          "event_id": "final_pose",
+          "frame": 7,
+          "kind": "terminal"
+        }
+      ],
+      "body_contact_regions": [
+        "left_forearm_hand",
+        "left_thigh"
+      ],
+      "ground_reference_y": 479.883091
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-preview-v0151.gif",
+      "sha256": "7fe4caa38051f6d374cdefe898de860c11ddbd461c9cd4b63974f1d14b6c170a",
+      "media_type": "image/gif",
+      "role": "non-loop-review-gif",
+      "events": [
+        {
+          "event_id": "lethal_impact_onset",
+          "frame": 0,
+          "kind": "lethal"
+        },
+        {
+          "event_id": "collapse_start",
+          "frame": 2,
+          "kind": "collapse"
+        },
+        {
+          "event_id": "ground_contact",
+          "frame": 4,
+          "kind": "contact"
+        },
+        {
+          "event_id": "final_pose",
+          "frame": 7,
+          "kind": "terminal"
+        }
+      ],
+      "gif_encoded_frame_durations_ms": [
+        80,
+        90,
+        80,
+        90,
+        80,
+        90,
+        80,
+        80
+      ],
+      "gif_total_cycle_ms": 670,
+      "gif_effective_fps": 11.940299,
+      "gif_loop_extension_present": false,
+      "gif_loop_count": null
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-spritesheet-v0151.png",
+      "sha256": "e708a549beb1ec482d4561ccdaf5b323a90b232f1fd36306facefa8e26f83816",
+      "media_type": "image/png",
+      "role": "corrected-rgba-spritesheet",
+      "events": [
+        {
+          "event_id": "lethal_impact_onset",
+          "frame": 0,
+          "kind": "lethal"
+        },
+        {
+          "event_id": "collapse_start",
+          "frame": 2,
+          "kind": "collapse"
+        },
+        {
+          "event_id": "ground_contact",
+          "frame": 4,
+          "kind": "contact"
+        },
+        {
+          "event_id": "final_pose",
+          "frame": 7,
+          "kind": "terminal"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/animation-runtime-v0151/death-front-phase-markers-v0151.png",
+      "sha256": "d74d7fd4cc946802144cab472c4a874c48e90e68648c55c876431bb4d340ebda",
+      "media_type": "image/png",
+      "role": "phase-marker-contact-review-sheet",
+      "events": [
+        {
+          "event_id": "lethal_impact_onset",
+          "frame": 0,
+          "kind": "lethal"
+        },
+        {
+          "event_id": "collapse_start",
+          "frame": 2,
+          "kind": "collapse"
+        },
+        {
+          "event_id": "ground_contact",
+          "frame": 4,
+          "kind": "contact"
+        },
+        {
+          "event_id": "final_pose",
+          "frame": 7,
+          "kind": "terminal"
+        }
+      ]
+    }
+  ],
+  "marker_frames": [
+    {
+      "frame": 0,
+      "phase": "D0-lethal-impact-onset",
+      "events": [
+        "lethal_impact_onset"
+      ],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-00-D0-lethal-impact-onset.png",
+      "sha256": "d8101c39d9261bd64e844024e606a30c2f6b0be168e5bfa2dd4ba5644dabc273"
+    },
+    {
+      "frame": 1,
+      "phase": "D1-destabilization",
+      "events": [],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-01-D1-destabilization.png",
+      "sha256": "00b9f4997b91f1a74d0ec5f2bc9f8edb0d49212c58592d9cd4b85dc5634a4985"
+    },
+    {
+      "frame": 2,
+      "phase": "D2-buckle",
+      "events": [
+        "collapse_start"
+      ],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-02-D2-buckle.png",
+      "sha256": "17057dd18f3255b17941aed233dda7df1f454568c44e2ddd5aad0aaf4b4d8dc1"
+    },
+    {
+      "frame": 3,
+      "phase": "D3-collapse-descent",
+      "events": [],
+      "body_contact_regions": [],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-03-D3-collapse-descent.png",
+      "sha256": "6260070cf77b7333aae6015a5cfc73c10044bb47709d16c17c43062cf18d9399"
+    },
+    {
+      "frame": 4,
+      "phase": "D4-ground-contact-transition",
+      "events": [
+        "ground_contact"
+      ],
+      "body_contact_regions": [
+        "left_forearm_hand"
+      ],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-04-D4-ground-contact-transition.png",
+      "sha256": "6db20180bcf3b74e1e92e9c12ed446ffb578c8608bd5b5f5bf5492aacd6e442b"
+    },
+    {
+      "frame": 5,
+      "phase": "D5-settling",
+      "events": [],
+      "body_contact_regions": [
+        "left_forearm_hand"
+      ],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-05-D5-settling.png",
+      "sha256": "4644685173df78192ec433e1746a37c2fad72f45ef4cf30e1bdaca11551281b9"
+    },
+    {
+      "frame": 6,
+      "phase": "D6-final-collapse",
+      "events": [],
+      "body_contact_regions": [
+        "left_forearm_hand",
+        "left_thigh"
+      ],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-06-D6-final-collapse.png",
+      "sha256": "2649ecb17f7ce19e704b5de6447fe0b93b2ce8462f1dc41b395ac6d81a38001f"
+    },
+    {
+      "frame": 7,
+      "phase": "D7-corpse-hold",
+      "events": [
+        "final_pose"
+      ],
+      "body_contact_regions": [
+        "left_forearm_hand",
+        "left_thigh"
+      ],
+      "ground_reference_y": 479.883091,
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/visual/phase-markers/frame-07-D7-corpse-hold.png",
+      "sha256": "1166593284072270625a83d2822430692fb58e1c3f5b93e105114bf88f9a1b7c"
+    }
+  ],
+  "source_only_pixels": true,
+  "external_visual": "REQUIRED",
+  "production_routing": "BLOCKED",
+  "package_manifest": {
+    "path": "docs/evidence/animation-runtime-v0151/death-front-v1/package-manifest.json",
+    "sha256": "d31abbd055c10527236ccf3fa804b9deaa58f220afc04417b39c67f9a740d495"
+  },
+  "contact_integrity": {
+    "global_ground_reference_valid": true,
+    "support_state_classification_valid": true,
+    "ground_contact_marker_matches_actual_transition": true,
+    "body_contact_persists_to_terminal": true,
+    "terminal_pose_physically_supported": true,
+    "death_vs_hit_semantic_separation": true,
+    "terminal_stability": true,
+    "foot_ground_truthfulness": true
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.15.0",
+  "prompt": "UGAS-v0.15.0-DEATH-ANIMATION-FRONT",
+  "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+  "hit_approved_head_sha": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+  "run_front_approved_head_sha": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+  "evidence_head_sha": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+  "animation_id": "death-front-v1",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 8,
+  "fps": 12,
+  "loop": false,
+  "gif_encoded_frame_durations_ms": [
+    80,
+    90,
+    80,
+    90,
+    80,
+    90,
+    80,
+    80
+  ],
+  "gif_total_cycle_ms": 670,
+  "gif_effective_fps": 11.940299,
+  "gif_loop_extension_present": false,
+  "gif_loop_count": null,
+  "motion_tracks_sha256": "6c9ca0ff930bfc904e4f508d03c59dbf243cb6c39102b135244616c1e16a151b",
+  "event_markers_sha256": "f78d9d3349b559bc544b58a4eaa31935d971509052f0e749ec9a8b0bcfe64485",
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "external_visual": "REQUIRED",
+  "negative_controls": "NC_01_TO_NC_13_PASSED",
+  "loop_negative_controls": "NC_LOOP_01_TO_05_PASSED",
+  "run_front_loop_regression": "RUN_FRONT_LOOP_REGRESSION_PASSED",
+  "hit_front_nonloop_regression": "HIT_NONLOOP_REGRESSION_PASSED",
+  "approved_assets_untouched": "APPROVED_ASSETS_UNTOUCHED",
+  "frozen_evidence_integrity": "FROZEN_V0141_EVIDENCE_RESTORED_AND_VERIFIED",
+  "determinism": "DEATH_DETERMINISM_PASSED",
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0150/death-front-v1/package-manifest.json",
+    "sha256": "3d40a9a8127bf4b4e9d1dc1d0f5069cc7db5553b4d3b3767883c1eed395660f9",
+    "preview_gif": {
+      "path": "docs/evidence/animation-runtime-v0150/death-front-v1/death-front-preview-v0150.gif",
+      "sha256": "d0026f8f9f21731860e7e90a7e40bf6db06a9eda46072036506dfdbaf73e284c"
+    },
+    "sprite_sheet": {
+      "path": "docs/evidence/animation-runtime-v0150/death-front-v1/death-front-spritesheet-v0150.png",
+      "sha256": "54d8b3d7a25cb239caaf8bd179404e40fa6cc4748d3b94267918f705354b44c3"
+    }
+  },
+  "review_artifacts": {
+    "visual_manifest": "docs/evidence/animation-runtime-v0150/death-front-visual-manifest-v0150.json",
+    "phase_marker_sheet": "docs/evidence/animation-runtime-v0150/death-front-phase-markers-v0150.png",
+    "negative_controls": "docs/evidence/animation-runtime-v0150/death-front-gate-negative-controls-v0150.json",
+    "loop_negative_controls": "docs/evidence/animation-runtime-v0150/death-front-loop-negative-controls-v0150.json"
+  },
+  "historical_v0141_preserved": true,
+  "historical_v0140_preserved": true,
+  "historical_v0131_preserved": true,
+  "next_capability_started": false,
+  "executor_does_not_claim_visual_approval": true,
+  "github_review_manifest_is_authority_for_final_head": true
+}

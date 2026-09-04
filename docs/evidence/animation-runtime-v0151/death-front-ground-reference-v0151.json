@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.15.1",
+  "animation_id": "death-front-v1-v0151",
+  "status": "GLOBAL_GROUND_REFERENCE_VALID",
+  "reference": {
+    "method": "single-frozen-D0-projected-source-alpha-sole-reference",
+    "source_frame": 0,
+    "projected_sole_y": {
+      "left": 477.039285,
+      "right": 482.726898
+    },
+    "D0_actual_sole_y": {
+      "left": 476.0,
+      "right": 482.0
+    },
+    "ground_reference_y": 479.883091,
+    "recomputed_per_frame": false,
+    "fixed_world_contact_points": {
+      "left": {
+        "x": 340.5,
+        "y": 476.0,
+        "source_frame": 0
+      },
+      "right": {
+        "x": 262.5,
+        "y": 482.0,
+        "source_frame": 0
+      }
+    }
+  },
+  "derivation": "Freeze projected D0 source-alpha sole reference before the first corrected PNG; use the same floor reference for every rendered frame.",
+  "thresholds": {
+    "ground_penetration_max_px": 1.5,
+    "body_contact_tolerance_px": 8.0,
+    "body_contact_penetration_max_px": 4.0,
+    "foot_planted_tolerance_px": 10.0,
+    "foot_penetration_max_px": 8.0,
+    "foot_lifted_clearance_min_px": 12.0,
+    "foot_world_contact_drift_max_px": 24.0,
+    "contact_step_max_px": 48.0,
+    "contact_ankle_slip_max_px": 2.5,
+    "ground_contact_min_drop_px": 32.0
+  }
+}
