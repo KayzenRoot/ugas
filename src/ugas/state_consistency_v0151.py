@@ -8,7 +8,7 @@ from typing import Any, Mapping
 CURRENT_VERSION = "0.15.1"
 CURRENT_PHASE = "DEATH_ANIMATION_FRONT"
 CURRENT_GATE = "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED"
-NEXT_ACTION = "external_visual_review_death_animation_front_v0151"
+NEXT_ACTION = "governed_merge_pr_5"
 BASELINE_HEAD = "0beb4c23604f1e45736c3082f99d2e08fa1ac308"
 BRANCH_BASE = "98ebd95564216fbbee222aab630b73b5ff6f298d"
 FEATURE_BRANCH = "codex/v0.15.0-death-animation-front"
@@ -62,8 +62,8 @@ def validate_state_consistency(
         failures.append("current_gate_invalid")
     if state.get("hit_reaction_front_visual_content") != "APPROVED_PILOT":
         failures.append("hit_visual_content_must_remain_approved_pilot")
-    if state.get("death_animation_front_visual_content") != "REQUIRED":
-        failures.append("death_visual_review_must_remain_required")
+    if state.get("death_animation_front_visual_content") != "APPROVED_PILOT":
+        failures.append("death_visual_content_must_be_approved_pilot")
     if state.get("production_approved") is not False or state.get("production_routing") != "BLOCKED":
         failures.append("production_must_remain_blocked")
     if state.get("always_on_dashboard_policy") != "ENABLED" or state.get("runtime_mode") != "DOCKER_ALWAYS_ON_LOCAL":
@@ -74,15 +74,15 @@ def validate_state_consistency(
         failures.append("next_action_must_be_external_visual_review_death_animation_front")
 
     previous = _mapping(state.get("previous_release"))
-    if previous.get("version") != "0.15.0":
-        failures.append("previous_release_must_be_0.15.0")
+    if previous.get("version") != "0.14.1":
+        failures.append("previous_release_must_be_0.14.1")
 
     external = _mapping(state.get("external_visual_review"))
     for key in ("attack_front_v2", "observability_dashboard", "run_front_v1", "hit_reaction_front"):
         if external.get(key) != "APPROVED_PILOT":
             failures.append(f"external_review:{key}_must_be_approved_pilot")
-    if external.get("death_animation_front") != "REQUIRED":
-        failures.append("external_review:death_animation_front_must_be_required")
+    if external.get("death_animation_front") != "APPROVED_PILOT":
+        failures.append("external_review:death_animation_front_must_be_approved_pilot")
 
     review = _mapping(state.get("review"))
     expected_review = {
@@ -91,8 +91,8 @@ def validate_state_consistency(
         "branch_base_commit": BRANCH_BASE,
         "feature_branch": FEATURE_BRANCH,
         "execution_mode": "GITHUB_PR_FIRST",
-        "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL",
-        "no_self_merge_until_external_approval": True,
+        "merge_policy": "PROTECTED_GOVERNED_MERGE_AFTER_EXTERNAL_VISUAL_APPROVAL",
+        "no_self_merge_until_external_approval": False,
         "direct_main_push_forbidden": True,
         "pr4_number": 4,
         "pr4_state": "MERGED",
@@ -115,8 +115,8 @@ def validate_state_consistency(
         failures.append("real_pr_checks_green_must_be_boolean")
     if review.get("rejected_reviewed_head") != "c573ab020106ee89a36e1edb9bfae8b526d5057e":
         failures.append("rejected_reviewed_head_must_bind_v0150_head")
-    if review.get("merge_authorization") not in {None, "NOT_AUTHORIZED"}:
-        failures.append("death_pr_must_not_claim_merge_authorization")
+    if review.get("merge_authorization") != "APPROVED_TO_MERGE":
+        failures.append("death_pr_merge_authorization_must_be_approved_to_merge")
     if review.get("pr4_state") == "MERGED" and review.get("pr4_merge_commit") == PR4_MERGE_COMMIT and review.get("pr_number") == 4:
         failures.append("new_pr_fields_must_not_reuse_pr4_identity")
 
@@ -141,7 +141,7 @@ def validate_state_consistency(
         "diffusion_runs": 0,
         "run_front_v1_external_visual": "APPROVED_PILOT",
         "hit_reaction_front_external_visual": "APPROVED_PILOT",
-        "death_animation_front_external_visual": "REQUIRED",
+        "death_animation_front_external_visual": "APPROVED_PILOT",
         "capability_matrix_next_candidate": "DEATH_ANIMATION_FRONT",
         "capability_count": 16,
         "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
@@ -183,7 +183,7 @@ def validate_state_consistency(
         "DEATH_ANIMATION_FRONT",
         "hit_reaction_front=APPROVED_PILOT",
         "run_front_v1=APPROVED_PILOT",
-        "death_animation_front=REQUIRED",
+        "death_animation_front=APPROVED_PILOT",
         "production_approved=false",
         "production_routing=BLOCKED",
         "new_generation=0",
@@ -202,7 +202,7 @@ def validate_state_consistency(
         "KayzenRoot/ugas",
         "c573ab020106ee89a36e1edb9bfae8b526d5057e",
         "v0.15.0",
-        "Do not merge v0.15.1",
+        "Merge PR #5 through the protected GitHub path",
         "Do not start MULTI_DIRECTION_ANIMATION_RUNTIME",
     )
     combined = "\n".join(active_sources)

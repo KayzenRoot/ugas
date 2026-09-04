@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.15.1",
+  "decision_type": "external_death_animation_front_visual_and_ground_contact_integrity",
+  "decision": "APPROVED_PILOT",
+  "merge_authorization": "APPROVED_TO_MERGE",
+  "scope": "visual_and_pilot_only",
+  "reviewer": "Sol external review",
+  "repository": "KayzenRoot/ugas",
+  "pr_number": 5,
+  "reviewed_head_sha": "1ddcdf3b9bf44b390af549c00a0553b850c71976",
+  "immutable_implementation_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "github_review_manifest_is_authority_for_final_head": true,
+  "committed_self_referential_evidence_is_not_final_head_authority": true,
+  "source_artifact": {
+    "id": "9945967601",
+    "name": "ugas-review-evidence-pr-5-1ddcdf3b9bf44b390af549c00a0553b850c71976",
+    "digest": "sha256:0524d87c4f208cfc618426147bb0ba63e960a0144a025e7421dffb2d052899a5",
+    "workflow_run_id": 33895779546
+  },
+  "required_checks": {
+    "UGAS CI / unit-and-validation": "SUCCESS",
+    "UGAS CI / docker-smoke": "SUCCESS",
+    "UGAS Review / evidence": "SUCCESS"
+  },
+  "bindings": {
+    "preview_gif_path": "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-preview-v0151.gif",
+    "preview_gif_sha256": "7fe4caa38051f6d374cdefe898de860c11ddbd461c9cd4b63974f1d14b6c170a",
+    "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+    "motion_tracks_sha256": "cd03e0f67a46f7d92b1219f0c04dd061122765e441934cd3d78c0e053928fc99",
+    "immutable_approved_assets_base": "0beb4c23604f1e45736c3082f99d2e08fa1ac308"
+  },
+  "observations": [
+    "technical_github_checks_green_at_exact_head",
+    "D4_is_first_real_body_ground_contact",
+    "D6_D7_are_physically_grounded_terminal_states",
+    "final_pose_reads_as_death_not_suspended_lean",
+    "true_two_run_decoded_pixel_determinism"
+  ],
+  "does_not_approve": [
+    "production_routing",
+    "new_generation",
+    "multi_direction_animation_runtime"
+  ],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "historical_sources_rewritten": false,
+  "v0150_rejected_evidence_rewritten": false,
+  "v0151_technical_evidence_rewritten": false
+}

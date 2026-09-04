@@ -34,7 +34,7 @@ def main() -> int:
         for gate in manifest.get("gates", [])
         if gate.get("status") != "PASS"
     )
-    if validation.get("status") != "V0150_GITHUB_REVIEW_MANIFEST_PASSED":
+    if validation.get("status") != "V0151_GITHUB_REVIEW_MANIFEST_PASSED":
         failures.append("manifest-validation-not-pass")
     if security.get("status") != "PASS":
         failures.append("security-not-pass")

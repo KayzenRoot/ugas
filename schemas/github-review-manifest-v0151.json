@@ -61,7 +61,7 @@
         "version": {"const": "0.15.1"},
         "phase": {"const": "DEATH_ANIMATION_FRONT"},
         "current_gate": {"const": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED"},
-        "allowed_next_actions": {"const": ["external_visual_review_death_animation_front"]},
+        "allowed_next_actions": {"const": ["governed_merge_pr_5"]},
         "new_generation": {"const": 0}
       }
     },
@@ -110,7 +110,7 @@
         "production_approved": {"const": false},
         "production_routing": {"const": "BLOCKED"},
         "external_visual_review": {"type": "object"},
-        "allowed_next_actions": {"const": ["external_visual_review_death_animation_front"]}
+        "allowed_next_actions": {"const": ["governed_merge_pr_5"]}
       }
     },
     "incident": {

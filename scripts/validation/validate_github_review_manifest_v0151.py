@@ -57,7 +57,7 @@ def validate(manifest_path: Path, visual_path: Path, root: Path = ROOT) -> dict[
         validate_instance(manifest, schema)
         visual = json.loads(visual_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError, ValueError, TypeError) as exc:
-        return {"status": "V0150_GITHUB_REVIEW_MANIFEST_FAILED", "failures": [f"schema:{type(exc).__name__}:{exc}"]}
+        return {"status": "V0151_GITHUB_REVIEW_MANIFEST_FAILED", "failures": [f"schema:{type(exc).__name__}:{exc}"]}
 
     pull_request = manifest["pull_request"]
     scope = manifest["scope"]
@@ -96,8 +96,8 @@ def validate(manifest_path: Path, visual_path: Path, root: Path = ROOT) -> dict[
         failures.append("current-state-gate-invalid")
     if current_state.get("production_approved") is not False or current_state.get("production_routing") != "BLOCKED":
         failures.append("production-boundary-invalid")
-    if current_state.get("external_visual_review", {}).get("death_animation_front") != "REQUIRED":
-        failures.append("death-external-review-must-remain-required")
+    if current_state.get("external_visual_review", {}).get("death_animation_front") != "APPROVED_PILOT":
+        failures.append("death-external-review-must-be-approved-pilot")
 
     for key, relative in manifest["death_front_evidence"].items():
         if key == "phase_marker_sheet" or key != "approved_head":
@@ -118,7 +118,7 @@ def validate(manifest_path: Path, visual_path: Path, root: Path = ROOT) -> dict[
     failures.extend(f"visual:{item}" for item in visual_result.get("failures", []))
 
     return {
-        "status": "V0150_GITHUB_REVIEW_MANIFEST_PASSED" if not failures else "V0150_GITHUB_REVIEW_MANIFEST_FAILED",
+        "status": "V0151_GITHUB_REVIEW_MANIFEST_PASSED" if not failures else "V0151_GITHUB_REVIEW_MANIFEST_FAILED",
         "failures": failures,
         "overall_status": manifest.get("overall_status"),
         "base_sha": pull_request.get("base_sha"),
@@ -139,4 +139,4 @@ if __name__ == "__main__":
     if args.result_output:
         Path(args.result_output).write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
-    raise SystemExit(0 if result["status"] == "V0150_GITHUB_REVIEW_MANIFEST_PASSED" else 1)
+    raise SystemExit(0 if result["status"] == "V0151_GITHUB_REVIEW_MANIFEST_PASSED" else 1)

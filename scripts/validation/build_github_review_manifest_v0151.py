@@ -178,7 +178,7 @@ def main() -> int:
     print(
         json.dumps(
             {
-                "status": "V0150_GITHUB_REVIEW_MANIFEST_BUILT",
+                "status": "V0151_GITHUB_REVIEW_MANIFEST_BUILT",
                 "head_sha": manifest["pull_request"]["head_sha"],
                 "base_sha": manifest["pull_request"]["base_sha"],
             },
