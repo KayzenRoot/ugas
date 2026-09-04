@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.15.1",
+  "status": "NC_LOOP_01_TO_05_PASSED",
+  "controls": {
+    "NC-LOOP-01_infinite_extension_on_nonloop": {
+      "expected": "REJECTED",
+      "status": "REJECTED",
+      "match": true,
+      "encoded_with_pillow_loop": 0,
+      "inspect": {
+        "loop_extension_present": true,
+        "loop_count": 0,
+        "netscape_offset": 28,
+        "raw_subblock_hex": "0301000000"
+      },
+      "decoded": {
+        "frame_count": 8,
+        "loop_extension_present": true,
+        "loop_count": 0,
+        "loop": 0,
+        "pillow_loop": 0,
+        "netscape_offset": 28,
+        "raw_subblock_hex": "0301000000",
+        "durations_ms": [
+          80,
+          90,
+          80,
+          90,
+          80,
+          90,
+          80,
+          80
+        ],
+        "total_cycle_ms": 670,
+        "effective_fps": 11.940299
+      },
+      "hard_gates": {
+        "declared_timing_present": true,
+        "frame_count": true,
+        "loop_extension_presence_matches": false,
+        "loop_count_matches": false,
+        "loop_contract_matches": false,
+        "total_cycle_in_tolerance": true,
+        "effective_fps_in_tolerance": true
+      },
+      "gif_sha256": "7f71bcca41df311bb4c412eefd31490a0c2f380e2010de4b374dd71717e4ef12"
+    },
+    "NC-LOOP-02_explicit_loop1_on_nonloop": {
+      "expected": "REJECTED",
+      "status": "REJECTED",
+      "match": true,
+      "encoded_with_pillow_loop": 1,
+      "inspect": {
+        "loop_extension_present": true,
+        "loop_count": 1,
+        "netscape_offset": 28,
+        "raw_subblock_hex": "0301010000"
+      },
+      "decoded": {
+        "frame_count": 8,
+        "loop_extension_present": true,
+        "loop_count": 1,
+        "loop": 1,
+        "pillow_loop": 1,
+        "netscape_offset": 28,
+        "raw_subblock_hex": "0301010000",
+        "durations_ms": [
+          80,
+          90,
+          80,
+          90,
+          80,
+          90,
+          80,
+          80
+        ],
+        "total_cycle_ms": 670,
+        "effective_fps": 11.940299
+      },
+      "hard_gates": {
+        "declared_timing_present": true,
+        "frame_count": true,
+        "loop_extension_presence_matches": false,
+        "loop_count_matches": false,
+        "loop_contract_matches": false,
+        "total_cycle_in_tolerance": true,
+        "effective_fps_in_tolerance": true
+      },
+      "gif_sha256": "cb1b2c9d909edc0c0cda81ada8698f2821dd8951c0f1a7d0c474f9a161e4a533"
+    },
+    "NC-LOOP-03_no_extension_on_nonloop": {
+      "expected": "PASSED",
+      "status": "PASSED",
+      "match": true,
+      "encoded_with_pillow_loop": null,
+      "inspect": {
+        "loop_extension_present": false,
+        "loop_count": null,
+        "netscape_offset": null,
+        "raw_subblock_hex": null
+      },
+      "decoded": {
+        "frame_count": 8,
+        "loop_extension_present": false,
+        "loop_count": null,
+        "loop": null,
+        "pillow_loop": null,
+        "netscape_offset": null,
+        "raw_subblock_hex": null,
+        "durations_ms": [
+          80,
+          90,
+          80,
+          90,
+          80,
+          90,
+          80,
+          80
+        ],
+        "total_cycle_ms": 670,
+        "effective_fps": 11.940299
+      },
+      "hard_gates": {
+        "declared_timing_present": true,
+        "frame_count": true,
+        "loop_extension_presence_matches": true,
+        "loop_count_matches": true,
+        "loop_contract_matches": true,
+        "total_cycle_in_tolerance": true,
+        "effective_fps_in_tolerance": true
+      },
+      "gif_sha256": "5bc6be8d7e2ddb6dc4a2b9b2e4d0986083f2e4649a6c25dcf0a4d6e0e1e5bda7"
+    },
+    "NC-LOOP-04_missing_extension_on_loop": {
+      "expected": "REJECTED",
+      "status": "REJECTED",
+      "match": true,
+      "encoded_with_pillow_loop": null,
+      "inspect": {
+        "loop_extension_present": false,
+        "loop_count": null,
+        "netscape_offset": null,
+        "raw_subblock_hex": null
+      },
+      "decoded": {
+        "frame_count": 8,
+        "loop_extension_present": false,
+        "loop_count": null,
+        "loop": null,
+        "pillow_loop": null,
+        "netscape_offset": null,
+        "raw_subblock_hex": null,
+        "durations_ms": [
+          80,
+          90,
+          80,
+          90,
+          80,
+          90,
+          80,
+          80
+        ],
+        "total_cycle_ms": 670,
+        "effective_fps": 11.940299
+      },
+      "hard_gates": {
+        "declared_timing_present": true,
+        "frame_count": true,
+        "loop_extension_presence_matches": false,
+        "loop_count_matches": false,
+        "loop_contract_matches": false,
+        "total_cycle_in_tolerance": true,
+        "effective_fps_in_tolerance": true
+      },
+      "gif_sha256": "70890d3548b909e06f67c14fa1cddedb670d9409289842dcd4e93209f96ae603"
+    },
+    "NC-LOOP-05_infinite_extension_on_loop": {
+      "expected": "PASSED",
+      "status": "PASSED",
+      "match": true,
+      "encoded_with_pillow_loop": 0,
+      "inspect": {
+        "loop_extension_present": true,
+        "loop_count": 0,
+        "netscape_offset": 28,
+        "raw_subblock_hex": "0301000000"
+      },
+      "decoded": {
+        "frame_count": 8,
+        "loop_extension_present": true,
+        "loop_count": 0,
+        "loop": 0,
+        "pillow_loop": 0,
+        "netscape_offset": 28,
+        "raw_subblock_hex": "0301000000",
+        "durations_ms": [
+          80,
+          90,
+          80,
+          90,
+          80,
+          90,
+          80,
+          80
+        ],
+        "total_cycle_ms": 670,
+        "effective_fps": 11.940299
+      },
+      "hard_gates": {
+        "declared_timing_present": true,
+        "frame_count": true,
+        "loop_extension_presence_matches": true,
+        "loop_count_matches": true,
+        "loop_contract_matches": true,
+        "total_cycle_in_tolerance": true,
+        "effective_fps_in_tolerance": true
+      },
+      "gif_sha256": "4cddb1289781f24f10343a95b754e6b47e7e626f471b2b1f193c2b9fb6003597"
+    }
+  },
+  "source": "real encoded GIF fixtures after save"
+}

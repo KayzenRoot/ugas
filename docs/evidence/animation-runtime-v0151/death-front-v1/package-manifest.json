@@ -1,0 +1,695 @@
+{
+  "schema_version": "animation-package-1.0",
+  "package_id": "ugas-death-front-v1-v0151-package",
+  "animation_id": "death-front-v1-v0151",
+  "direction": "front",
+  "frame_count": 8,
+  "fps": 11.940299,
+  "per_frame_duration_ms": 83.75,
+  "loop": false,
+  "event_markers": [
+    {
+      "event_id": "lethal_impact_onset",
+      "frame": 0,
+      "kind": "lethal"
+    },
+    {
+      "event_id": "collapse_start",
+      "frame": 2,
+      "kind": "collapse"
+    },
+    {
+      "event_id": "ground_contact",
+      "frame": 4,
+      "kind": "contact"
+    },
+    {
+      "event_id": "final_pose",
+      "frame": 7,
+      "kind": "terminal"
+    }
+  ],
+  "event_markers_sha256": "f78d9d3349b559bc544b58a4eaa31935d971509052f0e749ec9a8b0bcfe64485",
+  "format": "RGBA",
+  "cell_size": {
+    "width": 512,
+    "height": 512
+  },
+  "sheet_size": {
+    "width": 2048,
+    "height": 1024
+  },
+  "sprite_sheet": {
+    "path": "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-spritesheet-v0151.png",
+    "sha256": "e708a549beb1ec482d4561ccdaf5b323a90b232f1fd36306facefa8e26f83816"
+  },
+  "metadata": {
+    "path": "docs/evidence/animation-runtime-v0151/death-front-v1/metadata.json",
+    "sha256": "e56033fd691478aa3de1f1f4a549531958c2e19d02aebc6318b08d32803a1d7e"
+  },
+  "preview_gif": {
+    "path": "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-preview-v0151.gif",
+    "sha256": "7fe4caa38051f6d374cdefe898de860c11ddbd461c9cd4b63974f1d14b6c170a"
+  },
+  "registry_state": "pilot/technical-qualified",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "qa_status": "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_V0151_TECHNICALLY_QUALIFIED",
+  "qa_decision": "QUALIFIED",
+  "adapter_metadata": {
+    "phase_markers": [
+      {
+        "event_id": "lethal_impact_onset",
+        "frame": 0,
+        "kind": "lethal"
+      },
+      {
+        "event_id": "collapse_start",
+        "frame": 2,
+        "kind": "collapse"
+      },
+      {
+        "event_id": "ground_contact",
+        "frame": 4,
+        "kind": "contact"
+      },
+      {
+        "event_id": "final_pose",
+        "frame": 7,
+        "kind": "terminal"
+      }
+    ],
+    "motion_quality_layer": "generic.motion_tracks",
+    "source_only_renderer": "source-affine-resample-and-alpha-composite",
+    "contact_semantics": "measured-rendered-alpha-body-contact-with-frozen-D0-ground-reference",
+    "support_contact_states": [
+      {
+        "frame": 0,
+        "state_id": "upright_lethal_support",
+        "foot_support_mode": "dual_foot",
+        "foot_support": {
+          "left": "planted",
+          "right": "planted"
+        },
+        "body_contact_class": "suspended",
+        "body_contact_regions": [],
+        "grounded_terminal": false
+      },
+      {
+        "frame": 1,
+        "state_id": "destabilizing_support",
+        "foot_support_mode": "dual_foot",
+        "foot_support": {
+          "left": "planted",
+          "right": "planted"
+        },
+        "body_contact_class": "suspended",
+        "body_contact_regions": [],
+        "grounded_terminal": false
+      },
+      {
+        "frame": 2,
+        "state_id": "buckle_support",
+        "foot_support_mode": "dual_foot",
+        "foot_support": {
+          "left": "planted",
+          "right": "planted"
+        },
+        "body_contact_class": "suspended",
+        "body_contact_regions": [],
+        "grounded_terminal": false
+      },
+      {
+        "frame": 3,
+        "state_id": "collapse_descent_support",
+        "foot_support_mode": "dual_foot",
+        "foot_support": {
+          "left": "planted",
+          "right": "planted"
+        },
+        "body_contact_class": "suspended",
+        "body_contact_regions": [],
+        "grounded_terminal": false
+      },
+      {
+        "frame": 4,
+        "state_id": "body_contact_transition",
+        "foot_support_mode": "dual_foot",
+        "foot_support": {
+          "left": "planted",
+          "right": "planted"
+        },
+        "body_contact_class": "body_contact_transition",
+        "body_contact_regions": [
+          "left_forearm_hand"
+        ],
+        "grounded_terminal": false
+      },
+      {
+        "frame": 5,
+        "state_id": "settling_body_contact",
+        "foot_support_mode": "right_foot",
+        "foot_support": {
+          "left": "lifted",
+          "right": "planted"
+        },
+        "body_contact_class": "settling_body_contact",
+        "body_contact_regions": [
+          "left_forearm_hand"
+        ],
+        "grounded_terminal": false
+      },
+      {
+        "frame": 6,
+        "state_id": "grounded_terminal",
+        "foot_support_mode": "no_foot",
+        "foot_support": {
+          "left": "lifted",
+          "right": "lifted"
+        },
+        "body_contact_class": "grounded_terminal",
+        "body_contact_regions": [
+          "left_forearm_hand",
+          "left_thigh"
+        ],
+        "grounded_terminal": true
+      },
+      {
+        "frame": 7,
+        "state_id": "grounded_terminal_hold",
+        "foot_support_mode": "no_foot",
+        "foot_support": {
+          "left": "lifted",
+          "right": "lifted"
+        },
+        "body_contact_class": "grounded_terminal",
+        "body_contact_regions": [
+          "left_forearm_hand",
+          "left_thigh"
+        ],
+        "grounded_terminal": true
+      }
+    ]
+  },
+  "source_rig_revision": "r4-cutout-rig-v071",
+  "source_rig_sha256": "f1faea6d9925572d062943434eeea25f48e6c7eef704022eaee331c0d3d5a851",
+  "r4_source_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "gif_encoded_frame_durations_ms": [
+    80,
+    90,
+    80,
+    90,
+    80,
+    90,
+    80,
+    80
+  ],
+  "gif_total_cycle_ms": 670,
+  "gif_effective_fps": 11.940299,
+  "gif_nominal_fps": 12.0,
+  "gif_loop_extension_present": false,
+  "gif_loop_count": null,
+  "motion_tracks": [
+    {
+      "track_id": "root_shift_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 3.0
+        },
+        {
+          "frame": 1,
+          "value": 5.0
+        },
+        {
+          "frame": 2,
+          "value": 8.0
+        },
+        {
+          "frame": 3,
+          "value": 12.0
+        },
+        {
+          "frame": 4,
+          "value": 8.0
+        },
+        {
+          "frame": 5,
+          "value": 2.0
+        },
+        {
+          "frame": 6,
+          "value": -10.0
+        },
+        {
+          "frame": 7,
+          "value": -10.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "root_shift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 6.0
+        },
+        {
+          "frame": 1,
+          "value": 12.0
+        },
+        {
+          "frame": 2,
+          "value": 20.0
+        },
+        {
+          "frame": 3,
+          "value": 28.0
+        },
+        {
+          "frame": 4,
+          "value": 90.0
+        },
+        {
+          "frame": 5,
+          "value": 96.6667
+        },
+        {
+          "frame": 6,
+          "value": 110.0
+        },
+        {
+          "frame": 7,
+          "value": 110.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 3.0
+        },
+        {
+          "frame": 1,
+          "value": 10.0
+        },
+        {
+          "frame": 2,
+          "value": 20.0
+        },
+        {
+          "frame": 3,
+          "value": 32.0
+        },
+        {
+          "frame": 4,
+          "value": 60.0
+        },
+        {
+          "frame": 5,
+          "value": 70.0
+        },
+        {
+          "frame": 6,
+          "value": 90.0
+        },
+        {
+          "frame": 7,
+          "value": 90.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "torso_lean_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0.0
+        },
+        {
+          "frame": 1,
+          "value": 2.0
+        },
+        {
+          "frame": 2,
+          "value": 4.0
+        },
+        {
+          "frame": 3,
+          "value": 6.0
+        },
+        {
+          "frame": 4,
+          "value": 8.0
+        },
+        {
+          "frame": 5,
+          "value": 10.0
+        },
+        {
+          "frame": 6,
+          "value": 12.0
+        },
+        {
+          "frame": 7,
+          "value": 12.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 2.0
+        },
+        {
+          "frame": 1,
+          "value": 4.0
+        },
+        {
+          "frame": 2,
+          "value": 6.0
+        },
+        {
+          "frame": 3,
+          "value": 8.0
+        },
+        {
+          "frame": 4,
+          "value": -45.0
+        },
+        {
+          "frame": 5,
+          "value": -30.0
+        },
+        {
+          "frame": 6,
+          "value": -20.0
+        },
+        {
+          "frame": 7,
+          "value": -20.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_arm_swing_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": -2.0
+        },
+        {
+          "frame": 1,
+          "value": -4.0
+        },
+        {
+          "frame": 2,
+          "value": -6.0
+        },
+        {
+          "frame": 3,
+          "value": -7.0
+        },
+        {
+          "frame": 4,
+          "value": -5.0
+        },
+        {
+          "frame": 5,
+          "value": -5.0
+        },
+        {
+          "frame": 6,
+          "value": -5.0
+        },
+        {
+          "frame": 7,
+          "value": -5.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "head_counter_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": -1.0
+        },
+        {
+          "frame": 1,
+          "value": -3.0
+        },
+        {
+          "frame": 2,
+          "value": -5.0
+        },
+        {
+          "frame": 3,
+          "value": -6.0
+        },
+        {
+          "frame": 4,
+          "value": -7.0
+        },
+        {
+          "frame": 5,
+          "value": -8.0
+        },
+        {
+          "frame": 6,
+          "value": -8.0
+        },
+        {
+          "frame": 7,
+          "value": -8.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "sword_rotation_deg",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 8.0
+        },
+        {
+          "frame": 1,
+          "value": 10.0
+        },
+        {
+          "frame": 2,
+          "value": 12.0
+        },
+        {
+          "frame": 3,
+          "value": 14.0
+        },
+        {
+          "frame": 4,
+          "value": 16.0
+        },
+        {
+          "frame": 5,
+          "value": 16.0
+        },
+        {
+          "frame": 6,
+          "value": 17.0
+        },
+        {
+          "frame": 7,
+          "value": 19.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 40.0
+        },
+        {
+          "frame": 1,
+          "value": 40.0
+        },
+        {
+          "frame": 2,
+          "value": 40.0
+        },
+        {
+          "frame": 3,
+          "value": 40.0
+        },
+        {
+          "frame": 4,
+          "value": 40.0
+        },
+        {
+          "frame": 5,
+          "value": 40.0
+        },
+        {
+          "frame": 6,
+          "value": 40.0
+        },
+        {
+          "frame": 7,
+          "value": 40.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_stride_x",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 40.0
+        },
+        {
+          "frame": 1,
+          "value": 40.0
+        },
+        {
+          "frame": 2,
+          "value": 40.0
+        },
+        {
+          "frame": 3,
+          "value": 40.0
+        },
+        {
+          "frame": 4,
+          "value": 40.0
+        },
+        {
+          "frame": 5,
+          "value": 40.0
+        },
+        {
+          "frame": 6,
+          "value": 40.0
+        },
+        {
+          "frame": 7,
+          "value": 40.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "left_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 16.0
+        },
+        {
+          "frame": 1,
+          "value": 16.0
+        },
+        {
+          "frame": 2,
+          "value": 16.0
+        },
+        {
+          "frame": 3,
+          "value": 16.0
+        },
+        {
+          "frame": 4,
+          "value": 30.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        },
+        {
+          "frame": 6,
+          "value": -80.0
+        },
+        {
+          "frame": 7,
+          "value": -80.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    },
+    {
+      "track_id": "right_lift_y",
+      "value_type": "scalar",
+      "interpolation": "linear",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 16.0
+        },
+        {
+          "frame": 1,
+          "value": 16.0
+        },
+        {
+          "frame": 2,
+          "value": 16.0
+        },
+        {
+          "frame": 3,
+          "value": 0.0
+        },
+        {
+          "frame": 4,
+          "value": 0.0
+        },
+        {
+          "frame": 5,
+          "value": 0.0
+        },
+        {
+          "frame": 6,
+          "value": -70.0
+        },
+        {
+          "frame": 7,
+          "value": -70.0
+        }
+      ],
+      "clamp_policy": "clamp"
+    }
+  ],
+  "motion_tracks_sha256": "cd03e0f67a46f7d92b1219f0c04dd061122765e441934cd3d78c0e053928fc99"
+}

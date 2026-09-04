@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.15.1",
+  "prompt": "PROMPT-CORRETIVO-UGAS-v0.15.1-DEATH-GROUND-CONTACT-DETERMINISM-VISUAL-INTEGRITY",
+  "implementation_base_commit": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
+  "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+  "evidence_head_sha": "e3bbc72f100a26caf2ba27f4eeb6f27be82291f1",
+  "hit_approved_head_sha": "a3e37865f260c5a6cd56743e1d4b9131fcb12cda",
+  "run_front_approved_head_sha": "f3d68faa5524392e66aee2fc2a450b9da8fa734b",
+  "animation_id": "death-front-v1-v0151",
+  "status": "CUTOUT_ANIMATION_RUNTIME_V1_DEATH_ANIMATION_FRONT_V0151_TECHNICALLY_QUALIFIED",
+  "decision": "QUALIFIED",
+  "frame_count": 8,
+  "fps": 12,
+  "loop": false,
+  "motion_tracks_sha256": "cd03e0f67a46f7d92b1219f0c04dd061122765e441934cd3d78c0e053928fc99",
+  "event_markers_sha256": "f78d9d3349b559bc544b58a4eaa31935d971509052f0e749ec9a8b0bcfe64485",
+  "source_r4_sha256": "7c2d0ea531de5996bd747971c9daedef60a5ca9f2e5b57b2a52f80c05f8f5798",
+  "source_only_pixels": true,
+  "sam2_runs": 0,
+  "comfyui_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "new_generation": 0,
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "external_visual": "REQUIRED",
+  "negative_controls": "NC_01_TO_NC_16_PASSED",
+  "loop_negative_controls": "NC_LOOP_01_TO_05_PASSED",
+  "run_front_loop_regression": "RUN_FRONT_LOOP_REGRESSION_PASSED",
+  "hit_front_nonloop_regression": "HIT_NONLOOP_REGRESSION_PASSED",
+  "approved_assets_untouched": "APPROVED_ASSETS_UNTOUCHED",
+  "frozen_evidence_integrity": "FROZEN_V0141_EVIDENCE_RESTORED_AND_VERIFIED",
+  "true_two_run_determinism": "DEATH_DETERMINISM_TRUE_TWO_RUN_PASSED",
+  "repository_transfer_provenance": "REPOSITORY_TRANSFER_PROVENANCE_RECORDED",
+  "package": {
+    "path": "docs/evidence/animation-runtime-v0151/death-front-v1/package-manifest.json",
+    "sha256": "d31abbd055c10527236ccf3fa804b9deaa58f220afc04417b39c67f9a740d495",
+    "preview_gif": {
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-preview-v0151.gif",
+      "sha256": "7fe4caa38051f6d374cdefe898de860c11ddbd461c9cd4b63974f1d14b6c170a"
+    },
+    "sprite_sheet": {
+      "path": "docs/evidence/animation-runtime-v0151/death-front-v1/death-front-spritesheet-v0151.png",
+      "sha256": "e708a549beb1ec482d4561ccdaf5b323a90b232f1fd36306facefa8e26f83816"
+    }
+  },
+  "review_artifacts": {
+    "visual_manifest": "docs/evidence/animation-runtime-v0151/death-front-visual-manifest-v0151.json",
+    "phase_marker_sheet": "docs/evidence/animation-runtime-v0151/death-front-phase-markers-v0151.png",
+    "negative_controls": "docs/evidence/animation-runtime-v0151/death-front-gate-negative-controls-v0151.json",
+    "body_ground_contact": "docs/evidence/animation-runtime-v0151/death-front-body-ground-contact-qa-v0151.json",
+    "support_state": "docs/evidence/animation-runtime-v0151/death-front-support-state-qa-v0151.json",
+    "determinism": "docs/evidence/animation-runtime-v0151/death-front-determinism-v0151.json"
+  },
+  "historical_v0150_preserved": true,
+  "historical_v0141_preserved": true,
+  "next_capability_started": false,
+  "executor_does_not_claim_visual_approval": true,
+  "github_review_manifest_is_authority_for_final_head": true,
+  "contact_gate_names": [
+    "marker_matches_measured_body_contact_transition",
+    "contact_state_transition_valid",
+    "final_pose_grounded_terminal",
+    "ground_reference_stable"
+  ]
+}

@@ -1,0 +1,389 @@
+{
+  "schema_version": "0.15.1",
+  "animation_id": "death-front-v1-v0151",
+  "status": "DEATH_SUPPORT_STATE_QA_PASSED",
+  "ground_reference_y": 479.883091,
+  "states": [
+    {
+      "frame": 0,
+      "state_id": "upright_lethal_support",
+      "foot_support_mode": "dual_foot",
+      "foot_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "body_contact_class": "suspended",
+      "body_contact_regions": [],
+      "grounded_terminal": false
+    },
+    {
+      "frame": 1,
+      "state_id": "destabilizing_support",
+      "foot_support_mode": "dual_foot",
+      "foot_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "body_contact_class": "suspended",
+      "body_contact_regions": [],
+      "grounded_terminal": false
+    },
+    {
+      "frame": 2,
+      "state_id": "buckle_support",
+      "foot_support_mode": "dual_foot",
+      "foot_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "body_contact_class": "suspended",
+      "body_contact_regions": [],
+      "grounded_terminal": false
+    },
+    {
+      "frame": 3,
+      "state_id": "collapse_descent_support",
+      "foot_support_mode": "dual_foot",
+      "foot_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "body_contact_class": "suspended",
+      "body_contact_regions": [],
+      "grounded_terminal": false
+    },
+    {
+      "frame": 4,
+      "state_id": "body_contact_transition",
+      "foot_support_mode": "dual_foot",
+      "foot_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "body_contact_class": "body_contact_transition",
+      "body_contact_regions": [
+        "left_forearm_hand"
+      ],
+      "grounded_terminal": false
+    },
+    {
+      "frame": 5,
+      "state_id": "settling_body_contact",
+      "foot_support_mode": "right_foot",
+      "foot_support": {
+        "left": "lifted",
+        "right": "planted"
+      },
+      "body_contact_class": "settling_body_contact",
+      "body_contact_regions": [
+        "left_forearm_hand"
+      ],
+      "grounded_terminal": false
+    },
+    {
+      "frame": 6,
+      "state_id": "grounded_terminal",
+      "foot_support_mode": "no_foot",
+      "foot_support": {
+        "left": "lifted",
+        "right": "lifted"
+      },
+      "body_contact_class": "grounded_terminal",
+      "body_contact_regions": [
+        "left_forearm_hand",
+        "left_thigh"
+      ],
+      "grounded_terminal": true
+    },
+    {
+      "frame": 7,
+      "state_id": "grounded_terminal_hold",
+      "foot_support_mode": "no_foot",
+      "foot_support": {
+        "left": "lifted",
+        "right": "lifted"
+      },
+      "body_contact_class": "grounded_terminal",
+      "body_contact_regions": [
+        "left_forearm_hand",
+        "left_thigh"
+      ],
+      "grounded_terminal": true
+    }
+  ],
+  "frames": [
+    {
+      "declared_support_mode": "dual_foot",
+      "feet": {
+        "left": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 476.0,
+          "center_x": 340.5,
+          "ground_clearance_px": 3.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        },
+        "right": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 482.0,
+          "center_x": 262.5,
+          "ground_clearance_px": -2.116909,
+          "planted_gate": true,
+          "lifted_gate": false
+        }
+      },
+      "measured_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    },
+    {
+      "declared_support_mode": "dual_foot",
+      "feet": {
+        "left": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 475.0,
+          "center_x": 340.5,
+          "ground_clearance_px": 4.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        },
+        "right": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 481.0,
+          "center_x": 263.0,
+          "ground_clearance_px": -1.116909,
+          "planted_gate": true,
+          "lifted_gate": false
+        }
+      },
+      "measured_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    },
+    {
+      "declared_support_mode": "dual_foot",
+      "feet": {
+        "left": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 477.0,
+          "center_x": 343.5,
+          "ground_clearance_px": 2.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        },
+        "right": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 480.0,
+          "center_x": 264.5,
+          "ground_clearance_px": -0.116909,
+          "planted_gate": true,
+          "lifted_gate": false
+        }
+      },
+      "measured_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    },
+    {
+      "declared_support_mode": "dual_foot",
+      "feet": {
+        "left": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 472.0,
+          "center_x": 341.5,
+          "ground_clearance_px": 7.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        },
+        "right": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 470.0,
+          "center_x": 255.0,
+          "ground_clearance_px": 9.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        }
+      },
+      "measured_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    },
+    {
+      "declared_support_mode": "dual_foot",
+      "feet": {
+        "left": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 471.0,
+          "center_x": 331.0,
+          "ground_clearance_px": 8.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        },
+        "right": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 471.0,
+          "center_x": 245.0,
+          "ground_clearance_px": 8.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        }
+      },
+      "measured_support": {
+        "left": "planted",
+        "right": "planted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    },
+    {
+      "declared_support_mode": "right_foot",
+      "feet": {
+        "left": {
+          "declared_role": "lifted",
+          "measured_role": "lifted",
+          "bottom_y": 448.0,
+          "center_x": 317.5,
+          "ground_clearance_px": 31.883091,
+          "planted_gate": false,
+          "lifted_gate": true
+        },
+        "right": {
+          "declared_role": "planted",
+          "measured_role": "planted",
+          "bottom_y": 471.0,
+          "center_x": 245.0,
+          "ground_clearance_px": 8.883091,
+          "planted_gate": true,
+          "lifted_gate": false
+        }
+      },
+      "measured_support": {
+        "left": "lifted",
+        "right": "planted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    },
+    {
+      "declared_support_mode": "no_foot",
+      "feet": {
+        "left": {
+          "declared_role": "lifted",
+          "measured_role": "lifted",
+          "bottom_y": 447.0,
+          "center_x": 334.5,
+          "ground_clearance_px": 32.883091,
+          "planted_gate": false,
+          "lifted_gate": true
+        },
+        "right": {
+          "declared_role": "lifted",
+          "measured_role": "lifted",
+          "bottom_y": 397.0,
+          "center_x": 243.0,
+          "ground_clearance_px": 82.883091,
+          "planted_gate": false,
+          "lifted_gate": true
+        }
+      },
+      "measured_support": {
+        "left": "lifted",
+        "right": "lifted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    },
+    {
+      "declared_support_mode": "no_foot",
+      "feet": {
+        "left": {
+          "declared_role": "lifted",
+          "measured_role": "lifted",
+          "bottom_y": 447.0,
+          "center_x": 334.5,
+          "ground_clearance_px": 32.883091,
+          "planted_gate": false,
+          "lifted_gate": true
+        },
+        "right": {
+          "declared_role": "lifted",
+          "measured_role": "lifted",
+          "bottom_y": 397.0,
+          "center_x": 243.0,
+          "ground_clearance_px": 82.883091,
+          "planted_gate": false,
+          "lifted_gate": true
+        }
+      },
+      "measured_support": {
+        "left": "lifted",
+        "right": "lifted"
+      },
+      "state_matches_rendered": true,
+      "ground_reference_y": 479.883091,
+      "thresholds": {
+        "planted_tolerance_px": 10.0,
+        "penetration_max_px": 8.0,
+        "lifted_clearance_min_px": 12.0
+      }
+    }
+  ],
+  "state_transition_valid": true
+}
