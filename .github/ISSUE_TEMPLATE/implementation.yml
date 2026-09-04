@@ -1,0 +1,50 @@
+name: Governed implementation Work Order
+description: Propose a bounded implementation with baseline, Context Lock, validation, and review evidence.
+title: "feat: "
+labels:
+  - work-order
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for a bounded implementation. Do not use it to authorize broad cleanup or production enablement.
+  - type: input
+    id: work_order_id
+    attributes:
+      label: Work Order ID
+      description: Use a stable ENG-* or project-governed identifier.
+      placeholder: ENG-EXAMPLE-001
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective and scope
+      description: State the outcome, in-scope paths, and explicit out-of-scope work.
+    validations:
+      required: true
+  - type: input
+    id: baseline
+    attributes:
+      label: Baseline SHA
+      description: Record the exact commit before implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: List the exact before/after commands and expected evidence.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety and review
+      options:
+        - label: I will not start broad cleanup in this Work Order.
+          required: true
+        - label: I will stop on stale context, destructive ambiguity, scope expansion, or unresolved HIGH/CRITICAL risk.
+          required: true
+        - label: I will leave the PR for independent review and will not self-merge.
+          required: true

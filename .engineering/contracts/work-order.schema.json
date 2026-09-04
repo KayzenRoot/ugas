@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.local/schemas/engineering-work-order.schema.json",
+  "title": "UGAS Engineering Work Order",
+  "type": "object",
+  "required": ["work_order_id", "title", "repository", "baseline_sha", "branch", "status", "scope", "deliverables", "out_of_scope", "validation", "stop_conditions"],
+  "properties": {
+    "work_order_id": {"type": "string", "pattern": "^ENG-[A-Z0-9-]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "repository": {"type": "string", "minLength": 1},
+    "baseline_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "branch": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PROPOSED", "APPROVED_FOR_EXECUTION", "IN_PROGRESS", "READY_FOR_REVIEW", "BLOCKED", "COMPLETE"]},
+    "scope": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "deliverables": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "out_of_scope": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "validation": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["name", "command"]}},
+    "stop_conditions": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

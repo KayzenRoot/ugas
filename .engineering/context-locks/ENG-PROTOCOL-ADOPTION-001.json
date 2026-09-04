@@ -1,0 +1,50 @@
+{
+  "work_order_id": "ENG-PROTOCOL-ADOPTION-001",
+  "repository": "universal-game-asset-studio",
+  "configured_remote": "csn1985-ship-it/ugas",
+  "github_canonical_observed": "KayzenRoot/ugas",
+  "repository_identity_status": "NEEDS OWNER CONFIRMATION",
+  "lock_type": "BASELINE_CONTEXT_LOCK",
+  "baseline_git_sha": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
+  "context_status": "STALE",
+  "baseline_context_status": "LOCKED",
+  "stale_reason": "The authorized adoption changed AGENTS.md, .github/workflows/ugas-ci.yml, .github/pull_request_template.md, and added .github/ISSUE_TEMPLATE files; the baseline lock is therefore explicitly stale and is superseded by the after-change relock.",
+  "fingerprint_algorithm": "SHA-256 over normalized LF bytes; grouped fingerprints include path and NUL separators",
+  "group_fingerprints": {
+    "checkpoint": "283bdc29708f17d8ad1c99bd59587ebb4681b2af82f3f3e5f1e4b2b638728693",
+    "decisions": "5f5c15c8e6ca4997e1a2bd56f9321a9cddced5dfa346510b0dfec604c16e6e69",
+    "scope": "bf83abd048e5625196dae7d6093dbfd19df0bb6d560560a9626db1025f29c6f0",
+    "definition_of_done": "a2692a7fc204031d9c09dbf0cf853fb42194fb634c60a8364206342eb626457b",
+    "architecture": "d5c7145dc077350ce34cf2ee9098c17b93593f451fae7a83ed2dd6836ef1de2f",
+    "critical": "89314a8485345f668771793e7e8e791fd5d3d2d15899552f2e4526eba39afb52"
+  },
+  "source_fingerprints": {
+    "AGENTS.md": "49075797be9cbaad5a2e7d5b39e17b41a60651875965fdfe4baf6e3cee19bc19",
+    "CHECKPOINT.md": "d62d5eb5f2d637b8990507eb08f48c39ea4a19f02cef17b95212757823815c01",
+    "README.md": "f9dc75bd4c31ce4984373078b27b3059749f694030dd39aa16a8493a926275f8",
+    "docs/architecture.md": "49562c324be704e029178b5c9cc62a6d6c644cc8dc823220ca6cec438714a3ef",
+    "docs/2d-master-pipeline.md": "8d8d78c86784d34d802059598c3868772c9c27e33958e5228660df18449e3e97",
+    "docs/release-policy.md": "61ca1572bdaa12726c2d92970ff74fad55b3ba29514f6e7e46700523d410aa26",
+    "docs/github-review-protocol.md": "e0934257b089829981824bac7dcf873d448b34f82e823a139ffebf99a8998ff3",
+    "docs/roadmap.md": "701a9ca5e53da3fe1e5ee105a76fd327e52000f86571ad6588c16836b987d405",
+    "docs/evidence/current-state.json": "022d38ac368912723e6c076fff45bb34c080f1ee913986570e7ed6d31c417aea",
+    ".github/pull_request_template.md": "f87bc4763fda88e5b71c4701be384978cede306268211b8806112085a9663287",
+    ".github/workflows/ugas-ci.yml": "cb9980565f0d2496818ff6b643a785b96d63ca06dcc0436fb47cab8762dcb910",
+    ".github/workflows/ugas-review.yml": "fb39be50fe1ba499cdaf07b7dc3296196fa53b3fa445db4036effe2e9e0e1586",
+    "pyproject.toml": "d1aa0e2ae4568c07c834b3b1785c98c78109f0729b6bfdce71ddef9a4a2080f0",
+    "package.json": "f84cd7ce76b5e7018358c05c6a8483557bd918963707947502b512ce959dba86"
+  },
+  "critical_source_changes": [
+    {"path": "AGENTS.md", "reason": "append protocol executor rules"},
+    {"path": ".github/workflows/ugas-ci.yml", "reason": "run protocol artifact validation inside existing stable check"},
+    {"path": ".github/pull_request_template.md", "reason": "capture work-order baseline/evidence fields"},
+    {"path": ".github/ISSUE_TEMPLATE/implementation.yml", "reason": "add implementation intake template"},
+    {"path": ".github/ISSUE_TEMPLATE/defect.yml", "reason": "add defect intake template"}
+  ],
+  "stale_events": [
+    "Authorized adoption edits are listed above; no unrelated canonical source changed.",
+    "A fresh after-change lock is required before final validation and handoff."
+  ],
+  "relock_artifact": ".engineering/context-locks/ENG-PROTOCOL-ADOPTION-001-after.json",
+  "stale_policy": "Never continue silently after a critical-source change. Mark STALE, record the event, recompute fingerprints, and relock before validation."
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.local/schemas/engineering-context-lock.schema.json",
+  "title": "UGAS Engineering Context Lock",
+  "type": "object",
+  "required": ["work_order_id", "repository", "baseline_git_sha", "context_status", "fingerprint_algorithm", "source_fingerprints", "stale_policy"],
+  "properties": {
+    "work_order_id": {"type": "string"},
+    "repository": {"type": "string"},
+    "baseline_git_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "context_status": {"enum": ["LOCKED", "STALE", "RELOCKED_AFTER_AUTHORIZED_ADOPTION", "BLOCKED"]},
+    "fingerprint_algorithm": {"const": "SHA-256 over normalized LF bytes; grouped fingerprints include path and NUL separators"},
+    "source_fingerprints": {"type": "object", "minProperties": 1},
+    "stale_policy": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

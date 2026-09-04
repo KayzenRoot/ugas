@@ -2,6 +2,15 @@
 
 <!-- State the user-visible objective and the active gate. -->
 
+## Engineering delivery protocol
+
+- Work Order ID:
+- Context Lock:
+- Evidence Bundle:
+- Checkpoint Delta:
+- Adoption or correction scope:
+- Critical-source changes marked `STALE` and relocked: yes / no / N/A
+
 ## Base SHA and head SHA
 
 - Base SHA:
@@ -55,3 +64,9 @@
 ## STOP condition
 
 <!-- State the exact conditions for stopping. Never claim APPROVED or externally reviewed; only the external reviewer can make that decision. -->
+
+## Independent review boundary
+
+- External approval claimed: `false` until explicitly recorded by the independent reviewer.
+- Canonical checkpoint promoted by executor: `false`.
+- First future cleanup increment started by this PR: `false`.

@@ -1,0 +1,43 @@
+name: Governed defect report
+description: Report a reproducible defect with evidence and regression boundaries.
+title: "fix: "
+labels:
+  - defect
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Defect summary
+      description: Describe the observed behavior and the expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Give deterministic steps, command, fixture, or request; do not include secrets.
+    validations:
+      required: true
+  - type: input
+    id: baseline
+    attributes:
+      label: Affected commit or version
+      description: Provide the exact SHA/version if known; otherwise write UNKNOWN.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and impact
+      description: Link logs/evidence, identify scope, and separate pre-existing from introduced behavior.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: I have not included credentials, tokens, private keys, or sensitive local artifacts.
+          required: true
+        - label: I understand that a fix requires a bounded Work Order and before/after validation.
+          required: true

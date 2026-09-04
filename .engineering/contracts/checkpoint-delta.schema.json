@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.local/schemas/engineering-checkpoint-delta.schema.json",
+  "title": "UGAS Engineering Checkpoint Delta",
+  "type": "object",
+  "required": ["checkpoint_delta_id", "work_order_id", "status", "canonical_change", "before", "proposed_after", "approval_required"],
+  "properties": {
+    "checkpoint_delta_id": {"type": "string"},
+    "work_order_id": {"type": "string"},
+    "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "BLOCKED"]},
+    "canonical_change": {"type": "boolean"},
+    "before": {"type": "object"},
+    "proposed_after": {"type": "object"},
+    "approval_required": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

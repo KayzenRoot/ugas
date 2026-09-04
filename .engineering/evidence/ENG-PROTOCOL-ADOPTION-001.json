@@ -1,0 +1,57 @@
+{
+  "work_order_id": "ENG-PROTOCOL-ADOPTION-001",
+  "repository": "universal-game-asset-studio",
+  "configured_remote": "csn1985-ship-it/ugas",
+  "github_repository_observed": "KayzenRoot/ugas",
+  "repository_identity_status": "NEEDS OWNER CONFIRMATION",
+  "baseline_sha": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
+  "head_sha": "PENDING_FINAL_COMMIT",
+  "branch": "chore/eng-protocol-adoption-001",
+  "pr": {"title": "chore: adopt governed engineering delivery protocol", "number": null, "url": null, "state": "PENDING_PUSH_AND_PR"},
+  "status": "READY_FOR_REVIEW",
+  "external_review": {"status": "REQUIRED", "approval_claimed": false},
+  "production_boundary": {"production_approved": false, "production_routing": "BLOCKED", "new_generation": 0},
+  "context": {
+    "baseline_lock": ".engineering/context-locks/ENG-PROTOCOL-ADOPTION-001.json",
+    "baseline_lock_status": "STALE",
+    "after_lock": ".engineering/context-locks/ENG-PROTOCOL-ADOPTION-001-after.json",
+    "after_lock_status": "RELOCKED_AFTER_AUTHORIZED_ADOPTION"
+  },
+  "validations": [
+    {"name": "baseline_compileall", "command": "python -m compileall -q src scripts tests", "result": "PASS"},
+    {"name": "baseline_unit_tests", "command": "$env:PYTHONPATH='src'; python -m unittest discover -s tests -q", "result": "PASS; 404 tests; 2 skipped; 0 failures; 262.519 s"},
+    {"name": "baseline_official_validation", "command": "$env:PYTHONPATH='src'; python scripts/validation/run_validation.py", "result": "PASS; 1,918/1,918 checks"},
+    {"name": "baseline_lint", "command": "No configured command", "result": "NOT_CONFIGURED"},
+    {"name": "baseline_typecheck", "command": "No configured command", "result": "NOT_CONFIGURED"},
+    {"name": "baseline_docker_config", "command": "docker compose -f compose.yaml config", "result": "PASS"},
+    {"name": "baseline_docker_build", "command": "docker compose -f compose.yaml build dashboard", "result": "PASS"},
+    {"name": "baseline_dashboard_status", "command": "GET /api/status and GET /api/health on 127.0.0.1:8765", "result": "PASS HTTP 200; health DEGRADED with pre-existing GPU/ComfyUI/QA gaps"},
+    {"name": "after_protocol_artifact_validation", "command": "python scripts/validation/validate_engineering_protocol.py", "result": "PASS; 32/32 checks"},
+    {"name": "after_compileall", "command": "python -m compileall -q src scripts tests", "result": "PASS"},
+    {"name": "after_unit_tests", "command": "$env:PYTHONPATH='src'; python -m unittest discover -s tests -q", "result": "PASS; 404 tests; 2 skipped; 0 failures; 225.580 s"},
+    {"name": "after_official_validation", "command": "$env:PYTHONPATH='src'; python scripts/validation/run_validation.py", "result": "PASS; 1,918/1,918 checks; snapshot 1,912/1,912; snapshot unit 404 tests; 4 skipped"},
+    {"name": "after_github_workflow_validation", "command": "python scripts/validation/validate_github_workflows_v0124.py --root .", "result": "PASS; existing CI and review workflows; real GitHub run still required"},
+    {"name": "after_docker_config", "command": "docker compose -f compose.yaml config", "result": "PASS"},
+    {"name": "after_docker_build", "command": "docker compose -f compose.yaml build dashboard", "result": "PASS"},
+    {"name": "after_dashboard_status", "command": "GET /api/status and GET /api/health on 127.0.0.1:8765", "result": "PASS HTTP 200; service OK; health DEGRADED with pre-existing GPU/ComfyUI/QA gaps"}
+  ],
+  "artifacts": [
+    ".engineering/ENGINEERING-DELIVERY-PROTOCOL.md",
+    ".engineering/work-orders/ENG-PROTOCOL-ADOPTION-001.md",
+    ".engineering/context-locks/ENG-PROTOCOL-ADOPTION-001.json",
+    ".engineering/context-locks/ENG-PROTOCOL-ADOPTION-001-after.json",
+    ".engineering/reports/BASELINE-ENG-PROTOCOL-ADOPTION-001.md",
+    ".engineering/reports/CLEANUP-INVENTORY.md",
+    ".engineering/checkpoints/ENG-PROTOCOL-ADOPTION-001.md",
+    ".engineering/evidence/ENG-PROTOCOL-ADOPTION-001.json"
+  ],
+  "known_gaps": [
+    "GitHub CLI is not installed; browser-authenticated inspection is available.",
+    "Configured remote owner and GitHub canonical owner differ and need confirmation.",
+    "No configured lint/typecheck/dependency-audit command exists.",
+    "Dashboard health is intentionally degraded by unavailable GPU, ComfyUI, stale-last-known, and QA gap signals."
+  ],
+  "scope_assertion": "No product behavior, asset, provider, migration, production routing, canonical checkpoint, or broad cleanup change is included.",
+  "checkpoint_delta": ".engineering/checkpoints/ENG-PROTOCOL-ADOPTION-001.md",
+  "next_action": "independent_review_eng_protocol_adoption_001"
+}

@@ -1,0 +1,40 @@
+{
+  "work_order_id": "ENG-PROTOCOL-ADOPTION-001",
+  "repository": "universal-game-asset-studio",
+  "lock_type": "AFTER_AUTHORIZED_ADOPTION_RELOCK",
+  "baseline_git_sha": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
+  "context_status": "RELOCKED_AFTER_AUTHORIZED_ADOPTION",
+  "supersedes": ".engineering/context-locks/ENG-PROTOCOL-ADOPTION-001.json",
+  "fingerprint_algorithm": "SHA-256 over normalized LF bytes; grouped fingerprints include path and NUL separators",
+  "group_fingerprints": {
+    "checkpoint": "283bdc29708f17d8ad1c99bd59587ebb4681b2af82f3f3e5f1e4b2b638728693",
+    "decisions": "5f5c15c8e6ca4997e1a2bd56f9321a9cddced5dfa346510b0dfec604c16e6e69",
+    "scope": "bf83abd048e5625196dae7d6093dbfd19df0bb6d560560a9626db1025f29c6f0",
+    "definition_of_done": "a2692a7fc204031d9c09dbf0cf853fb42194fb634c60a8364206342eb626457b",
+    "architecture": "d5c7145dc077350ce34cf2ee9098c17b93593f451fae7a83ed2dd6836ef1de2f",
+    "authorized_adoption_files": "c9187fc480662dc2e28c4e680a7ab48979dd5fb40ea0c299212bc6fdd0330867"
+  },
+  "source_fingerprints": {
+    "CHECKPOINT.md": "d62d5eb5f2d637b8990507eb08f48c39ea4a19f02cef17b95212757823815c01",
+    "README.md": "f9dc75bd4c31ce4984373078b27b3059749f694030dd39aa16a8493a926275f8",
+    "docs/architecture.md": "49562c324be704e029178b5c9cc62a6d6c644cc8dc823220ca6cec438714a3ef",
+    "docs/2d-master-pipeline.md": "8d8d78c86784d34d802059598c3868772c9c27e33958e5228660df18449e3e97",
+    "docs/release-policy.md": "61ca1572bdaa12726c2d92970ff74fad55b3ba29514f6e7e46700523d410aa26",
+    "docs/github-review-protocol.md": "e0934257b089829981824bac7dcf873d448b34f82e823a139ffebf99a8998ff3",
+    "docs/roadmap.md": "701a9ca5e53da3fe1e5ee105a76fd327e52000f86571ad6588c16836b987d405",
+    "docs/evidence/current-state.json": "022d38ac368912723e6c076fff45bb34c080f1ee913986570e7ed6d31c417aea",
+    "AGENTS.md": "8d4447d707c2736088bb227f15a5af853da489fd62feae35fec04491c448db98",
+    ".github/pull_request_template.md": "bb69a7226587734222651412f2f56e55f014ef16a3ea1847ffbea57671d568a3",
+    ".github/workflows/ugas-ci.yml": "2accecdaf60e31b42304f23fd92ba25e32d33e58e590d074b03cbba54215cb39",
+    ".github/ISSUE_TEMPLATE/implementation.yml": "1011dcc16d64cca152a1116ed56064b744487d1773c871c85ad8174928ae8b38",
+    ".github/ISSUE_TEMPLATE/defect.yml": "d2e00c9806183c2032cba253f19ffd6bb2e0b78523580207692358f95a53aed5",
+    "pyproject.toml": "d1aa0e2ae4568c07c834b3b1785c98c78109f0729b6bfdce71ddef9a4a2080f0",
+    "package.json": "f84cd7ce76b5e7018358c05c6a8483557bd918963707947502b512ce959dba86"
+  },
+  "relock_assertions": [
+    "Canonical CHECKPOINT.md and docs/evidence/current-state.json are unchanged.",
+    "Only authorized protocol, executor, GitHub-template, and validation paths changed.",
+    "No product source, profile, asset, provider, migration, or public behavior path changed."
+  ],
+  "stale_policy": "This relock is valid only while the assertions and fingerprints are unchanged; any later critical-source change requires a new STALE event and relock."
+}
