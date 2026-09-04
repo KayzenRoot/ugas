@@ -34,6 +34,15 @@ CANONICAL_DIRECTIONS = (
     "south_west",
 )
 
+_TEXT_SUFFIXES = {".json", ".md", ".txt", ".py", ".toml", ".js", ".html", ".css"}
+
+
+def _provenance_digest(path: Path) -> str:
+    data = path.read_bytes()
+    if path.suffix.casefold() in _TEXT_SUFFIXES:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
+
 # Screen-space convention: +x is east/right and +y is south/down.  The sector
 # table is ordered clockwise from east and uses half-open [lower, upper) bins.
 _SECTOR_ORDER = ("east", "south_east", "south", "south_west", "west", "north_west", "north", "north_east")
@@ -290,7 +299,7 @@ def validate_coverage_manifest(path: Path, root: Path) -> dict[str, Any]:
         if not target.is_file():
             failures.append(f"missing:{item.get('path')}")
         else:
-            digest = hashlib.sha256(target.read_bytes()).hexdigest()
+            digest = _provenance_digest(target)
             if digest != item.get("provenance_hash"):
                 failures.append(f"hash:{item.get('path')}")
     return {"status": "DIRECTION_COVERAGE_MANIFEST_PASSED" if not failures else "DIRECTION_COVERAGE_MANIFEST_FAILED", "failures": failures, "asset_count": len(value.get("assets", [])), "production_direction_coverage": sorted({item.get("direction") for item in value.get("assets", [])}), "test_only_fixture_present": any(item.get("test_only") is True for item in value.get("assets", []))}

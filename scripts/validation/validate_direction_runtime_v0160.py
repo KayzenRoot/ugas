@@ -27,7 +27,10 @@ from ugas.schema_validation import validate_instance, validate_schema_document  
 
 
 def _digest(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    data = path.read_bytes()
+    if path.suffix.casefold() in {".json", ".md", ".txt", ".py", ".toml", ".js", ".html", ".css"}:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def _write(name: str, value: Any) -> None:
