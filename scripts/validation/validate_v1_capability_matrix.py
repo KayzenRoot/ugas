@@ -39,7 +39,7 @@ def main() -> int:
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
-    output = ROOT / "docs/evidence/multi-direction-runtime-v0160/capability-matrix-validation-v0160.json"
+    output = ROOT / "docs/evidence/multi-direction-runtime-v0161/capability-matrix-validation-v0161.json"
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0 if not failures else 1

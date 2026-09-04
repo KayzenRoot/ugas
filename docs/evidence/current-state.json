@@ -1,16 +1,21 @@
 {
-  "schema_version": "0.16.0",
-  "version": "0.16.0",
+  "schema_version": "0.16.1",
+  "version": "0.16.1",
   "phase": "MULTI_DIRECTION_ANIMATION_RUNTIME",
   "previous_release": {
-    "version": "0.15.1",
-    "review": "REVIEW-v0.15.1.md",
-    "evidence": "docs/evidence/current-state-v0.15.1.json"
+    "version": "0.16.0",
+    "review": "REVIEW-v0.16.0.md",
+    "evidence": "docs/evidence/multi-direction-runtime-v0160/validation-evidence-v0160.json"
   },
-  "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
-  "stop_reason": "MULTI_DIRECTION_ANIMATION_RUNTIME_V0160_PR_OPEN_AWAITING_EXTERNAL_REVIEW",
+  "correction_status": {
+    "version": "0.16.0",
+    "status": "CORRECTION_REQUIRED",
+    "reason": "False-green semantic controls and stale active review state were corrected in v0.16.1."
+  },
+  "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "stop_reason": "MULTI_DIRECTION_ANIMATION_RUNTIME_V0161_PR_OPEN_AWAITING_SOL_EXTERNAL_REVIEW",
   "allowed_next_actions": [
-    "external_review_multi_direction_runtime_v0160"
+    "external_review_multi_direction_runtime_v0161"
   ],
   "forbidden_actions": [
     "direct_main_push",
@@ -53,10 +58,10 @@
     "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL",
     "no_self_merge_until_external_approval": true,
     "direct_main_push_forbidden": true,
-    "pr_number": 0,
-    "pr_state": "NOT_CREATED",
-    "real_pr_checks_green": false,
-    "rejected_reviewed_head": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
+    "pr_number": 6,
+    "pr_state": "OPEN",
+    "real_pr_checks_green": true,
+    "rejected_reviewed_head": "7d1e999e91ee8817c6754b363a5c19f1ba6f2e7d",
     "approved_head_sha": "f89184cd2dd317cbba584ddcf6115301d90666ab",
     "merge_authorization": null,
     "pr4_number": 4,
@@ -93,11 +98,18 @@
     "death_front_external_approval": "docs/evidence/github-governance-v0151/death-front-v0151-external-visual-approval.json",
     "death_front_provenance": "docs/evidence/github-governance-v0151/death-front-v0151-provenance.json",
     "v0151_merge_commit": "514a17818469b567966293db808cafbf708f8311",
-    "direction_contract": "docs/evidence/multi-direction-runtime-v0160/direction-contract-v0160.json",
-    "direction_coverage": "docs/evidence/multi-direction-runtime-v0160/coverage-manifest-v0160.json",
-    "direction_validation": "docs/evidence/multi-direction-runtime-v0160/validation-evidence-v0160.json",
-    "direction_negative_controls": "docs/evidence/multi-direction-runtime-v0160/negative-controls-v0160.json",
-    "direction_fixture_manifest": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixture-manifest-v0160.json",
+    "v0160_correction_record": "docs/evidence/multi-direction-runtime-v0161/v0160-correction-record-v0161.json",
+    "direction_contract": "docs/evidence/multi-direction-runtime-v0161/direction-contract-v0161.json",
+    "direction_coverage": "docs/evidence/multi-direction-runtime-v0161/coverage-manifest-v0161.json",
+    "direction_validation": "docs/evidence/multi-direction-runtime-v0161/validation-evidence-v0161.json",
+    "direction_negative_controls": "docs/evidence/multi-direction-runtime-v0161/negative-controls-v0161.json",
+    "invalid_vector_qa": "docs/evidence/multi-direction-runtime-v0161/invalid-vector-qa-v0161.json",
+    "test_only_production_safety_qa": "docs/evidence/multi-direction-runtime-v0161/test-only-production-safety-qa-v0161.json",
+    "direction_fixture_manifest": "docs/evidence/multi-direction-runtime-v0161/synthetic-fixture-manifest-v0161.json",
+    "direction_fallback_qa": "docs/evidence/multi-direction-runtime-v0161/fallback-qa-v0161.json",
+    "direction_mirror_qa": "docs/evidence/multi-direction-runtime-v0161/mirror-qa-v0161.json",
+    "direction_cache_qa": "docs/evidence/multi-direction-runtime-v0161/cache-key-qa-v0161.json",
+    "direction_provenance_qa": "docs/evidence/multi-direction-runtime-v0161/provenance-qa-v0161.json",
     "external_approval": "docs/evidence/github-governance-v0141/hit-front-v0141-external-visual-approval.json",
     "provenance": "docs/evidence/github-governance-v0141/hit-front-v0141-provenance.json",
     "integrity_repair": "docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json",
@@ -118,11 +130,11 @@
     "historical_v0150_execution": "docs/evidence/animation-runtime-v0150/execution-evidence-v0.15.0.json"
   },
   "state_consistency": {
-    "status": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
-    "version": "0.16.0",
+    "status": "MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED",
+    "version": "0.16.1",
     "phase": "MULTI_DIRECTION_ANIMATION_RUNTIME",
-    "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
-    "feature_branch": "codex/v0.15.0-death-animation-front",
+    "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.16.0-multi-direction-runtime-foundation",
     "baseline_head": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
     "branch_base_commit": "514a17818469b567966293db808cafbf708f8311",
     "production_routing": "BLOCKED",
@@ -145,11 +157,14 @@
     "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
     "always_on_dashboard_policy": "ENABLED",
     "allowed_next_actions": [
-      "external_review_multi_direction_runtime_v0160"
+      "external_review_multi_direction_runtime_v0161"
     ],
     "next_capability_started": false,
     "v0141_frozen_evidence": "RESTORED_AND_VERIFIED",
     "v0150_rejected_reviewed_head": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
-    "v0151_merge_commit": "514a17818469b567966293db808cafbf708f8311"
+    "v0151_merge_commit": "514a17818469b567966293db808cafbf708f8311",
+    "pr_number": 6,
+    "pr_state": "OPEN",
+    "real_pr_checks_green": true
   }
 }

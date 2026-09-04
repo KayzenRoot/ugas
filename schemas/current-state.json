@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.16.0 MULTI_DIRECTION_ANIMATION_RUNTIME state",
+  "title": "UGAS active v0.16.1 MULTI_DIRECTION_ANIMATION_RUNTIME state",
   "type": "object",
   "additionalProperties": true,
   "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency", "hit_reaction_front_visual_content", "death_animation_front_visual_content"],

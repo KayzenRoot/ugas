@@ -1,6 +1,6 @@
-# 2D master pipeline v0.16.0
+# 2D master pipeline v0.16.1
 
-The active slice is `MULTI_DIRECTION_ANIMATION_RUNTIME` for v0.16.0: a generic eight-direction contract, deterministic vector/alias normalization, direction-aware asset identity and fail-closed resolution. Existing front profiles remain byte-compatible through `front -> south`; real directional character artwork coverage is `SOUTH_ONLY`. `DOCKER_ALWAYS_ON_LOCAL` remains online, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`. The only next action is `external_review_multi_direction_runtime_v0160`; the v0.15.1 and older materials below are preserved historical context.
+The active slice is `MULTI_DIRECTION_ANIMATION_RUNTIME` for v0.16.1: a generic eight-direction contract, deterministic vector/alias normalization, strict invalid-vector rejection, direction-aware asset identity and fail-closed resolution. Existing front profiles remain byte-compatible through `front -> south`; real directional character artwork coverage is `SOUTH_ONLY`. `DOCKER_ALWAYS_ON_LOCAL` remains online, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`. PR #6 is OPEN with `pr_number=6` and `real_pr_checks_green=true`; the only next action is `external_review_multi_direction_runtime_v0161`. The v0.16.0 review is `CORRECTION_REQUIRED`; older materials below are preserved historical context. Merge only after external review.
 
 The active release is v0.12.3 GitHub-native review infrastructure over the historical v0.12.2 Docker always-on observer and rejected v0.12.1/v0.12.0 dashboards. The v0.8.0, v0.7.3, v0.9.0, v0.9.1 and v0.10.0 records remain historical and immutable; the dashboard does not modify attack-front-v2 and production routing remains blocked.
 

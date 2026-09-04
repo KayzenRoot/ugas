@@ -1,0 +1,48 @@
+{
+  "status": "DIRECTION_MIRROR_QA_PASSED",
+  "implicit": {
+    "requested_direction": "west",
+    "resolved_direction": null,
+    "asset_id": null,
+    "path": null,
+    "provenance_hash": null,
+    "fallback_mode": "FAIL_CLOSED",
+    "mirror_mode": "NONE",
+    "capability_id": "death_animation_front",
+    "variant": "default",
+    "asset_revision_id": null,
+    "cache_key": "death_animation_front|west|default|ANY|production",
+    "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+    "production_safe": false
+  },
+  "unsafe_explicit": {
+    "requested_direction": "west",
+    "resolved_direction": null,
+    "asset_id": null,
+    "path": null,
+    "provenance_hash": null,
+    "fallback_mode": "FAIL_CLOSED",
+    "mirror_mode": "NONE",
+    "capability_id": "qa_fixture",
+    "variant": "default",
+    "asset_revision_id": null,
+    "cache_key": "qa_fixture|west|default|ANY|preview:0:1",
+    "error_code": "DIRECTION_ASSET_UNAVAILABLE",
+    "production_safe": false
+  },
+  "safe_explicit": {
+    "requested_direction": "west",
+    "resolved_direction": "east",
+    "asset_id": "qa-east",
+    "path": "tests/fixtures/qa.png",
+    "provenance_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "fallback_mode": "EXPLICIT_PREVIEW_MIRROR",
+    "mirror_mode": "HORIZONTAL_EXPLICIT",
+    "capability_id": "qa_fixture",
+    "variant": "default",
+    "asset_revision_id": "qa-r1",
+    "cache_key": "qa_fixture|west|default|ANY|preview:0:1",
+    "error_code": null,
+    "production_safe": false
+  }
+}

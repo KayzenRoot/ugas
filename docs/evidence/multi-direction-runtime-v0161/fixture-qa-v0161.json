@@ -1,0 +1,81 @@
+{
+  "status": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE_QA_PASSED",
+  "manifest": {
+    "schema_version": "0.16.1",
+    "manifest_type": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE",
+    "production_registry": false,
+    "direction_count": 8,
+    "unique_identity_count": 8,
+    "fixtures": [
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-south",
+        "direction": "south",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-00-south.png",
+        "sha256": "3a25ffb66b1723fc39c5815086406d62dda72387094ecb3725d8019f837d4301",
+        "synthetic_fixture": true,
+        "production_registry": false
+      },
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-south_east",
+        "direction": "south_east",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-01-south_east.png",
+        "sha256": "b5aa52d1d8c64d59e1d90a55cdf2ab0de66b4d3f828933c9dd7015a2c6be4c31",
+        "synthetic_fixture": true,
+        "production_registry": false
+      },
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-east",
+        "direction": "east",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-02-east.png",
+        "sha256": "0625a02e05b5071b8c761dcd7317811dbc30798a6b08b4263fb71029ea7c4e18",
+        "synthetic_fixture": true,
+        "production_registry": false
+      },
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-north_east",
+        "direction": "north_east",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-03-north_east.png",
+        "sha256": "43f95fb16b84415dc9b272e101187a7efa28157cfd9d8733acb7a786bd2caa51",
+        "synthetic_fixture": true,
+        "production_registry": false
+      },
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-north",
+        "direction": "north",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-04-north.png",
+        "sha256": "e01b649d78208558fa072de9817d7c4c0957113e7f5426f764dc5956e216f405",
+        "synthetic_fixture": true,
+        "production_registry": false
+      },
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-north_west",
+        "direction": "north_west",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-05-north_west.png",
+        "sha256": "65a116c70ea46b98ffa3d38c06e8f45cab5ccad0cc4a313832ccac2a7b426d10",
+        "synthetic_fixture": true,
+        "production_registry": false
+      },
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-west",
+        "direction": "west",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-06-west.png",
+        "sha256": "39f3d2191849be1b5721e02f1e2eb2d0ff644cb755d5d5433420f407e27a4d22",
+        "synthetic_fixture": true,
+        "production_registry": false
+      },
+      {
+        "fixture_id": "TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE-south_west",
+        "direction": "south_west",
+        "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-fixtures/fixture-07-south_west.png",
+        "sha256": "706322d6ee7d2993fc9c7dd8f59bdb9cf7667d69d804dcb3b73affe1422540d8",
+        "synthetic_fixture": true,
+        "production_registry": false
+      }
+    ],
+    "contact_sheet": {
+      "path": "docs/evidence/multi-direction-runtime-v0160/synthetic-direction-contact-sheet-v0160.png",
+      "sha256": "7e3337435d08f65bbfa92d0e020e5c67564ce6be0812f510d94ac034312458ff"
+    },
+    "non_production_assertion": "never copied into providers or production asset registry; carried forward byte-identically from rejected v0.16.0 review history"
+  }
+}

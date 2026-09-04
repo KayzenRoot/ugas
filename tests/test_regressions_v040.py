@@ -155,7 +155,7 @@ class VersionAndImageQARegressionTests(unittest.TestCase):
         from ugas.constants import UGAS_VERSION
         package = load_json(ROOT / "package.json")
         with (ROOT / "pyproject.toml").open("rb") as stream: pyproject = tomllib.load(stream)
-        self.assertEqual("0.16.0", UGAS_VERSION); self.assertEqual(UGAS_VERSION, ugas.__version__); self.assertEqual(UGAS_VERSION, package["version"]); self.assertEqual(UGAS_VERSION, pyproject["project"]["version"])
+        self.assertEqual("0.16.1", UGAS_VERSION); self.assertEqual(UGAS_VERSION, ugas.__version__); self.assertEqual(UGAS_VERSION, package["version"]); self.assertEqual(UGAS_VERSION, pyproject["project"]["version"])
         for filename in ("README.md", "INSTALL.md", "CHECKPOINT.md"): self.assertIn(UGAS_VERSION, (ROOT / filename).read_text(encoding="utf-8"))
 
     def test_alpha_and_transparency_stats_distinguish_rgb_and_rgba(self):

@@ -1,0 +1,78 @@
+{
+  "status": "INVALID_VECTOR_QA_PASSED",
+  "retained_facing": "west",
+  "cases": [
+    {
+      "input": [
+        NaN,
+        0
+      ],
+      "result": {
+        "direction": null,
+        "outcome": "INVALID_VECTOR_UNRESOLVED",
+        "error_code": "INVALID_VECTOR_UNRESOLVED"
+      }
+    },
+    {
+      "input": [
+        Infinity,
+        0
+      ],
+      "result": {
+        "direction": null,
+        "outcome": "INVALID_VECTOR_UNRESOLVED",
+        "error_code": "INVALID_VECTOR_UNRESOLVED"
+      }
+    },
+    {
+      "input": [
+        -Infinity,
+        0
+      ],
+      "result": {
+        "direction": null,
+        "outcome": "INVALID_VECTOR_UNRESOLVED",
+        "error_code": "INVALID_VECTOR_UNRESOLVED"
+      }
+    },
+    {
+      "input": [
+        "1",
+        0
+      ],
+      "result": {
+        "direction": null,
+        "outcome": "INVALID_VECTOR_UNRESOLVED",
+        "error_code": "INVALID_VECTOR_UNRESOLVED"
+      }
+    },
+    {
+      "input": {
+        "dx": 1
+      },
+      "result": {
+        "direction": null,
+        "outcome": "INVALID_VECTOR_UNRESOLVED",
+        "error_code": "INVALID_VECTOR_UNRESOLVED"
+      }
+    },
+    {
+      "input": [
+        1,
+        0,
+        2
+      ],
+      "result": {
+        "direction": null,
+        "outcome": "INVALID_VECTOR_UNRESOLVED",
+        "error_code": "INVALID_VECTOR_UNRESOLVED"
+      }
+    }
+  ],
+  "zero_vector": {
+    "direction": "west",
+    "outcome": "ZERO_VECTOR_RETAINED_FACING",
+    "error_code": null
+  },
+  "policy": "ZERO_VECTOR_RETAINED_FACING is reserved for finite numeric zero; all invalid vectors use INVALID_VECTOR_UNRESOLVED"
+}

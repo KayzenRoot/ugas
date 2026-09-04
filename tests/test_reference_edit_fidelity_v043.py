@@ -141,7 +141,7 @@ class ReferenceEditFidelityV043Tests(unittest.TestCase):
         self.assertEqual(len(manifest["roles"]["reference-edit-selected-rgb"]["sha256"]), 64)
 
     def test_active_version_is_v0123(self) -> None:
-        self.assertEqual(UGAS_VERSION, "0.16.0")
+        self.assertEqual(UGAS_VERSION, "0.16.1")
 
     def test_historical_matrix_is_preserved(self) -> None:
         matrix = Path(__file__).parents[1] / "docs" / "test-coverage-matrix-v0.4.2.md"

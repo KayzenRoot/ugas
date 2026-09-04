@@ -1,16 +1,16 @@
-# UGAS checkpoint - v0.16.0
+# UGAS checkpoint - v0.16.1
 
-## v0.16.0 MULTI_DIRECTION_ANIMATION_RUNTIME — foundation technically qualified / external review required
+## v0.16.1 MULTI_DIRECTION_ANIMATION_RUNTIME — integrity correction technically qualified / external review required
 
-The active phase is `MULTI_DIRECTION_ANIMATION_RUNTIME` on branch `codex/v0.16.0-multi-direction-runtime-foundation`, based on merged v0.15.1 main at `514a17818469b567966293db808cafbf708f8311`. The active repository is `KayzenRoot/ugas`; the v0.16.0 PR is not created yet. The v0.15.1 death correction is APPROVED_PILOT / APPROVED_TO_MERGE and remains bound to exact head `f89184cd2dd317cbba584ddcf6115301d90666ab` and merge `514a17818469b567966293db808cafbf708f8311`. The v0.15.0 rejected reviewed head `c573ab020106ee89a36e1edb9bfae8b526d5057e` remains unchanged.
+The active phase is `MULTI_DIRECTION_ANIMATION_RUNTIME` on branch `codex/v0.16.0-multi-direction-runtime-foundation`, based on merged v0.15.1 main at `514a17818469b567966293db808cafbf708f8311`. The active repository is `KayzenRoot/ugas`; PR #6 has `pr_number=6`, `pr_state=OPEN`, and `real_pr_checks_green=true` for the corrected exact head. The v0.16.0 review history is `CORRECTION_REQUIRED` and remains frozen. The v0.15.1 death correction is APPROVED_PILOT / APPROVED_TO_MERGE and remains bound to exact head `f89184cd2dd317cbba584ddcf6115301d90666ab` and merge `514a17818469b567966293db808cafbf708f8311`.
 
 **Integrity repair:** A post-merge bookkeeping commit (761ed529...) mutated docs/evidence/animation-runtime-v0141/state-consistency-v0141.json inside the frozen evidence directory. The file has been restored byte-identically to the approved head (git blob 9bbc85bd...). A forward-only repair provenance record is at docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json. Git history is not rewritten.
 
 v0.14.1 technical evidence under docs/evidence/animation-runtime-v0141/ is frozen and restored to approved-head byte identity. v0141_frozen_evidence=RESTORED_AND_VERIFIED. new_generation=0, production_approved=false, production_routing=BLOCKED. next_candidate=DEATH_ANIMATION_FRONT.
 
-GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL are authoritative. Merge v0.16.0 PR only after external review; do not merge v0.16.0 and do not start equipment/outfits.
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL are authoritative. Merge only after external review; do not merge v0.16.1 and do not start equipment/outfits.
 
-The v0.16.0 gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; `multi_direction_animation_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_directional_character_asset_coverage=SOUTH_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `external_review_multi_direction_runtime_v0160`. `TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE` is not production artwork. `CODEOWNERS_GAP` remains explicit.
+The v0.16.1 gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED`; `multi_direction_animation_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_directional_character_asset_coverage=SOUTH_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `external_review_multi_direction_runtime_v0161`. `TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE` is not production artwork; canonical directions include `south`, `south_east`, and `north_west`. `CODEOWNERS_GAP` remains explicit.
 
 ## Historical v0.15.1 DEATH_ANIMATION_FRONT — approved pilot / merged
 

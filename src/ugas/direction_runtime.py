@@ -11,6 +11,7 @@ import hashlib
 import json
 import math
 from dataclasses import dataclass
+from numbers import Real
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
@@ -35,6 +36,7 @@ CANONICAL_DIRECTIONS = (
 )
 
 _TEXT_SUFFIXES = {".json", ".md", ".txt", ".py", ".toml", ".js", ".html", ".css"}
+_SUPPORTED_MANIFEST_VERSIONS = {"0.16.0", "0.16.1"}
 
 
 def _provenance_digest(path: Path) -> str:
@@ -99,6 +101,8 @@ def quantize_vector(dx: float, dy: float) -> str | None:
     an exact boundary the upper clockwise sector wins, e.g. +22.5 degrees is
     ``south_east`` under the screen-space convention documented above.
     """
+    if not _is_numeric_component(dx) or not _is_numeric_component(dy):
+        return None
     try:
         x, y = float(dx), float(dy)
     except (TypeError, ValueError):
@@ -110,6 +114,65 @@ def quantize_vector(dx: float, dy: float) -> str | None:
     return _SECTOR_ORDER[index]
 
 
+@dataclass(frozen=True)
+class DirectionNormalization:
+    """Auditable result of normalizing a direction identifier or vector."""
+
+    direction: str | None
+    outcome: str
+    error_code: str | None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"direction": self.direction, "outcome": self.outcome, "error_code": self.error_code}
+
+
+def _is_numeric_component(value: Any) -> bool:
+    return isinstance(value, Real) and not isinstance(value, bool)
+
+
+def _normalize_vector(dx: Any, dy: Any, retained_facing: Any) -> DirectionNormalization:
+    """Normalize a present vector without allowing invalid input to retain facing."""
+    if not _is_numeric_component(dx) or not _is_numeric_component(dy):
+        return DirectionNormalization(None, "INVALID_VECTOR_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED")
+    x, y = float(dx), float(dy)
+    if not math.isfinite(x) or not math.isfinite(y):
+        return DirectionNormalization(None, "INVALID_VECTOR_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED")
+    if x == 0.0 and y == 0.0:
+        retained = canonicalize_direction(retained_facing)
+        if retained is not None:
+            return DirectionNormalization(retained, "ZERO_VECTOR_RETAINED_FACING", None)
+        return DirectionNormalization(None, "ZERO_VECTOR_UNRESOLVED", "DIRECTION_UNRESOLVED")
+    return DirectionNormalization(quantize_vector(x, y), "VECTOR_QUANTIZED", None)
+
+
+def normalize_direction_result(value: Any, retained_facing: Any = None) -> DirectionNormalization:
+    """Return a typed normalization outcome, including invalid-vector rejection."""
+    if isinstance(value, Mapping):
+        has_dx = "dx" in value
+        has_dy = "dy" in value
+        has_x = "x" in value
+        has_y = "y" in value
+        if has_dx or has_dy:
+            if not (has_dx and has_dy):
+                return DirectionNormalization(None, "INVALID_VECTOR_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED")
+            return _normalize_vector(value["dx"], value["dy"], retained_facing)
+        if has_x or has_y:
+            if not (has_x and has_y):
+                return DirectionNormalization(None, "INVALID_VECTOR_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED")
+            return _normalize_vector(value["x"], value["y"], retained_facing)
+        return DirectionNormalization(None, "INVALID_VECTOR_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED")
+    if isinstance(value, (tuple, list)):
+        if len(value) != 2:
+            return DirectionNormalization(None, "INVALID_VECTOR_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED")
+        return _normalize_vector(value[0], value[1], retained_facing)
+    if value is None:
+        return DirectionNormalization(None, "DIRECTION_UNRESOLVED", "DIRECTION_UNRESOLVED")
+    direction = canonicalize_direction(value)
+    if direction is None:
+        return DirectionNormalization(None, "UNKNOWN_DIRECTION_UNRESOLVED", "DIRECTION_UNRESOLVED")
+    return DirectionNormalization(direction, "DIRECTION_ID", None)
+
+
 def normalize_direction(value: Any, retained_facing: Any = None) -> str | None:
     """Normalize a canonical ID, alias or ``(dx, dy)`` vector.
 
@@ -117,21 +180,7 @@ def normalize_direction(value: Any, retained_facing: Any = None) -> str | None:
     it returns ``None`` rather than guessing from the previous asset or a
     default direction.
     """
-    if isinstance(value, Mapping):
-        dx = value.get("dx", value.get("x"))
-        dy = value.get("dy", value.get("y"))
-        result = quantize_vector(dx, dy)
-        if result is not None:
-            return result
-        if dx is not None and dy is not None:
-            return canonicalize_direction(retained_facing)
-        return None
-    if isinstance(value, (tuple, list)) and len(value) == 2:
-        result = quantize_vector(value[0], value[1])
-        return result if result is not None else canonicalize_direction(retained_facing)
-    if value is None:
-        return canonicalize_direction(retained_facing)
-    return canonicalize_direction(value)
+    return normalize_direction_result(value, retained_facing).direction
 
 
 def direction_contract() -> dict[str, Any]:
@@ -144,6 +193,8 @@ def direction_contract() -> dict[str, Any]:
         "sector_width_degrees": 45,
         "boundary_policy": "lower-inclusive-upper-exclusive-after-22.5-degree-clockwise-offset",
         "zero_vector_policy": "retained_facing_only-or-explicit-unresolved-never-defaults",
+        "normalization_outcomes": ["DIRECTION_ID", "VECTOR_QUANTIZED", "ZERO_VECTOR_RETAINED_FACING", "ZERO_VECTOR_UNRESOLVED", "UNKNOWN_DIRECTION_UNRESOLVED", "INVALID_VECTOR_UNRESOLVED"],
+        "invalid_vector_policy": "non-finite-non-numeric-missing-components-and-malformed-tuples-never-use-retained-facing",
     }
 
 
@@ -216,7 +267,7 @@ class DirectionResolver:
     @classmethod
     def from_manifest(cls, path: Path, *, production_registry: bool = True) -> "DirectionResolver":
         value = json.loads(Path(path).read_text(encoding="utf-8"))
-        if value.get("schema_version") != "0.16.0":
+        if value.get("schema_version") not in _SUPPORTED_MANIFEST_VERSIONS:
             raise DirectionManifestError("direction_manifest_version_invalid")
         return cls(value.get("assets", []), mirror_pairs=value.get("mirror_pairs", {}), production_registry=production_registry)
 
@@ -230,20 +281,22 @@ class DirectionResolver:
         return DirectionResolution(requested, resolved, item.get("asset_id") if item else None, item.get("path") if item else None, item.get("provenance_hash") if item else None, fallback_mode, mirror_mode, capability_id, variant, revision, cache_key, error_code, production_safe)
 
     def resolve(self, capability_id: str, direction: Any, *, variant: str = "default", asset_revision_id: str | None = None, retained_facing: Any = None, allow_preview_fallback: bool = False, allow_mirror: bool = False) -> DirectionResolution:
-        requested = normalize_direction(direction, retained_facing)
+        normalization = normalize_direction_result(direction, retained_facing)
+        requested = normalization.direction
         mode = "production" if not allow_preview_fallback and not allow_mirror else f"preview:{int(allow_preview_fallback)}:{int(allow_mirror)}"
         key = _cache_key(str(capability_id), requested, str(variant), asset_revision_id, mode=mode)
         if key in self._cache:
             return self._cache[key]
         if requested is None:
-            result = self._result(requested=None, resolved=None, item=None, capability_id=str(capability_id), variant=str(variant), revision=asset_revision_id, fallback_mode="UNRESOLVED", mirror_mode="NONE", cache_key=key, error_code="DIRECTION_UNRESOLVED", production_safe=False)
+            unresolved_mode = "INVALID_VECTOR_UNRESOLVED" if normalization.outcome == "INVALID_VECTOR_UNRESOLVED" else "UNRESOLVED"
+            result = self._result(requested=None, resolved=None, item=None, capability_id=str(capability_id), variant=str(variant), revision=asset_revision_id, fallback_mode=unresolved_mode, mirror_mode="NONE", cache_key=key, error_code=normalization.error_code or "DIRECTION_UNRESOLVED", production_safe=False)
             self._cache[key] = result
             return result
 
         candidates = [item for (cap, direct, item_variant, revision), item in self._assets.items() if cap == str(capability_id) and direct == requested and item_variant == str(variant) and (asset_revision_id is None or revision == asset_revision_id)]
         if len(candidates) == 1:
             item = candidates[0]
-            result = self._result(requested=requested, resolved=requested, item=item, capability_id=str(capability_id), variant=str(variant), revision=str(item["asset_revision_id"]), fallback_mode="NONE", mirror_mode="NONE", cache_key=key, error_code=None, production_safe=True)
+            result = self._result(requested=requested, resolved=requested, item=item, capability_id=str(capability_id), variant=str(variant), revision=str(item["asset_revision_id"]), fallback_mode="NONE", mirror_mode="NONE", cache_key=key, error_code=None, production_safe=self.production_registry and item.get("test_only") is not True)
             self._cache[key] = result
             return result
         if len(candidates) > 1:
@@ -277,7 +330,7 @@ def validate_coverage_manifest(path: Path, root: Path) -> dict[str, Any]:
     """Validate manifest identity, file hashes and production/test separation."""
     value = json.loads(Path(path).read_text(encoding="utf-8"))
     failures: list[str] = []
-    if value.get("schema_version") != "0.16.0":
+    if value.get("schema_version") not in _SUPPORTED_MANIFEST_VERSIONS:
         failures.append("schema_version")
     if value.get("production_registry") is not True:
         failures.append("production_registry_must_be_true")

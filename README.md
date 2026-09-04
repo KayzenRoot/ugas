@@ -1,4 +1,4 @@
-# UGAS 0.16.0
+# UGAS 0.16.1
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente a fundação MULTI_DIRECTION_ANIMATION_RUNTIME determinística sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
@@ -11,8 +11,8 @@ O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o pil
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
-python scripts/validation/validate_state_consistency_v0160.py
-python scripts/validation/validate_direction_runtime_v0160.py
+python scripts/validation/validate_state_consistency_v0161.py
+python scripts/validation/validate_direction_runtime_v0161.py
 python scripts/validation/validate_v1_capability_matrix.py
 python scripts/validation/run_validation.py
 python scripts/validation/run_animation_runtime_v0151.py
@@ -29,11 +29,11 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.16.0.md](REVIEW-v0.16.0.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.16.1.md](REVIEW-v0.16.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
-## v0.16.0 MULTI_DIRECTION_ANIMATION_RUNTIME foundation
+## v0.16.1 MULTI_DIRECTION_ANIMATION_RUNTIME integrity correction
 
-The active phase is `MULTI_DIRECTION_ANIMATION_RUNTIME` and the gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`. The canonical eight directions are normalized deterministically; `front` aliases `south`, zero vectors never guess, and missing real directions fail closed. Existing front profiles remain byte-compatible and `real_directional_character_asset_coverage=SOUTH_ONLY`; `TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE` is review-only. `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The v0.16.0 PR remains OPEN for external review and must not be merged.
+The active phase is `MULTI_DIRECTION_ANIMATION_RUNTIME` and the gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED`. The canonical eight directions are normalized deterministically; `front` aliases `south`, zero vectors never guess, invalid vectors are `INVALID_VECTOR_UNRESOLVED`, and missing real directions fail closed. Existing front profiles remain byte-compatible and `real_directional_character_asset_coverage=SOUTH_ONLY`; `TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE` is review-only. The v0.16.0 record is `CORRECTION_REQUIRED`; PR #6 has `pr_number=6`, `pr_state=OPEN`, and `real_pr_checks_green=true` after the corrected exact head. `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Merge only after external review; do not merge and do not start equipment/outfits.
 
 ## Historical v0.15.1 DEATH_ANIMATION_FRONT approved pilot / merged
 
