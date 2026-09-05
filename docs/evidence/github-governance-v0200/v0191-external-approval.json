@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.20.0",
+  "record_type": "forward_only_external_approval",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 9,
+  "branch": "codex/v0.19.0-items-props-runtime-foundation",
+  "base_branch": "main",
+  "base_sha": "52938a04016352d50ad54621a4df981a9c36b058",
+  "reviewed_runtime_head": "00905ed17a8a95540cb496142b207778c66ba8ac",
+  "reviewer": "Sol external review",
+  "decision": "APPROVED_FOUNDATION / APPROVED_TO_MERGE",
+  "scope": "v0.19.1 ITEMS_PROPS_LINKAGE_REPRESENTATION_STACK_INTEGRITY",
+  "approval_boundary": {
+    "items_props": "APPROVED_FOUNDATION",
+    "runtime_and_qa_only": true,
+    "synthetic_item_prop_fixture": "TEST_ONLY",
+    "real_item_prop_asset_coverage": "NONE",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "environment_tilesets": "NEXT NECESSARY",
+    "maps_minimap_ui_vfx_and_orchestration": "NOT_AUTHORIZED"
+  },
+  "required_contexts": [
+    {
+      "name": "UGAS CI / unit-and-validation",
+      "run_id": 33985721472,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33985721472/job/101358736181"
+    },
+    {
+      "name": "UGAS CI / docker-smoke",
+      "run_id": 33985721472,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33985721472/job/101358736092"
+    },
+    {
+      "name": "UGAS Review / evidence",
+      "run_id": 33985721528,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33985721528/job/101358736291"
+    }
+  ],
+  "artifact": {
+    "name": "ugas-review-evidence-pr-9-00905ed17a8a95540cb496142b207778c66ba8ac",
+    "id": 9975163840,
+    "digest": "sha256:03742f2c0e070d4609630c5ce2a6e4d061e03d2ed1f34ebdbeebe275fc2d0c1f",
+    "run_id": 33985721528,
+    "verified_metadata": true,
+    "expired": false
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "current-state approved-foundation and merge-ready truth",
+      "items_props APPROVED_FOUNDATION",
+      "environment_tilesets NEXT NECESSARY",
+      "forward-only approval and governance evidence",
+      "active capability matrix pointer"
+    ],
+    "forbidden_changes": [
+      "v0.19.1 runtime behavior",
+      "v0.19.1 TEST_ONLY pixels or hashes",
+      "v0.17.1 equipment evidence",
+      "v0.16.2 direction evidence",
+      "approved front changes",
+      "production routing",
+      "new generation",
+      "environment runtime implementation before governed merge"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any v0.19.1 runtime or fixture content hash change"
+  }
+}

@@ -8,7 +8,7 @@ from typing import Any, Mapping
 CURRENT_VERSION = "0.19.1"
 CURRENT_PHASE = "ITEMS_PROPS"
 CURRENT_GATE = "ITEMS_PROPS_LINKAGE_REPRESENTATION_STACK_INTEGRITY_TECHNICALLY_QUALIFIED"
-NEXT_ACTION = "external_review_items_props_v0191"
+NEXT_ACTION = "governed_merge_pr_9"
 BASELINE_HEAD = "52938a04016352d50ad54621a4df981a9c36b058"
 FEATURE_BRANCH = "codex/v0.19.0-items-props-runtime-foundation"
 
@@ -25,8 +25,9 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
         "phase": CURRENT_PHASE,
         "current_gate": CURRENT_GATE,
         "creatures_monsters": "APPROVED_FOUNDATION",
+        "items_props": "APPROVED_FOUNDATION",
         "items_props_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
-        "items_props_runtime_external_review": "REQUIRED",
+        "items_props_runtime_external_review": "APPROVED_FOUNDATION",
         "real_item_prop_asset_coverage": "NONE",
         "synthetic_item_prop_fixture": "TEST_ONLY",
         "production_routing": "BLOCKED",
@@ -50,14 +51,14 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
     if v0190.get("status") != "CORRECTION_REQUIRED" or v0190.get("rejected_reviewed_head") != "44937935e644202836b3e1f081b6a63201b850db":
         failures.append("v0190_rejection_history_invalid")
     external = _mapping(state.get("external_visual_review"))
-    if external.get("items_props_runtime") != "REQUIRED" or external.get("creatures_monsters_runtime") != "APPROVED_FOUNDATION":
+    if external.get("items_props_runtime") != "APPROVED_FOUNDATION" or external.get("creatures_monsters_runtime") != "APPROVED_FOUNDATION":
         failures.append("external_review_boundary_invalid")
     review = _mapping(state.get("review"))
-    review_expected = {"repository": "KayzenRoot/ugas", "baseline_head": BASELINE_HEAD, "branch_base_commit": BASELINE_HEAD, "feature_branch": FEATURE_BRANCH, "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": True, "pr_state": "OPEN"}
+    review_expected = {"repository": "KayzenRoot/ugas", "baseline_head": BASELINE_HEAD, "branch_base_commit": BASELINE_HEAD, "feature_branch": FEATURE_BRANCH, "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": True, "pr_state": "OPEN", "merge_authorization": "APPROVED_TO_MERGE", "approved_head_sha": "00905ed17a8a95540cb496142b207778c66ba8ac", "post_bookkeeping_reproof_required": True}
     for key, value in review_expected.items():
         if review.get(key) != value:
             failures.append(f"review:{key}")
-    if review.get("pr_number") not in {0, 9} or review.get("real_pr_checks_green") not in {True, False}:
+    if review.get("pr_number") != 9 or review.get("real_pr_checks_green") is not True:
         failures.append("review:pr_binding")
     nested = _mapping(state.get("state_consistency"))
     nested_expected = {"status": CURRENT_GATE, "version": CURRENT_VERSION, "phase": CURRENT_PHASE, "current_gate": CURRENT_GATE, "feature_branch": FEATURE_BRANCH, "branch_base_commit": BASELINE_HEAD, "production_routing": "BLOCKED", "production_approved": False, "new_generation": 0, "allowed_next_actions": [NEXT_ACTION], "next_capability_started": False}
@@ -65,7 +66,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
         if nested.get(key) != value:
             failures.append(f"state_consistency:{key}")
     active = "\n".join((checkpoint_text, review_text, roadmap_text))
-    for literal in ("0.19.1", "0.19.0", CURRENT_PHASE, CURRENT_GATE, NEXT_ACTION, "creatures_monsters=APPROVED_FOUNDATION", "real_item_prop_asset_coverage=NONE", "synthetic_item_prop_fixture=TEST_ONLY", "production_approved=false", "production_routing=BLOCKED", "new_generation=0", "environment_tilesets", "CORRECTION_REQUIRED"):
+    for literal in ("0.19.1", "0.19.0", CURRENT_PHASE, CURRENT_GATE, NEXT_ACTION, "items_props=APPROVED_FOUNDATION", "creatures_monsters=APPROVED_FOUNDATION", "real_item_prop_asset_coverage=NONE", "synthetic_item_prop_fixture=TEST_ONLY", "production_approved=false", "production_routing=BLOCKED", "new_generation=0", "environment_tilesets", "CORRECTION_REQUIRED"):
         if literal.casefold() not in active.casefold():
             failures.append(f"active_documents_missing:{literal}")
     return {"status": CURRENT_GATE if not failures else "STATE_CONSISTENCY_FAILED", "schema_version": CURRENT_VERSION, "failures": failures, "checked": {"version": state.get("version"), "phase": state.get("phase"), "current_gate": state.get("current_gate"), "feature_branch": review.get("feature_branch"), "branch_base_commit": review.get("branch_base_commit"), "next_action": state.get("allowed_next_actions"), "production_routing": state.get("production_routing"), "new_generation": state.get("new_generation"), "pr_number": review.get("pr_number"), "pr_state": review.get("pr_state"), "real_pr_checks_green": review.get("real_pr_checks_green")}}

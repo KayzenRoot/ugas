@@ -4,7 +4,7 @@ The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its ev
 
 # 2D master pipeline v0.19.1
 
-The active slice is `ITEMS_PROPS` v0.19.1 runtime correction. It validates six stable classes, explicit inventory/world/equipment-preview representations, exact bound representation bytes and decoded pixels, positive world geometry and interaction anchors, item-family stack identity, derived variants, authority-bound equipment identity, isolated cache keys, provenance, 25 strict negative controls and full-slice two-run deterministic TEST_ONLY fixture runs. `creatures_monsters=APPROVED_FOUNDATION`, `real_item_prop_asset_coverage=NONE`, `synthetic_item_prop_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; environment/tilesets and downstream families are not authorized. The only next action is `external_review_items_props_v0191`.
+The v0.19.1 slice is the approved `ITEMS_PROPS` runtime foundation. It validates six stable classes, explicit inventory/world/equipment-preview representations, exact bound representation bytes and decoded pixels, positive world geometry and interaction anchors, item-family stack identity, derived variants, authority-bound equipment identity, isolated cache keys, provenance, 25 strict negative controls and full-slice two-run deterministic TEST_ONLY fixture runs. `creatures_monsters=APPROVED_FOUNDATION`, `items_props=APPROVED_FOUNDATION`, `environment_tilesets=NEXT NECESSARY`, `real_item_prop_asset_coverage=NONE`, `synthetic_item_prop_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; environment/tilesets starts only after PR #9's protected merge.
 
 ## Historical v0.17.1 boundary
 
