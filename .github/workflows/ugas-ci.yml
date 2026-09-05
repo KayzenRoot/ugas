@@ -34,14 +34,22 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.19.1 state consistency
+      - name: Active v0.20.0 state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0191.py
-      - name: Items/props runtime correction and negative controls
+        run: python scripts/validation/validate_state_consistency_v0200.py
+      - name: Environment/tilesets runtime foundation and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_items_props_runtime_v0191.py
+        run: python scripts/validation/run_environment_tilesets_runtime_v0200.py
+      - name: Frozen v0.19.1 Items/Props read-only regression
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_items_props_runtime_v0191_regression.py
+      - name: V1 capability matrix validation
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_v1_capability_matrix.py
       - name: Official validation
         env:
           PYTHONPATH: src
@@ -54,10 +62,6 @@ jobs:
         env:
           PYTHONPATH: src
         run: python scripts/validation/validate_front_animation_v0151_regression.py
-      - name: V1 capability matrix validation
-        env:
-          PYTHONPATH: src
-        run: python scripts/validation/validate_v1_capability_matrix.py
       - name: Multi-direction runtime cache/state correction validation
         env:
           PYTHONPATH: src

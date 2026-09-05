@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active state v0.20.0",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "current_gate", "allowed_next_actions", "production_approved", "production_routing", "new_generation", "review", "state_consistency"],
+  "properties": {
+    "schema_version": {"const": "0.20.0"},
+    "version": {"const": "0.20.0"},
+    "phase": {"const": "ENVIRONMENT_TILESETS"},
+    "current_gate": {"const": "ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED"},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "new_generation": {"const": 0}
+  }
+}

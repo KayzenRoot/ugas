@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.19.1."""
+"""Objective UGAS validation, including immutable history and active v0.20.0."""
 
 from __future__ import annotations
 
@@ -65,8 +65,10 @@ from ugas.state_consistency_v0181 import validate_state_consistency as validate_
 from ugas.state_consistency_v0182 import validate_state_consistency as validate_state_consistency_v0182
 from ugas.state_consistency_v0190 import validate_state_consistency as validate_state_consistency_v0190
 from ugas.state_consistency_v0191 import validate_state_consistency as validate_state_consistency_v0191
+from ugas.state_consistency_v0200 import validate_state_consistency as validate_state_consistency_v0200
 from ugas.item_prop_runtime_v0190 import validate_item_prop_manifest as validate_item_prop_manifest_v0190
 from ugas.item_prop_runtime_v0191 import load_equipment_authority, validate_item_prop_manifest as validate_item_prop_manifest_v0191
+from ugas.environment_tileset_runtime_v0200 import validate_tileset_manifest
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -3137,13 +3139,13 @@ def _v0190_checks() -> None:
 
 
 def _v0191_checks() -> None:
-    """Validate the active v0.19.1 correction without regenerating evidence."""
+    """Validate the frozen v0.19.1 correction without treating it as active."""
     evidence_root = ROOT / "docs/evidence/items-props-runtime-v0191"
     required = [
         "REVIEW-v0.19.1.md", "schemas/item-prop-runtime-v0191.json", "schemas/current-state-v0191.json",
         "src/ugas/item_prop_runtime_v0191.py", "src/ugas/state_consistency_v0191.py",
         "scripts/validation/run_items_props_runtime_v0191.py", "scripts/validation/validate_state_consistency_v0191.py",
-        "tests/test_item_prop_runtime_v0191.py", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.18.2.json",
+        "tests/test_item_prop_runtime_v0191.py", "docs/evidence/current-state-v0.18.2.json",
         "docs/evidence/items-props-runtime-v0191/v0190-rejection-correction-record-v0191.json",
         "docs/evidence/items-props-runtime-v0191/item-prop-runtime-manifest-v0191.json",
         "docs/evidence/items-props-runtime-v0191/item-prop-contract-v0191.json",
@@ -3170,10 +3172,8 @@ def _v0191_checks() -> None:
         path = ROOT / relative
         check(f"v0191:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state-v0191.json"))
-        consistency = validate_state_consistency_v0191(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.19.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        check("v0191:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.19.1 state is consistent")
+        approval = load_json(ROOT / "docs/evidence/github-governance-v0200/v0191-external-approval.json")
+        check("v0191:approval-record", approval.get("status") == "APPROVED_FOUNDATION" and approval.get("merge_authorization") == "APPROVED_TO_MERGE" and approval.get("merged_main_sha") == "93293d21f301e6d64232a992eb92533db9741118", "v0.19.1 remains a frozen approved release")
         manifest = load_json(evidence_root / "item-prop-runtime-manifest-v0191.json")
         authority = load_equipment_authority(ROOT / "docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-manifest-v0171.json")
         validate_instance(manifest, load_json(ROOT / "schemas/item-prop-runtime-v0191.json")); validate_item_prop_manifest_v0191(manifest, artifact_root=evidence_root, equipment_authority=authority)
@@ -3196,10 +3196,68 @@ def _v0191_checks() -> None:
         check("v0191:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production item/prop registry is empty and blocked")
         check("v0191:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("file_count") == 19 and determinism.get("differences") == [] and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_world_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT" and determinism.get("mutated_identity_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_IDENTITY", "full-slice isolated determinism and mutation rejection pass")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-        check("v0191:capability-matrix", matrix.get("version") == "0.19.1" and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] == "NEXT NECESSARY", "matrix closes v0.19.1 items/props and advances environment/tilesets")
+        check("v0191:capability-matrix", matrix.get("version") == "0.20.0" and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"].startswith("TECHNICALLY_QUALIFIED_FOUNDATION"), "matrix records v0.19.1 closure and active v0.20.0 environment foundation")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0191:evidence", False, str(exc))
     for label, script in (("v0191:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0191:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0191:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0191:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
+
+
+def _v0200_checks() -> None:
+    """Validate the active environment/tilesets foundation and its evidence."""
+    evidence_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0200"
+    required = [
+        "REVIEW-v0.20.0.md", "schemas/environment-tileset-runtime-v0200.json", "schemas/current-state-v0200.json",
+        "src/ugas/environment_tileset_runtime_v0200.py", "src/ugas/state_consistency_v0200.py",
+        "scripts/validation/run_environment_tilesets_runtime_v0200.py", "scripts/validation/validate_state_consistency_v0200.py",
+        "docs/evidence/current-state.json", "docs/evidence/environment-tilesets-runtime-v0200/tileset-manifest-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/hard-gates-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/negative-controls-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/full-slice-two-run-determinism-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/production-registry-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/test-only-qa-board-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/execution-evidence-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/tileset-manifest-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/fixture/tileset-identity.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/autotile-identities-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/fixture/edge-signatures-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/layer-collision-navigation-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/fixture/atlases/temperate_cardinal.png",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/atlases/wetland_eight_neighbor.png", "docs/evidence/environment-tilesets-runtime-v0200/fixture/indexes/temperate_cardinal-atlas-index.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/indexes/wetland_eight_neighbor-atlas-index.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/atlas-qa-sheet-v0200.png", "docs/evidence/environment-tilesets-runtime-v0200/fixture/mask-qa-sheet-v0200.png",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/seam-qa-sheet-v0200.png", "docs/evidence/environment-tilesets-runtime-v0200/fixture/collision-qa-sheet-v0200.png",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/layer-qa-sheet-v0200.png", "docs/evidence/environment-tilesets-runtime-v0200/capability-matrix-validation-v0200.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0200:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state_schema = load_json(ROOT / "schemas/current-state-v0200.json")
+        validate_instance(state, state_schema)
+        consistency = validate_state_consistency_v0200(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.0.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0200:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.0 state is consistent")
+        fixture_root = evidence_root / "fixture"
+        manifest = load_json(fixture_root / "tileset-manifest-v0200.json")
+        schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0200.json")
+        validate_schema_document(schema); validate_instance(manifest, schema)
+        semantic = validate_tileset_manifest(fixture_root, manifest)
+        execution = load_json(evidence_root / "execution-evidence-v0200.json")
+        negative = load_json(evidence_root / "negative-controls-v0200.json")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0200.json")
+        gates = load_json(evidence_root / "hard-gates-v0200.json").get("gates", {})
+        expected_gates = {"tileset_schema_valid", "tile_metrics_valid", "grid_conversion_roundtrip_valid", "layer_contract_valid", "atlas_rects_in_bounds_and_nonoverlapping", "standalone_tile_bytes_hash_verified", "atlas_region_matches_tile_bytes", "adjacency_mask_encoding_deterministic", "required_autotile_variant_present", "edge_signatures_match_bytes", "seam_compatibility_verified", "collision_navigation_contract_valid", "items_props_boundary_not_duplicated", "variant_lineage_acyclic_and_revalidated", "cache_identity_complete", "stale_cache_cross_mask_tileset_layer_rejected", "provenance_hash_matches_manifest", "test_fixture_nonproduction", "production_registry_empty", "production_routing_blocked", "isolated_full_slice_determinism"}
+        strict_negative = negative.get("status") == "ENVIRONMENT_TILESET_NEGATIVE_CONTROLS_PASSED" and len(negative.get("controls", [])) == 18 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in negative.get("controls", []))
+        check("v0200:execution", execution.get("status") == "ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and execution.get("negative_controls") == "ET-NC-01_TO_18_PASSED" and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.20.0 foundation gates execute successfully")
+        check("v0200:hard-gates", set(gates) == expected_gates and all(item.get("status") == "PASS" for item in gates.values()), "all 20 PDF hard gates pass")
+        check("v0200:negative-controls", strict_negative, "ET-NC-01..18 are strict semantic rejections")
+        check("v0200:manifest", semantic.get("status") == "ENVIRONMENT_TILESET_MANIFEST_VALID" and manifest.get("classes") == ["ground_terrain", "path_road", "wall_structure", "water_liquid", "cliff_height", "vegetation_overlay"], "six stable class IDs and manifest identity validate")
+        check("v0200:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("equal") is True and determinism.get("differences") == [] and len(determinism.get("files", [])) >= 20, "independent subprocess output set is byte-identical")
+        production = load_json(evidence_root / "production-registry-v0200.json")
+        board = load_json(evidence_root / "test-only-qa-board-v0200.json")
+        check("v0200:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and board.get("label") == "TEST_ONLY_TILE_QA_BOARD", "fixture is TEST_ONLY and production registry is empty")
+        matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        environment = next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")
+        check("v0200:capability-matrix", matrix.get("version") == "0.20.0" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS", "active capability matrix points to the qualified environment foundation")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0200:evidence", False, str(exc))
+    for label, script in (("v0200:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0200:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0200:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0200:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
         result = _run([sys.executable, script], ROOT, timeout=120)
         check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
 
@@ -3302,13 +3360,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks(); _v0190_checks(); _v0191_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks(); _v0190_checks(); _v0191_checks(); _v0200_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.19.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.19.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.19.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.20.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "CHECKPOINT.md", "REVIEW-v0.20.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.20.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

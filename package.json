@@ -1,6 +1,6 @@
 {
   "name": "universal-game-asset-studio",
-  "version": "0.19.1",
+  "version": "0.20.0",
   "description": "Universal, provider-agnostic game asset studio bootstrap.",
   "private": false,
   "license": "MIT",
@@ -8,6 +8,7 @@
   "scripts": {
     "test": "python scripts/tests/run_tests.py",
     "validate": "python scripts/validation/run_validation.py",
+    "validate:environment-tilesets": "python scripts/validation/run_environment_tilesets_runtime_v0200.py",
     "validate:pose-qa": "python scripts/validation/run_pose_qa_qualification.py",
     "validate:pose-lanes": "python scripts/validation/run_v054_lane_recheck.py",
     "dry-run:route": "python scripts/providers/route_provider.py --request \"Criar vila humana 2D de MMORPG\" --comfyui available --render-node available --huggingface available --dry-run",
