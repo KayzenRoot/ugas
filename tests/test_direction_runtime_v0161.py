@@ -78,7 +78,7 @@ class DirectionRuntimeV0161Tests(unittest.TestCase):
         self.assertNotIn("positive_gate_boolean", json.dumps(evidence))
 
     def test_v0161_state_evidence_is_frozen_and_active_state_advanced(self) -> None:
-        state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        state = json.loads((ROOT / "docs/evidence/current-state-v0.16.2.json").read_text(encoding="utf-8"))
         frozen = json.loads((EVIDENCE / "state-consistency-v0161.json").read_text(encoding="utf-8"))
         self.assertEqual(frozen["status"], "MULTI_DIRECTION_ANIMATION_RUNTIME_INTEGRITY_TECHNICALLY_QUALIFIED")
         self.assertEqual(state["version"], "0.16.2")

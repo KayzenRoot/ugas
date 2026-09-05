@@ -262,7 +262,7 @@ def main() -> int:
         DirectionResolver([test_only_asset], production_registry=True)
     except DirectionManifestError as exc:
         production_fixture_error = str(exc)
-    state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+    state = json.loads((ROOT / "docs/evidence/current-state-v0.16.2.json").read_text(encoding="utf-8"))
     mutated_state = copy.deepcopy(state)
     mutated_state["production_approved"] = True
     mutated_state["production_routing"] = "ENABLED"

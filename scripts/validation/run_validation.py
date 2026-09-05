@@ -58,6 +58,7 @@ from ugas.state_consistency_v0151 import validate_state_consistency as validate_
 from ugas.state_consistency_v0160 import validate_state_consistency as validate_state_consistency_v0160
 from ugas.state_consistency_v0161 import validate_state_consistency as validate_state_consistency_v0161
 from ugas.state_consistency_v0162 import validate_state_consistency as validate_state_consistency_v0162
+from ugas.state_consistency_v0170 import validate_state_consistency as validate_state_consistency_v0170
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -2821,7 +2822,7 @@ def _v0162_checks() -> None:
         "schemas/current-state-v0162.json",
         "schemas/direction-runtime-v0162.json",
         "schemas/github-review-manifest-v0162.json",
-        "docs/evidence/current-state.json",
+        "docs/evidence/current-state-v0.16.2.json",
         "src/ugas/direction_runtime.py",
         "src/ugas/state_consistency_v0162.py",
         "scripts/validation/validate_state_consistency_v0162.py",
@@ -2851,7 +2852,7 @@ def _v0162_checks() -> None:
         path = ROOT / relative
         check(f"v0162:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state = load_json(ROOT / "docs/evidence/current-state-v0.16.2.json")
         validate_instance(state, load_json(ROOT / "schemas/current-state-v0162.json"))
         consistency = validate_state_consistency_v0162(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.16.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
         check("v0162:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.16.2 state is consistent")
@@ -2881,6 +2882,58 @@ def _v0162_checks() -> None:
         check("v0162:fixtures", fixture.get("schema_version") == "0.16.2" and fixture.get("direction_count") == 8 and fixture.get("unique_identity_count") == 8 and fixture.get("production_registry") is False, "synthetic eight-direction fixture remains test-only")
     except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
         check("v0162:evidence", False, str(exc))
+
+
+def _v0170_checks() -> None:
+    """Validate the active v0.17.0 equipment/outfits foundation."""
+    required = [
+        "REVIEW-v0.17.0.md",
+        "schemas/equipment-runtime-v0170.json",
+        "schemas/current-state-v0170.json",
+        "docs/evidence/current-state.json",
+        "src/ugas/equipment_runtime.py",
+        "src/ugas/state_consistency_v0170.py",
+        "scripts/validation/validate_equipment_runtime_v0170.py",
+        "scripts/validation/validate_state_consistency_v0170.py",
+        "tests/test_equipment_runtime_v0170.py",
+        "docs/evidence/equipment-outfits-runtime-v0170/synthetic-fixture-manifest-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/equipment-registry-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/equipment-contract-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/slot-layer-graph-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/anchor-qa-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/replacement-hide-qa-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/occlusion-qa-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/direction-animation-qa-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/cache-qa-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/provenance-qa-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/two-run-determinism-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/negative-controls-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/outfit-contact-sheet-v0170.png",
+        "docs/evidence/equipment-outfits-runtime-v0170/state-consistency-v0170.json",
+        "docs/evidence/equipment-outfits-runtime-v0170/execution-evidence-v0170.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0170:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    runtime = _run([sys.executable, "scripts/validation/validate_equipment_runtime_v0170.py"], ROOT, timeout=120)
+    check("v0170:equipment-runtime", runtime.returncode == 0, (runtime.stdout + runtime.stderr).strip()[-800:])
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0170.json"))
+        consistency = validate_state_consistency_v0170(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.17.0.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0170:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.17.0 state is consistent")
+        fixture = load_json(ROOT / "docs/evidence/equipment-outfits-runtime-v0170/synthetic-fixture-manifest-v0170.json")
+        production = load_json(ROOT / "docs/evidence/equipment-outfits-runtime-v0170/equipment-registry-v0170.json")
+        execution = load_json(ROOT / "docs/evidence/equipment-outfits-runtime-v0170/execution-evidence-v0170.json")
+        negative = load_json(ROOT / "docs/evidence/equipment-outfits-runtime-v0170/negative-controls-v0170.json")
+        controls = negative.get("controls", {})
+        observed = all(item.get("rejected") is True and item.get("status") == "REJECTED" and item.get("mutation") and item.get("target_gate") and isinstance(item.get("observed"), dict) and "result" in item["observed"] and "error_code" in item["observed"] for item in controls.values())
+        check("v0170:execution", execution.get("status") == "EQUIPMENT_OUTFITS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and execution.get("failed") == 0 and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.17.0 runtime gates pass")
+        check("v0170:fixtures", fixture.get("schema_version") == "0.17.0" and fixture.get("production_registry") is False and len(fixture.get("assets", [])) == 6 and all(item.get("test_only") is True and item.get("production_safe") is False for item in fixture.get("assets", [])), "six synthetic fixtures remain TEST_ONLY")
+        check("v0170:production-registry", production.get("production_registry") is True and production.get("assets") == [], "production registry is empty")
+        check("v0170:real-negative-controls", negative.get("status") == "EQ_NC_01_TO_15_PASSED" and len(controls) == 15 and observed, "all fifteen equipment controls record real mutations and observed rejections")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0170:evidence", False, str(exc))
 
 
 def main() -> int:
@@ -2981,13 +3034,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.16.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.16.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.16.2")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.17.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.17.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.17.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
