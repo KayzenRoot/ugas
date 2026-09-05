@@ -2,9 +2,9 @@
 
 The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
 
-# 2D master pipeline v0.18.1
+# 2D master pipeline v0.18.2
 
-The active slice is `CREATURES_MONSTERS` v0.18.1 QA integrity correction. It adds metadata-only TEST_ONLY directional identity for all eight canonical directions, exact state-route IDs with timing/phase metadata, derived-variant inheritance, strict collision geometry, and isolated deterministic fixture comparison. `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; no Items/Props work is authorized. The v0.18.0 reviewed head remains immutable `CORRECTION_REQUIRED` history, and the only next action is `external_review_creatures_monsters_v0181`.
+The active slice is `CREATURES_MONSTERS` v0.18.2 derived-variant and state contract correction. It validates effective variants after materialization, keeps metadata `variant_revision` separate from inherited directional `asset_revision`, rejects mixed direction revisions, restores locomotion for moving archetypes, and preserves the 48 frozen v0.18.1 fixture pixels/hashes. `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; no Items/Props work is authorized. The v0.18.1 reviewed head remains immutable `CORRECTION_REQUIRED` history, and the only next action is `external_review_creatures_monsters_v0182`.
 
 ## Historical v0.17.1 boundary
 

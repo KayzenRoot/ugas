@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.18.2",
+  "status": "TWO_RUN_DETERMINISM_PASSED",
+  "same_frozen_manifest": true,
+  "second_run_reads_first_run": false,
+  "first_returncode": 0,
+  "second_returncode": 0,
+  "equal_comparison": {
+    "result": "RESOLVED",
+    "error_code": null,
+    "rejection_class": null,
+    "differences": [],
+    "file_count": 53
+  },
+  "mutated_second_output_comparison": {
+    "result": "REJECTED",
+    "error_code": "NONDETERMINISTIC_SECOND_FIXTURE_OUTPUT",
+    "rejection_class": "RUNTIME_REJECTION",
+    "differences": [
+      "fixtures/directions/fixture_humanoid_biped/south.png"
+    ]
+  },
+  "mutated_control_error_code": "NONDETERMINISTIC_SECOND_FIXTURE_OUTPUT"
+}

@@ -1,5 +1,12 @@
-# UGAS checkpoint - v0.18.1 CREATURES_MONSTERS
+# UGAS checkpoint - v0.18.2 CREATURES_MONSTERS
 
+## v0.18.2 CREATURES_MONSTERS — derived variant/state contract technically qualified / external review required
+
+The active phase is `CREATURES_MONSTERS` on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`. The active gate is `CREATURES_MONSTERS_DERIVED_VARIANT_AND_STATE_CONTRACT_TECHNICALLY_QUALIFIED`; the only allowed next action is `external_review_creatures_monsters_v0182`. v0.18.1 head `b52dc26d935fd84b25a991ae81c5d508b0a39807` is frozen `CORRECTION_REQUIRED` history. The correction validates fully materialized derived variants, separates `variant_revision` from inherited directional `asset_revision`, rejects mixed effective direction revisions, restores locomotion as REQUIRED for moving archetypes, and keeps stationary locomotion UNSUPPORTED. `equipment_outfits=APPROVED_FOUNDATION`, `v0181_external_review=CORRECTION_REQUIRED`, `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Items/Props and all downstream asset families remain forbidden. PR #8 remains OPEN and must not be merged before Sol's external review.
+
+Evidence is under `docs/evidence/creatures-monsters-runtime-v0182/`; v0.18.1 is preserved under `docs/evidence/creatures-monsters-runtime-v0181/` without overwrite. The complete execution contract is [REVIEW-v0.18.2.md](REVIEW-v0.18.2.md).
+
+# Historical v0.18.1 CREATURES_MONSTERS — correction required
 ## v0.18.1 CREATURES_MONSTERS — QA integrity technically qualified / external review required
 
 The active phase is `CREATURES_MONSTERS` on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on merged v0.17.1 main at `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`. The active gate is `CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED`; the only allowed next action is `external_review_creatures_monsters_v0181`. The v0.18.1 correction adds executable 8-way direction asset identity, exact state route identity/timing, derived variants, strict collision geometry, strict canonical negative controls and isolated determinism. The fixtures are synthetic `TEST_ONLY`; `real_creature_asset_coverage=NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. `equipment_outfits=APPROVED_FOUNDATION`; `v0180_external_review=CORRECTION_REQUIRED`; Items/Props and all downstream asset families remain forbidden. PR #8 remains OPEN and must not be merged before Sol's external review.

@@ -1,5 +1,9 @@
 # UGAS roadmap
 
+## v0.18.2 - CREATURES_MONSTERS derived variant + state contract integrity / external review required
+
+The active phase is `CREATURES_MONSTERS` and the gate is `CREATURES_MONSTERS_DERIVED_VARIANT_AND_STATE_CONTRACT_TECHNICALLY_QUALIFIED`. This forward-only correction stays on PR #8 and branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`; rejected v0.18.1 head `b52dc26d935fd84b25a991ae81c5d508b0a39807` remains frozen history. Effective derived variants are validated after materialization; `variant_revision` is separate from inherited directional `asset_revision`; mixed direction revisions reject; moving archetypes require locomotion and stationary structures reject it. `equipment_outfits=APPROVED_FOUNDATION`, `v0181_external_review=CORRECTION_REQUIRED`, `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The only next action is `external_review_creatures_monsters_v0182`; Items/Props remains forbidden and PR #8 must stay open/unmerged.
+
 ## Historical v0.18.0 - CREATURES_MONSTERS runtime foundation / correction required
 
 ## v0.18.1 - CREATURES_MONSTERS runtime QA integrity correction / external review required

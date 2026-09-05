@@ -1,0 +1,216 @@
+{
+  "schema_version": "0.18.2",
+  "status": "ARCHETYPE_STATE_COMPATIBILITY_PASSED",
+  "rules": {
+    "humanoid_biped": {
+      "locomotion": "REQUIRED"
+    },
+    "quadruped": {
+      "locomotion": "REQUIRED"
+    },
+    "flying_winged": {
+      "locomotion": "REQUIRED"
+    },
+    "serpentine": {
+      "locomotion": "REQUIRED"
+    },
+    "amorphous": {
+      "locomotion": "REQUIRED"
+    },
+    "stationary_structure": {
+      "locomotion": "UNSUPPORTED"
+    }
+  },
+  "controls": {
+    "SUP-NC-01": {
+      "id": "SUP-NC-01",
+      "mutation": "topology_mismatch",
+      "target_gate": "SUP-NC-01",
+      "expected_error_code": "TOPOLOGY_ARCHETYPE_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "TOPOLOGY_ARCHETYPE_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "TOPOLOGY_ARCHETYPE_MISMATCH"
+      }
+    },
+    "SUP-NC-02": {
+      "id": "SUP-NC-02",
+      "mutation": "locomotion_mismatch",
+      "target_gate": "SUP-NC-02",
+      "expected_error_code": "LOCOMOTION_ARCHETYPE_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "LOCOMOTION_ARCHETYPE_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "LOCOMOTION_ARCHETYPE_MISMATCH"
+      }
+    },
+    "SUP-NC-03": {
+      "id": "SUP-NC-03",
+      "mutation": "missing_anchors",
+      "target_gate": "SUP-NC-03",
+      "expected_error_code": "ANCHORS_EXPLICIT_REQUIRED",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "ANCHORS_EXPLICIT_REQUIRED",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "ANCHORS_EXPLICIT_REQUIRED"
+      }
+    },
+    "SUP-NC-04": {
+      "id": "SUP-NC-04",
+      "mutation": "invalid_collision_geometry",
+      "target_gate": "SUP-NC-04",
+      "expected_error_code": "COLLISION_GEOMETRY_INVALID",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "COLLISION_GEOMETRY_INVALID",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "COLLISION_GEOMETRY_INVALID"
+      }
+    },
+    "SUP-NC-05": {
+      "id": "SUP-NC-05",
+      "mutation": "inverted_bounds",
+      "target_gate": "SUP-NC-05",
+      "expected_error_code": "BOUNDS_GEOMETRY_INVALID",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "BOUNDS_GEOMETRY_INVALID",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "BOUNDS_GEOMETRY_INVALID"
+      }
+    },
+    "SUP-NC-06": {
+      "id": "SUP-NC-06",
+      "mutation": "stale_cache_cross_state",
+      "target_gate": "SUP-NC-06",
+      "expected_error_code": "STALE_CREATURE_CACHE_CONTEXT",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "creature_id": "fixture_humanoid_biped",
+        "variant": "fixture_humanoid_biped_base",
+        "variant_kind": null,
+        "parent_creature_id": null,
+        "parent_variant_id": null,
+        "requested_direction": "south",
+        "resolved_direction": null,
+        "direction_asset_id": null,
+        "direction_content_hash": null,
+        "requested_state": "idle",
+        "resolved_state": null,
+        "state_route_id": null,
+        "timing_phase": null,
+        "topology_id": null,
+        "locomotion_class": null,
+        "support_model": null,
+        "rig_family": null,
+        "base_scale": null,
+        "footprint": null,
+        "collision_profile": null,
+        "anchors": null,
+        "effective_overrides": null,
+        "asset_revision": null,
+        "provenance_hash": null,
+        "fallback_mode": "NONE",
+        "cache_key": "creature_id=fixture_humanoid_biped|variant=fixture_humanoid_biped_base|variant_revision=fixture_humanoid_biped_base-metadata-r1|direction=south|state=idle|direction_asset_id=fixture_humanoid_biped:south:qa-v0182|direction_asset_revision=fixture_humanoid_biped-r1|state_route_id=fixture_humanoid_biped:idle:route-v0182|rig_topology_revision=creature-topology-v0182|asset_revision=fixture_humanoid_biped-r1|normalization=DIRECTION_ID|request_mode=direct|registry_mode=test",
+        "cache_hit": false,
+        "error_code": "STALE_CREATURE_CACHE_CONTEXT",
+        "rejection_class": "RUNTIME_REJECTION",
+        "production_routing": "BLOCKED",
+        "production_safe": false,
+        "detail": "cached identity does not match creature/variant/revision/direction/state",
+        "variant_revision": null,
+        "direction_asset_revision": null
+      }
+    },
+    "SUP-NC-07": {
+      "id": "SUP-NC-07",
+      "mutation": "moving_archetype_locomotion_unsupported",
+      "target_gate": "SUP-NC-07",
+      "expected_error_code": "LOCOMOTION_STATE_ARCHETYPE_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "LOCOMOTION_STATE_ARCHETYPE_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "LOCOMOTION_STATE_ARCHETYPE_MISMATCH"
+      }
+    },
+    "SUP-NC-08": {
+      "id": "SUP-NC-08",
+      "mutation": "stationary_locomotion_request",
+      "target_gate": "SUP-NC-08",
+      "expected_error_code": "CREATURE_STATE_UNSUPPORTED",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "creature_id": "fixture_stationary_structure",
+        "variant": "fixture_stationary_structure_base",
+        "variant_kind": null,
+        "parent_creature_id": null,
+        "parent_variant_id": null,
+        "requested_direction": "south",
+        "resolved_direction": null,
+        "direction_asset_id": null,
+        "direction_content_hash": null,
+        "requested_state": "locomotion",
+        "resolved_state": null,
+        "state_route_id": null,
+        "timing_phase": null,
+        "topology_id": null,
+        "locomotion_class": null,
+        "support_model": null,
+        "rig_family": null,
+        "base_scale": null,
+        "footprint": null,
+        "collision_profile": null,
+        "anchors": null,
+        "effective_overrides": null,
+        "asset_revision": null,
+        "provenance_hash": null,
+        "fallback_mode": "NONE",
+        "cache_key": "",
+        "cache_hit": false,
+        "error_code": "CREATURE_STATE_UNSUPPORTED",
+        "rejection_class": "RUNTIME_REJECTION",
+        "production_routing": "BLOCKED",
+        "production_safe": false,
+        "detail": "",
+        "variant_revision": null,
+        "direction_asset_revision": null
+      }
+    }
+  }
+}

@@ -1,0 +1,1580 @@
+{
+  "schema_version": "0.18.2",
+  "manifest_type": "creatures-monsters-runtime-qa-integrity",
+  "production_registry": false,
+  "registry_authority": "TEST_ONLY_SYNTHETIC_CREATURE_FIXTURES",
+  "production_routing": "BLOCKED",
+  "canonical_directions": [
+    "south",
+    "south_east",
+    "east",
+    "north_east",
+    "north",
+    "north_west",
+    "west",
+    "south_west"
+  ],
+  "canonical_animation_states": [
+    "idle",
+    "locomotion",
+    "attack_primary",
+    "hit_reaction",
+    "death"
+  ],
+  "creatures": [
+    {
+      "creature_id": "fixture_humanoid_biped",
+      "species_id": "monster_knight",
+      "archetype": "humanoid_biped",
+      "topology_id": "topology_humanoid_biped_v1",
+      "locomotion_class": "bipedal",
+      "support_model": "two_foot_contact",
+      "rig_family": "rig_humanoid_biped_v1",
+      "base_scale": {
+        "x": 0.82,
+        "y": 0.94
+      },
+      "footprint": {
+        "width": 42.0,
+        "depth": 28.0
+      },
+      "collision_profile": {
+        "shape": "capsule",
+        "width": 42.0,
+        "height": 76.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "direction_coverage": [
+        "south",
+        "south_east",
+        "east",
+        "north_east",
+        "north",
+        "north_west",
+        "west",
+        "south_west"
+      ],
+      "direction_bindings": {
+        "south": {
+          "direction": "south",
+          "direction_asset_id": "fixture_humanoid_biped:south:qa-v0182",
+          "direction_content_hash": "aff69c88e6e94e055b67c93056dc83b5d895a39580b6c432199884d4155fe067",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/south.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_east": {
+          "direction": "south_east",
+          "direction_asset_id": "fixture_humanoid_biped:south_east:qa-v0182",
+          "direction_content_hash": "1c1a72aae0a3e5b3eb626819930add18f2c7730a85d8c410960c155aeee82ab7",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/south_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "east": {
+          "direction": "east",
+          "direction_asset_id": "fixture_humanoid_biped:east:qa-v0182",
+          "direction_content_hash": "74318682ef1c083bc3d5869b4965ebc18b2fd79c99aac500d039389fa9ca7911",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_east": {
+          "direction": "north_east",
+          "direction_asset_id": "fixture_humanoid_biped:north_east:qa-v0182",
+          "direction_content_hash": "fd14878c6babccdf90d152c381d40b344cb93b8e55b73f56c426ecb4436b17cc",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/north_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north": {
+          "direction": "north",
+          "direction_asset_id": "fixture_humanoid_biped:north:qa-v0182",
+          "direction_content_hash": "268d67615048ebae46c64078a40796c3b8ef2347c715cb0bd72b897214cb616e",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/north.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_west": {
+          "direction": "north_west",
+          "direction_asset_id": "fixture_humanoid_biped:north_west:qa-v0182",
+          "direction_content_hash": "75750a6d350549cd12bebfcdaf1cf5cc8b09a6845a52440bf9529a43c3b56eb9",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/north_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "west": {
+          "direction": "west",
+          "direction_asset_id": "fixture_humanoid_biped:west:qa-v0182",
+          "direction_content_hash": "c570fe4b12090382f3b61070d13898db8fa4c76eb0242a88376478c753d7c261",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_west": {
+          "direction": "south_west",
+          "direction_asset_id": "fixture_humanoid_biped:south_west:qa-v0182",
+          "direction_content_hash": "07162145b17b0660cad42e3a056f39f737a6e60648c7bf869a760c4f1b925c17",
+          "asset_revision": "fixture_humanoid_biped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_humanoid_biped/south_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "animation_state_contract": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "state_routes": {
+        "idle": {
+          "state": "idle",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_humanoid_biped:idle:route-v0182",
+          "timing_phase": {
+            "fps": 12,
+            "duration_ms": 540,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "locomotion": {
+          "state": "locomotion",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_humanoid_biped:locomotion:route-v0182",
+          "timing_phase": {
+            "fps": 8,
+            "duration_ms": 600,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "attack_primary": {
+          "state": "attack_primary",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_humanoid_biped:attack_primary:route-v0182",
+          "timing_phase": {
+            "fps": 12,
+            "duration_ms": 640,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "hit_reaction": {
+          "state": "hit_reaction",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_humanoid_biped:hit_reaction:route-v0182",
+          "timing_phase": {
+            "fps": 10,
+            "duration_ms": 620,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "death": {
+          "state": "death",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_humanoid_biped:death:route-v0182",
+          "timing_phase": {
+            "fps": 8,
+            "duration_ms": 550,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "variant_lineage": {
+        "variant_id": "fixture_humanoid_biped_base",
+        "kind": "base",
+        "parent_id": null,
+        "inherits": [],
+        "overrides": []
+      },
+      "asset_revision": "fixture_humanoid_biped-r1",
+      "provenance": {
+        "source_kind": "TEST_ONLY_SYNTHETIC",
+        "source_id": "synthetic-colored-directional-fixture-1",
+        "source_revision": "0.18.2",
+        "record_hash": "7a6b18065144905c3f7e8daf44cd012e70b2211ab9b106a0d61e9d7035941ee8",
+        "production_safe": false
+      },
+      "test_only": true,
+      "production_safe": false,
+      "fixture": {
+        "color_rgba": [
+          57,
+          119,
+          214,
+          255
+        ],
+        "orientation_marker": "direction-specific-asymmetric-white-yellow-marker",
+        "fixture_index": 1
+      },
+      "provenance_hash": "7a6b18065144905c3f7e8daf44cd012e70b2211ab9b106a0d61e9d7035941ee8"
+    },
+    {
+      "creature_id": "fixture_quadruped",
+      "species_id": "dire_wolf",
+      "archetype": "quadruped",
+      "topology_id": "topology_quadruped_v1",
+      "locomotion_class": "quadrupedal",
+      "support_model": "four_foot_contact",
+      "rig_family": "rig_quadruped_v1",
+      "base_scale": {
+        "x": 0.86,
+        "y": 0.97
+      },
+      "footprint": {
+        "width": 47.0,
+        "depth": 31.0
+      },
+      "collision_profile": {
+        "shape": "capsule",
+        "width": 47.0,
+        "height": 80.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "direction_coverage": [
+        "south",
+        "south_east",
+        "east",
+        "north_east",
+        "north",
+        "north_west",
+        "west",
+        "south_west"
+      ],
+      "direction_bindings": {
+        "south": {
+          "direction": "south",
+          "direction_asset_id": "fixture_quadruped:south:qa-v0182",
+          "direction_content_hash": "3809765c3ee0082dbade6c3c3e63633a90ad54026ea56702e71c6e9190b89717",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/south.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_east": {
+          "direction": "south_east",
+          "direction_asset_id": "fixture_quadruped:south_east:qa-v0182",
+          "direction_content_hash": "11d56cee177061898cc01b931f498606cf396ca6a6f44899253495e1efcf697a",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/south_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "east": {
+          "direction": "east",
+          "direction_asset_id": "fixture_quadruped:east:qa-v0182",
+          "direction_content_hash": "72e600e3e41f843b60d48bab488148851e17ebf31f8deb95b84db81f576bbb56",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_east": {
+          "direction": "north_east",
+          "direction_asset_id": "fixture_quadruped:north_east:qa-v0182",
+          "direction_content_hash": "98aa63fb7e8281e7fa77358374b655936f7bc441173e31e3a59af5968485ee47",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/north_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north": {
+          "direction": "north",
+          "direction_asset_id": "fixture_quadruped:north:qa-v0182",
+          "direction_content_hash": "249658f86304714a87948e44ef69847a8e86995201ec6c7910a80f230fefb860",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/north.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_west": {
+          "direction": "north_west",
+          "direction_asset_id": "fixture_quadruped:north_west:qa-v0182",
+          "direction_content_hash": "eb898c341faa6d4003e9a431e12beb28033f6845a847d36005324aff8bcbbab4",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/north_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "west": {
+          "direction": "west",
+          "direction_asset_id": "fixture_quadruped:west:qa-v0182",
+          "direction_content_hash": "8fae977d8610314e081f87427138e9cdf1bc89ae28eb160e04a4fc02217ca5d6",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_west": {
+          "direction": "south_west",
+          "direction_asset_id": "fixture_quadruped:south_west:qa-v0182",
+          "direction_content_hash": "1c3952caa1e02a0b384f4c3574d79d26f514f296dc0e5ed8d59bcf693f885d9e",
+          "asset_revision": "fixture_quadruped-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_quadruped/south_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "animation_state_contract": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "state_routes": {
+        "idle": {
+          "state": "idle",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_quadruped:idle:route-v0182",
+          "timing_phase": {
+            "fps": 8,
+            "duration_ms": 565,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "locomotion": {
+          "state": "locomotion",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_quadruped:locomotion:route-v0182",
+          "timing_phase": {
+            "fps": 9,
+            "duration_ms": 625,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "attack_primary": {
+          "state": "attack_primary",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_quadruped:attack_primary:route-v0182",
+          "timing_phase": {
+            "fps": 8,
+            "duration_ms": 665,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "hit_reaction": {
+          "state": "hit_reaction",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_quadruped:hit_reaction:route-v0182",
+          "timing_phase": {
+            "fps": 11,
+            "duration_ms": 645,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "death": {
+          "state": "death",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_quadruped:death:route-v0182",
+          "timing_phase": {
+            "fps": 9,
+            "duration_ms": 575,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "variant_lineage": {
+        "variant_id": "fixture_quadruped_base",
+        "kind": "base",
+        "parent_id": null,
+        "inherits": [],
+        "overrides": []
+      },
+      "asset_revision": "fixture_quadruped-r1",
+      "provenance": {
+        "source_kind": "TEST_ONLY_SYNTHETIC",
+        "source_id": "synthetic-colored-directional-fixture-2",
+        "source_revision": "0.18.2",
+        "record_hash": "73fbcce49e1bbbea327789f76fb24ce69f08aac9e78fb33787ab00bb0fd85ed4",
+        "production_safe": false
+      },
+      "test_only": true,
+      "production_safe": false,
+      "fixture": {
+        "color_rgba": [
+          176,
+          86,
+          42,
+          255
+        ],
+        "orientation_marker": "direction-specific-asymmetric-white-yellow-marker",
+        "fixture_index": 2
+      },
+      "provenance_hash": "73fbcce49e1bbbea327789f76fb24ce69f08aac9e78fb33787ab00bb0fd85ed4"
+    },
+    {
+      "creature_id": "fixture_flying_winged",
+      "species_id": "cave_bat",
+      "archetype": "flying_winged",
+      "topology_id": "topology_flying_winged_v1",
+      "locomotion_class": "flying",
+      "support_model": "wing_or_airborne",
+      "rig_family": "rig_flying_winged_v1",
+      "base_scale": {
+        "x": 0.9,
+        "y": 1.0
+      },
+      "footprint": {
+        "width": 52.0,
+        "depth": 34.0
+      },
+      "collision_profile": {
+        "shape": "box",
+        "width": 52.0,
+        "height": 84.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "direction_coverage": [
+        "south",
+        "south_east",
+        "east",
+        "north_east",
+        "north",
+        "north_west",
+        "west",
+        "south_west"
+      ],
+      "direction_bindings": {
+        "south": {
+          "direction": "south",
+          "direction_asset_id": "fixture_flying_winged:south:qa-v0182",
+          "direction_content_hash": "79b93b439bd04aba37353bd6430045d633505282acc112bfe11d8e1c68334486",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/south.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_east": {
+          "direction": "south_east",
+          "direction_asset_id": "fixture_flying_winged:south_east:qa-v0182",
+          "direction_content_hash": "9104b1ecacf4cb56ca6da4a7e86afefff4b734ac32b51487333680861e69910a",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/south_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "east": {
+          "direction": "east",
+          "direction_asset_id": "fixture_flying_winged:east:qa-v0182",
+          "direction_content_hash": "2d7291be7801c48a85ad474e7096e69ecaedb06c11fdc9bacc6f46d5c8491909",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_east": {
+          "direction": "north_east",
+          "direction_asset_id": "fixture_flying_winged:north_east:qa-v0182",
+          "direction_content_hash": "e9c5f01e2ceb4775e095be52cb1028c278dc80eb6bea3db96ffd3af8a24fc917",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/north_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north": {
+          "direction": "north",
+          "direction_asset_id": "fixture_flying_winged:north:qa-v0182",
+          "direction_content_hash": "c85d9c61efb75733d4f5155868b21d6079bfbaaaebc0a4797700c563b38feb03",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/north.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_west": {
+          "direction": "north_west",
+          "direction_asset_id": "fixture_flying_winged:north_west:qa-v0182",
+          "direction_content_hash": "69873353317289b8308d776aca842f7313ff11e0ddb403875f889df9a8a868bb",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/north_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "west": {
+          "direction": "west",
+          "direction_asset_id": "fixture_flying_winged:west:qa-v0182",
+          "direction_content_hash": "3d100d8ae1ed9e8e68d81bbf1aa7afe308e2da2a5fec796c75cd95981e0f767b",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_west": {
+          "direction": "south_west",
+          "direction_asset_id": "fixture_flying_winged:south_west:qa-v0182",
+          "direction_content_hash": "c24eee0fb18a96cea5201e77b8278c6c4c1be0a44258670d6dec5bad4b60561a",
+          "asset_revision": "fixture_flying_winged-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_flying_winged/south_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "animation_state_contract": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "state_routes": {
+        "idle": {
+          "state": "idle",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_flying_winged:idle:route-v0182",
+          "timing_phase": {
+            "fps": 9,
+            "duration_ms": 590,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "locomotion": {
+          "state": "locomotion",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_flying_winged:locomotion:route-v0182",
+          "timing_phase": {
+            "fps": 10,
+            "duration_ms": 650,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "attack_primary": {
+          "state": "attack_primary",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_flying_winged:attack_primary:route-v0182",
+          "timing_phase": {
+            "fps": 9,
+            "duration_ms": 690,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "hit_reaction": {
+          "state": "hit_reaction",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_flying_winged:hit_reaction:route-v0182",
+          "timing_phase": {
+            "fps": 12,
+            "duration_ms": 670,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "death": {
+          "state": "death",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_flying_winged:death:route-v0182",
+          "timing_phase": {
+            "fps": 10,
+            "duration_ms": 600,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "variant_lineage": {
+        "variant_id": "fixture_flying_winged_base",
+        "kind": "base",
+        "parent_id": null,
+        "inherits": [],
+        "overrides": []
+      },
+      "asset_revision": "fixture_flying_winged-r1",
+      "provenance": {
+        "source_kind": "TEST_ONLY_SYNTHETIC",
+        "source_id": "synthetic-colored-directional-fixture-3",
+        "source_revision": "0.18.2",
+        "record_hash": "6d6b3d39532e84487f0f32a2381251b744bdf213f520ffbe7bee53e2fcba7b4d",
+        "production_safe": false
+      },
+      "test_only": true,
+      "production_safe": false,
+      "fixture": {
+        "color_rgba": [
+          133,
+          76,
+          190,
+          255
+        ],
+        "orientation_marker": "direction-specific-asymmetric-white-yellow-marker",
+        "fixture_index": 3
+      },
+      "provenance_hash": "6d6b3d39532e84487f0f32a2381251b744bdf213f520ffbe7bee53e2fcba7b4d"
+    },
+    {
+      "creature_id": "fixture_serpentine",
+      "species_id": "marsh_wyrm",
+      "archetype": "serpentine",
+      "topology_id": "topology_serpentine_v1",
+      "locomotion_class": "serpentine",
+      "support_model": "belly_contact",
+      "rig_family": "rig_serpentine_v1",
+      "base_scale": {
+        "x": 0.94,
+        "y": 1.03
+      },
+      "footprint": {
+        "width": 57.0,
+        "depth": 37.0
+      },
+      "collision_profile": {
+        "shape": "capsule",
+        "width": 57.0,
+        "height": 88.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "direction_coverage": [
+        "south",
+        "south_east",
+        "east",
+        "north_east",
+        "north",
+        "north_west",
+        "west",
+        "south_west"
+      ],
+      "direction_bindings": {
+        "south": {
+          "direction": "south",
+          "direction_asset_id": "fixture_serpentine:south:qa-v0182",
+          "direction_content_hash": "512cb5e4cd2cd04262281d628f9d00aaa06a60ccb5c244e7b293e9c326200b71",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/south.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_east": {
+          "direction": "south_east",
+          "direction_asset_id": "fixture_serpentine:south_east:qa-v0182",
+          "direction_content_hash": "f280f99bd049480187e585470dc0e37e15fffaecac6d6a98775ab6037ec94e63",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/south_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "east": {
+          "direction": "east",
+          "direction_asset_id": "fixture_serpentine:east:qa-v0182",
+          "direction_content_hash": "4b4cfe484e33e5c4b412aaca8a7aa2db736e03b5b65099a2966f9edd4fc3dec3",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_east": {
+          "direction": "north_east",
+          "direction_asset_id": "fixture_serpentine:north_east:qa-v0182",
+          "direction_content_hash": "ca5a8badf10ae8091f41e8b8730a412d6dbf873bbc7167ca35b175a623cd4b7a",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/north_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north": {
+          "direction": "north",
+          "direction_asset_id": "fixture_serpentine:north:qa-v0182",
+          "direction_content_hash": "d9803e800d9d02f8fdb0581db96f3c15b90ae0e1a7df0c332af964a6c086511f",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/north.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_west": {
+          "direction": "north_west",
+          "direction_asset_id": "fixture_serpentine:north_west:qa-v0182",
+          "direction_content_hash": "f16d02a8b67d1f811349a2d1f92fe67f7b1f36e2cda70bd2458b2e65e21c6311",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/north_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "west": {
+          "direction": "west",
+          "direction_asset_id": "fixture_serpentine:west:qa-v0182",
+          "direction_content_hash": "269b5c55e326b6a4d7fed56f369e6cc850e38d99e2768832709e25dca7a6510e",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_west": {
+          "direction": "south_west",
+          "direction_asset_id": "fixture_serpentine:south_west:qa-v0182",
+          "direction_content_hash": "61f6dac2154decb2f36246c69b29b591ed099c7d4d0dfcd56cb93c471ca2faea",
+          "asset_revision": "fixture_serpentine-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_serpentine/south_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "animation_state_contract": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "state_routes": {
+        "idle": {
+          "state": "idle",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_serpentine:idle:route-v0182",
+          "timing_phase": {
+            "fps": 10,
+            "duration_ms": 615,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "locomotion": {
+          "state": "locomotion",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_serpentine:locomotion:route-v0182",
+          "timing_phase": {
+            "fps": 11,
+            "duration_ms": 675,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "attack_primary": {
+          "state": "attack_primary",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_serpentine:attack_primary:route-v0182",
+          "timing_phase": {
+            "fps": 10,
+            "duration_ms": 715,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "hit_reaction": {
+          "state": "hit_reaction",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_serpentine:hit_reaction:route-v0182",
+          "timing_phase": {
+            "fps": 8,
+            "duration_ms": 695,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "death": {
+          "state": "death",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_serpentine:death:route-v0182",
+          "timing_phase": {
+            "fps": 11,
+            "duration_ms": 625,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "variant_lineage": {
+        "variant_id": "fixture_serpentine_base",
+        "kind": "base",
+        "parent_id": null,
+        "inherits": [],
+        "overrides": []
+      },
+      "asset_revision": "fixture_serpentine-r1",
+      "provenance": {
+        "source_kind": "TEST_ONLY_SYNTHETIC",
+        "source_id": "synthetic-colored-directional-fixture-4",
+        "source_revision": "0.18.2",
+        "record_hash": "bc2260ccdb4ebde1078bcbf5e40e221b6b4409deba3eec609e7cd5b8653f20c3",
+        "production_safe": false
+      },
+      "test_only": true,
+      "production_safe": false,
+      "fixture": {
+        "color_rgba": [
+          38,
+          164,
+          110,
+          255
+        ],
+        "orientation_marker": "direction-specific-asymmetric-white-yellow-marker",
+        "fixture_index": 4
+      },
+      "provenance_hash": "bc2260ccdb4ebde1078bcbf5e40e221b6b4409deba3eec609e7cd5b8653f20c3"
+    },
+    {
+      "creature_id": "fixture_amorphous",
+      "species_id": "slime_mass",
+      "archetype": "amorphous",
+      "topology_id": "topology_amorphous_v1",
+      "locomotion_class": "sliding",
+      "support_model": "mass_contact",
+      "rig_family": "rig_amorphous_v1",
+      "base_scale": {
+        "x": 0.98,
+        "y": 1.06
+      },
+      "footprint": {
+        "width": 62.0,
+        "depth": 40.0
+      },
+      "collision_profile": {
+        "shape": "box",
+        "width": 62.0,
+        "height": 92.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "direction_coverage": [
+        "south",
+        "south_east",
+        "east",
+        "north_east",
+        "north",
+        "north_west",
+        "west",
+        "south_west"
+      ],
+      "direction_bindings": {
+        "south": {
+          "direction": "south",
+          "direction_asset_id": "fixture_amorphous:south:qa-v0182",
+          "direction_content_hash": "e15f7575707f80f94ac145c9d6487412bf89fe68859d9b819219c542351f88f9",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/south.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_east": {
+          "direction": "south_east",
+          "direction_asset_id": "fixture_amorphous:south_east:qa-v0182",
+          "direction_content_hash": "7a3a3af34965629f47ab334ee7a94fd84f3cd9c4dd986f5e1b393fbc424ff140",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/south_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "east": {
+          "direction": "east",
+          "direction_asset_id": "fixture_amorphous:east:qa-v0182",
+          "direction_content_hash": "6b748ed686d1ffcce2f14f24d3e7361c3994c5e2f526597ab2917f2fe885bc70",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_east": {
+          "direction": "north_east",
+          "direction_asset_id": "fixture_amorphous:north_east:qa-v0182",
+          "direction_content_hash": "50c30666149f61adba835f1e3d339190573ecae8b59a78195e0f39ed9ef3a6b1",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/north_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north": {
+          "direction": "north",
+          "direction_asset_id": "fixture_amorphous:north:qa-v0182",
+          "direction_content_hash": "c7e1b37766a1e6f04e95357633862f59776ded4b1ccecf3d29f2e3caa52a2224",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/north.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_west": {
+          "direction": "north_west",
+          "direction_asset_id": "fixture_amorphous:north_west:qa-v0182",
+          "direction_content_hash": "b93aaf89286cc1b1d5f70d4f6de3c223b6ed41a49493c17f27a875cddde967ea",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/north_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "west": {
+          "direction": "west",
+          "direction_asset_id": "fixture_amorphous:west:qa-v0182",
+          "direction_content_hash": "f3bbf3e1ebe001f881405b5eeb693751d3394d17464e9e5250dfd51a1c4da960",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_west": {
+          "direction": "south_west",
+          "direction_asset_id": "fixture_amorphous:south_west:qa-v0182",
+          "direction_content_hash": "203c19ff315bb51a5eb48122f357e8ee50285568c4449ed498e60fded368cc62",
+          "asset_revision": "fixture_amorphous-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_amorphous/south_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "animation_state_contract": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "state_routes": {
+        "idle": {
+          "state": "idle",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_amorphous:idle:route-v0182",
+          "timing_phase": {
+            "fps": 11,
+            "duration_ms": 640,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "locomotion": {
+          "state": "locomotion",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_amorphous:locomotion:route-v0182",
+          "timing_phase": {
+            "fps": 12,
+            "duration_ms": 700,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "attack_primary": {
+          "state": "attack_primary",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_amorphous:attack_primary:route-v0182",
+          "timing_phase": {
+            "fps": 11,
+            "duration_ms": 740,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "hit_reaction": {
+          "state": "hit_reaction",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_amorphous:hit_reaction:route-v0182",
+          "timing_phase": {
+            "fps": 9,
+            "duration_ms": 720,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "death": {
+          "state": "death",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_amorphous:death:route-v0182",
+          "timing_phase": {
+            "fps": 12,
+            "duration_ms": 650,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "variant_lineage": {
+        "variant_id": "fixture_amorphous_base",
+        "kind": "base",
+        "parent_id": null,
+        "inherits": [],
+        "overrides": []
+      },
+      "asset_revision": "fixture_amorphous-r1",
+      "provenance": {
+        "source_kind": "TEST_ONLY_SYNTHETIC",
+        "source_id": "synthetic-colored-directional-fixture-5",
+        "source_revision": "0.18.2",
+        "record_hash": "d502ac2cbdbf6234e179381805b332d77a362f8277b3cb3e82607a1fa42e9818",
+        "production_safe": false
+      },
+      "test_only": true,
+      "production_safe": false,
+      "fixture": {
+        "color_rgba": [
+          54,
+          188,
+          194,
+          255
+        ],
+        "orientation_marker": "direction-specific-asymmetric-white-yellow-marker",
+        "fixture_index": 5
+      },
+      "provenance_hash": "d502ac2cbdbf6234e179381805b332d77a362f8277b3cb3e82607a1fa42e9818"
+    },
+    {
+      "creature_id": "fixture_stationary_structure",
+      "species_id": "ruin_turret",
+      "archetype": "stationary_structure",
+      "topology_id": "topology_stationary_structure_v1",
+      "locomotion_class": "stationary",
+      "support_model": "fixed_contact",
+      "rig_family": "rig_stationary_structure_v1",
+      "base_scale": {
+        "x": 1.02,
+        "y": 1.09
+      },
+      "footprint": {
+        "width": 67.0,
+        "depth": 43.0
+      },
+      "collision_profile": {
+        "shape": "box",
+        "width": 67.0,
+        "height": 96.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "direction_coverage": [
+        "south",
+        "south_east",
+        "east",
+        "north_east",
+        "north",
+        "north_west",
+        "west",
+        "south_west"
+      ],
+      "direction_bindings": {
+        "south": {
+          "direction": "south",
+          "direction_asset_id": "fixture_stationary_structure:south:qa-v0182",
+          "direction_content_hash": "2892d77adb15a094cae6a311aabeaacccf6dbc828d02b2fb0914f19222695c74",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/south.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_east": {
+          "direction": "south_east",
+          "direction_asset_id": "fixture_stationary_structure:south_east:qa-v0182",
+          "direction_content_hash": "1e801b9ea205a61561d6b40d55674baf0995605589edf9169c66de2119aa78a4",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/south_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "east": {
+          "direction": "east",
+          "direction_asset_id": "fixture_stationary_structure:east:qa-v0182",
+          "direction_content_hash": "23d5e2309bc6e36466f9208b6a4ccc4a1c0e36ea9fe95a4863006675a8d1de5a",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_east": {
+          "direction": "north_east",
+          "direction_asset_id": "fixture_stationary_structure:north_east:qa-v0182",
+          "direction_content_hash": "cb669456b446f489e70deeaf7229048a0613851e3d61c815753859f0de657f73",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/north_east.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north": {
+          "direction": "north",
+          "direction_asset_id": "fixture_stationary_structure:north:qa-v0182",
+          "direction_content_hash": "28c28b785f6f4ec1a1ef97d92367a51742736f4534d52460dc7cb9f6600e7338",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/north.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "north_west": {
+          "direction": "north_west",
+          "direction_asset_id": "fixture_stationary_structure:north_west:qa-v0182",
+          "direction_content_hash": "04830181246df4e1c90eba277e43e0195a7856341eb154588dcbe5c42e635ea3",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/north_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "west": {
+          "direction": "west",
+          "direction_asset_id": "fixture_stationary_structure:west:qa-v0182",
+          "direction_content_hash": "ca5e26cdbdd5c32745f54a79a2b45d831fc7b36af6066d8e8ed195e1597aafda",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        },
+        "south_west": {
+          "direction": "south_west",
+          "direction_asset_id": "fixture_stationary_structure:south_west:qa-v0182",
+          "direction_content_hash": "3de7aadc428b206a23f0e046613c99cb44319934b3a94835b7610b5314737c46",
+          "asset_revision": "fixture_stationary_structure-r1",
+          "path": "docs/evidence/creatures-monsters-runtime-v0182/fixtures/directions/fixture_stationary_structure/south_west.png",
+          "identity_class": "UNIQUE_TEST_IDENTITY",
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "animation_state_contract": {
+        "idle": "REQUIRED",
+        "locomotion": "UNSUPPORTED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "state_routes": {
+        "idle": {
+          "state": "idle",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_stationary_structure:idle:route-v0182",
+          "timing_phase": {
+            "fps": 12,
+            "duration_ms": 665,
+            "phase": "loop"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "locomotion": {
+          "state": "locomotion",
+          "availability": "UNSUPPORTED",
+          "state_route_id": null,
+          "timing_phase": null,
+          "test_only": true,
+          "production_safe": false
+        },
+        "attack_primary": {
+          "state": "attack_primary",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_stationary_structure:attack_primary:route-v0182",
+          "timing_phase": {
+            "fps": 12,
+            "duration_ms": 765,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "hit_reaction": {
+          "state": "hit_reaction",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_stationary_structure:hit_reaction:route-v0182",
+          "timing_phase": {
+            "fps": 10,
+            "duration_ms": 745,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        },
+        "death": {
+          "state": "death",
+          "availability": "REQUIRED",
+          "state_route_id": "fixture_stationary_structure:death:route-v0182",
+          "timing_phase": {
+            "fps": 8,
+            "duration_ms": 675,
+            "phase": "one_shot"
+          },
+          "test_only": true,
+          "production_safe": false
+        }
+      },
+      "variant_lineage": {
+        "variant_id": "fixture_stationary_structure_base",
+        "kind": "base",
+        "parent_id": null,
+        "inherits": [],
+        "overrides": []
+      },
+      "asset_revision": "fixture_stationary_structure-r1",
+      "provenance": {
+        "source_kind": "TEST_ONLY_SYNTHETIC",
+        "source_id": "synthetic-colored-directional-fixture-6",
+        "source_revision": "0.18.2",
+        "record_hash": "d4bce61f13a210a9db048a181a83156845b3a3d8870428788bdcc22e2b1cfae3",
+        "production_safe": false
+      },
+      "test_only": true,
+      "production_safe": false,
+      "fixture": {
+        "color_rgba": [
+          188,
+          142,
+          44,
+          255
+        ],
+        "orientation_marker": "direction-specific-asymmetric-white-yellow-marker",
+        "fixture_index": 6
+      },
+      "provenance_hash": "d4bce61f13a210a9db048a181a83156845b3a3d8870428788bdcc22e2b1cfae3"
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "fixture_humanoid_biped_base",
+      "creature_id": "fixture_humanoid_biped",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {},
+      "variant_revision": "fixture_humanoid_biped_base-metadata-r1"
+    },
+    {
+      "variant_id": "fixture_quadruped_base",
+      "creature_id": "fixture_quadruped",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {},
+      "variant_revision": "fixture_quadruped_base-metadata-r1"
+    },
+    {
+      "variant_id": "fixture_flying_winged_base",
+      "creature_id": "fixture_flying_winged",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {},
+      "variant_revision": "fixture_flying_winged_base-metadata-r1"
+    },
+    {
+      "variant_id": "fixture_serpentine_base",
+      "creature_id": "fixture_serpentine",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {},
+      "variant_revision": "fixture_serpentine_base-metadata-r1"
+    },
+    {
+      "variant_id": "fixture_amorphous_base",
+      "creature_id": "fixture_amorphous",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {},
+      "variant_revision": "fixture_amorphous_base-metadata-r1"
+    },
+    {
+      "variant_id": "fixture_stationary_structure_base",
+      "creature_id": "fixture_stationary_structure",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {},
+      "variant_revision": "fixture_stationary_structure_base-metadata-r1"
+    },
+    {
+      "variant_id": "fixture_quadruped_elite",
+      "creature_id": "fixture_quadruped",
+      "kind": "derived",
+      "parent_id": "fixture_quadruped_base",
+      "inherits": [
+        "base_scale",
+        "footprint",
+        "collision_profile",
+        "asset_revision"
+      ],
+      "overrides": [
+        "base_scale",
+        "footprint",
+        "collision_profile"
+      ],
+      "override_values": {
+        "base_scale": {
+          "x": 1.15,
+          "y": 1.12
+        },
+        "footprint": {
+          "width": 58.0,
+          "depth": 36.0
+        },
+        "collision_profile": {
+          "shape": "capsule",
+          "width": 58.0,
+          "height": 86.0,
+          "pivot": {
+            "x": 96.0,
+            "y": 174.0
+          },
+          "bounds": {
+            "left": 30.0,
+            "top": 18.0,
+            "right": 162.0,
+            "bottom": 178.0
+          }
+        }
+      },
+      "variant_revision": "fixture_quadruped_elite-metadata-r1"
+    },
+    {
+      "variant_id": "fixture_amorphous_large",
+      "creature_id": "fixture_amorphous",
+      "kind": "derived",
+      "parent_id": "fixture_amorphous_base",
+      "inherits": [
+        "base_scale",
+        "footprint",
+        "collision_profile",
+        "asset_revision"
+      ],
+      "overrides": [
+        "base_scale",
+        "footprint",
+        "collision_profile"
+      ],
+      "override_values": {
+        "base_scale": {
+          "x": 1.24,
+          "y": 1.18
+        },
+        "footprint": {
+          "width": 70.0,
+          "depth": 52.0
+        },
+        "collision_profile": {
+          "shape": "box",
+          "width": 70.0,
+          "height": 94.0,
+          "pivot": {
+            "x": 96.0,
+            "y": 174.0
+          },
+          "bounds": {
+            "left": 30.0,
+            "top": 18.0,
+            "right": 162.0,
+            "bottom": 178.0
+          }
+        }
+      },
+      "variant_revision": "fixture_amorphous_large-metadata-r1"
+    }
+  ]
+}

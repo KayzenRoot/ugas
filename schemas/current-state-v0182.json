@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active state v0.18.2",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "current_gate", "allowed_next_actions", "production_approved", "production_routing", "new_generation", "review", "state_consistency"],
+  "properties": {"schema_version": {"const": "0.18.2"}, "version": {"const": "0.18.2"}, "phase": {"const": "CREATURES_MONSTERS"}, "current_gate": {"const": "CREATURES_MONSTERS_DERIVED_VARIANT_AND_STATE_CONTRACT_TECHNICALLY_QUALIFIED"}, "production_approved": {"const": false}, "production_routing": {"const": "BLOCKED"}, "new_generation": {"const": 0}}
+}
