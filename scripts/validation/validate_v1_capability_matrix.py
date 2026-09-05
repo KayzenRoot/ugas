@@ -37,12 +37,14 @@ def main() -> int:
     equipment = next(item for item in capabilities if item["id"] == "equipment_outfits")
     creatures = next(item for item in capabilities if item["id"] == "creatures_monsters")
     items = next(item for item in capabilities if item["id"] == "items_props")
-    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "NEXT NECESSARY" or value["next_candidate"] != "ITEMS_PROPS":
+    if value["version"] != "0.19.1":
+        failures.append("active-matrix-version-must-be-v0191")
+    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "TECHNICALLY QUALIFIED; EXTERNAL REVIEW REQUIRED" or value["next_candidate"] != "ITEMS_PROPS":
         failures.append("next-candidate-is-not-items-props")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
-    result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
-    output = ROOT / "docs/evidence/creatures-monsters-runtime-v0180/capability-matrix-validation-v0180.json"
+    result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "version": value["version"], "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "items_props_status": items["status"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
+    output = ROOT / "docs/evidence/items-props-runtime-v0191/capability-matrix-validation-v0191.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
