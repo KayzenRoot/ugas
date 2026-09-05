@@ -1,0 +1,406 @@
+{
+  "schema_version": "0.17.1",
+  "status": "EQ_NC_01_TO_15_PASSED",
+  "strict": true,
+  "controls": {
+    "EQ-NC-01": {
+      "id": "EQ-NC-01",
+      "mutation": "mutate fixture slot to unknown-slot",
+      "target_gate": "EQ-NC-01",
+      "expected": {
+        "error_code": "UNKNOWN_EQUIPMENT_SLOT",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "UNKNOWN_EQUIPMENT_SLOT",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "UNKNOWN_EQUIPMENT_SLOT",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "UNKNOWN_EQUIPMENT_SLOT"
+      }
+    },
+    "EQ-NC-02": {
+      "id": "EQ-NC-02",
+      "mutation": "mutate fixture anchors to empty list",
+      "target_gate": "EQ-NC-02",
+      "expected": {
+        "error_code": "ANCHORS_MISSING",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "ANCHORS_MISSING",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "ANCHORS_MISSING",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "ANCHORS_MISSING"
+      }
+    },
+    "EQ-NC-03": {
+      "id": "EQ-NC-03",
+      "mutation": "remove replacement conflict policy",
+      "target_gate": "EQ-NC-03",
+      "expected": {
+        "error_code": "REPLACEMENT_CONFLICT_POLICY_MISSING",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "REPLACEMENT_CONFLICT_POLICY_MISSING",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "REPLACEMENT_CONFLICT_POLICY_MISSING",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "REPLACEMENT_CONFLICT_POLICY_MISSING"
+      }
+    },
+    "EQ-NC-04": {
+      "id": "EQ-NC-04",
+      "mutation": "mutate layer dependency into a cycle",
+      "target_gate": "EQ-NC-04",
+      "expected": {
+        "error_code": "LAYER_ORDER_CYCLE",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "LAYER_ORDER_CYCLE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "LAYER_ORDER_CYCLE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "LAYER_ORDER_CYCLE"
+      }
+    },
+    "EQ-NC-05": {
+      "id": "EQ-NC-05",
+      "mutation": "request south-only helmet for north",
+      "target_gate": "EQ-NC-05",
+      "expected": {
+        "error_code": "EQUIPMENT_DIRECTION_UNAVAILABLE",
+        "rejection_class": "RUNTIME_REJECTION"
+      },
+      "expected_error_code": "EQUIPMENT_DIRECTION_UNAVAILABLE",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "equipment_id": "fixture-helmet-teal",
+        "slot": "head",
+        "variant": "teal",
+        "requested_direction": "north",
+        "resolved_direction": null,
+        "animation_profile": "idle-front-v1",
+        "animation_capability": "front-compatible",
+        "rig_revision": "r4-cutout-rig-v071",
+        "asset_revision": "fixture-helmet-teal-r1",
+        "cache_key": "equipment_id=fixture-helmet-teal|slot=head|variant=teal|rig_revision=r4-cutout-rig-v071|direction=north|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-helmet-teal-r1|request_mode=direct|registry_mode=test",
+        "fallback_mode": "FAIL_CLOSED",
+        "mirror_mode": "NONE",
+        "error_code": "EQUIPMENT_DIRECTION_UNAVAILABLE",
+        "rejection_class": "RUNTIME_REJECTION",
+        "production_safe": false
+      }
+    },
+    "EQ-NC-06": {
+      "id": "EQ-NC-06",
+      "mutation": "request mirror without explicit permission",
+      "target_gate": "EQ-NC-06",
+      "expected": {
+        "error_code": "EQUIPMENT_DIRECTION_UNAVAILABLE",
+        "rejection_class": "RUNTIME_REJECTION"
+      },
+      "expected_error_code": "EQUIPMENT_DIRECTION_UNAVAILABLE",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "equipment_id": "fixture-helmet-teal",
+        "slot": "head",
+        "variant": "teal",
+        "requested_direction": "north",
+        "resolved_direction": null,
+        "animation_profile": "idle-front-v1",
+        "animation_capability": "front-compatible",
+        "rig_revision": "r4-cutout-rig-v071",
+        "asset_revision": "fixture-helmet-teal-r1",
+        "cache_key": "equipment_id=fixture-helmet-teal|slot=head|variant=teal|rig_revision=r4-cutout-rig-v071|direction=north|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-helmet-teal-r1|request_mode=direct|registry_mode=test",
+        "fallback_mode": "FAIL_CLOSED",
+        "mirror_mode": "NONE",
+        "error_code": "EQUIPMENT_DIRECTION_UNAVAILABLE",
+        "rejection_class": "RUNTIME_REJECTION",
+        "production_safe": false
+      }
+    },
+    "EQ-NC-07": {
+      "id": "EQ-NC-07",
+      "mutation": "grant mirror permission to asymmetric fixture",
+      "target_gate": "EQ-NC-07",
+      "expected": {
+        "error_code": "ASYMMETRIC_MIRROR_UNSAFE",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "ASYMMETRIC_MIRROR_UNSAFE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "ASYMMETRIC_MIRROR_UNSAFE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "ASYMMETRIC_MIRROR_UNSAFE"
+      }
+    },
+    "EQ-NC-08": {
+      "id": "EQ-NC-08",
+      "mutation": "poison real cache entries across two request orders",
+      "target_gate": "EQ-NC-08",
+      "expected": {
+        "error_code": "STALE_CACHE_CONTEXT",
+        "rejection_class": "RUNTIME_REJECTION"
+      },
+      "expected_error_code": "STALE_CACHE_CONTEXT",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STALE_CACHE_CONTEXT",
+        "rejection_class": "RUNTIME_REJECTION",
+        "request_orders": [
+          {
+            "request_order": [
+              "fixture-coat-amber",
+              "fixture-helmet-teal"
+            ],
+            "cache_key": "equipment_id=fixture-helmet-teal|slot=head|variant=teal|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-helmet-teal-r1|request_mode=direct|registry_mode=test",
+            "observed": {
+              "result": "REJECTED",
+              "equipment_id": "fixture-helmet-teal",
+              "slot": "head",
+              "variant": "teal",
+              "requested_direction": "south",
+              "resolved_direction": null,
+              "animation_profile": "idle-front-v1",
+              "animation_capability": "front-compatible",
+              "rig_revision": "r4-cutout-rig-v071",
+              "asset_revision": "fixture-helmet-teal-r1",
+              "cache_key": "equipment_id=fixture-helmet-teal|slot=head|variant=teal|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-helmet-teal-r1|request_mode=direct|registry_mode=test",
+              "fallback_mode": "FAIL_CLOSED",
+              "mirror_mode": "NONE",
+              "error_code": "STALE_CACHE_CONTEXT",
+              "rejection_class": "RUNTIME_REJECTION",
+              "production_safe": false
+            }
+          },
+          {
+            "request_order": [
+              "fixture-helmet-teal",
+              "fixture-coat-amber"
+            ],
+            "cache_key": "equipment_id=fixture-coat-amber|slot=torso|variant=amber|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-coat-amber-r1|request_mode=direct|registry_mode=test",
+            "observed": {
+              "result": "REJECTED",
+              "equipment_id": "fixture-coat-amber",
+              "slot": "torso",
+              "variant": "amber",
+              "requested_direction": "south",
+              "resolved_direction": null,
+              "animation_profile": "idle-front-v1",
+              "animation_capability": "front-compatible",
+              "rig_revision": "r4-cutout-rig-v071",
+              "asset_revision": "fixture-coat-amber-r1",
+              "cache_key": "equipment_id=fixture-coat-amber|slot=torso|variant=amber|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-coat-amber-r1|request_mode=direct|registry_mode=test",
+              "fallback_mode": "FAIL_CLOSED",
+              "mirror_mode": "NONE",
+              "error_code": "STALE_CACHE_CONTEXT",
+              "rejection_class": "RUNTIME_REJECTION",
+              "production_safe": false
+            }
+          }
+        ]
+      }
+    },
+    "EQ-NC-09": {
+      "id": "EQ-NC-09",
+      "mutation": "mutate provenance hash to zeros",
+      "target_gate": "EQ-NC-09",
+      "expected": {
+        "error_code": "PROVENANCE_HASH_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "PROVENANCE_HASH_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "PROVENANCE_HASH_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "PROVENANCE_HASH_MISMATCH"
+      }
+    },
+    "EQ-NC-10": {
+      "id": "EQ-NC-10",
+      "mutation": "use TEST_ONLY fixture in production registry",
+      "target_gate": "EQ-NC-10",
+      "expected": {
+        "error_code": "TEST_ONLY_FIXTURE_IN_PRODUCTION_REGISTRY",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "TEST_ONLY_FIXTURE_IN_PRODUCTION_REGISTRY",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "TEST_ONLY_FIXTURE_IN_PRODUCTION_REGISTRY",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "TEST_ONLY_FIXTURE_IN_PRODUCTION_REGISTRY"
+      }
+    },
+    "EQ-NC-11": {
+      "id": "EQ-NC-11",
+      "mutation": "mutate after-image through shared base comparator",
+      "target_gate": "EQ-NC-11",
+      "expected": {
+        "error_code": "BASE_PIXEL_MUTATION",
+        "rejection_class": "SEMANTIC_COMPARATOR_REJECTION"
+      },
+      "expected_error_code": "BASE_PIXEL_MUTATION",
+      "expected_rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "BASE_PIXEL_MUTATION",
+        "rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+        "detail": "BASE_PIXEL_MUTATION"
+      }
+    },
+    "EQ-NC-12": {
+      "id": "EQ-NC-12",
+      "mutation": "mutate one pixel in equivalent second composition",
+      "target_gate": "EQ-NC-12",
+      "expected": {
+        "error_code": "NONDETERMINISTIC_SECOND_COMPOSITION",
+        "rejection_class": "SEMANTIC_COMPARATOR_REJECTION"
+      },
+      "expected_error_code": "NONDETERMINISTIC_SECOND_COMPOSITION",
+      "expected_rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "NONDETERMINISTIC_SECOND_COMPOSITION",
+        "rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+        "detail": "NONDETERMINISTIC_SECOND_COMPOSITION"
+      }
+    },
+    "EQ-NC-13": {
+      "id": "EQ-NC-13",
+      "mutation": "request incompatible rig revision",
+      "target_gate": "EQ-NC-13",
+      "expected": {
+        "error_code": "RIG_REVISION_INCOMPATIBLE",
+        "rejection_class": "RUNTIME_REJECTION"
+      },
+      "expected_error_code": "RIG_REVISION_INCOMPATIBLE",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "equipment_id": "fixture-coat-amber",
+        "slot": "torso",
+        "variant": "amber",
+        "requested_direction": "south",
+        "resolved_direction": null,
+        "animation_profile": "idle-front-v1",
+        "animation_capability": "front-compatible",
+        "rig_revision": "other-rig",
+        "asset_revision": "fixture-coat-amber-r1",
+        "cache_key": "equipment_id=fixture-coat-amber|slot=torso|variant=amber|rig_revision=other-rig|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-coat-amber-r1|request_mode=direct|registry_mode=test",
+        "fallback_mode": "FAIL_CLOSED",
+        "mirror_mode": "NONE",
+        "error_code": "RIG_REVISION_INCOMPATIBLE",
+        "rejection_class": "RUNTIME_REJECTION",
+        "production_safe": false
+      }
+    },
+    "EQ-NC-14": {
+      "id": "EQ-NC-14",
+      "mutation": "request incompatible animation profile",
+      "target_gate": "EQ-NC-14",
+      "expected": {
+        "error_code": "ANIMATION_PROFILE_INCOMPATIBLE",
+        "rejection_class": "RUNTIME_REJECTION"
+      },
+      "expected_error_code": "ANIMATION_PROFILE_INCOMPATIBLE",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "equipment_id": "fixture-coat-amber",
+        "slot": "torso",
+        "variant": "amber",
+        "requested_direction": "south",
+        "resolved_direction": null,
+        "animation_profile": "unknown-profile",
+        "animation_capability": "front-compatible",
+        "rig_revision": "r4-cutout-rig-v071",
+        "asset_revision": "fixture-coat-amber-r1",
+        "cache_key": "equipment_id=fixture-coat-amber|slot=torso|variant=amber|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=unknown-profile|asset_revision=fixture-coat-amber-r1|request_mode=direct|registry_mode=test",
+        "fallback_mode": "FAIL_CLOSED",
+        "mirror_mode": "NONE",
+        "error_code": "ANIMATION_PROFILE_INCOMPATIBLE",
+        "rejection_class": "RUNTIME_REJECTION",
+        "production_safe": false
+      }
+    },
+    "EQ-NC-15": {
+      "id": "EQ-NC-15",
+      "mutation": "mutate production routing from BLOCKED to ENABLED",
+      "target_gate": "EQ-NC-15",
+      "expected": {
+        "error_code": "PRODUCTION_ROUTING_BLOCKED",
+        "rejection_class": "CONTRACT_REJECTION"
+      },
+      "expected_error_code": "PRODUCTION_ROUTING_BLOCKED",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "PRODUCTION_ROUTING_BLOCKED",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "PRODUCTION_ROUTING_BLOCKED"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.17.1",
+  "status": "TWO_RUN_COMPOSITION_DETERMINISTIC",
+  "run_one_sha256": "0df5ef9726d42c421aed53d182653d13c08fbc877469f6d23e8fd795325680bb",
+  "run_two_sha256": "0df5ef9726d42c421aed53d182653d13c08fbc877469f6d23e8fd795325680bb",
+  "layer_trace_equal": true,
+  "mutated_second_output_negative_control": {
+    "id": "EQ-NC-12",
+    "mutation": "mutate one pixel in equivalent second composition",
+    "target_gate": "EQ-NC-12",
+    "expected": {
+      "error_code": "NONDETERMINISTIC_SECOND_COMPOSITION",
+      "rejection_class": "SEMANTIC_COMPARATOR_REJECTION"
+    },
+    "expected_error_code": "NONDETERMINISTIC_SECOND_COMPOSITION",
+    "expected_rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+    "rejected": true,
+    "status": "REJECTED",
+    "passed": true,
+    "observed": {
+      "result": "REJECTED",
+      "error_code": "NONDETERMINISTIC_SECOND_COMPOSITION",
+      "rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+      "detail": "NONDETERMINISTIC_SECOND_COMPOSITION"
+    }
+  }
+}

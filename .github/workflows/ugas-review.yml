@@ -60,12 +60,12 @@ jobs:
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-validation.exit"
           exit "$code"
-      - name: Validate active v0.17.0 state
+      - name: Validate active v0.17.1 state
         if: always()
         continue-on-error: true
         run: |
           set +e
-          python scripts/validation/validate_state_consistency_v0170.py
+          python scripts/validation/validate_state_consistency_v0171.py
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/state.exit"
           exit "$code"
@@ -75,7 +75,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_equipment_runtime_v0170.py 2>&1 | tee "$RUNNER_TEMP/equipment.log"
+          python scripts/validation/validate_equipment_runtime_v0171.py 2>&1 | tee "$RUNNER_TEMP/equipment.log"
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/equipment.exit"
           exit "$code"
@@ -116,12 +116,12 @@ jobs:
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/workflow.exit"
           exit "$code"
-      - name: Record initial v0.17.0 results
+      - name: Record initial v0.17.1 results
         if: always()
         continue-on-error: true
         shell: bash
         run: |
-          python scripts/validation/record_v0170_results.py \
+          python scripts/validation/record_v0171_results.py \
             --test-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" \
             --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
             --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
@@ -132,16 +132,16 @@ jobs:
             --front-compatibility-exit-code "$(cat "$RUNNER_TEMP/front.exit" 2>/dev/null || echo 99)" \
             --workflow-exit-code "$(cat "$RUNNER_TEMP/workflow.exit" 2>/dev/null || echo 99)" \
             --manifest-exit-code 99 --security-exit-code 99 --output-dir "$RUNNER_TEMP/ugas-review-evidence"
-      - name: Build initial v0.17.0 review manifest
+      - name: Build initial v0.17.1 review manifest
         if: always()
         continue-on-error: true
         run: |
-          python scripts/validation/build_github_review_manifest_v0170.py \
+          python scripts/validation/build_github_review_manifest_v0171.py \
             --output-dir "$RUNNER_TEMP/ugas-review-evidence" --base-ref "$BASE_REF" --head-ref "$HEAD_REF" \
             --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" \
-            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0170.json" \
-            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0170.json" \
-            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0170.json" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0171.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0171.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0171.json" \
             --front-compatibility-exit "$RUNNER_TEMP/front.exit"
       - name: Assemble bounded evidence artifact
         if: always()
@@ -151,13 +151,15 @@ jobs:
           set +e
           artifact="$RUNNER_TEMP/ugas-review-artifact"
           mkdir -p "$artifact/equipment-outfits" "$artifact/direction-runtime" "$artifact/state" "$artifact/logs" "$artifact/governance"
-          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0170.json" "$artifact/github-review-manifest-v0170.json" 2>/dev/null || true
-          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0170.json" "$artifact/test-results-v0170.json" 2>/dev/null || true
-          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0170.json" "$artifact/validation-results-v0170.json" 2>/dev/null || true
-          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0170.json" "$artifact/gate-results-v0170.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0171.json" "$artifact/github-review-manifest-v0171.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0171.json" "$artifact/test-results-v0171.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0171.json" "$artifact/validation-results-v0171.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0171.json" "$artifact/gate-results-v0171.json" 2>/dev/null || true
           cp docs/evidence/current-state.json "$artifact/state/current-state.json" 2>/dev/null || true
           cp docs/evidence/current-state-v0.16.2.json "$artifact/state/current-state-v0.16.2.json" 2>/dev/null || true
-          cp -R docs/evidence/equipment-outfits-runtime-v0170/. "$artifact/equipment-outfits/" 2>/dev/null || true
+          cp -R docs/evidence/equipment-outfits-runtime-v0171/. "$artifact/equipment-outfits/" 2>/dev/null || true
+          mkdir -p "$artifact/equipment-outfits-history"
+          cp -R docs/evidence/equipment-outfits-runtime-v0170/. "$artifact/equipment-outfits-history/" 2>/dev/null || true
           cp -R docs/evidence/multi-direction-runtime-v0162/. "$artifact/direction-runtime/" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log" 2>/dev/null || true
@@ -170,9 +172,9 @@ jobs:
         continue-on-error: true
         run: |
           set +e
-          python scripts/validation/validate_github_review_security_v0170.py \
+          python scripts/validation/validate_github_review_security_v0171.py \
             --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" \
-            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0170.json" \
+            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0171.json" \
             --output "$RUNNER_TEMP/security.json"
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/security.exit"
@@ -182,7 +184,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          python scripts/validation/record_v0170_results.py \
+          python scripts/validation/record_v0171_results.py \
             --test-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" \
             --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
             --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
@@ -194,28 +196,28 @@ jobs:
             --workflow-exit-code "$(cat "$RUNNER_TEMP/workflow.exit" 2>/dev/null || echo 99)" \
             --manifest-exit-code 0 --security-exit-code "$(cat "$RUNNER_TEMP/security.exit" 2>/dev/null || echo 99)" \
             --output-dir "$RUNNER_TEMP/ugas-review-evidence"
-          python scripts/validation/build_github_review_manifest_v0170.py \
+          python scripts/validation/build_github_review_manifest_v0171.py \
             --output-dir "$RUNNER_TEMP/ugas-review-evidence" --base-ref "$BASE_REF" --head-ref "$HEAD_REF" \
             --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" \
-            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0170.json" \
-            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0170.json" \
-            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0170.json" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0171.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0171.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0171.json" \
             --front-compatibility-exit "$RUNNER_TEMP/front.exit"
-          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0170.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/test-results-v0170.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/validation-results-v0170.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/gate-results-v0170.json"
-          cp "$RUNNER_TEMP/security.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0170.json"
-      - name: Validate final v0.17.0 manifest
+          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0171.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/test-results-v0171.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/validation-results-v0171.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/gate-results-v0171.json"
+          cp "$RUNNER_TEMP/security.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0171.json"
+      - name: Validate final v0.17.1 manifest
         if: always()
         continue-on-error: true
         run: |
           set +e
-          python scripts/validation/validate_github_review_manifest_v0170.py \
-            "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0170.json" \
-            --result-output "$RUNNER_TEMP/final-manifest-validation-v0170.json"
+          python scripts/validation/validate_github_review_manifest_v0171.py \
+            "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0171.json" \
+            --result-output "$RUNNER_TEMP/final-manifest-validation-v0171.json"
           code=$?
-          cp "$RUNNER_TEMP/final-manifest-validation-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0170.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/final-manifest-validation-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0171.json" 2>/dev/null || true
           printf '%s\n' "$code" > "$RUNNER_TEMP/manifest.exit"
           exit "$code"
       - name: Finalize manifest gate from validation result
@@ -223,7 +225,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          python scripts/validation/record_v0170_results.py \
+          python scripts/validation/record_v0171_results.py \
             --test-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" \
             --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit" 2>/dev/null || echo 99)" \
             --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit" 2>/dev/null || echo 99)" \
@@ -236,34 +238,34 @@ jobs:
             --manifest-exit-code "$(cat "$RUNNER_TEMP/manifest.exit" 2>/dev/null || echo 99)" \
             --security-exit-code "$(cat "$RUNNER_TEMP/security.exit" 2>/dev/null || echo 99)" \
             --output-dir "$RUNNER_TEMP/ugas-review-evidence"
-          python scripts/validation/build_github_review_manifest_v0170.py \
+          python scripts/validation/build_github_review_manifest_v0171.py \
             --output-dir "$RUNNER_TEMP/ugas-review-evidence" --base-ref "$BASE_REF" --head-ref "$HEAD_REF" \
             --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" \
-            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0170.json" \
-            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0170.json" \
-            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0170.json" \
+            --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0171.json" \
+            --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0171.json" \
+            --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0171.json" \
             --front-compatibility-exit "$RUNNER_TEMP/front.exit"
-          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0170.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/test-results-v0170.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/validation-results-v0170.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/gate-results-v0170.json"
-      - name: Revalidate finalized v0.17.0 manifest
+          cp "$RUNNER_TEMP/ugas-review-evidence/github-review-manifest-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0171.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/test-results-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/test-results-v0171.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/validation-results-v0171.json"
+          cp "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/gate-results-v0171.json"
+      - name: Revalidate finalized v0.17.1 manifest
         if: always()
         continue-on-error: true
         run: |
           set +e
-          python scripts/validation/validate_github_review_manifest_v0170.py \
-            "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0170.json" \
-            --result-output "$RUNNER_TEMP/final-manifest-validation-v0170.json"
+          python scripts/validation/validate_github_review_manifest_v0171.py \
+            "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0171.json" \
+            --result-output "$RUNNER_TEMP/final-manifest-validation-v0171.json"
           code=$?
-          cp "$RUNNER_TEMP/final-manifest-validation-v0170.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0170.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/final-manifest-validation-v0171.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0171.json" 2>/dev/null || true
           printf '%s\n' "$code" > "$RUNNER_TEMP/manifest.exit"
           exit "$code"
       - name: Write GitHub Step Summary
         if: always()
         run: |
           {
-            echo '## UGAS GitHub-native v0.17.0 EQUIPMENT_OUTFITS runtime foundation evidence'
+            echo '## UGAS GitHub-native v0.17.1 EQUIPMENT_OUTFITS runtime and QA integrity evidence'
             echo "- Base: \`$BASE_REF\`"
             echo "- Head: \`$HEAD_REF\`"
             echo "- PR number: \`$PR_NUMBER\`"
@@ -283,9 +285,9 @@ jobs:
       - name: Enforce final review result after artifact upload
         if: always()
         run: |
-          python scripts/validation/enforce_github_review_v0170.py \
-            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0170.json" \
-            --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0170.json" \
+          python scripts/validation/enforce_github_review_v0171.py \
+            --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0171.json" \
+            --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0171.json" \
             --security "$RUNNER_TEMP/security.json" \
             --equipment-exit "$RUNNER_TEMP/equipment.exit" \
             --direction-exit "$RUNNER_TEMP/direction.exit" \

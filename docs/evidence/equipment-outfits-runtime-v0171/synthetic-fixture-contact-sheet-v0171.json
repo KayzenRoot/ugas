@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.17.1",
+  "status": "TEST_ONLY_CONTACT_SHEET",
+  "path": "docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-contact-sheet-v0171.png",
+  "records": [
+    {
+      "label": "BASE / approved front frame",
+      "equipment_ids": [],
+      "base_direction": "south",
+      "test_only": false,
+      "purpose": "replacement_and_occlusion_runtime_demo"
+    },
+    {
+      "label": "TEST_ONLY / replacement winner + hidden base",
+      "equipment_ids": [
+        "fixture-coat-replacement-low",
+        "fixture-coat-replacement-high"
+      ],
+      "base_direction": "south",
+      "test_only": true,
+      "purpose": "replacement_and_occlusion_runtime_demo"
+    },
+    {
+      "label": "TEST_ONLY / actual asset mask",
+      "equipment_ids": [
+        "fixture-helmet-teal"
+      ],
+      "base_direction": "south",
+      "test_only": true,
+      "purpose": "replacement_and_occlusion_runtime_demo"
+    },
+    {
+      "label": "TEST_ONLY / modular set",
+      "equipment_ids": [
+        "fixture-cape-blue",
+        "fixture-coat-amber",
+        "fixture-helmet-teal",
+        "fixture-boots-red",
+        "fixture-shoulder-gold",
+        "fixture-charm-violet"
+      ],
+      "base_direction": "south",
+      "test_only": true,
+      "purpose": "replacement_and_occlusion_runtime_demo"
+    },
+    {
+      "label": "TEST_ONLY / winner only",
+      "equipment_ids": [
+        "fixture-coat-replacement-high"
+      ],
+      "base_direction": "south",
+      "test_only": true,
+      "purpose": "replacement_and_occlusion_runtime_demo"
+    },
+    {
+      "label": "TEST_ONLY / asymmetric fixture",
+      "equipment_ids": [
+        "fixture-shoulder-gold"
+      ],
+      "base_direction": "south",
+      "test_only": true,
+      "purpose": "replacement_and_occlusion_runtime_demo"
+    }
+  ],
+  "production_art": false
+}

@@ -1,8 +1,8 @@
-"""Fail-closed equipment and outfit composition for the v0.17.0 foundation.
+"""Fail-closed equipment and outfit composition for the v0.17.1 correction.
 
 The runtime is deliberately a contract and composition layer, not an art
 generator.  Production registries may contain only explicitly approved
-assets; the repository's v0.17.0 fixtures are synthetic and TEST_ONLY.
+assets; the repository's v0.17.x fixtures are synthetic and TEST_ONLY.
 """
 
 from __future__ import annotations
@@ -18,7 +18,8 @@ from PIL import Image, ImageDraw
 from .direction_runtime import canonicalize_direction
 
 
-SCHEMA_VERSION = "0.17.0"
+SCHEMA_VERSION = "0.17.1"
+SUPPORTED_SCHEMA_VERSIONS = {"0.17.0", SCHEMA_VERSION}
 RIG_REVISION = "r4-cutout-rig-v071"
 CANONICAL_DIRECTIONS = ("south", "south_east", "east", "north_east", "north", "north_west", "west", "south_west")
 PRODUCTION_DIRECTIONS = {"south"}
@@ -79,6 +80,24 @@ VALID_PARTS = {
     "sword",
 }
 
+# These are deterministic fallback masks for test-only base frames. Production
+# callers should provide the same named masks in frame metadata. Keeping the
+# fallback here makes replacement/hide behavior explicit and reproducible for
+# the historical v0.17.0 fixtures, which predate the v0.17.1 mask binding.
+DEFAULT_PART_MASKS: dict[str, tuple[tuple[int, int, int, int], ...]] = {
+    "head": ((220, 38, 320, 122),),
+    "torso_pelvis": ((202, 108, 338, 286),),
+    "left_upper_arm": ((292, 112, 346, 234),),
+    "left_forearm_hand": ((326, 204, 376, 302),),
+    "right_upper_arm": ((190, 112, 244, 234),),
+    "right_forearm_hand": ((164, 202, 214, 302),),
+    "left_thigh": ((260, 260, 316, 386),),
+    "left_shin_foot": ((276, 360, 332, 476),),
+    "right_thigh": ((224, 260, 280, 386),),
+    "right_shin_foot": ((208, 360, 264, 476),),
+    "sword": ((340, 136, 404, 420),),
+}
+
 
 def canonical_json(value: Any) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
@@ -91,6 +110,24 @@ def sha256_json(value: Any) -> str:
 def sha256_image(image: Image.Image) -> str:
     rgba = image.convert("RGBA")
     return hashlib.sha256(rgba.tobytes()).hexdigest()
+
+
+def compare_base_immutability(before: Image.Image, after: Image.Image) -> dict[str, Any]:
+    """Shared postcondition used by production and negative-control QA."""
+    before_hash = sha256_image(before)
+    after_hash = sha256_image(after)
+    if before_hash != after_hash:
+        raise EquipmentContractError("BASE_PIXEL_MUTATION")
+    return {"result": "ACCEPTED", "error_code": None, "rejection_class": None, "before_sha256": before_hash, "after_sha256": after_hash}
+
+
+def compare_compositions(first: Image.Image, second: Image.Image) -> dict[str, Any]:
+    """Shared byte comparator for equivalent composition requests."""
+    first_hash = sha256_image(first)
+    second_hash = sha256_image(second)
+    if first_hash != second_hash:
+        raise EquipmentContractError("NONDETERMINISTIC_SECOND_COMPOSITION")
+    return {"result": "ACCEPTED", "error_code": None, "rejection_class": None, "first_sha256": first_hash, "second_sha256": second_hash}
 
 
 class EquipmentRuntimeError(ValueError):
@@ -139,6 +176,7 @@ class EquipmentResolution:
             "fallback_mode": self.fallback_mode,
             "mirror_mode": self.mirror_mode,
             "error_code": self.error_code,
+            "rejection_class": "RUNTIME_REJECTION" if self.result == "REJECTED" else None,
             "production_safe": self.production_safe,
         }
 
@@ -154,6 +192,7 @@ class CompositionResult:
     approved_frame_hash: str | None
     base_animation_metadata_preserved: bool
     production_safe: bool
+    occlusion_trace: tuple[dict[str, Any], ...] = ()
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -165,6 +204,7 @@ class CompositionResult:
             "approved_frame_hash": self.approved_frame_hash,
             "base_animation_metadata_preserved": self.base_animation_metadata_preserved,
             "production_safe": self.production_safe,
+            "occlusion_trace": [dict(item) for item in self.occlusion_trace],
             "composed_sha256": sha256_image(self.image),
         }
 
@@ -221,7 +261,8 @@ def _record_without_provenance_hash(record: Mapping[str, Any]) -> dict[str, Any]
 def validate_equipment_manifest(manifest: Mapping[str, Any], *, production_registry: bool | None = None) -> tuple[str, ...]:
     """Validate all contract and safety gates, raising on the first failure."""
     _require(isinstance(manifest, Mapping), "EQUIPMENT_MANIFEST_NOT_OBJECT")
-    _require(manifest.get("schema_version") == SCHEMA_VERSION, "EQUIPMENT_SCHEMA_VERSION_INVALID")
+    schema_version = manifest.get("schema_version")
+    _require(schema_version in SUPPORTED_SCHEMA_VERSIONS, "EQUIPMENT_SCHEMA_VERSION_INVALID")
     _require(manifest.get("manifest_type") == "equipment-outfits-runtime", "EQUIPMENT_MANIFEST_TYPE_INVALID")
     registry_mode = manifest.get("production_registry") if production_registry is None else production_registry
     _require(isinstance(registry_mode, bool), "PRODUCTION_REGISTRY_FLAG_INVALID")
@@ -277,6 +318,8 @@ def validate_equipment_manifest(manifest: Mapping[str, Any], *, production_regis
             if "secondary_anchor" in anchor:
                 secondary = anchor["secondary_anchor"]
                 _require(isinstance(secondary, Mapping) and secondary.get("joint") in VALID_JOINTS, "SECONDARY_ANCHOR_INVALID")
+                if schema_version == SCHEMA_VERSION:
+                    raise EquipmentContractError("SECONDARY_ANCHOR_UNSUPPORTED")
         replacement = item["replacement_rules"]
         _require(isinstance(replacement, Mapping) and replacement.get("mode") in VALID_MODES, "REPLACEMENT_RULE_INVALID")
         _require(isinstance(replacement.get("hide_parts"), list) and all(part in VALID_PARTS for part in replacement["hide_parts"]), "HIDE_PART_RULE_INVALID")
@@ -289,6 +332,15 @@ def validate_equipment_manifest(manifest: Mapping[str, Any], *, production_regis
         _require(isinstance(masks, list) and masks, "OCCLUSION_MASK_MISSING")
         for mask in masks:
             _require(isinstance(mask, Mapping) and mask.get("binding") == "asset-bound" and mask.get("target_part") in VALID_PARTS and isinstance(mask.get("mask_id"), str), "OCCLUSION_MASK_BINDING_INVALID")
+            if schema_version == SCHEMA_VERSION:
+                _require(mask.get("policy") == "explicit-layer-alpha", "OCCLUSION_MASK_POLICY_INVALID")
+                geometry = mask.get("geometry")
+                _require(isinstance(geometry, Mapping) and geometry.get("type") == "rectangle", "OCCLUSION_MASK_GEOMETRY_INVALID")
+                _require(all(isinstance(geometry.get(key), int) and not isinstance(geometry.get(key), bool) for key in ("x", "y", "width", "height")), "OCCLUSION_MASK_GEOMETRY_INVALID")
+                _require(geometry["width"] > 0 and geometry["height"] > 0, "OCCLUSION_MASK_GEOMETRY_INVALID")
+                mask_hash = mask.get("mask_hash")
+                _require(_is_sha256(mask_hash), "OCCLUSION_MASK_HASH_INVALID")
+                _require(mask_hash == sha256_json({key: value for key, value in mask.items() if key != "mask_hash"}), "OCCLUSION_MASK_HASH_MISMATCH")
         asymmetry = item["asymmetry_flags"]
         _require(isinstance(asymmetry, list), "ASYMMETRY_FLAGS_INVALID")
         if asymmetry:
@@ -350,6 +402,17 @@ class EquipmentRegistry:
         self._cache.clear()
         self._cache_hits = self._cache_misses = 0
 
+    def poison_cache_for_test(self, cache_key: str, resolution: EquipmentResolution) -> None:
+        """Inject one cache entry for the stale-context negative control.
+
+        This deliberately uses the same runtime cache as normal resolution;
+        it is exposed only as an explicit test hook so QA can prove that a
+        poisoned entry is rejected instead of being treated as a cache hit.
+        """
+        _require(isinstance(cache_key, str) and cache_key, "CACHE_TEST_KEY_INVALID")
+        _require(isinstance(resolution, EquipmentResolution), "CACHE_TEST_VALUE_INVALID")
+        self._cache[cache_key] = resolution
+
     def _failure(self, *, equipment_id: str, slot: str | None, variant: str, requested: str | None, animation_profile: str, animation_capability: str, rig_revision: str, cache_key: str, error_code: str, fallback_mode: str = "FAIL_CLOSED", mirror_mode: str = "NONE", asset_revision: str | None = None) -> EquipmentResolution:
         return EquipmentResolution("REJECTED", equipment_id, slot, variant, requested, None, animation_profile, animation_capability, rig_revision, asset_revision, cache_key, fallback_mode, mirror_mode, error_code, False)
 
@@ -366,8 +429,32 @@ class EquipmentRegistry:
             request_mode = "direct"
         key = _cache_key(item or {"equipment_id": equipment_id, "slot": slot or "UNKNOWN", "variant": variant, "asset_revision": asset_revision, "animation_compatibility": {"capability_id": capability}}, direction=requested, animation_profile=animation_profile, rig_revision=rig_revision, registry_mode="production" if self.production_registry else "test", request_mode=request_mode)
         if key in self._cache:
+            cached = self._cache[key]
+            expected_slot = item["slot"] if item is not None else slot
+            if (
+                cached.equipment_id != equipment_id
+                or cached.slot != expected_slot
+                or cached.variant != variant
+                or cached.requested_direction != requested
+                or cached.animation_profile != animation_profile
+                or cached.rig_revision != rig_revision
+            ):
+                del self._cache[key]
+                self._cache_misses += 1
+                return self._failure(
+                    equipment_id=equipment_id,
+                    slot=expected_slot,
+                    variant=variant,
+                    requested=requested,
+                    animation_profile=animation_profile,
+                    animation_capability=capability,
+                    rig_revision=rig_revision,
+                    cache_key=key,
+                    error_code="STALE_CACHE_CONTEXT",
+                    asset_revision=asset_revision,
+                )
             self._cache_hits += 1
-            return self._cache[key]
+            return cached
         self._cache_misses += 1
         if item is None:
             result = self._failure(equipment_id=equipment_id, slot=slot, variant=variant, requested=requested, animation_profile=animation_profile, animation_capability=capability, rig_revision=rig_revision, cache_key=key, error_code="EQUIPMENT_UNKNOWN")
@@ -380,7 +467,10 @@ class EquipmentRegistry:
         elif requested in item["direction_coverage"]:
             result = EquipmentResolution("RESOLVED", equipment_id, item["slot"], variant, requested, requested, animation_profile, capability, rig_revision, asset_revision, key, "NONE", "NONE", None, bool(self.production_registry and item["production_safe"]))
         elif allow_mirror and item.get("mirror_safe") and item.get("mirror_permission", {}).get("from") in item["direction_coverage"] and item.get("mirror_permission", {}).get("to") == requested:
-            result = EquipmentResolution("RESOLVED", equipment_id, item["slot"], variant, requested, item["mirror_permission"]["from"], animation_profile, capability, rig_revision, asset_revision, key, "EXPLICIT_PREVIEW_MIRROR", "HORIZONTAL_EXPLICIT", None, False)
+            # Resolver permission is not pixel mirroring. Until the compositor
+            # has a real mirror operation, fail closed even for a permitted
+            # test fixture and never claim HORIZONTAL_EXPLICIT resolution.
+            result = self._failure(equipment_id=equipment_id, slot=item["slot"], variant=variant, requested=requested, animation_profile=animation_profile, animation_capability=capability, rig_revision=rig_revision, cache_key=key, error_code="MIRROR_RUNTIME_NOT_IMPLEMENTED", fallback_mode="FAIL_CLOSED", asset_revision=asset_revision)
         elif allow_preview_fallback and not self.production_registry and "south" in item["direction_coverage"]:
             result = EquipmentResolution("RESOLVED", equipment_id, item["slot"], variant, requested, "south", animation_profile, capability, rig_revision, asset_revision, key, "EXPLICIT_TEST_ONLY_PREVIEW_FALLBACK", "NONE", None, False)
         else:
@@ -420,14 +510,68 @@ class EquipmentRegistry:
         return image
 
     @staticmethod
-    def _clear_part_masks(image: Image.Image, parts: Iterable[str], metadata: Mapping[str, Any]) -> None:
-        masks = metadata.get("part_masks", {})
-        draw = ImageDraw.Draw(image)
+    def _part_rectangles(part: str, metadata: Mapping[str, Any]) -> tuple[tuple[int, int, int, int], ...]:
+        masks = metadata.get("part_masks")
+        if isinstance(masks, Mapping) and part in masks:
+            values = masks[part]
+        else:
+            values = DEFAULT_PART_MASKS.get(part, ())
+        _require(isinstance(values, (list, tuple)), "EXPLICIT_PART_MASK_INVALID")
+        rectangles: list[tuple[int, int, int, int]] = []
+        for rectangle in values:
+            _require(isinstance(rectangle, (list, tuple)) and len(rectangle) == 4, "EXPLICIT_PART_MASK_INVALID")
+            rectangles.append(tuple(int(value) for value in rectangle))
+        return tuple(rectangles)
+
+    @classmethod
+    def _clear_part_masks(cls, image: Image.Image, parts: Iterable[str], metadata: Mapping[str, Any]) -> int:
+        pixels_changed = 0
+        pixel = image.load()
+        width, height = image.size
         for part in parts:
-            rectangles = masks.get(part, []) if isinstance(masks, Mapping) else []
-            for rectangle in rectangles:
-                _require(isinstance(rectangle, list) and len(rectangle) == 4, "EXPLICIT_PART_MASK_INVALID")
-                draw.rectangle(tuple(int(value) for value in rectangle), fill=(0, 0, 0, 0))
+            for left, top, right, bottom in cls._part_rectangles(part, metadata):
+                left, top = max(0, left), max(0, top)
+                right, bottom = min(width - 1, right), min(height - 1, bottom)
+                if left > right or top > bottom:
+                    continue
+                for y in range(top, bottom + 1):
+                    for x in range(left, right + 1):
+                        if pixel[x, y][3] != 0:
+                            pixel[x, y] = (0, 0, 0, 0)
+                            pixels_changed += 1
+        return pixels_changed
+
+    @staticmethod
+    def _apply_occlusion_mask(image: Image.Image, mask: Mapping[str, Any]) -> dict[str, Any]:
+        geometry = mask.get("geometry")
+        if not isinstance(geometry, Mapping):
+            # v0.17.0 declarations are retained as historical data. The
+            # corrected v0.17.1 manifest cannot reach this branch because its
+            # contract requires deterministic geometry and a content hash.
+            return {"mask_id": mask.get("mask_id"), "status": "DECLARATION_ONLY", "affected_pixel_count": 0}
+        if geometry.get("type") != "rectangle":
+            raise EquipmentContractError("OCCLUSION_MASK_GEOMETRY_INVALID")
+        left = int(geometry["x"])
+        top = int(geometry["y"])
+        right = left + int(geometry["width"]) - 1
+        bottom = top + int(geometry["height"]) - 1
+        pixel = image.load()
+        width, height = image.size
+        affected = 0
+        for y in range(max(0, top), min(height - 1, bottom) + 1):
+            for x in range(max(0, left), min(width - 1, right) + 1):
+                if pixel[x, y][3] != 0:
+                    pixel[x, y] = (0, 0, 0, 0)
+                    affected += 1
+        return {
+            "mask_id": mask["mask_id"],
+            "target_part": mask["target_part"],
+            "policy": mask["policy"],
+            "mask_hash": mask.get("mask_hash"),
+            "geometry": dict(geometry),
+            "affected_pixel_count": affected,
+            "status": "APPLIED",
+        }
 
     def compose(self, base_image: Image.Image, base_frame_metadata: Mapping[str, Any], equipment_ids: Iterable[str], *, direction: Any, animation_profile: str = "idle-front-v1", rig_revision: str = RIG_REVISION, allow_preview_fallback: bool = False, allow_mirror: bool = False, production_routing: str = "BLOCKED") -> CompositionResult:
         _require(production_routing == "BLOCKED", "PRODUCTION_ROUTING_BLOCKED")
@@ -439,24 +583,56 @@ class EquipmentRegistry:
             failed = next(item for item in resolutions if item.result != "RESOLVED")
             raise EquipmentContractError(failed.error_code or "EQUIPMENT_RESOLUTION_FAILED")
         items: list[Mapping[str, Any]] = []
+        resolution_by_id = {resolution.equipment_id: resolution for resolution in resolutions}
         for resolution in resolutions:
             candidates = [item for (item_id, _slot, _variant), item in self._assets.items() if item_id == resolution.equipment_id]
             _require(len(candidates) == 1, "EQUIPMENT_RESOLUTION_AMBIGUOUS")
             items.append(candidates[0])
         position = {name: index for index, name in enumerate(self.layer_order)}
-        replacement_groups: dict[str, Mapping[str, Any]] = {}
+        replacement_groups: dict[str, list[Mapping[str, Any]]] = {}
         for item in items:
             replacement = item["replacement_rules"]
             if replacement["mode"] == "replace":
                 group = replacement["replace_group"]
-                previous = replacement_groups.get(group)
-                if previous is None or (item["priority"], item["equipment_id"]) > (previous["priority"], previous["equipment_id"]):
-                    replacement_groups[group] = item
-        ordered = sorted(items, key=lambda item: (position[item["layer_group"]], item["priority"], item["equipment_id"]))
+                replacement_groups.setdefault(group, []).append(item)
+        winners: dict[str, Mapping[str, Any]] = {
+            group: max(candidates, key=lambda item: (item["priority"], item["equipment_id"]))
+            for group, candidates in replacement_groups.items()
+        }
+        suppressed = [
+            item
+            for group, candidates in replacement_groups.items()
+            for item in candidates
+            if item is not winners[group]
+        ]
+        selected = [
+            item
+            for item in items
+            if item["replacement_rules"]["mode"] != "replace"
+            or item is winners[item["replacement_rules"]["replace_group"]]
+        ]
+        ordered = sorted(selected, key=lambda item: (position[item["layer_group"]], item["priority"], item["equipment_id"]))
         composed = before.copy()
         anchor_points = base_frame_metadata.get("anchor_points", {})
         _require(isinstance(anchor_points, Mapping), "ANCHOR_POINTS_MISSING")
         trace: list[dict[str, Any]] = []
+        for item in sorted(suppressed, key=lambda candidate: (candidate["replacement_rules"]["replace_group"], candidate["equipment_id"])):
+            replacement = item["replacement_rules"]
+            group = replacement["replace_group"]
+            winner = winners[group]
+            candidates = sorted(candidate["equipment_id"] for candidate in replacement_groups[group])
+            trace.append({
+                "equipment_id": item["equipment_id"],
+                "slot": item["slot"],
+                "layer_group": item["layer_group"],
+                "priority": item["priority"],
+                "replace_group": group,
+                "conflict_candidates": candidates,
+                "winner": winner["equipment_id"],
+                "hidden_parts": [],
+                "loser_suppressed": True,
+                "suppressed": True,
+            })
         for item in ordered:
             anchor = item["anchors"][0]
             point = anchor_points.get(anchor["joint"])
@@ -464,6 +640,10 @@ class EquipmentRegistry:
             fixture = item.get("fixture")
             _require(isinstance(fixture, Mapping), "COMPOSITION_ASSET_NOT_AVAILABLE")
             layer = self._fixture_image(fixture)
+            replacement = item["replacement_rules"]
+            hidden_parts = list(replacement.get("hide_parts", [])) if replacement["mode"] == "replace" else []
+            hidden_pixel_count = self._clear_part_masks(composed, hidden_parts, base_frame_metadata) if hidden_parts else 0
+            occlusion_trace = [self._apply_occlusion_mask(composed, mask) for mask in item.get("occlusion_masks", [])]
             rotation = 0.0
             if anchor["rotation_inheritance"]:
                 rotation = float(base_frame_metadata.get("joint_rotations", {}).get(anchor["joint"], 0.0))
@@ -475,9 +655,24 @@ class EquipmentRegistry:
             overlay = Image.new("RGBA", composed.size, (0, 0, 0, 0))
             overlay.alpha_composite(layer, (x, y))
             composed = Image.alpha_composite(composed, overlay)
-            trace.append({"equipment_id": item["equipment_id"], "slot": item["slot"], "layer_group": item["layer_group"], "priority": item["priority"], "anchor_id": anchor["anchor_id"], "joint": anchor["joint"], "direction": resolutions[0].resolved_direction if resolutions else canonicalize_direction(direction)})
-            if item["replacement_rules"]["mode"] == "replace":
-                self._clear_part_masks(composed, item["replacement_rules"]["hide_parts"], base_frame_metadata)
+            group = replacement.get("replace_group") if replacement["mode"] == "replace" else None
+            candidates = sorted(candidate["equipment_id"] for candidate in replacement_groups.get(group, [])) if group else []
+            trace.append({
+                "equipment_id": item["equipment_id"],
+                "slot": item["slot"],
+                "layer_group": item["layer_group"],
+                "priority": item["priority"],
+                "anchor_id": anchor["anchor_id"],
+                "joint": anchor["joint"],
+                "direction": resolution_by_id[item["equipment_id"]].resolved_direction,
+                "replace_group": group,
+                "conflict_candidates": candidates,
+                "winner": item["equipment_id"] if group else None,
+                "hidden_parts": hidden_parts,
+                "hidden_pixel_count": hidden_pixel_count,
+                "loser_suppressed": False,
+                "occlusion_masks": occlusion_trace,
+            })
         after_digest = sha256_image(before)
         cache_key = "outfit=" + ",".join(sorted(item.equipment_id for item in resolutions)) + "|" + "|".join((f"direction={canonicalize_direction(direction) or 'UNRESOLVED'}", f"animation_profile={animation_profile}", f"rig_revision={rig_revision}", f"registry_mode={'production' if self.production_registry else 'test'}"))
-        return CompositionResult(composed, "RESOLVED", cache_key, tuple(trace), before_digest, after_digest, base_frame_metadata.get("approved_frame_hash"), canonical_json(dict(base_frame_metadata)) == metadata_snapshot, all(item.production_safe for item in resolutions))
+        return CompositionResult(composed, "RESOLVED", cache_key, tuple(trace), before_digest, after_digest, base_frame_metadata.get("approved_frame_hash"), canonical_json(dict(base_frame_metadata)) == metadata_snapshot, all(item.production_safe for item in resolutions), tuple(item for item in trace if item.get("occlusion_masks")))

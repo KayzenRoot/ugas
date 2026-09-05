@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.17.1",
+  "status": "REPLACEMENT_CONFLICT_QA_PASSED",
+  "conflict_policy": "highest_priority_then_equipment_id",
+  "conflict_candidates": [
+    "fixture-coat-replacement-high",
+    "fixture-coat-replacement-low"
+  ],
+  "winner": "fixture-coat-replacement-high",
+  "loser_suppressed": "fixture-coat-replacement-low",
+  "layer_trace": [
+    {
+      "equipment_id": "fixture-coat-replacement-low",
+      "slot": "torso",
+      "layer_group": "torso_replace_or_overlay",
+      "priority": 20,
+      "replace_group": "torso-armor",
+      "conflict_candidates": [
+        "fixture-coat-replacement-high",
+        "fixture-coat-replacement-low"
+      ],
+      "winner": "fixture-coat-replacement-high",
+      "hidden_parts": [],
+      "loser_suppressed": true,
+      "suppressed": true
+    },
+    {
+      "equipment_id": "fixture-coat-replacement-high",
+      "slot": "torso",
+      "layer_group": "torso_replace_or_overlay",
+      "priority": 40,
+      "anchor_id": "fixture-coat-replacement-high-anchor",
+      "joint": "shoulder_center",
+      "direction": "south",
+      "replace_group": "torso-armor",
+      "conflict_candidates": [
+        "fixture-coat-replacement-high",
+        "fixture-coat-replacement-low"
+      ],
+      "winner": "fixture-coat-replacement-high",
+      "hidden_parts": [
+        "torso_pelvis"
+      ],
+      "hidden_pixel_count": 20882,
+      "loser_suppressed": false,
+      "occlusion_masks": [
+        {
+          "mask_id": "coat-high-mask",
+          "target_part": "torso_pelvis",
+          "policy": "explicit-layer-alpha",
+          "mask_hash": "3dc1a563cc339c29d43bea411d638d1739535a518c87e89a191c85c9194e5c61",
+          "geometry": {
+            "type": "rectangle",
+            "x": 238,
+            "y": 140,
+            "width": 64,
+            "height": 54
+          },
+          "affected_pixel_count": 0,
+          "status": "APPLIED"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.17.1",
+  "status": "MIRROR_RUNTIME_UNSUPPORTED_FAIL_CLOSED",
+  "requested": "north",
+  "permission": "explicit_test_only_permission",
+  "observed": {
+    "result": "REJECTED",
+    "equipment_id": "fixture-cape-blue",
+    "slot": "back",
+    "variant": "blue",
+    "requested_direction": "north",
+    "resolved_direction": null,
+    "animation_profile": "idle-front-v1",
+    "animation_capability": "front-compatible",
+    "rig_revision": "r4-cutout-rig-v071",
+    "asset_revision": "fixture-cape-blue-r1",
+    "cache_key": "equipment_id=fixture-cape-blue|slot=back|variant=blue|rig_revision=r4-cutout-rig-v071|direction=north|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-cape-blue-r1|request_mode=preview:0:1|registry_mode=test",
+    "fallback_mode": "FAIL_CLOSED",
+    "mirror_mode": "NONE",
+    "error_code": "MIRROR_RUNTIME_NOT_IMPLEMENTED",
+    "rejection_class": "RUNTIME_REJECTION",
+    "production_safe": false
+  },
+  "actual_pixel_mirror": false,
+  "production_safe": false
+}

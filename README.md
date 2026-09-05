@@ -1,4 +1,4 @@
-# UGAS 0.17.0
+# UGAS 0.17.1
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente a fundação EQUIPMENT_OUTFITS determinística sobre o cutout R4 aprovado, com composição modular TEST_ONLY; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
@@ -11,8 +11,8 @@ O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o pil
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
-python scripts/validation/validate_state_consistency_v0170.py
-python scripts/validation/validate_equipment_runtime_v0170.py
+python scripts/validation/validate_state_consistency_v0171.py
+python scripts/validation/validate_equipment_runtime_v0171.py
 python scripts/validation/validate_direction_runtime_v0162.py
 python scripts/validation/validate_v1_capability_matrix.py
 python scripts/validation/run_validation.py
@@ -30,11 +30,11 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.17.0.md](REVIEW-v0.17.0.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.17.1.md](REVIEW-v0.17.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
-## v0.17.0 EQUIPMENT_OUTFITS runtime foundation
+## v0.17.1 EQUIPMENT_OUTFITS runtime and QA integrity
 
-The active gate is `EQUIPMENT_OUTFITS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`. Wearables declare slot, deterministic layer group, R4 anchors, SOUTH_ONLY direction coverage, compatible front animation profiles, rig revision, replacement/hide rules, explicit asset-bound occlusion masks, provenance hash, variant and TEST_ONLY/production boundaries. The resolver cache binds equipment identity, slot, variant, rig revision, canonical direction, animation capability/profile, asset revision, request mode and registry mode. Composition copies the approved South frame, never mutates base pixels or animation timing/event markers, and two identical runs must be byte-identical. The six synthetic fixtures in `docs/evidence/equipment-outfits-runtime-v0170/synthetic-fixture-manifest-v0170.json` are review-only; the production registry is empty, `real_equipment_asset_coverage=NONE_OR_EXPLICITLY_APPROVED_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. PR-first review remains required; do not start creatures/monsters or downstream asset families.
+The active gate is `EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED`. Wearables declare slot, deterministic layer group, R4 anchors, SOUTH_ONLY direction coverage, compatible front animation profiles, rig revision, replacement/hide rules, hashed geometric asset-bound occlusion masks, provenance hash, variant and TEST_ONLY/production boundaries. Replacement arbitration and shared negative comparators are executed against real pixels; mirror and secondary anchors fail closed until implemented. The eight synthetic fixtures in `docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-manifest-v0171.json` are review-only; the production registry is empty, `real_equipment_asset_coverage=NONE_OR_EXPLICITLY_APPROVED_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. PR-first review remains required; do not start creatures/monsters or downstream asset families.
 
 ## v0.16.2 MULTI_DIRECTION_ANIMATION_RUNTIME cache and state truth correction
 

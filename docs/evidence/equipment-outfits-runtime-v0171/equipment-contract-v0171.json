@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.17.1",
+  "status": "EQUIPMENT_CONTRACT_VALID",
+  "test_registry": {
+    "path": "docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-manifest-v0171.json",
+    "synthetic_fixture_count": 8,
+    "authority": "TEST_ONLY_SYNTHETIC_FIXTURES"
+  },
+  "production_registry": {
+    "path": "docs/evidence/equipment-outfits-runtime-v0171/equipment-registry-v0171.json",
+    "asset_count": 0,
+    "authority": "PRODUCTION_APPROVED_ASSETS_ONLY"
+  },
+  "direction_coverage": [
+    "south"
+  ],
+  "secondary_anchor_policy": "FAIL_CLOSED_UNSUPPORTED",
+  "mirror_policy": "FAIL_CLOSED_UNIMPLEMENTED",
+  "base_animation_immutability": true
+}
