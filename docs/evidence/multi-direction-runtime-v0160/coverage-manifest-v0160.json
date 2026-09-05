@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.16.0",
+  "manifest_type": "direction-aware-animation-coverage",
+  "production_registry": true,
+  "canonical_directions": ["south", "south_east", "east", "north_east", "north", "north_west", "west", "south_west"],
+  "aliases": {"front": "south", "down": "south", "right": "east", "back": "north", "up": "north", "left": "west"},
+  "mirror_pairs": {},
+  "assets": [
+    {"capability_id": "idle_front", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071", "asset_id": "idle-front-v1", "path": "profiles/animation/idle-front-v1.json", "provenance_hash": "1f859eedd0a97eaca6ac1345e31801b747db6230e95f494aad86e8d34a664470", "metadata": {"capability_id": "idle_front", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071"}, "test_only": false},
+    {"capability_id": "walk_front_v1", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071", "asset_id": "walk-front-v1", "path": "profiles/animation/walk-front-v1.json", "provenance_hash": "3bf376286192ef3d68ab72cd055ad6e35393ad4d6514fb1a574488c9ca5884b5", "metadata": {"capability_id": "walk_front_v1", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071"}, "test_only": false},
+    {"capability_id": "run_front_v1", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071", "asset_id": "run-front-v1", "path": "profiles/animation/run-front-v1.json", "provenance_hash": "d102d7f6f02f8ba9d23c7d470a12b8500d3ef268ad7b210ed398d922e44da21f", "metadata": {"capability_id": "run_front_v1", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071"}, "test_only": false},
+    {"capability_id": "attack_front_v2", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071", "asset_id": "attack-front-v2", "path": "profiles/animation/attack-front-v2.json", "provenance_hash": "5f35c886b076da4bc7bbcc8be4bf84681c667b15af68936f142fe6b74f65c99a", "metadata": {"capability_id": "attack_front_v2", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071"}, "test_only": false},
+    {"capability_id": "hit_reaction_front", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071", "asset_id": "hit-front-v1", "path": "profiles/animation/hit-front-v1.json", "provenance_hash": "61797280a2cc498335f2566cf18a9f4db73d2afc22deab5acdf5dfef54766d60", "metadata": {"capability_id": "hit_reaction_front", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071"}, "test_only": false},
+    {"capability_id": "death_animation_front", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071", "asset_id": "death-front-v1-v0151", "path": "profiles/animation/death-front-v151.json", "provenance_hash": "07e8b597b6c1d7f445167af46b84901df701afce90c7faf8a19b522eeb51b335", "metadata": {"capability_id": "death_animation_front", "direction": "south", "variant": "default", "asset_revision_id": "r4-cutout-rig-v071"}, "test_only": false}
+  ]
+}

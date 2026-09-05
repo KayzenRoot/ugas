@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.16.1",
+  "version": "0.16.0",
+  "status": "CORRECTION_REQUIRED",
+  "rejected_reviewed_head": "7d1e999e91ee8817c6754b363a5c19f1ba6f2e7d",
+  "historical_evidence": "docs/evidence/multi-direction-runtime-v0160/",
+  "reason": "v0.16.0 direction gates were green while negative controls reused positive booleans; active review state was stale; invalid vectors could retain facing; and test-only exact matches were not proven non-production-safe.",
+  "preservation": {"v0160_evidence_frozen": true, "synthetic_fixture_carried_forward_by_hash": true, "front_assets_changed": false},
+  "corrected_by": ["real_negative_controls", "active_pr_state_binding", "invalid_vector_unresolved_policy", "test_only_production_safety"],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0
+}

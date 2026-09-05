@@ -33,12 +33,14 @@ def main() -> int:
         failures.append("run-front-must-be-approved-pilot")
     if hit_reaction["status"] != "APPROVED_PILOT":
         failures.append("hit-reaction-front-must-be-approved-pilot")
-    if death["status"] != "TECHNICALLY_QUALIFIED_EXTERNAL_VISUAL_REQUIRED" or value["next_candidate"] != "DEATH_ANIMATION_FRONT":
-        failures.append("next-candidate-is-not-death-animation-front")
+    direction = next(item for item in capabilities if item["id"] == "multi_direction_animation_runtime")
+    equipment = next(item for item in capabilities if item["id"] == "equipment_outfits")
+    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "Next capability / not started" or value["next_candidate"] != "EQUIPMENT_OUTFITS":
+        failures.append("next-candidate-is-not-equipment-outfits")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
-    output = ROOT / "docs/evidence/animation-runtime-v0150/capability-matrix-validation-v0150.json"
+    output = ROOT / "docs/evidence/multi-direction-runtime-v0162/capability-matrix-validation-v0162.json"
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0 if not failures else 1

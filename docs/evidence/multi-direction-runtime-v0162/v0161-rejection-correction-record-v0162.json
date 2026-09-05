@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.16.2",
+  "record_type": "rejected_previous_attempt",
+  "version": "0.16.1",
+  "status": "CORRECTION_REQUIRED",
+  "rejected_reviewed_head": "2513d9f6f8a55345e74d9c0afb5dab22f9d84705",
+  "review": "REVIEW-v0.16.1.md",
+  "evidence": "docs/evidence/multi-direction-runtime-v0161/",
+  "correction_reasons": [
+    "unresolved_normalization_classes_shared_one_cache_identity",
+    "previous_release_pointed_to_rejected_v0.16.0",
+    "test_only_non_production_resolver_reported_production_cache_mode"
+  ],
+  "corrected_by": [
+    "cache_unresolved_normalization_class_identity",
+    "approved_previous_release_v0.15.1",
+    "truthful_request_and_registry_cache_modes"
+  ],
+  "history_policy": "v0.16.1 evidence remains frozen and is not rewritten; this forward-only record carries the rejection into v0.16.2 active state"
+}

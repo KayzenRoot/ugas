@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.16.2 direction runtime coverage manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_type", "production_registry", "canonical_directions", "aliases", "mirror_pairs", "assets"],
+  "properties": {
+    "schema_version": {"const": "0.16.2"},
+    "manifest_type": {"const": "direction-aware-animation-coverage"},
+    "production_registry": {"const": true},
+    "carried_forward_from": {"type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": {"path": {"const": "docs/evidence/multi-direction-runtime-v0161/coverage-manifest-v0161.json"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "canonical_directions": {
+      "const": ["south", "south_east", "east", "north_east", "north", "north_west", "west", "south_west"]
+    },
+    "aliases": {"type": "object", "additionalProperties": true},
+    "mirror_pairs": {"type": "object", "additionalProperties": true},
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["capability_id", "direction", "variant", "asset_revision_id", "asset_id", "path", "provenance_hash", "metadata", "test_only"],
+        "properties": {
+          "capability_id": {"type": "string", "minLength": 1},
+          "direction": {"enum": ["south", "south_east", "east", "north_east", "north", "north_west", "west", "south_west"]},
+          "variant": {"type": "string", "minLength": 1},
+          "asset_revision_id": {"type": "string", "minLength": 1},
+          "asset_id": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "provenance_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["capability_id", "direction", "variant", "asset_revision_id"],
+            "properties": {
+              "capability_id": {"type": "string"},
+              "direction": {"type": "string"},
+              "variant": {"type": "string"},
+              "asset_revision_id": {"type": "string"}
+            }
+          },
+          "test_only": {"const": false},
+          "mirror_safe": {"type": "boolean"},
+          "mirror_pair": {"type": "string"}
+        }
+      }
+    }
+  }
+}

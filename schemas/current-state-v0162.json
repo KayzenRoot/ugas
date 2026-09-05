@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active v0.16.2 MULTI_DIRECTION_ANIMATION_RUNTIME state",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency", "hit_reaction_front_visual_content", "death_animation_front_visual_content"],
+  "properties": {
+    "schema_version": {"const": "0.16.2"},
+    "version": {"const": "0.16.2"},
+    "phase": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME"},
+    "previous_release": {"type": "object", "additionalProperties": false, "required": ["version", "review", "evidence"], "properties": {"version": {"const": "0.15.1"}, "review": {"const": "REVIEW-v0.15.1.md"}, "evidence": {"type": "string"}}},
+    "current_gate": {"const": "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED"},
+    "stop_reason": {"type": ["string", "null"]},
+    "allowed_next_actions": {"const": ["governed_merge_pr_6"]},
+    "forbidden_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "hit_reaction_front_visual_content": {"type": "string"},
+    "death_animation_front_visual_content": {"type": "string"},
+    "multi_direction_animation_runtime": {"const": "APPROVED_FOUNDATION"},
+    "real_directional_character_asset_coverage": {"const": "SOUTH_ONLY"},
+    "external_visual_review": {"type": "object", "additionalProperties": true, "required": ["attack_front_v2", "observability_dashboard", "run_front_v1", "hit_reaction_front", "death_animation_front", "multi_direction_animation_runtime"], "properties": {"multi_direction_animation_runtime": {"const": "REQUIRED"}}},
+    "always_on_dashboard_policy": {"const": "ENABLED"},
+    "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
+    "new_generation": {"const": 0},
+    "review": {"type": "object", "additionalProperties": true, "required": ["repository", "branch_base_commit", "feature_branch", "pr_number", "pr_state", "no_self_merge_until_external_approval", "real_pr_checks_green", "merge_authorization"], "properties": {"repository": {"const": "KayzenRoot/ugas"}, "branch_base_commit": {"const": "514a17818469b567966293db808cafbf708f8311"}, "feature_branch": {"const": "codex/v0.16.0-multi-direction-runtime-foundation"}, "pr_number": {"const": 6}, "pr_state": {"const": "OPEN"}, "no_self_merge_until_external_approval": {"const": true}, "real_pr_checks_green": {"const": true}, "merge_authorization": {"const": "APPROVED_TO_MERGE"}}},
+    "incident": {"type": "object", "additionalProperties": true},
+    "evidence": {"type": "object", "additionalProperties": true},
+    "state_consistency": {"type": "object", "additionalProperties": true}
+  }
+}

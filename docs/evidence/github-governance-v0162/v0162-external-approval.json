@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.16.2",
+  "record_type": "forward_only_external_approval",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 6,
+  "branch": "codex/v0.16.0-multi-direction-runtime-foundation",
+  "base_sha": "514a17818469b567966293db808cafbf708f8311",
+  "reviewed_runtime_head": "2864b8ca392725b6da0616916ef3a3c38ce0a0d6",
+  "reviewer": "Sol external review",
+  "decision": "APPROVED_FOUNDATION / APPROVED_TO_MERGE",
+  "scope": "v0.16.2 MULTI_DIRECTION_ANIMATION_RUNTIME",
+  "approval_boundary": {
+    "direction_identity_cache_fallback_mirror_test_only": true,
+    "real_directional_character_asset_coverage": "SOUTH_ONLY",
+    "real_north_east_west_diagonal_character_artwork": "NOT_APPROVED",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0
+  },
+  "required_contexts": [
+    {
+      "name": "UGAS CI / unit-and-validation",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33930611312/job/101208262979"
+    },
+    {
+      "name": "UGAS CI / docker-smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33930611312/job/101208263104"
+    },
+    {
+      "name": "UGAS Review / evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33930611363/job/101208262892"
+    }
+  ],
+  "artifact": {
+    "name": "ugas-review-evidence-pr-6-2864b8ca392725b6da0616916ef3a3c38ce0a0d6",
+    "id": 9958603972,
+    "digest": "sha256:45c720f0bed80722ade97bdc5137d1e78b4fa64b8a8c9ae692f1c3c86b3d6d08",
+    "run_id": 33930611363,
+    "verified_metadata": true,
+    "manual_download_verified": false
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "current-state reviewed/merge-ready truth",
+      "multi_direction_animation_runtime APPROVED_FOUNDATION",
+      "capability matrix next_candidate EQUIPMENT_OUTFITS",
+      "forward-only approval evidence"
+    ],
+    "forbidden_changes": [
+      "direction runtime behavior",
+      "direction fixtures",
+      "front asset bytes or hashes",
+      "cache semantics",
+      "production boundary"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any runtime or content hash change"
+  }
+}

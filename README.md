@@ -1,8 +1,8 @@
-# UGAS 0.15.1
+# UGAS 0.16.2
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente DEATH_ANIMATION_FRONT determinístico sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente a fundação MULTI_DIRECTION_ANIMATION_RUNTIME determinística sobre o cutout R4 aprovado, mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
-O v0.13.1 permanece o piloto aprovado de RUN_FRONT_V1. O v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. O v0.11.2 permanece preservado como release anterior: sua decisão visual externa é `APPROVED_PILOT` para pipeline/piloto, nunca aprovação de produção.
+O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o piloto aprovado de RUN_FRONT_V1. O v0.15.0, v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. Nenhum piloto equivale a aprovação de produção.
 
 [![UGAS CI](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-ci.yml/badge.svg?branch=main)](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-ci.yml) [![UGAS review evidence](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-review.yml/badge.svg?branch=main)](https://github.com/csn1985-ship-it/ugas/actions/workflows/ugas-review.yml)
 
@@ -11,7 +11,9 @@ O v0.13.1 permanece o piloto aprovado de RUN_FRONT_V1. O v0.13.0, v0.12.0, v0.12
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
-python scripts/validation/validate_state_consistency_v0151.py
+python scripts/validation/validate_state_consistency_v0162.py
+python scripts/validation/validate_direction_runtime_v0162.py
+python scripts/validation/validate_v1_capability_matrix.py
 python scripts/validation/run_validation.py
 python scripts/validation/run_animation_runtime_v0151.py
 python scripts/validation/run_observability_v0122.py
@@ -27,11 +29,15 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.15.1.md](REVIEW-v0.15.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.16.2.md](REVIEW-v0.16.2.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
-## v0.15.1 DEATH_ANIMATION_FRONT corrective slice
+## v0.16.2 MULTI_DIRECTION_ANIMATION_RUNTIME cache and state truth correction
 
-The active phase is DEATH_ANIMATION_FRONT and the local gate is DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED. The eight-frame, 12 fps, non-looping source-only correction is technically qualified and externally approved as `APPROVED_PILOT` / `APPROVED_TO_MERGE`. PR #5 remains OPEN on `KayzenRoot/ugas` pending governed protected merge; the rejected v0.15.0 reviewed head is preserved unchanged. `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`.
+The active phase is `MULTI_DIRECTION_ANIMATION_RUNTIME` and the gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED`. The canonical eight directions are normalized deterministically; `front` aliases `south`, zero vectors never guess, invalid vectors are `INVALID_VECTOR_UNRESOLVED`, and missing real directions fail closed. Each unresolved normalization class is explicit in the cache key, and `request_mode` is separated from `registry_mode` so test-only resolution never says production. Existing front profiles remain byte-compatible and `real_directional_character_asset_coverage=SOUTH_ONLY`; `TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE` is review-only. The v0.16.0 and v0.16.1 records are `CORRECTION_REQUIRED`; Sol recorded v0.16.2 as `APPROVED_FOUNDATION / APPROVED_TO_MERGE` at reviewed head `2864b8ca392725b6da0616916ef3a3c38ce0a0d6`. The post-bookkeeping state binds PR #6 with `pr_number=6`, `pr_state=OPEN`, `real_pr_checks_green=true`, and `merge_authorization=APPROVED_TO_MERGE`; `next_candidate=EQUIPMENT_OUTFITS`, but equipment/outfits remains not started until the governed merge. `previous_release=0.15.1`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Merge after recorded external approval and exact post-bookkeeping reproof.
+
+## Historical v0.15.1 DEATH_ANIMATION_FRONT approved pilot / merged
+
+The v0.15.1 source-only death correction was externally approved as `APPROVED_PILOT` / `APPROVED_TO_MERGE` and merged through the protected GitHub path at `514a17818469b567966293db808cafbf708f8311`. The rejected v0.15.0 reviewed head remains unchanged and is historical evidence.
 
 ## Historical v0.15.0 DEATH_ANIMATION_FRONT rejected review
 

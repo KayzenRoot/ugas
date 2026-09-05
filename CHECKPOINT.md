@@ -1,16 +1,20 @@
-# UGAS checkpoint - v0.15.1
+# UGAS checkpoint - v0.16.2
 
-## v0.15.1 DEATH_ANIMATION_FRONT — technically qualified, approved pilot / merge authorized
+## v0.16.2 MULTI_DIRECTION_ANIMATION_RUNTIME — cache/state truth correction approved foundation / governed merge
 
-The active phase is DEATH_ANIMATION_FRONT on branch codex/v0.15.0-death-animation-front. The active repository is `KayzenRoot/ugas`. PR #4 is MERGED at merge_commit=98ebd95564216fbbee222aab630b73b5ff6f298d (merged_head=761ed5296e05571fdfbed1da04cfb7815049fa87, technical_approved_head=a3e37865f260c5a6cd56743e1d4b9131fcb12cda). Sol approved the v0.15.1 exact reviewed head `1ddcdf3b9bf44b390af549c00a0553b850c71976` as APPROVED_PILOT / APPROVED_TO_MERGE after exact-head checks and artifact verification. PR #5 remains OPEN only until the governed protected merge. The rejected v0.15.0 reviewed head `c573ab020106ee89a36e1edb9bfae8b526d5057e` is preserved unchanged.
+The active phase is `MULTI_DIRECTION_ANIMATION_RUNTIME` on branch `codex/v0.16.0-multi-direction-runtime-foundation`, based on merged v0.15.1 main at `514a17818469b567966293db808cafbf708f8311`. Sol recorded `APPROVED_FOUNDATION / APPROVED_TO_MERGE` for reviewed head `2864b8ca392725b6da0616916ef3a3c38ce0a0d6`; the post-bookkeeping PR #6 state is `pr_number=6`, `pr_state=OPEN`, `real_pr_checks_green=true`, and `merge_authorization=APPROVED_TO_MERGE`. `previous_release=0.15.1`; v0.16.0 and v0.16.1 are separate `CORRECTION_REQUIRED` history and remain frozen. The v0.15.1 death correction is APPROVED_PILOT / APPROVED_TO_MERGE and remains bound to exact head `f89184cd2dd317cbba584ddcf6115301d90666ab` and merge `514a17818469b567966293db808cafbf708f8311`. `next_candidate=EQUIPMENT_OUTFITS`, but `next_capability_started=false` until the governed merge.
 
 **Integrity repair:** A post-merge bookkeeping commit (761ed529...) mutated docs/evidence/animation-runtime-v0141/state-consistency-v0141.json inside the frozen evidence directory. The file has been restored byte-identically to the approved head (git blob 9bbc85bd...). A forward-only repair provenance record is at docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json. Git history is not rewritten.
 
 v0.14.1 technical evidence under docs/evidence/animation-runtime-v0141/ is frozen and restored to approved-head byte identity. v0141_frozen_evidence=RESTORED_AND_VERIFIED. new_generation=0, production_approved=false, production_routing=BLOCKED. next_candidate=DEATH_ANIMATION_FRONT.
 
-GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, ALWAYS_ON_DASHBOARD_POLICY=ENABLED. Merge PR #5 through the protected GitHub path; do not start MULTI_DIRECTION_ANIMATION_RUNTIME before that merge.
+GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED, USER_MANUAL_GITHUB_OPERATIONS=FALLBACK_ONLY, GITHUB_REVIEW_MODE=PR_FIRST, NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true, ALWAYS_ON_DASHBOARD_POLICY=ENABLED and DOCKER_ALWAYS_ON_LOCAL are authoritative. Merge only after external review; do not merge v0.16.1 and do not start equipment/outfits.
 
-The v0.15.1 gate is `DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED`; `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `governed_merge_pr_5`. `CODEOWNERS_GAP` remains explicit.
+The v0.16.2 gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED`; `multi_direction_animation_runtime=APPROVED_FOUNDATION`, `real_directional_character_asset_coverage=SOUTH_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and the only allowed next action is `governed_merge_pr_6`. `CACHE-NC-01` through `CACHE-NC-05` prove order-sensitive unresolved cache isolation and truthful cache metadata. `TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE` is not production artwork; canonical directions include `south`, `south_east`, and `north_west`. `CODEOWNERS_GAP` remains explicit. Sol recorded `APPROVED_TO_MERGE` for reviewed head `2864b8ca392725b6da0616916ef3a3c38ce0a0d6`; merge after recorded external approval and exact post-bookkeeping reproof. `next_candidate=EQUIPMENT_OUTFITS`, but `next_capability_started=false`.
+
+## Historical v0.15.1 DEATH_ANIMATION_FRONT — approved pilot / merged
+
+Sol approved the exact v0.15.1 reviewed head `1ddcdf3b9bf44b390af549c00a0553b850c71976` as `APPROVED_PILOT / APPROVED_TO_MERGE` after the three exact-head contexts and artifact verification. Bookkeeping completed with `previous_release=0.14.1`; PR #5 merged through the protected GitHub path at `514a17818469b567966293db808cafbf708f8311`.
 
 ## Historical v0.14.1 HIT_REACTION_FRONT approved pilot / MERGED
 

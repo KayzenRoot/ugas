@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.16.0",
+  "validator": "src/ugas/state_consistency_v0160.py",
+  "status": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
+  "failures": [],
+  "checked": {
+    "version": "0.16.0",
+    "phase": "MULTI_DIRECTION_ANIMATION_RUNTIME",
+    "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.16.0-multi-direction-runtime-foundation",
+    "branch_base_commit": "514a17818469b567966293db808cafbf708f8311",
+    "next_action": [
+      "external_review_multi_direction_runtime_v0160"
+    ],
+    "direction_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+    "real_directional_coverage": "SOUTH_ONLY",
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "pr_state": "NOT_CREATED"
+  }
+}

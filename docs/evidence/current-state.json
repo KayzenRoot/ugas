@@ -1,16 +1,28 @@
 {
-  "schema_version": "0.15.1",
-  "version": "0.15.1",
-  "phase": "DEATH_ANIMATION_FRONT",
+  "schema_version": "0.16.2",
+  "version": "0.16.2",
+  "phase": "MULTI_DIRECTION_ANIMATION_RUNTIME",
   "previous_release": {
-    "version": "0.14.1",
-    "review": "REVIEW-v0.14.1.md",
-    "evidence": "docs/evidence/current-state-v0.14.1.json"
+    "version": "0.15.1",
+    "review": "REVIEW-v0.15.1.md",
+    "evidence": "docs/evidence/animation-runtime-v0151/execution-evidence-v0.15.1.json"
   },
-  "current_gate": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED",
-  "stop_reason": "DEATH_ANIMATION_FRONT_V0151_APPROVED_PILOT_AWAITING_GOVERNED_MERGE",
+  "correction_history": {
+    "v0.16.0": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "7d1e999e91ee8817c6754b363a5c19f1ba6f2e7d",
+      "record": "docs/evidence/multi-direction-runtime-v0160/v0160-correction-record-v0161.json"
+    },
+    "v0.16.1": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "2513d9f6f8a55345e74d9c0afb5dab22f9d84705",
+      "record": "docs/evidence/multi-direction-runtime-v0162/v0161-rejection-correction-record-v0162.json"
+    }
+  },
+  "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "stop_reason": "MULTI_DIRECTION_ANIMATION_RUNTIME_V0162_APPROVED_TO_MERGE_AWAITING_GOVERNED_MERGE",
   "allowed_next_actions": [
-    "governed_merge_pr_5"
+    "governed_merge_pr_6"
   ],
   "forbidden_actions": [
     "direct_main_push",
@@ -20,7 +32,6 @@
     "sam2_rerun",
     "comfyui_generation",
     "diffusion",
-    "multi_direction_animation_runtime",
     "equipment_outfits",
     "creatures_monsters",
     "items_props",
@@ -32,12 +43,15 @@
   "production_routing": "BLOCKED",
   "hit_reaction_front_visual_content": "APPROVED_PILOT",
   "death_animation_front_visual_content": "APPROVED_PILOT",
+  "multi_direction_animation_runtime": "APPROVED_FOUNDATION",
+  "real_directional_character_asset_coverage": "SOUTH_ONLY",
   "external_visual_review": {
     "attack_front_v2": "APPROVED_PILOT",
     "observability_dashboard": "APPROVED_PILOT",
     "run_front_v1": "APPROVED_PILOT",
     "hit_reaction_front": "APPROVED_PILOT",
-    "death_animation_front": "APPROVED_PILOT"
+    "death_animation_front": "APPROVED_PILOT",
+    "multi_direction_animation_runtime": "REQUIRED"
   },
   "always_on_dashboard_policy": "ENABLED",
   "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
@@ -45,17 +59,17 @@
   "review": {
     "repository": "KayzenRoot/ugas",
     "baseline_head": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
-    "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
-    "feature_branch": "codex/v0.15.0-death-animation-front",
+    "branch_base_commit": "514a17818469b567966293db808cafbf708f8311",
+    "feature_branch": "codex/v0.16.0-multi-direction-runtime-foundation",
     "execution_mode": "GITHUB_PR_FIRST",
-    "merge_policy": "PROTECTED_GOVERNED_MERGE_AFTER_EXTERNAL_VISUAL_APPROVAL",
-    "no_self_merge_until_external_approval": false,
+    "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL",
+    "no_self_merge_until_external_approval": true,
     "direct_main_push_forbidden": true,
-    "pr_number": 5,
+    "pr_number": 6,
     "pr_state": "OPEN",
     "real_pr_checks_green": true,
-    "rejected_reviewed_head": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
-    "approved_head_sha": "1ddcdf3b9bf44b390af549c00a0553b850c71976",
+    "rejected_reviewed_head": "2513d9f6f8a55345e74d9c0afb5dab22f9d84705",
+    "approved_head_sha": "f89184cd2dd317cbba584ddcf6115301d90666ab",
     "merge_authorization": "APPROVED_TO_MERGE",
     "pr4_number": 4,
     "pr4_state": "MERGED",
@@ -90,6 +104,24 @@
     "run_front_provenance": "docs/evidence/github-governance-v0131/run-front-v0131-provenance.json",
     "death_front_external_approval": "docs/evidence/github-governance-v0151/death-front-v0151-external-visual-approval.json",
     "death_front_provenance": "docs/evidence/github-governance-v0151/death-front-v0151-provenance.json",
+    "v0151_merge_commit": "514a17818469b567966293db808cafbf708f8311",
+    "v0160_correction_record": "docs/evidence/multi-direction-runtime-v0160/v0160-correction-record-v0161.json",
+    "v0161_rejection_correction_record": "docs/evidence/multi-direction-runtime-v0162/v0161-rejection-correction-record-v0162.json",
+    "direction_contract": "docs/evidence/multi-direction-runtime-v0162/direction-contract-v0162.json",
+    "direction_coverage": "docs/evidence/multi-direction-runtime-v0162/coverage-manifest-v0162.json",
+    "direction_validation": "docs/evidence/multi-direction-runtime-v0162/validation-evidence-v0162.json",
+    "direction_negative_controls": "docs/evidence/multi-direction-runtime-v0162/negative-controls-v0162.json",
+    "invalid_vector_qa": "docs/evidence/multi-direction-runtime-v0162/invalid-vector-qa-v0162.json",
+    "test_only_production_safety_qa": "docs/evidence/multi-direction-runtime-v0162/test-only-production-safety-qa-v0162.json",
+    "direction_fixture_manifest": "docs/evidence/multi-direction-runtime-v0162/synthetic-fixture-manifest-v0162.json",
+    "direction_fallback_qa": "docs/evidence/multi-direction-runtime-v0162/fallback-qa-v0162.json",
+    "direction_mirror_qa": "docs/evidence/multi-direction-runtime-v0162/mirror-qa-v0162.json",
+    "direction_cache_qa": "docs/evidence/multi-direction-runtime-v0162/cache-unresolved-class-qa-v0162.json",
+    "cache_unresolved_class_qa": "docs/evidence/multi-direction-runtime-v0162/cache-unresolved-class-qa-v0162.json",
+    "cache_order_negative_controls": "docs/evidence/multi-direction-runtime-v0162/cache-order-negative-controls-v0162.json",
+    "test_only_cache_mode_qa": "docs/evidence/multi-direction-runtime-v0162/test-only-cache-mode-qa-v0162.json",
+    "direction_provenance_qa": "docs/evidence/multi-direction-runtime-v0162/provenance-qa-v0162.json",
+    "v0162_external_approval": "docs/evidence/github-governance-v0162/v0162-external-approval.json",
     "external_approval": "docs/evidence/github-governance-v0141/hit-front-v0141-external-visual-approval.json",
     "provenance": "docs/evidence/github-governance-v0141/hit-front-v0141-provenance.json",
     "integrity_repair": "docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json",
@@ -110,13 +142,13 @@
     "historical_v0150_execution": "docs/evidence/animation-runtime-v0150/execution-evidence-v0.15.0.json"
   },
   "state_consistency": {
-    "status": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED",
-    "version": "0.15.1",
-    "phase": "DEATH_ANIMATION_FRONT",
-    "current_gate": "DEATH_ANIMATION_FRONT_GROUND_CONTACT_AND_VISUAL_INTEGRITY_TECHNICALLY_QUALIFIED",
-    "feature_branch": "codex/v0.15.0-death-animation-front",
+    "status": "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED",
+    "version": "0.16.2",
+    "phase": "MULTI_DIRECTION_ANIMATION_RUNTIME",
+    "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED",
+    "feature_branch": "codex/v0.16.0-multi-direction-runtime-foundation",
     "baseline_head": "0beb4c23604f1e45736c3082f99d2e08fa1ac308",
-    "branch_base_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
+    "branch_base_commit": "514a17818469b567966293db808cafbf708f8311",
     "production_routing": "BLOCKED",
     "production_approved": false,
     "dashboard_read_only": true,
@@ -130,15 +162,21 @@
     "run_front_v1_external_visual": "APPROVED_PILOT",
     "hit_reaction_front_external_visual": "APPROVED_PILOT",
     "death_animation_front_external_visual": "APPROVED_PILOT",
-    "capability_matrix_next_candidate": "DEATH_ANIMATION_FRONT",
+    "multi_direction_animation_runtime": "APPROVED_FOUNDATION",
+    "real_directional_character_asset_coverage": "SOUTH_ONLY",
+    "capability_matrix_next_candidate": "EQUIPMENT_OUTFITS",
     "capability_count": 16,
     "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
     "always_on_dashboard_policy": "ENABLED",
     "allowed_next_actions": [
-      "governed_merge_pr_5"
+      "governed_merge_pr_6"
     ],
     "next_capability_started": false,
     "v0141_frozen_evidence": "RESTORED_AND_VERIFIED",
-    "v0150_rejected_reviewed_head": "c573ab020106ee89a36e1edb9bfae8b526d5057e"
+    "v0150_rejected_reviewed_head": "c573ab020106ee89a36e1edb9bfae8b526d5057e",
+    "v0151_merge_commit": "514a17818469b567966293db808cafbf708f8311",
+    "pr_number": 6,
+    "pr_state": "OPEN",
+    "real_pr_checks_green": true
   }
 }

@@ -97,11 +97,11 @@ class DeathAnimationFrontV0150Tests(unittest.TestCase):
         self.assertEqual(blob, "9bbc85bd5ca839b4a0fd71b45a279e852a275fc5")
 
     def test_capability_matrix_keeps_death_unapproved(self) -> None:
-        matrix = json.loads((ROOT / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))
-        death = next(item for item in matrix["capabilities"] if item["id"] == "death_animation_front")
+        matrix = json.loads((ROOT / "docs/evidence/animation-runtime-v0150/capability-matrix-validation-v0150.json").read_text(encoding="utf-8"))
+        state = json.loads((ROOT / "docs/evidence/current-state-v0.15.0.json").read_text(encoding="utf-8"))
         self.assertEqual(matrix["next_candidate"], "DEATH_ANIMATION_FRONT")
-        self.assertIn("TECHNICALLY_QUALIFIED", death["status"])
-        self.assertNotEqual(death["status"], "APPROVED_PILOT")
+        self.assertIn("TECHNICALLY_QUALIFIED", state["current_gate"])
+        self.assertNotEqual(state["death_animation_front_visual_content"], "APPROVED_PILOT")
 
 
 if __name__ == "__main__":

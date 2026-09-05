@@ -1,0 +1,285 @@
+{
+  "status": "CACHE_NC_01_TO_05_PASSED",
+  "control_count": 5,
+  "controls": {
+    "CACHE-NC-01": {
+      "request_order": [
+        "unknown_direction:sideways",
+        "invalid_vector:(NaN,0)"
+      ],
+      "results": [
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:UNKNOWN_DIRECTION_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_UNRESOLVED",
+          "production_safe": false
+        },
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "INVALID_VECTOR_UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "INVALID_VECTOR_UNRESOLVED",
+          "production_safe": false
+        }
+      ],
+      "cache_keys": [
+        "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+        "death_animation_front|UNRESOLVED:UNKNOWN_DIRECTION_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production"
+      ],
+      "cache_stats_after_first": {
+        "hits": 0,
+        "misses": 1,
+        "entries": 1
+      },
+      "cache_stats_after_second": {
+        "hits": 0,
+        "misses": 2,
+        "entries": 2
+      },
+      "observed_second_outcome": "INVALID_VECTOR_UNRESOLVED",
+      "observed_second_error_code": "INVALID_VECTOR_UNRESOLVED",
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "CACHE-NC-02": {
+      "request_order": [
+        "invalid_vector:(NaN,0)",
+        "unknown_direction:sideways"
+      ],
+      "results": [
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "INVALID_VECTOR_UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "INVALID_VECTOR_UNRESOLVED",
+          "production_safe": false
+        },
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:UNKNOWN_DIRECTION_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_UNRESOLVED",
+          "production_safe": false
+        }
+      ],
+      "cache_keys": [
+        "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+        "death_animation_front|UNRESOLVED:UNKNOWN_DIRECTION_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production"
+      ],
+      "cache_stats_after_first": {
+        "hits": 0,
+        "misses": 1,
+        "entries": 1
+      },
+      "cache_stats_after_second": {
+        "hits": 0,
+        "misses": 2,
+        "entries": 2
+      },
+      "observed_second_outcome": "UNRESOLVED",
+      "observed_second_error_code": "DIRECTION_UNRESOLVED",
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "CACHE-NC-03": {
+      "request_order": [
+        "zero_vector:(0,0)",
+        "invalid_vector:(NaN,0)"
+      ],
+      "results": [
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:ZERO_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_UNRESOLVED",
+          "production_safe": false
+        },
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "INVALID_VECTOR_UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "INVALID_VECTOR_UNRESOLVED",
+          "production_safe": false
+        }
+      ],
+      "cache_keys": [
+        "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+        "death_animation_front|UNRESOLVED:ZERO_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production"
+      ],
+      "cache_stats_after_first": {
+        "hits": 0,
+        "misses": 1,
+        "entries": 1
+      },
+      "cache_stats_after_second": {
+        "hits": 0,
+        "misses": 2,
+        "entries": 2
+      },
+      "observed_second_outcome": "INVALID_VECTOR_UNRESOLVED",
+      "observed_second_error_code": "INVALID_VECTOR_UNRESOLVED",
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "CACHE-NC-04": {
+      "request_order": [
+        "invalid_vector:(NaN,0)",
+        "zero_vector:(0,0)"
+      ],
+      "results": [
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "INVALID_VECTOR_UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "INVALID_VECTOR_UNRESOLVED",
+          "production_safe": false
+        },
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:ZERO_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "DIRECTION_UNRESOLVED",
+          "production_safe": false
+        }
+      ],
+      "cache_keys": [
+        "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+        "death_animation_front|UNRESOLVED:ZERO_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production"
+      ],
+      "cache_stats_after_first": {
+        "hits": 0,
+        "misses": 1,
+        "entries": 1
+      },
+      "cache_stats_after_second": {
+        "hits": 0,
+        "misses": 2,
+        "entries": 2
+      },
+      "observed_second_outcome": "UNRESOLVED",
+      "observed_second_error_code": "DIRECTION_UNRESOLVED",
+      "rejected": true,
+      "status": "REJECTED"
+    },
+    "CACHE-NC-05": {
+      "request_order": [
+        "invalid_vector:(NaN,0)",
+        "invalid_vector:(NaN,0)"
+      ],
+      "results": [
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "INVALID_VECTOR_UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "INVALID_VECTOR_UNRESOLVED",
+          "production_safe": false
+        },
+        {
+          "requested_direction": null,
+          "resolved_direction": null,
+          "asset_id": null,
+          "path": null,
+          "provenance_hash": null,
+          "fallback_mode": "INVALID_VECTOR_UNRESOLVED",
+          "mirror_mode": "NONE",
+          "capability_id": "death_animation_front",
+          "variant": "default",
+          "asset_revision_id": null,
+          "cache_key": "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production",
+          "error_code": "INVALID_VECTOR_UNRESOLVED",
+          "production_safe": false
+        }
+      ],
+      "cache_keys": [
+        "death_animation_front|UNRESOLVED:INVALID_VECTOR_UNRESOLVED|default|ANY|request_mode=direct|registry_mode=production"
+      ],
+      "cache_stats_after_first": {
+        "hits": 0,
+        "misses": 1,
+        "entries": 1
+      },
+      "cache_stats_after_second": {
+        "hits": 1,
+        "misses": 1,
+        "entries": 1
+      },
+      "observed_byte_or_field_identical": true,
+      "rejected": true,
+      "status": "REJECTED"
+    }
+  },
+  "method": "each request order is executed against a cleared real resolver and records keys, cache counters and observed second result"
+}

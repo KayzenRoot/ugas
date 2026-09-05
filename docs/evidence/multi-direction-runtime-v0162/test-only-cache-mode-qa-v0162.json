@@ -1,0 +1,42 @@
+{
+  "status": "TEST_ONLY_CACHE_MODE_QA_PASSED",
+  "non_production_exact": {
+    "requested_direction": "south",
+    "resolved_direction": "south",
+    "asset_id": "qa-south",
+    "path": "tests/fixtures/qa.png",
+    "provenance_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "fallback_mode": "NONE",
+    "mirror_mode": "NONE",
+    "capability_id": "qa_fixture",
+    "variant": "default",
+    "asset_revision_id": "qa-r1",
+    "cache_key": "qa_fixture|south|default|ANY|request_mode=direct|registry_mode=test",
+    "error_code": null,
+    "production_safe": false
+  },
+  "production_exact": {
+    "requested_direction": "south",
+    "resolved_direction": "south",
+    "asset_id": "death-front-v1-v0151",
+    "path": "profiles/animation/death-front-v151.json",
+    "provenance_hash": "07e8b597b6c1d7f445167af46b84901df701afce90c7faf8a19b522eeb51b335",
+    "fallback_mode": "NONE",
+    "mirror_mode": "NONE",
+    "capability_id": "death_animation_front",
+    "variant": "default",
+    "asset_revision_id": "r4-cutout-rig-v071",
+    "cache_key": "death_animation_front|south|default|ANY|request_mode=direct|registry_mode=production",
+    "error_code": null,
+    "production_safe": true
+  },
+  "policy": {
+    "request_mode": "direct",
+    "test_registry_mode": "test",
+    "production_registry_mode": "production"
+  },
+  "carried_forward_from": {
+    "path": "docs/evidence/multi-direction-runtime-v0161/test-only-production-safety-qa-v0161.json",
+    "sha256": "f2561ccb949ae6127f9b8daeee985a0a2596b82fe8d478163a01ef5ca472132d"
+  }
+}
