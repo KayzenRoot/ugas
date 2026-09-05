@@ -1,0 +1,336 @@
+{
+  "schema_version": "0.19.0",
+  "status": "REPRESENTATION_BINDING_VALID",
+  "records": [
+    {
+      "item_or_prop_id": "iron_sword",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "REQUIRED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "iron_sword:inventory_icon:r1",
+          "asset_revision": "iron_sword-representation-r1",
+          "representation_revision": "iron_sword-representation-r1",
+          "content_hash": "b444c3146626e770ae10cdab0d3912f57eec7cd769ed1c0f07414843e02466d5",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "9a963daaf2fafa39b9855a228a1bc0c3afd5ff1581c4f6b459abec4b98f292a2"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "iron_sword:world_sprite_prop:r1",
+          "asset_revision": "iron_sword-representation-r1",
+          "representation_revision": "iron_sword-representation-r1",
+          "content_hash": "4d8dba5a8fe5857252fd5d2c40fbda37edbbaf51d946408f8b755f05d3be92c1",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "3d4455164bda56b0c7207244ba201c38713e294b17e81093576da183f75e83f6"
+          }
+        },
+        "equipment_ref": {
+          "representation_id": "iron_sword:equipment_ref:r1",
+          "asset_revision": "iron_sword-representation-r1",
+          "representation_revision": "iron_sword-representation-r1",
+          "content_hash": "b444c3146626e770ae10cdab0d3912f57eec7cd769ed1c0f07414843e02466d5",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "0a6c63e506a1c907722abfb181406cc8e444a1ca4e96d2e57852528d65117e75"
+          }
+        }
+      }
+    },
+    {
+      "item_or_prop_id": "healing_potion",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "healing_potion:inventory_icon:r1",
+          "asset_revision": "healing_potion-representation-r1",
+          "representation_revision": "healing_potion-representation-r1",
+          "content_hash": "ff5e6cf97b03d18f7f551ad0ec3e8c8bfd10dba95404f121ba23201d8616c66c",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "4b9ad83420a12d901fa2612a27948de8e84e15abcee6707f3e2fda5461175ce7"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "healing_potion:world_sprite_prop:r1",
+          "asset_revision": "healing_potion-representation-r1",
+          "representation_revision": "healing_potion-representation-r1",
+          "content_hash": "b2d1bd3fc246611c0f5615f87f510a27881bb54471fc6471587e848bf90535d2",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "e781998209d984c3f19115be29854064c94219b3fc7bc3ea7ca1554c53a5f092"
+          }
+        }
+      }
+    },
+    {
+      "item_or_prop_id": "moon_ore",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "moon_ore:inventory_icon:r1",
+          "asset_revision": "moon_ore-representation-r1",
+          "representation_revision": "moon_ore-representation-r1",
+          "content_hash": "33c425a8f63da9cfc816fed2e9f7691d5e14b21691fab43491143708c06663ce",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "238486edd13317a1714ffc64b86dee0fc472594220c3d19147287eb354306cf5"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "moon_ore:world_sprite_prop:r1",
+          "asset_revision": "moon_ore-representation-r1",
+          "representation_revision": "moon_ore-representation-r1",
+          "content_hash": "0614c625acbb66a7a2bff9e46ce91f7441e1e87b339df13e5b3348f20e5fc9a1",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "ede1abd5df807a8e156532ca87f2a2b83a773a5138bc0eec6ac4cfe99c727f99"
+          }
+        }
+      }
+    },
+    {
+      "item_or_prop_id": "old_key",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "old_key:inventory_icon:r1",
+          "asset_revision": "old_key-representation-r1",
+          "representation_revision": "old_key-representation-r1",
+          "content_hash": "d971c3231d367cbf79ce80a4b1e7bea28341d0dc5b3ea2004d7b194443896000",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "841bffa294e94a23250088535578300cb16eb28de49d87b2ca671f127692b7e2"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "old_key:world_sprite_prop:r1",
+          "asset_revision": "old_key-representation-r1",
+          "representation_revision": "old_key-representation-r1",
+          "content_hash": "efd51c21d6e0057ab657bdb511b6f7c53a26e1d4e48645b23dfbd28fe1aec174",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "6d36519aab2911770dc3576092997c1061b6cc9662dcb1a867a363c4d7a422ba"
+          }
+        }
+      }
+    },
+    {
+      "item_or_prop_id": "wooden_crate",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "wooden_crate:inventory_icon:r1",
+          "asset_revision": "wooden_crate-representation-r1",
+          "representation_revision": "wooden_crate-representation-r1",
+          "content_hash": "7fa5fa9c97ba6bd3d70f8e429dbe7c3272b09dd704907d0fe08ecef43316f9d1",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "3d4ff074ad74d90fb50a2af0f71702f51145ad984dfa0b9bc383802efaeb903b"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "wooden_crate:world_sprite_prop:r1",
+          "asset_revision": "wooden_crate-representation-r1",
+          "representation_revision": "wooden_crate-representation-r1",
+          "content_hash": "a3f0847ca80856e7829c9e976a0bb562203bb38564a8e6eecd4a8af9198d8ea9",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "95d5a2ea215a9ed9ec9a640b58cccf78adc0e8e84e3766ed4a5fca377cea1c04"
+          }
+        }
+      }
+    },
+    {
+      "item_or_prop_id": "ancient_lamp",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "ancient_lamp:inventory_icon:r1",
+          "asset_revision": "ancient_lamp-representation-r1",
+          "representation_revision": "ancient_lamp-representation-r1",
+          "content_hash": "b39fed97e7eddbdd06d8619db6acb69576260bdb5c6ed62fe67045d66191b5eb",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "6606bf0ac5e8a1f2fcbc6dc60a80cb444885962bc9c8aca676497913c8a1cf29"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "ancient_lamp:world_sprite_prop:r1",
+          "asset_revision": "ancient_lamp-representation-r1",
+          "representation_revision": "ancient_lamp-representation-r1",
+          "content_hash": "bfe6528db45b0866962310145276bd3a582c5f644a2c720c1c0b024300e5165f",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "ccc9a484880de1ca738c4195ed8de422b39165f5e9899e688df6a1920b97f75b"
+          }
+        }
+      }
+    }
+  ]
+}

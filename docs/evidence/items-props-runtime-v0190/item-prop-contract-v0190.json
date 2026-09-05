@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.19.0",
+  "status": "ITEM_PROP_CONTRACT_VALID",
+  "classes": [
+    "weapon_item",
+    "consumable_item",
+    "material_item",
+    "quest_key_item",
+    "container_prop",
+    "environmental_prop"
+  ],
+  "contexts": [
+    "inventory",
+    "world",
+    "equipment-preview"
+  ],
+  "stack_policies": [
+    "STACKABLE",
+    "NON_STACKABLE",
+    "UNIQUE_INSTANCE_REQUIRED"
+  ],
+  "variant_overrides": [
+    "representation_binding",
+    "scale",
+    "collision",
+    "footprint",
+    "anchors",
+    "material_palette",
+    "equipment_ref",
+    "provenance"
+  ]
+}
