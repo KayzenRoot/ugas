@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active v0.17.1 EQUIPMENT_OUTFITS state",
+  "title": "UGAS active v0.17.1 EQUIPMENT_OUTFITS approved-foundation merge state",
   "type": "object",
   "additionalProperties": true,
   "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency", "multi_direction_animation_runtime", "real_directional_character_asset_coverage", "real_equipment_asset_coverage", "synthetic_equipment_fixture"],
@@ -10,7 +10,7 @@
     "phase": {"const": "EQUIPMENT_OUTFITS"},
     "previous_release": {"type": "object", "additionalProperties": true, "required": ["version", "review", "evidence"]},
     "current_gate": {"const": "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED"},
-    "allowed_next_actions": {"const": ["external_review_equipment_outfits_v0171"]},
+    "allowed_next_actions": {"const": ["governed_merge_pr_7"]},
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
     "external_visual_review": {"type": "object", "additionalProperties": true},

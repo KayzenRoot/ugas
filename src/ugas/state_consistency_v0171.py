@@ -8,7 +8,7 @@ from typing import Any, Mapping
 CURRENT_VERSION = "0.17.1"
 CURRENT_PHASE = "EQUIPMENT_OUTFITS"
 CURRENT_GATE = "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED"
-NEXT_ACTION = "external_review_equipment_outfits_v0171"
+NEXT_ACTION = "governed_merge_pr_7"
 BASELINE_HEAD = "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566"
 FEATURE_BRANCH = "codex/v0.17.0-equipment-outfits-runtime-foundation"
 REJECTED_V0170_HEAD = "1c73e6a2ff5259226afe9ca03ef10e1822a7fdf2"
@@ -39,11 +39,13 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
     v0170 = _mapping(history.get("v0.17.0"))
     if v0170.get("status") != "CORRECTION_REQUIRED" or v0170.get("rejected_reviewed_head") != REJECTED_V0170_HEAD: failures.append("v0170_rejection_history_invalid")
     external = _mapping(state.get("external_visual_review"))
-    if external.get("multi_direction_animation_runtime") != "APPROVED_FOUNDATION" or external.get("equipment_outfits_runtime") != "REQUIRED": failures.append("external_review_boundary_invalid")
+    if external.get("multi_direction_animation_runtime") != "APPROVED_FOUNDATION" or external.get("equipment_outfits_runtime") != "APPROVED_FOUNDATION": failures.append("external_review_boundary_invalid")
     review = _mapping(state.get("review"))
     for key, value in {"repository": "KayzenRoot/ugas", "branch_base_commit": BASELINE_HEAD, "feature_branch": FEATURE_BRANCH, "pr_number": 7, "pr_state": "OPEN", "no_self_merge_until_external_approval": True}.items():
         if review.get(key) != value: failures.append(f"review:{key}")
     if review.get("real_pr_checks_green") not in {True, False}: failures.append("review:real_pr_checks_green")
+    if review.get("merge_authorization") != "APPROVED_TO_MERGE": failures.append("review:merge_authorization")
+    if review.get("approved_head_sha") != "98ea74e91e18dfee32c583df005e151e13d6e9f7": failures.append("review:approved_head_sha")
     nested = _mapping(state.get("state_consistency"))
     nested_expected = {"status": CURRENT_GATE, "version": CURRENT_VERSION, "phase": CURRENT_PHASE, "current_gate": CURRENT_GATE, "feature_branch": FEATURE_BRANCH, "branch_base_commit": BASELINE_HEAD, "production_routing": "BLOCKED", "production_approved": False, "new_generation": 0, "allowed_next_actions": [NEXT_ACTION], "next_capability_started": False}
     for key, value in nested_expected.items():

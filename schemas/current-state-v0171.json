@@ -9,7 +9,7 @@
     "version": {"const": "0.17.1"},
     "phase": {"const": "EQUIPMENT_OUTFITS"},
     "current_gate": {"const": "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED"},
-    "allowed_next_actions": {"const": ["external_review_equipment_outfits_v0171"]},
+    "allowed_next_actions": {"const": ["governed_merge_pr_7"]},
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
     "always_on_dashboard_policy": {"const": "ENABLED"},
