@@ -64,10 +64,17 @@ def sha256_bytes(value: bytes) -> str:
 
 
 def git_blob_id(value: bytes) -> str:
-    # Git's normal text filter hashes the LF-normalized blob while the
-    # filesystem authority hash below intentionally remains the exact bytes.
+    # Git's normal text filter hashes the LF-normalized blob.  The authority
+    # filesystem hash below is canonicalized to the Windows Get-FileHash byte
+    # form so the same checked-in JSON binds identically on Windows and CI.
     normalized = value.replace(b"\r\n", b"\n")
     return hashlib.sha1(f"blob {len(normalized)}\0".encode("ascii") + normalized).hexdigest()
+
+
+def authority_filesystem_bytes(value: bytes) -> bytes:
+    """Return the stable CRLF byte form used by the frozen Windows fixture."""
+
+    return value.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
 
 
 class ItemPropRuntimeError(ValueError):
@@ -405,7 +412,7 @@ def load_equipment_authority(path: str | Path) -> EquipmentAuthority:
         key = (asset["equipment_id"], asset["slot"], asset["variant"], asset["asset_revision"])
         _require(key not in index, "EQUIPMENT_AUTHORITY_DUPLICATE_IDENTITY")
         index[key] = copy.deepcopy(asset)
-    return EquipmentAuthority("0.17.1", source, sha256_bytes(raw).upper(), git_blob_id(raw), copy.deepcopy(assets), index)
+    return EquipmentAuthority("0.17.1", source, sha256_bytes(authority_filesystem_bytes(raw)).upper(), git_blob_id(raw), copy.deepcopy(assets), index)
 
 
 @dataclass(frozen=True)
