@@ -6,6 +6,8 @@
 
 Evidence is under `docs/evidence/items-props-runtime-v0190/`; the complete execution contract is [REVIEW-v0.19.0.md](REVIEW-v0.19.0.md).
 
+Historical v0.16.2 governance remains immutable and explicitly bound: `multi_direction_animation_runtime=APPROVED_FOUNDATION`, `real_directional_character_asset_coverage=SOUTH_ONLY`, `pr_number=6`, `pr_state=OPEN`, `governed_merge_pr_6`, `previous_release=0.15.1`, and `Merge after recorded external approval and exact post-bookkeeping reproof`.
+
 ## Historical v0.18.2 CREATURES_MONSTERS — derived variant/state contract technically qualified / external review required
 
 The active phase is `CREATURES_MONSTERS` on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`. The active gate is `CREATURES_MONSTERS_DERIVED_VARIANT_AND_STATE_CONTRACT_TECHNICALLY_QUALIFIED`; the only allowed next action is `external_review_creatures_monsters_v0182`. v0.18.1 head `b52dc26d935fd84b25a991ae81c5d508b0a39807` is frozen `CORRECTION_REQUIRED` history. The correction validates fully materialized derived variants, separates `variant_revision` from inherited directional `asset_revision`, rejects mixed effective direction revisions, restores locomotion as REQUIRED for moving archetypes, and keeps stationary locomotion UNSUPPORTED. `equipment_outfits=APPROVED_FOUNDATION`, `v0181_external_review=CORRECTION_REQUIRED`, `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Items/Props and all downstream asset families remain forbidden. PR #8 remains OPEN and must not be merged before Sol's external review.
