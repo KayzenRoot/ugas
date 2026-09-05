@@ -64,6 +64,8 @@ def main() -> int:
     parser.add_argument("--validation-json", required=True)
     parser.add_argument("--gates-json", required=True)
     parser.add_argument("--front-compatibility-exit", required=True)
+    parser.add_argument("--preflight-json")
+    parser.add_argument("--known-gap", action="append")
     args = parser.parse_args()
     output = Path(args.output_dir)
     output.mkdir(parents=True, exist_ok=True)
