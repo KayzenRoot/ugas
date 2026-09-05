@@ -1,3 +1,7 @@
+## Current v0.18.0 boundary
+
+The active v0.18.0 slice is `CREATURES_MONSTERS` runtime foundation. No ComfyUI/SAM2/diffusion generation is authorized; synthetic creature fixtures are `TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and real creature coverage is `NONE`.
+
 # ComfyUI integration notes - UGAS v0.17.1
 
 The active v0.17.1 slice is the EQUIPMENT_OUTFITS runtime and QA integrity correction, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. Wearables are declarative and synthetic TEST_ONLY fixtures only; the production registry is empty and real equipment coverage is `NONE_OR_EXPLICITLY_APPROVED_ONLY`. The v0.17.0 candidate remains rejected history and the v0.16.2 multi-direction runtime remains approved foundation history. External equipment/outfits review is required; creatures, monsters and downstream asset families remain out of scope.

@@ -1,4 +1,10 @@
-# UGAS checkpoint - v0.17.1 / v0.18.0 transition
+# UGAS checkpoint - v0.18.0 CREATURES_MONSTERS
+
+## v0.18.0 CREATURES_MONSTERS — technically qualified / external review required
+
+The active phase is `CREATURES_MONSTERS` on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on merged v0.17.1 main at `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`. The active gate is `CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; the only allowed next action is `external_review_creatures_monsters_v0180`. The package defines six explicit creature archetypes, topology/support models, scale and footprint, collision/pivot/bounds/anchors, canonical state routing, truthful direction coverage, acyclic variant lineage, cache identity and fail-closed resolution. The six colored asymmetric fixtures and contact/state-routing sheets are `TEST_ONLY` synthetic QA only; `real_creature_asset_coverage=NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. `equipment_outfits=APPROVED_FOUNDATION`; `next_capability_started=false`; Items/Props and all downstream asset families remain forbidden. The v0.18.0 PR is GitHub-first and must remain OPEN after exact-head Actions/artifact proof; do not merge it.
+
+Evidence is under `docs/evidence/creatures-monsters-runtime-v0180/`, including the contract, six-archetype matrix, topology/support, scale/footprint, collision, animation states, direction coverage, variant lineage, cache identity, provenance, determinism, CR-NC-01..15, production registry, fixture manifest, contact sheet, state-routing sheet, state consistency and execution evidence. The complete execution contract is [REVIEW-v0.18.0.md](REVIEW-v0.18.0.md).
 
 ## v0.17.1 EQUIPMENT_OUTFITS — approved foundation / governed merge authorized
 

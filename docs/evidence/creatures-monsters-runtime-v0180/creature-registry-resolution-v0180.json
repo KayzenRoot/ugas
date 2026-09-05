@@ -1,0 +1,90 @@
+{
+  "schema_version": "0.18.0",
+  "status": "RESOLVER_FAIL_CLOSED_VALID",
+  "positive_resolution": {
+    "result": "RESOLVED",
+    "creature_id": "fixture_humanoid_biped",
+    "variant": "fixture_humanoid_biped_base",
+    "requested_direction": "south",
+    "resolved_direction": "south",
+    "requested_state": "idle",
+    "resolved_state": "idle",
+    "topology_id": "topology_humanoid_biped_v1",
+    "locomotion_class": "bipedal",
+    "support_model": "two_foot_contact",
+    "rig_family": "rig_humanoid_biped_v1",
+    "base_scale": {
+      "x": 0.82,
+      "y": 0.94
+    },
+    "footprint": {
+      "width": 42.0,
+      "depth": 28.0
+    },
+    "collision_profile": {
+      "shape": "capsule",
+      "width": 42.0,
+      "height": 76.0,
+      "pivot": {
+        "x": 96.0,
+        "y": 174.0
+      },
+      "bounds": {
+        "left": 30.0,
+        "top": 18.0,
+        "right": 162.0,
+        "bottom": 178.0
+      }
+    },
+    "anchors": {
+      "origin": {
+        "x": 96.0,
+        "y": 174.0
+      },
+      "center": {
+        "x": 96.0,
+        "y": 96.0
+      },
+      "contact": {
+        "x": 96.0,
+        "y": 174.0
+      }
+    },
+    "fallback_mode": "NONE",
+    "cache_key": "creature_id=fixture_humanoid_biped|archetype=humanoid_biped|variant=fixture_humanoid_biped_base|direction=south|state=idle|rig_topology_revision=creature-topology-v0180|asset_revision=fixture_humanoid_biped-r1|normalization=DIRECTION_ID|request_mode=preview|registry_mode=test",
+    "cache_hit": false,
+    "error_code": null,
+    "rejection_class": null,
+    "provenance_hash": "293210fd6e1ad5eda2e5641c1e1e0f026a746c3e448c1cc32807996f3d117b66",
+    "production_safe": false,
+    "detail": ""
+  },
+  "unsupported_state": {
+    "result": "REJECTED",
+    "creature_id": "fixture_stationary_structure",
+    "variant": "fixture_stationary_structure_base",
+    "requested_direction": "south",
+    "resolved_direction": null,
+    "requested_state": "locomotion",
+    "resolved_state": null,
+    "topology_id": null,
+    "locomotion_class": null,
+    "support_model": null,
+    "rig_family": null,
+    "base_scale": null,
+    "footprint": null,
+    "collision_profile": null,
+    "anchors": null,
+    "fallback_mode": "NONE",
+    "cache_key": "creature_id=fixture_stationary_structure|archetype=stationary_structure|variant=fixture_stationary_structure_base|direction=south|state=locomotion|rig_topology_revision=creature-topology-v0180|asset_revision=fixture_stationary_structure-r1|normalization=DIRECTION_ID|request_mode=preview|registry_mode=test",
+    "cache_hit": false,
+    "error_code": "CREATURE_STATE_UNSUPPORTED",
+    "rejection_class": "RUNTIME_REJECTION",
+    "provenance_hash": null,
+    "production_safe": false,
+    "detail": ""
+  },
+  "production_registry_empty": {
+    "entries": 0
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.18.0",
+  "status": "TOPOLOGY_SUPPORT_VALID",
+  "records": [
+    {
+      "archetype": "humanoid_biped",
+      "topology_id": "topology_humanoid_biped_v1",
+      "locomotion_class": "bipedal",
+      "support_model": "two_foot_contact"
+    },
+    {
+      "archetype": "quadruped",
+      "topology_id": "topology_quadruped_v1",
+      "locomotion_class": "quadrupedal",
+      "support_model": "four_foot_contact"
+    },
+    {
+      "archetype": "flying_winged",
+      "topology_id": "topology_flying_winged_v1",
+      "locomotion_class": "flying",
+      "support_model": "wing_or_airborne"
+    },
+    {
+      "archetype": "serpentine",
+      "topology_id": "topology_serpentine_v1",
+      "locomotion_class": "serpentine",
+      "support_model": "belly_contact"
+    },
+    {
+      "archetype": "amorphous",
+      "topology_id": "topology_amorphous_v1",
+      "locomotion_class": "sliding",
+      "support_model": "mass_contact"
+    },
+    {
+      "archetype": "stationary_structure",
+      "topology_id": "topology_stationary_structure_v1",
+      "locomotion_class": "stationary",
+      "support_model": "fixed_contact"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-# UGAS 0.17.1
+# UGAS 0.18.0
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente a fundação EQUIPMENT_OUTFITS determinística sobre o cutout R4 aprovado, com composição modular TEST_ONLY; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente a fundação CREATURES_MONSTERS determinística com seis fixtures sintéticas TEST_ONLY; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
 O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o piloto aprovado de RUN_FRONT_V1. O v0.15.0, v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. Nenhum piloto equivale a aprovação de produção.
 
@@ -11,12 +11,12 @@ O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o pil
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
-python scripts/validation/validate_state_consistency_v0171.py
-python scripts/validation/validate_equipment_runtime_v0171.py
-python scripts/validation/validate_direction_runtime_v0162.py
+python scripts/validation/validate_state_consistency_v0180.py
+python scripts/validation/run_creatures_monsters_runtime_v0180.py
 python scripts/validation/validate_v1_capability_matrix.py
+python scripts/validation/validate_direction_runtime_v0162.py
 python scripts/validation/run_validation.py
-python scripts/validation/run_animation_runtime_v0151.py
+python scripts/validation/validate_front_animation_v0151_regression.py
 python scripts/validation/run_observability_v0122.py
 python scripts/validation/build_review_index_v0122.py --json
 python scripts/validation/validate_review_index_v0122.py docs/evidence/review-index-v0.12.2.json
@@ -30,7 +30,11 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.17.1.md](REVIEW-v0.17.1.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.18.0.md](REVIEW-v0.18.0.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+
+## v0.18.0 CREATURES_MONSTERS runtime foundation
+
+The active gate is `CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`. The runtime defines six explicit archetypes, topology/support/scale/footprint/collision/anchors, canonical animation-state contracts, truthful v0.16.2 direction IDs, acyclic allowlisted variant lineage, cache identity bound to creature/variant/direction/state/topology/asset revisions, and fail-closed unsupported requests. Six colored asymmetric fixtures and their contact/state-routing sheets are `TEST_ONLY`; real creature asset coverage is `NONE`, production registry is empty, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The v0.18.0 PR must remain OPEN for `external_review_creatures_monsters_v0180`; do not merge or start Items/Props.
 
 ## v0.17.1 EQUIPMENT_OUTFITS runtime and QA integrity
 

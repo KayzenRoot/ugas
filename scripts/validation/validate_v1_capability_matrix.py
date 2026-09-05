@@ -36,12 +36,12 @@ def main() -> int:
     direction = next(item for item in capabilities if item["id"] == "multi_direction_animation_runtime")
     equipment = next(item for item in capabilities if item["id"] == "equipment_outfits")
     creatures = next(item for item in capabilities if item["id"] == "creatures_monsters")
-    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "NEXT NECESSARY" or value["next_candidate"] != "CREATURES_MONSTERS":
+    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] not in {"NEXT NECESSARY", "TECHNICALLY_QUALIFIED_FOUNDATION"} or value["next_candidate"] != "CREATURES_MONSTERS":
         failures.append("next-candidate-is-not-creatures-monsters")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
-    output = ROOT / "docs/evidence/github-governance-v0180/capability-matrix-validation-v0171.json"
+    output = ROOT / "docs/evidence/creatures-monsters-runtime-v0180/capability-matrix-validation-v0180.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
