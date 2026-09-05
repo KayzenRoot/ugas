@@ -1,0 +1,78 @@
+"""Fail-closed active-state contract for the v0.20.0 tileset foundation."""
+
+from __future__ import annotations
+
+from typing import Any, Mapping
+
+
+CURRENT_VERSION = "0.20.0"
+CURRENT_PHASE = "ENVIRONMENT_TILESETS"
+CURRENT_GATE = "ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED"
+NEXT_ACTION = "external_review_environment_tilesets_v0200"
+BASELINE_HEAD = "93293d21f301e6d64232a992eb92533db9741118"
+FEATURE_BRANCH = "codex/v0.20.0-environment-tilesets-runtime-foundation"
+
+
+def _mapping(value: Any) -> Mapping[str, Any]:
+    return value if isinstance(value, Mapping) else {}
+
+
+def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = "", review_text: str = "", roadmap_text: str = "") -> dict[str, Any]:
+    failures: list[str] = []
+    expected = {
+        "schema_version": CURRENT_VERSION,
+        "version": CURRENT_VERSION,
+        "phase": CURRENT_PHASE,
+        "current_gate": CURRENT_GATE,
+        "creatures_monsters": "APPROVED_FOUNDATION",
+        "items_props": "APPROVED_FOUNDATION",
+        "environment_tilesets_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+        "real_environment_asset_coverage": "NONE",
+        "synthetic_environment_fixture": "TEST_ONLY",
+        "production_routing": "BLOCKED",
+        "production_approved": False,
+        "new_generation": 0,
+        "always_on_dashboard_policy": "ENABLED",
+        "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
+    }
+    failures.extend(f"{key}_invalid" for key, value in expected.items() if state.get(key) != value)
+    if state.get("allowed_next_actions") != [NEXT_ACTION]:
+        failures.append("allowed_next_actions_invalid")
+    forbidden = state.get("forbidden_actions", [])
+    required_forbidden = {"direct_main_push", "force_push_or_history_rewrite", "enable_production_routing", "new_generation", "maps_minimap_assets", "ui_asset_family", "vfx_asset_family", "orchestration_runtime_hardening"}
+    if not isinstance(forbidden, list) or not required_forbidden.issubset(forbidden):
+        failures.append("forbidden_boundaries_incomplete")
+    previous = _mapping(state.get("previous_release"))
+    if previous.get("version") != "0.19.1" or previous.get("merge_commit") != BASELINE_HEAD:
+        failures.append("previous_release_must_bind_v0191_merge")
+    history = _mapping(state.get("correction_history"))
+    v0191 = _mapping(history.get("v0.19.1"))
+    if v0191.get("status") != "APPROVED_FOUNDATION" or v0191.get("merge_commit") != BASELINE_HEAD:
+        failures.append("v0191_approval_history_invalid")
+    external = _mapping(state.get("external_visual_review"))
+    if external.get("items_props_runtime") != "APPROVED_FOUNDATION" or external.get("environment_tilesets_runtime") != "REQUIRED":
+        failures.append("external_review_boundary_invalid")
+    review = _mapping(state.get("review"))
+    review_expected = {"repository": "KayzenRoot/ugas", "baseline_head": BASELINE_HEAD, "branch_base_commit": BASELINE_HEAD, "feature_branch": FEATURE_BRANCH, "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": True, "pr_state": review.get("pr_state"), "merge_authorization": "NOT_AUTHORIZED", "external_review_required": True, "do_not_merge": True}
+    for key, value in review_expected.items():
+        if key == "pr_state":
+            if value not in {"NOT_CREATED", "OPEN"}:
+                failures.append("review:pr_state")
+        elif review.get(key) != value:
+            failures.append(f"review:{key}")
+    if not isinstance(review.get("pr_number"), int) or review["pr_number"] < 0:
+        failures.append("review:pr_binding")
+    nested = _mapping(state.get("state_consistency"))
+    nested_expected = {"status": CURRENT_GATE, "version": CURRENT_VERSION, "phase": CURRENT_PHASE, "current_gate": CURRENT_GATE, "feature_branch": FEATURE_BRANCH, "branch_base_commit": BASELINE_HEAD, "production_routing": "BLOCKED", "production_approved": False, "new_generation": 0, "allowed_next_actions": [NEXT_ACTION], "next_capability_started": False}
+    for key, value in nested_expected.items():
+        if nested.get(key) != value:
+            failures.append(f"state_consistency:{key}")
+    active = "\n".join((checkpoint_text, review_text, roadmap_text))
+    literals = ("0.20.0", "0.19.1", CURRENT_PHASE, CURRENT_GATE, NEXT_ACTION, "items_props=APPROVED_FOUNDATION", "environment_tilesets_runtime=TECHNICALLY_QUALIFIED_FOUNDATION", "real_environment_asset_coverage=NONE", "synthetic_environment_fixture=TEST_ONLY", "production_approved=false", "production_routing=BLOCKED", "new_generation=0", "TEST_ONLY_TILE_QA_BOARD", "external_review_environment_tilesets_v0200")
+    for literal in literals:
+        if literal.casefold() not in active.casefold():
+            failures.append(f"active_documents_missing:{literal}")
+    return {"status": CURRENT_GATE if not failures else "STATE_CONSISTENCY_FAILED", "schema_version": CURRENT_VERSION, "failures": failures, "checked": {"version": state.get("version"), "phase": state.get("phase"), "current_gate": state.get("current_gate"), "feature_branch": review.get("feature_branch"), "branch_base_commit": review.get("branch_base_commit"), "next_action": state.get("allowed_next_actions"), "production_routing": state.get("production_routing"), "new_generation": state.get("new_generation"), "pr_number": review.get("pr_number"), "pr_state": review.get("pr_state")}}
+
+
+__all__ = ["BASELINE_HEAD", "CURRENT_GATE", "CURRENT_PHASE", "CURRENT_VERSION", "FEATURE_BRANCH", "NEXT_ACTION", "validate_state_consistency"]

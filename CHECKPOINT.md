@@ -1,4 +1,12 @@
-# UGAS checkpoint - v0.19.1 ITEMS_PROPS
+# UGAS checkpoint - v0.20.0 ENVIRONMENT_TILESETS
+
+## v0.20.0 ENVIRONMENT_TILESETS — runtime foundation / external review required
+
+`version=0.20.0`; `phase=ENVIRONMENT_TILESETS`; `current_gate=ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; `items_props=APPROVED_FOUNDATION`; `environment_tilesets_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `real_environment_asset_coverage=NONE`; `synthetic_environment_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_environment_tilesets_v0200]`; `next_capability_started=false`. The v0.19.1 Items/Props foundation is the previous approved release at merge `93293d21f301e6d64232a992eb92533db9741118`; its evidence remains frozen. The v0.20.0 evidence is under `docs/evidence/environment-tilesets-runtime-v0200/` and the complete contract is [REVIEW-v0.20.0.md](REVIEW-v0.20.0.md).
+
+The runtime defines six stable tile classes, metric-driven grid conversion, explicit layers, canonical cardinal/eight-neighbor masks, fail-closed autotile resolution, byte-derived edge/seam verification, atlas/standalone identity, collision/navigation metadata, typed Items/Props sockets, acyclic variants, complete cache identity and provenance. All visual content is deterministic synthetic `TEST_ONLY` QA; the production registry is empty. `TEST_ONLY_TILE_QA_BOARD` is the only board label. No production environment art, maps/minimap, UI, VFX, orchestration hardening or gameplay balance is authorized.
+
+All 20 hard gates and ET-NC-01..18 are recorded as passing. The two independent subprocess generations compare all output bytes. The next action is external review; create exactly one PR to main and stop with it OPEN after the three exact GitHub contexts and bounded artifact. Do not merge v0.20.0.
 
 ## v0.19.1 ITEMS_PROPS — approved foundation / governed merge ready
 

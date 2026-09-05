@@ -1,0 +1,21 @@
+# UGAS v0.20.0 review boundary — ENVIRONMENT_TILESETS
+
+The direct user request accompanying the attached PDF is empty. The attached PDF is therefore the governing executable prompt, kept distinct from that empty direct request. This document records the complete v0.20.0 Environment/Tilesets runtime foundation and its bounded handoff to Sol.
+
+The active phase is `ENVIRONMENT_TILESETS`, with gate `ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`. The previous approved release is v0.19.1 at merged main `93293d21f301e6d64232a992eb92533db9741118`; the v0.19.1 Items/Props evidence and approval record remain historical and byte-preserved. The feature branch is `codex/v0.20.0-environment-tilesets-runtime-foundation`, based on that exact merge.
+
+The runtime contract defines six stable class IDs: `ground_terrain`, `path_road`, `wall_structure`, `water_liquid`, `cliff_height`, and `vegetation_overlay`. Biome and lore labels are metadata only. It defines positive metric-driven tile/grid conversion, explicit acyclic layers (`ground_base`, `ground_overlay`, `structure`, `liquid`, `cliff`, `vegetation_overlay`), collision/navigation metadata on tile records, canonical N/NE/E/SE/S/SW/W/NW masks, cardinal-only and eight-neighbor policies, explicit autotile variants, byte-derived edge signatures, seam comparison, per-family atlas regions, variant lineage and revalidation, complete cache identity, and provenance.
+
+Every visual binding contains an exact standalone PNG path, file SHA-256, decoded-pixel hash, dimensions, atlas rectangle, atlas revision and provenance. Atlas region pixels are compared with the standalone bytes. The seam comparator is pixel-based and rejects a one-pixel mutation; metadata alone cannot establish compatibility. The resolver has no nearest-neighbor or silent unsupported-transition fallback.
+
+Items/Props remains the sole owner of world props. Environment tilesets expose only typed prop sockets and reject direct prop asset paths. No maps, minimaps, UI, VFX, orchestration hardening, production art, real environment assets or gameplay balance are included.
+
+The fixture pack is deterministic synthetic QA only and is labelled `TEST_ONLY_TILE_QA_BOARD`. It contains both adjacency policies and all six classes. The production registry is empty; `real_environment_asset_coverage=NONE`; `synthetic_environment_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; and `new_generation=0`.
+
+The required hard gates are recorded in `docs/evidence/environment-tilesets-runtime-v0200/hard-gates-v0200.json`: all 20 PDF-named gates pass, including exact PNG/atlas identity, seam, collision/navigation, variants, cache isolation, provenance, production boundary and two independent subprocess generations. ET-NC-01 through ET-NC-18 are executed against real semantic inputs and reject with the expected classes in `negative-controls-v0200.json`.
+
+The required evidence is under `docs/evidence/environment-tilesets-runtime-v0200/`, including the manifest, atlas indexes, standalone tiles, atlas/mask/seam/collision/layer QA sheets, edge records, identity records, production registry, TEST_ONLY board, deterministic two-run result, negative controls and execution evidence. The v0.19.1 Items/Props, v0.18.2 Creatures, v0.17.1 Equipment and v0.16.2 Direction evidence remains outside this slice and is validated read-only.
+
+The expected handoff state is `version=0.20.0`, `phase=ENVIRONMENT_TILESETS`, `current_gate=ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`, `items_props=APPROVED_FOUNDATION`, `environment_tilesets_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_environment_asset_coverage=NONE`, `synthetic_environment_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, `allowed_next_actions=[external_review_environment_tilesets_v0200]`, and `next_capability_started=false`.
+
+GitHub automation remains enabled and PR-first. Create exactly one PR to `main`, require the three exact contexts (`UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke`, `UGAS Review / evidence`) and the bounded artifact, then stop with the v0.20.0 PR OPEN for Sol. Do not merge v0.20.0, start Maps/Minimap, enable production, or claim production environment art or game maps.

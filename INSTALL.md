@@ -1,4 +1,4 @@
-# Installing UGAS 0.19.1
+# Installing UGAS 0.20.0
 
 ## Requirements
 
@@ -12,8 +12,8 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e .
 $env:PYTHONPATH = "src"
-python scripts/validation/validate_state_consistency_v0191.py
-python scripts/validation/run_items_props_runtime_v0191.py
+python scripts/validation/validate_state_consistency_v0200.py
+python scripts/validation/run_environment_tilesets_runtime_v0200.py
 python scripts/validation/validate_direction_runtime_v0162.py
 python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
