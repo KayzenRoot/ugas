@@ -35,9 +35,9 @@ def validate(manifest_path: Path, root: Path = ROOT) -> dict[str, Any]:
     if {item.get("id") for item in manifest["gates"]} != EXPECTED_GATES: failures.append("gate-set-invalid")
     if manifest["overall_status"] != "PASS" or any(item.get("status") != "PASS" for item in manifest["gates"]): failures.append("overall-status-not-pass")
     scope = manifest["scope"]
-    if scope["version"] != "0.17.1" or scope["phase"] != "EQUIPMENT_OUTFITS" or scope["current_gate"] != "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED" or scope["allowed_next_actions"] != ["external_review_equipment_outfits_v0171"] or scope["new_generation"] != 0: failures.append("active-scope-invalid")
+    if scope["version"] != "0.17.1" or scope["phase"] != "EQUIPMENT_OUTFITS" or scope["current_gate"] != "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED" or scope["allowed_next_actions"] != ["governed_merge_pr_7"] or scope["new_generation"] != 0: failures.append("active-scope-invalid")
     current = manifest["current_state"]
-    if current["version"] != "0.17.1" or current["phase"] != "EQUIPMENT_OUTFITS" or current["production_approved"] is not False or current["production_routing"] != "BLOCKED" or current["allowed_next_actions"] != ["external_review_equipment_outfits_v0171"]: failures.append("current-state-boundary-invalid")
+    if current["version"] != "0.17.1" or current["phase"] != "EQUIPMENT_OUTFITS" or current["production_approved"] is not False or current["production_routing"] != "BLOCKED" or current["allowed_next_actions"] != ["governed_merge_pr_7"]: failures.append("current-state-boundary-invalid")
     evidence = manifest["equipment_outfits_evidence"]
     for key, relative in evidence.items():
         path = Path(relative)
