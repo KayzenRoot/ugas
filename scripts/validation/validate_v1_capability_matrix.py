@@ -36,8 +36,9 @@ def main() -> int:
     direction = next(item for item in capabilities if item["id"] == "multi_direction_animation_runtime")
     equipment = next(item for item in capabilities if item["id"] == "equipment_outfits")
     creatures = next(item for item in capabilities if item["id"] == "creatures_monsters")
-    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] not in {"NEXT NECESSARY", "TECHNICALLY_QUALIFIED_FOUNDATION"} or value["next_candidate"] != "CREATURES_MONSTERS":
-        failures.append("next-candidate-is-not-creatures-monsters")
+    items = next(item for item in capabilities if item["id"] == "items_props")
+    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "NEXT NECESSARY" or value["next_candidate"] != "ITEMS_PROPS":
+        failures.append("next-candidate-is-not-items-props")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
