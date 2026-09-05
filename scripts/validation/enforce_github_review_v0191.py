@@ -23,4 +23,6 @@ if __name__ == "__main__":
         if _code(path) != 0: failures.append(f"{name}-not-pass")
     boundary = manifest.get("production_boundary", {})
     if boundary.get("approved") is not False or boundary.get("routing") != "BLOCKED" or boundary.get("new_generation") != 0 or boundary.get("real_item_prop_asset_coverage") != "NONE": failures.append("production-boundary-invalid")
-    result = {"schema_version": "0.19.1", "status": "PASS" if not failures else "FAIL", "failures": failures, "external_review_required": True, "do_not_merge": True}; print(json.dumps(result, indent=2, ensure_ascii=False)); raise SystemExit(0 if not failures else 1)
+    review_boundary = manifest.get("review_boundary", {})
+    if review_boundary.get("external_review_required") is not False or review_boundary.get("do_not_merge") is not False or review_boundary.get("merge_authorization") != "APPROVED_TO_MERGE": failures.append("review-boundary-not-merge-authorized")
+    result = {"schema_version": "0.19.1", "status": "PASS" if not failures else "FAIL", "failures": failures, "external_review_required": False, "do_not_merge": False, "merge_authorization": "APPROVED_TO_MERGE"}; print(json.dumps(result, indent=2, ensure_ascii=False)); raise SystemExit(0 if not failures else 1)

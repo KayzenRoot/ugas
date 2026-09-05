@@ -243,7 +243,7 @@ jobs:
             echo "- Head: \`$HEAD_REF\`"
             echo "- PR number: \`$PR_NUMBER\`"
             echo '- Production: `real_item_prop_asset_coverage=NONE`, `synthetic_item_prop_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`; production registry is empty.'
-            echo '- Final stop: external review required; v0.19.0 remains rejected history, v0.19.1 must remain unmerged, and environment/maps/UI/VFX scope must not start.'
+            echo '- Final stop: v0.19.1 bookkeeping reproof is complete; v0.19.0 remains rejected history, PR #9 is merge-authorized through the protected path, and environment/maps/UI/VFX scope must not start before that merge.'
             echo "- Artifact: \`ugas-review-evidence-pr-${PR_NUMBER}-${HEAD_REF}\`"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload bounded GitHub review artifact
