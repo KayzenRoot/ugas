@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.17.1",
+  "status": "OCCLUSION_RUNTIME_QA_PASSED",
+  "positive": [
+    {
+      "mask_id": "helmet-head-mask",
+      "target_part": "head",
+      "policy": "explicit-layer-alpha",
+      "mask_hash": "77c2c188862930de2267c29259ea9fc5ff3d0045ef684a524e39a624ce52ed45",
+      "geometry": {
+        "type": "rectangle",
+        "x": 220,
+        "y": 45,
+        "width": 100,
+        "height": 84
+      },
+      "affected_pixel_count": 2357,
+      "status": "APPLIED"
+    }
+  ],
+  "negative": {
+    "mutation": "shift geometry without updating content hash",
+    "observed_error_code": "OCCLUSION_MASK_HASH_MISMATCH"
+  },
+  "policy": "explicit-layer-alpha"
+}

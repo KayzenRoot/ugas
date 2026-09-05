@@ -1,4 +1,4 @@
-# UGAS V1 capability matrix - v0.16.2
+# UGAS V1 capability matrix - v0.17.1
 
 This matrix is a planning contract for the functional rounds. v0.16.2 is the externally approved multi-direction runtime foundation; real directional character artwork remains SOUTH_ONLY and production remains blocked. The rejected v0.16.0 and v0.16.1 corrections remain historical.
 
@@ -12,8 +12,8 @@ This matrix is a planning contract for the functional rounds. v0.16.2 is the ext
 | `hit_reaction_front` | Hit reaction - front | APPROVED_PILOT | v0.14.1 closed |
 | `death_animation_front` | Death animation - front | TECHNICALLY_QUALIFIED_EXTERNAL_VISUAL_REQUIRED | current |
 | `multi_direction_animation_runtime` | Multi-direction animation/runtime | APPROVED_FOUNDATION | v0.16.2 closed |
-| `equipment_outfits` | Equipment / outfits | Next capability / not started | v0.17.0 |
-| `creatures_monsters` | Creatures / monsters | Pending | later V1 |
+| `equipment_outfits` | Equipment / outfits | APPROVED_FOUNDATION | v0.17.1 closed |
+| `creatures_monsters` | Creatures / monsters | NEXT NECESSARY | v0.18.0 |
 | `items_props` | Items / props | Pending | later V1 |
 | `environment_tilesets` | Environment / tilesets | Pending | later V1 |
 | `maps_minimap_assets` | Maps / minimap assets | Pending | later V1 |
@@ -23,4 +23,4 @@ This matrix is a planning contract for the functional rounds. v0.16.2 is the ext
 
 ## Freeze and gate
 
-The current functional candidate after the governed v0.16.2 MULTI_DIRECTION_ANIMATION_RUNTIME closure is `EQUIPMENT_OUTFITS`. `multi_direction_animation_runtime=APPROVED_FOUNDATION`, `next_candidate=EQUIPMENT_OUTFITS`, `next_capability_started=false`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Equipment/outfits may begin only on the new v0.17.0 branch after PR #6 is merged through the protected path.
+The current functional candidate after the governed v0.17.1 EQUIPMENT_OUTFITS closure is `CREATURES_MONSTERS`. `equipment_outfits=APPROVED_FOUNDATION`, `multi_direction_animation_runtime=APPROVED_FOUNDATION`, `next_candidate=CREATURES_MONSTERS`, `next_capability_started=false`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Creatures/monsters may begin only on a new v0.18.0 branch after PR #7 is merged through the protected path.

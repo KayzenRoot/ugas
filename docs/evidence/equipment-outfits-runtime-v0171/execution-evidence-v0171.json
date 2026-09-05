@@ -1,0 +1,121 @@
+{
+  "schema_version": "0.17.1",
+  "status": "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "failed": 0,
+  "gates": {
+    "equipment_schema_valid": {
+      "id": "equipment_schema_valid",
+      "status": "PASS",
+      "detail": "v0.17.1 TEST_ONLY manifest and separate empty production registry satisfy the contract"
+    },
+    "slot_identity_valid": {
+      "id": "slot_identity_valid",
+      "status": "PASS",
+      "detail": "all equipment identities are unique and slot-bound"
+    },
+    "anchor_binding_valid": {
+      "id": "anchor_binding_valid",
+      "status": "PASS",
+      "detail": "all anchors bind to explicit R4 joints"
+    },
+    "layer_order_deterministic": {
+      "id": "layer_order_deterministic",
+      "status": "PASS",
+      "detail": "explicit acyclic 13-group layer graph"
+    },
+    "replacement_conflict_arbitration_executes": {
+      "id": "replacement_conflict_arbitration_executes",
+      "status": "PASS",
+      "detail": "winner selected by priority then equipment_id and loser is traceable/suppressed"
+    },
+    "replacement_hide_pixel_proof": {
+      "id": "replacement_hide_pixel_proof",
+      "status": "PASS",
+      "detail": "winner survives in pixels and the named base part is cleared before rendering"
+    },
+    "occlusion_mask_runtime_executes": {
+      "id": "occlusion_mask_runtime_executes",
+      "status": "PASS",
+      "detail": "asset-bound deterministic geometry mask is applied and counted"
+    },
+    "direction_coverage_truthful": {
+      "id": "direction_coverage_truthful",
+      "status": "PASS",
+      "detail": "synthetic and real coverage remain SOUTH_ONLY"
+    },
+    "animation_compatibility_truthful": {
+      "id": "animation_compatibility_truthful",
+      "status": "PASS",
+      "detail": "front animation timing and event markers are immutable"
+    },
+    "mirror_runtime_truthful": {
+      "id": "mirror_runtime_truthful",
+      "status": "PASS",
+      "detail": "permitted mirror request fails closed until pixel mirroring exists"
+    },
+    "secondary_anchor_fail_closed": {
+      "id": "secondary_anchor_fail_closed",
+      "status": "PASS",
+      "detail": "declared secondary_anchor is explicitly rejected because no runtime effect is implemented"
+    },
+    "test_only_never_production_safe": {
+      "id": "test_only_never_production_safe",
+      "status": "PASS",
+      "detail": "synthetic records cannot enter the production authority"
+    },
+    "cache_context_integrity": {
+      "id": "cache_context_integrity",
+      "status": "PASS",
+      "detail": "cache key binds equipment, direction, animation, asset and registry context"
+    },
+    "base_asset_immutability_preserved": {
+      "id": "base_asset_immutability_preserved",
+      "status": "PASS",
+      "detail": "base pixels remain unchanged"
+    },
+    "composition_is_non_destructive": {
+      "id": "composition_is_non_destructive",
+      "status": "PASS",
+      "detail": "composition returns a new RGBA image and preserves metadata"
+    },
+    "two_run_composition_deterministic": {
+      "id": "two_run_composition_deterministic",
+      "status": "PASS",
+      "detail": "equivalent requests produce identical pixels and trace"
+    },
+    "synthetic_fixture_not_in_production_registry": {
+      "id": "synthetic_fixture_not_in_production_registry",
+      "status": "PASS",
+      "detail": "production authority contains zero assets"
+    },
+    "production_routing_blocked": {
+      "id": "production_routing_blocked",
+      "status": "PASS",
+      "detail": "compose requires production_routing=BLOCKED"
+    },
+    "negative_control_harness_strict": {
+      "id": "negative_control_harness_strict",
+      "status": "PASS",
+      "detail": "all fifteen controls require observed rejection, expected error code and expected rejection class"
+    }
+  },
+  "negative_controls": {
+    "status": "EQ_NC_01_TO_15_PASSED",
+    "count": 15,
+    "strict": true
+  },
+  "test_registry": {
+    "synthetic_fixture_count": 8,
+    "authority": "TEST_ONLY"
+  },
+  "production_registry": {
+    "asset_count": 0,
+    "authority": "PRODUCTION"
+  },
+  "production_coverage": [],
+  "real_equipment_asset_coverage": "NONE_OR_EXPLICITLY_APPROVED_ONLY",
+  "synthetic_fixture": "TEST_ONLY",
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "contact_sheet": "docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-contact-sheet-v0171.png"
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.17.0",
+  "status": "SLOT_LAYER_GRAPH_VALID",
+  "layer_order": [
+    "behind_legs",
+    "behind_torso",
+    "behind_head",
+    "back",
+    "torso_replace_or_overlay",
+    "arm_left",
+    "arm_right",
+    "leg_overlays",
+    "feet",
+    "head",
+    "front_torso",
+    "front_head",
+    "accessory"
+  ],
+  "dependencies": {
+    "behind_legs": [],
+    "behind_torso": [
+      "behind_legs"
+    ],
+    "behind_head": [
+      "behind_torso"
+    ],
+    "back": [
+      "behind_torso"
+    ],
+    "torso_replace_or_overlay": [
+      "back"
+    ],
+    "arm_left": [
+      "torso_replace_or_overlay"
+    ],
+    "arm_right": [
+      "arm_left"
+    ],
+    "leg_overlays": [
+      "arm_right"
+    ],
+    "feet": [
+      "leg_overlays"
+    ],
+    "head": [
+      "feet"
+    ],
+    "front_torso": [
+      "head"
+    ],
+    "front_head": [
+      "front_torso"
+    ],
+    "accessory": [
+      "front_head"
+    ]
+  },
+  "replacement_conflict_policy": "highest_priority_then_equipment_id"
+}

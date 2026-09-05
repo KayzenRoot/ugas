@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.17.1",
+  "status": "DIRECTION_ANIMATION_COMPATIBILITY_QA_PASSED",
+  "production_direction_coverage": [
+    "south"
+  ],
+  "animation_profiles": [
+    "idle-front-v1",
+    "walk-front-v1",
+    "run-front-v1",
+    "attack-front-v2",
+    "hit-front-v1",
+    "death-front-v151"
+  ],
+  "missing_direction_policy": "FAIL_CLOSED",
+  "mirror_policy": "FAIL_CLOSED_UNIMPLEMENTED"
+}

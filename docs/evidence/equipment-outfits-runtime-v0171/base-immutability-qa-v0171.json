@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.17.1",
+  "status": "BASE_IMMUTABILITY_QA_PASSED",
+  "base_sha256": "283396e156af89274ff464fb04a45bf15ece22afccf507930f81f1e373e63892",
+  "composition_before": "283396e156af89274ff464fb04a45bf15ece22afccf507930f81f1e373e63892",
+  "composition_after": "283396e156af89274ff464fb04a45bf15ece22afccf507930f81f1e373e63892",
+  "destructive_mutation_negative_control": {
+    "id": "EQ-NC-11",
+    "mutation": "mutate after-image through shared base comparator",
+    "target_gate": "EQ-NC-11",
+    "expected": {
+      "error_code": "BASE_PIXEL_MUTATION",
+      "rejection_class": "SEMANTIC_COMPARATOR_REJECTION"
+    },
+    "expected_error_code": "BASE_PIXEL_MUTATION",
+    "expected_rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+    "rejected": true,
+    "status": "REJECTED",
+    "passed": true,
+    "observed": {
+      "result": "REJECTED",
+      "error_code": "BASE_PIXEL_MUTATION",
+      "rejection_class": "SEMANTIC_COMPARATOR_REJECTION",
+      "detail": "BASE_PIXEL_MUTATION"
+    }
+  }
+}

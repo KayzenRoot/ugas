@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.17.0",
+  "status": "EQUIPMENT_OUTFITS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
+  "failed": 0,
+  "gates": {
+    "equipment_schema_valid": {
+      "id": "equipment_schema_valid",
+      "status": "PASS",
+      "detail": "v0.17.0 fixture and empty production registry satisfy the runtime contract"
+    },
+    "slot_identity_valid": {
+      "id": "slot_identity_valid",
+      "status": "PASS",
+      "detail": "all equipment identities have known slots and unique IDs"
+    },
+    "anchor_binding_valid": {
+      "id": "anchor_binding_valid",
+      "status": "PASS",
+      "detail": "all anchors bind to R4 joints with explicit offsets and policies"
+    },
+    "layer_order_deterministic": {
+      "id": "layer_order_deterministic",
+      "status": "PASS",
+      "detail": "explicit acyclic 13-group layer graph"
+    },
+    "replacement_hide_rules_consistent": {
+      "id": "replacement_hide_rules_consistent",
+      "status": "PASS",
+      "detail": "overlay/replace modes and hide parts are explicit"
+    },
+    "occlusion_mask_binding_valid": {
+      "id": "occlusion_mask_binding_valid",
+      "status": "PASS",
+      "detail": "every wearable provides explicit asset-bound masks"
+    },
+    "direction_coverage_truthful": {
+      "id": "direction_coverage_truthful",
+      "status": "PASS",
+      "detail": "all synthetic fixture coverage is SOUTH_ONLY"
+    },
+    "animation_compatibility_truthful": {
+      "id": "animation_compatibility_truthful",
+      "status": "PASS",
+      "detail": "all six approved front profiles and immutable timing/event markers are declared"
+    },
+    "mirror_requires_equipment_permission": {
+      "id": "mirror_requires_equipment_permission",
+      "status": "PASS",
+      "detail": "north fails closed; only explicit TEST_ONLY preview fallback resolves south"
+    },
+    "test_only_never_production_safe": {
+      "id": "test_only_never_production_safe",
+      "status": "PASS",
+      "detail": "synthetic records cannot enter production-safe registry"
+    },
+    "cache_key_contains_equipment_direction_animation_variant": {
+      "id": "cache_key_contains_equipment_direction_animation_variant",
+      "status": "PASS",
+      "detail": "cache key includes complete equipment, direction, animation, revision and registry context"
+    },
+    "base_asset_immutability_preserved": {
+      "id": "base_asset_immutability_preserved",
+      "status": "PASS",
+      "detail": "base input and base digest remain unchanged"
+    },
+    "composition_is_non_destructive": {
+      "id": "composition_is_non_destructive",
+      "status": "PASS",
+      "detail": "composition returns a new RGBA image and preserves frame metadata"
+    },
+    "two_run_composition_deterministic": {
+      "id": "two_run_composition_deterministic",
+      "status": "PASS",
+      "detail": "same canonical outfit composes to identical bytes, trace and cache identity"
+    },
+    "synthetic_fixture_not_in_production_registry": {
+      "id": "synthetic_fixture_not_in_production_registry",
+      "status": "PASS",
+      "detail": "production registry is intentionally empty"
+    },
+    "production_routing_blocked": {
+      "id": "production_routing_blocked",
+      "status": "PASS",
+      "detail": "runtime compose requires production_routing=BLOCKED"
+    }
+  },
+  "negative_controls": {
+    "status": "EQ_NC_01_TO_15_PASSED",
+    "count": 15
+  },
+  "production_coverage": [],
+  "real_equipment_asset_coverage": "NONE_OR_EXPLICITLY_APPROVED_ONLY",
+  "synthetic_fixture": "TEST_ONLY",
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "contact_sheet": "docs/evidence/equipment-outfits-runtime-v0170/outfit-contact-sheet-v0170.png"
+}

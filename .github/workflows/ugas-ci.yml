@@ -34,10 +34,14 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.16.2 state consistency
+      - name: Active v0.17.1 state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0162.py
+        run: python scripts/validation/validate_state_consistency_v0171.py
+      - name: Equipment/outfits runtime and QA integrity validation
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_equipment_runtime_v0171.py
       - name: Official validation
         env:
           PYTHONPATH: src

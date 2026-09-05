@@ -86,7 +86,7 @@ class DirectionRuntimeV0162Tests(unittest.TestCase):
                 self.assertIsNone(result.direction)
 
     def test_state_and_qa_evidence_bind_v0162(self) -> None:
-        state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        state = json.loads((ROOT / "docs/evidence/current-state-v0.16.2.json").read_text(encoding="utf-8"))
         cache_qa = json.loads((EVIDENCE / "cache-unresolved-class-qa-v0162.json").read_text(encoding="utf-8"))
         mode_qa = json.loads((EVIDENCE / "test-only-cache-mode-qa-v0162.json").read_text(encoding="utf-8"))
         self.assertEqual(state["version"], "0.16.2")

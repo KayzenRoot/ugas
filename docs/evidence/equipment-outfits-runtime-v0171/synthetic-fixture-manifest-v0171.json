@@ -1,0 +1,698 @@
+{
+  "schema_version": "0.17.1",
+  "manifest_type": "equipment-outfits-runtime",
+  "production_registry": false,
+  "registry_authority": "TEST_ONLY_SYNTHETIC_FIXTURES",
+  "rig_revision": "r4-cutout-rig-v071",
+  "rig_manifest": "docs/evidence/r4-cutout-rig-v071.json",
+  "layer_order": [
+    "behind_legs",
+    "behind_torso",
+    "behind_head",
+    "back",
+    "torso_replace_or_overlay",
+    "arm_left",
+    "arm_right",
+    "leg_overlays",
+    "feet",
+    "head",
+    "front_torso",
+    "front_head",
+    "accessory"
+  ],
+  "layer_dependencies": {
+    "behind_legs": [],
+    "behind_torso": [
+      "behind_legs"
+    ],
+    "behind_head": [
+      "behind_torso"
+    ],
+    "back": [
+      "behind_torso"
+    ],
+    "torso_replace_or_overlay": [
+      "back"
+    ],
+    "arm_left": [
+      "torso_replace_or_overlay"
+    ],
+    "arm_right": [
+      "arm_left"
+    ],
+    "leg_overlays": [
+      "arm_right"
+    ],
+    "feet": [
+      "leg_overlays"
+    ],
+    "head": [
+      "feet"
+    ],
+    "front_torso": [
+      "head"
+    ],
+    "front_head": [
+      "front_torso"
+    ],
+    "accessory": [
+      "front_head"
+    ]
+  },
+  "replacement_conflict_policy": "highest_priority_then_equipment_id",
+  "mirror_policy": "manifest-permission-only",
+  "assets": [
+    {
+      "equipment_id": "fixture-cape-blue",
+      "slot": "back",
+      "variant": "blue",
+      "layer_group": "back",
+      "priority": 10,
+      "anchors": [
+        {
+          "anchor_id": "fixture-cape-blue-anchor",
+          "joint": "neck",
+          "offset": {
+            "x": 0,
+            "y": 32
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "overlay",
+        "replace_group": null,
+        "hide_parts": []
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "cape-torso-mask",
+          "target_part": "torso_pelvis",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 202,
+            "y": 108,
+            "width": 136,
+            "height": 70
+          },
+          "mask_hash": "f9bb78e2d3d71efec543e9877db0863e141094dce55f3fca85ab93e44c6cd2b6"
+        }
+      ],
+      "asset_revision": "fixture-cape-blue-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [
+        "tail-seam-left"
+      ],
+      "fixture": {
+        "shape": "panel",
+        "size": [
+          118,
+          116
+        ],
+        "color": [
+          42,
+          80,
+          175,
+          178
+        ]
+      },
+      "provenance_hash": "3924a0025963c95b8560e16607c48cf7b57e79f1ba96934b75a16c55e423ba37"
+    },
+    {
+      "equipment_id": "fixture-coat-amber",
+      "slot": "torso",
+      "variant": "amber",
+      "layer_group": "torso_replace_or_overlay",
+      "priority": 20,
+      "anchors": [
+        {
+          "anchor_id": "fixture-coat-amber-anchor",
+          "joint": "shoulder_center",
+          "offset": {
+            "x": 0,
+            "y": 52
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "overlay",
+        "replace_group": null,
+        "hide_parts": []
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "coat-torso-mask",
+          "target_part": "torso_pelvis",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 230,
+            "y": 150,
+            "width": 76,
+            "height": 26
+          },
+          "mask_hash": "4fbbdd6afc1cff62adafe4599fe2d0e562b7c53bce6034cba1d1a57804881b24"
+        }
+      ],
+      "asset_revision": "fixture-coat-amber-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [],
+      "fixture": {
+        "shape": "panel",
+        "size": [
+          102,
+          112
+        ],
+        "color": [
+          207,
+          137,
+          38,
+          205
+        ]
+      },
+      "provenance_hash": "c8151f58647869185d3be799a240d8335b441e5707668f97ae4060adee0e327a"
+    },
+    {
+      "equipment_id": "fixture-coat-replacement-low",
+      "slot": "torso",
+      "variant": "amber-low",
+      "layer_group": "torso_replace_or_overlay",
+      "priority": 20,
+      "anchors": [
+        {
+          "anchor_id": "fixture-coat-replacement-low-anchor",
+          "joint": "shoulder_center",
+          "offset": {
+            "x": 0,
+            "y": 52
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "replace",
+        "replace_group": "torso-armor",
+        "hide_parts": [
+          "torso_pelvis"
+        ]
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "coat-low-mask",
+          "target_part": "torso_pelvis",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 238,
+            "y": 140,
+            "width": 64,
+            "height": 54
+          },
+          "mask_hash": "a67fbff8a8923691331d1a8d4d12ecb1f4a7476f64b5834073b01534ae15498e"
+        }
+      ],
+      "asset_revision": "fixture-coat-replacement-low-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [],
+      "fixture": {
+        "shape": "panel",
+        "size": [
+          70,
+          86
+        ],
+        "color": [
+          214,
+          102,
+          32,
+          235
+        ]
+      },
+      "provenance_hash": "ae87f841ade69b98793d19f4c01410ffb905999f06b85cd5e5ce5a568e90f8b5"
+    },
+    {
+      "equipment_id": "fixture-coat-replacement-high",
+      "slot": "torso",
+      "variant": "amber-high",
+      "layer_group": "torso_replace_or_overlay",
+      "priority": 40,
+      "anchors": [
+        {
+          "anchor_id": "fixture-coat-replacement-high-anchor",
+          "joint": "shoulder_center",
+          "offset": {
+            "x": 0,
+            "y": 52
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "replace",
+        "replace_group": "torso-armor",
+        "hide_parts": [
+          "torso_pelvis"
+        ]
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "coat-high-mask",
+          "target_part": "torso_pelvis",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 238,
+            "y": 140,
+            "width": 64,
+            "height": 54
+          },
+          "mask_hash": "3dc1a563cc339c29d43bea411d638d1739535a518c87e89a191c85c9194e5c61"
+        }
+      ],
+      "asset_revision": "fixture-coat-replacement-high-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [],
+      "fixture": {
+        "shape": "panel",
+        "size": [
+          72,
+          90
+        ],
+        "color": [
+          24,
+          183,
+          214,
+          240
+        ]
+      },
+      "provenance_hash": "7b715d813d852a758e2326a7155236df99108bac7be75cb4ccf52af89fd5cd34"
+    },
+    {
+      "equipment_id": "fixture-helmet-teal",
+      "slot": "head",
+      "variant": "teal",
+      "layer_group": "front_head",
+      "priority": 30,
+      "anchors": [
+        {
+          "anchor_id": "fixture-helmet-teal-anchor",
+          "joint": "nose",
+          "offset": {
+            "x": 0,
+            "y": -8
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "overlay",
+        "replace_group": null,
+        "hide_parts": []
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "helmet-head-mask",
+          "target_part": "head",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 220,
+            "y": 45,
+            "width": 100,
+            "height": 84
+          },
+          "mask_hash": "77c2c188862930de2267c29259ea9fc5ff3d0045ef684a524e39a624ce52ed45"
+        }
+      ],
+      "asset_revision": "fixture-helmet-teal-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [],
+      "fixture": {
+        "shape": "ellipse",
+        "size": [
+          72,
+          30
+        ],
+        "color": [
+          32,
+          177,
+          168,
+          218
+        ]
+      },
+      "provenance_hash": "909368b4194625d73e052b999669db1d1d2f2d4f5c55e4173e20be66269acf91"
+    },
+    {
+      "equipment_id": "fixture-boots-red",
+      "slot": "feet",
+      "variant": "red",
+      "layer_group": "feet",
+      "priority": 15,
+      "anchors": [
+        {
+          "anchor_id": "fixture-boots-red-anchor",
+          "joint": "ankle_left",
+          "offset": {
+            "x": 0,
+            "y": 12
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "overlay",
+        "replace_group": null,
+        "hide_parts": []
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "boots-foot-mask",
+          "target_part": "left_shin_foot",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 276,
+            "y": 360,
+            "width": 56,
+            "height": 80
+          },
+          "mask_hash": "203cb5156fc0db000a0a7f3af4197ba058d3d4a4597b6da3da7b5d8f5e4aa119"
+        }
+      ],
+      "asset_revision": "fixture-boots-red-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [],
+      "fixture": {
+        "shape": "capsule",
+        "size": [
+          44,
+          22
+        ],
+        "color": [
+          190,
+          47,
+          55,
+          225
+        ]
+      },
+      "provenance_hash": "42acd91a6d0cb249314be9ff5a52af091026d04fad161ab4c969a2ffb279293b"
+    },
+    {
+      "equipment_id": "fixture-shoulder-gold",
+      "slot": "arms",
+      "variant": "gold",
+      "layer_group": "arm_left",
+      "priority": 25,
+      "anchors": [
+        {
+          "anchor_id": "fixture-shoulder-gold-anchor",
+          "joint": "shoulder_left",
+          "offset": {
+            "x": 12,
+            "y": 22
+          },
+          "rotation_inheritance": true,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "overlay",
+        "replace_group": null,
+        "hide_parts": []
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "shoulder-arm-mask",
+          "target_part": "left_upper_arm",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 292,
+            "y": 112,
+            "width": 54,
+            "height": 90
+          },
+          "mask_hash": "36fed2b8bc0f3ece9cb8a0bbcc1bf0a695d60818902632f478a186cbc4c85a33"
+        }
+      ],
+      "asset_revision": "fixture-shoulder-gold-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [
+        "left-shoulder-only"
+      ],
+      "fixture": {
+        "shape": "diamond",
+        "size": [
+          36,
+          36
+        ],
+        "color": [
+          238,
+          186,
+          42,
+          230
+        ]
+      },
+      "provenance_hash": "c65c9e156f1dbcef37b41102cef679b5ba7038ca274d28da68f59ad2bb094496"
+    },
+    {
+      "equipment_id": "fixture-charm-violet",
+      "slot": "accessory",
+      "variant": "violet",
+      "layer_group": "accessory",
+      "priority": 5,
+      "anchors": [
+        {
+          "anchor_id": "fixture-charm-violet-anchor",
+          "joint": "neck",
+          "offset": {
+            "x": 0,
+            "y": 18
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "overlay",
+        "replace_group": null,
+        "hide_parts": []
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "charm-torso-mask",
+          "target_part": "torso_pelvis",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 252,
+            "y": 110,
+            "width": 36,
+            "height": 35
+          },
+          "mask_hash": "0cdf97961c53ade8b0fba3c29f3c27a5cc47a17db6c8a3473396ea39db3c2896"
+        }
+      ],
+      "asset_revision": "fixture-charm-violet-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [],
+      "fixture": {
+        "shape": "ellipse",
+        "size": [
+          22,
+          22
+        ],
+        "color": [
+          155,
+          78,
+          214,
+          235
+        ]
+      },
+      "provenance_hash": "4df2cdbb999fd3b757e8d93c32397d61c03ce7835f6147663cb0069358f0ed7a"
+    }
+  ]
+}

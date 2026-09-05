@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.17.1 bounded GitHub review manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "manifest_type", "repository", "pull_request", "scope", "changed_files", "change_statistics", "current_state", "tests", "validation", "overall_status", "gates", "equipment_outfits_evidence", "production_boundary", "security_boundary"],
+  "properties": {
+    "schema_version": {"const": "0.17.1"},
+    "manifest_type": {"const": "github-ci-equipment-outfits-review"},
+    "pull_request": {"type": "object", "additionalProperties": true, "required": ["number", "base_sha", "head_sha", "merge_base_sha", "head_branch", "base_branch"]},
+    "scope": {"type": "object", "additionalProperties": true, "required": ["version", "phase", "current_gate", "allowed_next_actions", "new_generation"]},
+    "changed_files": {"type": "array"},
+    "change_statistics": {"type": "object"},
+    "current_state": {"type": "object"},
+    "tests": {"type": "object"},
+    "validation": {"type": "object"},
+    "overall_status": {"type": "string"},
+    "gates": {"type": "array"},
+    "equipment_outfits_evidence": {"type": "object"},
+    "production_boundary": {"type": "object"},
+    "security_boundary": {"type": "object"}
+  }
+}

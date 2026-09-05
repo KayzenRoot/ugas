@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.17.0 equipment and outfits runtime manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "manifest_type", "production_registry", "rig_revision", "rig_manifest", "layer_order", "layer_dependencies", "replacement_conflict_policy", "mirror_policy", "assets"],
+  "properties": {
+    "schema_version": {"const": "0.17.0"},
+    "manifest_type": {"const": "equipment-outfits-runtime"},
+    "production_registry": {"type": "boolean"},
+    "rig_revision": {"const": "r4-cutout-rig-v071"},
+    "rig_manifest": {"type": "string", "minLength": 1},
+    "layer_order": {"type": "array", "minItems": 13, "items": {"type": "string"}},
+    "layer_dependencies": {"type": "object", "additionalProperties": true},
+    "replacement_conflict_policy": {"const": "highest_priority_then_equipment_id"},
+    "mirror_policy": {"const": "manifest-permission-only"},
+    "assets": {"type": "array", "items": {"type": "object", "additionalProperties": true}}
+  }
+}

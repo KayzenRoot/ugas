@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.17.0",
+  "status": "TEST_ONLY_CONTACT_SHEET_CREATED",
+  "path": "docs/evidence/equipment-outfits-runtime-v0170/outfit-contact-sheet-v0170.png",
+  "base_sha256": "283396e156af89274ff464fb04a45bf15ece22afccf507930f81f1e373e63892",
+  "records": [
+    {
+      "label": "BASE / no wearable",
+      "equipment_ids": [],
+      "base_direction": "south",
+      "test_only": false
+    },
+    {
+      "label": "TEST_ONLY / head + torso",
+      "equipment_ids": [
+        "fixture-helmet-teal",
+        "fixture-coat-amber"
+      ],
+      "base_direction": "south",
+      "test_only": true
+    },
+    {
+      "label": "TEST_ONLY / cape + boots",
+      "equipment_ids": [
+        "fixture-cape-blue",
+        "fixture-boots-red"
+      ],
+      "base_direction": "south",
+      "test_only": true
+    },
+    {
+      "label": "TEST_ONLY / full modular set",
+      "equipment_ids": [
+        "fixture-cape-blue",
+        "fixture-coat-amber",
+        "fixture-helmet-teal",
+        "fixture-boots-red",
+        "fixture-shoulder-gold",
+        "fixture-charm-violet"
+      ],
+      "base_direction": "south",
+      "test_only": true
+    },
+    {
+      "label": "TEST_ONLY / asymmetric shoulder",
+      "equipment_ids": [
+        "fixture-shoulder-gold"
+      ],
+      "base_direction": "south",
+      "test_only": true
+    },
+    {
+      "label": "TEST_ONLY / accessory + coat",
+      "equipment_ids": [
+        "fixture-coat-amber",
+        "fixture-charm-violet"
+      ],
+      "base_direction": "south",
+      "test_only": true
+    }
+  ],
+  "production_art": false
+}

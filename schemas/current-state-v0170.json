@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active v0.17.0 EQUIPMENT_OUTFITS state",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency", "multi_direction_animation_runtime", "real_directional_character_asset_coverage", "real_equipment_asset_coverage", "synthetic_equipment_fixture"],
+  "properties": {
+    "schema_version": {"const": "0.17.0"},
+    "version": {"const": "0.17.0"},
+    "phase": {"const": "EQUIPMENT_OUTFITS"},
+    "previous_release": {"type": "object", "additionalProperties": true, "required": ["version", "review", "evidence"]},
+    "current_gate": {"const": "EQUIPMENT_OUTFITS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED"},
+    "allowed_next_actions": {"const": ["external_review_equipment_outfits_v0170"]},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "external_visual_review": {"type": "object", "additionalProperties": true},
+    "always_on_dashboard_policy": {"const": "ENABLED"},
+    "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
+    "new_generation": {"const": 0},
+    "review": {"type": "object", "additionalProperties": true},
+    "incident": {"type": "object", "additionalProperties": true},
+    "evidence": {"type": "object", "additionalProperties": true},
+    "state_consistency": {"type": "object", "additionalProperties": true},
+    "multi_direction_animation_runtime": {"const": "APPROVED_FOUNDATION"},
+    "real_directional_character_asset_coverage": {"const": "SOUTH_ONLY"},
+    "real_equipment_asset_coverage": {"const": "NONE_OR_EXPLICITLY_APPROVED_ONLY"},
+    "synthetic_equipment_fixture": {"const": "TEST_ONLY"}
+  }
+}

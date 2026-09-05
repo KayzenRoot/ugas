@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.17.1",
+  "status": "EQUIPMENT_CACHE_QA_PASSED",
+  "sample_cache_key": "equipment_id=fixture-helmet-teal|slot=head|variant=teal|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-helmet-teal-r1|request_mode=direct|registry_mode=test",
+  "cache_stats": {
+    "hits": 16,
+    "misses": 11,
+    "entries": 11
+  },
+  "context_fields": [
+    "equipment_id",
+    "slot",
+    "variant",
+    "rig_revision",
+    "direction",
+    "animation_capability",
+    "animation_profile",
+    "asset_revision",
+    "request_mode",
+    "registry_mode"
+  ],
+  "stale_cache_negative_control": {
+    "id": "EQ-NC-08",
+    "mutation": "poison real cache entries across two request orders",
+    "target_gate": "EQ-NC-08",
+    "expected": {
+      "error_code": "STALE_CACHE_CONTEXT",
+      "rejection_class": "RUNTIME_REJECTION"
+    },
+    "expected_error_code": "STALE_CACHE_CONTEXT",
+    "expected_rejection_class": "RUNTIME_REJECTION",
+    "rejected": true,
+    "status": "REJECTED",
+    "passed": true,
+    "observed": {
+      "result": "REJECTED",
+      "error_code": "STALE_CACHE_CONTEXT",
+      "rejection_class": "RUNTIME_REJECTION",
+      "request_orders": [
+        {
+          "request_order": [
+            "fixture-coat-amber",
+            "fixture-helmet-teal"
+          ],
+          "cache_key": "equipment_id=fixture-helmet-teal|slot=head|variant=teal|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-helmet-teal-r1|request_mode=direct|registry_mode=test",
+          "observed": {
+            "result": "REJECTED",
+            "equipment_id": "fixture-helmet-teal",
+            "slot": "head",
+            "variant": "teal",
+            "requested_direction": "south",
+            "resolved_direction": null,
+            "animation_profile": "idle-front-v1",
+            "animation_capability": "front-compatible",
+            "rig_revision": "r4-cutout-rig-v071",
+            "asset_revision": "fixture-helmet-teal-r1",
+            "cache_key": "equipment_id=fixture-helmet-teal|slot=head|variant=teal|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-helmet-teal-r1|request_mode=direct|registry_mode=test",
+            "fallback_mode": "FAIL_CLOSED",
+            "mirror_mode": "NONE",
+            "error_code": "STALE_CACHE_CONTEXT",
+            "rejection_class": "RUNTIME_REJECTION",
+            "production_safe": false
+          }
+        },
+        {
+          "request_order": [
+            "fixture-helmet-teal",
+            "fixture-coat-amber"
+          ],
+          "cache_key": "equipment_id=fixture-coat-amber|slot=torso|variant=amber|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-coat-amber-r1|request_mode=direct|registry_mode=test",
+          "observed": {
+            "result": "REJECTED",
+            "equipment_id": "fixture-coat-amber",
+            "slot": "torso",
+            "variant": "amber",
+            "requested_direction": "south",
+            "resolved_direction": null,
+            "animation_profile": "idle-front-v1",
+            "animation_capability": "front-compatible",
+            "rig_revision": "r4-cutout-rig-v071",
+            "asset_revision": "fixture-coat-amber-r1",
+            "cache_key": "equipment_id=fixture-coat-amber|slot=torso|variant=amber|rig_revision=r4-cutout-rig-v071|direction=south|animation_capability=front-compatible|animation_profile=idle-front-v1|asset_revision=fixture-coat-amber-r1|request_mode=direct|registry_mode=test",
+            "fallback_mode": "FAIL_CLOSED",
+            "mirror_mode": "NONE",
+            "error_code": "STALE_CACHE_CONTEXT",
+            "rejection_class": "RUNTIME_REJECTION",
+            "production_safe": false
+          }
+        }
+      ]
+    }
+  }
+}

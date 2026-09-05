@@ -1,0 +1,78 @@
+{
+  "schema_version": "0.18.0",
+  "record_type": "forward_only_external_approval",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 7,
+  "branch": "codex/v0.17.0-equipment-outfits-runtime-foundation",
+  "base_branch": "main",
+  "base_sha": "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566",
+  "reviewed_runtime_head": "98ea74e91e18dfee32c583df005e151e13d6e9f7",
+  "reviewer": "Sol external review",
+  "decision": "APPROVED_FOUNDATION / APPROVED_TO_MERGE",
+  "scope": "v0.17.1 EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY",
+  "approval_boundary": {
+    "equipment_outfits": "APPROVED_FOUNDATION",
+    "runtime_and_qa_only": true,
+    "synthetic_equipment_fixture": "TEST_ONLY",
+    "real_equipment_asset_coverage": "NONE_OR_EXPLICITLY_APPROVED_ONLY",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "creatures_monsters": "NEXT NECESSARY AFTER GOVERNED MERGE",
+    "items_props_and_downstream_asset_families": "NOT_AUTHORIZED"
+  },
+  "required_contexts": [
+    {
+      "name": "UGAS CI / unit-and-validation",
+      "run_id": 33944144212,
+      "job_id": 101247052432,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33944144212/job/101247052432"
+    },
+    {
+      "name": "UGAS CI / docker-smoke",
+      "run_id": 33944144212,
+      "job_id": 101247052306,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33944144212/job/101247052306"
+    },
+    {
+      "name": "UGAS Review / evidence",
+      "run_id": 33944144217,
+      "job_id": 101247052388,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33944144217/job/101247052388"
+    }
+  ],
+  "artifact": {
+    "name": "ugas-review-evidence-pr-7-98ea74e91e18dfee32c583df005e151e13d6e9f7",
+    "id": 9962915453,
+    "digest": "sha256:1e4b80e1750f65cab7d8d53336bb649f5e03d2af22ebd5e012fb9054e0f7e4fc",
+    "run_id": 33944144217,
+    "verified_metadata": true,
+    "expired": false
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "current-state approved-foundation and merge-ready truth",
+      "equipment_outfits APPROVED_FOUNDATION",
+      "creatures_monsters NEXT NECESSARY",
+      "forward-only approval and governance evidence",
+      "active capability matrix pointer"
+    ],
+    "forbidden_changes": [
+      "equipment runtime behavior",
+      "v0.17.1 TEST_ONLY pixels or hashes",
+      "v0.16.2 direction evidence",
+      "approved front asset bytes or hashes",
+      "production routing",
+      "new generation"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any runtime or content hash change"
+  }
+}
