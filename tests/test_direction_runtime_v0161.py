@@ -84,7 +84,7 @@ class DirectionRuntimeV0161Tests(unittest.TestCase):
         self.assertEqual(state["version"], "0.16.2")
         self.assertEqual(state["review"]["pr_number"], 6)
         self.assertEqual(state["review"]["pr_state"], "OPEN")
-        self.assertFalse(state["review"]["real_pr_checks_green"])
+        self.assertTrue(state["review"]["real_pr_checks_green"])
         self.assertEqual(state["review"]["feature_branch"], "codex/v0.16.0-multi-direction-runtime-foundation")
         self.assertFalse(state["production_approved"])
         self.assertEqual(state["production_routing"], "BLOCKED")
