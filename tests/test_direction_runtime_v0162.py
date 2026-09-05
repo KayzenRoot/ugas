@@ -93,7 +93,9 @@ class DirectionRuntimeV0162Tests(unittest.TestCase):
         self.assertEqual(state["previous_release"]["version"], "0.15.1")
         self.assertEqual(state["review"]["pr_number"], 6)
         self.assertEqual(state["review"]["pr_state"], "OPEN")
-        self.assertFalse(state["review"]["real_pr_checks_green"])
+        self.assertTrue(state["review"]["real_pr_checks_green"])
+        self.assertEqual(state["review"]["merge_authorization"], "APPROVED_TO_MERGE")
+        self.assertEqual(state["multi_direction_animation_runtime"], "APPROVED_FOUNDATION")
         self.assertEqual(cache_qa["status"], "CACHE_UNRESOLVED_CLASS_QA_PASSED")
         self.assertEqual(mode_qa["status"], "TEST_ONLY_CACHE_MODE_QA_PASSED")
 

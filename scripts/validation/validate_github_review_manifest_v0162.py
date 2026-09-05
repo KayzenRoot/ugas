@@ -60,10 +60,10 @@ def validate(manifest_path: Path, visual_path: Path, root: Path = ROOT) -> dict[
     if manifest["overall_status"] != expected_overall:
         failures.append("overall-status-does-not-match-gates")
     scope = manifest["scope"]
-    if scope["version"] != "0.16.2" or scope["phase"] != "MULTI_DIRECTION_ANIMATION_RUNTIME" or scope["current_gate"] != "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED" or scope["allowed_next_actions"] != ["external_review_multi_direction_runtime_v0162"] or scope["new_generation"] != 0:
+    if scope["version"] != "0.16.2" or scope["phase"] != "MULTI_DIRECTION_ANIMATION_RUNTIME" or scope["current_gate"] != "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED" or scope["allowed_next_actions"] != ["governed_merge_pr_6"] or scope["new_generation"] != 0:
         failures.append("active-scope-invalid")
     current = manifest["current_state"]
-    if current["version"] != "0.16.2" or current["production_approved"] is not False or current["production_routing"] != "BLOCKED" or current["review"].get("pr_number") != 6 or current["review"].get("pr_state") != "OPEN" or current["review"].get("real_pr_checks_green") is not False:
+    if current["version"] != "0.16.2" or current["production_approved"] is not False or current["production_routing"] != "BLOCKED" or current["review"].get("pr_number") != 6 or current["review"].get("pr_state") != "OPEN" or current["review"].get("real_pr_checks_green") is not True or current["review"].get("merge_authorization") != "APPROVED_TO_MERGE":
         failures.append("current-state-pr-or-production-boundary-invalid")
     correction = manifest["correction_history"]
     if correction["version"] != "0.16.1" or correction["status"] != "CORRECTION_REQUIRED" or correction["rejected_head"] != REJECTED_V0161_HEAD or correction["previous_rejected_attempt"].get("version") != "0.16.0" or correction["previous_rejected_attempt"].get("rejected_head") != REJECTED_V0160_HEAD:

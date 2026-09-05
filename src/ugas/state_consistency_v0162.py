@@ -9,7 +9,7 @@ from typing import Any, Mapping
 CURRENT_VERSION = "0.16.2"
 CURRENT_PHASE = "MULTI_DIRECTION_ANIMATION_RUNTIME"
 CURRENT_GATE = "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED"
-NEXT_ACTION = "external_review_multi_direction_runtime_v0162"
+NEXT_ACTION = "governed_merge_pr_6"
 BASELINE_HEAD = "514a17818469b567966293db808cafbf708f8311"
 FEATURE_BRANCH = "codex/v0.16.0-multi-direction-runtime-foundation"
 PR_NUMBER = 6
@@ -29,15 +29,15 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     if state.get("current_gate") != CURRENT_GATE:
         failures.append("current_gate_invalid")
     if state.get("allowed_next_actions") != [NEXT_ACTION]:
-        failures.append("next_action_must_be_external_review_multi_direction_runtime_v0162")
+        failures.append("next_action_must_be_governed_merge_pr_6")
     if state.get("production_approved") is not False or state.get("production_routing") != "BLOCKED":
         failures.append("production_must_remain_blocked")
     if state.get("new_generation") != 0:
         failures.append("new_generation_must_remain_zero")
     if state.get("death_animation_front_visual_content") != "APPROVED_PILOT":
         failures.append("death_visual_must_remain_approved_pilot")
-    if state.get("multi_direction_animation_runtime") != "TECHNICALLY_QUALIFIED_FOUNDATION":
-        failures.append("direction_runtime_must_be_foundation_only")
+    if state.get("multi_direction_animation_runtime") != "APPROVED_FOUNDATION":
+        failures.append("direction_runtime_must_be_approved_foundation")
     if state.get("real_directional_character_asset_coverage") != "SOUTH_ONLY":
         failures.append("real_directional_coverage_must_remain_south_only")
 
@@ -72,14 +72,14 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         "no_self_merge_until_external_approval": True,
     }
     failures.extend(f"review:{key}" for key, value in expected.items() if review.get(key) != value)
-    if review.get("merge_authorization") is not None:
-        failures.append("direction_pr_must_not_claim_merge_authorization")
+    if review.get("merge_authorization") != "APPROVED_TO_MERGE":
+        failures.append("direction_pr_must_bind_external_merge_authorization")
     if review.get("rejected_reviewed_head") != "2513d9f6f8a55345e74d9c0afb5dab22f9d84705":
         failures.append("rejected_v0161_head_binding_invalid")
     if review.get("approved_head_sha") != "f89184cd2dd317cbba584ddcf6115301d90666ab":
         failures.append("previous_approved_head_binding_invalid")
-    if review.get("real_pr_checks_green") is not False:
-        failures.append("exact_v0162_pr_checks_must_not_be_claimed_green_before_reproof")
+    if review.get("real_pr_checks_green") is not True:
+        failures.append("exact_v0162_pr_checks_must_be_green_after_reproof")
 
     nested = _mapping(state.get("state_consistency"))
     nested_expected = {
@@ -92,14 +92,14 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         "production_routing": "BLOCKED",
         "production_approved": False,
         "new_generation": 0,
-        "multi_direction_animation_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+        "multi_direction_animation_runtime": "APPROVED_FOUNDATION",
         "real_directional_character_asset_coverage": "SOUTH_ONLY",
         "allowed_next_actions": [NEXT_ACTION],
         "next_capability_started": False,
         "v0151_merge_commit": BASELINE_HEAD,
         "pr_number": PR_NUMBER,
         "pr_state": PR_STATE,
-        "real_pr_checks_green": False,
+        "real_pr_checks_green": True,
     }
     failures.extend(f"state_consistency:{key}" for key, value in nested_expected.items() if nested.get(key) != value)
 
@@ -115,6 +115,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         "cache_order_negative_controls",
         "test_only_cache_mode_qa",
         "state_consistency",
+        "v0162_external_approval",
     )
     failures.extend(f"evidence_missing:{key}" for key in required_evidence if not evidence.get(key))
 
@@ -126,7 +127,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         CURRENT_PHASE,
         CURRENT_GATE,
         NEXT_ACTION,
-        "multi_direction_animation_runtime=TECHNICALLY_QUALIFIED_FOUNDATION",
+        "multi_direction_animation_runtime=APPROVED_FOUNDATION",
         "real_directional_character_asset_coverage=SOUTH_ONLY",
         "production_approved=false",
         "production_routing=BLOCKED",
@@ -135,10 +136,10 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         "PR #6",
         "pr_number=6",
         "pr_state=OPEN",
-        "real_pr_checks_green=false",
+        "real_pr_checks_green=true",
         FEATURE_BRANCH,
         "CORRECTION_REQUIRED",
-        "Merge only after external review",
+        "Merge after recorded external approval and exact post-bookkeeping reproof",
         "CACHE-NC-01",
         "CACHE-NC-05",
         "previous_release=0.15.1",

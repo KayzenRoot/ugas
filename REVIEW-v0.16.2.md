@@ -25,8 +25,8 @@ Forward evidence is under `docs/evidence/multi-direction-runtime-v0162/`, includ
 - `corrected state-consistency-v0162.json` as `state-consistency-v0162.json` plus the active `current-state.json`;
 - v0.16.2 contract, carried-forward coverage/fallback/mirror/provenance bindings, real DIR-NC-01 through DIR-NC-12 records, and validation totals.
 
-Required exact GitHub contexts are `UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke`, and `UGAS Review / evidence`. Local tests and validation do not establish exact-head GitHub success. The active state therefore records `real_pr_checks_green=false` until the new pushed head has completed all three contexts successfully.
+Required exact GitHub contexts are `UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke`, and `UGAS Review / evidence`. The reviewed runtime head `2864b8ca392725b6da0616916ef3a3c38ce0a0d6` was externally recorded as `APPROVED_FOUNDATION / APPROVED_TO_MERGE`; after the bookkeeping-only state correction and exact post-bookkeeping reproof, the active state records `real_pr_checks_green=true` and `merge_authorization=APPROVED_TO_MERGE`. The approval covers runtime identity/cache/fallback/mirror/test-only/SOUTH_ONLY evidence, not real north/east/west/diagonal character artwork. `next_candidate=EQUIPMENT_OUTFITS`, but the next capability remains unstarted until the governed merge.
 
-## Stop and handoff
+## Governed merge and handoff
 
-The technical gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED`. Stop with PR #6 `OPEN` after a new corrected HEAD has all three required Actions contexts green and the v0.16.2 artifact exists. Do not merge. Do not start equipment/outfits. Hand off to Sol for external review.
+The technical gate is `MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED`. With the exact-head artifact and 3/3 contexts green after bookkeeping, PR #6 is authorized for the protected merge path. Merge only after recorded external approval and exact post-bookkeeping reproof; do not push directly to `main`. After the merge, create the v0.17.0 equipment/outfits branch from merged main and begin only the equipment/outfits foundation. Do not start creatures/monsters or any other downstream capability.

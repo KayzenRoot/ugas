@@ -20,9 +20,9 @@
     }
   },
   "current_gate": "MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED",
-  "stop_reason": "MULTI_DIRECTION_ANIMATION_RUNTIME_V0162_PR_OPEN_AWAITING_EXACT_HEAD_ACTIONS_AND_SOL_EXTERNAL_REVIEW",
+  "stop_reason": "MULTI_DIRECTION_ANIMATION_RUNTIME_V0162_APPROVED_TO_MERGE_AWAITING_GOVERNED_MERGE",
   "allowed_next_actions": [
-    "external_review_multi_direction_runtime_v0162"
+    "governed_merge_pr_6"
   ],
   "forbidden_actions": [
     "direct_main_push",
@@ -43,7 +43,7 @@
   "production_routing": "BLOCKED",
   "hit_reaction_front_visual_content": "APPROVED_PILOT",
   "death_animation_front_visual_content": "APPROVED_PILOT",
-  "multi_direction_animation_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+  "multi_direction_animation_runtime": "APPROVED_FOUNDATION",
   "real_directional_character_asset_coverage": "SOUTH_ONLY",
   "external_visual_review": {
     "attack_front_v2": "APPROVED_PILOT",
@@ -67,10 +67,10 @@
     "direct_main_push_forbidden": true,
     "pr_number": 6,
     "pr_state": "OPEN",
-    "real_pr_checks_green": false,
+    "real_pr_checks_green": true,
     "rejected_reviewed_head": "2513d9f6f8a55345e74d9c0afb5dab22f9d84705",
     "approved_head_sha": "f89184cd2dd317cbba584ddcf6115301d90666ab",
-    "merge_authorization": null,
+    "merge_authorization": "APPROVED_TO_MERGE",
     "pr4_number": 4,
     "pr4_state": "MERGED",
     "pr4_merge_commit": "98ebd95564216fbbee222aab630b73b5ff6f298d",
@@ -121,6 +121,7 @@
     "cache_order_negative_controls": "docs/evidence/multi-direction-runtime-v0162/cache-order-negative-controls-v0162.json",
     "test_only_cache_mode_qa": "docs/evidence/multi-direction-runtime-v0162/test-only-cache-mode-qa-v0162.json",
     "direction_provenance_qa": "docs/evidence/multi-direction-runtime-v0162/provenance-qa-v0162.json",
+    "v0162_external_approval": "docs/evidence/github-governance-v0162/v0162-external-approval.json",
     "external_approval": "docs/evidence/github-governance-v0141/hit-front-v0141-external-visual-approval.json",
     "provenance": "docs/evidence/github-governance-v0141/hit-front-v0141-provenance.json",
     "integrity_repair": "docs/evidence/github-governance-v0141/hit-front-v0141-post-merge-integrity-repair.json",
@@ -161,14 +162,14 @@
     "run_front_v1_external_visual": "APPROVED_PILOT",
     "hit_reaction_front_external_visual": "APPROVED_PILOT",
     "death_animation_front_external_visual": "APPROVED_PILOT",
-    "multi_direction_animation_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+    "multi_direction_animation_runtime": "APPROVED_FOUNDATION",
     "real_directional_character_asset_coverage": "SOUTH_ONLY",
-    "capability_matrix_next_candidate": "MULTI_DIRECTION_ANIMATION_RUNTIME",
+    "capability_matrix_next_candidate": "EQUIPMENT_OUTFITS",
     "capability_count": 16,
     "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
     "always_on_dashboard_policy": "ENABLED",
     "allowed_next_actions": [
-      "external_review_multi_direction_runtime_v0162"
+      "governed_merge_pr_6"
     ],
     "next_capability_started": false,
     "v0141_frozen_evidence": "RESTORED_AND_VERIFIED",
@@ -176,6 +177,6 @@
     "v0151_merge_commit": "514a17818469b567966293db808cafbf708f8311",
     "pr_number": 6,
     "pr_state": "OPEN",
-    "real_pr_checks_green": false
+    "real_pr_checks_green": true
   }
 }
