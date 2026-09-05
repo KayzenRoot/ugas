@@ -1,6 +1,6 @@
-# UGAS 0.20.0
+# UGAS 0.20.1
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release v0.20.0 fecha a fundação runtime de ENVIRONMENT_TILESETS com classes estáveis, métricas, camadas, adjacência/autotile, atlas e identidade de bytes, seams, colisão/navegação, variantes, cache e proveniência; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção. O v0.19.1 Items/Props permanece a release aprovada anterior no merge `93293d21f301e6d64232a992eb92533db9741118`; v0.20.0 aguarda revisão externa.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release v0.20.1 corrige a integridade QA do runtime ENVIRONMENT_TILESETS com routing seguro por classe/camada, bytes reais por máscara, métricas de mundo independentes de pixels, variantes efetivas revalidadas e gates específicos; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção. O v0.19.1 Items/Props permanece a release aprovada anterior no merge `93293d21f301e6d64232a992eb92533db9741118`; v0.20.0 permanece rejeitado como histórico de correção.
 
 O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o piloto aprovado de RUN_FRONT_V1. O v0.15.0, v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. Nenhum piloto equivale a aprovação de produção.
 
@@ -11,8 +11,8 @@ O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o pil
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
-python scripts/validation/validate_state_consistency_v0200.py
-python scripts/validation/run_environment_tilesets_runtime_v0200.py
+python scripts/validation/validate_state_consistency_v0201.py
+python scripts/validation/run_environment_tilesets_runtime_v0201.py
 python scripts/validation/validate_v1_capability_matrix.py
 python scripts/validation/validate_direction_runtime_v0162.py
 python scripts/validation/run_validation.py
@@ -30,7 +30,11 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.20.0.md](REVIEW-v0.20.0.md). O v0.19.0 rejeitado permanece imutável; `environment_tilesets` é a capacidade ativa; o runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório. A cobertura ambiental real é `NONE` e o fixture é `TEST_ONLY`.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.20.1.md](REVIEW-v0.20.1.md). O v0.20.0 permanece imutável como candidato rejeitado; `environment_tilesets` é a capacidade ativa; o runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório. A cobertura ambiental real é `NONE` e o fixture é `TEST_ONLY`.
+
+## v0.20.1 ENVIRONMENT_TILESETS QA integrity correction
+
+The active gate is `ENVIRONMENT_TILESETS_AUTOTILE_WORLD_METRIC_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED`. v0.20.0 is `CORRECTION_REQUIRED` history at reviewed head `ae335ba198bb7f23210873e30948e8a19bc71cbd`; its evidence is not overwritten. The existing PR #10 remains OPEN and must receive the new corrected head and exact-head review artifact. Production remains blocked, `new_generation=0`, real environment coverage is `NONE`, synthetic fixtures are `TEST_ONLY`, and Maps/Minimap is forbidden.
 
 ## v0.18.1 CREATURES_MONSTERS runtime QA integrity correction
 

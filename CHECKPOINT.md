@@ -1,6 +1,12 @@
-# UGAS checkpoint - v0.20.0 ENVIRONMENT_TILESETS
+# UGAS checkpoint - v0.20.1 ENVIRONMENT_TILESETS
 
-## v0.20.0 ENVIRONMENT_TILESETS — runtime foundation / external review required
+## v0.20.1 ENVIRONMENT_TILESETS - QA integrity correction / external review required
+
+`version=0.20.1`; `phase=ENVIRONMENT_TILESETS`; `current_gate=ENVIRONMENT_TILESETS_AUTOTILE_WORLD_METRIC_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED`; `items_props=APPROVED_FOUNDATION`; `environment_tilesets_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `environment_tilesets_runtime_external_review=REQUIRED`; `v0200_external_review=CORRECTION_REQUIRED`; `real_environment_asset_coverage=NONE`; `synthetic_environment_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_environment_tilesets_v0201]`; `next_capability_started=false`. v0.20.0 is frozen rejected candidate history at reviewed head `ae335ba198bb7f23210873e30948e8a19bc71cbd`; its evidence is not overwritten. The correction continues existing PR #10 and branch `codex/v0.20.0-environment-tilesets-runtime-foundation`.
+
+The corrected runtime enforces requested/resolved class and layer identity, materializes mask-specific TEST_ONLY bytes, separates pixel metrics from `world_units_per_tile`, materializes and revalidates effective variants, and binds each named gate to an explicit proof. AT-NC-01..05, WM-NC-01..04 and TV-NC-01..06 are semantic controls; ET-NC-01..18 remain preserved from immutable v0.20.0 history. The evidence is under `docs/evidence/environment-tilesets-runtime-v0201/`; the active QA board label is `TEST_ONLY_TILE_QA_BOARD_V0201`. Require the three exact GitHub contexts and exact-head bounded artifact, then stop with PR #10 OPEN. Do not merge, start Maps/Minimap, enable production or generate real environment assets.
+
+## Historical v0.20.0 ENVIRONMENT_TILESETS - rejected candidate / correction required
 
 `version=0.20.0`; `phase=ENVIRONMENT_TILESETS`; `current_gate=ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; `items_props=APPROVED_FOUNDATION`; `environment_tilesets_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `real_environment_asset_coverage=NONE`; `synthetic_environment_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_environment_tilesets_v0200]`; `next_capability_started=false`. The v0.19.1 Items/Props foundation is the previous approved release at merge `93293d21f301e6d64232a992eb92533db9741118`; its evidence remains frozen. The v0.20.0 evidence is under `docs/evidence/environment-tilesets-runtime-v0200/` and the complete contract is [REVIEW-v0.20.0.md](REVIEW-v0.20.0.md).
 

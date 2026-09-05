@@ -1,4 +1,4 @@
-# Installing UGAS 0.20.0
+# Installing UGAS 0.20.1
 
 ## Requirements
 
@@ -12,8 +12,8 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -e .
 $env:PYTHONPATH = "src"
-python scripts/validation/validate_state_consistency_v0200.py
-python scripts/validation/run_environment_tilesets_runtime_v0200.py
+python scripts/validation/validate_state_consistency_v0201.py
+python scripts/validation/run_environment_tilesets_runtime_v0201.py
 python scripts/validation/validate_direction_runtime_v0162.py
 python -m unittest discover -s tests -q
 python scripts/validation/run_validation.py
@@ -25,6 +25,8 @@ pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1
 ```
 
 ## GitHub-native review
+
+The active correction is v0.20.1 on the existing PR #10; keep it OPEN and do not merge. Use [REVIEW-v0.20.1.md](REVIEW-v0.20.1.md) and the exact-head artifact as the authoritative handoff.
 
 Use the PR-first flow in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded GitHub Actions artifact; it never includes secrets, local credentials, telemetry databases, model weights or large generation directories.
 

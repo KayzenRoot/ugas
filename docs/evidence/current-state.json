@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.20.0",
-  "version": "0.20.0",
+  "schema_version": "0.20.1",
+  "version": "0.20.1",
   "phase": "ENVIRONMENT_TILESETS",
   "previous_release": {"version": "0.19.1", "review": "REVIEW-v0.19.1.md", "evidence": "docs/evidence/items-props-runtime-v0191/execution-evidence-v0191.json", "merge_commit": "93293d21f301e6d64232a992eb92533db9741118"},
   "correction_history": {
@@ -8,11 +8,12 @@
     "v0.17.1": {"status": "APPROVED_FOUNDATION", "merge_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "record": "docs/evidence/github-governance-v0180/v0171-external-approval.json", "historical_evidence_unchanged": true},
     "v0.18.2": {"status": "APPROVED_FOUNDATION", "merge_commit": "52938a04016352d50ad54621a4df981a9c36b058", "record": "docs/evidence/github-governance-v0190/v0182-external-approval.json", "historical_evidence_unchanged": true},
     "v0.19.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "44937935e644202836b3e1f081b6a63201b850db", "record": "docs/evidence/items-props-runtime-v0191/v0190-rejection-correction-record-v0191.json", "historical_evidence_unchanged": true},
-    "v0.19.1": {"status": "APPROVED_FOUNDATION", "merge_commit": "93293d21f301e6d64232a992eb92533db9741118", "reviewed_head": "975daa6336d3798c8af13e63316252e652a1cc92", "record": "docs/evidence/github-governance-v0200/v0191-external-approval.json", "historical_evidence_unchanged": true}
+    "v0.19.1": {"status": "APPROVED_FOUNDATION", "merge_commit": "93293d21f301e6d64232a992eb92533db9741118", "reviewed_head": "975daa6336d3798c8af13e63316252e652a1cc92", "record": "docs/evidence/github-governance-v0200/v0191-external-approval.json", "historical_evidence_unchanged": true},
+    "v0.20.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "ae335ba198bb7f23210873e30948e8a19bc71cbd", "record": "docs/evidence/environment-tilesets-runtime-v0201/v0200-rejection-correction-record-v0201.json", "historical_evidence_unchanged": true}
   },
-  "current_gate": "ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
-  "stop_reason": "ENVIRONMENT_TILESETS_FOUNDATION_AWAITING_EXTERNAL_REVIEW",
-  "allowed_next_actions": ["external_review_environment_tilesets_v0200"],
+  "current_gate": "ENVIRONMENT_TILESETS_AUTOTILE_WORLD_METRIC_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "stop_reason": "ENVIRONMENT_TILESETS_QA_INTEGRITY_AWAITING_EXTERNAL_REVIEW",
+  "allowed_next_actions": ["external_review_environment_tilesets_v0201"],
   "forbidden_actions": ["direct_main_push", "force_push_or_history_rewrite", "enable_production_routing", "new_generation", "environment_tilesets_generation", "real_environment_assets", "maps_minimap_assets", "ui_asset_family", "vfx_asset_family", "orchestration_runtime_hardening", "items_props_generation", "creatures_monsters_generation", "equipment_generation"],
   "production_approved": false,
   "production_routing": "BLOCKED",
@@ -39,12 +40,14 @@
   "synthetic_creature_fixture": "TEST_ONLY",
   "synthetic_item_prop_fixture": "TEST_ONLY",
   "synthetic_environment_fixture": "TEST_ONLY",
+  "environment_tilesets_runtime_external_review": "REQUIRED",
+  "v0200_external_review": "CORRECTION_REQUIRED",
   "external_visual_review": {"multi_direction_animation_runtime": "APPROVED_FOUNDATION", "equipment_outfits_runtime": "APPROVED_FOUNDATION", "creatures_monsters_runtime": "APPROVED_FOUNDATION", "items_props_runtime": "APPROVED_FOUNDATION", "environment_tilesets_runtime": "REQUIRED"},
   "always_on_dashboard_policy": "ENABLED",
   "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
   "new_generation": 0,
   "review": {"repository": "KayzenRoot/ugas", "baseline_head": "93293d21f301e6d64232a992eb92533db9741118", "branch_base_commit": "93293d21f301e6d64232a992eb92533db9741118", "feature_branch": "codex/v0.20.0-environment-tilesets-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 10, "pr_state": "OPEN", "pr_url": "https://github.com/KayzenRoot/ugas/pull/10", "real_pr_checks_green": false, "external_review_required": true, "merge_authorization": "NOT_AUTHORIZED", "approved_head_sha": null, "approval_record": null, "post_bookkeeping_reproof_required": false, "production_approval_required": true, "artifact_upload_before_enforcement": true, "do_not_merge": true},
-  "incident": {"classification": "V0200_ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION", "historical_sources_rewritten": false, "v0191_merge_commit": "93293d21f301e6d64232a992eb92533db9741118", "production_art_created": false, "new_generation": 0},
-  "evidence": {"environment_tileset_manifest": "docs/evidence/environment-tilesets-runtime-v0200/tileset-manifest-v0200.json", "hard_gates": "docs/evidence/environment-tilesets-runtime-v0200/hard-gates-v0200.json", "negative_controls": "docs/evidence/environment-tilesets-runtime-v0200/negative-controls-v0200.json", "determinism": "docs/evidence/environment-tilesets-runtime-v0200/full-slice-two-run-determinism-v0200.json", "production_registry": "docs/evidence/environment-tilesets-runtime-v0200/production-registry-v0200.json", "qa_board": "docs/evidence/environment-tilesets-runtime-v0200/test-only-qa-board-v0200.json", "execution": "docs/evidence/environment-tilesets-runtime-v0200/execution-evidence-v0200.json", "v0191_approval": "docs/evidence/github-governance-v0200/v0191-external-approval.json"},
-  "state_consistency": {"status": "ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED", "version": "0.20.0", "phase": "ENVIRONMENT_TILESETS", "current_gate": "ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.20.0-environment-tilesets-runtime-foundation", "branch_base_commit": "93293d21f301e6d64232a992eb92533db9741118", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_environment_tilesets_v0200"], "next_capability_started": false}
+  "incident": {"classification": "V0201_ENVIRONMENT_TILESETS_RUNTIME_QA_INTEGRITY", "historical_sources_rewritten": false, "v0191_merge_commit": "93293d21f301e6d64232a992eb92533db9741118", "v0200_rejected_head": "ae335ba198bb7f23210873e30948e8a19bc71cbd", "production_art_created": false, "new_generation": 0},
+  "evidence": {"environment_tileset_manifest": "docs/evidence/environment-tilesets-runtime-v0201/fixture/tileset-manifest-v0201.json", "tileset_contract": "docs/evidence/environment-tilesets-runtime-v0201/tileset-contract-v0201.json", "autotile_byte_binding": "docs/evidence/environment-tilesets-runtime-v0201/fixture/autotile-byte-binding-v0201.json", "autotile_resolution_matrix": "docs/evidence/environment-tilesets-runtime-v0201/fixture/autotile-resolution-matrix-v0201.json", "hard_gates": "docs/evidence/environment-tilesets-runtime-v0201/hard-gates-v0201.json", "gate_specific_proof": "docs/evidence/environment-tilesets-runtime-v0201/gate-specific-proof-v0201.json", "negative_controls": "docs/evidence/environment-tilesets-runtime-v0201/negative-controls-v0201.json", "determinism": "docs/evidence/environment-tilesets-runtime-v0201/full-slice-two-run-determinism-v0201.json", "production_registry": "docs/evidence/environment-tilesets-runtime-v0201/production-registry-v0201.json", "qa_board": "docs/evidence/environment-tilesets-runtime-v0201/test-only-qa-board-v0201.json", "execution": "docs/evidence/environment-tilesets-runtime-v0201/execution-evidence-v0201.json", "v0200_rejection_record": "docs/evidence/environment-tilesets-runtime-v0201/v0200-rejection-correction-record-v0201.json", "v0191_approval": "docs/evidence/github-governance-v0200/v0191-external-approval.json"},
+  "state_consistency": {"status": "ENVIRONMENT_TILESETS_AUTOTILE_WORLD_METRIC_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED", "version": "0.20.1", "phase": "ENVIRONMENT_TILESETS", "current_gate": "ENVIRONMENT_TILESETS_AUTOTILE_WORLD_METRIC_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.20.0-environment-tilesets-runtime-foundation", "branch_base_commit": "93293d21f301e6d64232a992eb92533db9741118", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_environment_tilesets_v0201"], "next_capability_started": false}
 }
