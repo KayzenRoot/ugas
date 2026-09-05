@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.18.1",
+  "status": "CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "failed": 0,
+  "gates": {
+    "creature_schema_valid": {
+      "id": "creature_schema_valid",
+      "status": "PASS",
+      "detail": "v0.18.1 manifest and schema validate"
+    },
+    "directional_binding_unique": {
+      "id": "directional_binding_unique",
+      "status": "PASS",
+      "detail": "eight unique deterministic direction identities per archetype"
+    },
+    "resolver_returns_exact_direction_identity": {
+      "id": "resolver_returns_exact_direction_identity",
+      "status": "PASS",
+      "detail": "resolver exposes exact requested direction binding"
+    },
+    "production_routing_runtime_enforced": {
+      "id": "production_routing_runtime_enforced",
+      "status": "PASS",
+      "detail": "positive gate calls executable production policy checker"
+    },
+    "derived_variants_operational": {
+      "id": "derived_variants_operational",
+      "status": "PASS",
+      "detail": "two derived TEST_ONLY variants resolve through parent inheritance"
+    },
+    "derived_cache_identity_distinct": {
+      "id": "derived_cache_identity_distinct",
+      "status": "PASS",
+      "detail": "base and derived variants have distinct cache identities"
+    },
+    "collision_geometry_valid": {
+      "id": "collision_geometry_valid",
+      "status": "PASS",
+      "detail": "collision dimensions, bounds and pivot relationships are geometric"
+    },
+    "state_route_identity": {
+      "id": "state_route_identity",
+      "status": "PASS",
+      "detail": "supported states bind explicit TEST_ONLY route timing and phase"
+    },
+    "canonical_negative_controls_strict": {
+      "id": "canonical_negative_controls_strict",
+      "status": "PASS",
+      "detail": "canonical CR-NC-01..15 inject real defects and reject strictly"
+    },
+    "supplemental_geometry_and_cache_controls": {
+      "id": "supplemental_geometry_and_cache_controls",
+      "status": "PASS",
+      "detail": "supplemental topology, locomotion, anchors, geometry and cross-state controls pass"
+    },
+    "isolated_two_run_determinism": {
+      "id": "isolated_two_run_determinism",
+      "status": "PASS",
+      "detail": "isolated subprocess runs compare fixtures, decoded sheets and JSON identities"
+    },
+    "production_registry_empty": {
+      "id": "production_registry_empty",
+      "status": "PASS",
+      "detail": "production registry is empty"
+    },
+    "synthetic_fixture_nonproduction": {
+      "id": "synthetic_fixture_nonproduction",
+      "status": "PASS",
+      "detail": "all synthetic records remain TEST_ONLY"
+    },
+    "provenance_hashes_valid": {
+      "id": "provenance_hashes_valid",
+      "status": "PASS",
+      "detail": "base record provenance hashes match"
+    },
+    "variant_allowlist_enforced": {
+      "id": "variant_allowlist_enforced",
+      "status": "PASS",
+      "detail": "variant overrides exclude gameplay balance"
+    },
+    "production_boundary_state": {
+      "id": "production_boundary_state",
+      "status": "PASS",
+      "detail": "production remains blocked with no real assets"
+    },
+    "state_consistency": {
+      "id": "state_consistency",
+      "status": "PASS",
+      "detail": "active v0.18.1 state is internally consistent"
+    }
+  },
+  "negative_controls": "CR_NC_01_TO_15_PASSED",
+  "supplemental_controls": "SUPPLEMENTAL_CONTROLS_PASSED",
+  "archetype_count": 6,
+  "direction_fixture_count": 48,
+  "derived_variant_count": 2,
+  "real_creature_asset_coverage": "NONE",
+  "synthetic_creature_fixture": "TEST_ONLY",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "acceptance_criteria": {
+    "AC-01": "PASS",
+    "AC-02": "PASS",
+    "AC-03": "PASS",
+    "AC-04": "PASS",
+    "AC-05": "PASS",
+    "AC-06": "PASS",
+    "AC-07": "PASS",
+    "AC-08": "PASS",
+    "AC-09": "PASS",
+    "AC-10": "PASS",
+    "AC-11": "PASS",
+    "AC-12": "PASS",
+    "AC-13": "PASS",
+    "AC-14": "PASS",
+    "AC-15": "PASS",
+    "AC-16": "PASS",
+    "AC-17": "PASS",
+    "AC-18": "PASS",
+    "AC-19": "PASS",
+    "AC-20": "PASS"
+  },
+  "direction_sheet": "docs/evidence/creatures-monsters-runtime-v0181/direction-routing-sheet-v0181.png",
+  "state_sheet": "docs/evidence/creatures-monsters-runtime-v0181/state-routing-sheet-v0181.png"
+}

@@ -1,23 +1,19 @@
 {
-  "schema_version": "0.18.0",
-  "version": "0.18.0",
+  "schema_version": "0.18.1",
+  "version": "0.18.1",
   "phase": "CREATURES_MONSTERS",
-  "previous_release": {
-    "version": "0.17.1",
-    "review": "REVIEW-v0.17.1.md",
-    "evidence": "docs/evidence/equipment-outfits-runtime-v0171/execution-evidence-v0171.json",
-    "merge_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4"
-  },
+  "previous_release": {"version": "0.17.1", "review": "REVIEW-v0.17.1.md", "evidence": "docs/evidence/equipment-outfits-runtime-v0171/execution-evidence-v0171.json", "merge_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4"},
   "correction_history": {
     "v0.16.0": {"status": "CORRECTION_REQUIRED", "record": "docs/evidence/multi-direction-runtime-v0160/v0160-correction-record-v0161.json"},
     "v0.16.1": {"status": "CORRECTION_REQUIRED", "record": "docs/evidence/multi-direction-runtime-v0162/v0161-rejection-correction-record-v0162.json"},
     "v0.16.2": {"status": "APPROVED_FOUNDATION", "merge_commit": "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566", "record": "docs/evidence/github-governance-v0162/v0162-external-approval.json"},
     "v0.17.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "1c73e6a2ff5259226afe9ca03ef10e1822a7fdf2", "record": "docs/evidence/equipment-outfits-runtime-v0171/v0170-rejection-correction-record-v0171.json"},
-    "v0.17.1": {"status": "APPROVED_FOUNDATION", "merge_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "record": "docs/evidence/github-governance-v0180/v0171-external-approval.json", "historical_evidence_unchanged": true}
+    "v0.17.1": {"status": "APPROVED_FOUNDATION", "merge_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "record": "docs/evidence/github-governance-v0180/v0171-external-approval.json", "historical_evidence_unchanged": true},
+    "v0.18.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "bed13772bef984727e9b38037f59b61f1ba05080", "record": "docs/evidence/creatures-monsters-runtime-v0181/v0180-rejection-correction-record-v0181.json", "historical_evidence_unchanged": true}
   },
-  "current_gate": "CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
-  "stop_reason": "CREATURES_MONSTERS_RUNTIME_FOUNDATION_AWAITING_EXTERNAL_REVIEW",
-  "allowed_next_actions": ["external_review_creatures_monsters_v0180"],
+  "current_gate": "CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "stop_reason": "CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_AWAITING_EXTERNAL_REVIEW",
+  "allowed_next_actions": ["external_review_creatures_monsters_v0181"],
   "forbidden_actions": ["direct_main_push", "force_push_or_history_rewrite", "enable_production_routing", "new_generation", "sam2_rerun", "comfyui_generation", "diffusion", "creatures_monsters_generation", "items_props", "environment_tilesets", "maps_minimap_assets", "ui_asset_family", "vfx_asset_family", "equipment_outfits_scope_expansion"],
   "production_approved": false,
   "production_routing": "BLOCKED",
@@ -25,18 +21,22 @@
   "death_animation_front_visual_content": "APPROVED_PILOT",
   "multi_direction_animation_runtime": "APPROVED_FOUNDATION",
   "equipment_outfits": "APPROVED_FOUNDATION",
-  "creatures_monsters_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+  "creatures_monsters_runtime": "TECHNICALLY_QUALIFIED_WITH_QA_INTEGRITY",
+  "creatures_monsters_runtime_external_review": "REQUIRED",
+  "v0180_external_review": "CORRECTION_REQUIRED",
   "real_directional_character_asset_coverage": "SOUTH_ONLY",
   "real_equipment_asset_coverage": "NONE_OR_EXPLICITLY_APPROVED_ONLY",
   "real_creature_asset_coverage": "NONE",
   "synthetic_equipment_fixture": "TEST_ONLY",
   "synthetic_creature_fixture": "TEST_ONLY",
-  "external_visual_review": {"multi_direction_animation_runtime": "APPROVED_FOUNDATION", "equipment_outfits_runtime": "APPROVED_FOUNDATION", "creatures_monsters_runtime": "REQUIRED", "v0170": "CORRECTION_REQUIRED"},
+  "external_visual_review": {"multi_direction_animation_runtime": "APPROVED_FOUNDATION", "equipment_outfits_runtime": "APPROVED_FOUNDATION", "creatures_monsters_runtime": "REQUIRED", "v0180": "CORRECTION_REQUIRED"},
   "always_on_dashboard_policy": "ENABLED",
   "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
   "new_generation": 0,
-  "review": {"repository": "KayzenRoot/ugas", "baseline_head": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "branch_base_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "feature_branch": "codex/v0.18.0-creatures-monsters-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 8, "pr_state": "OPEN", "pr_url": "https://github.com/KayzenRoot/ugas/pull/8", "real_pr_checks_green": true, "external_review_required": true, "production_approval_required": true},
-  "incident": {"classification": "V0180_CREATURES_MONSTERS_RUNTIME_FOUNDATION", "historical_sources_rewritten": false, "production_art_created": false, "new_generation": 0},
-  "evidence": {"v0171_merge_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "v0171_approval_record": "docs/evidence/github-governance-v0180/v0171-external-approval.json", "creature_contract": "docs/evidence/creatures-monsters-runtime-v0180/creature-contract-v0180.json", "creature_manifest": "docs/evidence/creatures-monsters-runtime-v0180/creature-runtime-manifest-v0180.json", "archetype_matrix": "docs/evidence/creatures-monsters-runtime-v0180/archetype-matrix-v0180.json", "topology_support": "docs/evidence/creatures-monsters-runtime-v0180/topology-support-matrix-v0180.json", "scale_footprint": "docs/evidence/creatures-monsters-runtime-v0180/scale-footprint-v0180.json", "collision": "docs/evidence/creatures-monsters-runtime-v0180/collision-profiles-v0180.json", "animation_states": "docs/evidence/creatures-monsters-runtime-v0180/animation-state-contract-v0180.json", "direction": "docs/evidence/creatures-monsters-runtime-v0180/direction-coverage-v0180.json", "variant_lineage": "docs/evidence/creatures-monsters-runtime-v0180/variant-lineage-v0180.json", "cache": "docs/evidence/creatures-monsters-runtime-v0180/cache-identity-v0180.json", "provenance": "docs/evidence/creatures-monsters-runtime-v0180/provenance-hashes-v0180.json", "determinism": "docs/evidence/creatures-monsters-runtime-v0180/two-run-determinism-v0180.json", "negative_controls": "docs/evidence/creatures-monsters-runtime-v0180/negative-controls-v0180.json", "fixture_manifest": "docs/evidence/creatures-monsters-runtime-v0180/synthetic-fixture-manifest-v0180.json", "contact_sheet": "docs/evidence/creatures-monsters-runtime-v0180/archetype-contact-sheet-v0180.png", "state_routing_sheet": "docs/evidence/creatures-monsters-runtime-v0180/state-routing-sheet-v0180.png", "production_registry": "docs/evidence/creatures-monsters-runtime-v0180/production-registry-v0180.json", "state_consistency": "docs/evidence/creatures-monsters-runtime-v0180/state-consistency-v0180.json", "execution": "docs/evidence/creatures-monsters-runtime-v0180/execution-evidence-v0180.json"},
-  "state_consistency": {"status": "CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED", "version": "0.18.0", "phase": "CREATURES_MONSTERS", "current_gate": "CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.18.0-creatures-monsters-runtime-foundation", "branch_base_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_creatures_monsters_v0180"], "next_capability_started": false}
+  "review": {"repository": "KayzenRoot/ugas", "baseline_head": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "branch_base_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "feature_branch": "codex/v0.18.0-creatures-monsters-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 8, "pr_state": "OPEN", "pr_url": "https://github.com/KayzenRoot/ugas/pull/8", "real_pr_checks_green": false, "external_review_required": true, "production_approval_required": true},
+  "incident": {"classification": "V0181_CREATURES_MONSTERS_RUNTIME_QA_INTEGRITY_CORRECTION", "historical_sources_rewritten": false, "production_art_created": false, "new_generation": 0},
+  "evidence": {
+    "v0171_merge_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "v0171_approval_record": "docs/evidence/github-governance-v0180/v0171-external-approval.json", "v0180_immutable_state_snapshot": "docs/evidence/current-state-v0.18.0.json", "v0180_rejection_correction": "docs/evidence/creatures-monsters-runtime-v0181/v0180-rejection-correction-record-v0181.json", "creature_contract": "docs/evidence/creatures-monsters-runtime-v0181/creature-contract-v0181.json", "creature_manifest": "docs/evidence/creatures-monsters-runtime-v0181/creature-runtime-manifest-v0181.json", "direction_asset_binding": "docs/evidence/creatures-monsters-runtime-v0181/direction-asset-binding-v0181.json", "direction_routing_sheet": "docs/evidence/creatures-monsters-runtime-v0181/direction-routing-sheet-v0181.png", "direction_routing_matrix": "docs/evidence/creatures-monsters-runtime-v0181/direction-routing-sheet-v0181.json", "state_route_contract": "docs/evidence/creatures-monsters-runtime-v0181/state-route-contract-v0181.json", "state_routing_sheet": "docs/evidence/creatures-monsters-runtime-v0181/state-routing-sheet-v0181.png", "derived_variant_lineage": "docs/evidence/creatures-monsters-runtime-v0181/derived-variant-lineage-v0181.json", "collision_geometry_qa": "docs/evidence/creatures-monsters-runtime-v0181/collision-geometry-qa-v0181.json", "cache_identity": "docs/evidence/creatures-monsters-runtime-v0181/cache-identity-v0181.json", "determinism": "docs/evidence/creatures-monsters-runtime-v0181/two-run-determinism-v0181.json", "negative_controls": "docs/evidence/creatures-monsters-runtime-v0181/negative-controls-v0181.json", "production_routing_qa": "docs/evidence/creatures-monsters-runtime-v0181/production-routing-qa-v0181.json", "production_registry": "docs/evidence/creatures-monsters-runtime-v0181/production-registry-v0181.json", "fixture_manifest": "docs/evidence/creatures-monsters-runtime-v0181/synthetic-fixture-manifest-v0181.json", "state_consistency": "docs/evidence/creatures-monsters-runtime-v0181/state-consistency-v0181.json", "execution": "docs/evidence/creatures-monsters-runtime-v0181/execution-evidence-v0181.json"
+  },
+  "state_consistency": {"status": "CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED", "version": "0.18.1", "phase": "CREATURES_MONSTERS", "current_gate": "CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.18.0-creatures-monsters-runtime-foundation", "branch_base_commit": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_creatures_monsters_v0181"], "next_capability_started": false}
 }

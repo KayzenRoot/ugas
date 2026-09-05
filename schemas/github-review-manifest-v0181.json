@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.18.1 GitHub review manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "manifest_type", "repository", "pull_request", "scope", "changed_files", "change_statistics", "current_state", "tests", "validation", "overall_status", "gates", "creatures_monsters_evidence", "production_boundary", "security_boundary"],
+  "properties": {"schema_version": {"const": "0.18.1"}, "manifest_type": {"const": "github-ci-creatures-monsters-v0181-review"}, "overall_status": {"enum": ["PASS", "FAIL"]}, "gates": {"type": "array"}, "changed_files": {"type": "array"}}
+}

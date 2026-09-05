@@ -1,0 +1,355 @@
+{
+  "schema_version": "0.18.1",
+  "status": "DERIVED_VARIANT_LINEAGE_OPERATIONAL",
+  "allowed_overrides": [
+    "anchors",
+    "animation_state_contract",
+    "asset_revision",
+    "base_scale",
+    "collision_profile",
+    "direction_bindings",
+    "footprint",
+    "provenance",
+    "state_routes"
+  ],
+  "variants": [
+    {
+      "variant_id": "fixture_humanoid_biped_base",
+      "creature_id": "fixture_humanoid_biped",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "fixture_quadruped_base",
+      "creature_id": "fixture_quadruped",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "fixture_flying_winged_base",
+      "creature_id": "fixture_flying_winged",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "fixture_serpentine_base",
+      "creature_id": "fixture_serpentine",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "fixture_amorphous_base",
+      "creature_id": "fixture_amorphous",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "fixture_stationary_structure_base",
+      "creature_id": "fixture_stationary_structure",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "fixture_quadruped_elite",
+      "creature_id": "fixture_quadruped",
+      "kind": "derived",
+      "parent_id": "fixture_quadruped_base",
+      "inherits": [
+        "base_scale",
+        "footprint",
+        "collision_profile",
+        "asset_revision"
+      ],
+      "overrides": [
+        "base_scale",
+        "footprint",
+        "collision_profile",
+        "asset_revision"
+      ],
+      "override_values": {
+        "base_scale": {
+          "x": 1.15,
+          "y": 1.12
+        },
+        "footprint": {
+          "width": 58.0,
+          "depth": 36.0
+        },
+        "collision_profile": {
+          "shape": "capsule",
+          "width": 58.0,
+          "height": 86.0,
+          "pivot": {
+            "x": 96.0,
+            "y": 174.0
+          },
+          "bounds": {
+            "left": 30.0,
+            "top": 18.0,
+            "right": 162.0,
+            "bottom": 178.0
+          }
+        },
+        "asset_revision": "fixture_quadruped-elite-r1"
+      }
+    },
+    {
+      "variant_id": "fixture_amorphous_large",
+      "creature_id": "fixture_amorphous",
+      "kind": "derived",
+      "parent_id": "fixture_amorphous_base",
+      "inherits": [
+        "base_scale",
+        "footprint",
+        "collision_profile",
+        "asset_revision"
+      ],
+      "overrides": [
+        "base_scale",
+        "footprint",
+        "collision_profile",
+        "asset_revision"
+      ],
+      "override_values": {
+        "base_scale": {
+          "x": 1.24,
+          "y": 1.18
+        },
+        "footprint": {
+          "width": 70.0,
+          "depth": 52.0
+        },
+        "collision_profile": {
+          "shape": "box",
+          "width": 70.0,
+          "height": 94.0,
+          "pivot": {
+            "x": 96.0,
+            "y": 174.0
+          },
+          "bounds": {
+            "left": 30.0,
+            "top": 18.0,
+            "right": 162.0,
+            "bottom": 178.0
+          }
+        },
+        "asset_revision": "fixture_amorphous-large-r1"
+      }
+    }
+  ],
+  "effective_resolution_proof": [
+    {
+      "result": "RESOLVED",
+      "creature_id": "fixture_quadruped",
+      "variant": "fixture_quadruped_elite",
+      "variant_kind": "derived",
+      "parent_creature_id": "fixture_quadruped",
+      "parent_variant_id": "fixture_quadruped_base",
+      "requested_direction": "south",
+      "resolved_direction": "south",
+      "direction_asset_id": "fixture_quadruped:south:qa-v0181",
+      "direction_content_hash": "3809765c3ee0082dbade6c3c3e63633a90ad54026ea56702e71c6e9190b89717",
+      "requested_state": "idle",
+      "resolved_state": "idle",
+      "state_route_id": "fixture_quadruped:idle:route-v0181",
+      "timing_phase": {
+        "fps": 8,
+        "duration_ms": 565,
+        "phase": "loop"
+      },
+      "topology_id": "topology_quadruped_v1",
+      "locomotion_class": "quadrupedal",
+      "support_model": "four_foot_contact",
+      "rig_family": "rig_quadruped_v1",
+      "base_scale": {
+        "x": 1.15,
+        "y": 1.12
+      },
+      "footprint": {
+        "width": 58.0,
+        "depth": 36.0
+      },
+      "collision_profile": {
+        "shape": "capsule",
+        "width": 58.0,
+        "height": 86.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "effective_overrides": {
+        "base_scale": {
+          "x": 1.15,
+          "y": 1.12
+        },
+        "footprint": {
+          "width": 58.0,
+          "depth": 36.0
+        },
+        "collision_profile": {
+          "shape": "capsule",
+          "width": 58.0,
+          "height": 86.0,
+          "pivot": {
+            "x": 96.0,
+            "y": 174.0
+          },
+          "bounds": {
+            "left": 30.0,
+            "top": 18.0,
+            "right": 162.0,
+            "bottom": 178.0
+          }
+        },
+        "asset_revision": "fixture_quadruped-elite-r1"
+      },
+      "asset_revision": "fixture_quadruped-elite-r1",
+      "provenance_hash": "5730b4c020fcf8d001b3446ed2a24566eaae0a74c928c4bfa3854a9dde3e1112",
+      "fallback_mode": "NONE",
+      "cache_key": "creature_id=fixture_quadruped|variant=fixture_quadruped_elite|direction=south|state=idle|direction_asset_id=fixture_quadruped:south:qa-v0181|state_route_id=fixture_quadruped:idle:route-v0181|rig_topology_revision=creature-topology-v0181|asset_revision=fixture_quadruped-elite-r1|normalization=DIRECTION_ID|request_mode=direct|registry_mode=test",
+      "cache_hit": false,
+      "error_code": null,
+      "rejection_class": null,
+      "production_routing": "BLOCKED",
+      "production_safe": false,
+      "detail": ""
+    },
+    {
+      "result": "RESOLVED",
+      "creature_id": "fixture_amorphous",
+      "variant": "fixture_amorphous_large",
+      "variant_kind": "derived",
+      "parent_creature_id": "fixture_amorphous",
+      "parent_variant_id": "fixture_amorphous_base",
+      "requested_direction": "south",
+      "resolved_direction": "south",
+      "direction_asset_id": "fixture_amorphous:south:qa-v0181",
+      "direction_content_hash": "e15f7575707f80f94ac145c9d6487412bf89fe68859d9b819219c542351f88f9",
+      "requested_state": "idle",
+      "resolved_state": "idle",
+      "state_route_id": "fixture_amorphous:idle:route-v0181",
+      "timing_phase": {
+        "fps": 11,
+        "duration_ms": 640,
+        "phase": "loop"
+      },
+      "topology_id": "topology_amorphous_v1",
+      "locomotion_class": "sliding",
+      "support_model": "mass_contact",
+      "rig_family": "rig_amorphous_v1",
+      "base_scale": {
+        "x": 1.24,
+        "y": 1.18
+      },
+      "footprint": {
+        "width": 70.0,
+        "depth": 52.0
+      },
+      "collision_profile": {
+        "shape": "box",
+        "width": 70.0,
+        "height": 94.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      },
+      "anchors": {
+        "origin": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "center": {
+          "x": 96.0,
+          "y": 96.0
+        },
+        "contact": {
+          "x": 96.0,
+          "y": 174.0
+        }
+      },
+      "effective_overrides": {
+        "base_scale": {
+          "x": 1.24,
+          "y": 1.18
+        },
+        "footprint": {
+          "width": 70.0,
+          "depth": 52.0
+        },
+        "collision_profile": {
+          "shape": "box",
+          "width": 70.0,
+          "height": 94.0,
+          "pivot": {
+            "x": 96.0,
+            "y": 174.0
+          },
+          "bounds": {
+            "left": 30.0,
+            "top": 18.0,
+            "right": 162.0,
+            "bottom": 178.0
+          }
+        },
+        "asset_revision": "fixture_amorphous-large-r1"
+      },
+      "asset_revision": "fixture_amorphous-large-r1",
+      "provenance_hash": "74a87872e9aa699c34bec2362a90df4a75c36d8706346f1023ad1ebdd369c432",
+      "fallback_mode": "NONE",
+      "cache_key": "creature_id=fixture_amorphous|variant=fixture_amorphous_large|direction=south|state=idle|direction_asset_id=fixture_amorphous:south:qa-v0181|state_route_id=fixture_amorphous:idle:route-v0181|rig_topology_revision=creature-topology-v0181|asset_revision=fixture_amorphous-large-r1|normalization=DIRECTION_ID|request_mode=direct|registry_mode=test",
+      "cache_hit": false,
+      "error_code": null,
+      "rejection_class": null,
+      "production_routing": "BLOCKED",
+      "production_safe": false,
+      "detail": ""
+    }
+  ]
+}

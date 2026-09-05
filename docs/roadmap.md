@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.18.0 - CREATURES_MONSTERS runtime foundation / external review required
+## Historical v0.18.0 - CREATURES_MONSTERS runtime foundation / correction required
+
+## v0.18.1 - CREATURES_MONSTERS runtime QA integrity correction / external review required
+
+The active phase is `CREATURES_MONSTERS` and the gate is `CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED`. This forward-only correction remains on PR #8 and branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`, while reviewed v0.18.0 head `bed13772bef984727e9b38037f59b61f1ba05080` remains immutable `CORRECTION_REQUIRED` history. Direction bindings now carry unique 8-way asset IDs/content hashes, state routes carry exact route IDs and timing/phase metadata, derived variants are operational, collision geometry is strict, CR-NC-01..15 are semantic fail-closed controls, and determinism uses isolated runs. `equipment_outfits=APPROVED_FOUNDATION`, `v0180_external_review=CORRECTION_REQUIRED`, `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The only next action is `external_review_creatures_monsters_v0181`; Items/Props remains forbidden and the PR must stay open/unmerged.
 
 The active phase is `CREATURES_MONSTERS` and the gate is `CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`. It is based on merged v0.17.1 main commit `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`, on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`. The implementation is generic and separate from equipment/direction: six archetypes have explicit topology, locomotion, support, rig family, scale, footprint, collision, pivot, bounds, anchors, canonical states, provenance and TEST_ONLY boundaries. Direction IDs reuse v0.16.2; no real creature direction coverage is claimed. `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and `items_props` remains forbidden. The only next action is `external_review_creatures_monsters_v0180`; the PR remains open and must not be merged before external review.
 

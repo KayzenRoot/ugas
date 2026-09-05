@@ -1,4 +1,8 @@
-## Current v0.18.0 boundary
+## Current v0.18.1 boundary
+
+The active v0.18.1 slice is `CREATURES_MONSTERS` runtime QA integrity. No ComfyUI/SAM2/diffusion generation is authorized; fixtures are `TEST_ONLY`, real creature coverage is `NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The correction is metadata/runtime QA only and the PR remains open for external review.
+
+## Historical v0.18.0 boundary
 
 The active v0.18.0 slice is `CREATURES_MONSTERS` runtime foundation. No ComfyUI/SAM2/diffusion generation is authorized; synthetic creature fixtures are `TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and real creature coverage is `NONE`.
 
