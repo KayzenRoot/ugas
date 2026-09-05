@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.19.1",
+  "fixture_count": 6,
+  "unique_item_count": 6,
+  "representation_file_count": 13,
+  "production_registry": false,
+  "fixtures": [
+    {
+      "item_or_prop_id": "iron_sword",
+      "class_id": "weapon_item",
+      "representation_count": 3,
+      "representation_paths": [
+        "representations/iron_sword/inventory.png",
+        "representations/iron_sword/world.png",
+        "representations/iron_sword/equipment-preview.png"
+      ],
+      "test_only": true,
+      "production_safe": false
+    },
+    {
+      "item_or_prop_id": "healing_potion",
+      "class_id": "consumable_item",
+      "representation_count": 2,
+      "representation_paths": [
+        "representations/healing_potion/inventory.png",
+        "representations/healing_potion/world.png"
+      ],
+      "test_only": true,
+      "production_safe": false
+    },
+    {
+      "item_or_prop_id": "moon_ore",
+      "class_id": "material_item",
+      "representation_count": 2,
+      "representation_paths": [
+        "representations/moon_ore/inventory.png",
+        "representations/moon_ore/world.png"
+      ],
+      "test_only": true,
+      "production_safe": false
+    },
+    {
+      "item_or_prop_id": "old_key",
+      "class_id": "quest_key_item",
+      "representation_count": 2,
+      "representation_paths": [
+        "representations/old_key/inventory.png",
+        "representations/old_key/world.png"
+      ],
+      "test_only": true,
+      "production_safe": false
+    },
+    {
+      "item_or_prop_id": "wooden_crate",
+      "class_id": "container_prop",
+      "representation_count": 2,
+      "representation_paths": [
+        "representations/wooden_crate/inventory.png",
+        "representations/wooden_crate/world.png"
+      ],
+      "test_only": true,
+      "production_safe": false
+    },
+    {
+      "item_or_prop_id": "ancient_lamp",
+      "class_id": "environmental_prop",
+      "representation_count": 2,
+      "representation_paths": [
+        "representations/ancient_lamp/inventory.png",
+        "representations/ancient_lamp/world.png"
+      ],
+      "test_only": true,
+      "production_safe": false
+    }
+  ]
+}

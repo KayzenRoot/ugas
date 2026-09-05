@@ -2,9 +2,9 @@
 
 The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
 
-# 2D master pipeline v0.19.0
+# 2D master pipeline v0.19.1
 
-The active slice is `ITEMS_PROPS` v0.19.0 runtime foundation. It validates six stable classes, explicit inventory/world/equipment-preview representations, required content identity and revisions, positive world geometry and interaction anchors, metadata-only stack and variant semantics, equipment identity, isolated cache keys, provenance, 17 negative controls and two isolated deterministic TEST_ONLY fixture runs. `creatures_monsters=APPROVED_FOUNDATION`, `real_item_prop_asset_coverage=NONE`, `synthetic_item_prop_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; environment/tilesets and downstream families are not authorized. The only next action is `external_review_items_props_v0190`.
+The active slice is `ITEMS_PROPS` v0.19.1 runtime correction. It validates six stable classes, explicit inventory/world/equipment-preview representations, exact bound representation bytes and decoded pixels, positive world geometry and interaction anchors, item-family stack identity, derived variants, authority-bound equipment identity, isolated cache keys, provenance, 25 strict negative controls and full-slice two-run deterministic TEST_ONLY fixture runs. `creatures_monsters=APPROVED_FOUNDATION`, `real_item_prop_asset_coverage=NONE`, `synthetic_item_prop_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; environment/tilesets and downstream families are not authorized. The only next action is `external_review_items_props_v0191`.
 
 ## Historical v0.17.1 boundary
 

@@ -1,0 +1,430 @@
+{
+  "schema_version": "0.19.1",
+  "status": "ITEM_PROP_NEGATIVE_CONTROLS_01_TO_17_PLUS_LINKAGE_STACK_PASSED",
+  "control_count": 25,
+  "controls": {
+    "IP-NC-01": {
+      "id": "IP-NC-01",
+      "mutation": "unknown class_id",
+      "target_gate": "IP-NC-01",
+      "expected_error_code": "UNKNOWN_ITEM_PROP_CLASS",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "UNKNOWN_ITEM_PROP_CLASS",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "UNKNOWN_ITEM_PROP_CLASS"
+      }
+    },
+    "IP-NC-02": {
+      "id": "IP-NC-02",
+      "mutation": "remove required inventory representation",
+      "target_gate": "IP-NC-02",
+      "expected_error_code": "REQUIRED_REPRESENTATION_MISSING",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "REQUIRED_REPRESENTATION_MISSING",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "REQUIRED_REPRESENTATION_MISSING"
+      }
+    },
+    "IP-NC-03": {
+      "id": "IP-NC-03",
+      "mutation": "unsupported equipment representation carries hidden asset path",
+      "target_gate": "IP-NC-03",
+      "expected_error_code": "UNSUPPORTED_REPRESENTATION_HAS_HIDDEN_BINDING",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "UNSUPPORTED_REPRESENTATION_HAS_HIDDEN_BINDING",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "UNSUPPORTED_REPRESENTATION_HAS_HIDDEN_BINDING"
+      }
+    },
+    "IP-NC-04": {
+      "id": "IP-NC-04",
+      "mutation": "negative world scale",
+      "target_gate": "IP-NC-04",
+      "expected_error_code": "WORLD_SCALE_INVALID",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "WORLD_SCALE_INVALID",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "WORLD_SCALE_INVALID"
+      }
+    },
+    "IP-NC-05": {
+      "id": "IP-NC-05",
+      "mutation": "pivot outside collision bounds",
+      "target_gate": "IP-NC-05",
+      "expected_error_code": "PIVOT_OUTSIDE_COLLISION_BOUNDS",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "PIVOT_OUTSIDE_COLLISION_BOUNDS",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "PIVOT_OUTSIDE_COLLISION_BOUNDS"
+      }
+    },
+    "IP-NC-06": {
+      "id": "IP-NC-06",
+      "mutation": "remove interaction anchor",
+      "target_gate": "IP-NC-06",
+      "expected_error_code": "INTERACTION_ANCHORS_MISSING",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "INTERACTION_ANCHORS_MISSING",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "INTERACTION_ANCHORS_MISSING"
+      }
+    },
+    "IP-NC-07": {
+      "id": "IP-NC-07",
+      "mutation": "invalid stack policy",
+      "target_gate": "IP-NC-07",
+      "expected_error_code": "STACK_POLICY_INVALID",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STACK_POLICY_INVALID",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "STACK_POLICY_INVALID"
+      }
+    },
+    "IP-NC-08": {
+      "id": "IP-NC-08",
+      "mutation": "quest key misclassified as stackable",
+      "target_gate": "IP-NC-08",
+      "expected_error_code": "QUEST_KEY_MUST_BE_UNIQUE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "QUEST_KEY_MUST_BE_UNIQUE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "QUEST_KEY_MUST_BE_UNIQUE"
+      }
+    },
+    "IP-NC-09": {
+      "id": "IP-NC-09",
+      "mutation": "circular variant lineage",
+      "target_gate": "IP-NC-09",
+      "expected_error_code": "VARIANT_LINEAGE_CYCLE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "VARIANT_LINEAGE_CYCLE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "VARIANT_LINEAGE_CYCLE"
+      }
+    },
+    "IP-NC-10": {
+      "id": "IP-NC-10",
+      "mutation": "forbidden gameplay-stat override",
+      "target_gate": "IP-NC-10",
+      "expected_error_code": "VARIANT_FORBIDDEN_OVERRIDE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "VARIANT_FORBIDDEN_OVERRIDE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "VARIANT_FORBIDDEN_OVERRIDE"
+      }
+    },
+    "IP-NC-11": {
+      "id": "IP-NC-11",
+      "mutation": "representation revision mismatch",
+      "target_gate": "IP-NC-11",
+      "expected_error_code": "REPRESENTATION_REVISION_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "REPRESENTATION_REVISION_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "REPRESENTATION_REVISION_MISMATCH"
+      }
+    },
+    "IP-NC-12": {
+      "id": "IP-NC-12",
+      "mutation": "incompatible equipment reference through authority path",
+      "target_gate": "IP-NC-12",
+      "expected_error_code": "EQUIPMENT_REF_INCOMPATIBLE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_INCOMPATIBLE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_INCOMPATIBLE"
+      }
+    },
+    "IP-NC-13": {
+      "id": "IP-NC-13",
+      "mutation": "poison cache with another item identity",
+      "target_gate": "IP-NC-13",
+      "expected_error_code": "STALE_ITEM_PROP_CACHE_CONTEXT",
+      "expected_rejection_class": "RUNTIME_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "item_or_prop_id": "iron_sword",
+        "class_id": "weapon_item",
+        "variant_id": "iron_sword:base",
+        "variant_revision": null,
+        "requested_context": "inventory",
+        "representation_id": null,
+        "representation_revision": null,
+        "content_hash": null,
+        "artifact_path": null,
+        "byte_size": null,
+        "dimensions": null,
+        "decoded_pixel_hash": null,
+        "stack_policy": null,
+        "stack_family_id": null,
+        "equipment_ref": null,
+        "resolved_equipment": null,
+        "equipment_authority_version": null,
+        "equipment_authority_hash": null,
+        "equipment_authority_blob_id": null,
+        "cache_key": "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:base|variant_revision=iron_sword-base-r1|context=inventory|representation_id=iron_sword:inventory:r1|representation_revision=iron_sword-inventory-representation-r1|content_hash=3982f0fe973da420e63969badbe0e19f3c768c60d1607d264e6ce30d3cecf7f6|artifact_path=representations/iron_sword/inventory.png|stack_family_id=NONE|equipment_link_revision=fixture-charm-violet:accessory:violet:fixture-charm-violet-r1|equipment_authority_hash=8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628|registry_mode=test",
+        "provenance_hash": null,
+        "production_safe": false,
+        "error_code": "STALE_ITEM_PROP_CACHE_CONTEXT",
+        "rejection_class": "RUNTIME_REJECTION",
+        "cache_hit": false,
+        "fallback_mode": "NONE"
+      }
+    },
+    "IP-NC-14": {
+      "id": "IP-NC-14",
+      "mutation": "mutate record without provenance update",
+      "target_gate": "IP-NC-14",
+      "expected_error_code": "PROVENANCE_HASH_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "PROVENANCE_HASH_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "PROVENANCE_HASH_MISMATCH"
+      }
+    },
+    "IP-NC-15": {
+      "id": "IP-NC-15",
+      "mutation": "send TEST_ONLY fixture to production registry",
+      "target_gate": "IP-NC-15",
+      "expected_error_code": "TEST_ONLY_FIXTURE_IN_PRODUCTION_REGISTRY",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "TEST_ONLY_FIXTURE_IN_PRODUCTION_REGISTRY",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "TEST_ONLY_FIXTURE_IN_PRODUCTION_REGISTRY"
+      }
+    },
+    "IP-NC-16": {
+      "id": "IP-NC-16",
+      "mutation": "mutate one byte in second isolated output",
+      "target_gate": "IP-NC-16",
+      "expected_error_code": "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT"
+      }
+    },
+    "IP-NC-17": {
+      "id": "IP-NC-17",
+      "mutation": "enable production routing",
+      "target_gate": "IP-NC-17",
+      "expected_error_code": "PRODUCTION_ROUTING_BLOCKED",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "PRODUCTION_ROUTING_BLOCKED",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "PRODUCTION_ROUTING_BLOCKED"
+      }
+    },
+    "LK-NC-01": {
+      "id": "LK-NC-01",
+      "mutation": "missing equipment id in authority",
+      "target_gate": "LK-NC-01",
+      "expected_error_code": "EQUIPMENT_REF_NOT_FOUND",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_NOT_FOUND",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_NOT_FOUND"
+      }
+    },
+    "LK-NC-02": {
+      "id": "LK-NC-02",
+      "mutation": "equipment slot mismatch",
+      "target_gate": "LK-NC-02",
+      "expected_error_code": "EQUIPMENT_REF_SLOT_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_SLOT_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_SLOT_MISMATCH"
+      }
+    },
+    "LK-NC-03": {
+      "id": "LK-NC-03",
+      "mutation": "equipment variant mismatch",
+      "target_gate": "LK-NC-03",
+      "expected_error_code": "EQUIPMENT_REF_VARIANT_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_VARIANT_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_VARIANT_MISMATCH"
+      }
+    },
+    "LK-NC-04": {
+      "id": "LK-NC-04",
+      "mutation": "equipment revision mismatch",
+      "target_gate": "LK-NC-04",
+      "expected_error_code": "EQUIPMENT_REF_REVISION_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_REVISION_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_REVISION_MISMATCH"
+      }
+    },
+    "LK-NC-05": {
+      "id": "LK-NC-05",
+      "mutation": "test/production boundary mismatch",
+      "target_gate": "LK-NC-05",
+      "expected_error_code": "EQUIPMENT_REF_BOUNDARY_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_BOUNDARY_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_BOUNDARY_MISMATCH"
+      }
+    },
+    "ST-NC-01": {
+      "id": "ST-NC-01",
+      "mutation": "generic class stack key",
+      "target_gate": "ST-NC-01",
+      "expected_error_code": "STACK_IDENTITY_TOO_COARSE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STACK_IDENTITY_TOO_COARSE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "STACK_IDENTITY_TOO_COARSE"
+      }
+    },
+    "ST-NC-02": {
+      "id": "ST-NC-02",
+      "mutation": "cross-item family without explicit policy",
+      "target_gate": "ST-NC-02",
+      "expected_error_code": "STACK_FAMILY_COLLISION",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STACK_FAMILY_COLLISION",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "STACK_FAMILY_COLLISION"
+      }
+    },
+    "ST-NC-03": {
+      "id": "ST-NC-03",
+      "mutation": "derived stackable variant changes family",
+      "target_gate": "ST-NC-03",
+      "expected_error_code": "STACK_FAMILY_VARIANT_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STACK_FAMILY_VARIANT_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "STACK_FAMILY_VARIANT_MISMATCH"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-# UGAS 0.19.0
+# UGAS 0.19.1
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente a fundação runtime de ITEMS_PROPS v0.19.0, com contrato de seis classes, representações explícitas, geometria/âncoras, identidade de stack/variantes, cache e proveniência; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo executa somente a correção runtime de ITEMS_PROPS v0.19.1, com autoridade de equipamento v0.17.1, bytes de representação verificáveis, identidade de stack por família, variantes, cache e proveniência; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção.
 
 O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o piloto aprovado de RUN_FRONT_V1. O v0.15.0, v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. Nenhum piloto equivale a aprovação de produção.
 
@@ -11,8 +11,8 @@ O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o pil
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests -q
-python scripts/validation/validate_state_consistency_v0190.py
-python scripts/validation/run_items_props_runtime_v0190.py
+python scripts/validation/validate_state_consistency_v0191.py
+python scripts/validation/run_items_props_runtime_v0191.py
 python scripts/validation/validate_v1_capability_matrix.py
 python scripts/validation/validate_direction_runtime_v0162.py
 python scripts/validation/run_validation.py
@@ -30,7 +30,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.19.0.md](REVIEW-v0.19.0.md). O runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.19.1.md](REVIEW-v0.19.1.md). O v0.19.0 rejeitado permanece imutável; o runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório.
 
 ## v0.18.1 CREATURES_MONSTERS runtime QA integrity correction
 

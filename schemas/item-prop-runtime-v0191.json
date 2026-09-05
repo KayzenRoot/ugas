@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS items and props runtime correction v0.19.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_type", "production_registry", "registry_authority", "production_routing", "canonical_classes", "contexts", "equipment_authority", "stack_compatibility_policy", "items", "variants"],
+  "properties": {
+    "schema_version": {"const": "0.19.1"},
+    "manifest_type": {"const": "items-props-runtime-foundation"},
+    "production_registry": {"type": "boolean"},
+    "registry_authority": {"type": "string"},
+    "production_routing": {"const": "BLOCKED"},
+    "canonical_classes": {"type": "array", "const": ["weapon_item", "consumable_item", "material_item", "quest_key_item", "container_prop", "environmental_prop"]},
+    "contexts": {"type": "array", "const": ["inventory", "world", "equipment-preview"]},
+    "equipment_authority": {"type": "object", "required": ["version", "path", "sha256", "blob_id", "registry_authority"], "properties": {"version": {"const": "0.17.1"}, "path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9A-Fa-f]{64}$"}, "blob_id": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "registry_authority": {"const": "TEST_ONLY_SYNTHETIC_FIXTURES"}}, "additionalProperties": false},
+    "stack_compatibility_policy": {"type": "object", "required": ["explicit_cross_item_stack_families"], "properties": {"explicit_cross_item_stack_families": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+    "items": {"type": "array", "minItems": 0, "items": {"type": "object", "required": ["item_or_prop_id", "class_id", "representation_profile", "representations", "world_geometry", "stack_policy", "stack_key", "stack_family_id", "display_variant_id", "equipment_ref", "variant_lineage", "provenance", "provenance_hash", "test_only", "production_safe"]}},
+    "variants": {"type": "array", "items": {"type": "object", "required": ["variant_id", "item_or_prop_id", "kind", "parent_id", "variant_revision", "overrides", "override_values"]}}
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "schema_version": "0.19.1",
+  "status": "EQUIPMENT_LINKAGE_AUTHORITY_BOUND",
+  "authority": {
+    "version": "0.17.1",
+    "path": "docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-manifest-v0171.json",
+    "sha256": "8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628",
+    "blob_id": "75d19401b2489288fe85d3147cc84940edcbb578",
+    "asset_count": 8
+  },
+  "positive": {
+    "result": "RESOLVED",
+    "item_or_prop_id": "iron_sword",
+    "class_id": "weapon_item",
+    "variant_id": "iron_sword:base",
+    "variant_revision": "iron_sword-base-r1",
+    "requested_context": "equipment-preview",
+    "representation_id": "iron_sword:equipment-preview:r1",
+    "representation_revision": "iron_sword-equipment-preview-representation-r1",
+    "content_hash": "47124fe33d70b07a233027f7ab3bb53d2475760b544f6058e5819558f01381f2",
+    "artifact_path": "representations/iron_sword/equipment-preview.png",
+    "byte_size": 740,
+    "dimensions": {
+      "width": 96,
+      "height": 96
+    },
+    "decoded_pixel_hash": "60f992562930b1b23cbf78bc27503ef95b5fa976f2bf35984c9544f3c4a19e17",
+    "stack_policy": "NON_STACKABLE",
+    "stack_family_id": null,
+    "equipment_ref": {
+      "equipment_id": "fixture-charm-violet",
+      "slot": "accessory",
+      "variant": "violet",
+      "equipment_revision": "fixture-charm-violet-r1",
+      "compatibility": "weapon_item",
+      "test_only": true,
+      "production_safe": false
+    },
+    "resolved_equipment": {
+      "equipment_id": "fixture-charm-violet",
+      "slot": "accessory",
+      "variant": "violet",
+      "layer_group": "accessory",
+      "priority": 5,
+      "anchors": [
+        {
+          "anchor_id": "fixture-charm-violet-anchor",
+          "joint": "neck",
+          "offset": {
+            "x": 0,
+            "y": 18
+          },
+          "rotation_inheritance": false,
+          "scale_policy": "uniform"
+        }
+      ],
+      "direction_coverage": [
+        "south"
+      ],
+      "animation_compatibility": {
+        "capability_id": "front-compatible",
+        "profiles": [
+          "idle-front-v1",
+          "walk-front-v1",
+          "run-front-v1",
+          "attack-front-v2",
+          "hit-front-v1",
+          "death-front-v151"
+        ],
+        "base_timing_immutable": true,
+        "event_markers_immutable": true
+      },
+      "rig_revision_compatibility": [
+        "r4-cutout-rig-v071"
+      ],
+      "replacement_rules": {
+        "mode": "overlay",
+        "replace_group": null,
+        "hide_parts": []
+      },
+      "occlusion_masks": [
+        {
+          "mask_id": "charm-torso-mask",
+          "target_part": "torso_pelvis",
+          "binding": "asset-bound",
+          "policy": "explicit-layer-alpha",
+          "geometry": {
+            "type": "rectangle",
+            "x": 252,
+            "y": 110,
+            "width": 36,
+            "height": 35
+          },
+          "mask_hash": "0cdf97961c53ade8b0fba3c29f3c27a5cc47a17db6c8a3473396ea39db3c2896"
+        }
+      ],
+      "asset_revision": "fixture-charm-violet-r1",
+      "test_only": true,
+      "production_safe": false,
+      "mirror_safe": false,
+      "asymmetry_flags": [],
+      "fixture": {
+        "shape": "ellipse",
+        "size": [
+          22,
+          22
+        ],
+        "color": [
+          155,
+          78,
+          214,
+          235
+        ]
+      },
+      "provenance_hash": "4df2cdbb999fd3b757e8d93c32397d61c03ce7835f6147663cb0069358f0ed7a"
+    },
+    "equipment_authority_version": "0.17.1",
+    "equipment_authority_hash": "8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628",
+    "equipment_authority_blob_id": "75d19401b2489288fe85d3147cc84940edcbb578",
+    "cache_key": "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:base|variant_revision=iron_sword-base-r1|context=equipment-preview|representation_id=iron_sword:equipment-preview:r1|representation_revision=iron_sword-equipment-preview-representation-r1|content_hash=47124fe33d70b07a233027f7ab3bb53d2475760b544f6058e5819558f01381f2|artifact_path=representations/iron_sword/equipment-preview.png|stack_family_id=NONE|equipment_link_revision=fixture-charm-violet:accessory:violet:fixture-charm-violet-r1|equipment_authority_hash=8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628|registry_mode=test",
+    "provenance_hash": "987f9f86cf18b0a2a7b4a0a969d3dd37fee1739144c3e0030f8422c83491d8dd",
+    "production_safe": false,
+    "error_code": null,
+    "rejection_class": null,
+    "cache_hit": false,
+    "fallback_mode": "NONE"
+  },
+  "negative_controls": {
+    "LK-NC-01": {
+      "id": "LK-NC-01",
+      "mutation": "missing equipment id in authority",
+      "target_gate": "LK-NC-01",
+      "expected_error_code": "EQUIPMENT_REF_NOT_FOUND",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_NOT_FOUND",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_NOT_FOUND"
+      }
+    },
+    "LK-NC-02": {
+      "id": "LK-NC-02",
+      "mutation": "equipment slot mismatch",
+      "target_gate": "LK-NC-02",
+      "expected_error_code": "EQUIPMENT_REF_SLOT_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_SLOT_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_SLOT_MISMATCH"
+      }
+    },
+    "LK-NC-03": {
+      "id": "LK-NC-03",
+      "mutation": "equipment variant mismatch",
+      "target_gate": "LK-NC-03",
+      "expected_error_code": "EQUIPMENT_REF_VARIANT_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_VARIANT_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_VARIANT_MISMATCH"
+      }
+    },
+    "LK-NC-04": {
+      "id": "LK-NC-04",
+      "mutation": "equipment revision mismatch",
+      "target_gate": "LK-NC-04",
+      "expected_error_code": "EQUIPMENT_REF_REVISION_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_REVISION_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_REVISION_MISMATCH"
+      }
+    },
+    "LK-NC-05": {
+      "id": "LK-NC-05",
+      "mutation": "test/production boundary mismatch",
+      "target_gate": "LK-NC-05",
+      "expected_error_code": "EQUIPMENT_REF_BOUNDARY_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "EQUIPMENT_REF_BOUNDARY_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "EQUIPMENT_REF_BOUNDARY_MISMATCH"
+      }
+    }
+  }
+}

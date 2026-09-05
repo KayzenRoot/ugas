@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.19.1",
+  "status": "ITEMS_PROPS_LINKAGE_REPRESENTATION_STACK_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "failed": 0,
+  "gates": {
+    "item_prop_schema_valid": {
+      "status": "PASS",
+      "detail": "v0.19.1 schema and semantic manifest validation passed"
+    },
+    "class_representation_contract_valid": {
+      "status": "PASS",
+      "detail": "six classes and declared contexts validated"
+    },
+    "required_representation_present": {
+      "status": "PASS",
+      "detail": "all required bindings resolve only with materialized bytes"
+    },
+    "representation_bytes_bound_and_hash_verified": {
+      "status": "PASS",
+      "detail": "13 PNG files have byte and decoded-pixel hashes"
+    },
+    "unsupported_representation_has_no_hidden_binding": {
+      "status": "PASS",
+      "detail": "unsupported contexts contain no binding"
+    },
+    "world_geometry_valid": {
+      "status": "PASS",
+      "detail": "visual/collision bounds, footprint, pivot and anchors validated"
+    },
+    "stack_family_identity_valid": {
+      "status": "PASS",
+      "detail": "item-family stack identities and derived inheritance validated"
+    },
+    "equipment_authority_linkage_valid": {
+      "status": "PASS",
+      "detail": "iron_sword resolves fixture-charm-violet from frozen v0.17.1 authority"
+    },
+    "equipment_negative_controls_strict": {
+      "status": "PASS",
+      "detail": "LK-NC-01..05 reject through authority-backed path"
+    },
+    "variant_lineage_acyclic_and_revalidated": {
+      "status": "PASS",
+      "detail": "base and derived state revalidated"
+    },
+    "cache_identity_complete": {
+      "status": "PASS",
+      "detail": "cache identity includes bytes, family and authority"
+    },
+    "provenance_hash_matches_manifest": {
+      "status": "PASS",
+      "detail": "item and binding provenance hashes match"
+    },
+    "negative_controls_strict": {
+      "status": "PASS",
+      "detail": "17 historical controls plus five linkage and three stack controls pass"
+    },
+    "full_slice_two_run_determinism": {
+      "status": "PASS",
+      "detail": {
+        "file_count": 19,
+        "differences": [],
+        "second_run_reads_first_run": false,
+        "mutated_world_control_error_code": "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT",
+        "mutated_identity_control_error_code": "NONDETERMINISTIC_SECOND_ITEM_PROP_IDENTITY"
+      }
+    },
+    "production_registry_empty": {
+      "status": "PASS",
+      "detail": "production registry remains empty and blocked"
+    },
+    "production_routing_blocked": {
+      "status": "PASS",
+      "detail": "routing and generation remain blocked"
+    }
+  },
+  "negative_controls": "ITEM_PROP_NEGATIVE_CONTROLS_01_TO_17_PLUS_LINKAGE_STACK_PASSED",
+  "item_prop_count": 6,
+  "class_count": 6,
+  "representation_file_count": 13,
+  "real_item_prop_asset_coverage": "NONE",
+  "synthetic_item_prop_fixture": "TEST_ONLY",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "contact_sheet": "docs/evidence/items-props-runtime-v0191/synthetic-item-prop-contact-sheet-v0191.png",
+  "geometry_sheet": "docs/evidence/items-props-runtime-v0191/world-geometry-sheet-v0191.png"
+}
