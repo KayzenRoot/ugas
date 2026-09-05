@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active v0.18.1 CREATURES_MONSTERS correction state",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "previous_release", "current_gate", "stop_reason", "allowed_next_actions", "forbidden_actions", "production_approved", "production_routing", "external_visual_review", "always_on_dashboard_policy", "runtime_mode", "new_generation", "review", "incident", "evidence", "state_consistency", "equipment_outfits", "creatures_monsters_runtime", "creatures_monsters_runtime_external_review", "v0180_external_review", "real_creature_asset_coverage", "synthetic_creature_fixture"],
+  "properties": {
+    "schema_version": {"const": "0.18.1"},
+    "version": {"const": "0.18.1"},
+    "phase": {"const": "CREATURES_MONSTERS"},
+    "current_gate": {"const": "CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED"},
+    "allowed_next_actions": {"const": ["external_review_creatures_monsters_v0181"]},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "always_on_dashboard_policy": {"const": "ENABLED"},
+    "runtime_mode": {"const": "DOCKER_ALWAYS_ON_LOCAL"},
+    "new_generation": {"const": 0},
+    "equipment_outfits": {"const": "APPROVED_FOUNDATION"},
+    "creatures_monsters_runtime": {"const": "TECHNICALLY_QUALIFIED_WITH_QA_INTEGRITY"},
+    "creatures_monsters_runtime_external_review": {"const": "REQUIRED"},
+    "v0180_external_review": {"const": "CORRECTION_REQUIRED"},
+    "real_creature_asset_coverage": {"const": "NONE"},
+    "synthetic_creature_fixture": {"const": "TEST_ONLY"}
+  }
+}

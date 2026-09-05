@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.18.0",
+  "status": "CREATURE_CACHE_IDENTITY_VALID",
+  "sample_cache_key": "creature_id=fixture_humanoid_biped|archetype=humanoid_biped|variant=fixture_humanoid_biped_base|direction=south|state=idle|rig_topology_revision=creature-topology-v0180|asset_revision=fixture_humanoid_biped-r1|normalization=DIRECTION_ID|request_mode=preview|registry_mode=test",
+  "fields": [
+    "creature_id",
+    "archetype",
+    "variant",
+    "direction",
+    "state",
+    "rig_topology_revision",
+    "asset_revision",
+    "normalization",
+    "request_mode",
+    "registry_mode"
+  ],
+  "stale_cross_creature": {
+    "result": "REJECTED",
+    "creature_id": "fixture_humanoid_biped",
+    "variant": "fixture_humanoid_biped_base",
+    "requested_direction": "south",
+    "resolved_direction": null,
+    "requested_state": "idle",
+    "resolved_state": null,
+    "topology_id": null,
+    "locomotion_class": null,
+    "support_model": null,
+    "rig_family": null,
+    "base_scale": null,
+    "footprint": null,
+    "collision_profile": null,
+    "anchors": null,
+    "fallback_mode": "NONE",
+    "cache_key": "creature_id=fixture_humanoid_biped|archetype=humanoid_biped|variant=fixture_humanoid_biped_base|direction=south|state=idle|rig_topology_revision=creature-topology-v0180|asset_revision=fixture_humanoid_biped-r1|normalization=DIRECTION_ID|request_mode=preview|registry_mode=test",
+    "cache_hit": false,
+    "error_code": "STALE_CREATURE_CACHE_CONTEXT",
+    "rejection_class": "RUNTIME_REJECTION",
+    "provenance_hash": null,
+    "production_safe": false,
+    "detail": ""
+  }
+}

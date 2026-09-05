@@ -6,7 +6,7 @@
   "required": ["schema_version", "version", "capabilities", "next_candidate", "production_routing", "new_generation"],
   "properties": {
     "schema_version": {"const": "1.0"},
-    "version": {"const": "0.16.2"},
+    "version": {"const": "0.19.0"},
     "capabilities": {
       "type": "array",
       "minItems": 1,
@@ -22,7 +22,7 @@
         }
       }
     },
-    "next_candidate": {"const": "CREATURES_MONSTERS"},
+    "next_candidate": {"const": "ITEMS_PROPS"},
     "production_routing": {"const": "BLOCKED"},
     "new_generation": {"const": 0}
   }

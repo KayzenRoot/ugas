@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.18.1",
+  "status": "PRODUCTION_ROUTING_QA_PASSED",
+  "policy": "BLOCKED_ONLY",
+  "positive_gate": {
+    "checked_value": "BLOCKED",
+    "checker": "enforce_production_routing",
+    "result": "BLOCKED"
+  },
+  "enabled_mutation": {
+    "id": "CR-NC-15",
+    "mutation": "production_routing_enabled",
+    "target_gate": "CR-NC-15",
+    "expected_error_code": "PRODUCTION_ROUTING_BLOCKED",
+    "expected_rejection_class": "RUNTIME_REJECTION",
+    "rejected": true,
+    "status": "REJECTED",
+    "passed": true,
+    "observed": {
+      "result": "REJECTED",
+      "error_code": "PRODUCTION_ROUTING_BLOCKED",
+      "rejection_class": "RUNTIME_REJECTION",
+      "detail": "PRODUCTION_ROUTING_BLOCKED:only BLOCKED is authorized"
+    }
+  }
+}

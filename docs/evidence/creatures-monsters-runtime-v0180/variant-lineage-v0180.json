@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.18.0",
+  "status": "VARIANT_LINEAGE_ACYCLIC_ALLOWLIST_ENFORCED",
+  "allowed_overrides": [
+    "anchors",
+    "animation_state_contract",
+    "base_scale",
+    "collision_profile",
+    "direction_coverage",
+    "footprint",
+    "provenance"
+  ],
+  "variants": [
+    {
+      "variant_id": "fixture_humanoid_biped_base",
+      "creature_id": "fixture_humanoid_biped",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": []
+    },
+    {
+      "variant_id": "fixture_quadruped_base",
+      "creature_id": "fixture_quadruped",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": []
+    },
+    {
+      "variant_id": "fixture_flying_winged_base",
+      "creature_id": "fixture_flying_winged",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": []
+    },
+    {
+      "variant_id": "fixture_serpentine_base",
+      "creature_id": "fixture_serpentine",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": []
+    },
+    {
+      "variant_id": "fixture_amorphous_base",
+      "creature_id": "fixture_amorphous",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": []
+    },
+    {
+      "variant_id": "fixture_stationary_structure_base",
+      "creature_id": "fixture_stationary_structure",
+      "kind": "base",
+      "parent_id": null,
+      "inherits": [],
+      "overrides": []
+    }
+  ]
+}

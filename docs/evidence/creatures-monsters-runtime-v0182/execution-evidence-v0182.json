@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.18.2",
+  "status": "CREATURES_MONSTERS_DERIVED_VARIANT_AND_STATE_CONTRACT_TECHNICALLY_QUALIFIED",
+  "failed": 0,
+  "gates": {
+    "creature_schema_valid": {
+      "id": "creature_schema_valid",
+      "status": "PASS",
+      "detail": "v0.18.2 manifest and schema validate"
+    },
+    "effective_variant_validation": {
+      "id": "effective_variant_validation",
+      "status": "PASS",
+      "detail": "all derived variants are semantically validated after materialization"
+    },
+    "effective_direction_asset_revision_consistent": {
+      "id": "effective_direction_asset_revision_consistent",
+      "status": "PASS",
+      "detail": "metadata-only variants retain inherited direction asset revision"
+    },
+    "derived_revision_identity": {
+      "id": "derived_revision_identity",
+      "status": "PASS",
+      "detail": "variant_revision is distinct from resolved directional asset revision"
+    },
+    "locomotion_state_matches_archetype": {
+      "id": "locomotion_state_matches_archetype",
+      "status": "PASS",
+      "detail": "moving archetypes require locomotion and stationary structures reject it"
+    },
+    "directional_binding_unique": {
+      "id": "directional_binding_unique",
+      "status": "PASS",
+      "detail": "eight unique direction identities per archetype"
+    },
+    "direction_hash_preservation": {
+      "id": "direction_hash_preservation",
+      "status": "PASS",
+      "detail": "all 48 fixture bytes and hashes match frozen v0.18.1"
+    },
+    "state_route_identity": {
+      "id": "state_route_identity",
+      "status": "PASS",
+      "detail": "moving archetypes expose locomotion route timing/phase"
+    },
+    "production_routing_runtime_enforced": {
+      "id": "production_routing_runtime_enforced",
+      "status": "PASS",
+      "detail": "production policy remains executable and blocked"
+    },
+    "canonical_negative_controls_strict": {
+      "id": "canonical_negative_controls_strict",
+      "status": "PASS",
+      "detail": "canonical CR-NC-01..15 pass"
+    },
+    "derived_negative_controls_strict": {
+      "id": "derived_negative_controls_strict",
+      "status": "PASS",
+      "detail": "DV-NC-01..06 pass through real materialize and resolve"
+    },
+    "supplemental_state_controls": {
+      "id": "supplemental_state_controls",
+      "status": "PASS",
+      "detail": "moving and stationary locomotion controls pass"
+    },
+    "isolated_two_run_determinism": {
+      "id": "isolated_two_run_determinism",
+      "status": "PASS",
+      "detail": "isolated runs compare bytes, decoded sheets and mutation"
+    },
+    "production_registry_empty": {
+      "id": "production_registry_empty",
+      "status": "PASS",
+      "detail": "production registry is empty"
+    },
+    "synthetic_fixture_nonproduction": {
+      "id": "synthetic_fixture_nonproduction",
+      "status": "PASS",
+      "detail": "all fixtures remain TEST_ONLY"
+    },
+    "provenance_hashes_valid": {
+      "id": "provenance_hashes_valid",
+      "status": "PASS",
+      "detail": "provenance hashes match"
+    },
+    "variant_allowlist_enforced": {
+      "id": "variant_allowlist_enforced",
+      "status": "PASS",
+      "detail": "variant overrides exclude gameplay fields"
+    },
+    "production_boundary_state": {
+      "id": "production_boundary_state",
+      "status": "PASS",
+      "detail": "production false and blocked"
+    },
+    "state_consistency": {
+      "id": "state_consistency",
+      "status": "PASS",
+      "detail": "active v0.18.2 state is internally consistent"
+    }
+  },
+  "negative_controls": "CR_NC_01_TO_15_PASSED",
+  "derived_negative_controls": "DERIVED_VARIANT_NEGATIVE_CONTROLS_PASSED",
+  "supplemental_controls": "SUPPLEMENTAL_CONTROLS_PASSED",
+  "archetype_count": 6,
+  "direction_fixture_count": 48,
+  "derived_variant_count": 2,
+  "real_creature_asset_coverage": "NONE",
+  "synthetic_creature_fixture": "TEST_ONLY",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "acceptance_criteria": {
+    "AC-01": "PASS",
+    "AC-02": "PASS",
+    "AC-03": "PASS",
+    "AC-04": "PASS",
+    "AC-05": "PASS",
+    "AC-06": "PASS",
+    "AC-07": "PASS",
+    "AC-08": "PASS",
+    "AC-09": "PASS",
+    "AC-10": "PASS",
+    "AC-11": "PASS",
+    "AC-12": "PASS",
+    "AC-13": "PASS",
+    "AC-14": "PASS",
+    "AC-15": "PASS",
+    "AC-16": "PASS",
+    "AC-17": "PASS",
+    "AC-18": "PASS",
+    "AC-19": "PASS",
+    "AC-20": "PASS"
+  },
+  "direction_sheet": "docs/evidence/creatures-monsters-runtime-v0182/direction-routing-sheet-v0182.png",
+  "state_sheet": "docs/evidence/creatures-monsters-runtime-v0182/state-routing-sheet-v0182.png"
+}

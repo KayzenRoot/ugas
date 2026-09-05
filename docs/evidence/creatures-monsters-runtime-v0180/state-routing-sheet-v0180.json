@@ -1,0 +1,87 @@
+{
+  "schema_version": "0.18.0",
+  "status": "STATE_ROUTING_SHEET_GENERATED",
+  "path": "docs/evidence/creatures-monsters-runtime-v0180/state-routing-sheet-v0180.png",
+  "records": [
+    {
+      "creature_id": "fixture_humanoid_biped",
+      "archetype": "humanoid_biped",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "unsupported_requests": [],
+      "unsupported_policy": "CREATURE_STATE_UNSUPPORTED"
+    },
+    {
+      "creature_id": "fixture_quadruped",
+      "archetype": "quadruped",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "unsupported_requests": [],
+      "unsupported_policy": "CREATURE_STATE_UNSUPPORTED"
+    },
+    {
+      "creature_id": "fixture_flying_winged",
+      "archetype": "flying_winged",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "unsupported_requests": [],
+      "unsupported_policy": "CREATURE_STATE_UNSUPPORTED"
+    },
+    {
+      "creature_id": "fixture_serpentine",
+      "archetype": "serpentine",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "unsupported_requests": [],
+      "unsupported_policy": "CREATURE_STATE_UNSUPPORTED"
+    },
+    {
+      "creature_id": "fixture_amorphous",
+      "archetype": "amorphous",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "OPTIONAL",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "unsupported_requests": [],
+      "unsupported_policy": "CREATURE_STATE_UNSUPPORTED"
+    },
+    {
+      "creature_id": "fixture_stationary_structure",
+      "archetype": "stationary_structure",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "UNSUPPORTED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      },
+      "unsupported_requests": [
+        "locomotion"
+      ],
+      "unsupported_policy": "CREATURE_STATE_UNSUPPORTED"
+    }
+  ]
+}

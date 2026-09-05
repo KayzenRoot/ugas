@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.17.1",
+  "version": "0.17.1",
+  "phase": "EQUIPMENT_OUTFITS",
+  "previous_release": {"version": "0.16.2", "review": "REVIEW-v0.16.2.md", "evidence": "docs/evidence/multi-direction-runtime-v0162/validation-evidence-v0162.json"},
+  "correction_history": {
+    "v0.16.0": {"status": "CORRECTION_REQUIRED", "record": "docs/evidence/multi-direction-runtime-v0160/v0160-correction-record-v0161.json"},
+    "v0.16.1": {"status": "CORRECTION_REQUIRED", "record": "docs/evidence/multi-direction-runtime-v0162/v0161-rejection-correction-record-v0162.json"},
+    "v0.16.2": {"status": "APPROVED_FOUNDATION", "merge_commit": "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566", "record": "docs/evidence/github-governance-v0162/v0162-external-approval.json"},
+    "v0.17.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "1c73e6a2ff5259226afe9ca03ef10e1822a7fdf2", "record": "docs/evidence/equipment-outfits-runtime-v0171/v0170-rejection-correction-record-v0171.json"}
+  },
+  "current_gate": "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED",
+  "stop_reason": "EQUIPMENT_OUTFITS_APPROVED_FOUNDATION_AWAITING_GOVERNED_MERGE",
+  "allowed_next_actions": ["governed_merge_pr_7"],
+  "forbidden_actions": ["direct_main_push", "force_push_or_history_rewrite", "enable_production_routing", "new_generation", "sam2_rerun", "comfyui_generation", "diffusion", "creatures_monsters", "items_props", "environment_tilesets", "ui_asset_family", "vfx_asset_family"],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "hit_reaction_front_visual_content": "APPROVED_PILOT",
+  "death_animation_front_visual_content": "APPROVED_PILOT",
+  "multi_direction_animation_runtime": "APPROVED_FOUNDATION",
+  "real_directional_character_asset_coverage": "SOUTH_ONLY",
+  "real_equipment_asset_coverage": "NONE_OR_EXPLICITLY_APPROVED_ONLY",
+  "synthetic_equipment_fixture": "TEST_ONLY",
+  "external_visual_review": {"multi_direction_animation_runtime": "APPROVED_FOUNDATION", "equipment_outfits_runtime": "APPROVED_FOUNDATION", "v0170": "CORRECTION_REQUIRED"},
+  "always_on_dashboard_policy": "ENABLED",
+  "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL",
+  "new_generation": 0,
+  "review": {"repository": "KayzenRoot/ugas", "baseline_head": "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566", "branch_base_commit": "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566", "feature_branch": "codex/v0.17.0-equipment-outfits-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 7, "pr_state": "OPEN", "pr_url": "https://github.com/KayzenRoot/ugas/pull/7", "real_pr_checks_green": false, "merge_authorization": "APPROVED_TO_MERGE", "approved_head_sha": "98ea74e91e18dfee32c583df005e151e13d6e9f7", "approval_record": "docs/evidence/github-governance-v0180/v0171-external-approval.json", "post_bookkeeping_reproof_required": true},
+  "incident": {"classification": "V0170_RUNTIME_QA_INTEGRITY_CORRECTION", "historical_sources_rewritten": false, "rejected_reviewed_head": "1c73e6a2ff5259226afe9ca03ef10e1822a7fdf2"},
+  "evidence": {"v0162_merge_commit": "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566", "rejection_record": "docs/evidence/equipment-outfits-runtime-v0171/v0170-rejection-correction-record-v0171.json", "execution": "docs/evidence/equipment-outfits-runtime-v0171/execution-evidence-v0171.json"},
+  "state_consistency": {"status": "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED", "version": "0.17.1", "phase": "EQUIPMENT_OUTFITS", "current_gate": "EQUIPMENT_OUTFITS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.17.0-equipment-outfits-runtime-foundation", "branch_base_commit": "a8d2897211c4b72c2cd2fe7a7f5729c7009d8566", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["governed_merge_pr_7"], "next_capability_started": false}
+}

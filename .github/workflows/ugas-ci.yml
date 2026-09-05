@@ -34,14 +34,14 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.17.1 state consistency
+      - name: Active v0.18.2 state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0171.py
-      - name: Equipment/outfits runtime and QA integrity validation
+        run: python scripts/validation/validate_state_consistency_v0182.py
+      - name: Creatures/monsters derived variant and state contract validation
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_equipment_runtime_v0171.py
+        run: python scripts/validation/run_creatures_monsters_runtime_v0182.py
       - name: Official validation
         env:
           PYTHONPATH: src
@@ -49,7 +49,11 @@ jobs:
       - name: DEATH_ANIMATION_FRONT runtime, regressions and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_animation_runtime_v0151.py
+        run: python scripts/validation/validate_front_animation_v0151_regression.py
+      - name: Approved front animation read-only regression
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_front_animation_v0151_regression.py
       - name: V1 capability matrix validation
         env:
           PYTHONPATH: src
@@ -57,7 +61,15 @@ jobs:
       - name: Multi-direction runtime cache/state correction validation
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_direction_runtime_v0162.py
+        run: python scripts/validation/validate_direction_runtime_v0162_regression.py
+      - name: Frozen v0.16.2 direction read-only regression
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_direction_runtime_v0162_regression.py
+      - name: Frozen v0.17.1 equipment read-only regression
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_equipment_runtime_v0171_regression.py
       - name: Workflow structure validation
         env:
           PYTHONPATH: src

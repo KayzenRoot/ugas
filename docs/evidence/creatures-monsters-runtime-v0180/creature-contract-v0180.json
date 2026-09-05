@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.18.0",
+  "status": "CREATURE_SCHEMA_VALID",
+  "manifest_hash": "b17bc65cbfead5c0abadc76551992e6872b1e72d1d274585fb6fd5a1e2edd73c",
+  "manifest_type": "creatures-monsters-runtime-foundation",
+  "canonical_directions": [
+    "south",
+    "south_east",
+    "east",
+    "north_east",
+    "north",
+    "north_west",
+    "west",
+    "south_west"
+  ],
+  "canonical_animation_states": [
+    "idle",
+    "locomotion",
+    "attack_primary",
+    "hit_reaction",
+    "death"
+  ],
+  "production_routing": "BLOCKED",
+  "production_approved": false
+}

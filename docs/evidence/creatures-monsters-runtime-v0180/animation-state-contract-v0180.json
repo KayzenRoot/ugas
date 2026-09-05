@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.18.0",
+  "status": "ANIMATION_STATE_CONTRACT_VALID",
+  "canonical_states": [
+    "idle",
+    "locomotion",
+    "attack_primary",
+    "hit_reaction",
+    "death"
+  ],
+  "records": [
+    {
+      "creature_id": "fixture_humanoid_biped",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      }
+    },
+    {
+      "creature_id": "fixture_quadruped",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      }
+    },
+    {
+      "creature_id": "fixture_flying_winged",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      }
+    },
+    {
+      "creature_id": "fixture_serpentine",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      }
+    },
+    {
+      "creature_id": "fixture_amorphous",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "REQUIRED",
+        "attack_primary": "OPTIONAL",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      }
+    },
+    {
+      "creature_id": "fixture_stationary_structure",
+      "states": {
+        "idle": "REQUIRED",
+        "locomotion": "UNSUPPORTED",
+        "attack_primary": "REQUIRED",
+        "hit_reaction": "REQUIRED",
+        "death": "REQUIRED"
+      }
+    }
+  ]
+}

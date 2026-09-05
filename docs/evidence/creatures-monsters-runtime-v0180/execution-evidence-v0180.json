@@ -1,0 +1,107 @@
+{
+  "schema_version": "0.18.0",
+  "status": "CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
+  "failed": 0,
+  "gates": {
+    "creature_schema_valid": {
+      "id": "creature_schema_valid",
+      "status": "PASS",
+      "detail": "schema and six archetype records validate"
+    },
+    "archetype_topology_valid": {
+      "id": "archetype_topology_valid",
+      "status": "PASS",
+      "detail": "all six topology IDs are archetype-bound"
+    },
+    "support_model_matches_archetype": {
+      "id": "support_model_matches_archetype",
+      "status": "PASS",
+      "detail": "support models match topology classes"
+    },
+    "scale_and_footprint_explicit": {
+      "id": "scale_and_footprint_explicit",
+      "status": "PASS",
+      "detail": "base scale and footprint are explicit"
+    },
+    "collision_profile_explicit": {
+      "id": "collision_profile_explicit",
+      "status": "PASS",
+      "detail": "collision shape and dimensions are explicit"
+    },
+    "pivot_and_bounds_valid": {
+      "id": "pivot_and_bounds_valid",
+      "status": "PASS",
+      "detail": "pivot and bounds are explicit"
+    },
+    "required_animation_states_declared": {
+      "id": "required_animation_states_declared",
+      "status": "PASS",
+      "detail": "canonical state contract declares REQUIRED/OPTIONAL/UNSUPPORTED"
+    },
+    "unsupported_state_fails_closed": {
+      "id": "unsupported_state_fails_closed",
+      "status": "PASS",
+      "detail": "unsupported state request returns CREATURE_STATE_UNSUPPORTED"
+    },
+    "direction_coverage_truthful": {
+      "id": "direction_coverage_truthful",
+      "status": "PASS",
+      "detail": "eight-way coverage is explicit TEST_ONLY QA coverage"
+    },
+    "variant_lineage_acyclic": {
+      "id": "variant_lineage_acyclic",
+      "status": "PASS",
+      "detail": "six base variants have no parent cycle"
+    },
+    "variant_override_allowlist_enforced": {
+      "id": "variant_override_allowlist_enforced",
+      "status": "PASS",
+      "detail": "variant overrides are allowlisted and exclude gameplay balance"
+    },
+    "cache_identity_contains_creature_variant_direction_state": {
+      "id": "cache_identity_contains_creature_variant_direction_state",
+      "status": "PASS",
+      "detail": "cache key binds creature, variant, direction, state, topology and asset revision"
+    },
+    "stale_cache_cross_creature_rejected": {
+      "id": "stale_cache_cross_creature_rejected",
+      "status": "PASS",
+      "detail": "cross-creature poisoned cache is rejected"
+    },
+    "provenance_hash_matches_manifest": {
+      "id": "provenance_hash_matches_manifest",
+      "status": "PASS",
+      "detail": "record hashes match canonical manifest content"
+    },
+    "synthetic_fixture_not_in_production_registry": {
+      "id": "synthetic_fixture_not_in_production_registry",
+      "status": "PASS",
+      "detail": "production registry has no synthetic creatures"
+    },
+    "production_registry_empty": {
+      "id": "production_registry_empty",
+      "status": "PASS",
+      "detail": "production registry is explicitly empty"
+    },
+    "production_routing_blocked": {
+      "id": "production_routing_blocked",
+      "status": "PASS",
+      "detail": "production approval and routing remain blocked"
+    },
+    "two_run_fixture_generation_deterministic": {
+      "id": "two_run_fixture_generation_deterministic",
+      "status": "PASS",
+      "detail": "two independent synthetic fixture runs have identical hashes"
+    }
+  },
+  "negative_controls": "CR_NC_01_TO_15_PASSED",
+  "archetype_count": 6,
+  "synthetic_fixture_count": 6,
+  "real_creature_asset_coverage": "NONE",
+  "synthetic_creature_fixture": "TEST_ONLY",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "contact_sheet": "docs/evidence/creatures-monsters-runtime-v0180/archetype-contact-sheet-v0180.png",
+  "state_routing_sheet": "docs/evidence/creatures-monsters-runtime-v0180/state-routing-sheet-v0180.png"
+}

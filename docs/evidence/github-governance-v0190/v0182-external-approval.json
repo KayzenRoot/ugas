@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.19.0",
+  "record_type": "forward_only_external_approval",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 8,
+  "branch": "codex/v0.18.0-creatures-monsters-runtime-foundation",
+  "base_branch": "main",
+  "base_sha": "39e148bef50c8f04db194048dbe9fbb15d8ff3d4",
+  "reviewed_runtime_head": "5ad391d4c43f0c0f8a94dcac73da075b3722fd1a",
+  "reviewer": "Sol external review",
+  "decision": "APPROVED_FOUNDATION / APPROVED_TO_MERGE",
+  "scope": "v0.18.2 CREATURES_MONSTERS_DERIVED_VARIANT_AND_STATE_CONTRACT",
+  "approval_boundary": {
+    "creatures_monsters": "APPROVED_FOUNDATION",
+    "runtime_and_qa_only": true,
+    "synthetic_creature_fixture": "TEST_ONLY",
+    "real_creature_asset_coverage": "NONE",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "items_props": "NEXT NECESSARY",
+    "environment_tilesets_and_downstream_asset_families": "NOT_AUTHORIZED"
+  },
+  "required_contexts": [
+    {
+      "name": "UGAS CI / unit-and-validation",
+      "run_id": 33969578232,
+      "job_id": 101315586920,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33969578232/job/101315586920"
+    },
+    {
+      "name": "UGAS CI / docker-smoke",
+      "run_id": 33969578232,
+      "job_id": 101315587159,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33969578232/job/101315587159"
+    },
+    {
+      "name": "UGAS Review / evidence",
+      "run_id": 33969578213,
+      "job_id": 101315586996,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/33969578213/job/101315586996"
+    }
+  ],
+  "artifact": {
+    "name": "ugas-review-evidence-pr-8-5ad391d4c43f0c0f8a94dcac73da075b3722fd1a",
+    "id": 9970576076,
+    "digest": "sha256:5881b34d48979f98201ac27503386d4e004088d3a30b50fbaa9d1f7cfa1b049e",
+    "run_id": 33969578213,
+    "verified_metadata": true,
+    "expired": false,
+    "downloaded_sha256_match": true
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "current-state approved-foundation and merge-ready truth",
+      "creatures_monsters APPROVED_FOUNDATION",
+      "items_props NEXT NECESSARY",
+      "forward-only approval and governance evidence",
+      "active capability matrix pointer"
+    ],
+    "forbidden_changes": [
+      "creature runtime behavior",
+      "v0.18.2 TEST_ONLY pixels or hashes",
+      "v0.17.1 equipment evidence",
+      "v0.16.2 direction evidence",
+      "approved front changes",
+      "production routing",
+      "new generation"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any v0.18.2 runtime or fixture content hash change"
+  }
+}

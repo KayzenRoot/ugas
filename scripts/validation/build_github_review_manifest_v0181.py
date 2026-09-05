@@ -1,0 +1,65 @@
+"""Build the bounded GitHub-native v0.18.1 review manifest."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+from typing import Any
+
+from build_github_review_manifest import _changed_files, _event_values, _known_gaps, _load_result, _resolve, _run
+
+ROOT = Path(__file__).resolve().parents[2]
+BASELINE = "39e148bef50c8f04db194048dbe9fbb15d8ff3d4"
+BRANCH = "codex/v0.18.0-creatures-monsters-runtime-foundation"
+EVIDENCE = "docs/evidence/creatures-monsters-runtime-v0181"
+
+
+def build(args: argparse.Namespace) -> dict[str, Any]:
+    root = Path(getattr(args, "repository_root", None) or ROOT).resolve()
+    event = _event_values()
+    base = _resolve(args.base_ref or event.get("base_ref") or BASELINE, root)
+    head = _resolve(args.head_ref or event.get("head_ref") or "HEAD", root)
+    merge_base = _resolve(_run(["git", "merge-base", base, head], root), root)
+    changed, additions, deletions = _changed_files(base, head, root)
+    state = json.loads((root / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+    tests = _load_result(Path(args.tests_json))
+    validation = _load_result(Path(args.validation_json), validation=True)
+    gates = json.loads(Path(args.gates_json).read_text(encoding="utf-8"))["gates"]
+    branch = args.head_branch or event.get("head_branch") or _run(["git", "branch", "--show-current"], root) or BRANCH
+    pr_number = args.pr_number if args.pr_number is not None else int(event.get("number") or 0)
+    known_gaps, gap_context = _known_gaps(args, event, pr_number)
+    evidence = {
+        "contract": f"{EVIDENCE}/creature-contract-v0181.json", "manifest": f"{EVIDENCE}/creature-runtime-manifest-v0181.json",
+        "direction_asset_binding": f"{EVIDENCE}/direction-asset-binding-v0181.json", "direction_routing_sheet": f"{EVIDENCE}/direction-routing-sheet-v0181.png",
+        "direction_routing_matrix": f"{EVIDENCE}/direction-routing-sheet-v0181.json", "state_route_contract": f"{EVIDENCE}/state-route-contract-v0181.json",
+        "state_routing_sheet": f"{EVIDENCE}/state-routing-sheet-v0181.png", "derived_variant_lineage": f"{EVIDENCE}/derived-variant-lineage-v0181.json",
+        "collision_geometry_qa": f"{EVIDENCE}/collision-geometry-qa-v0181.json", "cache_identity": f"{EVIDENCE}/cache-identity-v0181.json",
+        "determinism": f"{EVIDENCE}/two-run-determinism-v0181.json", "negative_controls": f"{EVIDENCE}/negative-controls-v0181.json",
+        "production_routing_qa": f"{EVIDENCE}/production-routing-qa-v0181.json", "production_registry": f"{EVIDENCE}/production-registry-v0181.json",
+        "fixture_manifest": f"{EVIDENCE}/synthetic-fixture-manifest-v0181.json", "state_consistency": f"{EVIDENCE}/state-consistency-v0181.json",
+        "execution": f"{EVIDENCE}/execution-evidence-v0181.json", "correction_record": f"{EVIDENCE}/v0180-rejection-correction-record-v0181.json",
+    }
+    return {
+        "schema_version": "0.18.1", "manifest_type": "github-ci-creatures-monsters-v0181-review",
+        "repository": {"name": "KayzenRoot/ugas", "url": "https://github.com/KayzenRoot/ugas", "default_branch": "main"},
+        "pull_request": {"number": pr_number, "base_sha": base, "head_sha": head, "merge_base_sha": merge_base, "head_branch": branch, "base_branch": "main"},
+        "scope": {"version": state["version"], "phase": state["phase"], "current_gate": state["current_gate"], "allowed_next_actions": state["allowed_next_actions"], "new_generation": state.get("new_generation", 0)},
+        "changed_files": changed, "change_statistics": {"files": len(changed), "additions": additions, "deletions": deletions},
+        "current_state": {"path": "docs/evidence/current-state.json", "version": state["version"], "phase": state["phase"], "current_gate": state["current_gate"], "production_approved": state["production_approved"], "production_routing": state["production_routing"], "external_visual_review": state["external_visual_review"], "allowed_next_actions": state["allowed_next_actions"], "review": state["review"]},
+        "tests": tests, "validation": validation, "overall_status": "PASS" if gates and all(item.get("status") == "PASS" for item in gates) else "FAIL", "gates": gates,
+        "creatures_monsters_evidence": evidence,
+        "historical_regressions": {"equipment_v0171": "docs/evidence/equipment-outfits-runtime-v0171/", "direction_v0162": "docs/evidence/multi-direction-runtime-v0162/", "front_animation_v0151": "docs/evidence/animation-runtime-v0151/"},
+        "front_compatibility_evidence": {"runtime_log": "front-compatibility-v0151.log", "runtime_exit_code": int(Path(args.front_compatibility_exit).read_text(encoding="utf-8").strip())},
+        "known_gaps": known_gaps, "gap_context": gap_context,
+        "dashboard_policy": {"always_on": True, "runtime_mode": "DOCKER_ALWAYS_ON_LOCAL", "local_only": True, "telemetry_upload": False},
+        "production_boundary": {"approved": False, "routing": "BLOCKED", "new_generation": 0, "real_creature_asset_coverage": "NONE", "synthetic_creature_fixture": "TEST_ONLY"},
+        "security_boundary": {"secrets_included": False, "model_weights_included": False, "telemetry_db_included": False, "local_credentials_included": False},
+    }
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-dir", required=True); parser.add_argument("--repository-root"); parser.add_argument("--base-ref"); parser.add_argument("--head-ref"); parser.add_argument("--head-branch"); parser.add_argument("--pr-number", type=int)
+    parser.add_argument("--tests-json", required=True); parser.add_argument("--validation-json", required=True); parser.add_argument("--gates-json", required=True); parser.add_argument("--front-compatibility-exit", required=True); parser.add_argument("--preflight-json"); parser.add_argument("--known-gap", action="append")
+    args = parser.parse_args(); output = Path(args.output_dir); output.mkdir(parents=True, exist_ok=True); value = build(args); (output / "github-review-manifest-v0181.json").write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"); print(json.dumps({"status": "V0181_GITHUB_REVIEW_MANIFEST_BUILT", "base_sha": value["pull_request"]["base_sha"], "head_sha": value["pull_request"]["head_sha"]}, ensure_ascii=False))

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.18.1 creatures and monsters runtime QA integrity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_type", "production_registry", "registry_authority", "production_routing", "canonical_directions", "canonical_animation_states", "creatures", "variants"],
+  "properties": {
+    "schema_version": {"const": "0.18.1"},
+    "manifest_type": {"const": "creatures-monsters-runtime-qa-integrity"},
+    "production_registry": {"type": "boolean"},
+    "registry_authority": {"type": "string", "minLength": 1},
+    "production_routing": {"enum": ["BLOCKED", "ENABLED"]},
+    "canonical_directions": {"const": ["south", "south_east", "east", "north_east", "north", "north_west", "west", "south_west"]},
+    "canonical_animation_states": {"const": ["idle", "locomotion", "attack_primary", "hit_reaction", "death"]},
+    "creatures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["creature_id", "species_id", "archetype", "topology_id", "locomotion_class", "support_model", "rig_family", "base_scale", "footprint", "collision_profile", "anchors", "direction_coverage", "direction_bindings", "animation_state_contract", "state_routes", "variant_lineage", "asset_revision", "provenance", "provenance_hash", "test_only", "production_safe", "fixture"],
+        "properties": {
+          "creature_id": {"type": "string", "pattern": "^[a-z0-9_\\-]+$"},
+          "species_id": {"type": "string", "minLength": 1},
+          "archetype": {"enum": ["humanoid_biped", "quadruped", "flying_winged", "serpentine", "amorphous", "stationary_structure"]},
+          "topology_id": {"type": "string", "minLength": 1},
+          "locomotion_class": {"type": "string", "minLength": 1},
+          "support_model": {"type": "string", "minLength": 1},
+          "rig_family": {"type": "string", "minLength": 1},
+          "base_scale": {"type": "object", "additionalProperties": false, "required": ["x", "y"], "properties": {"x": {"type": "number", "exclusiveMinimum": 0}, "y": {"type": "number", "exclusiveMinimum": 0}}},
+          "footprint": {"type": "object", "additionalProperties": false, "required": ["width", "depth"], "properties": {"width": {"type": "number", "exclusiveMinimum": 0}, "depth": {"type": "number", "exclusiveMinimum": 0}}},
+          "collision_profile": {"type": "object", "additionalProperties": false, "required": ["shape", "width", "height", "pivot", "bounds"], "properties": {"shape": {"enum": ["box", "capsule", "ellipse", "hull"]}, "width": {"type": "number", "exclusiveMinimum": 0}, "height": {"type": "number", "exclusiveMinimum": 0}, "pivot": {"type": "object", "additionalProperties": false, "required": ["x", "y"], "properties": {"x": {"type": "number"}, "y": {"type": "number"}}}, "bounds": {"type": "object", "additionalProperties": false, "required": ["left", "top", "right", "bottom"], "properties": {"left": {"type": "number"}, "top": {"type": "number"}, "right": {"type": "number"}, "bottom": {"type": "number"}}}}},
+          "anchors": {"type": "object"},
+          "direction_coverage": {"type": "array", "items": {"enum": ["south", "south_east", "east", "north_east", "north", "north_west", "west", "south_west"]}},
+          "direction_bindings": {"type": "object", "properties": {"south": {"$ref": "#/$defs/directionBinding"}, "south_east": {"$ref": "#/$defs/directionBinding"}, "east": {"$ref": "#/$defs/directionBinding"}, "north_east": {"$ref": "#/$defs/directionBinding"}, "north": {"$ref": "#/$defs/directionBinding"}, "north_west": {"$ref": "#/$defs/directionBinding"}, "west": {"$ref": "#/$defs/directionBinding"}, "south_west": {"$ref": "#/$defs/directionBinding"}}},
+          "animation_state_contract": {"type": "object", "additionalProperties": false, "required": ["idle", "locomotion", "attack_primary", "hit_reaction", "death"], "properties": {"idle": {"enum": ["REQUIRED", "OPTIONAL", "UNSUPPORTED"]}, "locomotion": {"enum": ["REQUIRED", "OPTIONAL", "UNSUPPORTED"]}, "attack_primary": {"enum": ["REQUIRED", "OPTIONAL", "UNSUPPORTED"]}, "hit_reaction": {"enum": ["REQUIRED", "OPTIONAL", "UNSUPPORTED"]}, "death": {"enum": ["REQUIRED", "OPTIONAL", "UNSUPPORTED"]}}},
+          "state_routes": {"type": "object", "properties": {"idle": {"$ref": "#/$defs/stateRoute"}, "locomotion": {"$ref": "#/$defs/stateRoute"}, "attack_primary": {"$ref": "#/$defs/stateRoute"}, "hit_reaction": {"$ref": "#/$defs/stateRoute"}, "death": {"$ref": "#/$defs/stateRoute"}}},
+          "variant_lineage": {"type": "object", "additionalProperties": false, "required": ["variant_id", "kind", "parent_id", "inherits", "overrides"], "properties": {"variant_id": {"type": "string", "minLength": 1}, "kind": {"enum": ["base", "derived"]}, "parent_id": {}, "inherits": {"type": "array"}, "overrides": {"type": "array"}}},
+          "asset_revision": {"type": "string", "minLength": 1},
+          "provenance": {"type": "object", "additionalProperties": false, "required": ["source_kind", "source_id", "source_revision", "record_hash", "production_safe"], "properties": {"source_kind": {"const": "TEST_ONLY_SYNTHETIC"}, "source_id": {"type": "string", "minLength": 1}, "source_revision": {"const": "0.18.1"}, "record_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "production_safe": {"const": false}}},
+          "provenance_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "test_only": {"const": true},
+          "production_safe": {"const": false},
+          "fixture": {"type": "object", "additionalProperties": false, "required": ["color_rgba", "orientation_marker", "fixture_index"], "properties": {"color_rgba": {"type": "array", "minItems": 4, "items": {"type": "integer", "minimum": 0}}, "orientation_marker": {"type": "string", "minLength": 1}, "fixture_index": {"type": "integer", "minimum": 1}}}
+        }
+      }
+    },
+    "variants": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["variant_id", "creature_id", "kind", "parent_id", "inherits", "overrides", "override_values"], "properties": {"variant_id": {"type": "string", "minLength": 1}, "creature_id": {"type": "string", "minLength": 1}, "kind": {"enum": ["base", "derived"]}, "parent_id": {}, "inherits": {"type": "array"}, "overrides": {"type": "array"}, "override_values": {"type": "object"}}}}
+  },
+  "$defs": {
+    "directionBinding": {"type": "object", "additionalProperties": false, "required": ["direction", "direction_asset_id", "direction_content_hash", "asset_revision", "path", "identity_class", "test_only", "production_safe"], "properties": {"direction": {"enum": ["south", "south_east", "east", "north_east", "north", "north_west", "west", "south_west"]}, "direction_asset_id": {"type": "string", "minLength": 1}, "direction_content_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "asset_revision": {"type": "string", "minLength": 1}, "path": {"type": "string", "minLength": 1}, "identity_class": {"const": "UNIQUE_TEST_IDENTITY"}, "test_only": {"const": true}, "production_safe": {"const": false}}},
+    "stateRoute": {"type": "object", "additionalProperties": false, "required": ["state", "availability", "state_route_id", "timing_phase", "test_only", "production_safe"], "properties": {"state": {"enum": ["idle", "locomotion", "attack_primary", "hit_reaction", "death"]}, "availability": {"enum": ["REQUIRED", "OPTIONAL", "UNSUPPORTED"]}, "state_route_id": {}, "timing_phase": {}, "test_only": {"const": true}, "production_safe": {"const": false}}}
+  }
+}

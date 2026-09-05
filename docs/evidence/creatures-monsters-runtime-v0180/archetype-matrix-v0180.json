@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.18.0",
+  "status": "ARCHETYPE_MATRIX_VALID",
+  "archetypes": [
+    {
+      "archetype": "humanoid_biped",
+      "creature_id": "fixture_humanoid_biped",
+      "species_id": "monster_knight",
+      "topology_id": "topology_humanoid_biped_v1",
+      "locomotion_class": "bipedal",
+      "support_model": "two_foot_contact",
+      "rig_family": "rig_humanoid_biped_v1"
+    },
+    {
+      "archetype": "quadruped",
+      "creature_id": "fixture_quadruped",
+      "species_id": "dire_wolf",
+      "topology_id": "topology_quadruped_v1",
+      "locomotion_class": "quadrupedal",
+      "support_model": "four_foot_contact",
+      "rig_family": "rig_quadruped_v1"
+    },
+    {
+      "archetype": "flying_winged",
+      "creature_id": "fixture_flying_winged",
+      "species_id": "cave_bat",
+      "topology_id": "topology_flying_winged_v1",
+      "locomotion_class": "flying",
+      "support_model": "wing_or_airborne",
+      "rig_family": "rig_flying_winged_v1"
+    },
+    {
+      "archetype": "serpentine",
+      "creature_id": "fixture_serpentine",
+      "species_id": "marsh_wyrm",
+      "topology_id": "topology_serpentine_v1",
+      "locomotion_class": "serpentine",
+      "support_model": "belly_contact",
+      "rig_family": "rig_serpentine_v1"
+    },
+    {
+      "archetype": "amorphous",
+      "creature_id": "fixture_amorphous",
+      "species_id": "slime_mass",
+      "topology_id": "topology_amorphous_v1",
+      "locomotion_class": "sliding",
+      "support_model": "mass_contact",
+      "rig_family": "rig_amorphous_v1"
+    },
+    {
+      "archetype": "stationary_structure",
+      "creature_id": "fixture_stationary_structure",
+      "species_id": "ruin_turret",
+      "topology_id": "topology_stationary_structure_v1",
+      "locomotion_class": "stationary",
+      "support_model": "fixed_contact",
+      "rig_family": "rig_stationary_structure_v1"
+    }
+  ]
+}

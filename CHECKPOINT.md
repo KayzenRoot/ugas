@@ -1,4 +1,25 @@
-# UGAS checkpoint - v0.17.1 / v0.18.0 transition
+# UGAS checkpoint - v0.18.2 CREATURES_MONSTERS
+
+## v0.18.2 CREATURES_MONSTERS — derived variant/state contract technically qualified / external review required
+
+The active phase is `CREATURES_MONSTERS` on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`. The active gate is `CREATURES_MONSTERS_DERIVED_VARIANT_AND_STATE_CONTRACT_TECHNICALLY_QUALIFIED`; the only allowed next action is `external_review_creatures_monsters_v0182`. v0.18.1 head `b52dc26d935fd84b25a991ae81c5d508b0a39807` is frozen `CORRECTION_REQUIRED` history. The correction validates fully materialized derived variants, separates `variant_revision` from inherited directional `asset_revision`, rejects mixed effective direction revisions, restores locomotion as REQUIRED for moving archetypes, and keeps stationary locomotion UNSUPPORTED. `equipment_outfits=APPROVED_FOUNDATION`, `v0181_external_review=CORRECTION_REQUIRED`, `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Items/Props and all downstream asset families remain forbidden. PR #8 remains OPEN and must not be merged before Sol's external review.
+
+Evidence is under `docs/evidence/creatures-monsters-runtime-v0182/`; v0.18.1 is preserved under `docs/evidence/creatures-monsters-runtime-v0181/` without overwrite. The complete execution contract is [REVIEW-v0.18.2.md](REVIEW-v0.18.2.md).
+
+# Historical v0.18.1 CREATURES_MONSTERS — correction required
+## v0.18.1 CREATURES_MONSTERS — QA integrity technically qualified / external review required
+
+The active phase is `CREATURES_MONSTERS` on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on merged v0.17.1 main at `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`. The active gate is `CREATURES_MONSTERS_RUNTIME_AND_QA_INTEGRITY_TECHNICALLY_QUALIFIED`; the only allowed next action is `external_review_creatures_monsters_v0181`. The v0.18.1 correction adds executable 8-way direction asset identity, exact state route identity/timing, derived variants, strict collision geometry, strict canonical negative controls and isolated determinism. The fixtures are synthetic `TEST_ONLY`; `real_creature_asset_coverage=NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. `equipment_outfits=APPROVED_FOUNDATION`; `v0180_external_review=CORRECTION_REQUIRED`; Items/Props and all downstream asset families remain forbidden. PR #8 remains OPEN and must not be merged before Sol's external review.
+
+Evidence is under `docs/evidence/creatures-monsters-runtime-v0181/`, and the complete execution contract is [REVIEW-v0.18.1.md](REVIEW-v0.18.1.md). The v0.18.0 state is preserved at `docs/evidence/current-state-v0.18.0.json`; the rejected v0.18.0 head and correction record remain immutable history.
+
+Historical governance bindings remain explicit while the active v0.18.1 slice is reviewed: v0.16.2 `MULTI_DIRECTION_ANIMATION_RUNTIME_CACHE_AND_STATE_INTEGRITY_TECHNICALLY_QUALIFIED`, `multi_direction_animation_runtime=APPROVED_FOUNDATION`, `real_directional_character_asset_coverage=SOUTH_ONLY`, `pr_number=6`, `pr_state=OPEN`, `real_pr_checks_green=true`, `governed_merge_pr_6`, `previous_release=0.15.1`, `TEST_ONLY_SYNTHETIC_DIRECTION_FIXTURE`, and `0.16.0`/`0.16.1` `CORRECTION_REQUIRED` records are preserved without promotion. Merge after recorded external approval and exact post-bookkeeping reproof remains the historical v0.16.2 governance condition.
+
+## Historical v0.18.0 CREATURES_MONSTERS — technically qualified / correction required
+
+The active phase is `CREATURES_MONSTERS` on branch `codex/v0.18.0-creatures-monsters-runtime-foundation`, based on merged v0.17.1 main at `39e148bef50c8f04db194048dbe9fbb15d8ff3d4`. The active gate is `CREATURES_MONSTERS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; the only allowed next action is `external_review_creatures_monsters_v0180`. The package defines six explicit creature archetypes, topology/support models, scale and footprint, collision/pivot/bounds/anchors, canonical state routing, truthful direction coverage, acyclic variant lineage, cache identity and fail-closed resolution. The six colored asymmetric fixtures and contact/state-routing sheets are `TEST_ONLY` synthetic QA only; `real_creature_asset_coverage=NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. `equipment_outfits=APPROVED_FOUNDATION`; `next_capability_started=false`; Items/Props and all downstream asset families remain forbidden. The v0.18.0 PR is GitHub-first and must remain OPEN after exact-head Actions/artifact proof; do not merge it.
+
+Evidence is under `docs/evidence/creatures-monsters-runtime-v0180/`, including the contract, six-archetype matrix, topology/support, scale/footprint, collision, animation states, direction coverage, variant lineage, cache identity, provenance, determinism, CR-NC-01..15, production registry, fixture manifest, contact sheet, state-routing sheet, state consistency and execution evidence. The complete execution contract is [REVIEW-v0.18.0.md](REVIEW-v0.18.0.md).
 
 ## v0.17.1 EQUIPMENT_OUTFITS — approved foundation / governed merge authorized
 

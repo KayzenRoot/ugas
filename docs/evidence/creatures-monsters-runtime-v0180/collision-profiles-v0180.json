@@ -1,0 +1,114 @@
+{
+  "schema_version": "0.18.0",
+  "status": "COLLISION_PROFILES_EXPLICIT",
+  "records": [
+    {
+      "creature_id": "fixture_humanoid_biped",
+      "collision_profile": {
+        "shape": "capsule",
+        "width": 42.0,
+        "height": 76.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      }
+    },
+    {
+      "creature_id": "fixture_quadruped",
+      "collision_profile": {
+        "shape": "capsule",
+        "width": 47.0,
+        "height": 80.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      }
+    },
+    {
+      "creature_id": "fixture_flying_winged",
+      "collision_profile": {
+        "shape": "box",
+        "width": 52.0,
+        "height": 84.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      }
+    },
+    {
+      "creature_id": "fixture_serpentine",
+      "collision_profile": {
+        "shape": "capsule",
+        "width": 57.0,
+        "height": 88.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      }
+    },
+    {
+      "creature_id": "fixture_amorphous",
+      "collision_profile": {
+        "shape": "box",
+        "width": 62.0,
+        "height": 92.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      }
+    },
+    {
+      "creature_id": "fixture_stationary_structure",
+      "collision_profile": {
+        "shape": "box",
+        "width": 67.0,
+        "height": 96.0,
+        "pivot": {
+          "x": 96.0,
+          "y": 174.0
+        },
+        "bounds": {
+          "left": 30.0,
+          "top": 18.0,
+          "right": 162.0,
+          "bottom": 178.0
+        }
+      }
+    }
+  ]
+}

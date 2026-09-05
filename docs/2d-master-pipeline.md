@@ -1,4 +1,12 @@
-# 2D master pipeline v0.17.1
+## Historical v0.18.0 boundary
+
+The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
+
+# 2D master pipeline v0.18.2
+
+The active slice is `CREATURES_MONSTERS` v0.18.2 derived-variant and state contract correction. It validates effective variants after materialization, keeps metadata `variant_revision` separate from inherited directional `asset_revision`, rejects mixed direction revisions, restores locomotion for moving archetypes, and preserves the 48 frozen v0.18.1 fixture pixels/hashes. `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; no Items/Props work is authorized. The v0.18.1 reviewed head remains immutable `CORRECTION_REQUIRED` history, and the only next action is `external_review_creatures_monsters_v0182`.
+
+## Historical v0.17.1 boundary
 
 The active slice is `EQUIPMENT_OUTFITS` for v0.17.1: deterministic modular composition of wearable TEST_ONLY fixtures over the approved R4 front animation frames. Replacement arbitration selects one winner and clears hidden base parts before rendering; asset-bound occlusion masks have deterministic geometry, hashes, pixel counts and traces. The cache binds equipment, slot, variant, rig revision, canonical direction, animation capability/profile, asset revision, request mode and registry mode. Missing directions fail closed; mirror and secondary anchors fail closed until their runtime effects exist. Base frame pixels, timing and event markers are immutable, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and real equipment coverage is `NONE_OR_EXPLICITLY_APPROVED_ONLY`. The production registry is empty; eight synthetic fixtures are `TEST_ONLY`. v0.17.0 remains rejected history, v0.16.2 remains the approved multi-direction runtime foundation, and v0.16.0/v0.16.1 remain correction-required history. External equipment/outfits review is required before any promotion or downstream capability.
 
