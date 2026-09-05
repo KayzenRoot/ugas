@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.19.0",
+  "status": "CACHE_IDENTITY_COMPLETE_AND_ISOLATED",
+  "resolved_keys": [
+    "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:base|variant_revision=iron_sword-base-r1|context=inventory|representation_id=iron_sword:inventory_icon:r1|representation_revision=iron_sword-representation-r1|equipment_link_revision=weapon-overlay-synthetic:accessory:iron-sword:equipment-fixture-v0171-r1|registry_mode=test",
+    "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:base|variant_revision=iron_sword-base-r1|context=world|representation_id=iron_sword:world_sprite_prop:r1|representation_revision=iron_sword-representation-r1|equipment_link_revision=weapon-overlay-synthetic:accessory:iron-sword:equipment-fixture-v0171-r1|registry_mode=test",
+    "item_or_prop_id=healing_potion|class_id=consumable_item|variant_id=healing_potion:base|variant_revision=healing_potion-base-r1|context=inventory|representation_id=healing_potion:inventory_icon:r1|representation_revision=healing_potion-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=healing_potion|class_id=consumable_item|variant_id=healing_potion:base|variant_revision=healing_potion-base-r1|context=world|representation_id=healing_potion:world_sprite_prop:r1|representation_revision=healing_potion-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=moon_ore|class_id=material_item|variant_id=moon_ore:base|variant_revision=moon_ore-base-r1|context=inventory|representation_id=moon_ore:inventory_icon:r1|representation_revision=moon_ore-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=moon_ore|class_id=material_item|variant_id=moon_ore:base|variant_revision=moon_ore-base-r1|context=world|representation_id=moon_ore:world_sprite_prop:r1|representation_revision=moon_ore-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=old_key|class_id=quest_key_item|variant_id=old_key:base|variant_revision=old_key-base-r1|context=inventory|representation_id=old_key:inventory_icon:r1|representation_revision=old_key-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=old_key|class_id=quest_key_item|variant_id=old_key:base|variant_revision=old_key-base-r1|context=world|representation_id=old_key:world_sprite_prop:r1|representation_revision=old_key-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=wooden_crate|class_id=container_prop|variant_id=wooden_crate:base|variant_revision=wooden_crate-base-r1|context=inventory|representation_id=wooden_crate:inventory_icon:r1|representation_revision=wooden_crate-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=wooden_crate|class_id=container_prop|variant_id=wooden_crate:base|variant_revision=wooden_crate-base-r1|context=world|representation_id=wooden_crate:world_sprite_prop:r1|representation_revision=wooden_crate-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=ancient_lamp|class_id=environmental_prop|variant_id=ancient_lamp:base|variant_revision=ancient_lamp-base-r1|context=inventory|representation_id=ancient_lamp:inventory_icon:r1|representation_revision=ancient_lamp-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=ancient_lamp|class_id=environmental_prop|variant_id=ancient_lamp:base|variant_revision=ancient_lamp-base-r1|context=world|representation_id=ancient_lamp:world_sprite_prop:r1|representation_revision=ancient_lamp-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+    "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:ember|variant_revision=iron_sword-ember-r1|context=inventory|representation_id=iron_sword:inventory_icon:r1|representation_revision=iron_sword-representation-r1|equipment_link_revision=weapon-overlay-synthetic:accessory:iron-sword:equipment-fixture-v0171-r1|registry_mode=test",
+    "item_or_prop_id=wooden_crate|class_id=container_prop|variant_id=wooden_crate:sealed|variant_revision=wooden_crate-sealed-r1|context=world|representation_id=wooden_crate:world_sprite_prop:r1|representation_revision=wooden_crate-representation-r1|equipment_link_revision=NONE|registry_mode=test"
+  ],
+  "cross_context_negative": {
+    "id": "IP-NC-13",
+    "mutation": "poison cache with another item identity",
+    "target_gate": "IP-NC-13",
+    "expected_error_code": "STALE_ITEM_PROP_CACHE_CONTEXT",
+    "expected_rejection_class": "RUNTIME_REJECTION",
+    "rejected": true,
+    "status": "REJECTED",
+    "passed": true,
+    "observed": {
+      "result": "REJECTED",
+      "item_or_prop_id": "iron_sword",
+      "class_id": "weapon_item",
+      "variant_id": "iron_sword:base",
+      "variant_revision": null,
+      "requested_context": "inventory",
+      "representation_id": null,
+      "representation_revision": null,
+      "content_hash": null,
+      "stack_policy": null,
+      "equipment_ref": null,
+      "cache_key": "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:base|variant_revision=iron_sword-base-r1|context=inventory|representation_id=iron_sword:inventory_icon:r1|representation_revision=iron_sword-representation-r1|equipment_link_revision=weapon-overlay-synthetic:accessory:iron-sword:equipment-fixture-v0171-r1|registry_mode=test",
+      "provenance_hash": null,
+      "production_safe": false,
+      "error_code": "STALE_ITEM_PROP_CACHE_CONTEXT",
+      "rejection_class": "RUNTIME_REJECTION",
+      "cache_hit": false,
+      "fallback_mode": "NONE"
+    }
+  }
+}

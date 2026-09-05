@@ -1,0 +1,117 @@
+{
+  "schema_version": "0.19.1",
+  "status": "GENERATED_VARIANT_LINEAGE_VALID",
+  "variants": [
+    {
+      "variant_id": "iron_sword:base",
+      "item_or_prop_id": "iron_sword",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "iron_sword-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "healing_potion:base",
+      "item_or_prop_id": "healing_potion",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "healing_potion-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "moon_ore:base",
+      "item_or_prop_id": "moon_ore",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "moon_ore-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "old_key:base",
+      "item_or_prop_id": "old_key",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "old_key-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "wooden_crate:base",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "wooden_crate-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "ancient_lamp:base",
+      "item_or_prop_id": "ancient_lamp",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "ancient_lamp-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "iron_sword:ember",
+      "item_or_prop_id": "iron_sword",
+      "kind": "derived",
+      "parent_id": "iron_sword:base",
+      "variant_revision": "iron_sword-ember-r1",
+      "overrides": [
+        "scale",
+        "material_palette"
+      ],
+      "override_values": {
+        "scale": 1.25,
+        "material_palette": "ember"
+      }
+    },
+    {
+      "variant_id": "healing_potion:berry",
+      "item_or_prop_id": "healing_potion",
+      "kind": "derived",
+      "parent_id": "healing_potion:base",
+      "variant_revision": "healing_potion-berry-r1",
+      "overrides": [
+        "stack_family_id",
+        "material_palette"
+      ],
+      "override_values": {
+        "stack_family_id": "item:healing_potion",
+        "material_palette": "berry"
+      }
+    },
+    {
+      "variant_id": "wooden_crate:sealed",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "derived",
+      "parent_id": "wooden_crate:base",
+      "variant_revision": "wooden_crate-sealed-r1",
+      "overrides": [
+        "footprint",
+        "anchors"
+      ],
+      "override_values": {
+        "footprint": {
+          "width": 2,
+          "height": 1
+        },
+        "anchors": [
+          {
+            "anchor_id": "wooden_crate:open",
+            "kind": "open",
+            "point": {
+              "x": 48,
+              "y": 40
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

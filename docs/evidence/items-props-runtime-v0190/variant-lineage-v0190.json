@@ -1,0 +1,152 @@
+{
+  "schema_version": "0.19.0",
+  "status": "VARIANT_LINEAGE_AND_EFFECTIVE_REVALIDATION_PASSED",
+  "variants": [
+    {
+      "variant_id": "iron_sword:base",
+      "item_or_prop_id": "iron_sword",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "iron_sword-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "healing_potion:base",
+      "item_or_prop_id": "healing_potion",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "healing_potion-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "moon_ore:base",
+      "item_or_prop_id": "moon_ore",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "moon_ore-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "old_key:base",
+      "item_or_prop_id": "old_key",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "old_key-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "wooden_crate:base",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "wooden_crate-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "ancient_lamp:base",
+      "item_or_prop_id": "ancient_lamp",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "ancient_lamp-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "iron_sword:ember",
+      "item_or_prop_id": "iron_sword",
+      "kind": "derived",
+      "parent_id": "iron_sword:base",
+      "variant_revision": "iron_sword-ember-r1",
+      "overrides": [
+        "scale",
+        "material_palette"
+      ],
+      "override_values": {
+        "scale": 1.25,
+        "material_palette": "ember"
+      }
+    },
+    {
+      "variant_id": "wooden_crate:sealed",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "derived",
+      "parent_id": "wooden_crate:base",
+      "variant_revision": "wooden_crate-sealed-r1",
+      "overrides": [
+        "footprint",
+        "anchors"
+      ],
+      "override_values": {
+        "footprint": {
+          "width": 2,
+          "height": 1
+        },
+        "anchors": [
+          {
+            "anchor_id": "wooden_crate:open",
+            "kind": "open",
+            "point": {
+              "x": 48,
+              "y": 40
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "resolved": [
+    {
+      "result": "RESOLVED",
+      "item_or_prop_id": "iron_sword",
+      "class_id": "weapon_item",
+      "variant_id": "iron_sword:ember",
+      "variant_revision": "iron_sword-ember-r1",
+      "requested_context": "inventory",
+      "representation_id": "iron_sword:inventory_icon:r1",
+      "representation_revision": "iron_sword-representation-r1",
+      "content_hash": "b444c3146626e770ae10cdab0d3912f57eec7cd769ed1c0f07414843e02466d5",
+      "stack_policy": "NON_STACKABLE",
+      "equipment_ref": {
+        "equipment_id": "weapon-overlay-synthetic",
+        "slot": "accessory",
+        "variant": "iron-sword",
+        "equipment_revision": "equipment-fixture-v0171-r1",
+        "compatibility": "weapon_item",
+        "test_only": true,
+        "production_safe": false
+      },
+      "cache_key": "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:ember|variant_revision=iron_sword-ember-r1|context=inventory|representation_id=iron_sword:inventory_icon:r1|representation_revision=iron_sword-representation-r1|equipment_link_revision=weapon-overlay-synthetic:accessory:iron-sword:equipment-fixture-v0171-r1|registry_mode=test",
+      "provenance_hash": "846fff9a54e05e644966260b355e9104845b53411c74fb2e9415c972c2cd6882",
+      "production_safe": false,
+      "error_code": null,
+      "rejection_class": null,
+      "cache_hit": false,
+      "fallback_mode": "NONE"
+    },
+    {
+      "result": "RESOLVED",
+      "item_or_prop_id": "wooden_crate",
+      "class_id": "container_prop",
+      "variant_id": "wooden_crate:sealed",
+      "variant_revision": "wooden_crate-sealed-r1",
+      "requested_context": "world",
+      "representation_id": "wooden_crate:world_sprite_prop:r1",
+      "representation_revision": "wooden_crate-representation-r1",
+      "content_hash": "a3f0847ca80856e7829c9e976a0bb562203bb38564a8e6eecd4a8af9198d8ea9",
+      "stack_policy": "NON_STACKABLE",
+      "equipment_ref": null,
+      "cache_key": "item_or_prop_id=wooden_crate|class_id=container_prop|variant_id=wooden_crate:sealed|variant_revision=wooden_crate-sealed-r1|context=world|representation_id=wooden_crate:world_sprite_prop:r1|representation_revision=wooden_crate-representation-r1|equipment_link_revision=NONE|registry_mode=test",
+      "provenance_hash": "3d6f9ec818b32fbf08cf518095fce6ae62e4695ea086362f79201f0e3bd79fa7",
+      "production_safe": false,
+      "error_code": null,
+      "rejection_class": null,
+      "cache_hit": false,
+      "fallback_mode": "NONE"
+    }
+  ]
+}

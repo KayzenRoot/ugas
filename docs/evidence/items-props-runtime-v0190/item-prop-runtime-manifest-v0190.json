@@ -1,0 +1,788 @@
+{
+  "schema_version": "0.19.0",
+  "manifest_type": "items-props-runtime-foundation",
+  "production_registry": false,
+  "registry_authority": "TEST_ONLY_SYNTHETIC_ITEM_PROP_FIXTURES",
+  "production_routing": "BLOCKED",
+  "canonical_classes": [
+    "weapon_item",
+    "consumable_item",
+    "material_item",
+    "quest_key_item",
+    "container_prop",
+    "environmental_prop"
+  ],
+  "contexts": [
+    "inventory",
+    "world",
+    "equipment-preview"
+  ],
+  "items": [
+    {
+      "item_or_prop_id": "iron_sword",
+      "class_id": "weapon_item",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "REQUIRED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "iron_sword:inventory_icon:r1",
+          "asset_revision": "iron_sword-representation-r1",
+          "representation_revision": "iron_sword-representation-r1",
+          "content_hash": "b444c3146626e770ae10cdab0d3912f57eec7cd769ed1c0f07414843e02466d5",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "9a963daaf2fafa39b9855a228a1bc0c3afd5ff1581c4f6b459abec4b98f292a2"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "iron_sword:world_sprite_prop:r1",
+          "asset_revision": "iron_sword-representation-r1",
+          "representation_revision": "iron_sword-representation-r1",
+          "content_hash": "4d8dba5a8fe5857252fd5d2c40fbda37edbbaf51d946408f8b755f05d3be92c1",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "3d4455164bda56b0c7207244ba201c38713e294b17e81093576da183f75e83f6"
+          }
+        },
+        "equipment_ref": {
+          "representation_id": "iron_sword:equipment_ref:r1",
+          "asset_revision": "iron_sword-representation-r1",
+          "representation_revision": "iron_sword-representation-r1",
+          "content_hash": "b444c3146626e770ae10cdab0d3912f57eec7cd769ed1c0f07414843e02466d5",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "0a6c63e506a1c907722abfb181406cc8e444a1ca4e96d2e57852528d65117e75"
+          }
+        }
+      },
+      "world_geometry": {
+        "visual_bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 96,
+          "height": 96
+        },
+        "collision_bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 60,
+          "height": 60
+        },
+        "footprint": {
+          "width": 1,
+          "height": 1
+        },
+        "pivot": {
+          "x": 48,
+          "y": 48
+        },
+        "origin": {
+          "x": 48,
+          "y": 48
+        },
+        "scale": 1.0,
+        "anchors": [
+          {
+            "anchor_id": "iron_sword:interaction",
+            "kind": "interaction",
+            "point": {
+              "x": 48,
+              "y": 48
+            }
+          }
+        ]
+      },
+      "stack_policy": "NON_STACKABLE",
+      "stack_key": null,
+      "display_variant_id": "iron_sword:display-default",
+      "equipment_ref": {
+        "equipment_id": "weapon-overlay-synthetic",
+        "slot": "accessory",
+        "variant": "iron-sword",
+        "equipment_revision": "equipment-fixture-v0171-r1",
+        "compatibility": "weapon_item",
+        "test_only": true,
+        "production_safe": false
+      },
+      "variant_lineage": {
+        "variant_id": "iron_sword:base",
+        "kind": "base",
+        "parent_id": null
+      },
+      "provenance": {
+        "source_id": "synthetic-iron_sword",
+        "source_revision": "0.19.0",
+        "generator": "fixture-only"
+      },
+      "test_only": true,
+      "production_safe": false,
+      "provenance_hash": "8517319b3354beee2e0d9876ea09f75212fb3d5643421cf195fdeb8e575a1585"
+    },
+    {
+      "item_or_prop_id": "healing_potion",
+      "class_id": "consumable_item",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "healing_potion:inventory_icon:r1",
+          "asset_revision": "healing_potion-representation-r1",
+          "representation_revision": "healing_potion-representation-r1",
+          "content_hash": "ff5e6cf97b03d18f7f551ad0ec3e8c8bfd10dba95404f121ba23201d8616c66c",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "4b9ad83420a12d901fa2612a27948de8e84e15abcee6707f3e2fda5461175ce7"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "healing_potion:world_sprite_prop:r1",
+          "asset_revision": "healing_potion-representation-r1",
+          "representation_revision": "healing_potion-representation-r1",
+          "content_hash": "b2d1bd3fc246611c0f5615f87f510a27881bb54471fc6471587e848bf90535d2",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "e781998209d984c3f19115be29854064c94219b3fc7bc3ea7ca1554c53a5f092"
+          }
+        }
+      },
+      "world_geometry": {
+        "visual_bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 96,
+          "height": 96
+        },
+        "collision_bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 60,
+          "height": 60
+        },
+        "footprint": {
+          "width": 1,
+          "height": 1
+        },
+        "pivot": {
+          "x": 48,
+          "y": 48
+        },
+        "origin": {
+          "x": 48,
+          "y": 48
+        },
+        "scale": 1.0,
+        "anchors": [
+          {
+            "anchor_id": "healing_potion:interaction",
+            "kind": "interaction",
+            "point": {
+              "x": 48,
+              "y": 48
+            }
+          }
+        ]
+      },
+      "stack_policy": "STACKABLE",
+      "stack_key": "consumable_item",
+      "display_variant_id": "healing_potion:display-default",
+      "equipment_ref": null,
+      "variant_lineage": {
+        "variant_id": "healing_potion:base",
+        "kind": "base",
+        "parent_id": null
+      },
+      "provenance": {
+        "source_id": "synthetic-healing_potion",
+        "source_revision": "0.19.0",
+        "generator": "fixture-only"
+      },
+      "test_only": true,
+      "production_safe": false,
+      "provenance_hash": "e3ba78ac4a01da8e123a9c1ac7d34694c5c6cbb2241795da3636de537a8edec2"
+    },
+    {
+      "item_or_prop_id": "moon_ore",
+      "class_id": "material_item",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "moon_ore:inventory_icon:r1",
+          "asset_revision": "moon_ore-representation-r1",
+          "representation_revision": "moon_ore-representation-r1",
+          "content_hash": "33c425a8f63da9cfc816fed2e9f7691d5e14b21691fab43491143708c06663ce",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "238486edd13317a1714ffc64b86dee0fc472594220c3d19147287eb354306cf5"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "moon_ore:world_sprite_prop:r1",
+          "asset_revision": "moon_ore-representation-r1",
+          "representation_revision": "moon_ore-representation-r1",
+          "content_hash": "0614c625acbb66a7a2bff9e46ce91f7441e1e87b339df13e5b3348f20e5fc9a1",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "ede1abd5df807a8e156532ca87f2a2b83a773a5138bc0eec6ac4cfe99c727f99"
+          }
+        }
+      },
+      "world_geometry": {
+        "visual_bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 96,
+          "height": 96
+        },
+        "collision_bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 60,
+          "height": 60
+        },
+        "footprint": {
+          "width": 1,
+          "height": 1
+        },
+        "pivot": {
+          "x": 48,
+          "y": 48
+        },
+        "origin": {
+          "x": 48,
+          "y": 48
+        },
+        "scale": 1.0,
+        "anchors": [
+          {
+            "anchor_id": "moon_ore:interaction",
+            "kind": "interaction",
+            "point": {
+              "x": 48,
+              "y": 48
+            }
+          }
+        ]
+      },
+      "stack_policy": "STACKABLE",
+      "stack_key": "material_item",
+      "display_variant_id": "moon_ore:display-default",
+      "equipment_ref": null,
+      "variant_lineage": {
+        "variant_id": "moon_ore:base",
+        "kind": "base",
+        "parent_id": null
+      },
+      "provenance": {
+        "source_id": "synthetic-moon_ore",
+        "source_revision": "0.19.0",
+        "generator": "fixture-only"
+      },
+      "test_only": true,
+      "production_safe": false,
+      "provenance_hash": "b27dc8d0c850363b1d4563da34a05ff36dff8696e912cdabafd11c389e43f1e5"
+    },
+    {
+      "item_or_prop_id": "old_key",
+      "class_id": "quest_key_item",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "old_key:inventory_icon:r1",
+          "asset_revision": "old_key-representation-r1",
+          "representation_revision": "old_key-representation-r1",
+          "content_hash": "d971c3231d367cbf79ce80a4b1e7bea28341d0dc5b3ea2004d7b194443896000",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "841bffa294e94a23250088535578300cb16eb28de49d87b2ca671f127692b7e2"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "old_key:world_sprite_prop:r1",
+          "asset_revision": "old_key-representation-r1",
+          "representation_revision": "old_key-representation-r1",
+          "content_hash": "efd51c21d6e0057ab657bdb511b6f7c53a26e1d4e48645b23dfbd28fe1aec174",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "6d36519aab2911770dc3576092997c1061b6cc9662dcb1a867a363c4d7a422ba"
+          }
+        }
+      },
+      "world_geometry": {
+        "visual_bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 96,
+          "height": 96
+        },
+        "collision_bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 60,
+          "height": 60
+        },
+        "footprint": {
+          "width": 1,
+          "height": 1
+        },
+        "pivot": {
+          "x": 48,
+          "y": 48
+        },
+        "origin": {
+          "x": 48,
+          "y": 48
+        },
+        "scale": 1.0,
+        "anchors": [
+          {
+            "anchor_id": "old_key:interaction",
+            "kind": "interaction",
+            "point": {
+              "x": 48,
+              "y": 48
+            }
+          }
+        ]
+      },
+      "stack_policy": "UNIQUE_INSTANCE_REQUIRED",
+      "stack_key": null,
+      "display_variant_id": "old_key:display-default",
+      "equipment_ref": null,
+      "variant_lineage": {
+        "variant_id": "old_key:base",
+        "kind": "base",
+        "parent_id": null
+      },
+      "provenance": {
+        "source_id": "synthetic-old_key",
+        "source_revision": "0.19.0",
+        "generator": "fixture-only"
+      },
+      "test_only": true,
+      "production_safe": false,
+      "provenance_hash": "21c3df8de682212845fa07a1d5925a426ea288be3b5653ec7b0a241a268d4a09"
+    },
+    {
+      "item_or_prop_id": "wooden_crate",
+      "class_id": "container_prop",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "wooden_crate:inventory_icon:r1",
+          "asset_revision": "wooden_crate-representation-r1",
+          "representation_revision": "wooden_crate-representation-r1",
+          "content_hash": "7fa5fa9c97ba6bd3d70f8e429dbe7c3272b09dd704907d0fe08ecef43316f9d1",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "3d4ff074ad74d90fb50a2af0f71702f51145ad984dfa0b9bc383802efaeb903b"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "wooden_crate:world_sprite_prop:r1",
+          "asset_revision": "wooden_crate-representation-r1",
+          "representation_revision": "wooden_crate-representation-r1",
+          "content_hash": "a3f0847ca80856e7829c9e976a0bb562203bb38564a8e6eecd4a8af9198d8ea9",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "95d5a2ea215a9ed9ec9a640b58cccf78adc0e8e84e3766ed4a5fca377cea1c04"
+          }
+        }
+      },
+      "world_geometry": {
+        "visual_bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 96,
+          "height": 96
+        },
+        "collision_bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 60,
+          "height": 60
+        },
+        "footprint": {
+          "width": 1,
+          "height": 1
+        },
+        "pivot": {
+          "x": 48,
+          "y": 48
+        },
+        "origin": {
+          "x": 48,
+          "y": 48
+        },
+        "scale": 1.0,
+        "anchors": [
+          {
+            "anchor_id": "wooden_crate:interaction",
+            "kind": "interaction",
+            "point": {
+              "x": 48,
+              "y": 48
+            }
+          }
+        ]
+      },
+      "stack_policy": "NON_STACKABLE",
+      "stack_key": null,
+      "display_variant_id": "wooden_crate:display-default",
+      "equipment_ref": null,
+      "variant_lineage": {
+        "variant_id": "wooden_crate:base",
+        "kind": "base",
+        "parent_id": null
+      },
+      "provenance": {
+        "source_id": "synthetic-wooden_crate",
+        "source_revision": "0.19.0",
+        "generator": "fixture-only"
+      },
+      "test_only": true,
+      "production_safe": false,
+      "provenance_hash": "28bc77a90a5c4aa924d481282108bb932f86ecdd21324686aa2b89c48effe03e"
+    },
+    {
+      "item_or_prop_id": "ancient_lamp",
+      "class_id": "environmental_prop",
+      "representation_profile": {
+        "inventory_icon": {
+          "availability": "REQUIRED"
+        },
+        "world_sprite_prop": {
+          "availability": "REQUIRED"
+        },
+        "equipment_ref": {
+          "availability": "UNSUPPORTED"
+        }
+      },
+      "representations": {
+        "inventory_icon": {
+          "representation_id": "ancient_lamp:inventory_icon:r1",
+          "asset_revision": "ancient_lamp-representation-r1",
+          "representation_revision": "ancient_lamp-representation-r1",
+          "content_hash": "b39fed97e7eddbdd06d8619db6acb69576260bdb5c6ed62fe67045d66191b5eb",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "6606bf0ac5e8a1f2fcbc6dc60a80cb444885962bc9c8aca676497913c8a1cf29"
+          }
+        },
+        "world_sprite_prop": {
+          "representation_id": "ancient_lamp:world_sprite_prop:r1",
+          "asset_revision": "ancient_lamp-representation-r1",
+          "representation_revision": "ancient_lamp-representation-r1",
+          "content_hash": "bfe6528db45b0866962310145276bd3a582c5f644a2c720c1c0b024300e5165f",
+          "dimensions": {
+            "width": 96,
+            "height": 96
+          },
+          "pivot": {
+            "x": 48,
+            "y": 48
+          },
+          "provenance": {
+            "source": "v0.19.0-test-only-synthetic",
+            "provenance_hash": "ccc9a484880de1ca738c4195ed8de422b39165f5e9899e688df6a1920b97f75b"
+          }
+        }
+      },
+      "world_geometry": {
+        "visual_bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 96,
+          "height": 96
+        },
+        "collision_bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 60,
+          "height": 60
+        },
+        "footprint": {
+          "width": 1,
+          "height": 1
+        },
+        "pivot": {
+          "x": 48,
+          "y": 48
+        },
+        "origin": {
+          "x": 48,
+          "y": 48
+        },
+        "scale": 1.0,
+        "anchors": [
+          {
+            "anchor_id": "ancient_lamp:interaction",
+            "kind": "interaction",
+            "point": {
+              "x": 48,
+              "y": 48
+            }
+          }
+        ]
+      },
+      "stack_policy": "NON_STACKABLE",
+      "stack_key": null,
+      "display_variant_id": "ancient_lamp:display-default",
+      "equipment_ref": null,
+      "variant_lineage": {
+        "variant_id": "ancient_lamp:base",
+        "kind": "base",
+        "parent_id": null
+      },
+      "provenance": {
+        "source_id": "synthetic-ancient_lamp",
+        "source_revision": "0.19.0",
+        "generator": "fixture-only"
+      },
+      "test_only": true,
+      "production_safe": false,
+      "provenance_hash": "78fe60c0bf1126eaf81522c65dc6bcc1c9f9a4554158d77a8b6c23a2e7f1d812"
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "iron_sword:base",
+      "item_or_prop_id": "iron_sword",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "iron_sword-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "healing_potion:base",
+      "item_or_prop_id": "healing_potion",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "healing_potion-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "moon_ore:base",
+      "item_or_prop_id": "moon_ore",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "moon_ore-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "old_key:base",
+      "item_or_prop_id": "old_key",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "old_key-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "wooden_crate:base",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "wooden_crate-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "ancient_lamp:base",
+      "item_or_prop_id": "ancient_lamp",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "ancient_lamp-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "iron_sword:ember",
+      "item_or_prop_id": "iron_sword",
+      "kind": "derived",
+      "parent_id": "iron_sword:base",
+      "variant_revision": "iron_sword-ember-r1",
+      "overrides": [
+        "scale",
+        "material_palette"
+      ],
+      "override_values": {
+        "scale": 1.25,
+        "material_palette": "ember"
+      }
+    },
+    {
+      "variant_id": "wooden_crate:sealed",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "derived",
+      "parent_id": "wooden_crate:base",
+      "variant_revision": "wooden_crate-sealed-r1",
+      "overrides": [
+        "footprint",
+        "anchors"
+      ],
+      "override_values": {
+        "footprint": {
+          "width": 2,
+          "height": 1
+        },
+        "anchors": [
+          {
+            "anchor_id": "wooden_crate:open",
+            "kind": "open",
+            "point": {
+              "x": 48,
+              "y": 40
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

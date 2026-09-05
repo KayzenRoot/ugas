@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.19.1",
+  "record_type": "FORWARD_ONLY_REJECTION_CORRECTION",
+  "rejected_version": "0.19.0",
+  "rejected_reviewed_head": "44937935e644202836b3e1f081b6a63201b850db",
+  "pull_request": 9,
+  "feature_branch": "codex/v0.19.0-items-props-runtime-foundation",
+  "base_commit": "52938a04016352d50ad54621a4df981a9c36b058",
+  "correction_version": "0.19.1",
+  "correction_scope": ["equipment_authority_linkage", "representation_bytes_and_pixel_hashes", "full_slice_two_run_determinism", "item_family_stack_identity"],
+  "rejection_reasons": ["equipment reference was not bound to frozen v0.17.1 authority", "resolved representations lacked materialized byte evidence", "determinism covered only one item/context", "generic class stack keys were too coarse"],
+  "historical_evidence_preserved": true,
+  "historical_evidence": "docs/evidence/items-props-runtime-v0190/",
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "external_review": "REQUIRED",
+  "next_action": "external_review_items_props_v0191"
+}

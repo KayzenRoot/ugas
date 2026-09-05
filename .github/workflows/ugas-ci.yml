@@ -34,14 +34,14 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.18.2 state consistency
+      - name: Active v0.19.1 state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0182.py
-      - name: Creatures/monsters derived variant and state contract validation
+        run: python scripts/validation/validate_state_consistency_v0191.py
+      - name: Items/props runtime correction and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_creatures_monsters_runtime_v0182.py
+        run: python scripts/validation/run_items_props_runtime_v0191.py
       - name: Official validation
         env:
           PYTHONPATH: src
@@ -70,6 +70,10 @@ jobs:
         env:
           PYTHONPATH: src
         run: python scripts/validation/validate_equipment_runtime_v0171_regression.py
+      - name: Frozen v0.18.2 creatures read-only regression
+        env:
+          PYTHONPATH: src
+        run: python scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py
       - name: Workflow structure validation
         env:
           PYTHONPATH: src

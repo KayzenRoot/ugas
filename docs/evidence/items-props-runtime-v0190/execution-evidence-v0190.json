@@ -1,0 +1,120 @@
+{
+  "schema_version": "0.19.0",
+  "status": "ITEMS_PROPS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
+  "failed": 0,
+  "gates": {
+    "item_prop_schema_valid": {
+      "status": "PASS",
+      "detail": "schema and semantic manifest validation passed"
+    },
+    "class_representation_contract_valid": {
+      "status": "PASS",
+      "detail": "six stable classes and three representation contexts validated"
+    },
+    "required_representation_present": {
+      "status": "PASS",
+      "detail": "required inventory/world bindings resolved"
+    },
+    "unsupported_representation_has_no_hidden_binding": {
+      "status": "PASS",
+      "detail": "unsupported contexts contain no binding or hidden asset"
+    },
+    "world_geometry_valid": {
+      "status": "PASS",
+      "detail": "visual/collision bounds, footprint, pivot and origin validated"
+    },
+    "collision_and_pivot_valid": {
+      "status": "PASS",
+      "detail": "positive collision and in-bounds pivot validated"
+    },
+    "interaction_anchors_valid": {
+      "status": "PASS",
+      "detail": "required interaction anchors are in visual bounds"
+    },
+    "stack_policy_valid": {
+      "status": "PASS",
+      "detail": "stack policy is metadata-only and class-compatible"
+    },
+    "unique_identity_policy_valid": {
+      "status": "PASS",
+      "detail": "quest key uses UNIQUE_INSTANCE_REQUIRED"
+    },
+    "variant_lineage_acyclic": {
+      "status": "PASS",
+      "detail": "base and derived lineage is acyclic"
+    },
+    "effective_variant_revalidated": {
+      "status": "PASS",
+      "detail": "derived scale/footprint/anchor variants revalidated after materialization"
+    },
+    "representation_revision_consistent": {
+      "status": "PASS",
+      "detail": "representation and asset revisions match"
+    },
+    "equipment_linkage_valid_or_explicitly_absent": {
+      "status": "PASS",
+      "detail": "weapon TEST_ONLY equipment identity valid; other classes explicit absent"
+    },
+    "cache_identity_complete": {
+      "status": "PASS",
+      "detail": "cache key includes item/class/variant/context/representation/equipment/registry"
+    },
+    "stale_cache_cross_item_variant_context_rejected": {
+      "status": "PASS",
+      "detail": {
+        "result": "REJECTED",
+        "item_or_prop_id": "iron_sword",
+        "class_id": "weapon_item",
+        "variant_id": "iron_sword:base",
+        "variant_revision": null,
+        "requested_context": "inventory",
+        "representation_id": null,
+        "representation_revision": null,
+        "content_hash": null,
+        "stack_policy": null,
+        "equipment_ref": null,
+        "cache_key": "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:base|variant_revision=iron_sword-base-r1|context=inventory|representation_id=iron_sword:inventory_icon:r1|representation_revision=iron_sword-representation-r1|equipment_link_revision=weapon-overlay-synthetic:accessory:iron-sword:equipment-fixture-v0171-r1|registry_mode=test",
+        "provenance_hash": null,
+        "production_safe": false,
+        "error_code": "STALE_ITEM_PROP_CACHE_CONTEXT",
+        "rejection_class": "RUNTIME_REJECTION",
+        "cache_hit": false,
+        "fallback_mode": "NONE"
+      }
+    },
+    "provenance_hash_matches_manifest": {
+      "status": "PASS",
+      "detail": "all six item hashes and representation hashes match"
+    },
+    "test_fixture_nonproduction": {
+      "status": "PASS",
+      "detail": "six fixtures are TEST_ONLY and production_safe=false"
+    },
+    "production_registry_empty": {
+      "status": "PASS",
+      "detail": "production registry accepts empty item/variant lists only"
+    },
+    "production_routing_blocked": {
+      "status": "PASS",
+      "detail": "ENABLED routing rejected"
+    },
+    "isolated_two_run_determinism": {
+      "status": "PASS",
+      "detail": {
+        "first_sha256": "b444c3146626e770ae10cdab0d3912f57eec7cd769ed1c0f07414843e02466d5",
+        "second_sha256": "b444c3146626e770ae10cdab0d3912f57eec7cd769ed1c0f07414843e02466d5",
+        "second_run_reads_first_run": false
+      }
+    }
+  },
+  "negative_controls": "ITEM_PROP_NEGATIVE_CONTROLS_01_TO_17_PASSED",
+  "item_prop_count": 6,
+  "class_count": 6,
+  "real_item_prop_asset_coverage": "NONE",
+  "synthetic_item_prop_fixture": "TEST_ONLY",
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "new_generation": 0,
+  "contact_sheet": "docs/evidence/items-props-runtime-v0190/synthetic-item-prop-contact-sheet-v0190.png",
+  "geometry_sheet": "docs/evidence/items-props-runtime-v0190/world-geometry-sheet-v0190.png"
+}

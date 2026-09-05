@@ -1,0 +1,104 @@
+{
+  "schema_version": "0.19.1",
+  "status": "STACK_AND_UNIQUE_IDENTITY_VALID",
+  "records": [
+    {
+      "item_or_prop_id": "iron_sword",
+      "class_id": "weapon_item",
+      "stack_policy": "NON_STACKABLE",
+      "stack_key": null,
+      "stack_family_id": null,
+      "display_variant_id": "iron_sword:display-default"
+    },
+    {
+      "item_or_prop_id": "healing_potion",
+      "class_id": "consumable_item",
+      "stack_policy": "STACKABLE",
+      "stack_key": "item:healing_potion",
+      "stack_family_id": "item:healing_potion",
+      "display_variant_id": "healing_potion:display-default"
+    },
+    {
+      "item_or_prop_id": "moon_ore",
+      "class_id": "material_item",
+      "stack_policy": "STACKABLE",
+      "stack_key": "item:moon_ore",
+      "stack_family_id": "item:moon_ore",
+      "display_variant_id": "moon_ore:display-default"
+    },
+    {
+      "item_or_prop_id": "old_key",
+      "class_id": "quest_key_item",
+      "stack_policy": "UNIQUE_INSTANCE_REQUIRED",
+      "stack_key": null,
+      "stack_family_id": null,
+      "display_variant_id": "old_key:display-default"
+    },
+    {
+      "item_or_prop_id": "wooden_crate",
+      "class_id": "container_prop",
+      "stack_policy": "NON_STACKABLE",
+      "stack_key": null,
+      "stack_family_id": null,
+      "display_variant_id": "wooden_crate:display-default"
+    },
+    {
+      "item_or_prop_id": "ancient_lamp",
+      "class_id": "environmental_prop",
+      "stack_policy": "NON_STACKABLE",
+      "stack_key": null,
+      "stack_family_id": null,
+      "display_variant_id": "ancient_lamp:display-default"
+    }
+  ],
+  "negative_controls": {
+    "ST-NC-01": {
+      "id": "ST-NC-01",
+      "mutation": "generic class stack key",
+      "target_gate": "ST-NC-01",
+      "expected_error_code": "STACK_IDENTITY_TOO_COARSE",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STACK_IDENTITY_TOO_COARSE",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "STACK_IDENTITY_TOO_COARSE"
+      }
+    },
+    "ST-NC-02": {
+      "id": "ST-NC-02",
+      "mutation": "cross-item family without explicit policy",
+      "target_gate": "ST-NC-02",
+      "expected_error_code": "STACK_FAMILY_COLLISION",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STACK_FAMILY_COLLISION",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "STACK_FAMILY_COLLISION"
+      }
+    },
+    "ST-NC-03": {
+      "id": "ST-NC-03",
+      "mutation": "derived stackable variant changes family",
+      "target_gate": "ST-NC-03",
+      "expected_error_code": "STACK_FAMILY_VARIANT_MISMATCH",
+      "expected_rejection_class": "CONTRACT_REJECTION",
+      "rejected": true,
+      "status": "REJECTED",
+      "passed": true,
+      "observed": {
+        "result": "REJECTED",
+        "error_code": "STACK_FAMILY_VARIANT_MISMATCH",
+        "rejection_class": "CONTRACT_REJECTION",
+        "detail": "STACK_FAMILY_VARIANT_MISMATCH"
+      }
+    }
+  }
+}

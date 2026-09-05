@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.19.0",
+  "status": "CLASS_REPRESENTATION_CONTRACT_VALID",
+  "records": [
+    {
+      "class_id": "weapon_item",
+      "inventory_icon": "REQUIRED",
+      "world_sprite_prop": "REQUIRED",
+      "equipment_ref": "REQUIRED"
+    },
+    {
+      "class_id": "consumable_item",
+      "inventory_icon": "REQUIRED",
+      "world_sprite_prop": "REQUIRED",
+      "equipment_ref": "UNSUPPORTED"
+    },
+    {
+      "class_id": "material_item",
+      "inventory_icon": "REQUIRED",
+      "world_sprite_prop": "REQUIRED",
+      "equipment_ref": "UNSUPPORTED"
+    },
+    {
+      "class_id": "quest_key_item",
+      "inventory_icon": "REQUIRED",
+      "world_sprite_prop": "REQUIRED",
+      "equipment_ref": "UNSUPPORTED"
+    },
+    {
+      "class_id": "container_prop",
+      "inventory_icon": "REQUIRED",
+      "world_sprite_prop": "REQUIRED",
+      "equipment_ref": "UNSUPPORTED"
+    },
+    {
+      "class_id": "environmental_prop",
+      "inventory_icon": "REQUIRED",
+      "world_sprite_prop": "REQUIRED",
+      "equipment_ref": "UNSUPPORTED"
+    }
+  ]
+}

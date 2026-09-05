@@ -2,9 +2,9 @@
 
 The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
 
-# 2D master pipeline v0.18.2
+# 2D master pipeline v0.19.1
 
-The active slice is `CREATURES_MONSTERS` v0.18.2 derived-variant and state contract correction. It validates effective variants after materialization, keeps metadata `variant_revision` separate from inherited directional `asset_revision`, rejects mixed direction revisions, restores locomotion for moving archetypes, and preserves the 48 frozen v0.18.1 fixture pixels/hashes. `real_creature_asset_coverage=NONE`, `synthetic_creature_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; no Items/Props work is authorized. The v0.18.1 reviewed head remains immutable `CORRECTION_REQUIRED` history, and the only next action is `external_review_creatures_monsters_v0182`.
+The v0.19.1 slice is the approved `ITEMS_PROPS` runtime foundation. It validates six stable classes, explicit inventory/world/equipment-preview representations, exact bound representation bytes and decoded pixels, positive world geometry and interaction anchors, item-family stack identity, derived variants, authority-bound equipment identity, isolated cache keys, provenance, 25 strict negative controls and full-slice two-run deterministic TEST_ONLY fixture runs. `creatures_monsters=APPROVED_FOUNDATION`, `items_props=APPROVED_FOUNDATION`, `environment_tilesets=NEXT NECESSARY`, `real_item_prop_asset_coverage=NONE`, `synthetic_item_prop_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; environment/tilesets starts only after PR #9's protected merge.
 
 ## Historical v0.17.1 boundary
 

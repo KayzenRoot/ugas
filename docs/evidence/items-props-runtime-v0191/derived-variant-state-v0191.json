@@ -1,0 +1,300 @@
+{
+  "schema_version": "0.19.1",
+  "status": "DERIVED_VARIANT_STATE_AND_FAMILY_VALID",
+  "variants": [
+    {
+      "variant_id": "iron_sword:base",
+      "item_or_prop_id": "iron_sword",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "iron_sword-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "healing_potion:base",
+      "item_or_prop_id": "healing_potion",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "healing_potion-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "moon_ore:base",
+      "item_or_prop_id": "moon_ore",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "moon_ore-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "old_key:base",
+      "item_or_prop_id": "old_key",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "old_key-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "wooden_crate:base",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "wooden_crate-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "ancient_lamp:base",
+      "item_or_prop_id": "ancient_lamp",
+      "kind": "base",
+      "parent_id": null,
+      "variant_revision": "ancient_lamp-base-r1",
+      "overrides": [],
+      "override_values": {}
+    },
+    {
+      "variant_id": "iron_sword:ember",
+      "item_or_prop_id": "iron_sword",
+      "kind": "derived",
+      "parent_id": "iron_sword:base",
+      "variant_revision": "iron_sword-ember-r1",
+      "overrides": [
+        "scale",
+        "material_palette"
+      ],
+      "override_values": {
+        "scale": 1.25,
+        "material_palette": "ember"
+      }
+    },
+    {
+      "variant_id": "healing_potion:berry",
+      "item_or_prop_id": "healing_potion",
+      "kind": "derived",
+      "parent_id": "healing_potion:base",
+      "variant_revision": "healing_potion-berry-r1",
+      "overrides": [
+        "stack_family_id",
+        "material_palette"
+      ],
+      "override_values": {
+        "stack_family_id": "item:healing_potion",
+        "material_palette": "berry"
+      }
+    },
+    {
+      "variant_id": "wooden_crate:sealed",
+      "item_or_prop_id": "wooden_crate",
+      "kind": "derived",
+      "parent_id": "wooden_crate:base",
+      "variant_revision": "wooden_crate-sealed-r1",
+      "overrides": [
+        "footprint",
+        "anchors"
+      ],
+      "override_values": {
+        "footprint": {
+          "width": 2,
+          "height": 1
+        },
+        "anchors": [
+          {
+            "anchor_id": "wooden_crate:open",
+            "kind": "open",
+            "point": {
+              "x": 48,
+              "y": 40
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "resolved": [
+    {
+      "result": "RESOLVED",
+      "item_or_prop_id": "iron_sword",
+      "class_id": "weapon_item",
+      "variant_id": "iron_sword:ember",
+      "variant_revision": "iron_sword-ember-r1",
+      "requested_context": "inventory",
+      "representation_id": "iron_sword:inventory:r1",
+      "representation_revision": "iron_sword-inventory-representation-r1",
+      "content_hash": "3982f0fe973da420e63969badbe0e19f3c768c60d1607d264e6ce30d3cecf7f6",
+      "artifact_path": "representations/iron_sword/inventory.png",
+      "byte_size": 553,
+      "dimensions": {
+        "width": 96,
+        "height": 96
+      },
+      "decoded_pixel_hash": "ee561f522d8122b96868c1dd8745279ca5f0f482f5725c6d88396fe9836bea02",
+      "stack_policy": "NON_STACKABLE",
+      "stack_family_id": null,
+      "equipment_ref": {
+        "equipment_id": "fixture-charm-violet",
+        "slot": "accessory",
+        "variant": "violet",
+        "equipment_revision": "fixture-charm-violet-r1",
+        "compatibility": "weapon_item",
+        "test_only": true,
+        "production_safe": false
+      },
+      "resolved_equipment": {
+        "equipment_id": "fixture-charm-violet",
+        "slot": "accessory",
+        "variant": "violet",
+        "layer_group": "accessory",
+        "priority": 5,
+        "anchors": [
+          {
+            "anchor_id": "fixture-charm-violet-anchor",
+            "joint": "neck",
+            "offset": {
+              "x": 0,
+              "y": 18
+            },
+            "rotation_inheritance": false,
+            "scale_policy": "uniform"
+          }
+        ],
+        "direction_coverage": [
+          "south"
+        ],
+        "animation_compatibility": {
+          "capability_id": "front-compatible",
+          "profiles": [
+            "idle-front-v1",
+            "walk-front-v1",
+            "run-front-v1",
+            "attack-front-v2",
+            "hit-front-v1",
+            "death-front-v151"
+          ],
+          "base_timing_immutable": true,
+          "event_markers_immutable": true
+        },
+        "rig_revision_compatibility": [
+          "r4-cutout-rig-v071"
+        ],
+        "replacement_rules": {
+          "mode": "overlay",
+          "replace_group": null,
+          "hide_parts": []
+        },
+        "occlusion_masks": [
+          {
+            "mask_id": "charm-torso-mask",
+            "target_part": "torso_pelvis",
+            "binding": "asset-bound",
+            "policy": "explicit-layer-alpha",
+            "geometry": {
+              "type": "rectangle",
+              "x": 252,
+              "y": 110,
+              "width": 36,
+              "height": 35
+            },
+            "mask_hash": "0cdf97961c53ade8b0fba3c29f3c27a5cc47a17db6c8a3473396ea39db3c2896"
+          }
+        ],
+        "asset_revision": "fixture-charm-violet-r1",
+        "test_only": true,
+        "production_safe": false,
+        "mirror_safe": false,
+        "asymmetry_flags": [],
+        "fixture": {
+          "shape": "ellipse",
+          "size": [
+            22,
+            22
+          ],
+          "color": [
+            155,
+            78,
+            214,
+            235
+          ]
+        },
+        "provenance_hash": "4df2cdbb999fd3b757e8d93c32397d61c03ce7835f6147663cb0069358f0ed7a"
+      },
+      "equipment_authority_version": "0.17.1",
+      "equipment_authority_hash": "8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628",
+      "equipment_authority_blob_id": "75d19401b2489288fe85d3147cc84940edcbb578",
+      "cache_key": "item_or_prop_id=iron_sword|class_id=weapon_item|variant_id=iron_sword:ember|variant_revision=iron_sword-ember-r1|context=inventory|representation_id=iron_sword:inventory:r1|representation_revision=iron_sword-inventory-representation-r1|content_hash=3982f0fe973da420e63969badbe0e19f3c768c60d1607d264e6ce30d3cecf7f6|artifact_path=representations/iron_sword/inventory.png|stack_family_id=NONE|equipment_link_revision=fixture-charm-violet:accessory:violet:fixture-charm-violet-r1|equipment_authority_hash=8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628|registry_mode=test",
+      "provenance_hash": "11cc8643a1f63c80c06eafa33e7dae93630bc3dbe64b0d3e5bd5b8e8564fec2f",
+      "production_safe": false,
+      "error_code": null,
+      "rejection_class": null,
+      "cache_hit": false,
+      "fallback_mode": "NONE"
+    },
+    {
+      "result": "RESOLVED",
+      "item_or_prop_id": "healing_potion",
+      "class_id": "consumable_item",
+      "variant_id": "healing_potion:berry",
+      "variant_revision": "healing_potion-berry-r1",
+      "requested_context": "inventory",
+      "representation_id": "healing_potion:inventory:r1",
+      "representation_revision": "healing_potion-inventory-representation-r1",
+      "content_hash": "c8653f5dc051a3af5338792533f9551c153cfe87362df1a12a44b36bcb4f907e",
+      "artifact_path": "representations/healing_potion/inventory.png",
+      "byte_size": 604,
+      "dimensions": {
+        "width": 96,
+        "height": 96
+      },
+      "decoded_pixel_hash": "18c05ee8430465d35b0bccc7761c24e8ac67fb1debe634eeddb4f7ebbd40aeb0",
+      "stack_policy": "STACKABLE",
+      "stack_family_id": "item:healing_potion",
+      "equipment_ref": null,
+      "resolved_equipment": null,
+      "equipment_authority_version": "0.17.1",
+      "equipment_authority_hash": "8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628",
+      "equipment_authority_blob_id": "75d19401b2489288fe85d3147cc84940edcbb578",
+      "cache_key": "item_or_prop_id=healing_potion|class_id=consumable_item|variant_id=healing_potion:berry|variant_revision=healing_potion-berry-r1|context=inventory|representation_id=healing_potion:inventory:r1|representation_revision=healing_potion-inventory-representation-r1|content_hash=c8653f5dc051a3af5338792533f9551c153cfe87362df1a12a44b36bcb4f907e|artifact_path=representations/healing_potion/inventory.png|stack_family_id=item:healing_potion|equipment_link_revision=NONE|equipment_authority_hash=8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628|registry_mode=test",
+      "provenance_hash": "1d290dc83ebf95227f283770c195f4d82c3a7121ee9d6f257114017af0968730",
+      "production_safe": false,
+      "error_code": null,
+      "rejection_class": null,
+      "cache_hit": false,
+      "fallback_mode": "NONE"
+    },
+    {
+      "result": "RESOLVED",
+      "item_or_prop_id": "wooden_crate",
+      "class_id": "container_prop",
+      "variant_id": "wooden_crate:sealed",
+      "variant_revision": "wooden_crate-sealed-r1",
+      "requested_context": "world",
+      "representation_id": "wooden_crate:world:r1",
+      "representation_revision": "wooden_crate-world-representation-r1",
+      "content_hash": "1846812c6f63eb5a97a4b0dd2bc23f9d83503fbc497e8759c80f8d11b2d0c30e",
+      "artifact_path": "representations/wooden_crate/world.png",
+      "byte_size": 549,
+      "dimensions": {
+        "width": 96,
+        "height": 96
+      },
+      "decoded_pixel_hash": "590653b83d62e63fb444a6df97390b55415fad52800e51322a6b398a2a18cc76",
+      "stack_policy": "NON_STACKABLE",
+      "stack_family_id": null,
+      "equipment_ref": null,
+      "resolved_equipment": null,
+      "equipment_authority_version": "0.17.1",
+      "equipment_authority_hash": "8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628",
+      "equipment_authority_blob_id": "75d19401b2489288fe85d3147cc84940edcbb578",
+      "cache_key": "item_or_prop_id=wooden_crate|class_id=container_prop|variant_id=wooden_crate:sealed|variant_revision=wooden_crate-sealed-r1|context=world|representation_id=wooden_crate:world:r1|representation_revision=wooden_crate-world-representation-r1|content_hash=1846812c6f63eb5a97a4b0dd2bc23f9d83503fbc497e8759c80f8d11b2d0c30e|artifact_path=representations/wooden_crate/world.png|stack_family_id=NONE|equipment_link_revision=NONE|equipment_authority_hash=8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628|registry_mode=test",
+      "provenance_hash": "87097b1f0d5d7b3492fe01b21c112bd84f228bed7434f9539449f8f11a64aeb6",
+      "production_safe": false,
+      "error_code": null,
+      "rejection_class": null,
+      "cache_hit": false,
+      "fallback_mode": "NONE"
+    }
+  ]
+}

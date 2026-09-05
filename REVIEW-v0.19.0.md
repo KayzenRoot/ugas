@@ -1,0 +1,13 @@
+# UGAS v0.19.0 review boundary
+
+The active phase is `ITEMS_PROPS`. The gate is `ITEMS_PROPS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`, with `creatures_monsters=APPROVED_FOUNDATION`, `items_props_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, and only `external_review_items_props_v0190` allowed next. The branch is `codex/v0.19.0-items-props-runtime-foundation`, based on merged main `52938a04016352d50ad54621a4df981a9c36b058`.
+
+The foundation contains six stable classes: `weapon_item`, `consumable_item`, `material_item`, `quest_key_item`, `container_prop`, and `environmental_prop`. Each item declares an explicit `representation_profile` for `inventory_icon`, `world_sprite_prop`, and `equipment_ref`; required bindings carry identity, representation revision, content hash, dimensions, pivot, and provenance. Unsupported representations have no hidden asset path or id. World records carry visual/collision bounds, footprint, pivot/origin, and interaction anchors; inventory-only records would carry no world collision.
+
+Stack policy is metadata-only: `STACKABLE`, `NON_STACKABLE`, or `UNIQUE_INSTANCE_REQUIRED`. Quest keys are unique and are not generic stacks. Variant lineage is acyclic and materialized before full effective revalidation. Allowed TEST_ONLY overrides are limited to representation binding, scale, collision/footprint, anchors, material/palette, equipment reference, and provenance; gameplay stats, rarity, power, value, combat, and economy are forbidden.
+
+The resolver is isolated in `ItemPropRegistry` semantics, binds exact context and identity, has no silent fallback, and uses explicit TEST_ONLY preview fallback only. Cache identity includes item id/class/variant and revision/context/representation/equipment-link/registry mode and revalidates semantic identity on cache hits. The production registry is empty, production routing is `BLOCKED`, `production_approved=false`, `real_item_prop_asset_coverage=NONE`, `synthetic_item_prop_fixture=TEST_ONLY`, and `new_generation=0`.
+
+All six fixtures, contact/geometry sheets, 17 negative controls, and two isolated subprocess determinism runs are review evidence only. `environment_tilesets`, maps/minimap, UI, VFX, orchestration hardening, real item/prop art, and production routing are not authorized. The v0.19.0 PR must remain OPEN and must not be merged by this execution; Sol external review is the next action.
+
+`GITHUB_OPERATIONS_AUTOMATION_POLICY=ENABLED`, `GITHUB_REVIEW_MODE=PR_FIRST`, `NO_SELF_MERGE_UNTIL_EXTERNAL_VISUAL_APPROVAL=true`, `ALWAYS_ON_DASHBOARD_POLICY=ENABLED`, and `DOCKER_ALWAYS_ON_LOCAL` remain binding.

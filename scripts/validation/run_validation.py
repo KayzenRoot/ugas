@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.18.2."""
+"""Objective UGAS validation, including immutable history and active v0.19.1."""
 
 from __future__ import annotations
 
@@ -63,6 +63,10 @@ from ugas.state_consistency_v0171 import validate_state_consistency as validate_
 from ugas.state_consistency_v0180 import validate_state_consistency as validate_state_consistency_v0180
 from ugas.state_consistency_v0181 import validate_state_consistency as validate_state_consistency_v0181
 from ugas.state_consistency_v0182 import validate_state_consistency as validate_state_consistency_v0182
+from ugas.state_consistency_v0190 import validate_state_consistency as validate_state_consistency_v0190
+from ugas.state_consistency_v0191 import validate_state_consistency as validate_state_consistency_v0191
+from ugas.item_prop_runtime_v0190 import validate_item_prop_manifest as validate_item_prop_manifest_v0190
+from ugas.item_prop_runtime_v0191 import load_equipment_authority, validate_item_prop_manifest as validate_item_prop_manifest_v0191
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -3048,14 +3052,14 @@ def _v0182_checks() -> None:
     """Validate active v0.18.2 effective-variant/state evidence."""
     evidence_root = ROOT / "docs/evidence/creatures-monsters-runtime-v0182"
     required = [
-        "REVIEW-v0.18.2.md", "schemas/creature-runtime-v0182.json", "schemas/current-state-v0182.json", "src/ugas/creature_runtime_v0182.py", "src/ugas/state_consistency_v0182.py", "scripts/validation/run_creatures_monsters_runtime_v0182.py", "scripts/validation/validate_state_consistency_v0182.py", "tests/test_creature_runtime_v0182.py", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.18.1.json",
+        "REVIEW-v0.18.2.md", "schemas/creature-runtime-v0182.json", "schemas/current-state-v0182.json", "src/ugas/creature_runtime_v0182.py", "src/ugas/state_consistency_v0182.py", "scripts/validation/run_creatures_monsters_runtime_v0182.py", "scripts/validation/validate_state_consistency_v0182.py", "tests/test_creature_runtime_v0182.py", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.18.1.json", "docs/evidence/current-state-v0.18.2.json",
         "docs/evidence/creatures-monsters-runtime-v0182/v0181-rejection-correction-record-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/creature-contract-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/creature-runtime-manifest-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/effective-variant-validation-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/derived-revision-identity-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/derived-variant-negative-controls-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/archetype-state-compatibility-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/direction-asset-binding-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/direction-routing-sheet-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/direction-routing-sheet-v0182.png", "docs/evidence/creatures-monsters-runtime-v0182/state-route-contract-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/state-routing-sheet-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/state-routing-sheet-v0182.png", "docs/evidence/creatures-monsters-runtime-v0182/derived-variant-lineage-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/cache-identity-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/two-run-determinism-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/canonical-negative-controls-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/negative-controls-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/production-routing-qa-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/production-registry-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/synthetic-fixture-manifest-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/state-consistency-v0182.json", "docs/evidence/creatures-monsters-runtime-v0182/execution-evidence-v0182.json",
     ]
     for relative in required:
         path = ROOT / relative; check(f"v0182:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
         from ugas.creature_runtime_v0182 import validate_creature_manifest
-        state = load_json(ROOT / "docs/evidence/current-state.json"); validate_instance(state, load_json(ROOT / "schemas/current-state-v0182.json")); consistency = validate_state_consistency_v0182(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.18.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")); check("v0182:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.18.2 state is consistent")
+        state = load_json(ROOT / "docs/evidence/current-state-v0.18.2.json"); validate_instance(state, load_json(ROOT / "schemas/current-state-v0182.json")); consistency = validate_state_consistency_v0182(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.18.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")); check("v0182:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "historical v0.18.2 state is consistent")
         manifest = load_json(evidence_root / "creature-runtime-manifest-v0182.json"); validate_instance(manifest, load_json(ROOT / "schemas/creature-runtime-v0182.json")); validate_creature_manifest(manifest)
         execution = load_json(evidence_root / "execution-evidence-v0182.json"); negative = load_json(evidence_root / "canonical-negative-controls-v0182.json"); derived_negative = load_json(evidence_root / "derived-variant-negative-controls-v0182.json"); supplemental = load_json(evidence_root / "archetype-state-compatibility-v0182.json"); direction = load_json(evidence_root / "direction-routing-sheet-v0182.json"); state_routes = load_json(evidence_root / "state-routing-sheet-v0182.json"); fixture = load_json(evidence_root / "synthetic-fixture-manifest-v0182.json"); production = load_json(evidence_root / "production-registry-v0182.json"); determinism = load_json(evidence_root / "two-run-determinism-v0182.json")
         def strict(controls: dict[str, Any]) -> bool:
@@ -3072,6 +3076,132 @@ def _v0182_checks() -> None:
         check("v0182:production-registry", production.get("production_registry") is True and production.get("assets") == [] and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production registry is empty and blocked")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0182:evidence", False, str(exc))
+
+
+def _v0190_checks() -> None:
+    """Validate immutable rejected v0.19.0 evidence without treating it as active."""
+    evidence_root = ROOT / "docs/evidence/items-props-runtime-v0190"
+    required = [
+        "REVIEW-v0.19.0.md", "schemas/item-prop-runtime-v0190.json", "schemas/current-state-v0190.json",
+        "src/ugas/item_prop_runtime_v0190.py", "src/ugas/state_consistency_v0190.py",
+        "scripts/validation/run_items_props_runtime_v0190.py", "scripts/validation/validate_state_consistency_v0190.py",
+        "tests/test_item_prop_runtime_v0190.py", "docs/evidence/current-state-v0.18.2.json",
+        "docs/evidence/items-props-runtime-v0190/item-prop-runtime-manifest-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/item-prop-contract-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/class-representation-matrix-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/representation-binding-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/world-geometry-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/interaction-anchors-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/stack-identity-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/variant-lineage-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/equipment-linkage-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/cache-identity-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/provenance-qa-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/determinism-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/negative-controls-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/production-registry-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/synthetic-fixture-manifest-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/synthetic-item-prop-contact-sheet-v0190.png",
+        "docs/evidence/items-props-runtime-v0190/world-geometry-sheet-v0190.png",
+        "docs/evidence/items-props-runtime-v0190/state-consistency-v0190.json",
+        "docs/evidence/items-props-runtime-v0190/execution-evidence-v0190.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0190:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        check("v0190:rejection-history", state.get("correction_history", {}).get("v0.19.0", {}).get("status") == "CORRECTION_REQUIRED" and state.get("correction_history", {}).get("v0.19.0", {}).get("rejected_reviewed_head") == "44937935e644202836b3e1f081b6a63201b850db", "rejected v0.19.0 head remains immutable history")
+        manifest = load_json(evidence_root / "item-prop-runtime-manifest-v0190.json")
+        validate_instance(manifest, load_json(ROOT / "schemas/item-prop-runtime-v0190.json")); validate_item_prop_manifest_v0190(manifest)
+        execution = load_json(evidence_root / "execution-evidence-v0190.json")
+        negative = load_json(evidence_root / "negative-controls-v0190.json")
+        fixture = load_json(evidence_root / "synthetic-fixture-manifest-v0190.json")
+        production = load_json(evidence_root / "production-registry-v0190.json")
+        determinism = load_json(evidence_root / "determinism-v0190.json")
+        controls = negative.get("controls", {})
+        strict = len(controls) == 17 and all(item.get("rejected") is True and item.get("passed") is True and item.get("status") == "REJECTED" and item.get("observed", {}).get("result") == "REJECTED" and item["observed"].get("error_code") == item.get("expected_error_code") and item["observed"].get("rejection_class") == item.get("expected_rejection_class") for item in controls.values())
+        expected_gates = {"item_prop_schema_valid", "class_representation_contract_valid", "required_representation_present", "unsupported_representation_has_no_hidden_binding", "world_geometry_valid", "collision_and_pivot_valid", "interaction_anchors_valid", "stack_policy_valid", "unique_identity_policy_valid", "variant_lineage_acyclic", "effective_variant_revalidated", "representation_revision_consistent", "equipment_linkage_valid_or_explicitly_absent", "cache_identity_complete", "stale_cache_cross_item_variant_context_rejected", "provenance_hash_matches_manifest", "test_fixture_nonproduction", "production_registry_empty", "production_routing_blocked", "isolated_two_run_determinism"}
+        check("v0190:execution", execution.get("status") == "ITEMS_PROPS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and execution.get("failed") == 0 and set(execution.get("gates", {})) == expected_gates and all(item.get("status") == "PASS" for item in execution.get("gates", {}).values()) and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.19.0 item/prop hard gates pass")
+        check("v0190:negative-controls", negative.get("status") == "ITEM_PROP_NEGATIVE_CONTROLS_01_TO_17_PASSED" and strict, "all seventeen item/prop controls contain strict semantic rejections")
+        check("v0190:fixtures", fixture.get("fixture_count") == 6 and fixture.get("unique_hash_count") == 6 and fixture.get("production_registry") is False and all(item.get("test_only") is True and item.get("production_safe") is False for item in fixture.get("fixtures", [])), "six synthetic item/prop fixtures remain TEST_ONLY")
+        check("v0190:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED", "production item/prop registry is empty and blocked")
+        check("v0190:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT", "isolated two-run and mutation comparator pass")
+        matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        check("v0190:capability-matrix", matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION", "matrix advances beyond historical v0.19.0 after the approved v0.19.1 closure")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0190:evidence", False, str(exc))
+    for label, script in (("v0190:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0190:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0190:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
+
+
+def _v0191_checks() -> None:
+    """Validate the active v0.19.1 correction without regenerating evidence."""
+    evidence_root = ROOT / "docs/evidence/items-props-runtime-v0191"
+    required = [
+        "REVIEW-v0.19.1.md", "schemas/item-prop-runtime-v0191.json", "schemas/current-state-v0191.json",
+        "src/ugas/item_prop_runtime_v0191.py", "src/ugas/state_consistency_v0191.py",
+        "scripts/validation/run_items_props_runtime_v0191.py", "scripts/validation/validate_state_consistency_v0191.py",
+        "tests/test_item_prop_runtime_v0191.py", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.18.2.json",
+        "docs/evidence/items-props-runtime-v0191/v0190-rejection-correction-record-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/item-prop-runtime-manifest-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/item-prop-contract-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/class-representation-matrix-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/representation-binding-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/representation-byte-manifest-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/world-geometry-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/interaction-anchors-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/stack-identity-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/derived-variant-state-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/equipment-authority-linkage-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/cache-identity-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/provenance-qa-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/full-slice-two-run-determinism-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/negative-controls-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/production-registry-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/synthetic-fixture-manifest-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/synthetic-item-prop-contact-sheet-v0191.png",
+        "docs/evidence/items-props-runtime-v0191/world-geometry-sheet-v0191.png",
+        "docs/evidence/items-props-runtime-v0191/state-consistency-v0191.json",
+        "docs/evidence/items-props-runtime-v0191/execution-evidence-v0191.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0191:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        validate_instance(state, load_json(ROOT / "schemas/current-state-v0191.json"))
+        consistency = validate_state_consistency_v0191(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.19.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0191:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.19.1 state is consistent")
+        manifest = load_json(evidence_root / "item-prop-runtime-manifest-v0191.json")
+        authority = load_equipment_authority(ROOT / "docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-manifest-v0171.json")
+        validate_instance(manifest, load_json(ROOT / "schemas/item-prop-runtime-v0191.json")); validate_item_prop_manifest_v0191(manifest, artifact_root=evidence_root, equipment_authority=authority)
+        execution = load_json(evidence_root / "execution-evidence-v0191.json")
+        negative = load_json(evidence_root / "negative-controls-v0191.json")
+        fixture = load_json(evidence_root / "synthetic-fixture-manifest-v0191.json")
+        production = load_json(evidence_root / "production-registry-v0191.json")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0191.json")
+        byte_manifest = load_json(evidence_root / "representation-byte-manifest-v0191.json")
+        controls = negative.get("controls", {})
+        expected_controls = {*(f"IP-NC-{index:02d}" for index in range(1, 18)), *(f"LK-NC-{index:02d}" for index in range(1, 6)), *(f"ST-NC-{index:02d}" for index in range(1, 4))}
+        strict = set(controls) == expected_controls and all(item.get("rejected") is True and item.get("passed") is True and item.get("status") == "REJECTED" and item.get("observed", {}).get("result") == "REJECTED" and item["observed"].get("error_code") == item.get("expected_error_code") and item["observed"].get("rejection_class") == item.get("expected_rejection_class") for item in controls.values())
+        expected_gates = {"item_prop_schema_valid", "class_representation_contract_valid", "required_representation_present", "representation_bytes_bound_and_hash_verified", "unsupported_representation_has_no_hidden_binding", "world_geometry_valid", "stack_family_identity_valid", "equipment_authority_linkage_valid", "equipment_negative_controls_strict", "variant_lineage_acyclic_and_revalidated", "cache_identity_complete", "provenance_hash_matches_manifest", "negative_controls_strict", "full_slice_two_run_determinism", "production_registry_empty", "production_routing_blocked"}
+        check("v0191:execution", execution.get("status") == "ITEMS_PROPS_LINKAGE_REPRESENTATION_STACK_INTEGRITY_TECHNICALLY_QUALIFIED" and execution.get("failed") == 0 and set(execution.get("gates", {})) == expected_gates and all(item.get("status") == "PASS" for item in execution.get("gates", {}).values()) and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.19.1 correction hard gates pass")
+        check("v0191:negative-controls", negative.get("status") == "ITEM_PROP_NEGATIVE_CONTROLS_01_TO_17_PLUS_LINKAGE_STACK_PASSED" and negative.get("control_count") == 25 and strict, "all IP/LK/ST controls contain strict semantic rejections")
+        check("v0191:representation-bytes", byte_manifest.get("status") == "REPRESENTATION_BYTE_MANIFEST_VALID" and byte_manifest.get("file_count") == 13 and len(byte_manifest.get("records", [])) == 13 and all((evidence_root / item["artifact_path"]).is_file() for item in byte_manifest.get("records", [])), "all declared representation contexts have materialized byte evidence")
+        check("v0191:equipment-authority", load_json(evidence_root / "equipment-authority-linkage-v0191.json").get("positive", {}).get("resolved_equipment", {}).get("equipment_id") == "fixture-charm-violet" and load_json(evidence_root / "equipment-authority-linkage-v0191.json").get("authority", {}).get("sha256") == "8257C38E1F08834E08B35943DBD371460FBF89C2791A9759A3B6D33422175628", "equipment preview is bound to exact frozen v0.17.1 authority")
+        check("v0191:stack-family", load_json(evidence_root / "stack-identity-v0191.json").get("status") == "STACK_AND_UNIQUE_IDENTITY_VALID" and all(item.get("stack_family_id") in {"item:healing_potion", "item:moon_ore", None} for item in load_json(evidence_root / "stack-identity-v0191.json").get("records", [])), "stack identity is item-family specific")
+        check("v0191:fixtures", fixture.get("fixture_count") == 6 and fixture.get("unique_item_count") == 6 and fixture.get("representation_file_count") == 13 and fixture.get("production_registry") is False and all(item.get("test_only") is True and item.get("production_safe") is False for item in fixture.get("fixtures", [])), "six synthetic fixtures remain TEST_ONLY")
+        check("v0191:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production item/prop registry is empty and blocked")
+        check("v0191:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("file_count") == 19 and determinism.get("differences") == [] and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_world_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT" and determinism.get("mutated_identity_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_IDENTITY", "full-slice isolated determinism and mutation rejection pass")
+        matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        check("v0191:capability-matrix", matrix.get("version") == "0.19.1" and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] == "NEXT NECESSARY", "matrix closes v0.19.1 items/props and advances environment/tilesets")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0191:evidence", False, str(exc))
+    for label, script in (("v0191:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0191:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0191:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0191:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
 
 
 def main() -> int:
@@ -3172,13 +3302,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks(); _v0190_checks(); _v0191_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.18.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.18.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.18.2")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.19.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.19.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.19.1")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
