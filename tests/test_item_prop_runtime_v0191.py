@@ -2,24 +2,30 @@ from __future__ import annotations
 
 import copy
 import json
+import tempfile
 import unittest
 from dataclasses import replace
 from pathlib import Path
 
 from ugas.item_prop_runtime_v0191 import ItemPropContractError, ItemPropRegistry, _record_hash, load_equipment_authority, validate_item_prop_manifest
-from scripts.validation.run_items_props_runtime_v0191 import AUTHORITY_PATH, EVIDENCE, ITEMS, build_manifest, materialize_representations
+from scripts.validation.run_items_props_runtime_v0191 import AUTHORITY_PATH, ITEMS, build_manifest, materialize_representations
 
 
 class ItemPropRuntimeV0191Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.manifest = build_manifest()
-        EVIDENCE.mkdir(parents=True, exist_ok=True)
-        materialize_representations(cls.manifest, EVIDENCE)
+        cls._fixture_directory = tempfile.TemporaryDirectory(prefix="ugas-v0191-item-props-")
+        cls.fixture_root = Path(cls._fixture_directory.name)
+        materialize_representations(cls.manifest, cls.fixture_root)
         cls.authority = load_equipment_authority(AUTHORITY_PATH)
 
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._fixture_directory.cleanup()
+
     def registry(self, manifest: dict | None = None) -> ItemPropRegistry:
-        return ItemPropRegistry(copy.deepcopy(manifest or self.manifest), artifact_root=EVIDENCE, equipment_authority=self.authority)
+        return ItemPropRegistry(copy.deepcopy(manifest or self.manifest), artifact_root=self.fixture_root, equipment_authority=self.authority)
 
     def test_all_six_classes_resolve_declared_inventory_and_world_bytes(self) -> None:
         registry = self.registry()
@@ -44,7 +50,7 @@ class ItemPropRuntimeV0191Tests(unittest.TestCase):
         binding["provenance"]["provenance_hash"] = _record_hash({key: value for key, value in binding.items() if key != "provenance"})
         manifest["items"][0]["provenance_hash"] = _record_hash(manifest["items"][0])
         with self.assertRaisesRegex(ItemPropContractError, "REPRESENTATION_ARTIFACT_MISSING"):
-            ItemPropRegistry(manifest, artifact_root=EVIDENCE, equipment_authority=self.authority)
+            ItemPropRegistry(manifest, artifact_root=self.fixture_root, equipment_authority=self.authority)
 
     def test_mutated_artifact_hash_cannot_resolve(self) -> None:
         manifest = copy.deepcopy(self.manifest)
@@ -54,7 +60,7 @@ class ItemPropRuntimeV0191Tests(unittest.TestCase):
         binding["provenance"]["provenance_hash"] = _record_hash({key: value for key, value in binding.items() if key != "provenance"})
         manifest["items"][0]["provenance_hash"] = _record_hash(manifest["items"][0])
         with self.assertRaisesRegex(ItemPropContractError, "REPRESENTATION_ARTIFACT_HASH_MISMATCH"):
-            ItemPropRegistry(manifest, artifact_root=EVIDENCE, equipment_authority=self.authority)
+            ItemPropRegistry(manifest, artifact_root=self.fixture_root, equipment_authority=self.authority)
 
     def test_equipment_reference_is_authority_bound(self) -> None:
         manifest = copy.deepcopy(self.manifest)
