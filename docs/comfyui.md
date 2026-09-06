@@ -1,3 +1,5 @@
+# Active governed release: v0.21.3 Maps/Minimap approved foundation; bookkeeping reproof and protected PR #11 merge are the only authorized next steps. Production remains BLOCKED, real map/minimap coverage is NONE, and no UI, VFX, orchestration or generation is authorized.
+
 ## Current v0.18.1 boundary
 
 The active v0.18.1 slice is `CREATURES_MONSTERS` runtime QA integrity. No ComfyUI/SAM2/diffusion generation is authorized; fixtures are `TEST_ONLY`, real creature coverage is `NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The correction is metadata/runtime QA only and the PR remains open for external review.

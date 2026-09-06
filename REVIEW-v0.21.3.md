@@ -29,10 +29,14 @@ The v0.21.2 evidence root remains immutable and is referenced as rejected histor
 - Historical evidence: `docs/evidence/maps-minimap-runtime-v0213/historical-immutability-v0213.json`.
 - v0.21.2 rejection record: `docs/evidence/maps-minimap-runtime-v0213/v0.21.2-rejection-correction-record-v0213.json`.
 
-## Required external gate
+## External approval and governed closure
 
-The executor must push this correction to the same branch and update PR #11 only. Completion requires the exact new HEAD to have successful `UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke` and `UGAS Review / evidence` contexts, plus a bounded exact-head artifact with `PASS`. External Sol approval remains required. No merge, UI, VFX, orchestration, real maps, real minimap art, production routing or generation is authorized.
+Sol approved the exact semantic head `812a2bed1f77df3d630425f23032c22fc72d5961` as `APPROVED_FOUNDATION / APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF`. The forward-only approval record is `docs/evidence/github-governance-v0220/v0213-external-approval.json`. PR #11 remains OPEN on `codex/v0.21.0-maps-minimap-runtime-foundation`, based on `0bf04cb92e8619ea10cf82af8dbf2d9abe599e05`, with `UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke` and `UGAS Review / evidence` green. The bounded artifact is `ugas-review-evidence-pr-11-812a2bed1f77df3d630425f23032c22fc72d5961` (ID `9997407624`, digest `sha256:4981b579166853206c4d62762721fb37fd387e6cd3dff511137f7f1ba51d3d7`). Only allowlisted bookkeeping/version alignment and exact-head reproof are authorized before protected merge; semantic/runtime/fixture/evidence-root changes invalidate this approval. Production remains `BLOCKED`, `production_approved=false`, real map/minimap coverage is `NONE`, fixtures are `TEST_ONLY`, `new_generation=0`, and UI is the next candidate only after merge.
+
+## Required bookkeeping gate
+
+The executor must push only the allowlisted bookkeeping to the same branch and update PR #11 only. Completion requires the exact new HEAD to have successful `UGAS CI / unit-and-validation`, `UGAS CI / docker-smoke` and `UGAS Review / evidence` contexts, plus a bounded exact-head artifact with `PASS`. After semantic/runtime/fixture diff review confirms bookkeeping-only changes, merge PR #11 through the protected path. No UI, VFX, orchestration, real maps, real minimap art, production routing or generation is authorized.
 
 ## Checkpoint Delta
 
-Advance the active checkpoint from v0.21.2 historical byte-integrity correction-required history to v0.21.3 Maps/Minimap historical byte-integrity correction, preserving v0.21.2 unchanged and allowing only `external_review_maps_minimap_v0213` after exact-head evidence is green.
+Advance the active checkpoint from v0.21.2 historical byte-integrity correction-required history to v0.21.3 Maps/Minimap approved foundation, preserving v0.21.2 unchanged and allowing only `bookkeeping_reproof_and_governed_merge_pr_11` before protected merge; UI remains the next candidate after merge.

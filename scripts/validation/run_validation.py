@@ -3632,7 +3632,10 @@ def _v0213_checks() -> None:
         rejection = load_json(evidence_root / "v0.21.2-rejection-correction-record-v0213.json")
         check("v0213:rejected-head-preserved", rejection.get("rejected_reviewed_head") == "b80f30074374c539e008ce160846848f1c171d9a" and rejection.get("historical_evidence_unchanged") is True and rejection.get("status") == "CORRECTION_REQUIRED", "v0.21.2 rejected reviewed head remains explicit history")
         matrix = load_json(evidence_root / "capability-matrix-validation-v0213.json")
-        check("v0213:capability-matrix", matrix.get("version") == "0.21.3" and matrix.get("next_candidate") == "MAPS_MINIMAP" and matrix.get("environment_tilesets_status") == "APPROVED_FOUNDATION" and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "active matrix records the forward-only v0.21.3 correction")
+        check("v0213:historical-capability-matrix", matrix.get("version") == "0.21.3" and matrix.get("next_candidate") == "MAPS_MINIMAP" and matrix.get("environment_tilesets_status") == "APPROVED_FOUNDATION" and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "immutable v0.21.3 technical evidence remains bound to the correction run")
+        active_matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        active_maps = next(item for item in active_matrix["capabilities"] if item["id"] == "maps_minimap_assets")
+        check("v0213:approval-bookkeeping-transition", active_matrix.get("version") == "0.21.3" and active_maps.get("status") == "APPROVED_FOUNDATION" and active_matrix.get("next_candidate") == "UI_ASSET_FAMILY" and active_matrix.get("production_routing") == "BLOCKED" and active_matrix.get("new_generation") == 0, "active capability matrix records Maps/Minimap approval and UI as the next candidate")
         runtime_text = (ROOT / "src/ugas/maps_minimap_runtime_v0210.py").read_text(encoding="utf-8")
         runner_text = (ROOT / "scripts/validation/run_maps_minimap_runtime_v0210.py").read_text(encoding="utf-8")
         check("v0213:source-historical-byte-integrity", "replace(b\"\\r\\n\", b\"\\n\")" not in runtime_text and "authority_ref.split" not in runner_text and "candidate_blob" in runtime_text and "candidate_blob_sha" in runner_text, "validator has no newline normalization and runner carries explicit blob provenance")
@@ -3880,9 +3883,12 @@ def main() -> int:
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.21.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.21.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.21.2")
+    current_state_version = load_json(ROOT / "docs/evidence/current-state.json").get("version")
+    active_maps_schema_version = load_json(ROOT / "schemas/maps-minimap-runtime-v0213.json").get("properties", {}).get("schema_version", {}).get("const")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == current_state_version == "0.21.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}, current_state={current_state_version}")
+    check("version:maps-schema", active_maps_schema_version == "0.21.3", f"active maps/minimap schema={active_maps_schema_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.21.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.21.3")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

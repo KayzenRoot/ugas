@@ -1,4 +1,4 @@
-# Installing UGAS 0.21.2
+# Installing UGAS 0.21.3
 
 ## Requirements
 
@@ -26,7 +26,7 @@ pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1
 
 ## GitHub-native review
 
-The active correction is v0.21.2 on the existing PR #11; keep it OPEN and do not merge. Use [REVIEW-v0.21.2.md](REVIEW-v0.21.2.md) and the exact-head artifact as the authoritative handoff.
+The active approved foundation is v0.21.3 on the existing PR #11. Execute the allowlisted bookkeeping reproof and protected merge only after the exact new head is green. Use [REVIEW-v0.21.3.md](REVIEW-v0.21.3.md), the forward-only approval record and the exact-head artifact as the authoritative handoff.
 
 Use the PR-first flow in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded GitHub Actions artifact; it never includes secrets, local credentials, telemetry databases, model weights or large generation directories.
 
@@ -78,6 +78,6 @@ O v0.9.1 permanece preservado em `current-state-v0.9.1.json`, `REVIEW-v0.9.1.md`
 ## v0.10.0 runtime check
 
 After installation, validate a profile with `python -m ugas.animation validate-spec profiles/animation/attack-front-v1.json`. The v0.10.0 runner proves event markers, loop/non-loop lifecycle, deterministic 10-frame attack pose/weapon/foot/structural/MediaPipe QA, and the package gate: `python scripts/validation/run_animation_runtime_v0100.py`. The tracked pilot package is generated only after QA qualification; it is not production approval.
-# Current governed slice: v0.21.2 MAPS_MINIMAP raster/governance correction
+# Current governed slice: v0.21.3 MAPS_MINIMAP approved foundation / bookkeeping reproof
 
-Installation and validation commands are evaluated against the active v0.21.2 maps/minimap correction. Use `python scripts/validation/run_maps_minimap_runtime_v0210.py` for the isolated TEST_ONLY slice; it does not enable production routing or create real assets.
+Installation and validation commands are evaluated against the active v0.21.3 Maps/Minimap foundation. Use `python scripts/validation/run_validation.py` for the read-only full validation; the isolated TEST_ONLY slice remains bound to its immutable v0.21.3 evidence and does not enable production routing or create real assets.

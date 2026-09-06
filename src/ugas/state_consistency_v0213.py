@@ -8,7 +8,9 @@ from typing import Any, Mapping
 CURRENT_VERSION = "0.21.3"
 CURRENT_PHASE = "MAPS_MINIMAP"
 CURRENT_GATE = "MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED"
-NEXT_ACTION = "external_review_maps_minimap_v0213"
+NEXT_ACTION = "bookkeeping_reproof_and_governed_merge_pr_11"
+APPROVED_HEAD = "812a2bed1f77df3d630425f23032c22fc72d5961"
+APPROVAL_RECORD = "docs/evidence/github-governance-v0220/v0213-external-approval.json"
 BASELINE_HEAD = "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05"
 FEATURE_BRANCH = "codex/v0.21.0-maps-minimap-runtime-foundation"
 REJECTED_V0210_HEAD = "185e03d057779f7f3ffea4ef5a14f891d518b61f"
@@ -28,7 +30,9 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
         "phase": CURRENT_PHASE,
         "current_gate": CURRENT_GATE,
         "environment_tilesets": "APPROVED_FOUNDATION",
+        "maps_minimap_assets": "APPROVED_FOUNDATION",
         "maps_minimap_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
+        "maps_minimap_runtime_external_review": "APPROVED_FOUNDATION",
         "real_map_asset_coverage": "NONE",
         "real_minimap_asset_coverage": "NONE",
         "synthetic_map_fixture": "TEST_ONLY",
@@ -59,10 +63,10 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
         record = _mapping(history.get(version))
         if record.get("status") != "CORRECTION_REQUIRED" or record.get("rejected_reviewed_head") != head or record.get("historical_evidence_unchanged") is not True:
             failures.append(f"{version}_rejection_history_invalid")
-    if _mapping(state.get("external_visual_review")).get("maps_minimap_runtime") != "REQUIRED":
+    if _mapping(state.get("external_visual_review")).get("maps_minimap_runtime") != "APPROVED_FOUNDATION":
         failures.append("maps_minimap_external_review_boundary_invalid")
     review = _mapping(state.get("review"))
-    expected_review = {"repository": "KayzenRoot/ugas", "baseline_head": BASELINE_HEAD, "branch_base_commit": BASELINE_HEAD, "feature_branch": FEATURE_BRANCH, "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": True, "external_review_required": True, "merge_authorization": "NOT_AUTHORIZED", "do_not_merge": True}
+    expected_review = {"repository": "KayzenRoot/ugas", "baseline_head": BASELINE_HEAD, "branch_base_commit": BASELINE_HEAD, "feature_branch": FEATURE_BRANCH, "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": True, "external_review_required": True, "merge_authorization": "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF", "approved_head_sha": APPROVED_HEAD, "approval_record": APPROVAL_RECORD, "post_bookkeeping_reproof_required": True, "do_not_merge": True}
     failures.extend(f"review:{key}" for key, value in expected_review.items() if review.get(key) != value)
     if review.get("pr_state") not in {"OPEN", "NOT_CREATED"} or not isinstance(review.get("pr_number"), int) or review["pr_number"] < 0:
         failures.append("review:pr_binding")
@@ -70,11 +74,11 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
     nested_expected = {"status": CURRENT_GATE, "version": CURRENT_VERSION, "phase": CURRENT_PHASE, "current_gate": CURRENT_GATE, "feature_branch": FEATURE_BRANCH, "branch_base_commit": BASELINE_HEAD, "production_routing": "BLOCKED", "production_approved": False, "new_generation": 0, "allowed_next_actions": [NEXT_ACTION], "next_capability_started": False}
     failures.extend(f"state_consistency:{key}" for key, value in nested_expected.items() if nested.get(key) != value)
     active = "\n".join((checkpoint_text, review_text, roadmap_text))
-    literals = ("0.21.3", "0.21.2", "0.21.1", "0.21.0", "0.20.3", "MAPS_MINIMAP", CURRENT_GATE, NEXT_ACTION, "environment_tilesets=APPROVED_FOUNDATION", "maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION", "real_map_asset_coverage=NONE", "real_minimap_asset_coverage=NONE", "synthetic_map_fixture=TEST_ONLY", "production_approved=false", "production_routing=BLOCKED", "new_generation=0", REJECTED_V0211_HEAD, REJECTED_V0212_HEAD)
+    literals = ("0.21.3", "0.21.2", "0.21.1", "0.21.0", "0.20.3", "MAPS_MINIMAP", CURRENT_GATE, NEXT_ACTION, "environment_tilesets=APPROVED_FOUNDATION", "maps_minimap_assets=APPROVED_FOUNDATION", "maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION", "maps_minimap_runtime_external_review=APPROVED_FOUNDATION", "maps_minimap_runtime_external_review", "real_map_asset_coverage=NONE", "real_minimap_asset_coverage=NONE", "synthetic_map_fixture=TEST_ONLY", "production_approved=false", "production_routing=BLOCKED", "new_generation=0", APPROVED_HEAD, APPROVAL_RECORD, REJECTED_V0211_HEAD, REJECTED_V0212_HEAD)
     for literal in literals:
         if literal.casefold() not in active.casefold():
             failures.append(f"active_documents_missing:{literal}")
     return {"status": CURRENT_GATE if not failures else "STATE_CONSISTENCY_FAILED", "schema_version": CURRENT_VERSION, "failures": failures, "checked": {"version": state.get("version"), "phase": state.get("phase"), "current_gate": state.get("current_gate"), "feature_branch": review.get("feature_branch"), "branch_base_commit": review.get("branch_base_commit"), "next_action": state.get("allowed_next_actions"), "production_routing": state.get("production_routing"), "new_generation": state.get("new_generation"), "pr_number": review.get("pr_number"), "pr_state": review.get("pr_state")}}
 
 
-__all__ = ["BASELINE_HEAD", "CURRENT_GATE", "CURRENT_PHASE", "CURRENT_VERSION", "FEATURE_BRANCH", "NEXT_ACTION", "REJECTED_V0210_HEAD", "REJECTED_V0211_HEAD", "REJECTED_V0212_HEAD", "validate_state_consistency"]
+__all__ = ["APPROVED_HEAD", "APPROVAL_RECORD", "BASELINE_HEAD", "CURRENT_GATE", "CURRENT_PHASE", "CURRENT_VERSION", "FEATURE_BRANCH", "NEXT_ACTION", "REJECTED_V0210_HEAD", "REJECTED_V0211_HEAD", "REJECTED_V0212_HEAD", "validate_state_consistency"]

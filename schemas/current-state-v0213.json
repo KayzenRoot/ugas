@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UGAS active state v0.21.3 maps/minimap raster governance correction",
+  "title": "UGAS active state v0.21.3 maps/minimap approved foundation awaiting governed merge",
   "type": "object",
   "additionalProperties": true,
   "required": ["schema_version", "version", "phase", "current_gate", "allowed_next_actions", "production_approved", "production_routing", "new_generation", "review", "state_consistency"],
@@ -12,8 +12,10 @@
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
     "new_generation": {"const": 0},
-    "allowed_next_actions": {"const": ["external_review_maps_minimap_v0213"]},
+    "allowed_next_actions": {"const": ["bookkeeping_reproof_and_governed_merge_pr_11"]},
+    "maps_minimap_assets": {"const": "APPROVED_FOUNDATION"},
     "maps_minimap_runtime": {"const": "TECHNICALLY_QUALIFIED_FOUNDATION"},
+    "maps_minimap_runtime_external_review": {"const": "APPROVED_FOUNDATION"},
     "real_map_asset_coverage": {"const": "NONE"},
     "real_minimap_asset_coverage": {"const": "NONE"},
     "synthetic_map_fixture": {"const": "TEST_ONLY"}

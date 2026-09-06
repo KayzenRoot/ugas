@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.22.0",
+  "record_type": "forward_only_external_approval",
+  "approved_increment": "v0.21.3",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 11,
+  "branch": "codex/v0.21.0-maps-minimap-runtime-foundation",
+  "base_branch": "main",
+  "base_sha": "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05",
+  "reviewed_runtime_head": "812a2bed1f77df3d630425f23032c22fc72d5961",
+  "reviewer": "Sol external review",
+  "decision": "APPROVED_FOUNDATION / APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF",
+  "status": "APPROVED_FOUNDATION",
+  "merge_authorization": "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF",
+  "merge_verified_via_protected_path": false,
+  "scope": "v0.21.3 MAPS_MINIMAP HISTORICAL BYTE INTEGRITY",
+  "approval_boundary": {
+    "maps_minimap_assets": "APPROVED_FOUNDATION",
+    "maps_minimap_runtime_external_review": "APPROVED_FOUNDATION",
+    "runtime_and_qa_only": true,
+    "real_map_asset_coverage": "NONE",
+    "real_minimap_asset_coverage": "NONE",
+    "synthetic_map_fixture": "TEST_ONLY",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "ui_asset_family": "NEXT CANDIDATE AFTER GOVERNED MERGE",
+    "vfx_and_orchestration": "NOT_AUTHORIZED"
+  },
+  "required_contexts": [
+    {"name": "UGAS CI / unit-and-validation", "run_id": 34060453005, "job_id": 101559926423, "status": "completed", "conclusion": "success", "url": "https://github.com/KayzenRoot/ugas/actions/runs/34060453005/job/101559926423"},
+    {"name": "UGAS CI / docker-smoke", "run_id": 34060453005, "job_id": 101559926317, "status": "completed", "conclusion": "success", "url": "https://github.com/KayzenRoot/ugas/actions/runs/34060453005/job/101559926317"},
+    {"name": "UGAS Review / evidence", "run_id": 34060453023, "job_id": 101559926235, "status": "completed", "conclusion": "success", "url": "https://github.com/KayzenRoot/ugas/actions/runs/34060453023/job/101559926235"}
+  ],
+  "bounded_artifact": {
+    "name": "ugas-review-evidence-pr-11-812a2bed1f77df3d630425f23032c22fc72d5961",
+    "id": 9997407624,
+    "digest": "sha256:4981b579166853206c4d62762721fb37fd387e6cd3dff511137f7f1ba51d3d7",
+    "run_id": 34060453023,
+    "verified_metadata": true,
+    "expired": false,
+    "status": "PASS"
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "docs/evidence/current-state.json",
+      "CHECKPOINT.md",
+      "docs/ugas-v1-capability-matrix.json",
+      "docs/roadmap.md",
+      "REVIEW-v0.21.3.md",
+      "docs/evidence/github-governance-v0220/v0213-external-approval.json",
+      "package.json",
+      "pyproject.toml",
+      "src/ugas/__init__.py",
+      "src/ugas/constants.py",
+      "README.md",
+      "INSTALL.md",
+      "docs/comfyui.md",
+      "scripts/validation/run_validation.py",
+      "scripts/validation/validate_v1_capability_matrix.py",
+      "src/ugas/state_consistency_v0213.py",
+      "schemas/current-state-v0213.json",
+      "schemas/ugas-v1-capability-matrix-v1.json",
+      "tests/test_bootstrap.py",
+      "tests/test_reference_edit_fidelity_v043.py",
+      "tests/test_regressions_v040.py"
+    ],
+    "forbidden_changes": [
+      "runtime algorithm or semantic behavior",
+      "fixtures, PNGs, map/minimap hashes or generated semantic evidence",
+      "rewrite of v0.21.2 or v0.21.3 evidence roots",
+      "F-01 through F-10 validators or negative controls",
+      "production routing, real assets, UI, VFX or orchestration"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any diff outside bookkeeping allowlist or semantic/runtime/fixture content hash change"
+  }
+}
