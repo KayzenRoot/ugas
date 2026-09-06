@@ -356,6 +356,8 @@ class ObservabilityService:
         except (OSError, json.JSONDecodeError) as exc: return None, f"{path.name}: {type(exc).__name__}"
 
     def _git_value(self, args: list[str]) -> str | None:
+        if not (self.repo_root / ".git").exists():
+            return None
         try:
             result = subprocess.run(["git", *args], cwd=self.repo_root, capture_output=True, text=True, timeout=0.8, check=False, shell=False)
             return result.stdout.strip() if result.returncode == 0 else None

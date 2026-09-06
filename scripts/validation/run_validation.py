@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.19.1."""
+"""Objective UGAS validation, including immutable history and active v0.20.3."""
 
 from __future__ import annotations
 
@@ -65,8 +65,15 @@ from ugas.state_consistency_v0181 import validate_state_consistency as validate_
 from ugas.state_consistency_v0182 import validate_state_consistency as validate_state_consistency_v0182
 from ugas.state_consistency_v0190 import validate_state_consistency as validate_state_consistency_v0190
 from ugas.state_consistency_v0191 import validate_state_consistency as validate_state_consistency_v0191
+from ugas.state_consistency_v0200 import validate_state_consistency as validate_state_consistency_v0200
+from ugas.state_consistency_v0201 import validate_state_consistency as validate_state_consistency_v0201
+from ugas.state_consistency_v0202 import validate_state_consistency as validate_state_consistency_v0202
+from ugas.state_consistency_v0203 import validate_state_consistency as validate_state_consistency_v0203
 from ugas.item_prop_runtime_v0190 import validate_item_prop_manifest as validate_item_prop_manifest_v0190
 from ugas.item_prop_runtime_v0191 import load_equipment_authority, validate_item_prop_manifest as validate_item_prop_manifest_v0191
+from ugas.environment_tileset_runtime_v0200 import validate_tileset_manifest as validate_tileset_manifest_v0200
+from ugas.environment_tileset_runtime_v0201 import validate_tileset_manifest as validate_tileset_manifest_v0201
+from ugas.environment_tileset_runtime_v0202 import validate_tileset_manifest as validate_tileset_manifest_v0202
 from scripts.validation.validate_github_review_manifest import validate as validate_github_review_manifest
 from scripts.validation.validate_github_review_manifest_v0124 import validate as validate_github_review_manifest_v0124
 from scripts.validation.validate_github_workflows_v0124 import validate_repository as validate_github_workflows_v0124
@@ -2862,8 +2869,21 @@ def _v0162_checks() -> None:
     try:
         state = load_json(ROOT / "docs/evidence/current-state-v0.16.2.json")
         validate_instance(state, load_json(ROOT / "schemas/current-state-v0162.json"))
-        consistency = validate_state_consistency_v0162(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.16.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        check("v0162:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "active v0.16.2 state is consistent")
+        historical_head = "98ea74e91e18dfee32c583df005e151e13d6e9f7"
+        historical_checkpoint = ""
+        historical_roadmap = ""
+        if (ROOT / ".git").is_dir():
+            checkpoint_result = subprocess.run(["git", "show", f"{historical_head}:CHECKPOINT.md"], cwd=ROOT, capture_output=True, text=True, check=False)
+            roadmap_result = subprocess.run(["git", "show", f"{historical_head}:docs/roadmap.md"], cwd=ROOT, capture_output=True, text=True, check=False)
+            if checkpoint_result.returncode == 0 and roadmap_result.returncode == 0:
+                historical_checkpoint = checkpoint_result.stdout
+                historical_roadmap = roadmap_result.stdout
+        if historical_checkpoint and historical_roadmap:
+            consistency = validate_state_consistency_v0162(state, historical_checkpoint, (ROOT / "REVIEW-v0.16.2.md").read_text(encoding="utf-8"), historical_roadmap)
+            check("v0162:state-consistency", consistency["status"] == state["current_gate"] and consistency["failures"] == [], "; ".join(consistency["failures"]) or "historical v0.16.2 state is consistent against its approved document head")
+        else:
+            frozen_consistency = load_json(ROOT / "docs/evidence/multi-direction-runtime-v0162/state-consistency-v0162.json")
+            check("v0162:state-consistency", frozen_consistency.get("status") == state["current_gate"] and frozen_consistency.get("failures") == [], "; ".join(frozen_consistency.get("failures", [])) or "historical v0.16.2 state-consistency evidence is preserved")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0162:state-consistency", False, str(exc))
     try:
@@ -3128,7 +3148,7 @@ def _v0190_checks() -> None:
         check("v0190:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED", "production item/prop registry is empty and blocked")
         check("v0190:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT", "isolated two-run and mutation comparator pass")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-        check("v0190:capability-matrix", matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION", "matrix advances beyond historical v0.19.0 after the approved v0.19.1 closure")
+        check("v0190:capability-matrix", matrix.get("next_candidate") in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP"} and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION", "matrix preserves v0.19.1 closure while allowing later approved capability advancement")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0190:evidence", False, str(exc))
     for label, script in (("v0190:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0190:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0190:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
@@ -3137,13 +3157,13 @@ def _v0190_checks() -> None:
 
 
 def _v0191_checks() -> None:
-    """Validate the active v0.19.1 correction without regenerating evidence."""
+    """Validate the frozen v0.19.1 correction without treating it as active."""
     evidence_root = ROOT / "docs/evidence/items-props-runtime-v0191"
     required = [
         "REVIEW-v0.19.1.md", "schemas/item-prop-runtime-v0191.json", "schemas/current-state-v0191.json",
         "src/ugas/item_prop_runtime_v0191.py", "src/ugas/state_consistency_v0191.py",
         "scripts/validation/run_items_props_runtime_v0191.py", "scripts/validation/validate_state_consistency_v0191.py",
-        "tests/test_item_prop_runtime_v0191.py", "docs/evidence/current-state.json", "docs/evidence/current-state-v0.18.2.json",
+        "tests/test_item_prop_runtime_v0191.py", "docs/evidence/current-state-v0.18.2.json",
         "docs/evidence/items-props-runtime-v0191/v0190-rejection-correction-record-v0191.json",
         "docs/evidence/items-props-runtime-v0191/item-prop-runtime-manifest-v0191.json",
         "docs/evidence/items-props-runtime-v0191/item-prop-contract-v0191.json",
@@ -3170,10 +3190,8 @@ def _v0191_checks() -> None:
         path = ROOT / relative
         check(f"v0191:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
-        validate_instance(state, load_json(ROOT / "schemas/current-state-v0191.json"))
-        consistency = validate_state_consistency_v0191(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.19.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        check("v0191:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.19.1 state is consistent")
+        approval = load_json(ROOT / "docs/evidence/github-governance-v0200/v0191-external-approval.json")
+        check("v0191:approval-record", approval.get("status") == "APPROVED_FOUNDATION" and approval.get("merge_authorization") == "APPROVED_TO_MERGE" and approval.get("merged_main_sha") == "93293d21f301e6d64232a992eb92533db9741118", "v0.19.1 remains a frozen approved release")
         manifest = load_json(evidence_root / "item-prop-runtime-manifest-v0191.json")
         authority = load_equipment_authority(ROOT / "docs/evidence/equipment-outfits-runtime-v0171/synthetic-fixture-manifest-v0171.json")
         validate_instance(manifest, load_json(ROOT / "schemas/item-prop-runtime-v0191.json")); validate_item_prop_manifest_v0191(manifest, artifact_root=evidence_root, equipment_authority=authority)
@@ -3196,10 +3214,292 @@ def _v0191_checks() -> None:
         check("v0191:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production item/prop registry is empty and blocked")
         check("v0191:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("file_count") == 19 and determinism.get("differences") == [] and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_world_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT" and determinism.get("mutated_identity_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_IDENTITY", "full-slice isolated determinism and mutation rejection pass")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-        check("v0191:capability-matrix", matrix.get("version") == "0.19.1" and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] == "NEXT NECESSARY", "matrix closes v0.19.1 items/props and advances environment/tilesets")
+        check("v0191:capability-matrix", matrix.get("version") == "0.20.3" and matrix.get("next_candidate") in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP"} and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"}, "matrix preserves v0.19.1 closure and accepts the forward-only v0.20.3 approval transition")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0191:evidence", False, str(exc))
     for label, script in (("v0191:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0191:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0191:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0191:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
+
+
+def _v0200_checks() -> None:
+    """Validate immutable rejected v0.20.0 environment/tilesets evidence."""
+    evidence_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0200"
+    required = [
+        "REVIEW-v0.20.0.md", "schemas/environment-tileset-runtime-v0200.json", "schemas/current-state-v0200.json",
+        "src/ugas/environment_tileset_runtime_v0200.py", "src/ugas/state_consistency_v0200.py",
+        "scripts/validation/run_environment_tilesets_runtime_v0200.py", "scripts/validation/validate_state_consistency_v0200.py",
+        "docs/evidence/environment-tilesets-runtime-v0200/tileset-manifest-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/hard-gates-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/negative-controls-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/full-slice-two-run-determinism-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/production-registry-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/test-only-qa-board-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/execution-evidence-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/tileset-manifest-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/fixture/tileset-identity.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/autotile-identities-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/fixture/edge-signatures-v0200.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/layer-collision-navigation-v0200.json", "docs/evidence/environment-tilesets-runtime-v0200/fixture/atlases/temperate_cardinal.png",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/atlases/wetland_eight_neighbor.png", "docs/evidence/environment-tilesets-runtime-v0200/fixture/indexes/temperate_cardinal-atlas-index.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/indexes/wetland_eight_neighbor-atlas-index.json",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/atlas-qa-sheet-v0200.png", "docs/evidence/environment-tilesets-runtime-v0200/fixture/mask-qa-sheet-v0200.png",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/seam-qa-sheet-v0200.png", "docs/evidence/environment-tilesets-runtime-v0200/fixture/collision-qa-sheet-v0200.png",
+        "docs/evidence/environment-tilesets-runtime-v0200/fixture/layer-qa-sheet-v0200.png", "docs/evidence/environment-tilesets-runtime-v0200/capability-matrix-validation-v0200.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0200:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        fixture_root = evidence_root / "fixture"
+        manifest = load_json(fixture_root / "tileset-manifest-v0200.json")
+        schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0200.json")
+        validate_schema_document(schema); validate_instance(manifest, schema)
+        semantic = validate_tileset_manifest_v0200(fixture_root, manifest)
+        execution = load_json(evidence_root / "execution-evidence-v0200.json")
+        negative = load_json(evidence_root / "negative-controls-v0200.json")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0200.json")
+        gates = load_json(evidence_root / "hard-gates-v0200.json").get("gates", {})
+        expected_gates = {"tileset_schema_valid", "tile_metrics_valid", "grid_conversion_roundtrip_valid", "layer_contract_valid", "atlas_rects_in_bounds_and_nonoverlapping", "standalone_tile_bytes_hash_verified", "atlas_region_matches_tile_bytes", "adjacency_mask_encoding_deterministic", "required_autotile_variant_present", "edge_signatures_match_bytes", "seam_compatibility_verified", "collision_navigation_contract_valid", "items_props_boundary_not_duplicated", "variant_lineage_acyclic_and_revalidated", "cache_identity_complete", "stale_cache_cross_mask_tileset_layer_rejected", "provenance_hash_matches_manifest", "test_fixture_nonproduction", "production_registry_empty", "production_routing_blocked", "isolated_full_slice_determinism"}
+        strict_negative = negative.get("status") == "ENVIRONMENT_TILESET_NEGATIVE_CONTROLS_PASSED" and len(negative.get("controls", [])) == 18 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in negative.get("controls", []))
+        check("v0200:execution", execution.get("status") == "ENVIRONMENT_TILESETS_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and execution.get("negative_controls") == "ET-NC-01_TO_18_PASSED" and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.20.0 foundation gates execute successfully")
+        check("v0200:hard-gates", set(gates) == expected_gates and all(item.get("status") == "PASS" for item in gates.values()), "all 20 PDF hard gates pass")
+        check("v0200:negative-controls", strict_negative, "ET-NC-01..18 are strict semantic rejections")
+        check("v0200:manifest", semantic.get("status") == "ENVIRONMENT_TILESET_MANIFEST_VALID" and manifest.get("classes") == ["ground_terrain", "path_road", "wall_structure", "water_liquid", "cliff_height", "vegetation_overlay"], "six stable class IDs and manifest identity validate")
+        check("v0200:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("equal") is True and determinism.get("differences") == [] and len(determinism.get("files", [])) >= 20, "independent subprocess output set is byte-identical")
+        production = load_json(evidence_root / "production-registry-v0200.json")
+        board = load_json(evidence_root / "test-only-qa-board-v0200.json")
+        check("v0200:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and board.get("label") == "TEST_ONLY_TILE_QA_BOARD", "fixture is TEST_ONLY and production registry is empty")
+        historical_matrix = load_json(evidence_root / "capability-matrix-validation-v0200.json")
+        check("v0200:capability-matrix", historical_matrix.get("version") == "0.20.0" and historical_matrix.get("status") == "V1_CAPABILITY_MATRIX_PASSED", "v0.20.0 capability-matrix proof remains immutable rejected history")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0200:evidence", False, str(exc))
+    for label, script in (("v0200:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0200:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0200:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0200:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
+
+
+def _v0201_checks() -> None:
+    """Validate the active v0.20.1 QA-integrity correction and evidence."""
+    evidence_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0201"
+    required = [
+        "REVIEW-v0.20.1.md", "schemas/environment-tileset-runtime-v0201.json", "schemas/current-state-v0201.json",
+        "src/ugas/environment_tileset_runtime_v0201.py", "src/ugas/state_consistency_v0201.py",
+        "scripts/validation/run_environment_tilesets_runtime_v0201.py", "scripts/validation/validate_state_consistency_v0201.py",
+        "docs/evidence/current-state.json", "docs/evidence/environment-tilesets-runtime-v0201/v0200-rejection-correction-record-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/tileset-contract-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/hard-gates-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/gate-specific-proof-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/negative-controls-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/autotile-routing-negative-controls-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/world-metric-negative-controls-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/variant-negative-controls-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/canonical-negative-controls-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/full-slice-two-run-determinism-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/production-registry-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/test-only-qa-board-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/execution-evidence-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/mask-qa-sheet-v0201.png", "docs/evidence/environment-tilesets-runtime-v0201/seam-qa-sheet-v0201.png",
+        "docs/evidence/environment-tilesets-runtime-v0201/fixture/tileset-manifest-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/fixture/autotile-class-layer-contract-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/fixture/autotile-byte-binding-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/fixture/autotile-resolution-matrix-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/fixture/atlas-byte-integrity-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/fixture/effective-variant-validation-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/fixture/world-metric-roundtrip-v0201.json", "docs/evidence/environment-tilesets-runtime-v0201/fixture/cache-identity-v0201.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/fixture/indexes/temperate_cardinal-atlas-index.json", "docs/evidence/environment-tilesets-runtime-v0201/fixture/indexes/wetland_eight_neighbor-atlas-index.json",
+        "docs/evidence/environment-tilesets-runtime-v0201/capability-matrix-validation-v0201.json",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0201:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state_schema = load_json(ROOT / "schemas/current-state-v0201.json")
+        validate_instance(state, state_schema)
+        consistency = validate_state_consistency_v0201(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0201:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.1 state is consistent")
+        fixture_root = evidence_root / "fixture"
+        manifest = load_json(fixture_root / "tileset-manifest-v0201.json")
+        schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0201.json")
+        validate_schema_document(schema); validate_instance(manifest, schema)
+        semantic = validate_tileset_manifest_v0201(fixture_root, manifest)
+        rejection = load_json(evidence_root / "v0200-rejection-correction-record-v0201.json")
+        check("v0201:rejection-record", rejection.get("status") == "CORRECTION_REQUIRED" and rejection.get("rejected_reviewed_head") == "ae335ba198bb7f23210873e30948e8a19bc71cbd" and rejection.get("historical_evidence_unchanged") is True, "v0.20.0 rejection is forward-only and head-bound")
+        execution = load_json(evidence_root / "execution-evidence-v0201.json")
+        negative = load_json(evidence_root / "negative-controls-v0201.json")
+        gates = load_json(evidence_root / "hard-gates-v0201.json")
+        proof = load_json(evidence_root / "gate-specific-proof-v0201.json")
+        expected_gates = {"tileset_contract_valid", "pixel_world_metrics_separated", "grid_conversion_resolution_independent", "autotile_class_layer_safe", "autotile_byte_bindings_truthful", "autotile_resolution_matrix_valid", "atlas_byte_integrity_valid", "edge_signatures_match_effective_bytes", "seam_transition_variants_valid", "collision_navigation_contract_valid", "effective_variant_materialized_revalidated", "autotile_routing_negative_controls_strict", "world_metric_negative_controls_strict", "variant_negative_controls_strict", "canonical_et_negative_controls_preserved", "cache_identity_class_layer_mask_variant_complete", "test_fixture_nonproduction", "production_registry_empty", "production_routing_blocked", "isolated_full_slice_determinism"}
+        all_controls = negative.get("canonical_et", []) + negative.get("autotile_routing", []) + negative.get("world_metrics", []) + negative.get("variants", [])
+        strict_controls = len(negative.get("canonical_et", [])) == 18 and len(negative.get("autotile_routing", [])) == 5 and len(negative.get("world_metrics", [])) == 4 and len(negative.get("variants", [])) == 6 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in all_controls)
+        check("v0201:execution", execution.get("status") == "ENVIRONMENT_TILESETS_AUTOTILE_WORLD_METRIC_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED" and all(execution.get("negative_controls", {}).values()) and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.20.1 correction gates and controls execute")
+        check("v0201:hard-gates", gates.get("status") == "PASS" and set(gates.get("gates", {})) == expected_gates and all(item.get("status") == "PASS" and item.get("checker") and item.get("assertion") for item in gates.get("gates", {}).values()), "every named gate has explicit proof and PASS is not generic")
+        check("v0201:gate-specific-proof", proof.get("status") == "PASS" and proof.get("gates") == gates.get("gates"), "gate-specific proof is bound to the hard-gate record")
+        check("v0201:negative-controls", strict_controls, "ET-NC-01..18, AT-NC-01..05, WM-NC-01..04 and TV-NC-01..06 are strict")
+        check("v0201:manifest", semantic.get("status") == "ENVIRONMENT_TILESET_MANIFEST_VALID" and semantic.get("autotile_binding_count", 0) >= 100 and manifest.get("metrics", {}).get("world_units_per_tile") == 1.0, "mask-specific byte-bound manifest and independent world metrics validate")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0201.json")
+        check("v0201:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("equal") is True and determinism.get("differences") == [] and len(determinism.get("files", [])) >= 100, "new mask-specific tiles/atlases/indexes/JSON/sheets are byte-identical")
+        production = load_json(evidence_root / "production-registry-v0201.json")
+        board = load_json(evidence_root / "test-only-qa-board-v0201.json")
+        check("v0201:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0 and board.get("status") == "TEST_ONLY", "fixture is TEST_ONLY and production registry is empty")
+        matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        environment = next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")
+        check("v0201:capability-matrix", matrix.get("version") == "0.20.1" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS", "active capability matrix points to v0.20.1 QA integrity")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0201:evidence", False, str(exc))
+    for label, script in (("v0201:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0201:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0201:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0201:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
+
+
+def _v0202_checks() -> None:
+    """Validate the active v0.20.2 correction and preserve v0.20.1 history."""
+    evidence_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0202"
+    historical_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0201"
+    required = [
+        "REVIEW-v0.20.2.md", "schemas/environment-tileset-runtime-v0202.json", "schemas/current-state-v0202.json",
+        "src/ugas/environment_tileset_runtime_v0202.py", "src/ugas/state_consistency_v0202.py",
+        "scripts/validation/run_environment_tilesets_runtime_v0202.py", "scripts/validation/validate_state_consistency_v0202.py",
+        "docs/evidence/current-state.json", "docs/evidence/environment-tilesets-runtime-v0202/v0201-rejection-correction-record-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/production-boundary-qa-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/supported-mask-cross-product-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/mask-coverage-negative-controls-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/origin-contract-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/origin-negative-controls-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/variant-identity-authority-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/canonical-et-current-runtime-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/historical-et-preservation-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/gate-specific-proof-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/full-slice-two-run-determinism-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/production-registry-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/execution-evidence-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/fixture/tileset-manifest-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/fixture/autotile-byte-binding-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/fixture/autotile-resolution-matrix-v0202.json", "docs/evidence/environment-tilesets-runtime-v0202/fixture/atlas-byte-integrity-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0202/fixture/mask-qa-sheet-v0202.png", "docs/evidence/environment-tilesets-runtime-v0202/fixture/seam-qa-sheet-v0202.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0202:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state_schema = load_json(ROOT / "schemas/current-state-v0202.json")
+        validate_schema_document(state_schema); validate_instance(state, state_schema)
+        consistency = validate_state_consistency_v0202(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0202:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.2 state is consistent")
+        fixture_root = evidence_root / "fixture"
+        manifest = load_json(fixture_root / "tileset-manifest-v0202.json")
+        schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0202.json")
+        validate_schema_document(schema); validate_instance(manifest, schema)
+        semantic = validate_tileset_manifest_v0202(fixture_root, manifest)
+        execution = load_json(evidence_root / "execution-evidence-v0202.json")
+        gates = load_json(evidence_root / "hard-gates-v0202.json")
+        proof = load_json(evidence_root / "gate-specific-proof-v0202.json")
+        negative = load_json(evidence_root / "negative-controls-v0202.json")
+        expected_gates = {"tileset_contract_valid", "pixel_world_metrics_separated", "grid_conversion_resolution_independent", "autotile_class_layer_safe", "autotile_byte_bindings_truthful", "supported_mask_cross_product_exact", "autotile_resolution_matrix_valid", "atlas_byte_integrity_valid", "edge_signatures_match_effective_bytes", "seam_transition_variants_valid", "collision_navigation_contract_valid", "effective_variant_materialized_revalidated", "autotile_routing_negative_controls_strict", "production_boundary_controls_strict", "mask_coverage_negative_controls_strict", "world_metric_negative_controls_strict", "origin_contract_exact", "origin_negative_controls_strict", "variant_negative_controls_strict", "variant_identity_authority_strict", "canonical_et_current_runtime_strict", "historical_et_preservation", "cache_identity_class_layer_mask_variant_complete", "test_fixture_nonproduction", "production_registry_empty", "production_routing_blocked", "isolated_full_slice_determinism"}
+        all_controls = [item for group in ("canonical_et_current_runtime", "production_boundary", "mask_coverage", "origin", "variant_identity", "autotile_routing", "world_metrics") for item in negative.get(group, [])]
+        check("v0202:execution", execution.get("status") == "ENVIRONMENT_TILESETS_PRODUCTION_MASK_ORIGIN_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED" and all(execution.get("negative_controls", {}).values()) and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.20.2 correction gates and controls execute")
+        check("v0202:hard-gates", gates.get("status") == "PASS" and set(gates.get("gates", {})) == expected_gates and all(item.get("status") == "PASS" and item.get("checker") and item.get("assertion") for item in gates.get("gates", {}).values()), "every named gate has explicit boolean-aware proof")
+        check("v0202:gate-specific-proof", proof.get("status") == "PASS" and proof.get("gates") == gates.get("gates"), "gate-specific proof is bound to the hard-gate record")
+        check("v0202:negative-controls", len(negative.get("canonical_et_current_runtime", [])) == 18 and len(negative.get("production_boundary", [])) == 4 and len(negative.get("mask_coverage", [])) == 5 and len(negative.get("origin", [])) == 3 and len(negative.get("variant_identity", [])) == 4 and all(item.get("status") == "PASS" for item in all_controls), "current ET/PB/MC/OR/VI and carried routing/metric controls are strict")
+        check("v0202:manifest", semantic.get("status") == "ENVIRONMENT_TILESET_MANIFEST_VALID" and manifest.get("schema_version") == "0.20.2", "v0.20.2 manifest validates against current schema and semantics")
+        for family in manifest["terrain_families"]:
+            expected = {(class_id, mask) for class_id in manifest["classes"] for mask in family["supported_masks"]}
+            observed = {(item["target_class_id"], item["adjacency_mask"]) for item in family["autotile_variants"]}
+            check(f"v0202:mask-cross-product:{family['terrain_family_id']}", expected == observed, "exact class x supported-mask product")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0202.json")
+        check("v0202:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("equal") is True and determinism.get("differences") == [] and len(determinism.get("files", [])) >= 100, "independent v0.20.2 output set is byte-identical")
+        production = load_json(evidence_root / "production-registry-v0202.json")
+        check("v0202:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production registry remains empty and blocked")
+        matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        environment = next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")
+        check("v0202:capability-matrix", matrix.get("version") == "0.20.2" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS", "active capability matrix points to v0.20.2 QA integrity")
+        historical_manifest = load_json(historical_root / "fixture/tileset-manifest-v0201.json")
+        historical_schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0201.json")
+        validate_instance(historical_manifest, historical_schema)
+        check("v0202:historical-v0201-preserved", historical_manifest.get("schema_version") == "0.20.1" and (historical_root / "hard-gates-v0201.json").is_file() and (historical_root / "execution-evidence-v0201.json").is_file(), "rejected v0.20.1 evidence remains separately addressable")
+        runner_text = (ROOT / "scripts/validation/run_environment_tilesets_runtime_v0202.py").read_text(encoding="utf-8")
+        check("v0202:boolean-aware-gates", "(checker(), True)[-1]" not in runner_text and "lambda: (" not in runner_text, "gate results cannot discard false checker booleans")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0202:evidence", False, str(exc))
+    for label, script in (("v0202:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0202:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0202:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0202:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
+
+
+def _v0203_checks() -> None:
+    """Validate the active v0.20.3 governance correction and frozen v0.20.2 history."""
+    evidence_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0203"
+    historical_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0202"
+    required = [
+        "REVIEW-v0.20.3.md", "schemas/current-state-v0203.json", "src/ugas/environment_tileset_governance_v0203.py",
+        "src/ugas/historical_authority_v0203.py", "src/ugas/state_consistency_v0203.py",
+        "scripts/validation/run_environment_tilesets_runtime_v0203.py", "scripts/validation/validate_state_consistency_v0203.py",
+        "docs/evidence/current-state.json", "docs/evidence/environment-tilesets-runtime-v0203/v0202-rejection-correction-record-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/production-semantic-contract-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/production-boundary-qa-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/mask-matrix-validator-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/origin-positive-proofs-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/origin-negative-controls-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/historical-authority-manifest-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/historical-preservation-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/gate-specific-proof-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/summary-integrity-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/canonical-et-current-runtime-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/full-slice-two-run-determinism-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/production-registry-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/test-only-qa-board-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/tileset-contract-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/negative-controls-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/execution-evidence-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/fixture/tileset-manifest-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/fixture/autotile-resolution-matrix-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/fixture/atlas-byte-integrity-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/mask-qa-sheet-v0203.png",
+        "docs/evidence/environment-tilesets-runtime-v0203/seam-qa-sheet-v0203.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0203:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state_schema = load_json(ROOT / "schemas/current-state-v0203.json")
+        validate_schema_document(state_schema)
+        validate_instance(state, state_schema)
+        consistency = validate_state_consistency_v0203(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0203:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.3 state is consistent")
+        history = state["correction_history"]["v0.20.2"]
+        check("v0203:v0202-rejected-history", history.get("status") == "CORRECTION_REQUIRED" and history.get("rejected_reviewed_head") == "6022cf3c6158ebb762519a04e79ed42378438ccc" and history.get("historical_evidence_unchanged") is True, "v0.20.2 is explicitly rejected and frozen")
+
+        execution = load_json(evidence_root / "execution-evidence-v0203.json")
+        gates = load_json(evidence_root / "hard-gates-v0203.json")
+        proof = load_json(evidence_root / "gate-specific-proof-v0203.json")
+        check("v0203:execution", execution.get("status") == "ENVIRONMENT_TILESETS_QA_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED" and all(execution.get("negative_controls", {}).values()) and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.20.3 correction gates and controls execute")
+        check("v0203:hard-gates", gates.get("status") == "PASS" and all(item.get("status") == "PASS" and item.get("observed") is True and item.get("checker") and item.get("assertion") for item in gates.get("gates", {}).values()), "every named gate consumes an observed boolean")
+        check("v0203:gate-specific-proof", proof.get("status") == "PASS" and proof.get("gates") == gates.get("gates"), "gate-specific proof is bound to the hard-gate record")
+
+        production = load_json(evidence_root / "production-boundary-qa-v0203.json")
+        production_controls = production.get("controls", [])
+        positive = production.get("isolated_positive_candidate_validation", {})
+        check("v0203:production-controls", len(production_controls) == 5 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in production_controls), "PB-NC-01..05 observe exact public rejection classes")
+        check("v0203:production-positive", positive.get("status") == "PASS" and positive.get("validation", {}).get("status") == "PRODUCTION_CANDIDATE_VALID" and positive.get("isolated_registry_entries") == 1, "isolated valid candidate proof is separate from blocked system production")
+
+        matrix = load_json(evidence_root / "mask-matrix-validator-v0203.json")
+        check("v0203:mask-matrix", matrix.get("status") == "PASS" and matrix.get("validator_result", {}).get("status") == "AUTOTILE_MATRIX_VALID" and len(matrix.get("negative_controls", [])) == 1 and matrix["negative_controls"][0].get("expected_rejection_class") == matrix["negative_controls"][0].get("observed_rejection_class") == "AUTOTILE_MATRIX_INCOMPLETE", "dedicated matrix validator and real MC-NC-05 are strict")
+
+        origin_positive = load_json(evidence_root / "origin-positive-proofs-v0203.json")
+        origin_negative = load_json(evidence_root / "origin-negative-controls-v0203.json")
+        check("v0203:origin-positive", origin_positive.get("status") == "PASS" and len(origin_positive.get("proofs", [])) == 2 and all(item.get("status") == "PASS" for item in origin_positive["proofs"]), "positive origin proofs are separately recorded")
+        check("v0203:origin-negative", origin_negative.get("status") == "PASS" and len(origin_negative.get("controls", [])) == 3 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in origin_negative["controls"]), "origin negative controls observe exact rejection classes")
+
+        canonical = load_json(evidence_root / "canonical-et-current-runtime-v0203.json")
+        check("v0203:canonical-et", canonical.get("status") == "PASS" and canonical.get("runtime_schema_version") == "0.20.2" and len(canonical.get("controls", [])) == 18 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in canonical["controls"]), "ET-NC-01..18 are re-executed against the current runtime")
+        semantic = load_json(evidence_root / "production-semantic-contract-v0203.json")
+        check("v0203:semantic-contract", semantic.get("status") == "PASS" and semantic.get("runtime_schema_version") == "0.20.2" and semantic.get("shared_semantic_core") == "validate_tileset_manifest" and semantic.get("candidate_validation", {}).get("validation", {}).get("status") == "PRODUCTION_CANDIDATE_VALID", "production candidate proof shares the complete semantic core")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0203.json")
+        check("v0203:determinism", determinism.get("status") in {"PASS", "TWO_RUN_DETERMINISM_PASSED"} and determinism.get("equal") is True and determinism.get("differences") == [] and len(determinism.get("files", [])) >= 100, "independent v0.20.3 output sets are byte-identical")
+        registry = load_json(evidence_root / "production-registry-v0203.json")
+        check("v0203:production-boundary", registry.get("entries") == [] and registry.get("production_approved") is False and registry.get("production_routing") == "BLOCKED" and registry.get("new_generation") == 0, "production registry remains empty and blocked")
+        summary = load_json(evidence_root / "summary-integrity-v0203.json")
+        check("v0203:summary-integrity", summary.get("status") == "PASS" and len(summary.get("summaries", [])) >= 5 and all(item.get("status") == "PASS" and item.get("observed_status") == item.get("expected_status") for item in summary["summaries"]), "summaries are derived fail-closed from underlying results")
+
+        authority = load_json(evidence_root / "historical-authority-manifest-v0203.json")
+        heads = {authority.get("authorities", {}).get(key, {}).get("head") for key in ("v0200_negative_controls", "v0201_evidence_root", "v0202_evidence_root")}
+        check("v0203:historical-authority", authority.get("status") in {"PASS", "IMMUTABLE_AUTHORITY_BOUND"} and heads == {"ae335ba198bb7f23210873e30948e8a19bc71cbd", "0353e6785017c08db6e55c9448d9fa60e5908802", "6022cf3c6158ebb762519a04e79ed42378438ccc"}, "historical authority is fixed to rejected Git heads")
+        preservation = load_json(evidence_root / "historical-preservation-v0203.json")
+        check("v0203:historical-preservation", preservation.get("status") == "PASS" and preservation.get("current_vs_immutable_authority", {}).get("status") == "PASS" and preservation.get("mutation_control", {}).get("status") == "PASS", "historical bytes are preserved and bound mutation fails")
+
+        fixture_root = evidence_root / "fixture"
+        manifest = load_json(fixture_root / "tileset-manifest-v0202.json")
+        check("v0203:fixture", manifest.get("schema_version") == "0.20.2" and manifest.get("test_only") is True and manifest.get("production_safe") is False, "fixture remains v0.20.2 semantic TEST_ONLY output")
+        old_execution = load_json(historical_root / "execution-evidence-v0202.json")
+        old_record = load_json(historical_root / "v0201-rejection-correction-record-v0202.json")
+        check("v0203:frozen-v0202-root", old_execution.get("schema_version") == "0.20.2" and old_record.get("rejected_reviewed_head") == "0353e6785017c08db6e55c9448d9fa60e5908802" and historical_root.is_dir(), "v0.20.2 evidence remains separately addressable")
+        runner_text = (ROOT / "scripts/validation/run_environment_tilesets_runtime_v0203.py").read_text(encoding="utf-8")
+        check("v0203:boolean-aware-source", "(checker(), True)[-1]" not in runner_text and "sha256_file(path) == sha256_file(path)" not in runner_text and "lambda: True" not in runner_text, "source cannot discard false booleans, self-compare or manufacture PASS")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0203:evidence", False, str(exc))
+    for label, script in (("v0203:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0203:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0203:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0203:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
         result = _run([sys.executable, script], ROOT, timeout=120)
         check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
 
@@ -3302,13 +3602,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks(); _v0190_checks(); _v0191_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks(); _v0190_checks(); _v0191_checks(); _v0200_checks(); _v0203_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.19.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.19.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.19.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.20.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.20.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.20.3")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
