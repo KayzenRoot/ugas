@@ -1,6 +1,6 @@
 # UGAS V1 capability matrix - v0.20.3 approved closure
 
-This matrix is a planning contract for the functional rounds. v0.20.3 Environment/Tilesets is externally approved as a runtime, QA and governance foundation; real environment artwork remains NONE and production remains blocked. The next necessary capability is the v0.21.0 Maps/Minimap runtime foundation, limited to TEST_ONLY fixtures.
+This matrix is a planning contract for the functional rounds. v0.20.3 Environment/Tilesets is externally approved as a runtime, QA and governance foundation; real environment artwork remains NONE and production remains blocked. The active v0.21.1 Maps/Minimap correction is limited to TEST_ONLY fixtures and remains subject to external review.
 
 | ID | Capability | Status after v0.12.3 | Planned order |
 | --- | --- | --- | --- |
@@ -16,11 +16,11 @@ This matrix is a planning contract for the functional rounds. v0.20.3 Environmen
 | `creatures_monsters` | Creatures / monsters | APPROVED_FOUNDATION | v0.18.2 closed |
 | `items_props` | Items / props | NEXT NECESSARY | v0.19.0 active; external review required |
 | `environment_tilesets` | Environment / tilesets | APPROVED_FOUNDATION | v0.20.3 closed |
-| `maps_minimap_assets` | Maps / minimap assets | NEXT NECESSARY | v0.21.0 active |
+| `maps_minimap_assets` | Maps / minimap assets | TECHNICALLY_QUALIFIED_FOUNDATION | v0.21.1 correction active; external review required |
 | `ui_asset_family` | UI asset family | Pending | later V1 |
 | `vfx_asset_family` | VFX asset family | Pending | later V1 |
 | `orchestration_runtime_hardening` | Orchestration / runtime integration / hardening | Pending | V1 completion gates |
 
 ## Freeze and gate
 
-The current functional candidate after the governed v0.20.3 ENVIRONMENT_TILESETS closure is `MAPS_MINIMAP`. `environment_tilesets=APPROVED_FOUNDATION`, `maps_minimap_assets=NEXT NECESSARY`, `next_candidate=MAPS_MINIMAP`, `next_capability_started=false`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. Maps/Minimap may begin only on a new v0.21.0 branch from the merged main commit, and only with TEST_ONLY fixtures.
+The current functional candidate after the governed v0.20.3 ENVIRONMENT_TILESETS closure is `MAPS_MINIMAP`. `environment_tilesets=APPROVED_FOUNDATION`, `maps_minimap_assets=TECHNICALLY_QUALIFIED_FOUNDATION`, `next_candidate=MAPS_MINIMAP`, `next_capability_started=false`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The v0.21.0 reviewed head remains rejected history; the v0.21.1 correction continues the same branch/PR from the merged main commit and remains TEST_ONLY.

@@ -1,4 +1,22 @@
-# UGAS checkpoint - v0.20.2 ENVIRONMENT_TILESETS
+# UGAS checkpoint - v0.21.3 MAPS_MINIMAP approved foundation / governed merge
+
+## v0.21.3 MAPS_MINIMAP - historical byte integrity / external review handoff
+
+`version=0.21.3`; `phase=MAPS_MINIMAP`; `current_gate=MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED`; `environment_tilesets=APPROVED_FOUNDATION`; `maps_minimap_assets=APPROVED_FOUNDATION`; `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `maps_minimap_runtime_external_review=APPROVED_FOUNDATION`; `real_map_asset_coverage=NONE`; `real_minimap_asset_coverage=NONE`; `synthetic_map_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[bookkeeping_reproof_and_governed_merge_pr_11]`; `next_capability_started=false`. The exact approved semantic head is `812a2bed1f77df3d630425f23032c22fc72d5961`, recorded in `docs/evidence/github-governance-v0220/v0213-external-approval.json`. The v0.21.2 reviewed head `b80f30074374c539e008ce160846848f1c171d9a` is frozen `CORRECTION_REQUIRED` history; its evidence under `docs/evidence/maps-minimap-runtime-v0212/` is unchanged. The v0.21.3 evidence under `docs/evidence/maps-minimap-runtime-v0213/` remains immutable and proves raw Git-object byte identity, the real authority blob SHA `6a44fb35ab99ffc87fc852fab9d65bfb1b5dc608`, explicit candidate blob provenance, real CRLF-only and append mutation rejection, and two-run determinism. The only pre-merge action is allowlisted bookkeeping reproof on PR #11; after protected merge, UI is the next candidate. Do not enable production, generate real map/minimap art or start UI/VFX/orchestration.
+
+# Historical UGAS checkpoint - v0.21.2 MAPS_MINIMAP raster/governance correction
+
+## Historical v0.21.2 MAPS_MINIMAP - raster + governance integrity / correction required
+
+`version=0.21.2`; `phase=MAPS_MINIMAP`; `current_gate=MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED`; `environment_tilesets=APPROVED_FOUNDATION`; `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `real_map_asset_coverage=NONE`; `real_minimap_asset_coverage=NONE`; `synthetic_map_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_maps_minimap_v0212]`; `next_capability_started=false`. The v0.21.1 reviewed head `cfde03cce2e31cc688f9d94a659b577042b8538a` is frozen `CORRECTION_REQUIRED` history; the v0.20.3 foundation remains bound to protected merge `0bf04cb92e8619ea10cf82af8dbf2d9abe599e05`. The v0.21.2 evidence under `docs/evidence/maps-minimap-runtime-v0212/` records 22 hard gates, 29 semantic negative controls, direct F-06/F-07/F-08 correction proof, historical mutation rejection and two-run determinism. Stop with existing PR #11 OPEN and unmerged after exact-head CI and bounded artifact evidence; do not enable production, generate real map/minimap art or start UI/VFX/orchestration.
+
+## Historical v0.21.0 MAPS_MINIMAP — runtime foundation / correction required
+
+## v0.21.0 MAPS_MINIMAP — runtime foundation / external review handoff
+
+`version=0.21.0`; `phase=MAPS_MINIMAP`; `current_gate=MAPS_MINIMAP_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; `environment_tilesets=APPROVED_FOUNDATION`; `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `real_map_asset_coverage=NONE`; `real_minimap_asset_coverage=NONE`; `synthetic_map_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_maps_minimap_v0210]`; `next_capability_started=false`. The v0.20.3 foundation is bound to protected merge `0bf04cb92e8619ea10cf82af8dbf2d9abe599e05`; rejected v0.20.0/v0.20.1/v0.20.2 history remains immutable. The v0.21.0 fixture, 21 hard gates, 20 semantic negative controls and isolated determinism evidence are under `docs/evidence/maps-minimap-runtime-v0210/`. Stop with the v0.21.0 PR OPEN and unmerged after exact-head CI and bounded artifact evidence; do not enable production or generate real map/minimap art.
+
+# Historical UGAS checkpoint - v0.20.2 ENVIRONMENT_TILESETS
 
 ## v0.20.3 ENVIRONMENT_TILESETS - QA governance integrity correction
 

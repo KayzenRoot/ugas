@@ -2,9 +2,13 @@
 
 The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
 
-# 2D master pipeline v0.20.3
+# 2D master pipeline v0.21.3
 
-The v0.20.3 slice is the active `ENVIRONMENT_TILESETS` QA/governance integrity correction over the v0.20.2 semantic runtime. It validates the shared production candidate contract, real PB-NC-01..05 rejection paths, dedicated matrix authority with MC-NC-05, injected origin failures, fixed Git historical authority/preservation, fail-closed summaries and exact-head evidence. The current runtime still validates six stable tile classes, class/layer-safe autotile routing, mask-specific TEST_ONLY bytes, exact class x supported-mask coverage, pixel/world metric separation, explicit layer order, TOP_LEFT/CENTER origin semantics, cardinal/eight-neighbor masks, byte-derived edge/seam compatibility, exact standalone/atlas pixels, collision/navigation metadata, effective variant authority, complete cache identity, current ET-NC-01..18 and full-slice two-run deterministic fixture runs. `creatures_monsters=APPROVED_FOUNDATION`, `items_props=APPROVED_FOUNDATION`, `environment_tilesets_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_environment_asset_coverage=NONE`, `synthetic_environment_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; Maps/Minimap, UI, VFX, orchestration and production art remain out of scope. v0.20.2, v0.20.1 and v0.20.0 remain immutable `CORRECTION_REQUIRED` history.
+The active v0.21.3 slice is the `MAPS_MINIMAP` historical byte-integrity correction over rejected v0.21.2. It preserves the v0.21.2 raster/governance fixes, validates raw Git-object bytes without CRLF/LF normalization, records real authority and candidate blob provenance, and executes CRLF-only plus append mutation controls through the same validator. `environment_tilesets=APPROVED_FOUNDATION`, `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_map_asset_coverage=NONE`, `real_minimap_asset_coverage=NONE`, `synthetic_map_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; UI, VFX, orchestration and production art remain out of scope. v0.21.2 remains immutable `CORRECTION_REQUIRED` history.
+
+## Historical v0.21.2 boundary
+
+The active v0.21.1 slice is the `MAPS_MINIMAP` QA contract integrity correction over rejected v0.21.0. It validates actual production-registry emptiness, content-bound cache identities, canonical origin/orientation projection and inverse semantics, owning-cell prop placement, historical byte preservation and exact negative controls. `environment_tilesets=APPROVED_FOUNDATION`, `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_map_asset_coverage=NONE`, `real_minimap_asset_coverage=NONE`, `synthetic_map_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; UI, VFX, orchestration and production art remain out of scope. v0.21.0 remains immutable `CORRECTION_REQUIRED` history.
 
 ## Historical v0.17.1 boundary
 
@@ -35,3 +39,7 @@ The v0.11.0 generic motion-quality and attack-front-v2 evidence is preserved as 
 ## v0.10.0 runtime boundary
 
 The reusable deterministic animation runtime consumes the immutable R4 cutout rig through declarative animation specs. v0.10.0 covers `attack-front-v1` only; generic event markers are validated, ordered, hash-bound, and preserved through compiled manifest, QA, metadata, and package artifacts. Production routing is `BLOCKED`, with `decision=QUALIFIED` and every hard gate literally true required before package creation. Evidence is recorded in `docs/evidence/animation-runtime-v0100/`.
+# Historical v0.21.1 governance note
+
+The active repository state is the v0.21.3 MAPS_MINIMAP historical byte-integrity correction; this pipeline document remains outside that slice's production-art authorization boundary.
+# Active governed release: v0.21.2 MAPS/MINIMAP raster + governance correction; production remains BLOCKED and real map/minimap coverage is NONE.
