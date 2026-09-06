@@ -11,12 +11,12 @@ import subprocess
 from typing import Any, Mapping
 
 from ..schema_validation import validate_instance, validate_schema_document
-from ..state_consistency_v0201 import validate_state_consistency
+from ..state_consistency_v0202 import validate_state_consistency
 
-# The active state/review moved to v0.20.0. The v0.12.2 index remains the
+# The active state/review moved to v0.20.2. The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
-ACTIVE_VERSION = "0.20.1"
-ACTIVE_REVIEW = "REVIEW-v0.20.1.md"
+ACTIVE_VERSION = "0.20.2"
+ACTIVE_REVIEW = "REVIEW-v0.20.2.md"
 ACTIVE_INDEX = "review-index-v0.12.2.json"
 ACTIVE_EVIDENCE_DIR = "observability-v0122"
 
@@ -146,7 +146,7 @@ class ActiveEvidenceCache:
                  review_index_path: Path | None = None, review_index_schema_path: Path | None = None) -> None:
         self.repo_root = Path(repo_root).resolve()
         self.state_path = state_path or self.repo_root / "docs/evidence/current-state.json"
-        self.state_schema_path = state_schema_path or self.repo_root / "schemas/current-state-v0201.json"
+        self.state_schema_path = state_schema_path or self.repo_root / "schemas/current-state-v0202.json"
         self.checkpoint_path = checkpoint_path or self.repo_root / "CHECKPOINT.md"
         self.review_path = review_path or self.repo_root / ACTIVE_REVIEW
         self.roadmap_path = self.repo_root / "docs/roadmap.md"
@@ -162,6 +162,8 @@ class ActiveEvidenceCache:
         return (self.state_path, self.state_schema_path, self.checkpoint_path, self.review_path, self.roadmap_path, self.review_index_path, self.review_index_schema_path)
 
     def _git(self, args: list[str]) -> tuple[bool, str]:
+        if not (self.repo_root / ".git").exists():
+            return False, ""
         try:
             command = ["git"]
             # The repository is a Windows worktree exposed to a Linux

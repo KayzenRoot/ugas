@@ -1,4 +1,12 @@
-# UGAS checkpoint - v0.20.1 ENVIRONMENT_TILESETS
+# UGAS checkpoint - v0.20.2 ENVIRONMENT_TILESETS
+
+## v0.20.2 ENVIRONMENT_TILESETS - production boundary / mask / origin / variant integrity correction
+
+`version=0.20.2`; `phase=ENVIRONMENT_TILESETS`; `current_gate=ENVIRONMENT_TILESETS_PRODUCTION_MASK_ORIGIN_VARIANT_INTEGRITY_TECHNICALLY_QUALIFIED`; `items_props=APPROVED_FOUNDATION`; `environment_tilesets_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `environment_tilesets_runtime_external_review=REQUIRED`; `v0201_external_review=CORRECTION_REQUIRED`; `real_environment_asset_coverage=NONE`; `synthetic_environment_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_environment_tilesets_v0202]`; `next_capability_started=false`. The v0.20.1 reviewed head `0353e6785017c08db6e55c9448d9fa60e5908802` is frozen rejected history; its evidence is not overwritten. The direct request was empty; the attached six-page PDF was the governing executable prompt. The correction continues PR #10 and branch `codex/v0.20.0-environment-tilesets-runtime-foundation`.
+
+The corrected runtime enforces public production blocking, candidate semantic validation, exact `TILE_CLASSES x supported_masks` coverage, distinct TOP_LEFT/CENTER origin formulas with Y_UP/Y_DOWN inverse round-trips, authoritative variant content/revision/binding identity, current ET-NC-01..18 execution and explicit boolean-aware gate proofs. All visual content remains deterministic synthetic `TEST_ONLY` QA under `TEST_ONLY_TILE_QA_BOARD_V0202`; the production registry is empty. Evidence is under `docs/evidence/environment-tilesets-runtime-v0202/`. Require the three exact GitHub contexts and exact-head bounded artifact, then stop with PR #10 OPEN and unmerged. Do not merge, start Maps/Minimap, enable production or generate real environment assets.
+
+## Historical v0.20.1 ENVIRONMENT_TILESETS - rejected candidate / correction required
 
 ## v0.20.1 ENVIRONMENT_TILESETS - QA integrity correction / external review required
 

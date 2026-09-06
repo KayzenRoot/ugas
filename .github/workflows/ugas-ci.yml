@@ -34,14 +34,14 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.20.1 state consistency
+      - name: Active v0.20.2 state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0201.py
-      - name: Environment/tilesets runtime QA-integrity correction and negative controls
+        run: python scripts/validation/validate_state_consistency_v0202.py
+      - name: Environment/tilesets v0.20.2 production/mask/origin/variant integrity and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_environment_tilesets_runtime_v0201.py
+        run: python scripts/validation/run_environment_tilesets_runtime_v0202.py
       - name: Frozen v0.19.1 Items/Props read-only regression
         env:
           PYTHONPATH: src
