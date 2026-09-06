@@ -1,4 +1,4 @@
-"""Objective UGAS validation, including immutable history and active v0.20.2."""
+"""Objective UGAS validation, including immutable history and active v0.20.3."""
 
 from __future__ import annotations
 
@@ -68,6 +68,7 @@ from ugas.state_consistency_v0191 import validate_state_consistency as validate_
 from ugas.state_consistency_v0200 import validate_state_consistency as validate_state_consistency_v0200
 from ugas.state_consistency_v0201 import validate_state_consistency as validate_state_consistency_v0201
 from ugas.state_consistency_v0202 import validate_state_consistency as validate_state_consistency_v0202
+from ugas.state_consistency_v0203 import validate_state_consistency as validate_state_consistency_v0203
 from ugas.item_prop_runtime_v0190 import validate_item_prop_manifest as validate_item_prop_manifest_v0190
 from ugas.item_prop_runtime_v0191 import load_equipment_authority, validate_item_prop_manifest as validate_item_prop_manifest_v0191
 from ugas.environment_tileset_runtime_v0200 import validate_tileset_manifest as validate_tileset_manifest_v0200
@@ -3213,7 +3214,7 @@ def _v0191_checks() -> None:
         check("v0191:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production item/prop registry is empty and blocked")
         check("v0191:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("file_count") == 19 and determinism.get("differences") == [] and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_world_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT" and determinism.get("mutated_identity_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_IDENTITY", "full-slice isolated determinism and mutation rejection pass")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-        check("v0191:capability-matrix", matrix.get("version") == "0.20.2" and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"].startswith("TECHNICALLY_QUALIFIED_FOUNDATION"), "matrix records v0.19.1 closure and active v0.20.2 environment production-mask/origin/variant integrity correction")
+        check("v0191:capability-matrix", matrix.get("version") == "0.20.3" and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS" and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"].startswith("TECHNICALLY_QUALIFIED_FOUNDATION"), "matrix records v0.19.1 closure and active v0.20.3 environment QA governance integrity correction")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0191:evidence", False, str(exc))
     for label, script in (("v0191:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0191:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0191:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0191:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
@@ -3406,6 +3407,103 @@ def _v0202_checks() -> None:
         check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
 
 
+def _v0203_checks() -> None:
+    """Validate the active v0.20.3 governance correction and frozen v0.20.2 history."""
+    evidence_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0203"
+    historical_root = ROOT / "docs/evidence/environment-tilesets-runtime-v0202"
+    required = [
+        "REVIEW-v0.20.3.md", "schemas/current-state-v0203.json", "src/ugas/environment_tileset_governance_v0203.py",
+        "src/ugas/historical_authority_v0203.py", "src/ugas/state_consistency_v0203.py",
+        "scripts/validation/run_environment_tilesets_runtime_v0203.py", "scripts/validation/validate_state_consistency_v0203.py",
+        "docs/evidence/current-state.json", "docs/evidence/environment-tilesets-runtime-v0203/v0202-rejection-correction-record-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/production-semantic-contract-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/production-boundary-qa-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/mask-matrix-validator-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/origin-positive-proofs-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/origin-negative-controls-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/historical-authority-manifest-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/historical-preservation-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/gate-specific-proof-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/summary-integrity-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/canonical-et-current-runtime-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/full-slice-two-run-determinism-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/production-registry-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/test-only-qa-board-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/tileset-contract-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/negative-controls-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/execution-evidence-v0203.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/fixture/tileset-manifest-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/fixture/autotile-resolution-matrix-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/fixture/atlas-byte-integrity-v0202.json",
+        "docs/evidence/environment-tilesets-runtime-v0203/mask-qa-sheet-v0203.png",
+        "docs/evidence/environment-tilesets-runtime-v0203/seam-qa-sheet-v0203.png",
+    ]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0203:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state_schema = load_json(ROOT / "schemas/current-state-v0203.json")
+        validate_schema_document(state_schema)
+        validate_instance(state, state_schema)
+        consistency = validate_state_consistency_v0203(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0203:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.3 state is consistent")
+        history = state["correction_history"]["v0.20.2"]
+        check("v0203:v0202-rejected-history", history.get("status") == "CORRECTION_REQUIRED" and history.get("rejected_reviewed_head") == "6022cf3c6158ebb762519a04e79ed42378438ccc" and history.get("historical_evidence_unchanged") is True, "v0.20.2 is explicitly rejected and frozen")
+
+        execution = load_json(evidence_root / "execution-evidence-v0203.json")
+        gates = load_json(evidence_root / "hard-gates-v0203.json")
+        proof = load_json(evidence_root / "gate-specific-proof-v0203.json")
+        check("v0203:execution", execution.get("status") == "ENVIRONMENT_TILESETS_QA_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED" and all(execution.get("negative_controls", {}).values()) and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "all v0.20.3 correction gates and controls execute")
+        check("v0203:hard-gates", gates.get("status") == "PASS" and all(item.get("status") == "PASS" and item.get("observed") is True and item.get("checker") and item.get("assertion") for item in gates.get("gates", {}).values()), "every named gate consumes an observed boolean")
+        check("v0203:gate-specific-proof", proof.get("status") == "PASS" and proof.get("gates") == gates.get("gates"), "gate-specific proof is bound to the hard-gate record")
+
+        production = load_json(evidence_root / "production-boundary-qa-v0203.json")
+        production_controls = production.get("controls", [])
+        positive = production.get("isolated_positive_candidate_validation", {})
+        check("v0203:production-controls", len(production_controls) == 5 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in production_controls), "PB-NC-01..05 observe exact public rejection classes")
+        check("v0203:production-positive", positive.get("status") == "PASS" and positive.get("validation", {}).get("status") == "PRODUCTION_CANDIDATE_VALID" and positive.get("isolated_registry_entries") == 1, "isolated valid candidate proof is separate from blocked system production")
+
+        matrix = load_json(evidence_root / "mask-matrix-validator-v0203.json")
+        check("v0203:mask-matrix", matrix.get("status") == "PASS" and matrix.get("validator_result", {}).get("status") == "AUTOTILE_MATRIX_VALID" and len(matrix.get("negative_controls", [])) == 1 and matrix["negative_controls"][0].get("expected_rejection_class") == matrix["negative_controls"][0].get("observed_rejection_class") == "AUTOTILE_MATRIX_INCOMPLETE", "dedicated matrix validator and real MC-NC-05 are strict")
+
+        origin_positive = load_json(evidence_root / "origin-positive-proofs-v0203.json")
+        origin_negative = load_json(evidence_root / "origin-negative-controls-v0203.json")
+        check("v0203:origin-positive", origin_positive.get("status") == "PASS" and len(origin_positive.get("proofs", [])) == 2 and all(item.get("status") == "PASS" for item in origin_positive["proofs"]), "positive origin proofs are separately recorded")
+        check("v0203:origin-negative", origin_negative.get("status") == "PASS" and len(origin_negative.get("controls", [])) == 3 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in origin_negative["controls"]), "origin negative controls observe exact rejection classes")
+
+        canonical = load_json(evidence_root / "canonical-et-current-runtime-v0203.json")
+        check("v0203:canonical-et", canonical.get("status") == "PASS" and canonical.get("runtime_schema_version") == "0.20.2" and len(canonical.get("controls", [])) == 18 and all(item.get("status") == "PASS" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in canonical["controls"]), "ET-NC-01..18 are re-executed against the current runtime")
+        semantic = load_json(evidence_root / "production-semantic-contract-v0203.json")
+        check("v0203:semantic-contract", semantic.get("status") == "PASS" and semantic.get("runtime_schema_version") == "0.20.2" and semantic.get("shared_semantic_core") == "validate_tileset_manifest" and semantic.get("candidate_validation", {}).get("validation", {}).get("status") == "PRODUCTION_CANDIDATE_VALID", "production candidate proof shares the complete semantic core")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0203.json")
+        check("v0203:determinism", determinism.get("status") in {"PASS", "TWO_RUN_DETERMINISM_PASSED"} and determinism.get("equal") is True and determinism.get("differences") == [] and len(determinism.get("files", [])) >= 100, "independent v0.20.3 output sets are byte-identical")
+        registry = load_json(evidence_root / "production-registry-v0203.json")
+        check("v0203:production-boundary", registry.get("entries") == [] and registry.get("production_approved") is False and registry.get("production_routing") == "BLOCKED" and registry.get("new_generation") == 0, "production registry remains empty and blocked")
+        summary = load_json(evidence_root / "summary-integrity-v0203.json")
+        check("v0203:summary-integrity", summary.get("status") == "PASS" and len(summary.get("summaries", [])) >= 5 and all(item.get("status") == "PASS" and item.get("observed_status") == item.get("expected_status") for item in summary["summaries"]), "summaries are derived fail-closed from underlying results")
+
+        authority = load_json(evidence_root / "historical-authority-manifest-v0203.json")
+        heads = {authority.get("authorities", {}).get(key, {}).get("head") for key in ("v0200_negative_controls", "v0201_evidence_root", "v0202_evidence_root")}
+        check("v0203:historical-authority", authority.get("status") in {"PASS", "IMMUTABLE_AUTHORITY_BOUND"} and heads == {"ae335ba198bb7f23210873e30948e8a19bc71cbd", "0353e6785017c08db6e55c9448d9fa60e5908802", "6022cf3c6158ebb762519a04e79ed42378438ccc"}, "historical authority is fixed to rejected Git heads")
+        preservation = load_json(evidence_root / "historical-preservation-v0203.json")
+        check("v0203:historical-preservation", preservation.get("status") == "PASS" and preservation.get("current_vs_immutable_authority", {}).get("status") == "PASS" and preservation.get("mutation_control", {}).get("status") == "PASS", "historical bytes are preserved and bound mutation fails")
+
+        fixture_root = evidence_root / "fixture"
+        manifest = load_json(fixture_root / "tileset-manifest-v0202.json")
+        check("v0203:fixture", manifest.get("schema_version") == "0.20.2" and manifest.get("test_only") is True and manifest.get("production_safe") is False, "fixture remains v0.20.2 semantic TEST_ONLY output")
+        old_execution = load_json(historical_root / "execution-evidence-v0202.json")
+        old_record = load_json(historical_root / "v0201-rejection-correction-record-v0202.json")
+        check("v0203:frozen-v0202-root", old_execution.get("schema_version") == "0.20.2" and old_record.get("rejected_reviewed_head") == "0353e6785017c08db6e55c9448d9fa60e5908802" and historical_root.is_dir(), "v0.20.2 evidence remains separately addressable")
+        runner_text = (ROOT / "scripts/validation/run_environment_tilesets_runtime_v0203.py").read_text(encoding="utf-8")
+        check("v0203:boolean-aware-source", "(checker(), True)[-1]" not in runner_text and "sha256_file(path) == sha256_file(path)" not in runner_text and "lambda: True" not in runner_text, "source cannot discard false booleans, self-compare or manufacture PASS")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0203:evidence", False, str(exc))
+    for label, script in (("v0203:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0203:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0203:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0203:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
+        result = _run([sys.executable, script], ROOT, timeout=120)
+        check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
+
+
 def main() -> int:
     required = [
         "README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.5.0.md", "REVIEW-v0.5.1.md", "REVIEW-v0.5.2.md", "REVIEW-v0.5.3.md", "REVIEW-v0.4.3.md", "REVIEW-v0.4.2.md", "LICENSE", "package.json", "pyproject.toml", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md", "docs/test-coverage-matrix-v0.4.2.md", "docs/test-coverage-matrix-v0.4.3.md", "docs/test-coverage-matrix-v0.5.0.md", "docs/test-coverage-matrix-v0.5.1.md", "docs/test-coverage-matrix-v0.5.2.md", "docs/test-coverage-matrix-v0.5.3.md", "providers/models/registry.json", "providers/workflows/registry.json", "schemas/reference-edit-contract.json", "schemas/character-identity-manifest.json", "schemas/pose-guide.json", "schemas/openpose-pose-guide.json", "schemas/current-state.json", "schemas/directional-anchor-set.json", "schemas/animation-spec.json", "schemas/animation-frame.json", "schemas/animation-qa.json", "pose-guides/views/front.json", "pose-guides/views/left.json", "pose-guides/views/right.json", "pose-guides/views/back.json", "pose-guides/challenges/multiref-strong-left-arm-up.json", "pose-guides/openpose-v3/challenges/multiref-strong-left-arm-up.json", "docs/evidence/identity-manifest.json", "docs/evidence/multiref-qualification.json", "docs/evidence/pose-guide-manifest.json", "docs/evidence/directional-anchor-set.json", "docs/evidence/directional-anchor-qa.json", "docs/evidence/walk-front-8-animation-spec.json", "docs/evidence/walk-front-8-animation-qa.json", "docs/evidence/walk-front-8.json", "docs/evidence/execution-evidence.json", "docs/evidence/review-visuals-v0.5.0.json", "docs/evidence/runtime-doctor-v0.5.1.json", "docs/evidence/multiref-v2-qualification.json", "docs/evidence/execution-evidence-v0.5.1.json", "docs/evidence/review-visuals-v0.5.1.json", "docs/evidence/current-state.json", "docs/evidence/state-consistency.json", "docs/evidence/runtime-doctor-v0.5.2.json", "docs/evidence/native-reference-order-qualification.json", "docs/evidence/execution-evidence-v0.5.2.json", "docs/evidence/refcontrol-model-qualification.json", "docs/evidence/refcontrol-pose-qualification.json", "docs/evidence/openpose-guide-v3-manifest.json", "docs/evidence/review-visuals-v0.5.2.json", "docs/evidence/pose-metric-calibration.json", "docs/evidence/pose-metric-calibration-contact-sheet.png", "docs/evidence/pose-metric-negative-controls-contact-sheet.png", "docs/evidence/pose-qa-estimator-qualification.json", "docs/evidence/pose-qa-estimator-model.json", "docs/evidence/v052-refcontrol-baseline-contact.png", "docs/evidence/v053-pose-detection-overlay-contact.png", "docs/evidence/v053-pose-error-table.json", "docs/evidence/v053-provider-qualification.json", "docs/evidence/execution-evidence-v0.5.3.json", "docs/evidence/review-visuals-v0.5.3.json", "docs/evidence/v050-baseline-walk-contact.png", "docs/evidence/pose-guides-v2-contact-sheet.png", "docs/evidence/pose-guide-v2-control-example.png", "docs/evidence/pose-guide-v2-review-overlay.png", "docs/evidence/multiref-v2-ab-contact-sheet.png", "docs/evidence/v051-gap-baseline.png", "docs/evidence/openpose-guide-v3-control-example.png", "docs/evidence/openpose-guides-v3-contact-sheet.png", "docs/evidence/native-reference-order-abc-contact-sheet.png", "docs/evidence/refcontrol-strength-benchmark-contact-sheet.png", "docs/evidence/refcontrol-pose-overlay-contact.png", "docs/evidence/reference-edit-workflow-qualification.json", "docs/evidence/upstream/workflow_templates-image-edit-base.json", "docs/evidence/upstream/comfyui-blueprint-image-edit.json", "docs/evidence/reference-edit-contract.json", "docs/evidence/reference-edit-config-benchmark.json", "docs/evidence/reference-edit-config-benchmark-contact-sheet.png", "docs/evidence/reference-edit-candidates.json", "docs/evidence/reference-edit-candidates-contact-sheet.png", "docs/evidence/reference-edit-selected-rgb.png", "docs/evidence/reference-edit-selected-transparent.png", "docs/evidence/reference-edit-selected-checkerboard.png", "docs/evidence/reference-edit-v0.4.3-before-after.png", "docs/evidence/reference-edit-diff-heatmap.png", "docs/evidence/reference-edit-target-mask.png", "docs/evidence/reference-edit-protected-mask.png", "docs/evidence/reference-edit-fidelity.json", "docs/evidence/reference-edit-execution-evidence.json", "docs/evidence/reference-edit-v0.4.3-qa.json", "docs/evidence/reference-edit-v0.4.3-transparency-qa.json", "docs/evidence/revision-chain-v0.4.3.json", "docs/evidence/review-visuals-v0.4.3.json",
@@ -3504,13 +3602,13 @@ def main() -> int:
             custom_ok = not item["custom_nodes_required"] or all(str(value).startswith("comfyui-ipadapter-plus@a0f451a5113cf9becb0847b92884cb10cbdec0ef") for value in item["custom_nodes_required"])
             check(f"workflow:{item['id']}", graph["valid_graph"] and compatible and custom_ok and item["schema_version"] in {"0.4.3", "0.5.0", "0.5.1", "0.5.2", "0.6.0", UGAS_VERSION}, "native graph, pinned custom-node boundary and capability compatibility valid")
     except (OSError, json.JSONDecodeError, SchemaValidationError, KeyError, ValueError) as exc: check("registry:workflows", False, str(exc))
-    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks(); _v0190_checks(); _v0191_checks(); _v0200_checks(); _v0202_checks()
+    _historical_coverage_checks(); _reference_edit_checks(); _review_checks(); _v050_checks(); _v051_checks(); _v052_checks(); _v060_checks(); _v061_checks(); _v062_checks(); _v070_checks(); _v071_checks(); _v072_checks(); _v073_checks(); _v080_checks(); _v081_checks(); _v090_checks(); _v091_checks(); _v0100_checks(); _v0110_checks(); _v0112_checks(); _v0120_checks(); _v0121_history_checks(); _v0122_checks(); _v0123_checks(); _v0124_checks(); _v0130_checks(); _v0131_checks(); _v0140_checks(); _v0141_checks(); _v0150_checks(); _v0151_checks(); _v0160_history_checks(); _v0161_checks(); _v0162_checks(); _v0170_checks(); _v0180_checks(); _v0181_checks(); _v0182_checks(); _v0190_checks(); _v0191_checks(); _v0200_checks(); _v0203_checks()
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.20.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.20.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.20.2")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.20.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.20.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.20.3")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")
