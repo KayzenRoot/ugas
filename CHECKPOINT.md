@@ -1,4 +1,10 @@
-# UGAS checkpoint - v0.20.2 ENVIRONMENT_TILESETS
+# UGAS checkpoint - v0.21.0 MAPS_MINIMAP
+
+## v0.21.0 MAPS_MINIMAP — runtime foundation / external review handoff
+
+`version=0.21.0`; `phase=MAPS_MINIMAP`; `current_gate=MAPS_MINIMAP_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; `environment_tilesets=APPROVED_FOUNDATION`; `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `real_map_asset_coverage=NONE`; `real_minimap_asset_coverage=NONE`; `synthetic_map_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_maps_minimap_v0210]`; `next_capability_started=false`. The v0.20.3 foundation is bound to protected merge `0bf04cb92e8619ea10cf82af8dbf2d9abe599e05`; rejected v0.20.0/v0.20.1/v0.20.2 history remains immutable. The v0.21.0 fixture, 21 hard gates, 20 semantic negative controls and isolated determinism evidence are under `docs/evidence/maps-minimap-runtime-v0210/`. Stop with the v0.21.0 PR OPEN and unmerged after exact-head CI and bounded artifact evidence; do not enable production or generate real map/minimap art.
+
+# Historical UGAS checkpoint - v0.20.2 ENVIRONMENT_TILESETS
 
 ## v0.20.3 ENVIRONMENT_TILESETS - QA governance integrity correction
 

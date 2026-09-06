@@ -78,3 +78,6 @@ O v0.9.1 permanece preservado em `current-state-v0.9.1.json`, `REVIEW-v0.9.1.md`
 ## v0.10.0 runtime check
 
 After installation, validate a profile with `python -m ugas.animation validate-spec profiles/animation/attack-front-v1.json`. The v0.10.0 runner proves event markers, loop/non-loop lifecycle, deterministic 10-frame attack pose/weapon/foot/structural/MediaPipe QA, and the package gate: `python scripts/validation/run_animation_runtime_v0100.py`. The tracked pilot package is generated only after QA qualification; it is not production approval.
+# Current governed slice: v0.21.0 MAPS_MINIMAP
+
+Installation and validation commands are evaluated against the active v0.21.0 maps/minimap foundation. Use `python scripts/validation/run_maps_minimap_runtime_v0210.py` for the isolated TEST_ONLY slice; it does not enable production routing or create real assets.

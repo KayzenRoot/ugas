@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS v0.21.0 maps/minimap runtime foundation evidence",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "status", "hard_gate_count", "negative_control_count", "production_approved", "production_routing", "new_generation", "real_map_asset_coverage", "real_minimap_asset_coverage", "synthetic_map_fixture"],
+  "properties": {
+    "schema_version": {"const": "0.21.0"},
+    "status": {"const": "MAPS_MINIMAP_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED"},
+    "hard_gate_count": {"const": 21},
+    "negative_control_count": {"const": 20},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "new_generation": {"const": 0},
+    "real_map_asset_coverage": {"const": "NONE"},
+    "real_minimap_asset_coverage": {"const": "NONE"},
+    "synthetic_map_fixture": {"const": "TEST_ONLY"}
+  }
+}

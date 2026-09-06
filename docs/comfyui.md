@@ -24,3 +24,6 @@ O recheck histórico foi end-to-end: prompt, polling de history, output, BiRefNe
 ## v0.11.2 boundary
 
 The v0.11.2 animation runtime performs no ComfyUI generation. `comfyui_generation_jobs=0`, `sam2_runs=0`, `new_generation=0`, and `diffusion_runs=0`; the source-only cutout runtime is the qualified lane for this slice. `motion_tracks` and `key_pose_bindings` are restored byte-for-byte at semantic level from v0.11.0, QA thresholds are consumed from the declared profile, attack-v1 comparison is fail-closed, and relational weapon gates are evidenced. The package gate is `decision=QUALIFIED`, external attack-front-v2 review remains required, and production routing is blocked.
+# v0.21.0 governance note
+
+The active v0.21.0 MAPS_MINIMAP slice is TEST_ONLY and does not authorize generation or production routing through ComfyUI.

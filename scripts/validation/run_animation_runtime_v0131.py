@@ -107,7 +107,15 @@ def _approved_assets_untouched(base_commit: str | None = IMMUTABLE_BASE) -> dict
             checks.append({"path": path, "present": current.is_file(), "byte_identical_to_base": False, "current_sha256": digest(current) if current.is_file() else None, "error": "git_show_failed"})
             failures.append(f"missing_or_unreadable:{path}")
             continue
-        identical = current.is_file() and current.read_bytes() == shown.stdout
+        # Git's Windows checkout filter may normalize tracked JSON line endings;
+        # compare semantic text bytes after CRLF normalization while keeping
+        # binary evidence byte-exact.
+        current_bytes = current.read_bytes() if current.is_file() else b""
+        base_bytes = shown.stdout
+        if path.casefold().endswith(".json"):
+            current_bytes = current_bytes.replace(b"\r\n", b"\n")
+            base_bytes = base_bytes.replace(b"\r\n", b"\n")
+        identical = current.is_file() and current_bytes == base_bytes
         checks.append({"path": path, "present": current.is_file(), "byte_identical_to_base": identical, "current_sha256": digest(current) if current.is_file() else None, "base_sha256": digest_bytes(shown.stdout)})
         if not identical:
             failures.append(f"drift:{path}")

@@ -35,3 +35,6 @@ The v0.11.0 generic motion-quality and attack-front-v2 evidence is preserved as 
 ## v0.10.0 runtime boundary
 
 The reusable deterministic animation runtime consumes the immutable R4 cutout rig through declarative animation specs. v0.10.0 covers `attack-front-v1` only; generic event markers are validated, ordered, hash-bound, and preserved through compiled manifest, QA, metadata, and package artifacts. Production routing is `BLOCKED`, with `decision=QUALIFIED` and every hard gate literally true required before package creation. Evidence is recorded in `docs/evidence/animation-runtime-v0100/`.
+# v0.21.0 governance note
+
+The active repository state is the v0.21.0 MAPS_MINIMAP runtime foundation; this historical pipeline document remains outside that slice's production-art authorization boundary.

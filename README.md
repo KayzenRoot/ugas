@@ -106,3 +106,6 @@ O v0.11.2 mantém a camada genérica `motion_tracks[]`, restaura os valores visu
 ## v0.10.0 reusable action runtime (historical)
 
 The v0.10.0 historical release added optional hash-bound `event_markers[]` and generic loop/non-loop lifecycle semantics for `attack-front-v1`, a deterministic source-only 10-frame front sword action over the approved R4 cutout rig. Its evidence remains under `docs/evidence/animation-runtime-v0100/`; the active release is v0.12.1.
+# Current governed slice: v0.21.0 MAPS_MINIMAP
+
+The active runtime foundation is the TEST_ONLY maps/minimap slice. It is technically qualified for external review only: real map/minimap asset coverage is `NONE`, production routing is `BLOCKED`, and the v0.21.0 PR must remain open and unmerged until external approval.
