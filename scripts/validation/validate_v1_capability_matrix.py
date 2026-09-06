@@ -40,12 +40,12 @@ def main() -> int:
     environment = next(item for item in capabilities if item["id"] == "environment_tilesets")
     if value["version"] != "0.20.3":
         failures.append("active-matrix-version-must-be-v0203")
-    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "APPROVED_FOUNDATION" or not environment["status"].startswith("TECHNICALLY_QUALIFIED_FOUNDATION") or value["next_candidate"] != "ENVIRONMENT_TILESETS":
+    if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "APPROVED_FOUNDATION" or environment["status"] not in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"} or value["next_candidate"] not in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP"}:
         failures.append("items-props-closure-or-environment-active-state-invalid")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "version": value["version"], "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "items_props_status": items["status"], "environment_tilesets_status": environment["status"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
-    output = ROOT / "docs/evidence/environment-tilesets-runtime-v0203/capability-matrix-validation-v0203.json"
+    output = ROOT / "docs/evidence/github-governance-v0210/capability-matrix-validation-v0210.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
