@@ -51,8 +51,9 @@ def main() -> int:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "version": value["version"], "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "items_props_status": items["status"], "environment_tilesets_status": environment["status"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
     output = ROOT / "docs/evidence/maps-minimap-runtime-v0213/capability-matrix-validation-v0213.json" if value["version"] == "0.21.3" else (ROOT / "docs/evidence/maps-minimap-runtime-v0212/capability-matrix-validation-v0212.json" if value["version"] == "0.21.2" else (ROOT / "docs/evidence/maps-minimap-runtime-v0211/capability-matrix-validation-v0211.json" if value["version"] == "0.21.1" else ROOT / "docs/evidence/maps-minimap-runtime-v0210/capability-matrix-validation-v0210.json"))
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if value["version"] != "0.21.3":
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0 if not failures else 1
 
