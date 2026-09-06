@@ -71,6 +71,7 @@ from ugas.state_consistency_v0202 import validate_state_consistency as validate_
 from ugas.state_consistency_v0203 import validate_state_consistency as validate_state_consistency_v0203
 from ugas.state_consistency_v0210 import validate_state_consistency as validate_state_consistency_v0210
 from ugas.state_consistency_v0211 import validate_state_consistency as validate_state_consistency_v0211
+from ugas.state_consistency_v0212 import validate_state_consistency as validate_state_consistency_v0212
 from ugas.item_prop_runtime_v0190 import validate_item_prop_manifest as validate_item_prop_manifest_v0190
 from ugas.item_prop_runtime_v0191 import load_equipment_authority, validate_item_prop_manifest as validate_item_prop_manifest_v0191
 from ugas.environment_tileset_runtime_v0200 import validate_tileset_manifest as validate_tileset_manifest_v0200
@@ -3216,7 +3217,7 @@ def _v0191_checks() -> None:
         check("v0191:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production item/prop registry is empty and blocked")
         check("v0191:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("file_count") == 19 and determinism.get("differences") == [] and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_world_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT" and determinism.get("mutated_identity_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_IDENTITY", "full-slice isolated determinism and mutation rejection pass")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-        check("v0191:capability-matrix", matrix.get("version") in {"0.20.3", "0.21.0", "0.21.1"} and matrix.get("next_candidate") in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP"} and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"}, "matrix preserves v0.19.1 closure and accepts the forward-only v0.20.3/v0.21.x advancement")
+        check("v0191:capability-matrix", matrix.get("version") in {"0.20.3", "0.21.0", "0.21.1", "0.21.2"} and matrix.get("next_candidate") in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP"} and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"}, "matrix preserves v0.19.1 closure and accepts the forward-only v0.20.3/v0.21.x advancement")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0191:evidence", False, str(exc))
     for label, script in (("v0191:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0191:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0191:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0191:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
@@ -3309,7 +3310,7 @@ def _v0201_checks() -> None:
             consistency = validate_state_consistency_v0201(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0201:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.1 state is consistent")
         else:
-            check("v0201:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1"} and state.get("phase") == "MAPS_MINIMAP" and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.1 active state advanced forward to the approved environment baseline and maps slice")
+            check("v0201:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2"} and state.get("phase") == "MAPS_MINIMAP" and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.1 active state advanced forward to the approved environment baseline and maps slice")
         fixture_root = evidence_root / "fixture"
         manifest = load_json(fixture_root / "tileset-manifest-v0201.json")
         schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0201.json")
@@ -3336,7 +3337,7 @@ def _v0201_checks() -> None:
         check("v0201:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0 and board.get("status") == "TEST_ONLY", "fixture is TEST_ONLY and production registry is empty")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
         environment = next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")
-        check("v0201:capability-matrix", (matrix.get("version") == "0.20.1" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "MAPS_MINIMAP"), "capability matrix preserves v0.20.1 history while allowing the approved v0.21.x advancement")
+        check("v0201:capability-matrix", (matrix.get("version") == "0.20.1" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1", "0.21.2"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "MAPS_MINIMAP"), "capability matrix preserves v0.20.1 history while allowing the approved v0.21.x advancement")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0201:evidence", False, str(exc))
     for label, script in (("v0201:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0201:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0201:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0201:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
@@ -3374,7 +3375,7 @@ def _v0202_checks() -> None:
             consistency = validate_state_consistency_v0202(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0202:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.2 state is consistent")
         else:
-            check("v0202:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1"} and state.get("phase") == "MAPS_MINIMAP" and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.2 active state advanced forward to the approved environment baseline and maps slice")
+            check("v0202:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2"} and state.get("phase") == "MAPS_MINIMAP" and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.2 active state advanced forward to the approved environment baseline and maps slice")
         fixture_root = evidence_root / "fixture"
         manifest = load_json(fixture_root / "tileset-manifest-v0202.json")
         schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0202.json")
@@ -3401,7 +3402,7 @@ def _v0202_checks() -> None:
         check("v0202:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production registry remains empty and blocked")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
         environment = next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")
-        check("v0202:capability-matrix", (matrix.get("version") == "0.20.2" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "MAPS_MINIMAP"), "capability matrix preserves v0.20.2 history while allowing the approved v0.21.x advancement")
+        check("v0202:capability-matrix", (matrix.get("version") == "0.20.2" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1", "0.21.2"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "MAPS_MINIMAP"), "capability matrix preserves v0.20.2 history while allowing the approved v0.21.x advancement")
         historical_manifest = load_json(historical_root / "fixture/tileset-manifest-v0201.json")
         historical_schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0201.json")
         validate_instance(historical_manifest, historical_schema)
@@ -3458,7 +3459,7 @@ def _v0203_checks() -> None:
             consistency = validate_state_consistency_v0203(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0203:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.3 state is consistent")
         else:
-            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1"} and state.get("previous_release", {}).get("merge_commit") == "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "v0.20.3 remains immutable approved history while active state advances to v0.21.x")
+            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2"} and state.get("previous_release", {}).get("merge_commit") == "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "v0.20.3 remains immutable approved history while active state advances to v0.21.x")
         history = state["correction_history"]["v0.20.2"]
         check("v0203:v0202-rejected-history", history.get("status") == "CORRECTION_REQUIRED" and history.get("rejected_reviewed_head") == "6022cf3c6158ebb762519a04e79ed42378438ccc" and history.get("historical_evidence_unchanged") is True, "v0.20.2 is explicitly rejected and frozen")
 
@@ -3515,9 +3516,72 @@ def _v0203_checks() -> None:
         check(label, result.returncode == 0, (result.stdout + result.stderr).strip()[-1000:])
 
 
+def _v0212_checks() -> None:
+    """Validate the active v0.21.2 Maps/Minimap raster and governance correction."""
+    evidence_root = ROOT / "docs/evidence/maps-minimap-runtime-v0212"
+    required = [
+        "REVIEW-v0.21.2.md", "schemas/current-state-v0212.json", "schemas/maps-minimap-runtime-v0212.json",
+        "src/ugas/maps_minimap_runtime_v0210.py", "src/ugas/state_consistency_v0212.py",
+        "scripts/validation/run_maps_minimap_runtime_v0210.py", "scripts/validation/validate_state_consistency_v0212.py",
+        "tests/test_maps_minimap_runtime_v0210.py", "docs/evidence/current-state.json", "docs/ugas-v1-capability-matrix.json",
+        "docs/evidence/github-governance-v0210/v0203-external-approval.json",
+        "docs/evidence/maps-minimap-runtime-v0212/v0.21.1-rejection-correction-record-v0212.json",
+    ]
+    required += [f"docs/evidence/maps-minimap-runtime-v0212/{name}" for name in (
+        "map-contract-v0212.json", "environment-authority-bindings-v0212.json", "items-props-authority-bindings-v0212.json",
+        "layer-cell-matrix-v0212.json", "chunk-partition-roundtrip-v0212.json", "regions-zones-v0212.json", "marker-contract-v0212.json",
+        "minimap-projection-v0212.json", "visibility-state-qa-v0212.json", "cache-identity-v0212.json", "provenance-v0212.json",
+        "raster-geometry-v0212.json", "hard-gates-v0212.json", "gate-specific-proof-v0212.json", "negative-controls-v0212.json",
+        "full-slice-two-run-determinism-v0212.json", "production-registry-v0212.json", "historical-immutability-v0212.json",
+        "test-only-fixture-manifest-v0212.json", "execution-evidence-v0212.json", "capability-matrix-validation-v0212.json",
+    )]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0212:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state_schema = load_json(ROOT / "schemas/current-state-v0212.json")
+        validate_schema_document(state_schema); validate_instance(state, state_schema)
+        consistency = validate_state_consistency_v0212(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.21.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0212:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.21.2 state is consistent")
+        execution = load_json(evidence_root / "execution-evidence-v0212.json")
+        validate_instance(execution, load_json(ROOT / "schemas/maps-minimap-runtime-v0212.json"))
+        gates = load_json(evidence_root / "hard-gates-v0212.json")
+        proof = load_json(evidence_root / "gate-specific-proof-v0212.json")
+        expected_gates = {"map_schema_valid", "map_dimensions_and_world_metrics_valid", "environment_authority_binding_valid", "items_props_authority_binding_valid", "layer_contract_valid", "cell_coordinates_in_bounds", "chunk_partition_exact", "chunk_roundtrip_valid", "regions_zones_in_bounds", "marker_identity_valid", "minimap_projection_valid", "raster_geometry_valid", "minimap_inverse_projection_valid", "visibility_mask_dimensions_valid", "minimap_derived_from_map_identity", "map_provenance_valid", "cache_identity_complete", "stale_cache_cross_map_chunk_projection_rejected", "test_fixture_nonproduction", "production_registry_empty", "production_routing_blocked", "isolated_full_slice_determinism"}
+        gate_records = gates.get("gates", {})
+        check("v0212:execution", execution.get("status") == "MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED" and execution.get("hard_gate_count") == 22 and execution.get("negative_control_count") == 29 and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "raster/governance correction is technically qualified and blocked from production")
+        check("v0212:hard-gates", gates.get("status") == "PASS" and set(gate_records) == expected_gates and all(item.get("status") == "PASS" and type(item.get("observed")) is bool and item.get("observed") is True and item.get("observed_type") == "bool" for item in gate_records.values()), "all 22 named hard gates have strict boolean observed proof")
+        check("v0212:gate-specific-proof", proof.get("status") == "PASS" and proof.get("gates") == gate_records, "gate-specific proof is bound to the hard-gate record")
+        negative = load_json(evidence_root / "negative-controls-v0212.json")
+        controls = negative.get("controls", [])
+        expected_controls = {f"MM-NC-{index:02d}" for index in range(1, 30)}
+        check("v0212:negative-controls", negative.get("status") == "PASS" and {item.get("control_id") for item in controls} == expected_controls and all(item.get("status") == "PASS" and item.get("result") == "REJECT" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in controls), "MM-NC-01..29 inject semantic defects and observe exact rejection classes")
+        raster = load_json(evidence_root / "raster-geometry-v0212.json")
+        cells = [cell for record in raster.get("maps", []) for cell in record.get("cells", [])]
+        check("v0212:raster-geometry", raster.get("status") == "PASS" and set(raster.get("supported_orientations", [])) == {"TOP_LEFT/Y_DOWN", "CENTER/Y_UP"} and cells and all(cell.get("x_min") < cell.get("x_max") and cell.get("y_min") < cell.get("y_max") and cell.get("pixel_width", 0) > 0 and cell.get("pixel_height", 0) > 0 for cell in cells), "runtime raster geometry has non-zero 2D bounds for both supported orientations")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0212.json")
+        check("v0212:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("equal") is True and determinism.get("differences") == [] and all("\\" not in str(item) and not Path(str(item)).is_absolute() for item in determinism.get("files", [])), "independent full-slice outputs are deterministic with stable relative evidence paths")
+        production = load_json(evidence_root / "production-registry-v0212.json")
+        snapshot = production.get("runtime_snapshot", {})
+        check("v0212:production-boundary", snapshot.get("entry_count") == 0 and snapshot.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "actual production registry snapshot is empty and routing remains blocked")
+        historical = load_json(evidence_root / "historical-immutability-v0212.json")
+        check("v0212:historical-immutability", historical.get("status") == "PASS" and historical.get("authority_blob") and historical.get("authority_sha256") == historical.get("observed_sha256") and historical.get("mutation_control", {}).get("result") == "REJECT" and historical.get("mutation_control", {}).get("observed_rejection_class") == "HISTORICAL_EVIDENCE_MUTATION_REJECTED", "current historical file validates and a mutated candidate is rejected by the same validator")
+        rejection = load_json(evidence_root / "v0.21.1-rejection-correction-record-v0212.json")
+        check("v0212:rejected-head-preserved", rejection.get("rejected_reviewed_head") == "cfde03cce2e31cc688f9d94a659b577042b8538a" and rejection.get("historical_evidence_unchanged") is True and rejection.get("status") == "CORRECTION_REQUIRED", "v0.21.1 rejected reviewed head remains explicit history")
+        matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        maps = next(item for item in matrix["capabilities"] if item["id"] == "maps_minimap_assets")
+        check("v0212:capability-matrix", matrix.get("version") == "0.21.2" and matrix.get("next_candidate") == "MAPS_MINIMAP" and maps.get("status") == "TECHNICALLY_QUALIFIED_FOUNDATION" and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "active matrix records the forward-only v0.21.2 correction")
+        runtime_text = (ROOT / "src/ugas/maps_minimap_runtime_v0210.py").read_text(encoding="utf-8")
+        runner_text = (ROOT / "scripts/validation/run_maps_minimap_runtime_v0210.py").read_text(encoding="utf-8")
+        check("v0212:source-hard-gate-integrity", "observed is not False" not in runner_text and "type(observed) is bool and observed is True" in runner_text and "MINIMAP_RASTER_CELL_GEOMETRY_INVALID" in runtime_text and "validate_historical_authority" in runtime_text, "active source uses strict gate, runtime geometry rejection and reusable history authority")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0212:evidence", False, str(exc))
+
+
 def _v0210_checks() -> None:
     """Validate the active v0.21.0 maps/minimap foundation and boundaries."""
-    _v0211_checks()
+    _v0212_checks()
     return
     evidence_root = ROOT / "docs/evidence/maps-minimap-runtime-v0210"
     required = [
@@ -3754,9 +3818,9 @@ def main() -> int:
     package_version = load_json(ROOT / "package.json")["version"]
     with (ROOT / "pyproject.toml").open("rb") as stream: pyproject_version = tomllib.load(stream)["project"]["version"]
     init_version = __import__("ugas").__version__
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.21.1", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.21.1.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.21.1")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.21.2", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.21.2.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.21.2")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

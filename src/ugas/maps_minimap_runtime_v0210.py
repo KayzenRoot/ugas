@@ -18,7 +18,7 @@ from typing import Any, Iterable, Mapping, Sequence
 from PIL import Image, ImageDraw
 
 
-SCHEMA_VERSION = "0.21.1"
+SCHEMA_VERSION = "0.21.2"
 ENVIRONMENT_AUTHORITY_VERSION = "v0.20.3"
 ITEM_PROP_AUTHORITY_VERSION = "v0.19.1"
 REGISTRY_TEST_ONLY = "TEST_ONLY"
@@ -383,6 +383,54 @@ def minimap_to_map(point: Mapping[str, Any], map_document: Mapping[str, Any]) ->
     return map_x, map_y
 
 
+def minimap_cell_geometry(map_document: Mapping[str, Any], cell: Mapping[str, Any]) -> dict[str, Any]:
+    """Return orientation-safe projected and raster bounds for one logical cell."""
+
+    x, y = cell.get("x"), cell.get("y")
+    _require(isinstance(x, int) and not isinstance(x, bool) and isinstance(y, int) and not isinstance(y, bool), "CELL_COORDINATE_INVALID", str(cell))
+    first = map_to_minimap({"x": x, "y": y}, map_document)
+    second = map_to_minimap({"x": x + 1, "y": y + 1}, map_document)
+    x_min, x_max = min(first[0], second[0]), max(first[0], second[0])
+    y_min, y_max = min(first[1], second[1]), max(first[1], second[1])
+    _require(all(isfinite(value) for value in (x_min, x_max, y_min, y_max)) and x_max > x_min and y_max > y_min, "MINIMAP_RASTER_CELL_GEOMETRY_INVALID", str({"cell": [x, y], "corners": [first, second]}))
+    pixel_left, pixel_top = round(x_min), round(y_min)
+    pixel_right, pixel_bottom = max(pixel_left, round(x_max) - 1), max(pixel_top, round(y_max) - 1)
+    _require(pixel_right >= pixel_left and pixel_bottom >= pixel_top, "MINIMAP_RASTER_CELL_GEOMETRY_INVALID", str({"cell": [x, y], "pixels": [pixel_left, pixel_top, pixel_right, pixel_bottom]}))
+    return {
+        "cell": [x, y],
+        "projected_corners": [list(first), list(second)],
+        "x_min": x_min,
+        "x_max": x_max,
+        "y_min": y_min,
+        "y_max": y_max,
+        "pixel_rect": [pixel_left, pixel_top, pixel_right, pixel_bottom],
+        "pixel_width": pixel_right - pixel_left + 1,
+        "pixel_height": pixel_bottom - pixel_top + 1,
+    }
+
+
+def validate_raster_cell_geometry(map_document: Mapping[str, Any], geometry: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate raster evidence against the runtime projection, including Y_UP bounds."""
+
+    expected = minimap_cell_geometry(map_document, {"x": geometry.get("cell", [None, None])[0], "y": geometry.get("cell", [None, None])[1]})
+    _require(all(geometry.get(key) == expected[key] for key in ("x_min", "x_max", "y_min", "y_max", "pixel_rect", "pixel_width", "pixel_height")), "MINIMAP_RASTER_CELL_GEOMETRY_INVALID", str(geometry))
+    _require(geometry.get("pixel_width", 0) > 0 and geometry.get("pixel_height", 0) > 0, "MINIMAP_RASTER_CELL_GEOMETRY_INVALID", str(geometry))
+    return {"status": "MINIMAP_RASTER_CELL_GEOMETRY_VALID", "cell": expected["cell"], "pixel_rect": expected["pixel_rect"], "pixel_area": expected["pixel_width"] * expected["pixel_height"]}
+
+
+def validate_historical_authority(candidate: bytes | Path, authority_bytes: bytes, *, authority_ref: str, authority_blob: str, candidate_sha256: str | None = None) -> dict[str, Any]:
+    """Validate a candidate historical file against one immutable authority blob."""
+
+    raw_candidate_bytes = candidate.read_bytes() if isinstance(candidate, Path) else candidate
+    candidate_bytes = raw_candidate_bytes.replace(b"\r\n", b"\n") if isinstance(candidate, Path) else raw_candidate_bytes
+    _require(isinstance(candidate_bytes, bytes) and isinstance(authority_bytes, bytes), "HISTORICAL_EVIDENCE_INPUT_INVALID", type(candidate_bytes).__name__)
+    observed_hash = sha256_bytes(candidate_bytes)
+    authority_hash = sha256_bytes(authority_bytes)
+    _require(candidate_sha256 is None or candidate_sha256 == observed_hash, "HISTORICAL_EVIDENCE_HASH_INVALID", observed_hash)
+    _require(candidate_bytes == authority_bytes, "HISTORICAL_EVIDENCE_MUTATION_REJECTED", f"{authority_ref}:{authority_blob}:{observed_hash}")
+    return {"status": "HISTORICAL_EVIDENCE_AUTHORITY_VALID", "authority_ref": authority_ref, "authority_blob": authority_blob, "authority_sha256": authority_hash, "observed_sha256": observed_hash, "observed_raw_sha256": sha256_bytes(raw_candidate_bytes), "byte_identical": True}
+
+
 def validate_visibility(map_document: Mapping[str, Any]) -> None:
     visibility = map_document.get("visibility", {})
     _require(visibility.get("state_order") == list(VISIBILITY_STATES), "VISIBILITY_STATE_CONTRACT_INVALID", str(visibility))
@@ -461,7 +509,7 @@ def validate_map_document(
     _positive_int(projection.get("padding_px"), "MINIMAP_PROJECTION_INVALID", "padding_px")
     _require(projection.get("origin") == map_document.get("coordinate_origin") and projection.get("grid_orientation") == map_document.get("grid_orientation"), "MINIMAP_PROJECTION_INVALID", "origin/orientation mismatch")
     _require(projection.get("aspect_fit") == "CONTAIN", "MINIMAP_PROJECTION_INVALID", str(projection))
-    _require(projection.get("renderer_revision") == "minimap-renderer-v0211-r1", "MINIMAP_RENDERER_REVISION_INVALID", str(projection.get("renderer_revision")))
+    _require(projection.get("renderer_revision") == "minimap-renderer-v0212-r1", "MINIMAP_RENDERER_REVISION_INVALID", str(projection.get("renderer_revision")))
     validate_visibility(map_document)
     _require(map_document.get("provenance", {}).get("map_hash") == map_manifest_hash(map_document), "MAP_PROVENANCE_HASH_MISMATCH", str(map_document.get("map_id")))
     return {"status": "MAP_DOCUMENT_VALID", "map_id": map_document["map_id"], "map_hash": map_manifest_hash(map_document), "cell_count": len(cells), "marker_count": len(map_document["markers"])}
@@ -599,9 +647,9 @@ def render_minimap_base(map_document: Mapping[str, Any], output_path: Path) -> d
     for cell in map_document["cells"]:
         reference = cell["layers"].get("ground") or cell["layers"].get("overlay") or cell["layers"].get("structure") or cell["layers"].get("liquid_cliff")
         class_id = reference.get("class_id") if isinstance(reference, Mapping) else "empty"
-        left, top = map_to_minimap({"x": cell["x"], "y": cell["y"]}, map_document)
-        right, bottom = map_to_minimap({"x": cell["x"] + 1, "y": cell["y"] + 1}, map_document)
-        draw.rectangle((round(left), round(top), max(round(left), round(right) - 1), max(round(top), round(bottom) - 1)), fill=SEMANTIC_COLORS.get(class_id, SEMANTIC_COLORS["empty"]))
+        geometry = minimap_cell_geometry(map_document, cell)
+        validate_raster_cell_geometry(map_document, geometry)
+        draw.rectangle(tuple(geometry["pixel_rect"]), fill=SEMANTIC_COLORS.get(class_id, SEMANTIC_COLORS["empty"]))
     output_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(output_path, format="PNG", optimize=False, compress_level=9)
     return {"path": output_path.name, "file_sha256": sha256_file(output_path), "decoded_pixel_hash": decoded_pixel_hash(output_path), "map_hash": map_manifest_hash(map_document), "label": "TEST_ONLY_MINIMAP_RASTER"}
@@ -660,5 +708,5 @@ def compare_generated_outputs(first: Path, second: Path) -> dict[str, Any]:
 
 
 __all__ = [
-    "ENVIRONMENT_AUTHORITY_VERSION", "ITEM_PROP_AUTHORITY_VERSION", "MAP_LAYERS", "MARKER_CLASSES", "MapsMinimapContractError", "MapMinimapCache", "MapRegistry", "PRODUCTION_ROUTING_BLOCKED", "REGISTRY_TEST_ONLY", "SCHEMA_VERSION", "VISIBILITY_STATES", "build_environment_authority", "build_items_props_authority", "build_chunk_index", "canonical_json", "cell_to_chunk", "chunk_to_cell", "compare_generated_outputs", "decoded_pixel_hash", "deterministic_chunk_id", "map_cache_key", "map_manifest_hash", "map_to_minimap", "marker_set_hash", "minimap_cache_key", "minimap_to_map", "render_marker_overlay", "render_minimap_base", "render_qa_sheet", "render_visibility_sheet", "sha256_bytes", "sha256_file", "source_hash", "validate_chunk_partition", "validate_map_document", "validate_markers", "validate_regions_zones", "validate_visibility", "visibility_state_hash",
+    "ENVIRONMENT_AUTHORITY_VERSION", "ITEM_PROP_AUTHORITY_VERSION", "MAP_LAYERS", "MARKER_CLASSES", "MapsMinimapContractError", "MapMinimapCache", "MapRegistry", "PRODUCTION_ROUTING_BLOCKED", "REGISTRY_TEST_ONLY", "SCHEMA_VERSION", "VISIBILITY_STATES", "build_environment_authority", "build_items_props_authority", "build_chunk_index", "canonical_json", "cell_to_chunk", "chunk_to_cell", "compare_generated_outputs", "decoded_pixel_hash", "deterministic_chunk_id", "map_cache_key", "map_manifest_hash", "map_to_minimap", "marker_set_hash", "minimap_cache_key", "minimap_cell_geometry", "minimap_to_map", "render_marker_overlay", "render_minimap_base", "render_qa_sheet", "render_visibility_sheet", "sha256_bytes", "sha256_file", "source_hash", "validate_chunk_partition", "validate_historical_authority", "validate_map_document", "validate_markers", "validate_raster_cell_geometry", "validate_regions_zones", "validate_visibility", "visibility_state_hash",
 ]

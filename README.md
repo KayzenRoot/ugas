@@ -1,6 +1,6 @@
-# UGAS 0.21.1
+# UGAS 0.21.2
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.21.1 corrige a integridade QA/contrato do runtime MAPS_MINIMAP: registro de produção observado e vazio, cache ligado ao hash real do mapa, transformação canônica de origem/orientação, propriedade de célula para props e preservação histórica fail-closed; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção. O v0.20.3 Environment/Tilesets permanece a base aprovada e o v0.21.0 é histórico rejeitado.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.21.2 corrige a integridade raster/governance do runtime MAPS_MINIMAP: bounds de célula seguros para orientação, validação histórica por autoridade real e hard gates estritamente booleanos; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção. O v0.20.3 Environment/Tilesets permanece a base aprovada e os v0.21.0/v0.21.1 são históricos rejeitados.
 
 O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o piloto aprovado de RUN_FRONT_V1. O v0.15.0, v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. Nenhum piloto equivale a aprovação de produção.
 
@@ -30,7 +30,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.21.1.md](REVIEW-v0.21.1.md). O v0.21.0 permanece imutável como candidato rejeitado; `maps_minimap` é a capacidade ativa; nenhum peso é distribuído com o repositório. A cobertura real de mapas/minimaps é `NONE` e os fixtures são `TEST_ONLY`.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.21.2.md](REVIEW-v0.21.2.md). Os v0.21.0/v0.21.1 permanecem imutáveis como candidatos rejeitados; `maps_minimap` é a capacidade ativa; nenhum peso é distribuído com o repositório. A cobertura real de mapas/minimaps é `NONE` e os fixtures são `TEST_ONLY`.
 
 ## v0.20.1 ENVIRONMENT_TILESETS QA integrity correction
 

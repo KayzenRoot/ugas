@@ -1,4 +1,4 @@
-"""Enforce the final fail-closed v0.21.1 review result after upload."""
+"""Enforce the final fail-closed v0.21.2 review result after upload."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ def main() -> int:
     for path in (args.manifest, args.manifest_validation, args.security):
         if not path.is_file(): failures.append(f"missing:{path}")
     manifest = json.loads(args.manifest.read_text(encoding="utf-8")) if args.manifest.is_file() else {}
-    if manifest.get("overall_status") != "PASS" or manifest.get("scope", {}).get("version") != "0.21.1": failures.append("manifest-not-pass-or-scope-invalid")
+    if manifest.get("overall_status") != "PASS" or manifest.get("scope", {}).get("version") != "0.21.2": failures.append("manifest-not-pass-or-scope-invalid")
     if manifest.get("production_boundary", {}).get("routing") != "BLOCKED" or manifest.get("production_boundary", {}).get("approved") is not False: failures.append("production-boundary-invalid")
     if manifest.get("review_boundary", {}).get("do_not_merge") is not True: failures.append("merge-boundary-invalid")
     if args.manifest_validation.is_file() and json.loads(args.manifest_validation.read_text(encoding="utf-8")).get("status") != "PASS": failures.append("manifest-validation-failed")

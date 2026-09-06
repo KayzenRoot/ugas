@@ -38,3 +38,4 @@ The reusable deterministic animation runtime consumes the immutable R4 cutout ri
 # v0.21.1 governance note
 
 The active repository state is the v0.21.1 MAPS_MINIMAP QA correction; this historical pipeline document remains outside that slice's production-art authorization boundary.
+# Active governed release: v0.21.2 MAPS/MINIMAP raster + governance correction; production remains BLOCKED and real map/minimap coverage is NONE.

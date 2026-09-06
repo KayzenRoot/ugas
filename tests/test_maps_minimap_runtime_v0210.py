@@ -8,6 +8,8 @@ from pathlib import Path
 import tempfile
 import unittest
 
+from PIL import Image
+
 from ugas.maps_minimap_runtime_v0210 import (
     MapsMinimapContractError,
     MapMinimapCache,
@@ -21,10 +23,13 @@ from ugas.maps_minimap_runtime_v0210 import (
     map_cache_key,
     map_manifest_hash,
     map_to_minimap,
+    minimap_cell_geometry,
     minimap_cache_key,
     minimap_to_map,
+    render_minimap_base,
     validate_chunk_partition,
     validate_map_document,
+    validate_raster_cell_geometry,
     validate_visibility,
 )
 from scripts.validation.run_maps_minimap_runtime_v0210 import (
@@ -33,6 +38,7 @@ from scripts.validation.run_maps_minimap_runtime_v0210 import (
     ITEM_PROP_MANIFEST,
     make_map,
     load_json,
+    _gate,
 )
 
 
@@ -82,6 +88,45 @@ class MapsMinimapRuntimeV0210Tests(unittest.TestCase):
             recovered = minimap_to_map({"x": projected[0], "y": projected[1]}, beta)
             self.assertAlmostEqual(point["x"], recovered[0], places=9)
             self.assertAlmostEqual(point["y"], recovered[1], places=9)
+
+    def test_top_left_y_down_raster_cell_has_real_2d_geometry(self) -> None:
+        geometry = minimap_cell_geometry(self.map, self.map["cells"][0])
+        self.assertLess(geometry["projected_corners"][0][1], geometry["projected_corners"][1][1])
+        self.assertGreater(geometry["pixel_width"], 0)
+        self.assertGreater(geometry["pixel_height"], 0)
+        self.assertEqual(validate_raster_cell_geometry(self.map, geometry)["status"], "MINIMAP_RASTER_CELL_GEOMETRY_VALID")
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "alpha.png"
+            render_minimap_base(self.map, output)
+            with Image.open(output) as image:
+                self.assertGreater(image.size[0], 0)
+                self.assertGreater(image.size[1], 0)
+
+    def test_center_y_up_raster_cell_normalizes_reversed_vertical_bounds(self) -> None:
+        beta = make_map("unit-map-beta", "unit-r1", 7, 4, 3, 2, load_json(ENVIRONMENT_MANIFEST), self.env_authority, self.prop_authority, coordinate_origin="CENTER", grid_orientation="Y_UP")
+        geometry = minimap_cell_geometry(beta, beta["cells"][0])
+        self.assertGreater(geometry["projected_corners"][0][1], geometry["projected_corners"][1][1])
+        self.assertLess(geometry["y_min"], geometry["y_max"])
+        self.assertGreater(geometry["pixel_width"] * geometry["pixel_height"], 0)
+        self.assertEqual(validate_raster_cell_geometry(beta, geometry)["status"], "MINIMAP_RASTER_CELL_GEOMETRY_VALID")
+        collapsed = deepcopy(geometry)
+        collapsed["y_min"] = collapsed["y_max"]
+        collapsed["pixel_height"] = 1
+        collapsed["pixel_rect"][3] = collapsed["pixel_rect"][1]
+        with self.assertRaisesRegex(MapsMinimapContractError, "MINIMAP_RASTER_CELL_GEOMETRY_INVALID"):
+            validate_raster_cell_geometry(beta, collapsed)
+        with tempfile.TemporaryDirectory() as directory:
+            render_minimap_base(beta, Path(directory) / "beta.png")
+
+    def test_gate_accepts_only_exact_true_bool(self) -> None:
+        observations = (True, False, None, 0, 1, [], ["x"], "", "x", {}, {"x": 1})
+        for observed in observations:
+            gates: dict[str, dict[str, object]] = {}
+            _gate(gates, "probe", lambda observed=observed: observed, "strict bool probe")
+            expected_pass = type(observed) is bool and observed is True
+            self.assertEqual(gates["probe"]["status"], "PASS" if expected_pass else "FAIL")
+            self.assertEqual(gates["probe"]["observed"], observed)
+            self.assertEqual(gates["probe"]["observed_type"], type(observed).__name__)
 
     def test_projection_rejects_broken_origin_semantics(self) -> None:
         broken = deepcopy(self.map)

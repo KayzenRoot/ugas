@@ -1,4 +1,4 @@
-"""Check the v0.21.1 bounded review artifact for forbidden material."""
+"""Check the v0.21.2 bounded review artifact for forbidden material."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ def main() -> int:
             if boundary.get(key) is not False: failures.append(f"security-boundary:{key}")
     except (OSError, json.JSONDecodeError) as exc:
         failures.append(f"manifest:{type(exc).__name__}")
-    result = {"schema_version": "0.21.1", "status": "PASS" if not failures else "FAIL", "failures": failures, "file_count": sum(1 for path in args.artifact_dir.rglob("*") if path.is_file())}
+    result = {"schema_version": "0.21.2", "status": "PASS" if not failures else "FAIL", "failures": failures, "file_count": sum(1 for path in args.artifact_dir.rglob("*") if path.is_file())}
     args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8"); print(json.dumps(result)); return 0 if not failures else 1
 
 

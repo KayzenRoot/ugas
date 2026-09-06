@@ -27,3 +27,4 @@ The v0.11.2 animation runtime performs no ComfyUI generation. `comfyui_generatio
 # v0.21.1 governance note
 
 The active v0.21.1 MAPS_MINIMAP correction is TEST_ONLY and does not authorize generation or production routing through ComfyUI.
+# Active governed release: v0.21.2 MAPS/MINIMAP raster + governance correction; no UI, VFX, orchestration or production generation is authorized.
