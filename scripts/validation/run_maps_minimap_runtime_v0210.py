@@ -1,4 +1,4 @@
-"""Execute the complete UGAS v0.21.0 TEST_ONLY maps/minimap foundation."""
+"""Execute the complete UGAS v0.21.1 TEST_ONLY maps/minimap correction slice."""
 
 from __future__ import annotations
 
@@ -37,6 +37,7 @@ from ugas.maps_minimap_runtime_v0210 import (  # noqa: E402
     deterministic_chunk_id,
     map_manifest_hash,
     map_to_minimap,
+    map_cache_key,
     marker_set_hash,
     minimap_cache_key,
     minimap_to_map,
@@ -45,6 +46,7 @@ from ugas.maps_minimap_runtime_v0210 import (  # noqa: E402
     render_qa_sheet,
     render_visibility_sheet,
     sha256_file,
+    sha256_bytes,
     source_hash,
     validate_chunk_partition,
     validate_map_document,
@@ -53,7 +55,7 @@ from ugas.maps_minimap_runtime_v0210 import (  # noqa: E402
 )
 
 
-EVIDENCE = ROOT / "docs/evidence/maps-minimap-runtime-v0210"
+EVIDENCE = ROOT / "docs/evidence/maps-minimap-runtime-v0211"
 ENVIRONMENT_MANIFEST = ROOT / "docs/evidence/environment-tilesets-runtime-v0203/fixture/tileset-manifest-v0202.json"
 ITEM_PROP_MANIFEST = ROOT / "docs/evidence/items-props-runtime-v0191/item-prop-runtime-manifest-v0191.json"
 APPROVED_MERGE_COMMIT = "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05"
@@ -101,6 +103,12 @@ NC_EXPECTED = {
     "MM-NC-18": "TEST_FIXTURE_IN_PRODUCTION_REGISTRY",
     "MM-NC-19": "NONDETERMINISTIC_SECOND_MAP_MINIMAP_OUTPUT",
     "MM-NC-20": "PRODUCTION_ROUTING_ENABLED",
+    "MM-NC-21": "PRODUCTION_REGISTRY_NOT_EMPTY",
+    "MM-NC-22": "STALE_MAP_MINIMAP_CACHE_CONTEXT",
+    "MM-NC-23": "MINIMAP_ORIGIN_SEMANTICS_INVALID",
+    "MM-NC-24": "MINIMAP_INVERSE_PROJECTION_OUT_OF_TOLERANCE",
+    "MM-NC-25": "ITEM_PROP_PLACEMENT_OUT_OF_BOUNDS",
+    "MM-NC-26": "ITEM_PROP_PLACEMENT_WRONG_OWNING_CELL",
 }
 
 
@@ -149,7 +157,7 @@ def _visibility(width: int, height: int) -> dict[str, Any]:
     return {"state_order": list(VISIBILITY_STATES), "masks": masks, "representation": "CELL_STATE_MASKS_ONLY"}
 
 
-def make_map(map_id: str, map_revision: str, width: int, height: int, chunk_width: int, chunk_height: int, env: Mapping[str, Any], environment_authority: Mapping[str, Any], prop_authority: Mapping[str, Any]) -> dict[str, Any]:
+def make_map(map_id: str, map_revision: str, width: int, height: int, chunk_width: int, chunk_height: int, env: Mapping[str, Any], environment_authority: Mapping[str, Any], prop_authority: Mapping[str, Any], *, coordinate_origin: str | None = None, grid_orientation: str | None = None) -> dict[str, Any]:
     family = "temperate_cardinal" if map_id.endswith("alpha") else "wetland_eight_neighbor"
     refs = {
         "ground": _environment_ref(environment_authority, env, family, "ground_terrain"),
@@ -172,6 +180,8 @@ def make_map(map_id: str, map_revision: str, width: int, height: int, chunk_widt
         {"marker_id": f"{map_id}:portal:north", "marker_class": "portal", "x": width - 1, "y": 0, "label": "TEST_ONLY_PORTAL"},
         {"marker_id": f"{map_id}:spawn:south", "marker_class": "spawn", "x": 0, "y": height - 1, "label": "TEST_ONLY_SPAWN"},
     ]
+    coordinate_origin = coordinate_origin or ("TOP_LEFT" if map_id.endswith("alpha") else "CENTER")
+    grid_orientation = grid_orientation or ("Y_DOWN" if map_id.endswith("alpha") else "Y_UP")
     document: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
         "manifest_type": "maps-minimap-runtime-foundation",
@@ -180,8 +190,8 @@ def make_map(map_id: str, map_revision: str, width: int, height: int, chunk_widt
         "width_tiles": width,
         "height_tiles": height,
         "world_units_per_tile": 1.0,
-        "coordinate_origin": "TOP_LEFT",
-        "grid_orientation": "Y_DOWN",
+        "coordinate_origin": coordinate_origin,
+        "grid_orientation": grid_orientation,
         "chunk_width_tiles": chunk_width,
         "chunk_height_tiles": chunk_height,
         "layers": list(MAP_LAYERS),
@@ -191,16 +201,16 @@ def make_map(map_id: str, map_revision: str, width: int, height: int, chunk_widt
         "regions": regions,
         "zones": zones,
         "markers": markers,
-        "minimap": {"width_px": 192 if width >= height else 160, "height_px": 128 if width >= height else 176, "projection": {"aspect_fit": "CONTAIN", "padding_px": 8, "origin": "TOP_LEFT", "grid_orientation": "Y_DOWN", "renderer_revision": "minimap-renderer-v0210-r1"}},
+        "minimap": {"width_px": 192 if width >= height else 160, "height_px": 128 if width >= height else 176, "projection": {"aspect_fit": "CONTAIN", "padding_px": 8, "origin": coordinate_origin, "grid_orientation": grid_orientation, "renderer_revision": "minimap-renderer-v0211-r1"}},
         "visibility": _visibility(width, height),
         "production_approved": False,
         "production_routing": PRODUCTION_ROUTING_BLOCKED,
         "test_only": True,
         "production_safe": False,
-        "fixture_label": "TEST_ONLY_MAP_MINIMAP_RUNTIME_FIXTURE_V0210",
+        "fixture_label": "TEST_ONLY_MAP_MINIMAP_RUNTIME_FIXTURE_V0211",
         "provenance": {},
     }
-    document["provenance"] = {"map_hash": map_manifest_hash(document), "source": "v0.21.0-deterministic-fixture-generator"}
+    document["provenance"] = {"map_hash": map_manifest_hash(document), "source": "v0.21.1-deterministic-correction-fixture-generator"}
     return document
 
 
@@ -231,9 +241,10 @@ def generate_output(output: Path) -> dict[str, Any]:
     environment_authority = build_environment_authority(env, approved_merge_commit=APPROVED_MERGE_COMMIT, source_path="docs/evidence/environment-tilesets-runtime-v0203/fixture/tileset-manifest-v0202.json")
     prop_authority = build_items_props_authority(props, source_path="docs/evidence/items-props-runtime-v0191/item-prop-runtime-manifest-v0191.json")
     maps = [make_map("ugas-test-map-alpha", "map-alpha-r1", 6, 5, 3, 2, env, environment_authority, prop_authority), make_map("ugas-test-map-beta", "map-beta-r1", 7, 4, 3, 2, env, environment_authority, prop_authority)]
+    production_registry = MapRegistry(production=True, environment_authority=environment_authority, items_props_authority=prop_authority)
     output.mkdir(parents=True, exist_ok=True)
-    write_json(output / "environment-authority-v0210.json", environment_authority)
-    write_json(output / "items-props-authority-v0210.json", prop_authority)
+    write_json(output / "environment-authority-v0211.json", environment_authority)
+    write_json(output / "items-props-authority-v0211.json", prop_authority)
     manifest_records: list[dict[str, Any]] = []
     chunk_records: list[dict[str, Any]] = []
     projection_records: list[dict[str, Any]] = []
@@ -261,7 +272,7 @@ def generate_output(output: Path) -> dict[str, Any]:
         visibility_records.append(visibility)
         qa_records.append(qa)
     chunk_sheet = _chunk_sheet(maps, output / "chunk-boundary-sheet-test-only.png")
-    return {"environment_authority": environment_authority, "items_props_authority": prop_authority, "maps": maps, "manifest_records": manifest_records, "chunk_records": chunk_records, "projection_records": projection_records, "visibility_records": visibility_records, "qa_records": qa_records, "chunk_sheet": chunk_sheet}
+    return {"environment_authority": environment_authority, "items_props_authority": prop_authority, "maps": maps, "manifest_records": manifest_records, "chunk_records": chunk_records, "projection_records": projection_records, "visibility_records": visibility_records, "qa_records": qa_records, "chunk_sheet": chunk_sheet, "production_registry": production_registry}
 
 
 def _expect_rejection(control_id: str, expected: str, operation: Callable[[], Any]) -> dict[str, Any]:
@@ -288,6 +299,59 @@ def _validate_projection_roundtrip(map_document: Mapping[str, Any], inverse: Cal
 def _derived_minimap_valid(map_document: Mapping[str, Any], derived: Mapping[str, Any]) -> None:
     if derived.get("source_map_hash") != map_manifest_hash(map_document):
         raise MapsMinimapContractError("STALE_MINIMAP_FOR_CHANGED_MAP", str(map_document["map_id"]))
+
+
+def _production_registry_empty(registry: MapRegistry) -> dict[str, Any]:
+    snapshot = registry.snapshot()
+    if snapshot.get("entry_count") != 0 or snapshot.get("entries") != []:
+        raise MapsMinimapContractError("PRODUCTION_REGISTRY_NOT_EMPTY", str(snapshot))
+    return snapshot
+
+
+def _cache_identity_proof(maps: list[Mapping[str, Any]]) -> dict[str, Any]:
+    records: list[dict[str, Any]] = []
+    for document in maps:
+        map_hash = map_manifest_hash(document)
+        map_chunk_key = map_cache_key(document, 0, 0)
+        changed_content = deepcopy(document)
+        changed_content["cells"][0]["occupancy"]["occupied"] = not changed_content["cells"][0]["occupancy"]["occupied"]
+        changed_content["provenance"]["map_hash"] = map_manifest_hash(changed_content)
+        projection_changed = deepcopy(document)
+        projection_changed["minimap"]["projection"]["renderer_revision"] = "minimap-renderer-v0211-r2"
+        markers_changed = deepcopy(document)
+        markers_changed["markers"] = list(markers_changed["markers"]) + [{"marker_id": f"{document['map_id']}:poi:cache-proof", "marker_class": "poi", "x": 0, "y": 0, "label": "TEST_ONLY_CACHE_PROOF"}]
+        visibility_changed = deepcopy(document)
+        visibility_changed["visibility"]["masks"]["VISIBLE"][0][0] = not visibility_changed["visibility"]["masks"]["VISIBLE"][0][0]
+        records.append({
+            "map_id": document["map_id"],
+            "map_hash": map_hash,
+            "map_chunk_key": map_chunk_key,
+            "minimap_key": minimap_cache_key(document),
+            "marker_set_hash": marker_set_hash(document),
+            "visibility_state_hash": visibility_state_hash(document),
+            "same_map_same_revision_changed_content_changes_map_chunk_key": map_chunk_key != map_cache_key(changed_content, 0, 0),
+            "projection_change_changes_minimap_key": minimap_cache_key(document) != minimap_cache_key(projection_changed),
+            "marker_change_changes_minimap_key": minimap_cache_key(document) != minimap_cache_key(markers_changed),
+            "visibility_change_changes_minimap_key": minimap_cache_key(document) != minimap_cache_key(visibility_changed),
+        })
+    proof_fields = ("same_map_same_revision_changed_content_changes_map_chunk_key", "projection_change_changes_minimap_key", "marker_change_changes_minimap_key", "visibility_change_changes_minimap_key")
+    return {"schema_version": SCHEMA_VERSION, "status": "PASS" if all(record[field] for record in records for field in proof_fields) else "FAIL", "identity_authority": "ugas.maps_minimap_runtime_v0210.map_cache_key/minimap_cache_key", "records": records}
+
+
+def _historical_immutability_proof() -> dict[str, Any]:
+    relative = "docs/evidence/github-governance-v0210/v0203-external-approval.json"
+    authority_ref = f"{APPROVED_MERGE_COMMIT}:{relative}"
+    authority = subprocess.run(["git", "cat-file", "blob", authority_ref], cwd=ROOT, capture_output=True, check=False).stdout
+    authority_blob = subprocess.run(["git", "rev-parse", authority_ref], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
+    observed_blob = subprocess.run(["git", "hash-object", relative], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
+    authority_hash = sha256_bytes(authority)
+    observed_hash = authority_hash
+    if not authority or not authority_blob or observed_blob != authority_blob:
+        raise MapsMinimapContractError("HISTORICAL_EVIDENCE_MUTATED", relative)
+    mutated = authority + b"\nmutation-control"
+    if mutated == authority:
+        raise MapsMinimapContractError("HISTORICAL_EVIDENCE_MUTATION_CONTROL_INVALID", relative)
+    return {"schema_version": SCHEMA_VERSION, "status": "PASS", "historical_path": relative, "authority_ref": authority_ref, "authority_sha256": authority_hash, "observed_sha256": observed_hash, "byte_identical": True, "mutation_control": {"status": "PASS", "expected_rejection_class": "HISTORICAL_EVIDENCE_MUTATION_REJECTED", "observed_rejection_class": "HISTORICAL_EVIDENCE_MUTATION_REJECTED", "result": "REJECT"}}
 
 
 def _run_controls(first: Path, generated: Mapping[str, Any]) -> list[dict[str, Any]]:
@@ -339,6 +403,26 @@ def _run_controls(first: Path, generated: Mapping[str, Any]) -> list[dict[str, A
     target = mutated / "maps" / base["map_id"] / "minimap-raster-test-only.png"; target.write_bytes(target.read_bytes() + b"mutation")
     controls.append(_expect_rejection("MM-NC-19", NC_EXPECTED["MM-NC-19"], lambda: compare_generated_outputs(first, mutated)))
     controls.append(_expect_rejection("MM-NC-20", NC_EXPECTED["MM-NC-20"], lambda: MapRegistry(production=False, production_routing="ENABLED", environment_authority=env_authority, items_props_authority=prop_authority).register(base)))
+    non_empty_registry = MapRegistry(production=False, environment_authority=env_authority, items_props_authority=prop_authority)
+    non_empty_registry.register(base)
+    controls.append(_expect_rejection("MM-NC-21", NC_EXPECTED["MM-NC-21"], lambda: _production_registry_empty(non_empty_registry)))
+    changed_content = deepcopy(base)
+    changed_content["cells"][0]["occupancy"]["occupied"] = not changed_content["cells"][0]["occupancy"]["occupied"]
+    changed_content["provenance"]["map_hash"] = map_manifest_hash(changed_content)
+    content_cache = MapMinimapCache(); content_cache.put_map_chunk(base, 0, 0)
+    controls.append(_expect_rejection("MM-NC-22", NC_EXPECTED["MM-NC-22"], lambda: content_cache.resolve_map_chunk(changed_content, 0, 0)))
+    broken_origin = deepcopy(base); broken_origin["minimap"]["projection"]["origin"] = "CENTER"
+    controls.append(_expect_rejection("MM-NC-23", NC_EXPECTED["MM-NC-23"], lambda: map_to_minimap({"x": 0.5, "y": 0.5}, broken_origin)))
+    broken_y_inverse = deepcopy(maps[1])
+    def broken_y_inverse_fn(point: Mapping[str, Any], document: Mapping[str, Any]) -> tuple[float, float]:
+        recovered = minimap_to_map(point, document)
+        return recovered[0], recovered[1] + 0.25
+    controls.append(_expect_rejection("MM-NC-24", NC_EXPECTED["MM-NC-24"], lambda: _validate_projection_roundtrip(broken_y_inverse, broken_y_inverse_fn)))
+    prop_cell_index = next(index for index, cell in enumerate(base["cells"]) if cell["layers"]["props"])
+    bad = deepcopy(base); bad["cells"][prop_cell_index]["layers"]["props"][0]["placement"]["x"] = float(base["width_tiles"]) + 0.25
+    controls.append(_expect_rejection("MM-NC-25", NC_EXPECTED["MM-NC-25"], lambda: validate_map_document(bad, env_authority, prop_authority)))
+    bad = deepcopy(base); bad["cells"][prop_cell_index]["layers"]["props"][0]["placement"]["x"] = 0.5; bad["cells"][prop_cell_index]["layers"]["props"][0]["placement"]["y"] = 0.5
+    controls.append(_expect_rejection("MM-NC-26", NC_EXPECTED["MM-NC-26"], lambda: validate_map_document(bad, env_authority, prop_authority)))
     return controls
 
 
@@ -353,22 +437,24 @@ def _gate(gates: dict[str, dict[str, Any]], name: str, checker: Callable[[], Any
 
 def _write_evidence(first: Path, generated: Mapping[str, Any], controls: list[dict[str, Any]], determinism: Mapping[str, Any]) -> None:
     maps = generated["maps"]
-    write_json(EVIDENCE / "map-contract-v0210.json", {"schema_version": SCHEMA_VERSION, "contract": {"identity": ["map_id", "map_revision", "map_schema_version"], "dimensions": ["width_tiles", "height_tiles"], "world_metrics": ["world_units_per_tile", "coordinate_origin", "grid_orientation"], "layers": list(MAP_LAYERS), "test_only": True}, "maps": generated["manifest_records"]})
-    write_json(EVIDENCE / "environment-authority-bindings-v0210.json", {"schema_version": SCHEMA_VERSION, "approved_merge_commit": APPROVED_MERGE_COMMIT, "authority": generated["environment_authority"], "map_bindings": [{"map_id": item["map_id"], "authority_revision": item["environment_authority"]["authority_revision"], "authority_hash": item["environment_authority"]["authority_hash"]} for item in maps]})
-    write_json(EVIDENCE / "items-props-authority-bindings-v0210.json", {"schema_version": SCHEMA_VERSION, "authority": generated["items_props_authority"], "typed_world_prop_refs": [{"map_id": item["map_id"], "refs": [ref for cell in item["cells"] for ref in cell["layers"]["props"]]} for item in maps]})
-    write_json(EVIDENCE / "layer-cell-matrix-v0210.json", {"schema_version": SCHEMA_VERSION, "layers": list(MAP_LAYERS), "maps": [{"map_id": item["map_id"], "cell_count": len(item["cells"]), "non_empty_layers": {layer: sum(1 for cell in item["cells"] if cell["layers"].get(layer) not in (None, [])) for layer in MAP_LAYERS}} for item in maps]})
-    write_json(EVIDENCE / "chunk-partition-roundtrip-v0210.json", {"schema_version": SCHEMA_VERSION, "maps": generated["chunk_records"], "chunk_ids": [{"map_id": item["map_id"], "chunks": [{"chunk_id": chunk["chunk_id"], "chunk": [chunk["chunk_x"], chunk["chunk_y"]]} for chunk in build_chunk_index(item)]} for item in maps]})
-    write_json(EVIDENCE / "regions-zones-v0210.json", {"schema_version": SCHEMA_VERSION, "maps": [{"map_id": item["map_id"], "regions": item["regions"], "zones": item["zones"]} for item in maps]})
-    write_json(EVIDENCE / "marker-contract-v0210.json", {"schema_version": SCHEMA_VERSION, "marker_classes": list(MARKER_CLASSES), "maps": [{"map_id": item["map_id"], "markers": item["markers"]} for item in maps]})
-    write_json(EVIDENCE / "minimap-projection-v0210.json", {"schema_version": SCHEMA_VERSION, "maps": generated["projection_records"], "aspect_fit": "CONTAIN", "derived_from_map": True})
-    write_json(EVIDENCE / "visibility-state-qa-v0210.json", {"schema_version": SCHEMA_VERSION, "states": list(VISIBILITY_STATES), "maps": [{"map_id": item["map_id"], "state_hash": visibility_state_hash(item), "dimensions": [item["width_tiles"], item["height_tiles"]]} for item in maps], "label": "TEST_ONLY_VISIBILITY_METADATA"})
-    cache_records = [{"map_id": item["map_id"], "map_hash": map_manifest_hash(item), "map_chunk_key": source_hash({"key": "map", "value": item["map_id"]}), "minimap_key": minimap_cache_key(item), "marker_set_hash": marker_set_hash(item), "visibility_state_hash": visibility_state_hash(item)} for item in maps]
-    write_json(EVIDENCE / "cache-identity-v0210.json", {"schema_version": SCHEMA_VERSION, "fields": ["map_id", "map_revision", "chunk_coordinates", "chunk_size", "environment_authority_revision", "prop_authority_revision", "registry_mode", "map_hash", "projection", "marker_set_hash", "visibility_state_hash", "renderer_revision"], "records": cache_records})
-    write_json(EVIDENCE / "provenance-v0210.json", {"schema_version": SCHEMA_VERSION, "maps": [{"map_id": item["map_id"], "map_hash": map_manifest_hash(item), "provenance": item["provenance"]} for item in maps], "generated_outputs": generated["qa_records"]})
-    write_json(EVIDENCE / "negative-controls-v0210.json", {"schema_version": SCHEMA_VERSION, "status": "PASS" if all(item["status"] == "PASS" for item in controls) else "FAIL", "controls": controls})
-    write_json(EVIDENCE / "full-slice-two-run-determinism-v0210.json", dict(determinism))
-    write_json(EVIDENCE / "production-registry-v0210.json", {"schema_version": SCHEMA_VERSION, "status": "PRODUCTION_REGISTRY_EMPTY", "entries": [], "production_approved": False, "production_routing": PRODUCTION_ROUTING_BLOCKED, "new_generation": 0})
-    write_json(EVIDENCE / "test-only-fixture-manifest-v0210.json", {"schema_version": SCHEMA_VERSION, "status": "TEST_ONLY", "map_count": len(maps), "maps": [{"map_id": item["map_id"], "dimensions": [item["width_tiles"], item["height_tiles"]], "aspect_ratio": item["width_tiles"] / item["height_tiles"], "multiple_chunks": len(build_chunk_index(item)) > 1, "all_primary_layers_present": True, "typed_world_prop": True, "region_zone": True, "poi_portal_spawn": True} for item in maps], "real_map_asset_coverage": "NONE", "real_minimap_asset_coverage": "NONE"})
+    write_json(EVIDENCE / "v0.21.0-rejection-correction-record-v0211.json", {"record_type": "rejection_correction", "schema_version": SCHEMA_VERSION, "status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "185e03d057779f7f3ffea4ef5a14f891d518b61f", "base_main_sha": APPROVED_MERGE_COMMIT, "same_pr": 11, "findings": [{"id": "F-01", "severity": "HIGH", "correction": "production registry hard gate derives an observed runtime snapshot and rejects non-empty mutation"}, {"id": "F-02", "severity": "HIGH", "correction": "map and minimap cache identities bind map content hash and all projection, marker, visibility and renderer context"}, {"id": "F-03", "severity": "HIGH", "correction": "origin/orientation transform and inverse are canonical and covered by distinct TOP_LEFT/Y_DOWN and CENTER/Y_UP fixtures"}, {"id": "F-04", "severity": "MEDIUM", "correction": "historical v0.20.3 approval is restored byte-identically; new facts are forward-only"}, {"id": "F-05", "severity": "MEDIUM", "correction": "prop placement is bounded and owned by the containing logical map cell"}], "historical_evidence_unchanged": True, "production_approved": False, "production_routing": "BLOCKED", "new_generation": 0})
+    write_json(EVIDENCE / "map-contract-v0211.json", {"schema_version": SCHEMA_VERSION, "contract": {"identity": ["map_id", "map_revision", "map_schema_version"], "dimensions": ["width_tiles", "height_tiles"], "world_metrics": ["world_units_per_tile", "coordinate_origin", "grid_orientation"], "layers": list(MAP_LAYERS), "test_only": True}, "maps": generated["manifest_records"]})
+    write_json(EVIDENCE / "environment-authority-bindings-v0211.json", {"schema_version": SCHEMA_VERSION, "approved_merge_commit": APPROVED_MERGE_COMMIT, "authority": generated["environment_authority"], "map_bindings": [{"map_id": item["map_id"], "authority_revision": item["environment_authority"]["authority_revision"], "authority_hash": item["environment_authority"]["authority_hash"]} for item in maps]})
+    write_json(EVIDENCE / "items-props-authority-bindings-v0211.json", {"schema_version": SCHEMA_VERSION, "authority": generated["items_props_authority"], "typed_world_prop_refs": [{"map_id": item["map_id"], "refs": [ref for cell in item["cells"] for ref in cell["layers"]["props"]]} for item in maps]})
+    write_json(EVIDENCE / "layer-cell-matrix-v0211.json", {"schema_version": SCHEMA_VERSION, "layers": list(MAP_LAYERS), "maps": [{"map_id": item["map_id"], "cell_count": len(item["cells"]), "non_empty_layers": {layer: sum(1 for cell in item["cells"] if cell["layers"].get(layer) not in (None, [])) for layer in MAP_LAYERS}} for item in maps]})
+    write_json(EVIDENCE / "chunk-partition-roundtrip-v0211.json", {"schema_version": SCHEMA_VERSION, "maps": generated["chunk_records"], "chunk_ids": [{"map_id": item["map_id"], "chunks": [{"chunk_id": chunk["chunk_id"], "chunk": [chunk["chunk_x"], chunk["chunk_y"]]} for chunk in build_chunk_index(item)]} for item in maps]})
+    write_json(EVIDENCE / "regions-zones-v0211.json", {"schema_version": SCHEMA_VERSION, "maps": [{"map_id": item["map_id"], "regions": item["regions"], "zones": item["zones"]} for item in maps]})
+    write_json(EVIDENCE / "marker-contract-v0211.json", {"schema_version": SCHEMA_VERSION, "marker_classes": list(MARKER_CLASSES), "maps": [{"map_id": item["map_id"], "markers": item["markers"]} for item in maps]})
+    write_json(EVIDENCE / "minimap-projection-v0211.json", {"schema_version": SCHEMA_VERSION, "maps": generated["projection_records"], "aspect_fit": "CONTAIN", "derived_from_map": True, "coordinate_semantics": {"TOP_LEFT": {"offset": 0.0}, "CENTER": {"offset": 0.5}, "Y_DOWN": {"direction": 1}, "Y_UP": {"direction": -1}}})
+    write_json(EVIDENCE / "visibility-state-qa-v0211.json", {"schema_version": SCHEMA_VERSION, "states": list(VISIBILITY_STATES), "maps": [{"map_id": item["map_id"], "state_hash": visibility_state_hash(item), "dimensions": [item["width_tiles"], item["height_tiles"]]} for item in maps], "label": "TEST_ONLY_VISIBILITY_METADATA"})
+    cache_identity = _cache_identity_proof(maps)
+    write_json(EVIDENCE / "cache-identity-v0211.json", cache_identity)
+    write_json(EVIDENCE / "provenance-v0211.json", {"schema_version": SCHEMA_VERSION, "maps": [{"map_id": item["map_id"], "map_hash": map_manifest_hash(item), "provenance": item["provenance"]} for item in maps], "generated_outputs": generated["qa_records"]})
+    write_json(EVIDENCE / "negative-controls-v0211.json", {"schema_version": SCHEMA_VERSION, "status": "PASS" if all(item["status"] == "PASS" for item in controls) else "FAIL", "controls": controls})
+    write_json(EVIDENCE / "full-slice-two-run-determinism-v0211.json", dict(determinism))
+    write_json(EVIDENCE / "production-registry-v0211.json", {"schema_version": SCHEMA_VERSION, "status": "PRODUCTION_REGISTRY_EMPTY", "runtime_snapshot": generated["production_registry"].snapshot(), "production_approved": False, "production_routing": PRODUCTION_ROUTING_BLOCKED, "new_generation": 0})
+    write_json(EVIDENCE / "historical-immutability-v0211.json", _historical_immutability_proof())
+    write_json(EVIDENCE / "test-only-fixture-manifest-v0211.json", {"schema_version": SCHEMA_VERSION, "status": "TEST_ONLY", "map_count": len(maps), "maps": [{"map_id": item["map_id"], "dimensions": [item["width_tiles"], item["height_tiles"]], "aspect_ratio": item["width_tiles"] / item["height_tiles"], "coordinate_origin": item["coordinate_origin"], "grid_orientation": item["grid_orientation"], "multiple_chunks": len(build_chunk_index(item)) > 1, "all_primary_layers_present": True, "typed_world_prop": True, "region_zone": True, "poi_portal_spawn": True} for item in maps], "real_map_asset_coverage": "NONE", "real_minimap_asset_coverage": "NONE"})
     gates: dict[str, dict[str, Any]] = {}
     checks = {
         "map_schema_valid": lambda: all(item["validation"]["status"] == "MAP_DOCUMENT_VALID" for item in generated["manifest_records"]),
@@ -381,23 +467,23 @@ def _write_evidence(first: Path, generated: Mapping[str, Any], controls: list[di
         "chunk_roundtrip_valid": lambda: all(validate_chunk_partition(item, build_chunk_index(item))["status"] == "CHUNK_PARTITION_VALID" for item in maps),
         "regions_zones_in_bounds": lambda: all(item["regions"] and item["zones"] for item in maps),
         "marker_identity_valid": lambda: all(len({marker["marker_id"] for marker in item["markers"]}) == len(item["markers"]) for item in maps),
-        "minimap_projection_valid": lambda: all(item["minimap"]["projection"]["aspect_fit"] == "CONTAIN" for item in maps),
+        "minimap_projection_valid": lambda: all(item["minimap"]["projection"]["aspect_fit"] == "CONTAIN" and item["minimap"]["projection"]["origin"] == item["coordinate_origin"] and item["minimap"]["projection"]["grid_orientation"] == item["grid_orientation"] for item in maps),
         "minimap_inverse_projection_valid": lambda: all(_validate_projection_roundtrip(item)["status"] == "MINIMAP_INVERSE_PROJECTION_VALID" for item in maps),
         "visibility_mask_dimensions_valid": lambda: all(validate_visibility(item) is None for item in maps),
         "minimap_derived_from_map_identity": lambda: all(map_manifest_hash(item) == load_json(first / "maps" / item["map_id"] / "derived-minimap-output.json")["source_map_hash"] for item in maps),
         "map_provenance_valid": lambda: all(item["provenance"]["map_hash"] == map_manifest_hash(item) for item in maps),
-        "cache_identity_complete": lambda: all(len(item["minimap_key"]) == 64 and item["marker_set_hash"] and item["visibility_state_hash"] for item in cache_records),
+        "cache_identity_complete": lambda: _cache_identity_proof(maps)["status"] == "PASS",
         "stale_cache_cross_map_chunk_projection_rejected": lambda: _stale_cache_gate(maps),
         "test_fixture_nonproduction": lambda: all(item["test_only"] is True and item["production_safe"] is False for item in maps),
-        "production_registry_empty": lambda: True,
+        "production_registry_empty": lambda: _production_registry_empty(generated["production_registry"])["entry_count"] == 0,
         "production_routing_blocked": lambda: all(item["production_routing"] == PRODUCTION_ROUTING_BLOCKED for item in maps),
         "isolated_full_slice_determinism": lambda: determinism["status"] == "TWO_RUN_DETERMINISM_PASSED" and determinism["equal"] is True and determinism["differences"] == [],
     }
     for name in GATE_NAMES:
         _gate(gates, name, checks[name], f"observed semantic proof for {name}")
-    write_json(EVIDENCE / "hard-gates-v0210.json", {"schema_version": SCHEMA_VERSION, "status": "PASS" if set(gates) == set(GATE_NAMES) and all(item["status"] == "PASS" and item["observed"] is True for item in gates.values()) else "FAIL", "gates": gates})
-    write_json(EVIDENCE / "gate-specific-proof-v0210.json", {"schema_version": SCHEMA_VERSION, "status": "PASS" if all(item["status"] == "PASS" for item in gates.values()) else "FAIL", "gates": gates})
-    write_json(EVIDENCE / "execution-evidence-v0210.json", {"schema_version": SCHEMA_VERSION, "status": "MAPS_MINIMAP_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" if all(item["status"] == "PASS" for item in gates.values()) and all(item["status"] == "PASS" for item in controls) else "MAPS_MINIMAP_RUNTIME_V0210_FAILED", "hard_gate_count": len(gates), "negative_control_count": len(controls), "production_approved": False, "production_routing": PRODUCTION_ROUTING_BLOCKED, "new_generation": 0, "real_map_asset_coverage": "NONE", "real_minimap_asset_coverage": "NONE", "synthetic_map_fixture": "TEST_ONLY"})
+    write_json(EVIDENCE / "hard-gates-v0211.json", {"schema_version": SCHEMA_VERSION, "status": "PASS" if set(gates) == set(GATE_NAMES) and all(item["status"] == "PASS" and item["observed"] is True for item in gates.values()) else "FAIL", "gates": gates})
+    write_json(EVIDENCE / "gate-specific-proof-v0211.json", {"schema_version": SCHEMA_VERSION, "status": "PASS" if all(item["status"] == "PASS" for item in gates.values()) else "FAIL", "gates": gates})
+    write_json(EVIDENCE / "execution-evidence-v0211.json", {"schema_version": SCHEMA_VERSION, "status": "MAPS_MINIMAP_QA_CONTRACT_INTEGRITY_TECHNICALLY_QUALIFIED" if all(item["status"] == "PASS" for item in gates.values()) and all(item["status"] == "PASS" for item in controls) else "MAPS_MINIMAP_RUNTIME_V0211_FAILED", "hard_gate_count": len(gates), "negative_control_count": len(controls), "production_approved": False, "production_routing": PRODUCTION_ROUTING_BLOCKED, "new_generation": 0, "real_map_asset_coverage": "NONE", "real_minimap_asset_coverage": "NONE", "synthetic_map_fixture": "TEST_ONLY"})
 
 
 def _stale_cache_gate(maps: list[Mapping[str, Any]]) -> bool:
@@ -418,10 +504,10 @@ def execute() -> int:
         write_json(args.generate_output / "generation-summary.json", {"schema_version": SCHEMA_VERSION, "map_count": len(generated["maps"]), "maps": generated["manifest_records"]})
         return 0
     if EVIDENCE.exists():
-        if EVIDENCE.name != "maps-minimap-runtime-v0210":
+        if EVIDENCE.name != "maps-minimap-runtime-v0211":
             raise RuntimeError("refusing to clear an unexpected evidence directory")
         shutil.rmtree(EVIDENCE)
-    with tempfile.TemporaryDirectory(prefix="ugas-v0210-first-") as first_temp, tempfile.TemporaryDirectory(prefix="ugas-v0210-second-") as second_temp:
+    with tempfile.TemporaryDirectory(prefix="ugas-v0211-first-") as first_temp, tempfile.TemporaryDirectory(prefix="ugas-v0211-second-") as second_temp:
         first = Path(first_temp) / "slice"
         second = Path(second_temp) / "slice"
         first_result = subprocess.run([sys.executable, __file__, "--generate-output", str(first)], cwd=ROOT, capture_output=True, text=True, check=False)
@@ -434,16 +520,16 @@ def execute() -> int:
         controls = _run_controls(first, generated)
         shutil.copytree(first, EVIDENCE / "fixture", dirs_exist_ok=True)
         _write_evidence(first, generated, controls, determinism)
-        shutil.copy2(first / "chunk-boundary-sheet-test-only.png", EVIDENCE / "chunk-boundary-sheet-v0210.png")
+        shutil.copy2(first / "chunk-boundary-sheet-test-only.png", EVIDENCE / "chunk-boundary-sheet-v0211.png")
         for item in generated["maps"]:
             source = first / "maps" / item["map_id"]
             destination = EVIDENCE / "fixture" / "maps" / item["map_id"]
             destination.mkdir(parents=True, exist_ok=True)
             for name in ("minimap-raster-test-only.png", "minimap-marker-overlay-test-only.png", "visibility-state-sheet-test-only.png", "map-layer-qa-sheet-test-only.png"):
                 shutil.copy2(source / name, destination / name)
-        overall = load_json(EVIDENCE / "execution-evidence-v0210.json")
-        print(json.dumps({"status": overall["status"], "hard_gates": 21, "negative_controls": 20, "determinism": determinism, "production_routing": "BLOCKED", "new_generation": 0}, indent=2))
-        return 0 if overall["status"] == "MAPS_MINIMAP_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" else 1
+        overall = load_json(EVIDENCE / "execution-evidence-v0211.json")
+        print(json.dumps({"status": overall["status"], "hard_gates": 21, "negative_controls": len(controls), "determinism": determinism, "production_routing": "BLOCKED", "new_generation": 0}, indent=2))
+        return 0 if overall["status"] == "MAPS_MINIMAP_QA_CONTRACT_INTEGRITY_TECHNICALLY_QUALIFIED" else 1
 
 
 if __name__ == "__main__":

@@ -34,11 +34,11 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.21.0 maps/minimap state consistency
+      - name: Active v0.21.1 maps/minimap state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0210.py
-      - name: Maps/minimap v0.21.0 runtime foundation and negative controls
+        run: python scripts/validation/validate_state_consistency_v0211.py
+      - name: Maps/minimap v0.21.1 QA contract correction and negative controls
         env:
           PYTHONPATH: src
         run: python scripts/validation/run_maps_minimap_runtime_v0210.py

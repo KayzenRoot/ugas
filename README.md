@@ -1,6 +1,6 @@
-# UGAS 0.20.3
+# UGAS 0.21.1
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release v0.20.3 corrige a integridade de QA/governança do runtime ENVIRONMENT_TILESETS: validação semântica compartilhada para candidatos de produção, controles negativos reais, matriz/máscara e origem fail-closed, autoridade histórica fixa no Git e resumos derivados dos resultados; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção. O v0.19.1 Items/Props permanece a release aprovada anterior no merge `93293d21f301e6d64232a992eb92533db9741118`; v0.20.2 permanece rejeitado como histórico de correção.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.21.1 corrige a integridade QA/contrato do runtime MAPS_MINIMAP: registro de produção observado e vazio, cache ligado ao hash real do mapa, transformação canônica de origem/orientação, propriedade de célula para props e preservação histórica fail-closed; mantém o dashboard Dockerizado always-on/read-only/local e não habilita produção. O v0.20.3 Environment/Tilesets permanece a base aprovada e o v0.21.0 é histórico rejeitado.
 
 O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o piloto aprovado de RUN_FRONT_V1. O v0.15.0, v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. Nenhum piloto equivale a aprovação de produção.
 
@@ -30,7 +30,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.20.3.md](REVIEW-v0.20.3.md). O v0.20.2 permanece imutável como candidato rejeitado; `environment_tilesets` é a capacidade ativa; o runtime SAM2, o bundle MediaPipe e os checkpoints históricos são externos; nenhum peso é distribuído com o repositório. A cobertura ambiental real é `NONE` e o fixture é `TEST_ONLY`.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.21.1.md](REVIEW-v0.21.1.md). O v0.21.0 permanece imutável como candidato rejeitado; `maps_minimap` é a capacidade ativa; nenhum peso é distribuído com o repositório. A cobertura real de mapas/minimaps é `NONE` e os fixtures são `TEST_ONLY`.
 
 ## v0.20.1 ENVIRONMENT_TILESETS QA integrity correction
 
@@ -106,6 +106,6 @@ O v0.11.2 mantém a camada genérica `motion_tracks[]`, restaura os valores visu
 ## v0.10.0 reusable action runtime (historical)
 
 The v0.10.0 historical release added optional hash-bound `event_markers[]` and generic loop/non-loop lifecycle semantics for `attack-front-v1`, a deterministic source-only 10-frame front sword action over the approved R4 cutout rig. Its evidence remains under `docs/evidence/animation-runtime-v0100/`; the active release is v0.12.1.
-# Current governed slice: v0.21.0 MAPS_MINIMAP
+# Historical v0.21.0 MAPS_MINIMAP foundation
 
-The active runtime foundation is the TEST_ONLY maps/minimap slice. It is technically qualified for external review only: real map/minimap asset coverage is `NONE`, production routing is `BLOCKED`, and the v0.21.0 PR must remain open and unmerged until external approval.
+The v0.21.0 runtime foundation is preserved as `CORRECTION_REQUIRED` history. The active v0.21.1 correction is the TEST_ONLY maps/minimap slice; real map/minimap asset coverage is `NONE`, production routing is `BLOCKED`, and PR #11 must remain open and unmerged until external approval.

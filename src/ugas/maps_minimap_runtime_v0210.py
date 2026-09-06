@@ -11,14 +11,14 @@ from copy import deepcopy
 from dataclasses import dataclass
 import hashlib
 import json
-from math import hypot
+from math import floor, isfinite
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 from PIL import Image, ImageDraw
 
 
-SCHEMA_VERSION = "0.21.0"
+SCHEMA_VERSION = "0.21.1"
 ENVIRONMENT_AUTHORITY_VERSION = "v0.20.3"
 ITEM_PROP_AUTHORITY_VERSION = "v0.19.1"
 REGISTRY_TEST_ONLY = "TEST_ONLY"
@@ -266,7 +266,13 @@ def _validate_environment_ref(ref: Mapping[str, Any], authority: Mapping[str, An
     _require(ref.get("content_revision") == variant.get("content_revision"), "ENVIRONMENT_CONTENT_REVISION_MISMATCH", str(ref))
 
 
-def _validate_prop_ref(ref: Mapping[str, Any], authority: Mapping[str, Any]) -> None:
+def _validate_prop_ref(
+    ref: Mapping[str, Any],
+    authority: Mapping[str, Any],
+    *,
+    map_document: Mapping[str, Any],
+    owner_cell: tuple[int, int],
+) -> None:
     _require(isinstance(ref, Mapping), "ITEM_PROP_REF_INVALID", str(ref))
     for key in ("item_or_prop_id", "variant_id", "variant_revision", "placement"):
         _require(key in ref, "ITEM_PROP_REF_INVALID", str(ref))
@@ -280,6 +286,13 @@ def _validate_prop_ref(ref: Mapping[str, Any], authority: Mapping[str, Any]) -> 
     _require(isinstance(placement, Mapping), "ITEM_PROP_PLACEMENT_INVALID", str(ref))
     _require(isinstance(placement.get("x"), (int, float)) and isinstance(placement.get("y"), (int, float)), "ITEM_PROP_PLACEMENT_INVALID", str(ref))
     _require(isinstance(placement.get("rotation_degrees"), (int, float)) and isinstance(placement.get("scale"), (int, float)) and placement.get("scale") > 0, "ITEM_PROP_PLACEMENT_INVALID", str(ref))
+    _require(isfinite(float(placement["x"])) and isfinite(float(placement["y"])), "ITEM_PROP_PLACEMENT_INVALID", str(ref))
+    _coordinate_transform(map_document)
+    placement_x, placement_y = float(placement["x"]), float(placement["y"])
+    width, height = map_document["width_tiles"], map_document["height_tiles"]
+    _require(0.0 <= placement_x < width and 0.0 <= placement_y < height, "ITEM_PROP_PLACEMENT_OUT_OF_BOUNDS", str(ref))
+    containing_cell = (floor(placement_x), floor(placement_y))
+    _require(containing_cell == owner_cell, "ITEM_PROP_PLACEMENT_WRONG_OWNING_CELL", str(ref))
 
 
 def _validate_bounds(x: int, y: int, width: int, height: int, rejection_class: str) -> None:
@@ -315,13 +328,38 @@ def validate_markers(map_document: Mapping[str, Any]) -> None:
         _require(set(marker) <= {"marker_id", "marker_class", "x", "y", "label"}, "MARKER_PAYLOAD_FORBIDDEN", marker["marker_id"])
 
 
+def _coordinate_transform(map_document: Mapping[str, Any]) -> tuple[float, float]:
+    origin = map_document.get("coordinate_origin")
+    orientation = map_document.get("grid_orientation")
+    _require(origin in {"TOP_LEFT", "CENTER"}, "MAP_ORIGIN_INVALID", str(origin))
+    _require(orientation in {"Y_DOWN", "Y_UP"}, "MAP_ORIENTATION_INVALID", str(orientation))
+    projection = map_document.get("minimap", {}).get("projection", {})
+    _require(projection.get("origin") == origin, "MINIMAP_ORIGIN_SEMANTICS_INVALID", str(projection))
+    _require(projection.get("grid_orientation") == orientation, "MINIMAP_ORIENTATION_SEMANTICS_INVALID", str(projection))
+    return (0.5 if origin == "CENTER" else 0.0), (1.0 if orientation == "Y_DOWN" else -1.0)
+
+
+def _grid_to_projection_space(x: float, y: float, map_document: Mapping[str, Any]) -> tuple[float, float]:
+    offset, direction = _coordinate_transform(map_document)
+    return x + offset, (y + offset) * direction
+
+
 def _projection_parameters(map_document: Mapping[str, Any]) -> dict[str, float]:
     projection = map_document["minimap"]["projection"]
     width_px, height_px = map_document["minimap"]["width_px"], map_document["minimap"]["height_px"]
     padding = projection["padding_px"]
     inner_width, inner_height = width_px - 2 * padding, height_px - 2 * padding
-    scale = min(inner_width / map_document["width_tiles"], inner_height / map_document["height_tiles"])
-    return {"scale": scale, "offset_x": padding + (inner_width - scale * map_document["width_tiles"]) / 2.0, "offset_y": padding + (inner_height - scale * map_document["height_tiles"]) / 2.0}
+    left, top = _grid_to_projection_space(0.0, 0.0, map_document)
+    right, bottom = _grid_to_projection_space(float(map_document["width_tiles"]), float(map_document["height_tiles"]), map_document)
+    min_x, max_x = min(left, right), max(left, right)
+    min_y, max_y = min(top, bottom), max(top, bottom)
+    map_width, map_height = max_x - min_x, max_y - min_y
+    scale = min(inner_width / map_width, inner_height / map_height)
+    return {
+        "scale": scale,
+        "offset_x": padding + (inner_width - scale * map_width) / 2.0 - min_x * scale,
+        "offset_y": padding + (inner_height - scale * map_height) / 2.0 - min_y * scale,
+    }
 
 
 def map_to_minimap(point: Mapping[str, Any], map_document: Mapping[str, Any]) -> tuple[float, float]:
@@ -330,14 +368,17 @@ def map_to_minimap(point: Mapping[str, Any], map_document: Mapping[str, Any]) ->
     _require(isinstance(x, (int, float)) and isinstance(y, (int, float)), "MAP_POINT_INVALID", str(point))
     _require(0 <= x <= map_document["width_tiles"] and 0 <= y <= map_document["height_tiles"], "MAP_POINT_OUT_OF_BOUNDS", str(point))
     params = _projection_parameters(map_document)
-    return params["offset_x"] + float(x) * params["scale"], params["offset_y"] + float(y) * params["scale"]
+    projection_x, projection_y = _grid_to_projection_space(float(x), float(y), map_document)
+    return params["offset_x"] + projection_x * params["scale"], params["offset_y"] + projection_y * params["scale"]
 
 
 def minimap_to_map(point: Mapping[str, Any], map_document: Mapping[str, Any]) -> tuple[float, float]:
     x, y = point.get("x"), point.get("y")
     _require(isinstance(x, (int, float)) and isinstance(y, (int, float)), "MINIMAP_POINT_INVALID", str(point))
     params = _projection_parameters(map_document)
-    map_x, map_y = (float(x) - params["offset_x"]) / params["scale"], (float(y) - params["offset_y"]) / params["scale"]
+    projection_x, projection_y = (float(x) - params["offset_x"]) / params["scale"], (float(y) - params["offset_y"]) / params["scale"]
+    offset, direction = _coordinate_transform(map_document)
+    map_x, map_y = projection_x - offset, projection_y / direction - offset
     _require(0 <= map_x <= map_document["width_tiles"] and 0 <= map_y <= map_document["height_tiles"], "MINIMAP_POINT_OUT_OF_BOUNDS", str(point))
     return map_x, map_y
 
@@ -405,7 +446,7 @@ def validate_map_document(
         prop_refs = layer_values["props"]
         _require(isinstance(prop_refs, list), "PROPS_LAYER_INVALID", str(coordinate))
         for ref in prop_refs:
-            _validate_prop_ref(ref, items_props_authority)
+            _validate_prop_ref(ref, items_props_authority, map_document=map_document, owner_cell=(x, y))
         _require(layer_values["markers"] == [], "CELL_MARKER_OWNERSHIP_INVALID", str(coordinate))
     expected = {(x, y) for y in range(map_document["height_tiles"]) for x in range(map_document["width_tiles"])}
     _require(set(coordinates) == expected, "MAP_CELL_COVERAGE_INVALID", str((len(coordinates), len(expected))))
@@ -420,7 +461,7 @@ def validate_map_document(
     _positive_int(projection.get("padding_px"), "MINIMAP_PROJECTION_INVALID", "padding_px")
     _require(projection.get("origin") == map_document.get("coordinate_origin") and projection.get("grid_orientation") == map_document.get("grid_orientation"), "MINIMAP_PROJECTION_INVALID", "origin/orientation mismatch")
     _require(projection.get("aspect_fit") == "CONTAIN", "MINIMAP_PROJECTION_INVALID", str(projection))
-    _require(projection.get("renderer_revision") == "minimap-renderer-v0210-r1", "MINIMAP_RENDERER_REVISION_INVALID", str(projection.get("renderer_revision")))
+    _require(projection.get("renderer_revision") == "minimap-renderer-v0211-r1", "MINIMAP_RENDERER_REVISION_INVALID", str(projection.get("renderer_revision")))
     validate_visibility(map_document)
     _require(map_document.get("provenance", {}).get("map_hash") == map_manifest_hash(map_document), "MAP_PROVENANCE_HASH_MISMATCH", str(map_document.get("map_id")))
     return {"status": "MAP_DOCUMENT_VALID", "map_id": map_document["map_id"], "map_hash": map_manifest_hash(map_document), "cell_count": len(cells), "marker_count": len(map_document["markers"])}
@@ -465,7 +506,7 @@ def visibility_state_hash(map_document: Mapping[str, Any]) -> str:
 
 
 def map_cache_key(map_document: Mapping[str, Any], chunk_x: int, chunk_y: int, *, registry_mode: str = REGISTRY_TEST_ONLY) -> str:
-    return source_hash({"kind": "map", "map_id": map_document["map_id"], "map_revision": map_document["map_revision"], "chunk": [chunk_x, chunk_y], "chunk_size": [map_document["chunk_width_tiles"], map_document["chunk_height_tiles"]], "environment_authority_revision": map_document["environment_authority"]["authority_revision"], "prop_authority_revision": map_document["items_props_authority"]["source_revision"], "registry_mode": registry_mode})
+    return source_hash({"kind": "map", "map_id": map_document["map_id"], "map_revision": map_document["map_revision"], "map_hash": map_manifest_hash(map_document), "chunk": [chunk_x, chunk_y], "chunk_size": [map_document["chunk_width_tiles"], map_document["chunk_height_tiles"]], "environment_authority_revision": map_document["environment_authority"]["authority_revision"], "prop_authority_revision": map_document["items_props_authority"]["source_revision"], "registry_mode": registry_mode})
 
 
 def minimap_cache_key(map_document: Mapping[str, Any]) -> str:
@@ -536,6 +577,15 @@ class MapRegistry:
 
     def cache_stats(self) -> dict[str, int]:
         return {"entries": len(self._entries)}
+
+    def snapshot(self) -> dict[str, Any]:
+        records = [{"map_id": map_id, "map_hash": map_manifest_hash(document)} for map_id, document in sorted(self._entries.items())]
+        return {
+            "registry_mode": REGISTRY_PRODUCTION if self.production else REGISTRY_TEST_ONLY,
+            "production_routing": self.production_routing,
+            "entry_count": len(records),
+            "entries": records,
+        }
 
     @property
     def entries(self) -> list[Mapping[str, Any]]:

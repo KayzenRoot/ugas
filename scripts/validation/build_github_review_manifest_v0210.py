@@ -1,4 +1,4 @@
-"""Build the bounded GitHub-native v0.21.0 review manifest."""
+"""Build the bounded GitHub-native v0.21.1 review manifest."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from pathlib import Path
 import subprocess
 
 
-EVIDENCE = "docs/evidence/maps-minimap-runtime-v0210"
+EVIDENCE = "docs/evidence/maps-minimap-runtime-v0211"
 
 
 def _load(path: Path) -> dict:
@@ -24,9 +24,9 @@ def build(args: argparse.Namespace) -> dict:
     state = _load(root / "docs/evidence/current-state.json")
     gates = _load(Path(args.gates_json)).get("gates", {})
     changed = [line for line in _git(["diff", "--name-only", f"{args.base_ref}..{args.head_ref}"], root).splitlines() if line]
-    evidence = {name: f"{EVIDENCE}/{name}" for name in ("map-contract-v0210.json", "environment-authority-bindings-v0210.json", "items-props-authority-bindings-v0210.json", "layer-cell-matrix-v0210.json", "chunk-partition-roundtrip-v0210.json", "regions-zones-v0210.json", "marker-contract-v0210.json", "minimap-projection-v0210.json", "visibility-state-qa-v0210.json", "cache-identity-v0210.json", "provenance-v0210.json", "hard-gates-v0210.json", "gate-specific-proof-v0210.json", "negative-controls-v0210.json", "full-slice-two-run-determinism-v0210.json", "production-registry-v0210.json", "test-only-fixture-manifest-v0210.json", "execution-evidence-v0210.json")}
+    evidence = {name: f"{EVIDENCE}/{name}" for name in ("map-contract-v0211.json", "environment-authority-bindings-v0211.json", "items-props-authority-bindings-v0211.json", "layer-cell-matrix-v0211.json", "chunk-partition-roundtrip-v0211.json", "regions-zones-v0211.json", "marker-contract-v0211.json", "minimap-projection-v0211.json", "visibility-state-qa-v0211.json", "cache-identity-v0211.json", "provenance-v0211.json", "hard-gates-v0211.json", "gate-specific-proof-v0211.json", "negative-controls-v0211.json", "full-slice-two-run-determinism-v0211.json", "production-registry-v0211.json", "historical-immutability-v0211.json", "test-only-fixture-manifest-v0211.json", "execution-evidence-v0211.json")}
     return {
-        "schema_version": "0.21.0", "manifest_type": "github-ci-maps-minimap-v0210-review",
+        "schema_version": "0.21.1", "manifest_type": "github-ci-maps-minimap-v0211-review",
         "repository": {"name": "KayzenRoot/ugas", "url": "https://github.com/KayzenRoot/ugas", "default_branch": "main"},
         "pull_request": {"number": int(args.pr_number), "base_sha": args.base_ref, "head_sha": args.head_ref, "merge_base_sha": args.base_ref, "head_branch": args.head_branch, "base_branch": "main"},
         "scope": {"version": state["version"], "phase": state["phase"], "current_gate": state["current_gate"], "allowed_next_actions": state["allowed_next_actions"], "new_generation": state["new_generation"]},
@@ -47,8 +47,8 @@ def main() -> int:
     parser.add_argument("--output-dir", required=True); parser.add_argument("--repository-root", default="."); parser.add_argument("--base-ref", required=True); parser.add_argument("--head-ref", required=True); parser.add_argument("--head-branch", required=True); parser.add_argument("--pr-number", required=True, type=int); parser.add_argument("--tests-json", required=True); parser.add_argument("--validation-json", required=True); parser.add_argument("--gates-json", required=True)
     args = parser.parse_args(); output = Path(args.output_dir); output.mkdir(parents=True, exist_ok=True)
     value = build(args)
-    (output / "github-review-manifest-v0210.json").write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(json.dumps({"status": "V0210_GITHUB_REVIEW_MANIFEST_BUILT", "base_sha": args.base_ref, "head_sha": args.head_ref, "pr_number": args.pr_number}))
+    (output / "github-review-manifest-v0211.json").write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(json.dumps({"status": "V0211_GITHUB_REVIEW_MANIFEST_BUILT", "base_sha": args.base_ref, "head_sha": args.head_ref, "pr_number": args.pr_number}))
     return 0
 
 

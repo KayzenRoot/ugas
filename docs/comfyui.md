@@ -6,9 +6,9 @@ The active v0.18.1 slice is `CREATURES_MONSTERS` runtime QA integrity. No ComfyU
 
 The active v0.18.0 slice is `CREATURES_MONSTERS` runtime foundation. No ComfyUI/SAM2/diffusion generation is authorized; synthetic creature fixtures are `TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and real creature coverage is `NONE`.
 
-# ComfyUI integration notes - UGAS v0.20.3
+# ComfyUI integration notes - UGAS v0.21.1
 
-The active v0.20.3 slice is the environment/tilesets QA/governance integrity correction, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. Tile fixtures are deterministic synthetic TEST_ONLY only; the production registry is empty and real environment coverage is `NONE`. v0.20.2, v0.20.1 and v0.20.0 are immutable `CORRECTION_REQUIRED` history. v0.19.1 Items/Props, v0.18.2 Creatures/Monsters, v0.17.1 Equipment and v0.16.2 Direction remain approved foundation history. Maps/Minimap and downstream asset families remain out of scope until external review.
+The active v0.21.1 slice is the Maps/Minimap QA contract correction, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. Map/minimap fixtures are deterministic synthetic TEST_ONLY only; the observed production registry is empty and real map/minimap coverage is `NONE`. v0.21.0 is immutable `CORRECTION_REQUIRED` history; v0.20.3 Environment/Tilesets and earlier approved foundations remain historical. UI, VFX, orchestration and downstream asset families remain out of scope until external review.
 
 The active release is v0.12.3. The historical v0.12.2 Dockerized local observability dashboard probes the host ComfyUI endpoint read-only at `http://host.docker.internal:8188`, exposes endpoint health with checked_at/reason and preserves stale-last-known data after timeout; it never starts generation. The v0.12.0 and v0.12.1 dashboards remain rejected history. The deterministic QA-integrity/scope-recovery cutout-rig lane from v0.11.2 remains historical. The v0.8.0/v0.7.3/v0.9.0/v0.9.1/v0.10.0/v0.11.0 structural and runtime/model/custom-node records below remain historical; v0.11.1 remains rejected history.
 
@@ -24,6 +24,6 @@ O recheck histórico foi end-to-end: prompt, polling de history, output, BiRefNe
 ## v0.11.2 boundary
 
 The v0.11.2 animation runtime performs no ComfyUI generation. `comfyui_generation_jobs=0`, `sam2_runs=0`, `new_generation=0`, and `diffusion_runs=0`; the source-only cutout runtime is the qualified lane for this slice. `motion_tracks` and `key_pose_bindings` are restored byte-for-byte at semantic level from v0.11.0, QA thresholds are consumed from the declared profile, attack-v1 comparison is fail-closed, and relational weapon gates are evidenced. The package gate is `decision=QUALIFIED`, external attack-front-v2 review remains required, and production routing is blocked.
-# v0.21.0 governance note
+# v0.21.1 governance note
 
-The active v0.21.0 MAPS_MINIMAP slice is TEST_ONLY and does not authorize generation or production routing through ComfyUI.
+The active v0.21.1 MAPS_MINIMAP correction is TEST_ONLY and does not authorize generation or production routing through ComfyUI.

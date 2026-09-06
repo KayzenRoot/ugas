@@ -18,6 +18,7 @@ from ugas.maps_minimap_runtime_v0210 import (
     cell_to_chunk,
     chunk_to_cell,
     compare_generated_outputs,
+    map_cache_key,
     map_manifest_hash,
     map_to_minimap,
     minimap_cache_key,
@@ -74,6 +75,20 @@ class MapsMinimapRuntimeV0210Tests(unittest.TestCase):
             self.assertAlmostEqual(point["x"], recovered[0], places=9)
             self.assertAlmostEqual(point["y"], recovered[1], places=9)
 
+    def test_center_y_up_projection_inverse_roundtrip(self) -> None:
+        beta = make_map("unit-map-beta", "unit-r1", 7, 4, 3, 2, load_json(ENVIRONMENT_MANIFEST), self.env_authority, self.prop_authority, coordinate_origin="CENTER", grid_orientation="Y_UP")
+        for point in ({"x": 0.5, "y": 0.5}, {"x": 6.5, "y": 3.5}):
+            projected = map_to_minimap(point, beta)
+            recovered = minimap_to_map({"x": projected[0], "y": projected[1]}, beta)
+            self.assertAlmostEqual(point["x"], recovered[0], places=9)
+            self.assertAlmostEqual(point["y"], recovered[1], places=9)
+
+    def test_projection_rejects_broken_origin_semantics(self) -> None:
+        broken = deepcopy(self.map)
+        broken["minimap"]["projection"]["origin"] = "CENTER"
+        with self.assertRaisesRegex(MapsMinimapContractError, "MINIMAP_ORIGIN_SEMANTICS_INVALID"):
+            map_to_minimap({"x": 0.5, "y": 0.5}, broken)
+
     def test_projection_rejects_outside_minimap(self) -> None:
         with self.assertRaisesRegex(MapsMinimapContractError, "MINIMAP_POINT_OUT_OF_BOUNDS"):
             minimap_to_map({"x": -1, "y": 0}, self.map)
@@ -100,6 +115,18 @@ class MapsMinimapRuntimeV0210Tests(unittest.TestCase):
         changed = deepcopy(self.map)
         changed["minimap"]["projection"]["renderer_revision"] = "different"
         self.assertNotEqual(key, minimap_cache_key(changed))
+
+    def test_map_cache_key_changes_for_same_id_revision_changed_content(self) -> None:
+        original = map_cache_key(self.map, 0, 0)
+        changed = deepcopy(self.map)
+        changed["cells"][0]["occupancy"]["occupied"] = not changed["cells"][0]["occupancy"]["occupied"]
+        changed["provenance"]["map_hash"] = map_manifest_hash(changed)
+        self.assertNotEqual(original, map_cache_key(changed, 0, 0))
+
+    def test_production_snapshot_is_observed_empty(self) -> None:
+        registry = MapRegistry(production=True, environment_authority=self.env_authority, items_props_authority=self.prop_authority)
+        self.assertEqual(registry.snapshot()["entry_count"], 0)
+        self.assertEqual(registry.snapshot()["entries"], [])
 
     def test_production_registry_rejects_test_fixture(self) -> None:
         registry = MapRegistry(production=True, environment_authority=self.env_authority, items_props_authority=self.prop_authority)
