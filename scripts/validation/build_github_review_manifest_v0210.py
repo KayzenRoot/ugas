@@ -38,7 +38,7 @@ def build(args: argparse.Namespace) -> dict:
         "historical_regressions": {"environment_v0203": "docs/evidence/environment-tilesets-runtime-v0203/", "items_props_v0191": "docs/evidence/items-props-runtime-v0191/", "creatures_v0182": "docs/evidence/creatures-monsters-runtime-v0182/", "equipment_v0171": "docs/evidence/equipment-outfits-runtime-v0171/", "direction_v0162": "docs/evidence/multi-direction-runtime-v0162/"},
         "production_boundary": {"approved": False, "routing": "BLOCKED", "new_generation": 0, "real_map_asset_coverage": "NONE", "real_minimap_asset_coverage": "NONE", "synthetic_map_fixture": "TEST_ONLY"},
         "security_boundary": {"secrets_included": False, "model_weights_included": False, "telemetry_db_included": False, "local_credentials_included": False},
-        "review_boundary": {"external_review_required": True, "do_not_merge": True, "merge_authorization": "NOT_AUTHORIZED", "production_map_art_started": False, "production_minimap_art_started": False},
+        "review_boundary": {"external_review_required": True, "do_not_merge": True, "merge_authorization": "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF", "production_map_art_started": False, "production_minimap_art_started": False},
     }
 
 
