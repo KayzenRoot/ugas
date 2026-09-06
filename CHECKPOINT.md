@@ -1,6 +1,12 @@
-# UGAS checkpoint - v0.21.2 MAPS_MINIMAP raster/governance correction
+# UGAS checkpoint - v0.21.3 MAPS_MINIMAP historical byte integrity correction
 
-## v0.21.2 MAPS_MINIMAP — raster + governance integrity / external review handoff
+## v0.21.3 MAPS_MINIMAP - historical byte integrity / external review handoff
+
+`version=0.21.3`; `phase=MAPS_MINIMAP`; `current_gate=MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED`; `environment_tilesets=APPROVED_FOUNDATION`; `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `real_map_asset_coverage=NONE`; `real_minimap_asset_coverage=NONE`; `synthetic_map_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_maps_minimap_v0213]`; `next_capability_started=false`. The v0.21.2 reviewed head `b80f30074374c539e008ce160846848f1c171d9a` is frozen `CORRECTION_REQUIRED` history; its evidence under `docs/evidence/maps-minimap-runtime-v0212/` is unchanged. The v0.21.3 evidence under `docs/evidence/maps-minimap-runtime-v0213/` proves raw Git-object byte identity, the real authority blob SHA `6a44fb35ab99ffc87fc852fab9d65bfb1b5dc608`, explicit candidate blob provenance, real CRLF-only and append mutation rejection, and two-run determinism. Stop with existing PR #11 OPEN and unmerged after exact-head CI and bounded artifact evidence; do not enable production, generate real map/minimap art or start UI/VFX/orchestration.
+
+# Historical UGAS checkpoint - v0.21.2 MAPS_MINIMAP raster/governance correction
+
+## Historical v0.21.2 MAPS_MINIMAP - raster + governance integrity / correction required
 
 `version=0.21.2`; `phase=MAPS_MINIMAP`; `current_gate=MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED`; `environment_tilesets=APPROVED_FOUNDATION`; `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`; `real_map_asset_coverage=NONE`; `real_minimap_asset_coverage=NONE`; `synthetic_map_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `allowed_next_actions=[external_review_maps_minimap_v0212]`; `next_capability_started=false`. The v0.21.1 reviewed head `cfde03cce2e31cc688f9d94a659b577042b8538a` is frozen `CORRECTION_REQUIRED` history; the v0.20.3 foundation remains bound to protected merge `0bf04cb92e8619ea10cf82af8dbf2d9abe599e05`. The v0.21.2 evidence under `docs/evidence/maps-minimap-runtime-v0212/` records 22 hard gates, 29 semantic negative controls, direct F-06/F-07/F-08 correction proof, historical mutation rejection and two-run determinism. Stop with existing PR #11 OPEN and unmerged after exact-head CI and bounded artifact evidence; do not enable production, generate real map/minimap art or start UI/VFX/orchestration.
 

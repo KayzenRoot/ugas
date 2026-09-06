@@ -18,7 +18,7 @@ from typing import Any, Iterable, Mapping, Sequence
 from PIL import Image, ImageDraw
 
 
-SCHEMA_VERSION = "0.21.2"
+SCHEMA_VERSION = "0.21.3"
 ENVIRONMENT_AUTHORITY_VERSION = "v0.20.3"
 ITEM_PROP_AUTHORITY_VERSION = "v0.19.1"
 REGISTRY_TEST_ONLY = "TEST_ONLY"
@@ -418,17 +418,43 @@ def validate_raster_cell_geometry(map_document: Mapping[str, Any], geometry: Map
     return {"status": "MINIMAP_RASTER_CELL_GEOMETRY_VALID", "cell": expected["cell"], "pixel_rect": expected["pixel_rect"], "pixel_area": expected["pixel_width"] * expected["pixel_height"]}
 
 
-def validate_historical_authority(candidate: bytes | Path, authority_bytes: bytes, *, authority_ref: str, authority_blob: str, candidate_sha256: str | None = None) -> dict[str, Any]:
-    """Validate a candidate historical file against one immutable authority blob."""
+def validate_historical_authority(
+    candidate: bytes | Path,
+    authority_bytes: bytes,
+    *,
+    authority_ref: str,
+    authority_blob: str,
+    candidate_blob: str,
+    authority_commit_sha: str,
+    candidate_commit_sha: str,
+    candidate_sha256: str | None = None,
+) -> dict[str, Any]:
+    """Validate raw candidate bytes against one immutable Git-object authority.
+
+    A Path is accepted only as a source of raw bytes.  The caller must supply
+    the Git blob SHA for the candidate and authority; the working-tree path
+    never substitutes for Git-object identity and no newline normalization is
+    permitted.
+    """
 
     raw_candidate_bytes = candidate.read_bytes() if isinstance(candidate, Path) else candidate
-    candidate_bytes = raw_candidate_bytes.replace(b"\r\n", b"\n") if isinstance(candidate, Path) else raw_candidate_bytes
-    _require(isinstance(candidate_bytes, bytes) and isinstance(authority_bytes, bytes), "HISTORICAL_EVIDENCE_INPUT_INVALID", type(candidate_bytes).__name__)
-    observed_hash = sha256_bytes(candidate_bytes)
+    _require(isinstance(raw_candidate_bytes, bytes) and isinstance(authority_bytes, bytes), "HISTORICAL_EVIDENCE_INPUT_INVALID", type(raw_candidate_bytes).__name__)
+    observed_hash = sha256_bytes(raw_candidate_bytes)
     authority_hash = sha256_bytes(authority_bytes)
     _require(candidate_sha256 is None or candidate_sha256 == observed_hash, "HISTORICAL_EVIDENCE_HASH_INVALID", observed_hash)
-    _require(candidate_bytes == authority_bytes, "HISTORICAL_EVIDENCE_MUTATION_REJECTED", f"{authority_ref}:{authority_blob}:{observed_hash}")
-    return {"status": "HISTORICAL_EVIDENCE_AUTHORITY_VALID", "authority_ref": authority_ref, "authority_blob": authority_blob, "authority_sha256": authority_hash, "observed_sha256": observed_hash, "observed_raw_sha256": sha256_bytes(raw_candidate_bytes), "byte_identical": True}
+    _require(isinstance(authority_blob, str) and isinstance(candidate_blob, str) and candidate_blob == authority_blob, "HISTORICAL_EVIDENCE_MUTATION_REJECTED", f"{authority_ref}:{authority_blob}:{candidate_blob}")
+    _require(raw_candidate_bytes == authority_bytes, "HISTORICAL_EVIDENCE_MUTATION_REJECTED", f"{authority_ref}:{authority_blob}:{observed_hash}")
+    return {
+        "status": "HISTORICAL_EVIDENCE_AUTHORITY_VALID",
+        "authority_ref": authority_ref,
+        "authority_commit_sha": authority_commit_sha,
+        "authority_blob_sha": authority_blob,
+        "candidate_commit_sha": candidate_commit_sha,
+        "candidate_blob_sha": candidate_blob,
+        "authority_sha256": authority_hash,
+        "candidate_sha256": observed_hash,
+        "byte_identical": True,
+    }
 
 
 def validate_visibility(map_document: Mapping[str, Any]) -> None:
@@ -509,7 +535,7 @@ def validate_map_document(
     _positive_int(projection.get("padding_px"), "MINIMAP_PROJECTION_INVALID", "padding_px")
     _require(projection.get("origin") == map_document.get("coordinate_origin") and projection.get("grid_orientation") == map_document.get("grid_orientation"), "MINIMAP_PROJECTION_INVALID", "origin/orientation mismatch")
     _require(projection.get("aspect_fit") == "CONTAIN", "MINIMAP_PROJECTION_INVALID", str(projection))
-    _require(projection.get("renderer_revision") == "minimap-renderer-v0212-r1", "MINIMAP_RENDERER_REVISION_INVALID", str(projection.get("renderer_revision")))
+    _require(projection.get("renderer_revision") == "minimap-renderer-v0213-r1", "MINIMAP_RENDERER_REVISION_INVALID", str(projection.get("renderer_revision")))
     validate_visibility(map_document)
     _require(map_document.get("provenance", {}).get("map_hash") == map_manifest_hash(map_document), "MAP_PROVENANCE_HASH_MISMATCH", str(map_document.get("map_id")))
     return {"status": "MAP_DOCUMENT_VALID", "map_id": map_document["map_id"], "map_hash": map_manifest_hash(map_document), "cell_count": len(cells), "marker_count": len(map_document["markers"])}

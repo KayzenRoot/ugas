@@ -2,7 +2,11 @@
 
 The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
 
-# 2D master pipeline v0.21.1
+# 2D master pipeline v0.21.3
+
+The active v0.21.3 slice is the `MAPS_MINIMAP` historical byte-integrity correction over rejected v0.21.2. It preserves the v0.21.2 raster/governance fixes, validates raw Git-object bytes without CRLF/LF normalization, records real authority and candidate blob provenance, and executes CRLF-only plus append mutation controls through the same validator. `environment_tilesets=APPROVED_FOUNDATION`, `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_map_asset_coverage=NONE`, `real_minimap_asset_coverage=NONE`, `synthetic_map_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; UI, VFX, orchestration and production art remain out of scope. v0.21.2 remains immutable `CORRECTION_REQUIRED` history.
+
+## Historical v0.21.2 boundary
 
 The active v0.21.1 slice is the `MAPS_MINIMAP` QA contract integrity correction over rejected v0.21.0. It validates actual production-registry emptiness, content-bound cache identities, canonical origin/orientation projection and inverse semantics, owning-cell prop placement, historical byte preservation and exact negative controls. `environment_tilesets=APPROVED_FOUNDATION`, `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_map_asset_coverage=NONE`, `real_minimap_asset_coverage=NONE`, `synthetic_map_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; UI, VFX, orchestration and production art remain out of scope. v0.21.0 remains immutable `CORRECTION_REQUIRED` history.
 
@@ -35,7 +39,7 @@ The v0.11.0 generic motion-quality and attack-front-v2 evidence is preserved as 
 ## v0.10.0 runtime boundary
 
 The reusable deterministic animation runtime consumes the immutable R4 cutout rig through declarative animation specs. v0.10.0 covers `attack-front-v1` only; generic event markers are validated, ordered, hash-bound, and preserved through compiled manifest, QA, metadata, and package artifacts. Production routing is `BLOCKED`, with `decision=QUALIFIED` and every hard gate literally true required before package creation. Evidence is recorded in `docs/evidence/animation-runtime-v0100/`.
-# v0.21.1 governance note
+# Historical v0.21.1 governance note
 
-The active repository state is the v0.21.1 MAPS_MINIMAP QA correction; this historical pipeline document remains outside that slice's production-art authorization boundary.
+The active repository state is the v0.21.3 MAPS_MINIMAP historical byte-integrity correction; this pipeline document remains outside that slice's production-art authorization boundary.
 # Active governed release: v0.21.2 MAPS/MINIMAP raster + governance correction; production remains BLOCKED and real map/minimap coverage is NONE.

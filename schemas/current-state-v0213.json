@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active state v0.21.3 maps/minimap raster governance correction",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "current_gate", "allowed_next_actions", "production_approved", "production_routing", "new_generation", "review", "state_consistency"],
+  "properties": {
+    "schema_version": {"const": "0.21.3"},
+    "version": {"const": "0.21.3"},
+    "phase": {"const": "MAPS_MINIMAP"},
+    "current_gate": {"const": "MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED"},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "new_generation": {"const": 0},
+    "allowed_next_actions": {"const": ["external_review_maps_minimap_v0213"]},
+    "maps_minimap_runtime": {"const": "TECHNICALLY_QUALIFIED_FOUNDATION"},
+    "real_map_asset_coverage": {"const": "NONE"},
+    "real_minimap_asset_coverage": {"const": "NONE"},
+    "synthetic_map_fixture": {"const": "TEST_ONLY"}
+  }
+}

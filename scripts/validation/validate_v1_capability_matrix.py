@@ -39,16 +39,16 @@ def main() -> int:
     items = next(item for item in capabilities if item["id"] == "items_props")
     environment = next(item for item in capabilities if item["id"] == "environment_tilesets")
     maps = next(item for item in capabilities if item["id"] == "maps_minimap_assets")
-    if value["version"] not in {"0.20.3", "0.21.0", "0.21.1", "0.21.2"}:
-        failures.append("active-matrix-version-must-be-v0203-v0210-v0211-or-v0212")
+    if value["version"] not in {"0.20.3", "0.21.0", "0.21.1", "0.21.2", "0.21.3"}:
+        failures.append("active-matrix-version-must-be-v0203-v0210-v0211-v0212-or-v0213")
     if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "APPROVED_FOUNDATION" or environment["status"] not in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"} or value["next_candidate"] not in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP"}:
         failures.append("items-props-closure-or-environment-active-state-invalid")
-    if value["version"] in {"0.21.0", "0.21.1", "0.21.2"} and (maps["status"] != "TECHNICALLY_QUALIFIED_FOUNDATION" or value["next_candidate"] != "MAPS_MINIMAP"):
+    if value["version"] in {"0.21.0", "0.21.1", "0.21.2", "0.21.3"} and (maps["status"] != "TECHNICALLY_QUALIFIED_FOUNDATION" or value["next_candidate"] != "MAPS_MINIMAP"):
         failures.append("maps-minimap-active-state-invalid")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "version": value["version"], "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "items_props_status": items["status"], "environment_tilesets_status": environment["status"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
-    output = ROOT / "docs/evidence/maps-minimap-runtime-v0212/capability-matrix-validation-v0212.json" if value["version"] == "0.21.2" else (ROOT / "docs/evidence/maps-minimap-runtime-v0211/capability-matrix-validation-v0211.json" if value["version"] == "0.21.1" else ROOT / "docs/evidence/maps-minimap-runtime-v0210/capability-matrix-validation-v0210.json")
+    output = ROOT / "docs/evidence/maps-minimap-runtime-v0213/capability-matrix-validation-v0213.json" if value["version"] == "0.21.3" else (ROOT / "docs/evidence/maps-minimap-runtime-v0212/capability-matrix-validation-v0212.json" if value["version"] == "0.21.2" else (ROOT / "docs/evidence/maps-minimap-runtime-v0211/capability-matrix-validation-v0211.json" if value["version"] == "0.21.1" else ROOT / "docs/evidence/maps-minimap-runtime-v0210/capability-matrix-validation-v0210.json"))
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2, ensure_ascii=False))

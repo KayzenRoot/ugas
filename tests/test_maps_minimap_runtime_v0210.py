@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -28,6 +29,7 @@ from ugas.maps_minimap_runtime_v0210 import (
     minimap_to_map,
     render_minimap_base,
     validate_chunk_partition,
+    validate_historical_authority,
     validate_map_document,
     validate_raster_cell_geometry,
     validate_visibility,
@@ -127,6 +129,52 @@ class MapsMinimapRuntimeV0210Tests(unittest.TestCase):
             self.assertEqual(gates["probe"]["status"], "PASS" if expected_pass else "FAIL")
             self.assertEqual(gates["probe"]["observed"], observed)
             self.assertEqual(gates["probe"]["observed_type"], type(observed).__name__)
+
+    @staticmethod
+    def _git_blob_sha(value: bytes) -> str:
+        header = f"blob {len(value)}\0".encode("ascii")
+        return hashlib.sha1(header + value).hexdigest()
+
+    def test_historical_validator_is_raw_byte_and_blob_exact(self) -> None:
+        authority = b"approved\nline\n"
+        authority_blob = self._git_blob_sha(authority)
+        result = validate_historical_authority(
+            authority,
+            authority,
+            authority_ref="main:historical.json",
+            authority_blob=authority_blob,
+            candidate_blob=authority_blob,
+            authority_commit_sha="main-commit",
+            candidate_commit_sha="head-commit",
+        )
+        self.assertTrue(result["byte_identical"])
+        self.assertEqual(result["authority_blob_sha"], authority_blob)
+        self.assertEqual(result["candidate_blob_sha"], authority_blob)
+        self.assertEqual(result["candidate_sha256"], hashlib.sha256(authority).hexdigest())
+
+        line_ending_mutation = authority.replace(b"\n", b"\r\n")
+        with self.assertRaisesRegex(MapsMinimapContractError, "HISTORICAL_EVIDENCE_MUTATION_REJECTED"):
+            validate_historical_authority(
+                line_ending_mutation,
+                authority,
+                authority_ref="main:historical.json",
+                authority_blob=authority_blob,
+                candidate_blob=self._git_blob_sha(line_ending_mutation),
+                authority_commit_sha="main-commit",
+                candidate_commit_sha="head-commit",
+                candidate_sha256=hashlib.sha256(line_ending_mutation).hexdigest(),
+            )
+
+        with self.assertRaisesRegex(MapsMinimapContractError, "HISTORICAL_EVIDENCE_MUTATION_REJECTED"):
+            validate_historical_authority(
+                authority,
+                authority,
+                authority_ref="main:historical.json",
+                authority_blob=authority_blob,
+                candidate_blob="different-blob",
+                authority_commit_sha="main-commit",
+                candidate_commit_sha="head-commit",
+            )
 
     def test_projection_rejects_broken_origin_semantics(self) -> None:
         broken = deepcopy(self.map)
