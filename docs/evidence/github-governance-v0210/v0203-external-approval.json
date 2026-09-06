@@ -1,0 +1,83 @@
+{
+  "schema_version": "0.21.0",
+  "record_type": "forward_only_external_approval",
+  "approved_increment": "v0.20.3",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 10,
+  "branch": "codex/v0.20.0-environment-tilesets-runtime-foundation",
+  "base_branch": "main",
+  "base_sha": "93293d21f301e6d64232a992eb92533db9741118",
+  "reviewed_runtime_head": "02cb6aa1f6c486f0f1645f33cefe2a6f74cc7f09",
+  "reviewer": "Sol external review",
+  "decision": "APPROVED_FOUNDATION / APPROVED_TO_MERGE",
+  "status": "APPROVED_FOUNDATION",
+  "merge_authorization": "APPROVED_TO_MERGE",
+  "merge_verified_via_protected_path": true,
+  "scope": "v0.20.3 ENVIRONMENT_TILESETS QA GOVERNANCE INTEGRITY",
+  "approval_boundary": {
+    "environment_tilesets": "APPROVED_FOUNDATION",
+    "runtime_qa_governance_only": true,
+    "synthetic_environment_fixture": "TEST_ONLY",
+    "real_environment_asset_coverage": "NONE",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "maps_minimap_assets": "NEXT NECESSARY",
+    "ui_vfx_and_orchestration": "NOT_AUTHORIZED"
+  },
+  "required_contexts": [
+    {
+      "name": "UGAS CI / unit-and-validation",
+      "run_id": 34009378351,
+      "job_id": 101422384707,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/34009378351/job/101422384707"
+    },
+    {
+      "name": "UGAS CI / docker-smoke",
+      "run_id": 34009378351,
+      "job_id": 101422384761,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/34009378351/job/101422384761"
+    },
+    {
+      "name": "UGAS Review / evidence",
+      "run_id": 34009378350,
+      "job_id": 101422384774,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/KayzenRoot/ugas/actions/runs/34009378350/job/101422384774"
+    }
+  ],
+  "artifact": {
+    "name": "ugas-review-evidence-pr-10-02cb6aa1f6c486f0f1645f33cefe2a6f74cc7f09",
+    "id": 9982077908,
+    "digest": "sha256:009b909f702dc3082dc476a8f464173f6e08647c6cd7bc20b0cf42c7cc917750",
+    "run_id": 34009378350,
+    "verified_metadata": true,
+    "expired": false
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "current-state approved-foundation and merge-ready truth",
+      "environment_tilesets APPROVED_FOUNDATION",
+      "maps_minimap_assets NEXT NECESSARY",
+      "forward-only approval and governance evidence",
+      "active capability matrix pointer"
+    ],
+    "forbidden_changes": [
+      "v0.20.3 runtime behavior",
+      "v0.20.3 TEST_ONLY pixels or hashes",
+      "v0.20.3 historical authority bindings",
+      "prior approved evidence",
+      "production routing",
+      "new generation",
+      "maps/minimap runtime implementation before governed merge"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any v0.20.3 runtime or fixture content hash change"
+  }
+}
