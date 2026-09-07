@@ -128,6 +128,7 @@ jobs:
           cp docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
           cp docs/evidence/github-governance-v0220/v0213-post-merge-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
           cp -R docs/evidence/maps-minimap-runtime-v0213/. "$artifact/docs/evidence/maps-minimap-runtime-v0213/" 2>/dev/null || true
+          cp REVIEW-v0.22.3.md "$artifact/REVIEW-v0.22.3.md" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
           cp "$RUNNER_TEMP/governance-v0223.json" "$artifact/governance-v0223.json" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log" 2>/dev/null || true
