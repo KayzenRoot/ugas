@@ -7,10 +7,12 @@
     "schema_version",
     "version",
     "phase",
-    "main_sha",
+    "baseline_main_sha",
     "current_gate",
     "stop_reason",
+    "next_candidate",
     "allowed_next_actions",
+    "ui_start_gate",
     "production_approved",
     "production_routing",
     "new_generation",
@@ -19,14 +21,27 @@
     "closure_review",
     "state_consistency"
   ],
+  "not": {"required": ["main_sha"]},
   "properties": {
     "schema_version": {"const": "0.21.3"},
     "version": {"const": "0.21.3"},
     "phase": {"const": "MAPS_MINIMAP"},
-    "main_sha": {"const": "0c9b721b43d3cc12605ce009f6e0deb232b00045"},
+    "baseline_main_sha": {"const": "0c9b721b43d3cc12605ce009f6e0deb232b00045"},
     "current_gate": {"const": "MAPS_MINIMAP_APPROVED_FOUNDATION_MERGED"},
     "stop_reason": {"const": "MAPS_MINIMAP_CLOSED_UI_NEXT"},
-    "allowed_next_actions": {"const": ["start_ui_asset_family_v0220"]},
+    "next_candidate": {"const": "UI_ASSET_FAMILY"},
+    "allowed_next_actions": {"const": ["resolve_post_merge_closure_gate_pr_12"]},
+    "ui_start_gate": {
+      "type": "object",
+      "required": ["status", "activation_action", "condition", "authority", "requires_pr_number"],
+      "properties": {
+        "status": {"const": "BLOCKED"},
+        "activation_action": {"const": "start_ui_asset_family_v0220"},
+        "condition": {"const": "GITHUB_LIVE_PR_12_EXTERNAL_APPROVAL_AND_MERGED"},
+        "authority": {"const": "GITHUB_LIVE"},
+        "requires_pr_number": {"const": 12}
+      }
+    },
     "production_approved": {"const": false},
     "production_routing": {"const": "BLOCKED"},
     "real_map_asset_coverage": {"const": "NONE"},
@@ -46,7 +61,7 @@
     },
     "closure_review": {
       "type": "object",
-      "required": ["purpose", "repository", "base_sha", "branch", "pr_state", "external_review_required", "do_not_merge", "binding_record"]
+      "required": ["purpose", "repository", "base_sha", "branch", "pr_number", "pr_state", "rejected_reviewed_head", "external_review_required", "do_not_merge", "binding_record", "correction_record"]
     },
     "state_consistency": {"type": "object"}
   }

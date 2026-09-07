@@ -32,8 +32,9 @@ def main() -> int:
         scope = value.get("scope", {})
         post_merge = value.get("manifest_type") == "github-ci-maps-minimap-v0213-post-merge-closure"
         expected_gate = "MAPS_MINIMAP_APPROVED_FOUNDATION_MERGED" if post_merge else "MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED"
-        expected_action = ["start_ui_asset_family_v0220"] if post_merge else ["bookkeeping_reproof_and_governed_merge_pr_11"]
+        expected_action = ["resolve_post_merge_closure_gate_pr_12"] if post_merge else ["bookkeeping_reproof_and_governed_merge_pr_11"]
         if scope.get("version") != "0.21.3" or scope.get("phase") != "MAPS_MINIMAP" or scope.get("current_gate") != expected_gate or scope.get("allowed_next_actions") != expected_action: failures.append("active-scope-invalid")
+        if post_merge and (scope.get("baseline_main_sha") != "0c9b721b43d3cc12605ce009f6e0deb232b00045" or "main_sha" in scope): failures.append("baseline-main-anchor-invalid")
         if value.get("production_boundary") != {"approved": False, "routing": "BLOCKED", "new_generation": 0, "real_map_asset_coverage": "NONE", "real_minimap_asset_coverage": "NONE", "synthetic_map_fixture": "TEST_ONLY"}: failures.append("production-boundary-invalid")
         review = value.get("review_boundary", {})
         expected_authorization = "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL" if post_merge else "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF"

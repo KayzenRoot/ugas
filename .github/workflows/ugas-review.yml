@@ -147,6 +147,7 @@ jobs:
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
           cp docs/evidence/current-state.json "$artifact/state/current-state.json" 2>/dev/null || true
           cp docs/evidence/github-governance-v0220/v0213-post-merge-binding.json "$artifact/governance/v0213-post-merge-binding.json" 2>/dev/null || true
+          cp docs/evidence/github-governance-v0220/v0213-state-truth-correction-v1.json "$artifact/governance/v0213-state-truth-correction-v1.json" 2>/dev/null || true
           cp -R docs/evidence/maps-minimap-runtime-v0213/. "$artifact/maps-minimap/" 2>/dev/null || true
           cp -R docs/evidence/environment-tilesets-runtime-v0203/. "$artifact/environment-tilesets/" 2>/dev/null || true
           cp docs/evidence/items-props-runtime-v0191/execution-evidence-v0191.json "$artifact/items-props/" 2>/dev/null || true
