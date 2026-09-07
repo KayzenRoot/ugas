@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.22.0",
-  "version": "0.22.0",
+  "schema_version": "0.22.1",
+  "version": "0.22.1",
   "phase": "UI_ASSET_FAMILY",
   "baseline_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
   "ui_base_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
@@ -17,13 +17,14 @@
     "v0.21.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "185e03d057779f7f3ffea4ef5a14f891d518b61f", "historical_evidence_unchanged": true},
     "v0.21.1": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "cfde03cce2e31cc688f9d94a659b577042b8538a", "historical_evidence_unchanged": true},
     "v0.21.2": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "b80f30074374c539e008ce160846848f1c171d9a", "historical_evidence_unchanged": true},
-    "v0.21.3": {"status": "APPROVED_FOUNDATION", "reviewed_head": "a019784d2c4fcd0751f61fe70509cadc32888a0e", "merge_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "record": "docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json", "historical_evidence_unchanged": true}
+    "v0.21.3": {"status": "APPROVED_FOUNDATION", "reviewed_head": "a019784d2c4fcd0751f61fe70509cadc32888a0e", "merge_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "record": "docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json", "historical_evidence_unchanged": true},
+    "v0.22.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "0fad4721c0bfd52822cb3f1e952f306b5c50a151", "historical_evidence_unchanged": true, "correction_record": "docs/evidence/ui-asset-family-runtime-v0221/v0.22.0-rejection-correction-record-v0221.json"}
   },
-  "current_gate": "UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED",
+  "current_gate": "UI_ASSET_FAMILY_SEMANTIC_INTEGRITY_TECHNICALLY_QUALIFIED",
   "stop_reason": "UI_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED",
   "next_candidate": "UI_ASSET_FAMILY",
-  "allowed_next_actions": ["external_review_ui_asset_family_v0220"],
-  "ui_start_gate": {"status": "BLOCKED", "activation_action": "start_ui_asset_family_v0220", "condition": "GITHUB_LIVE_PR_12_EXTERNAL_APPROVAL_AND_MERGED", "authority": "GITHUB_LIVE", "requires_pr_number": 12},
+  "allowed_next_actions": ["external_review_ui_asset_family_v0221"],
+  "ui_start_gate": {"status": "BLOCKED", "activation_action": "start_ui_asset_family_v0222", "condition": "GITHUB_LIVE_PR_13_EXTERNAL_APPROVAL_AND_MERGED", "authority": "GITHUB_LIVE", "requires_pr_number": 13},
   "next_capability_started": false,
   "forbidden_actions": ["direct_main_push", "force_push_or_history_rewrite", "enable_production_routing", "new_generation", "real_ui_asset_family", "ui_asset_family", "vfx_asset_family", "orchestration_runtime_hardening", "real_map_assets", "real_minimap_assets"],
   "production_approved": false,
@@ -49,8 +50,8 @@
   "synthetic_creature_fixture": "TEST_ONLY",
   "synthetic_equipment_fixture": "TEST_ONLY",
   "new_generation": 0,
-  "review": {"repository": "KayzenRoot/ugas", "baseline_head": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "branch_base_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "feature_branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 0, "pr_state": "NOT_CREATED", "head_sha": null, "head_sha_source": "GitHub LIVE exact-head metadata", "external_review_required": true, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "do_not_merge": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"]},
-  "closure_completion_binding": "docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json",
-  "evidence": {"ui_root": "docs/evidence/ui-asset-family-runtime-v0220/", "manifest": "docs/evidence/ui-asset-family-runtime-v0220/ui-family-manifest-v0220.json", "hard_gates": "docs/evidence/ui-asset-family-runtime-v0220/hard-gates-v0220.json", "negative_controls": "docs/evidence/ui-asset-family-runtime-v0220/negative-controls-v0220.json", "determinism": "docs/evidence/ui-asset-family-runtime-v0220/full-slice-two-run-determinism-v0220.json", "production_registry": "docs/evidence/ui-asset-family-runtime-v0220/production-registry-v0220.json", "execution": "docs/evidence/ui-asset-family-runtime-v0220/execution-evidence-v0220.json"},
-  "state_consistency": {"status": "UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED", "version": "0.22.0", "phase": "UI_ASSET_FAMILY", "current_gate": "UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "branch_base_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "baseline_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_ui_asset_family_v0220"], "next_capability_started": false}
+  "review": {"repository": "KayzenRoot/ugas", "baseline_head": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "branch_base_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "feature_branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 13, "pr_state": "OPEN", "head_sha": null, "head_sha_source": "GitHub LIVE exact-head metadata", "external_review_required": true, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "do_not_merge": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"]},
+  "closure_completion_binding": "docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json",
+  "evidence": {"ui_root": "docs/evidence/ui-asset-family-runtime-v0221/", "manifest": "docs/evidence/ui-asset-family-runtime-v0221/ui-family-manifest-v0221.json", "hard_gates": "docs/evidence/ui-asset-family-runtime-v0221/hard-gates-v0221.json", "negative_controls": "docs/evidence/ui-asset-family-runtime-v0221/negative-controls-v0221.json", "determinism": "docs/evidence/ui-asset-family-runtime-v0221/full-slice-two-run-determinism-v0221.json", "production_registry": "docs/evidence/ui-asset-family-runtime-v0221/production-registry-v0221.json", "execution": "docs/evidence/ui-asset-family-runtime-v0221/execution-evidence-v0221.json"},
+  "state_consistency": {"status": "UI_ASSET_FAMILY_SEMANTIC_INTEGRITY_TECHNICALLY_QUALIFIED", "version": "0.22.1", "phase": "UI_ASSET_FAMILY", "current_gate": "UI_ASSET_FAMILY_SEMANTIC_INTEGRITY_TECHNICALLY_QUALIFIED", "feature_branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "branch_base_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "baseline_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_ui_asset_family_v0221"], "next_capability_started": false}
 }

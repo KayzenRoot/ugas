@@ -1,4 +1,6 @@
-# Installing UGAS 0.22.0
+# Installing UGAS 0.22.1
+
+The active correction is v0.22.1 UI Asset Family semantic integrity; v0.22.0 is preserved as rejected history.
 
 The active slice is the UI asset-family runtime foundation. It is TEST_ONLY and requires external review; production routing remains BLOCKED, real UI coverage is NONE, and new_generation=0. The branch/PR must remain open and unmerged until the exact-head GitHub checks and bounded artifact pass.
 

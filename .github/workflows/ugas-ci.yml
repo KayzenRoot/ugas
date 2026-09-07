@@ -34,14 +34,14 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.22.0 UI state consistency
+      - name: Active v0.22.1 UI state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0220.py
-      - name: UI asset family v0.22.0 runtime foundation and negative controls
+        run: python scripts/validation/validate_state_consistency_v0221.py
+      - name: UI asset family v0.22.1 semantic integrity and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_ui_asset_family_runtime_v0220.py
+        run: python scripts/validation/run_ui_asset_family_runtime_v0221.py
       - name: Frozen Maps/minimap v0.21.3 regression
         env:
           PYTHONPATH: src

@@ -1,4 +1,4 @@
-# Active governed release: v0.21.3 Maps/Minimap approved foundation; bookkeeping reproof and protected PR #11 merge are the only authorized next steps. Production remains BLOCKED, real map/minimap coverage is NONE, and no UI, VFX, orchestration or generation is authorized.
+# Active governed release: v0.22.1 UI Asset Family semantic-integrity correction on PR #13; exact-head CI and bounded artifact are required before external Sol review. Production remains BLOCKED, real UI coverage is NONE, and no VFX, orchestration or generation is authorized.
 
 ## Current v0.18.1 boundary
 

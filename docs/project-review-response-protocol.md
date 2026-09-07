@@ -1,5 +1,7 @@
 # UGAS repository review response protocol
 
+The active UI correction is v0.22.1 with `current_gate=UI_ASSET_FAMILY_SEMANTIC_INTEGRITY_TECHNICALLY_QUALIFIED`, `allowed_next_actions=[external_review_ui_asset_family_v0221]`, and `baseline_main_sha=1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3` as historical branch context. Resolve current main and PR #13 from GitHub LIVE; do not infer live main from tracked state. Production remains `production_routing=BLOCKED`, `production_approved=false`, and `new_generation=0`.
+
 This is the canonical response contract for every repository review, including reviews resumed in a new chat. The executor must recalculate the values from the live repository state and GitHub result before responding; a previous response, stale estimate or hidden chat memory is not an authority.
 
 ## Required response block

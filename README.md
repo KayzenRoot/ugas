@@ -1,4 +1,6 @@
-# UGAS 0.22.0
+# UGAS 0.22.1
+
+Current active slice: v0.22.1 UI Asset Family semantic-integrity correction on PR #13. v0.22.0 evidence remains frozen history; production remains BLOCKED and external Sol review is required.
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.22.0 qualifica tecnicamente a fundação runtime da família de UI com fixtures RGBA determinísticos TEST_ONLY, 14 classes, estados, 9-slice, safe areas, escala 1x/2x, cache completo, provenance e 22 gates/negative controls. A aprovação externa do PR #12 é requisito; o PR v0.22.0 permanece aberto e não mergeado. Produção segue `BLOCKED`, `production_approved=false`, `real_ui_asset_coverage=NONE` e `new_generation=0`; não iniciar VFX, orquestração ou arte real.
 

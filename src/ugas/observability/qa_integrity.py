@@ -18,6 +18,7 @@ from ..state_consistency_v0212 import validate_state_consistency as validate_sta
 from ..state_consistency_v0213 import validate_state_consistency as validate_state_consistency_v0213
 from ..state_consistency_post_merge_v0213 import validate_post_merge_state as validate_post_merge_state_v0213
 from ..state_consistency_v0220 import validate_state_consistency as validate_state_consistency_v0220
+from ..state_consistency_v0221 import validate_state_consistency as validate_state_consistency_v0221
 
 # The active state/review moved to v0.21.0. The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
@@ -159,9 +160,9 @@ class ActiveEvidenceCache:
                 active_version = _load(self.state_path).get("version")
             except (OSError, json.JSONDecodeError, AttributeError):
                 active_version = None
-            self.state_schema_path = self.repo_root / ("schemas/current-state-v0220.json" if active_version == "0.22.0" else ("schemas/current-state-v0213-merged.json" if active_version == "0.21.3" else ("schemas/current-state-v0212.json" if active_version == "0.21.2" else ("schemas/current-state-v0211.json" if active_version == "0.21.1" else ("schemas/current-state-v0210.json" if active_version == "0.21.0" else "schemas/current-state-v0203.json")))))
+            self.state_schema_path = self.repo_root / ("schemas/current-state-v0221.json" if active_version == "0.22.1" else ("schemas/current-state-v0220.json" if active_version == "0.22.0" else ("schemas/current-state-v0213-merged.json" if active_version == "0.21.3" else ("schemas/current-state-v0212.json" if active_version == "0.21.2" else ("schemas/current-state-v0211.json" if active_version == "0.21.1" else ("schemas/current-state-v0210.json" if active_version == "0.21.0" else "schemas/current-state-v0203.json"))))))
         self.checkpoint_path = checkpoint_path or self.repo_root / "CHECKPOINT.md"
-        self.review_path = review_path or self.repo_root / ("REVIEW-v0.22.0.md" if self.state_schema_path.name == "current-state-v0220.json" else ("REVIEW-v0.21.3.md" if self.state_schema_path.name in {"current-state-v0213.json", "current-state-v0213-merged.json"} else ("REVIEW-v0.21.2.md" if self.state_schema_path.name == "current-state-v0212.json" else ("REVIEW-v0.21.1.md" if self.state_schema_path.name == "current-state-v0211.json" else ("REVIEW-v0.21.0.md" if self.state_schema_path.name == "current-state-v0210.json" else "REVIEW-v0.20.3.md")))))
+        self.review_path = review_path or self.repo_root / ("REVIEW-v0.22.1.md" if self.state_schema_path.name == "current-state-v0221.json" else ("REVIEW-v0.22.0.md" if self.state_schema_path.name == "current-state-v0220.json" else ("REVIEW-v0.21.3.md" if self.state_schema_path.name in {"current-state-v0213.json", "current-state-v0213-merged.json"} else ("REVIEW-v0.21.2.md" if self.state_schema_path.name == "current-state-v0212.json" else ("REVIEW-v0.21.1.md" if self.state_schema_path.name == "current-state-v0211.json" else ("REVIEW-v0.21.0.md" if self.state_schema_path.name == "current-state-v0210.json" else "REVIEW-v0.20.3.md"))))))
         self.roadmap_path = self.repo_root / "docs/roadmap.md"
         self.review_index_path = review_index_path or self.repo_root / "docs/evidence" / ACTIVE_INDEX
         self._default_review_index = review_index_path is None
@@ -237,7 +238,15 @@ class ActiveEvidenceCache:
             schema = _load(self.state_schema_path)
             validate_schema_document(schema)
             validate_instance(state, schema)
-            if state.get("version") == "0.22.0":
+            if state.get("version") == "0.22.1":
+                consistency = validate_state_consistency_v0221(
+                    state,
+                    _load(self.repo_root / "docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json"),
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    (self.repo_root / "docs/project-review-response-protocol.md").read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                )
+            elif state.get("version") == "0.22.0":
                 consistency = validate_state_consistency_v0220(
                     state,
                     _load(self.repo_root / "docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json"),
