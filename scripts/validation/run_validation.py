@@ -3139,9 +3139,8 @@ def _v0190_checks() -> None:
         check(f"v0190:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
         # v0.21.3 is immutable history.  The active root has advanced to
-        # v0.22.0; load the historical Git-object bytes for this replay.
-        historical_state = subprocess.run(["git", "show", "HEAD:docs/evidence/current-state.json"], cwd=ROOT, capture_output=True, text=True, check=False)
-        state = json.loads(historical_state.stdout)
+        # v0.22.0; load the explicit forward-only historical snapshot.
+        state = load_json(ROOT / "docs/evidence/current-state-v0213.json")
         check("v0190:rejection-history", state.get("correction_history", {}).get("v0.19.0", {}).get("status") == "CORRECTION_REQUIRED" and state.get("correction_history", {}).get("v0.19.0", {}).get("rejected_reviewed_head") == "44937935e644202836b3e1f081b6a63201b850db", "rejected v0.19.0 head remains immutable history")
         manifest = load_json(evidence_root / "item-prop-runtime-manifest-v0190.json")
         validate_instance(manifest, load_json(ROOT / "schemas/item-prop-runtime-v0190.json")); validate_item_prop_manifest_v0190(manifest)
@@ -3609,8 +3608,7 @@ def _v0213_checks() -> None:
         path = ROOT / relative
         check(f"v0213:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        historical_state_result = subprocess.run(["git", "show", "HEAD:docs/evidence/current-state.json"], cwd=ROOT, capture_output=True, text=True, check=False)
-        state = json.loads(historical_state_result.stdout)
+        state = load_json(ROOT / "docs/evidence/current-state-v0213.json")
         state_schema = load_json(ROOT / "schemas/current-state-v0213-merged.json")
         validate_schema_document(state_schema); validate_instance(state, state_schema)
         post_merge_binding = load_json(ROOT / "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json")
