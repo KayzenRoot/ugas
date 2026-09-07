@@ -6,8 +6,7 @@
   "required": ["schema_version", "version", "capabilities", "next_candidate", "production_routing", "new_generation"],
   "properties": {
     "schema_version": {"const": "1.0"},
-    "version": {"type": "string", "pattern": "^0\\.2[01]\\.[0-9]+$"},
-    "version": {"const": "0.19.1"},
+    "version": {"type": "string", "pattern": "^0\\.2[0-2]\\.[0-9]+$"},
     "capabilities": {
       "type": "array",
       "minItems": 1,

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS UI asset family runtime v0.22.0",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "manifest_type", "family_id", "runtime_revision", "component_classes", "components", "state_vocabulary", "style_token_hash", "production_registry_empty", "production_routing", "production_approved", "new_generation"],
+  "properties": {
+    "schema_version": {"const": "0.22.0"},
+    "manifest_type": {"const": "ui-asset-family-runtime-v0220"},
+    "family_id": {"const": "ugas-ui-asset-family-v0220"},
+    "runtime_revision": {"const": "ui-asset-family-runtime-v0220"},
+    "component_classes": {"type": "array", "minItems": 14, "uniqueItems": true},
+    "components": {"type": "array", "minItems": 14},
+    "state_vocabulary": {"const": ["normal", "hover", "pressed", "disabled", "selected", "focus"]},
+    "style_token_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "production_registry_empty": {"const": true},
+    "production_routing": {"const": "BLOCKED"},
+    "production_approved": {"const": false},
+    "real_ui_asset_coverage": {"const": "NONE"},
+    "synthetic_ui_fixture": {"const": "TEST_ONLY"},
+    "new_generation": {"const": 0}
+  }
+}

@@ -26,7 +26,7 @@ LIVE_MAIN_SHA = "f" * 40
 
 class PostMergeClosureV0213Tests(unittest.TestCase):
     def setUp(self) -> None:
-        self.state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        self.state = json.loads((ROOT / "docs/evidence/current-state-v0213.json").read_text(encoding="utf-8"))
         self.binding = json.loads((ROOT / "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json").read_text(encoding="utf-8"))
         self.checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
         self.continuity = (ROOT / "docs/chat-continuity-protocol.md").read_text(encoding="utf-8")

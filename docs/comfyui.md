@@ -1,4 +1,4 @@
-# Active governed release: v0.21.3 Maps/Minimap approved foundation; bookkeeping reproof and protected PR #11 merge are the only authorized next steps. Production remains BLOCKED, real map/minimap coverage is NONE, and no UI, VFX, orchestration or generation is authorized.
+# Active governed release: v0.22.3 UI Asset Family correction delta on PR #13; exact-head CI and bounded artifact are required before external Sol review. Production remains BLOCKED, real UI coverage is NONE, and no VFX, orchestration or generation is authorized.
 
 ## Current v0.18.1 boundary
 
@@ -8,7 +8,9 @@ The active v0.18.1 slice is `CREATURES_MONSTERS` runtime QA integrity. No ComfyU
 
 The active v0.18.0 slice is `CREATURES_MONSTERS` runtime foundation. No ComfyUI/SAM2/diffusion generation is authorized; synthetic creature fixtures are `TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and real creature coverage is `NONE`.
 
-# ComfyUI integration notes - UGAS v0.21.1
+# ComfyUI integration notes - UGAS v0.22.0
+
+The active v0.22.0 UI asset-family foundation is not a ComfyUI generation lane. It produces only deterministic synthetic TEST_ONLY fixtures; `production_approved=false`, `production_routing=BLOCKED`, `real_ui_asset_coverage=NONE`, and `new_generation=0`. No ComfyUI, SAM2, diffusion, VFX or orchestration work is authorized by this slice.
 
 The active v0.21.1 slice is the Maps/Minimap QA contract correction, not a ComfyUI generation lane. `DOCKER_ALWAYS_ON_LOCAL` remains read-only and always-on, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`, and no ComfyUI/SAM2/diffusion generation is authorized. Map/minimap fixtures are deterministic synthetic TEST_ONLY only; the observed production registry is empty and real map/minimap coverage is `NONE`. v0.21.0 is immutable `CORRECTION_REQUIRED` history; v0.20.3 Environment/Tilesets and earlier approved foundations remain historical. UI, VFX, orchestration and downstream asset families remain out of scope until external review.
 

@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.22.1",
+  "record_type": "forward_only_rejection_correction",
+  "status": "CORRECTION_REQUIRED",
+  "rejected_version": "0.22.0",
+  "corrective_version": "0.22.1",
+  "rejected_reviewed_head": "0fad4721c0bfd52822cb3f1e952f306b5c50a151",
+  "pr_number": 13,
+  "branch": "codex/v0.22.0-ui-asset-family-runtime-foundation",
+  "base_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+  "findings": ["F-15", "F-16", "F-17", "F-18", "F-19", "F-20"],
+  "historical_evidence_unchanged": true,
+  "preserved_root": "docs/evidence/ui-asset-family-runtime-v0220/",
+  "corrective_root": "docs/evidence/ui-asset-family-runtime-v0221/",
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "real_ui_asset_coverage": "NONE",
+  "synthetic_ui_fixture": "TEST_ONLY",
+  "new_generation": 0,
+  "forward_only": true
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "closure_base_sha": "0c9b721b43d3cc12605ce009f6e0deb232b00045",
+  "approved_head_sha": "a019784d2c4fcd0751f61fe70509cadc32888a0e",
+  "merge_commit_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+  "pre_merge_context_count": 3,
+  "post_merge_main_context_count": 2,
+  "main_review_context_fabricated": false,
+  "mutation_control": {
+    "status": "REJECT",
+    "rejection_class": "MAIN_CI_PROVENANCE_REJECTED",
+    "mutated_field": "post_merge_main_ci.contexts[0].check_run_id"
+  }
+}

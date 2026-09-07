@@ -1,4 +1,20 @@
-# UGAS checkpoint - v0.21.3 MAPS_MINIMAP merged closure / continuity correction
+# UGAS checkpoint - v0.22.3 UI_ASSET_FAMILY correction delta
+
+## Current v0.22.3 UI_ASSET_FAMILY handoff
+
+`version=0.22.3`; `phase=UI_ASSET_FAMILY`; `current_gate=UI_ASSET_FAMILY_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED`; `stop_reason=UI_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_F15_F16_F18_F21_CORRECTION`; `ui_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`; `ui_asset_family_external_review=REQUIRED`; `maps_minimap_assets=APPROVED_FOUNDATION`; `maps_minimap_lifecycle=MERGED_CLOSED`; `baseline_main_sha=1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3`; the recorded baseline is historical branch context and current `main` is resolved from GitHub LIVE. `real_ui_asset_coverage=NONE`; `synthetic_ui_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `next_candidate=UI_ASSET_FAMILY`; `allowed_next_actions=[external_review_ui_asset_family_v0223]`; `ui_start_gate=ACTIVE_FOUNDATION`; `vfx_start_gate=BLOCKED`; `next_capability_started=false`. The canonical v0.21.3 closure authority is `docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json`; the historical PR #11-only and superseded closure pointers are rejected. The v0.22.2 reviewed HEAD `97dde2064bd7b381362e3d79f2a27d2bb78ddc36` is frozen `CORRECTION_REQUIRED`; v0.22.3 evidence is under `docs/evidence/ui-asset-family-runtime-v0223/`. PR #13 remains OPEN/unmerged for external Sol review; do not merge, start VFX, start orchestration, enable production or create real UI art.
+
+# UGAS checkpoint - v0.22.0 UI_ASSET_FAMILY runtime foundation
+
+# UGAS checkpoint - v0.22.1 UI_ASSET_FAMILY semantic integrity correction
+
+## Current v0.22.1 UI_ASSET_FAMILY handoff
+
+`version=0.22.1`; `phase=UI_ASSET_FAMILY`; `current_gate=UI_ASSET_FAMILY_SEMANTIC_INTEGRITY_TECHNICALLY_QUALIFIED`; `stop_reason=UI_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED`; `ui_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`; `ui_asset_family_external_review=REQUIRED`; `maps_minimap_assets=APPROVED_FOUNDATION`; `maps_minimap_lifecycle=MERGED_CLOSED`; `baseline_main_sha=1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3`; the baseline is historical branch context and current `main` is resolved from GitHub LIVE. `real_ui_asset_coverage=NONE`; `synthetic_ui_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `next_candidate=UI_ASSET_FAMILY`; `allowed_next_actions=[external_review_ui_asset_family_v0221]`; `ui_start_gate=BLOCKED`; `next_capability_started=false`. The v0.22.0 evidence is frozen `CORRECTION_REQUIRED` history at rejected HEAD `0fad4721c0bfd52822cb3f1e952f306b5c50a151`; v0.22.1 evidence is under `docs/evidence/ui-asset-family-runtime-v0221/`. The PR #13 must remain OPEN/unmerged for external Sol review; do not start VFX, orchestration, production routing or real UI art.
+
+## Current v0.22.0 UI_ASSET_FAMILY handoff
+
+`version=0.22.0`; `phase=UI_ASSET_FAMILY`; `current_gate=UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; `stop_reason=UI_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED`; `ui_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`; `ui_asset_family_external_review=REQUIRED`; `maps_minimap_assets=APPROVED_FOUNDATION`; `maps_minimap_lifecycle=MERGED_CLOSED`; `baseline_main_sha=1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3`; the baseline is historical branch context and current `main` is resolved from GitHub LIVE. `real_ui_asset_coverage=NONE`; `synthetic_ui_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `next_candidate=UI_ASSET_FAMILY`; `allowed_next_actions=[external_review_ui_asset_family_v0220]`; `ui_start_gate=BLOCKED`; `next_capability_started=false`. The 14 UI classes, six states, 1x/2x, 9-slice, safe areas, cache identity, provenance, 22 hard gates and 22 negative controls are recorded under `docs/evidence/ui-asset-family-runtime-v0220/`. The PR must remain OPEN/unmerged for external Sol review; do not start VFX, orchestration or production UI art.
 
 ## Current v0.21.3 MAPS_MINIMAP - post-merge closure and continuity handoff
 
