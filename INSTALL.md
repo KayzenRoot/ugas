@@ -1,6 +1,6 @@
-# Installing UGAS 0.22.1
+# Installing UGAS 0.22.2
 
-The active correction is v0.22.1 UI Asset Family semantic integrity; v0.22.0 is preserved as rejected history.
+The active correction is v0.22.2 UI Asset Family F-15/F-16/F-18/F-20/F-21 integrity; v0.22.0 and v0.22.1 are preserved as rejected history.
 
 The active slice is the UI asset-family runtime foundation. It is TEST_ONLY and requires external review; production routing remains BLOCKED, real UI coverage is NONE, and new_generation=0. The branch/PR must remain open and unmerged until the exact-head GitHub checks and bounded artifact pass.
 
@@ -30,7 +30,7 @@ pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1
 
 ## GitHub-native review
 
-The active candidate is v0.22.0 on a GitHub-first PR. Use [REVIEW-v0.22.0.md](REVIEW-v0.22.0.md), the v0.22.0 evidence root and exact-head artifact as the authoritative handoff. Do not merge and do not start VFX, orchestration or production UI art.
+The active candidate is v0.22.2 on a GitHub-first PR. Use [REVIEW-v0.22.2.md](REVIEW-v0.22.2.md), the v0.22.2 evidence root and exact-head artifact as the authoritative handoff. Do not merge and do not start VFX, orchestration or production UI art.
 
 Use the PR-first flow in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded GitHub Actions artifact; it never includes secrets, local credentials, telemetry databases, model weights or large generation directories.
 

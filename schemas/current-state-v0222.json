@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UGAS active state v0.22.2 UI asset family correction delta",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "baseline_main_sha", "current_gate", "closure_authority", "allowed_next_actions", "vfx_start_gate", "production_approved", "production_routing", "new_generation", "review", "state_consistency"],
+  "not": {"required": ["main_sha"]},
+  "properties": {
+    "schema_version": {"const": "0.22.2"},
+    "version": {"const": "0.22.2"},
+    "phase": {"const": "UI_ASSET_FAMILY"},
+    "baseline_main_sha": {"const": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3"},
+    "ui_base_main_sha": {"const": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3"},
+    "current_gate": {"const": "UI_ASSET_FAMILY_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED"},
+    "allowed_next_actions": {"const": ["external_review_ui_asset_family_v0222"]},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "real_ui_asset_coverage": {"const": "NONE"},
+    "synthetic_ui_fixture": {"const": "TEST_ONLY"},
+    "new_generation": {"const": 0},
+    "closure_authority": {"type": "object", "required": ["authority_version", "canonical", "superseded"]},
+    "vfx_start_gate": {"type": "object", "required": ["status", "condition", "authority"]},
+    "review": {"type": "object", "required": ["repository", "baseline_head", "branch_base_commit", "feature_branch", "external_review_required", "merge_authorization", "do_not_merge"]},
+    "state_consistency": {"type": "object"}
+  }
+}

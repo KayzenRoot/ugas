@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.22.2",
+  "record_type": "ui_asset_family_runtime_v0222_governance_binding",
+  "repository": "KayzenRoot/ugas",
+  "source_mode": "GITHUB_LIVE",
+  "baseline_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+  "canonical_v0213_closure_authority": "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json",
+  "superseded_authorities": ["docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json"],
+  "pr": {"number": 13, "state": "OPEN", "merged": false, "branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "base_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "head_sha_source": "GitHub LIVE exact-head metadata"},
+  "historical_roots_immutable": true,
+  "lifecycle_scenarios": {
+    "review_unresolved": {"allowed_action": "external_review_ui_asset_family_v0222", "vfx_allowed": false},
+    "approved_unmerged": {"allowed_action": "governed_merge_pr_13", "vfx_allowed": false},
+    "merged_main_ci_pending_or_failed": {"allowed_action": "resolve_post_merge_closure_pr_13", "vfx_allowed": false},
+    "merged_main_ci_success": {"allowed_action": "start_vfx_asset_family_v0230", "vfx_allowed": true}
+  },
+  "production_boundary": {"production_routing": "BLOCKED", "production_approved": false, "real_ui_asset_coverage": "NONE", "synthetic_ui_fixture": "TEST_ONLY", "new_generation": 0}
+}

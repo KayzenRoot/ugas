@@ -1,6 +1,6 @@
-# UGAS 0.22.1
+# UGAS 0.22.2
 
-Current active slice: v0.22.1 UI Asset Family semantic-integrity correction on PR #13. v0.22.0 evidence remains frozen history; production remains BLOCKED and external Sol review is required.
+Current active slice: v0.22.2 UI Asset Family correction delta F-15/F-16/F-18/F-20/F-21 on PR #13. v0.22.0/v0.22.1 evidence remains frozen history; production remains BLOCKED and external Sol review is required.
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.22.0 qualifica tecnicamente a fundação runtime da família de UI com fixtures RGBA determinísticos TEST_ONLY, 14 classes, estados, 9-slice, safe areas, escala 1x/2x, cache completo, provenance e 22 gates/negative controls. A aprovação externa do PR #12 é requisito; o PR v0.22.0 permanece aberto e não mergeado. Produção segue `BLOCKED`, `production_approved=false`, `real_ui_asset_coverage=NONE` e `new_generation=0`; não iniciar VFX, orquestração ou arte real.
 
@@ -32,7 +32,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.22.0.md](REVIEW-v0.22.0.md). Maps/Minimap permanece `APPROVED_FOUNDATION`/`MERGED_CLOSED`; o único próximo passo é `external_review_ui_asset_family_v0220`. O SHA base registrado é histórico (`baseline_main_sha`), enquanto o `main` atual deve ser resolvido do GitHub LIVE. A cobertura real de UI é `NONE`, os fixtures são `TEST_ONLY`, e o registro de produção está vazio.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.22.2.md](REVIEW-v0.22.2.md). Maps/Minimap permanece `APPROVED_FOUNDATION`/`MERGED_CLOSED`; o único próximo passo é `external_review_ui_asset_family_v0222`. O SHA base registrado é histórico (`baseline_main_sha`), enquanto o `main` atual deve ser resolvido do GitHub LIVE. A cobertura real de UI é `NONE`, os fixtures são `TEST_ONLY`, e o registro de produção está vazio.
 
 ## v0.20.1 ENVIRONMENT_TILESETS QA integrity correction
 
