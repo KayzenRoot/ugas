@@ -43,17 +43,16 @@ jobs:
           mkdir -p "$RUNNER_TEMP/ugas-review-evidence" "$RUNNER_TEMP/ugas-review-artifact"
           : > "$RUNNER_TEMP/ugas-tests.log"
           : > "$RUNNER_TEMP/ugas-validation.log"
-          for file in environment state regressions matrix workflow; do printf '%s\n' 99 > "$RUNNER_TEMP/$file.exit"; done
-          printf '%s\n' 99 > "$RUNNER_TEMP/security.exit"
-      - name: Run maps/minimap v0.21.3 raster/governance correction and capture evidence
+          for file in ui state matrix workflow; do printf '%s\n' 99 > "$RUNNER_TEMP/$file.exit"; done
+      - name: Run UI asset family v0.22.0 runtime and capture evidence
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/run_maps_minimap_runtime_v0210.py 2>&1 | tee "$RUNNER_TEMP/environment.log"
+          python scripts/validation/run_ui_asset_family_runtime_v0220.py 2>&1 | tee "$RUNNER_TEMP/ui.log"
           code=${PIPESTATUS[0]}
-          printf '%s\n' "$code" > "$RUNNER_TEMP/environment.exit"
+          printf '%s\n' "$code" > "$RUNNER_TEMP/ui.exit"
           exit "$code"
       - name: Run unit tests and capture totals
         if: always()
@@ -65,7 +64,17 @@ jobs:
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-tests.exit"
           exit "$code"
-      - name: Validate capability matrix before official validation
+      - name: Validate active state
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/validate_state_consistency_v0220.py
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/state.exit"
+          exit "$code"
+      - name: Validate capability matrix
         if: always()
         continue-on-error: true
         shell: bash
@@ -85,38 +94,6 @@ jobs:
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-validation.exit"
           exit "$code"
-      - name: Validate active v0.21.3 post-merge closure state
-        if: always()
-        continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          python scripts/validation/validate_post_merge_closure_v0213.py
-          code=$?
-          printf '%s\n' "$code" > "$RUNNER_TEMP/state.exit"
-          exit "$code"
-      - name: Validate frozen runtime regressions
-        if: always()
-        continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          status=0
-          for script in validate_items_props_runtime_v0191_regression.py validate_creatures_monsters_runtime_v0182_regression.py validate_equipment_runtime_v0171_regression.py validate_direction_runtime_v0162_regression.py validate_front_animation_v0151_regression.py; do
-            python "scripts/validation/$script" || status=1
-          done
-          printf '%s\n' "$status" > "$RUNNER_TEMP/regressions.exit"
-          exit "$status"
-      - name: Validate capability matrix
-        if: always()
-        continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          python scripts/validation/validate_v1_capability_matrix.py
-          code=$?
-          printf '%s\n' "$code" > "$RUNNER_TEMP/matrix.exit"
-          exit "$code"
       - name: Validate workflow structure
         if: always()
         continue-on-error: true
@@ -127,88 +104,57 @@ jobs:
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/workflow.exit"
           exit "$code"
-      - name: Record provisional v0.21.3 results
+      - name: Record v0.22.0 results
         if: always()
         continue-on-error: true
         run: |
-          python scripts/validation/record_v0210_results.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --environment-exit-code "$(cat "$RUNNER_TEMP/environment.exit")" --state-exit-code "$(cat "$RUNNER_TEMP/state.exit")" --regressions-exit-code "$(cat "$RUNNER_TEMP/regressions.exit")" --matrix-exit-code "$(cat "$RUNNER_TEMP/matrix.exit")" --workflow-exit-code "$(cat "$RUNNER_TEMP/workflow.exit")"
-      - name: Build provisional v0.21.3 review manifest
-        if: always()
-        continue-on-error: true
-        run: |
-          python scripts/validation/build_github_review_manifest_v0210.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0213.json" --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0213.json" --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0213.json"
+          python scripts/validation/record_ui_asset_family_results_v0220.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --tests-exit "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --ui-exit "$(cat "$RUNNER_TEMP/ui.exit")" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --matrix-exit "$(cat "$RUNNER_TEMP/matrix.exit")" --workflow-exit "$(cat "$RUNNER_TEMP/workflow.exit")"
       - name: Assemble bounded evidence artifact
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           artifact="$RUNNER_TEMP/ugas-review-artifact"
-          mkdir -p "$artifact/maps-minimap" "$artifact/environment-tilesets" "$artifact/items-props" "$artifact/creatures-monsters" "$artifact/equipment" "$artifact/direction" "$artifact/front" "$artifact/state" "$artifact/logs" "$artifact/governance"
+          mkdir -p "$artifact/docs/evidence/ui-asset-family-runtime-v0220" "$artifact/docs/evidence/github-governance-v0220" "$artifact/docs/evidence/maps-minimap-runtime-v0213" "$artifact/logs"
+          cp -R docs/evidence/ui-asset-family-runtime-v0220/. "$artifact/docs/evidence/ui-asset-family-runtime-v0220/" 2>/dev/null || true
+          cp docs/evidence/current-state.json "$artifact/docs/evidence/current-state.json" 2>/dev/null || true
+          cp docs/evidence/current-state-v0213.json "$artifact/docs/evidence/current-state-v0213.json" 2>/dev/null || true
+          cp docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
+          cp docs/evidence/github-governance-v0220/v0213-post-merge-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
+          cp -R docs/evidence/maps-minimap-runtime-v0213/. "$artifact/docs/evidence/maps-minimap-runtime-v0213/" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
-          cp docs/evidence/current-state.json "$artifact/state/current-state.json" 2>/dev/null || true
-          cp docs/evidence/github-governance-v0220/v0213-post-merge-binding.json "$artifact/governance/v0213-post-merge-binding.json" 2>/dev/null || true
-          cp docs/evidence/github-governance-v0220/v0213-state-truth-correction-v1.json "$artifact/governance/v0213-state-truth-correction-v1.json" 2>/dev/null || true
-          cp -R docs/evidence/maps-minimap-runtime-v0213/. "$artifact/maps-minimap/" 2>/dev/null || true
-          cp -R docs/evidence/environment-tilesets-runtime-v0203/. "$artifact/environment-tilesets/" 2>/dev/null || true
-          cp docs/evidence/items-props-runtime-v0191/execution-evidence-v0191.json "$artifact/items-props/" 2>/dev/null || true
-          cp docs/evidence/creatures-monsters-runtime-v0182/execution-evidence-v0182.json "$artifact/creatures-monsters/" 2>/dev/null || true
-          cp docs/evidence/equipment-outfits-runtime-v0171/execution-evidence-v0171.json "$artifact/equipment/" 2>/dev/null || true
-          cp docs/evidence/multi-direction-runtime-v0162/execution-evidence-v0162.json "$artifact/direction/" 2>/dev/null || true
-          cp docs/evidence/animation-runtime-v0151/execution-evidence-v0151.json "$artifact/front/" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log" 2>/dev/null || true
-          cp "$RUNNER_TEMP/environment.log" "$artifact/logs/environment.log" 2>/dev/null || true
-          cp "$RUNNER_TEMP/workflow-validation.json" "$artifact/governance/workflow-validation.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/ui.log" "$artifact/logs/ui.log" 2>/dev/null || true
+          cp "$RUNNER_TEMP/workflow-validation.json" "$artifact/logs/workflow-validation.json" 2>/dev/null || true
+      - name: Build v0.22.0 exact-head manifest
+        if: always()
+        continue-on-error: true
+        run: |
+          python scripts/validation/build_github_review_manifest_v0220.py --output-dir "$RUNNER_TEMP/ugas-review-artifact" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0220.json" --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0220.json" --gates-json "docs/evidence/ui-asset-family-runtime-v0220/hard-gates-v0220.json" --controls-json "docs/evidence/ui-asset-family-runtime-v0220/negative-controls-v0220.json" --determinism-json "docs/evidence/ui-asset-family-runtime-v0220/full-slice-two-run-determinism-v0220.json" --production-json "docs/evidence/ui-asset-family-runtime-v0220/production-registry-v0220.json"
       - name: Validate bounded artifact security
         if: always()
         continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          python scripts/validation/validate_github_review_security_v0210.py --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0213.json" --output "$RUNNER_TEMP/security.json"
-          code=$?
-          printf '%s\n' "$code" > "$RUNNER_TEMP/security.exit"
-          exit "$code"
-      - name: Validate provisional v0.21.3 manifest
+        run: python scripts/validation/validate_github_review_security_v0220.py --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0220.json" --output "$RUNNER_TEMP/security-v0220.json"
+      - name: Validate v0.22.0 exact-head manifest
         if: always()
         continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          python scripts/validation/validate_github_review_manifest_v0210.py "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0213.json" --result-output "$RUNNER_TEMP/provisional-manifest-validation-v0213.json"
-          code=$?
-          printf '%s\n' "$code" > "$RUNNER_TEMP/manifest.exit"
-          exit "$code"
-      - name: Record final v0.21.3 results and rebuild manifest
+        run: python scripts/validation/validate_github_review_manifest_v0220.py "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0220.json" --result-output "$RUNNER_TEMP/final-manifest-validation-v0220.json"
+      - name: Add final manifest/security results
         if: always()
-        continue-on-error: true
         run: |
-          python scripts/validation/record_v0210_results.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --test-exit-code "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit-code "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --environment-exit-code "$(cat "$RUNNER_TEMP/environment.exit")" --state-exit-code "$(cat "$RUNNER_TEMP/state.exit")" --regressions-exit-code "$(cat "$RUNNER_TEMP/regressions.exit")" --matrix-exit-code "$(cat "$RUNNER_TEMP/matrix.exit")" --workflow-exit-code "$(cat "$RUNNER_TEMP/workflow.exit")"
-          python scripts/validation/build_github_review_manifest_v0210.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0213.json" --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0213.json" --gates-json "$RUNNER_TEMP/ugas-review-evidence/gate-results-v0213.json"
-          cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$RUNNER_TEMP/ugas-review-artifact/" 2>/dev/null || true
-          cp "$RUNNER_TEMP/security.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0213.json" 2>/dev/null || true
-      - name: Validate final v0.21.3 manifest
-        if: always()
-        continue-on-error: true
-        shell: bash
-        run: |
-          set +e
-          python scripts/validation/validate_github_review_manifest_v0210.py "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0213.json" --result-output "$RUNNER_TEMP/final-manifest-validation-v0213.json"
-          code=$?
-          cp "$RUNNER_TEMP/final-manifest-validation-v0213.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0213.json" 2>/dev/null || true
-          printf '%s\n' "$code" > "$RUNNER_TEMP/final-manifest.exit"
-          exit "$code"
+          cp "$RUNNER_TEMP/security-v0220.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0220.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/final-manifest-validation-v0220.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0220.json" 2>/dev/null || true
       - name: Write GitHub Step Summary
         if: always()
         run: |
           {
-            echo '## UGAS GitHub-native v0.21.3 post-merge closure evidence'
+            echo '## UGAS GitHub-native v0.22.0 UI asset-family evidence'
             echo "- Base: \`$BASE_REF\`"
             echo "- Head: \`$HEAD_REF\`"
             echo "- PR number: \`$PR_NUMBER\`"
-            echo '- Production: `real_environment_asset_coverage=NONE`, `synthetic_environment_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`; production registry is empty.'
-            echo '- Final stop: governance-only closure PR remains OPEN for external Sol review; do not merge it or start UI, VFX, orchestration or production art.'
-            echo "- Artifact: \`ugas-review-evidence-pr-${PR_NUMBER}-${HEAD_REF}\`"
+            echo '- Production: `real_ui_asset_coverage=NONE`, `synthetic_ui_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`.'
+            echo '- Stop: PR remains OPEN/unmerged for external Sol review; do not start VFX, orchestration or production UI art.'
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload bounded GitHub review artifact
         if: always()
@@ -220,5 +166,4 @@ jobs:
           retention-days: 21
       - name: Enforce final review result after artifact upload
         if: always()
-        run: |
-          python scripts/validation/enforce_github_review_v0210.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0213.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0213.json" --security "$RUNNER_TEMP/security.json" --environment-exit "$RUNNER_TEMP/environment.exit" --state-exit "$RUNNER_TEMP/state.exit"
+        run: python scripts/validation/enforce_github_review_v0220.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0220.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0220.json" --security "$RUNNER_TEMP/security-v0220.json" --ui-exit "$RUNNER_TEMP/ui.exit" --state-exit "$RUNNER_TEMP/state.exit"

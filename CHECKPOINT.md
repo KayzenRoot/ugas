@@ -1,4 +1,8 @@
-# UGAS checkpoint - v0.21.3 MAPS_MINIMAP merged closure / continuity correction
+# UGAS checkpoint - v0.22.0 UI_ASSET_FAMILY runtime foundation
+
+## Current v0.22.0 UI_ASSET_FAMILY handoff
+
+`version=0.22.0`; `phase=UI_ASSET_FAMILY`; `current_gate=UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED`; `stop_reason=UI_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED`; `ui_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`; `ui_asset_family_external_review=REQUIRED`; `maps_minimap_assets=APPROVED_FOUNDATION`; `maps_minimap_lifecycle=MERGED_CLOSED`; `baseline_main_sha=1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3`; the baseline is historical branch context and current `main` is resolved from GitHub LIVE. `real_ui_asset_coverage=NONE`; `synthetic_ui_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `next_candidate=UI_ASSET_FAMILY`; `allowed_next_actions=[external_review_ui_asset_family_v0220]`; `ui_start_gate=BLOCKED`; `next_capability_started=false`. The 14 UI classes, six states, 1x/2x, 9-slice, safe areas, cache identity, provenance, 22 hard gates and 22 negative controls are recorded under `docs/evidence/ui-asset-family-runtime-v0220/`. The PR must remain OPEN/unmerged for external Sol review; do not start VFX, orchestration or production UI art.
 
 ## Current v0.21.3 MAPS_MINIMAP - post-merge closure and continuity handoff
 

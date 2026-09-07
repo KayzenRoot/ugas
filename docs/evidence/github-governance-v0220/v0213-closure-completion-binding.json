@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.22.0",
+  "record_type": "post_merge_closure_completion_binding",
+  "repository": "KayzenRoot/ugas",
+  "source_mode": "GITHUB_LIVE",
+  "base_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+  "closure_base_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+  "closure_pr": {"number": 12, "merged": true, "state": "CLOSED", "branch": "codex/v0.21.3-post-merge-closure-continuity", "base_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "approved_head": "a019784d2c4fcd0751f61fe70509cadc32888a0e", "merge_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "approved_head_to_merge": {"changed_files": 0, "runtime_semantics_changed": false}},
+  "post_merge_main_ci": {"commit_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "supported_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke"], "contexts": [{"name": "UGAS CI / unit-and-validation", "status": "completed", "conclusion": "success", "head_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "check_run_id": 101579550636, "workflow_run_id": 34067803908}, {"name": "UGAS CI / docker-smoke", "status": "completed", "conclusion": "success", "head_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "check_run_id": 101579550710, "workflow_run_id": 34067803908}], "unit_tests": {"passed": 573, "failed": 0}, "official_validation": {"passed": 2563, "failed": 0}, "review_evidence_absent": true, "status": "PASS", "source": "GitHub LIVE merged-main check-runs; PR-only review context absent"},
+  "historical_roots_immutable": true,
+  "preserved_records": ["docs/evidence/github-governance-v0220/v0213-post-merge-binding.json", "docs/evidence/github-governance-v0220/v0213-state-truth-correction-v1.json", "docs/evidence/maps-minimap-runtime-v0213/"],
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "real_ui_asset_coverage": "NONE",
+  "synthetic_ui_fixture": "TEST_ONLY",
+  "new_generation": 0
+}

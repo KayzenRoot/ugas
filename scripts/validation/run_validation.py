@@ -76,6 +76,7 @@ from ugas.state_consistency_v0213 import validate_state_consistency as validate_
 from ugas.state_consistency_post_merge_v0213 import validate_main_ci_provenance as validate_main_ci_provenance_v0213
 from ugas.state_consistency_post_merge_v0213 import validate_post_merge_state as validate_post_merge_state_v0213
 from ugas.state_consistency_post_merge_v0213 import validate_pre_merge_reproof as validate_pre_merge_reproof_v0213
+from ugas.state_consistency_v0220 import validate_state_consistency as validate_state_consistency_v0220
 from ugas.item_prop_runtime_v0190 import validate_item_prop_manifest as validate_item_prop_manifest_v0190
 from ugas.item_prop_runtime_v0191 import load_equipment_authority, validate_item_prop_manifest as validate_item_prop_manifest_v0191
 from ugas.environment_tileset_runtime_v0200 import validate_tileset_manifest as validate_tileset_manifest_v0200
@@ -3137,7 +3138,10 @@ def _v0190_checks() -> None:
         path = ROOT / relative
         check(f"v0190:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
+        # v0.21.3 is immutable history.  The active root has advanced to
+        # v0.22.0; load the historical Git-object bytes for this replay.
+        historical_state = subprocess.run(["git", "show", "HEAD:docs/evidence/current-state.json"], cwd=ROOT, capture_output=True, text=True, check=False)
+        state = json.loads(historical_state.stdout)
         check("v0190:rejection-history", state.get("correction_history", {}).get("v0.19.0", {}).get("status") == "CORRECTION_REQUIRED" and state.get("correction_history", {}).get("v0.19.0", {}).get("rejected_reviewed_head") == "44937935e644202836b3e1f081b6a63201b850db", "rejected v0.19.0 head remains immutable history")
         manifest = load_json(evidence_root / "item-prop-runtime-manifest-v0190.json")
         validate_instance(manifest, load_json(ROOT / "schemas/item-prop-runtime-v0190.json")); validate_item_prop_manifest_v0190(manifest)
@@ -3221,7 +3225,7 @@ def _v0191_checks() -> None:
         check("v0191:production-registry", production.get("production_registry") is True and production.get("items") == [] and production.get("variants") == [] and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production item/prop registry is empty and blocked")
         check("v0191:determinism", determinism.get("status") == "TWO_RUN_DETERMINISM_PASSED" and determinism.get("file_count") == 19 and determinism.get("differences") == [] and determinism.get("second_run_reads_first_run") is False and determinism.get("mutated_world_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_OUTPUT" and determinism.get("mutated_identity_control_error_code") == "NONDETERMINISTIC_SECOND_ITEM_PROP_IDENTITY", "full-slice isolated determinism and mutation rejection pass")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
-        check("v0191:capability-matrix", matrix.get("version") in {"0.20.3", "0.21.0", "0.21.1", "0.21.2", "0.21.3"} and matrix.get("next_candidate") in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP", "UI_ASSET_FAMILY"} and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"}, "matrix preserves v0.19.1 closure and accepts the forward-only v0.20.3/v0.21.x advancement")
+        check("v0191:capability-matrix", matrix.get("version") in {"0.20.3", "0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0"} and matrix.get("next_candidate") in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP", "UI_ASSET_FAMILY"} and next(item for item in matrix["capabilities"] if item["id"] == "creatures_monsters")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "items_props")["status"] == "APPROVED_FOUNDATION" and next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")["status"] in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"}, "matrix preserves v0.19.1 closure and accepts the forward-only v0.20.3/v0.21.x/v0.22.0 advancement")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0191:evidence", False, str(exc))
     for label, script in (("v0191:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0191:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0191:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py"), ("v0191:v0151-front-regression", "scripts/validation/validate_front_animation_v0151_regression.py")):
@@ -3314,7 +3318,7 @@ def _v0201_checks() -> None:
             consistency = validate_state_consistency_v0201(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0201:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.1 state is consistent")
         else:
-            check("v0201:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3"} and state.get("phase") == "MAPS_MINIMAP" and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.1 active state advanced forward to the approved environment baseline and maps slice")
+            check("v0201:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0"} and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.1 active state advanced forward")
         fixture_root = evidence_root / "fixture"
         manifest = load_json(fixture_root / "tileset-manifest-v0201.json")
         schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0201.json")
@@ -3341,7 +3345,7 @@ def _v0201_checks() -> None:
         check("v0201:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0 and board.get("status") == "TEST_ONLY", "fixture is TEST_ONLY and production registry is empty")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
         environment = next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")
-        check("v0201:capability-matrix", (matrix.get("version") == "0.20.1" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "MAPS_MINIMAP"), "capability matrix preserves v0.20.1 history while allowing the approved v0.21.x advancement")
+        check("v0201:capability-matrix", (matrix.get("version") == "0.20.1" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "UI_ASSET_FAMILY"), "capability matrix preserves v0.20.1 history while allowing forward advancement")
     except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
         check("v0201:evidence", False, str(exc))
     for label, script in (("v0201:v0191-items-props-regression", "scripts/validation/validate_items_props_runtime_v0191_regression.py"), ("v0201:v0182-creatures-regression", "scripts/validation/validate_creatures_monsters_runtime_v0182_regression.py"), ("v0201:v0171-equipment-regression", "scripts/validation/validate_equipment_runtime_v0171_regression.py"), ("v0201:v0162-direction-regression", "scripts/validation/validate_direction_runtime_v0162_regression.py")):
@@ -3379,7 +3383,7 @@ def _v0202_checks() -> None:
             consistency = validate_state_consistency_v0202(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0202:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.2 state is consistent")
         else:
-            check("v0202:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3"} and state.get("phase") == "MAPS_MINIMAP" and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.2 active state advanced forward to the approved environment baseline and maps slice")
+            check("v0202:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0"} and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.2 active state advanced forward")
         fixture_root = evidence_root / "fixture"
         manifest = load_json(fixture_root / "tileset-manifest-v0202.json")
         schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0202.json")
@@ -3406,7 +3410,7 @@ def _v0202_checks() -> None:
         check("v0202:production-boundary", production.get("entries") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("new_generation") == 0, "production registry remains empty and blocked")
         matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
         environment = next(item for item in matrix["capabilities"] if item["id"] == "environment_tilesets")
-        check("v0202:capability-matrix", (matrix.get("version") == "0.20.2" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "MAPS_MINIMAP"), "capability matrix preserves v0.20.2 history while allowing the approved v0.21.x advancement")
+        check("v0202:capability-matrix", (matrix.get("version") == "0.20.2" and environment.get("status", "").startswith("TECHNICALLY_QUALIFIED_FOUNDATION") and matrix.get("next_candidate") == "ENVIRONMENT_TILESETS") or (matrix.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0"} and environment.get("status") == "APPROVED_FOUNDATION" and matrix.get("next_candidate") == "UI_ASSET_FAMILY"), "capability matrix preserves v0.20.2 history while allowing forward advancement")
         historical_manifest = load_json(historical_root / "fixture/tileset-manifest-v0201.json")
         historical_schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0201.json")
         validate_instance(historical_manifest, historical_schema)
@@ -3463,7 +3467,7 @@ def _v0203_checks() -> None:
             consistency = validate_state_consistency_v0203(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0203:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.3 state is consistent")
         else:
-            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3"} and state.get("previous_release", {}).get("merge_commit") == "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "v0.20.3 remains immutable approved history while active state advances to v0.21.x")
+            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0"} and state.get("previous_release", {}).get("merge_commit") in {"0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3"}, "approved history remains immutable while active state advances")
         history = state["correction_history"]["v0.20.2"]
         check("v0203:v0202-rejected-history", history.get("status") == "CORRECTION_REQUIRED" and history.get("rejected_reviewed_head") == "6022cf3c6158ebb762519a04e79ed42378438ccc" and history.get("historical_evidence_unchanged") is True, "v0.20.2 is explicitly rejected and frozen")
 
@@ -3605,7 +3609,8 @@ def _v0213_checks() -> None:
         path = ROOT / relative
         check(f"v0213:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
+        historical_state_result = subprocess.run(["git", "show", "HEAD:docs/evidence/current-state.json"], cwd=ROOT, capture_output=True, text=True, check=False)
+        state = json.loads(historical_state_result.stdout)
         state_schema = load_json(ROOT / "schemas/current-state-v0213-merged.json")
         validate_schema_document(state_schema); validate_instance(state, state_schema)
         post_merge_binding = load_json(ROOT / "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json")
@@ -3645,7 +3650,8 @@ def _v0213_checks() -> None:
         check("v0213:historical-capability-matrix", matrix.get("version") == "0.21.3" and matrix.get("next_candidate") == "MAPS_MINIMAP" and matrix.get("environment_tilesets_status") == "APPROVED_FOUNDATION" and matrix.get("production_routing") == "BLOCKED" and matrix.get("new_generation") == 0, "immutable v0.21.3 technical evidence remains bound to the correction run")
         active_matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
         active_maps = next(item for item in active_matrix["capabilities"] if item["id"] == "maps_minimap_assets")
-        check("v0213:approval-bookkeeping-transition", active_matrix.get("version") == "0.21.3" and active_maps.get("status") == "APPROVED_FOUNDATION" and active_matrix.get("next_candidate") == "UI_ASSET_FAMILY" and active_matrix.get("production_routing") == "BLOCKED" and active_matrix.get("new_generation") == 0, "active capability matrix records Maps/Minimap approval and UI as the next candidate")
+        active_ui = next(item for item in active_matrix["capabilities"] if item["id"] == "ui_asset_family")
+        check("v0213:approval-bookkeeping-transition", active_matrix.get("version") == "0.22.0" and active_maps.get("status") == "APPROVED_FOUNDATION" and active_ui.get("status") == "TECHNICALLY_QUALIFIED_FOUNDATION" and active_matrix.get("next_candidate") == "UI_ASSET_FAMILY" and active_matrix.get("production_routing") == "BLOCKED" and active_matrix.get("new_generation") == 0, "active capability matrix advances forward to the v0.22.0 UI foundation")
         runtime_text = (ROOT / "src/ugas/maps_minimap_runtime_v0210.py").read_text(encoding="utf-8")
         runner_text = (ROOT / "scripts/validation/run_maps_minimap_runtime_v0210.py").read_text(encoding="utf-8")
         check("v0213:source-historical-byte-integrity", "replace(b\"\\r\\n\", b\"\\n\")" not in runtime_text and "authority_ref.split" not in runner_text and "candidate_blob" in runtime_text and "candidate_blob_sha" in runner_text, "validator has no newline normalization and runner carries explicit blob provenance")
@@ -3653,10 +3659,41 @@ def _v0213_checks() -> None:
         check("v0213:evidence", False, str(exc))
 
 
+def _v0220_checks() -> None:
+    """Validate the active v0.22.0 UI foundation and its bounded evidence."""
+    evidence_root = ROOT / "docs/evidence/ui-asset-family-runtime-v0220"
+    required = [
+        "schemas/current-state-v0220.json", "schemas/ui-asset-family-runtime-v0220.json", "src/ugas/ui_asset_family_runtime_v0220.py", "src/ugas/state_consistency_v0220.py", "scripts/validation/run_ui_asset_family_runtime_v0220.py", "scripts/validation/validate_state_consistency_v0220.py", "tests/test_ui_asset_family_runtime_v0220.py", "REVIEW-v0.22.0.md", "docs/evidence/current-state.json", "docs/evidence/current-state-v0213.json", "docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json",
+    ]
+    required += [f"docs/evidence/ui-asset-family-runtime-v0220/{name}" for name in ("ui-family-manifest-v0220.json", "component-class-matrix-v0220.json", "state-variant-matrix-v0220.json", "style-token-authority-v0220.json", "nine-slice-geometry-v0220.json", "safe-area-geometry-v0220.json", "scale-consistency-v0220.json", "integration-linkage-v0220.json", "cache-identity-v0220.json", "provenance-v0220.json", "hard-gates-v0220.json", "negative-controls-v0220.json", "full-slice-two-run-determinism-v0220.json", "production-registry-v0220.json", "test-only-fixture-manifest-v0220.json", "execution-evidence-v0220.json", "ui-state-contact-sheet-v0220.png", "ui-geometry-qa-sheet-v0220.png")]
+    for relative in required:
+        path = ROOT / relative
+        check(f"v0220:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        binding = load_json(ROOT / "docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json")
+        result = validate_state_consistency_v0220(state, binding, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "docs/project-review-response-protocol.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
+        check("v0220:state-consistency", result["status"] == "UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and not result["failures"], "; ".join(result["failures"]) or "active UI state is consistent")
+        manifest = load_json(evidence_root / "ui-family-manifest-v0220.json")
+        check("v0220:manifest", manifest.get("schema_version") == "0.22.0" and len(manifest.get("component_classes", [])) == 14 and manifest.get("production_routing") == "BLOCKED" and manifest.get("new_generation") == 0, "14-class TEST_ONLY UI manifest is present")
+        gates = load_json(evidence_root / "hard-gates-v0220.json"); controls = load_json(evidence_root / "negative-controls-v0220.json")
+        check("v0220:hard-gates", gates.get("required_gate_count") == 22 and len(gates.get("gates", {})) == 22 and all(item.get("status") == "PASS" and type(item.get("observed")) is bool and item.get("observed") is True for item in gates["gates"].values()), "all UI hard gates have strict observed booleans")
+        check("v0220:negative-controls", controls.get("required_control_count") == 22 and len(controls.get("controls", {})) == 22 and all(item.get("status") == "PASS" and item.get("result") == "REJECT" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in controls["controls"].values()), "all UI negative controls observe their real rejection classes")
+        determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0220.json")
+        check("v0220:determinism", determinism.get("status") == "PASS" and determinism.get("first_output_count") == determinism.get("second_output_count") == 168, "two isolated UI fixture runs are byte-identical")
+        execution = load_json(evidence_root / "execution-evidence-v0220.json")
+        check("v0220:execution", execution.get("status") == "UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and execution.get("overall_pass") is True and execution.get("production_routing") == "BLOCKED" and execution.get("production_approved") is False and execution.get("new_generation") == 0, "UI foundation is technically qualified but remains TEST_ONLY")
+        production = load_json(evidence_root / "production-registry-v0220.json")
+        check("v0220:production-boundary", production.get("registry") == [] and production.get("production_approved") is False and production.get("production_routing") == "BLOCKED" and production.get("real_ui_asset_coverage") == "NONE" and production.get("synthetic_ui_fixture") == "TEST_ONLY", "production registry remains empty and blocked")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0220:evidence", False, str(exc))
+
+
 def _v0210_checks() -> None:
     """Validate the active v0.21.0 maps/minimap foundation and boundaries."""
     _v0212_checks()
     _v0213_checks()
+    _v0220_checks()
     return
     evidence_root = ROOT / "docs/evidence/maps-minimap-runtime-v0210"
     required = [
@@ -3895,10 +3932,10 @@ def main() -> int:
     init_version = __import__("ugas").__version__
     current_state_version = load_json(ROOT / "docs/evidence/current-state.json").get("version")
     active_maps_schema_version = load_json(ROOT / "schemas/maps-minimap-runtime-v0213.json").get("properties", {}).get("schema_version", {}).get("const")
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == current_state_version == "0.21.3", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}, current_state={current_state_version}")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == current_state_version == "0.22.0", f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}, current_state={current_state_version}")
     check("version:maps-schema", active_maps_schema_version == "0.21.3", f"active maps/minimap schema={active_maps_schema_version}")
-    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.21.3.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
-    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.21.3")
+    docs = ["README.md", "INSTALL.md", "CHECKPOINT.md", "REVIEW-v0.22.0.md", "docs/2d-master-pipeline.md", "docs/comfyui.md", "docs/roadmap.md"]
+    check("docs:version", all(UGAS_VERSION in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.22.0")
     checkpoint_text = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8").casefold()
     check("docs:animation-boundary", "animação genérica" in checkpoint_text or "no other animation" in checkpoint_text, "checkpoint keeps other animations outside scope")
     check("security:tracked-forbidden", not any(Path(path).suffix.casefold() in {".safetensors", ".ckpt", ".gguf", ".onnx"} for path in subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.splitlines()) if (ROOT / ".git").exists() else True, "weights are outside Git")

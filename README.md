@@ -1,6 +1,6 @@
-# UGAS 0.21.3
+# UGAS 0.22.0
 
-Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.21.3 fecha a aprovação externa do runtime MAPS_MINIMAP após a correção de integridade histórica; o PR #11 aguarda apenas reproof administrativo e merge governado. O runtime continua sem alteração semântica, o dashboard permanece Dockerizado always-on/read-only/local e produção não é habilitada. O v0.20.3 Environment/Tilesets permanece a base aprovada e os v0.21.0/v0.21.1/v0.21.2 são históricos rejeitados.
+Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.22.0 qualifica tecnicamente a fundação runtime da família de UI com fixtures RGBA determinísticos TEST_ONLY, 14 classes, estados, 9-slice, safe areas, escala 1x/2x, cache completo, provenance e 22 gates/negative controls. A aprovação externa do PR #12 é requisito; o PR v0.22.0 permanece aberto e não mergeado. Produção segue `BLOCKED`, `production_approved=false`, `real_ui_asset_coverage=NONE` e `new_generation=0`; não iniciar VFX, orquestração ou arte real.
 
 O v0.15.1 permanece o piloto aprovado de DEATH_ANIMATION_FRONT e o v0.13.1 o piloto aprovado de RUN_FRONT_V1. O v0.15.0, v0.13.0, v0.12.0, v0.12.1 e v0.12.2 permanecem preservados como rejected/history evidence. Nenhum piloto equivale a aprovação de produção.
 
@@ -30,7 +30,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.21.3.md](REVIEW-v0.21.3.md). Maps/Minimap está em `APPROVED_FOUNDATION`; o único próximo passo é `bookkeeping_reproof_and_governed_merge_pr_11`, e UI é apenas o próximo candidato após o merge. Os v0.21.0/v0.21.1/v0.21.2 permanecem imutáveis como candidatos rejeitados; nenhum peso é distribuído com o repositório. A cobertura real de mapas/minimaps é `NONE` e os fixtures são `TEST_ONLY`.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.22.0.md](REVIEW-v0.22.0.md). Maps/Minimap permanece `APPROVED_FOUNDATION`/`MERGED_CLOSED`; o único próximo passo é `external_review_ui_asset_family_v0220`. O SHA base registrado é histórico (`baseline_main_sha`), enquanto o `main` atual deve ser resolvido do GitHub LIVE. A cobertura real de UI é `NONE`, os fixtures são `TEST_ONLY`, e o registro de produção está vazio.
 
 ## v0.20.1 ENVIRONMENT_TILESETS QA integrity correction
 

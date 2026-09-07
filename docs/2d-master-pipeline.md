@@ -2,7 +2,11 @@
 
 The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
 
-# 2D master pipeline v0.21.3
+# 2D master pipeline v0.22.0
+
+The active v0.22.0 slice is `UI_ASSET_FAMILY`: deterministic TEST_ONLY runtime contracts for 14 UI component classes, six explicit states, semantic style-token authority, 9-slice reconstruction, safe rectangles, visual/hit separation, 1x/2x output, read-only item/equipment/minimap linkage, complete cache identity and raw output provenance. It does not start a UI, VFX, orchestration or production lane. `ui_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`, `ui_asset_family_external_review=REQUIRED`, `real_ui_asset_coverage=NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The sole allowed next action is `external_review_ui_asset_family_v0220`.
+
+The v0.21.3 Maps/Minimap approval is historical merged context; its evidence roots remain immutable. `baseline_main_sha` is historical branch context, while current main is resolved from GitHub LIVE.
 
 The active v0.21.3 slice is the `MAPS_MINIMAP` historical byte-integrity correction over rejected v0.21.2. It preserves the v0.21.2 raster/governance fixes, validates raw Git-object bytes without CRLF/LF normalization, records real authority and candidate blob provenance, and executes CRLF-only plus append mutation controls through the same validator. `environment_tilesets=APPROVED_FOUNDATION`, `maps_minimap_runtime=TECHNICALLY_QUALIFIED_FOUNDATION`, `real_map_asset_coverage=NONE`, `real_minimap_asset_coverage=NONE`, `synthetic_map_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`; UI, VFX, orchestration and production art remain out of scope. v0.21.2 remains immutable `CORRECTION_REQUIRED` history.
 
