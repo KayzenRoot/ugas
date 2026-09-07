@@ -138,6 +138,7 @@ def resolve_approved_authority(authority_name: str) -> dict[str, Any]:
         blob_sha = subprocess.run(["git", "rev-parse", object_ref], cwd=root, capture_output=True, text=True, check=False)
         _require(blob_sha.returncode == 0, "UI_INTEGRATION_AUTHORITY_UNRESOLVED", object_ref)
         raw = bytes(blob.stdout)
+        fingerprint_raw = raw
         resolved_blob = blob_sha.stdout.strip()
     else:
         # A Git archive/snapshot has no object database.  Its tracked authority
@@ -146,10 +147,19 @@ def resolve_approved_authority(authority_name: str) -> dict[str, Any]:
         authority_path = root / source["authoritative_path"]
         _require(authority_path.is_file(), "UI_INTEGRATION_AUTHORITY_UNRESOLVED", object_ref)
         raw = authority_path.read_bytes()
-        resolved_blob = _git_blob_sha(raw)
+        # `git archive` may materialize tracked text with CRLF even though the
+        # immutable Git blob is LF. Normalize only that transport difference;
+        # any content mutation remains visible in the canonical fingerprint.
+        fingerprint_raw = raw.replace(b"\r\n", b"\n")
+        resolved_blob = _git_blob_sha(fingerprint_raw)
     _require(resolved_blob == expected_blob, "UI_INTEGRATION_AUTHORITY_STALE", object_ref)
-    _require(sha256_bytes(raw) == expected_raw, "UI_INTEGRATION_AUTHORITY_STALE", object_ref)
-    return {**source, "git_blob_sha": resolved_blob, "raw_bytes_sha256": sha256_bytes(raw)}
+    _require(sha256_bytes(fingerprint_raw) == expected_raw, "UI_INTEGRATION_AUTHORITY_STALE", object_ref)
+    return {
+        **source,
+        "git_blob_sha": resolved_blob,
+        "raw_bytes_sha256": sha256_bytes(fingerprint_raw),
+        "materialized_bytes_sha256": sha256_bytes(raw),
+    }
 
 
 def build_test_only_style_tokens() -> dict[str, Any]:
