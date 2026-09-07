@@ -16,7 +16,10 @@ def main() -> int:
     if args.security.is_file() and json.loads(args.security.read_text(encoding="utf-8")).get("status") != "PASS": failures.append("security-validation-failed")
     for path in (args.ui_exit, args.state_exit, args.governance_exit):
         if not path.is_file() or path.read_text(encoding="utf-8").strip() != "0": failures.append(f"gate-failed:{path.name}")
-    print(json.dumps({"status": "PASS" if not failures else "FAIL", "failures": failures, "stop": "PR_OPEN_UNMERGED" if not failures else "REVIEW_BLOCKED"})); return 0 if not failures else 1
+    result = {"status": "PASS" if not failures else "FAIL", "failures": failures, "stop": "PR_OPEN_UNMERGED" if not failures else "REVIEW_BLOCKED"}
+    for failure in failures:
+        print(f"::error file=scripts/validation/enforce_github_review_v0223.py,line=1::{failure}")
+    print(json.dumps(result)); return 0 if not failures else 1
 
 
 if __name__ == "__main__": raise SystemExit(main())
