@@ -2,9 +2,9 @@
 
 The v0.18.0 slice was the rejected creatures/monsters runtime foundation. Its evidence remains historical and immutable: creature fixtures are `TEST_ONLY`, real creature coverage is `NONE`, production routing is `BLOCKED`, and no Items/Props work is authorized.
 
-# 2D master pipeline v0.22.3
+# 2D master pipeline v0.23.0
 
-The active correction is v0.22.3 UI Asset Family F-15/F-16/F-18/F-21 integrity; F-20 regression coverage is preserved, v0.22.0 through v0.22.2 remain frozen rejected history, with external review required and production BLOCKED.
+The active correction/foundation is v0.23.0 VFX Asset Family runtime integrity over approved/merged UI v0.22.3. The VFX fixtures are deterministic TEST_ONLY contracts, with external review required and production BLOCKED.
 
 The active v0.22.0 slice is `UI_ASSET_FAMILY`: deterministic TEST_ONLY runtime contracts for 14 UI component classes, six explicit states, semantic style-token authority, 9-slice reconstruction, safe rectangles, visual/hit separation, 1x/2x output, read-only item/equipment/minimap linkage, complete cache identity and raw output provenance. It does not start a UI, VFX, orchestration or production lane. `ui_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`, `ui_asset_family_external_review=REQUIRED`, `real_ui_asset_coverage=NONE`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The sole allowed next action is `external_review_ui_asset_family_v0220`.
 

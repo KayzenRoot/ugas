@@ -6,7 +6,7 @@
   "required": ["schema_version", "version", "capabilities", "next_candidate", "production_routing", "new_generation"],
   "properties": {
     "schema_version": {"const": "1.0"},
-    "version": {"type": "string", "pattern": "^0\\.2[0-2]\\.[0-9]+$"},
+    "version": {"type": "string", "pattern": "^0\\.2[0-3]\\.[0-9]+$"},
     "capabilities": {
       "type": "array",
       "minItems": 1,
@@ -22,7 +22,7 @@
         }
       }
     },
-    "next_candidate": {"enum": ["ENVIRONMENT_TILESETS", "MAPS_MINIMAP", "UI_ASSET_FAMILY"]},
+    "next_candidate": {"enum": ["ENVIRONMENT_TILESETS", "MAPS_MINIMAP", "UI_ASSET_FAMILY", "ORCHESTRATION_RUNTIME_HARDENING"]},
     "production_routing": {"const": "BLOCKED"},
     "new_generation": {"const": 0}
   }

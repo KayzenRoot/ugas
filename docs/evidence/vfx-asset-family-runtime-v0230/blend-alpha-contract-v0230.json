@@ -1,0 +1,105 @@
+{
+  "schema_version": "0.23.0",
+  "effects": [
+    {
+      "effect_class": "impact_burst",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "weapon_arc",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "projectile_trail",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "PREMULTIPLIED",
+      "premultiplied": true,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "projectile_impact",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "cast_charge",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "persistent_aura",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "PREMULTIPLIED",
+      "premultiplied": true,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "area_telegraph",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "status_loop",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "buff_heal_burst",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "effect_class": "environment_ambient",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ]
+    }
+  ]
+}

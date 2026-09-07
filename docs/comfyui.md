@@ -1,4 +1,4 @@
-# Active governed release: v0.22.3 UI Asset Family correction delta on PR #13; exact-head CI and bounded artifact are required before external Sol review. Production remains BLOCKED, real UI coverage is NONE, and no VFX, orchestration or generation is authorized.
+# Active governed release: v0.23.0 VFX Asset Family runtime foundation; exact-head CI and bounded artifact are required before external Sol review. Production remains BLOCKED, real VFX coverage is NONE, and no provider generation, orchestration or production art is authorized.
 
 ## Current v0.18.1 boundary
 

@@ -1,0 +1,165 @@
+{
+  "schema_version": "0.23.0",
+  "effects": [
+    {
+      "effect_class": "impact_burst",
+      "space": "WORLD",
+      "anchor": {
+        "kind": "IMPACT_POINT",
+        "id": "anchor-impact_burst-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "RADIAL",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "weapon_arc",
+      "space": "ENTITY_ANCHOR",
+      "anchor": {
+        "kind": "WEAPON_SWEEP",
+        "id": "anchor-weapon_arc-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "EXPLICIT_FACING",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "projectile_trail",
+      "space": "ENTITY_ANCHOR",
+      "anchor": {
+        "kind": "PROJECTILE_OWNER",
+        "id": "anchor-projectile_trail-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "VELOCITY_VECTOR",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "projectile_impact",
+      "space": "WORLD",
+      "anchor": {
+        "kind": "IMPACT_POINT",
+        "id": "anchor-projectile_impact-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "RADIAL",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "cast_charge",
+      "space": "ENTITY_ANCHOR",
+      "anchor": {
+        "kind": "CASTER",
+        "id": "anchor-cast_charge-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "EXPLICIT_FACING",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "persistent_aura",
+      "space": "ENTITY_ANCHOR",
+      "anchor": {
+        "kind": "AURA_OWNER",
+        "id": "anchor-persistent_aura-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "NONE",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "area_telegraph",
+      "space": "WORLD",
+      "anchor": {
+        "kind": "AREA_ORIGIN",
+        "id": "anchor-area_telegraph-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "NONE",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "status_loop",
+      "space": "ENTITY_ANCHOR",
+      "anchor": {
+        "kind": "STATUS_OWNER",
+        "id": "anchor-status_loop-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "NONE",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "buff_heal_burst",
+      "space": "ENTITY_ANCHOR",
+      "anchor": {
+        "kind": "TARGET_ENTITY",
+        "id": "anchor-buff_heal_burst-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "RADIAL",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    },
+    {
+      "effect_class": "environment_ambient",
+      "space": "WORLD",
+      "anchor": {
+        "kind": "AMBIENT_REGION",
+        "id": "anchor-environment_ambient-fixture",
+        "read_only": true
+      },
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "direction_policy": "NONE",
+      "bounds_policy": "DECLARED_AND_BOUNDED",
+      "max_visual_area_ratio": 0.8
+    }
+  ]
+}
