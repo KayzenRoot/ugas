@@ -16,6 +16,7 @@ from ..state_consistency_v0210 import validate_state_consistency as validate_sta
 from ..state_consistency_v0211 import validate_state_consistency as validate_state_consistency_v0211
 from ..state_consistency_v0212 import validate_state_consistency as validate_state_consistency_v0212
 from ..state_consistency_v0213 import validate_state_consistency as validate_state_consistency_v0213
+from ..state_consistency_post_merge_v0213 import validate_post_merge_state as validate_post_merge_state_v0213
 
 # The active state/review moved to v0.21.0. The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
@@ -157,9 +158,9 @@ class ActiveEvidenceCache:
                 active_version = _load(self.state_path).get("version")
             except (OSError, json.JSONDecodeError, AttributeError):
                 active_version = None
-            self.state_schema_path = self.repo_root / ("schemas/current-state-v0213.json" if active_version == "0.21.3" else ("schemas/current-state-v0212.json" if active_version == "0.21.2" else ("schemas/current-state-v0211.json" if active_version == "0.21.1" else ("schemas/current-state-v0210.json" if active_version == "0.21.0" else "schemas/current-state-v0203.json"))))
+            self.state_schema_path = self.repo_root / ("schemas/current-state-v0213-merged.json" if active_version == "0.21.3" else ("schemas/current-state-v0212.json" if active_version == "0.21.2" else ("schemas/current-state-v0211.json" if active_version == "0.21.1" else ("schemas/current-state-v0210.json" if active_version == "0.21.0" else "schemas/current-state-v0203.json"))))
         self.checkpoint_path = checkpoint_path or self.repo_root / "CHECKPOINT.md"
-        self.review_path = review_path or self.repo_root / ("REVIEW-v0.21.3.md" if self.state_schema_path.name == "current-state-v0213.json" else ("REVIEW-v0.21.2.md" if self.state_schema_path.name == "current-state-v0212.json" else ("REVIEW-v0.21.1.md" if self.state_schema_path.name == "current-state-v0211.json" else ("REVIEW-v0.21.0.md" if self.state_schema_path.name == "current-state-v0210.json" else "REVIEW-v0.20.3.md"))))
+        self.review_path = review_path or self.repo_root / ("REVIEW-v0.21.3.md" if self.state_schema_path.name in {"current-state-v0213.json", "current-state-v0213-merged.json"} else ("REVIEW-v0.21.2.md" if self.state_schema_path.name == "current-state-v0212.json" else ("REVIEW-v0.21.1.md" if self.state_schema_path.name == "current-state-v0211.json" else ("REVIEW-v0.21.0.md" if self.state_schema_path.name == "current-state-v0210.json" else "REVIEW-v0.20.3.md"))))
         self.roadmap_path = self.repo_root / "docs/roadmap.md"
         self.review_index_path = review_index_path or self.repo_root / "docs/evidence" / ACTIVE_INDEX
         self._default_review_index = review_index_path is None
@@ -235,13 +236,22 @@ class ActiveEvidenceCache:
             schema = _load(self.state_schema_path)
             validate_schema_document(schema)
             validate_instance(state, schema)
-            consistency_validator = validate_state_consistency_v0213 if state.get("version") == "0.21.3" else (validate_state_consistency_v0212 if state.get("version") == "0.21.2" else (validate_state_consistency_v0211 if state.get("version") == "0.21.1" else (validate_state_consistency_v0210 if state.get("version") == "0.21.0" else validate_state_consistency_v0203)))
-            consistency = consistency_validator(
-                state,
-                self.checkpoint_path.read_text(encoding="utf-8"),
-                self.review_path.read_text(encoding="utf-8"),
-                self.roadmap_path.read_text(encoding="utf-8"),
-            )
+            if state.get("version") == "0.21.3":
+                consistency = validate_post_merge_state_v0213(
+                    state,
+                    _load(self.repo_root / "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json"),
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    (self.repo_root / "docs/chat-continuity-protocol.md").read_text(encoding="utf-8"),
+                    (self.repo_root / "docs/project-review-response-protocol.md").read_text(encoding="utf-8"),
+                )
+            else:
+                consistency_validator = validate_state_consistency_v0212 if state.get("version") == "0.21.2" else (validate_state_consistency_v0211 if state.get("version") == "0.21.1" else (validate_state_consistency_v0210 if state.get("version") == "0.21.0" else validate_state_consistency_v0203))
+                consistency = consistency_validator(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.review_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                )
             if consistency.get("failures"):
                 failures.extend(f"state:{item}" for item in consistency["failures"])
         except (OSError, json.JSONDecodeError, ValueError, TypeError) as exc:

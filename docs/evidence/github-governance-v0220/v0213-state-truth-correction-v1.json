@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.22.1",
+  "record_type": "rejection_correction_record",
+  "status": "CORRECTION_REQUIRED",
+  "work_order": "UGAS-WO-0213-PMC-C1",
+  "repository": "KayzenRoot/ugas",
+  "pr_number": 12,
+  "branch": "codex/v0.21.3-post-merge-closure-continuity",
+  "base_sha": "0c9b721b43d3cc12605ce009f6e0deb232b00045",
+  "rejected_reviewed_head": "f494af8fbc74dbf6e2ffb63276b9480daf0c5fc1",
+  "findings": [
+    {"id": "F-12", "summary": "Tracked state treated the historical main baseline as a permanent live-main invariant."},
+    {"id": "F-13", "summary": "UI was listed as allowed while the closure review was open and UI remained forbidden."},
+    {"id": "F-14", "summary": "PR-only review/evidence was incorrectly declared as merged-main CI."}
+  ],
+  "preserved_work": {
+    "prior_binding": "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json",
+    "pre_merge_approval_record": "docs/evidence/github-governance-v0220/v0213-external-approval.json",
+    "maps_minimap_semantic_evidence_immutable": true,
+    "prior_evidence_roots_immutable": true
+  },
+  "correction_scope": {
+    "baseline_semantics": "baseline_main_sha is historical closure context; GitHub LIVE resolves current main",
+    "next_action_semantics": "closure review is the sole tracked action until live PR #12 approval and merge",
+    "main_ci_semantics": "post_merge_main_ci contains exactly the two observed merged-main CI contexts"
+  },
+  "production_boundary": {
+    "production_routing": "BLOCKED",
+    "production_approved": false,
+    "real_map_asset_coverage": "NONE",
+    "real_minimap_asset_coverage": "NONE",
+    "synthetic_map_fixture": "TEST_ONLY",
+    "new_generation": 0
+  },
+  "forward_only": true,
+  "historical_sources_rewritten": false
+}

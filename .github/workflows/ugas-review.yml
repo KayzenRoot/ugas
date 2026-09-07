@@ -85,13 +85,13 @@ jobs:
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-validation.exit"
           exit "$code"
-      - name: Validate active v0.21.3 state
+      - name: Validate active v0.21.3 post-merge closure state
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_state_consistency_v0213.py
+          python scripts/validation/validate_post_merge_closure_v0213.py
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/state.exit"
           exit "$code"
@@ -146,6 +146,8 @@ jobs:
           mkdir -p "$artifact/maps-minimap" "$artifact/environment-tilesets" "$artifact/items-props" "$artifact/creatures-monsters" "$artifact/equipment" "$artifact/direction" "$artifact/front" "$artifact/state" "$artifact/logs" "$artifact/governance"
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
           cp docs/evidence/current-state.json "$artifact/state/current-state.json" 2>/dev/null || true
+          cp docs/evidence/github-governance-v0220/v0213-post-merge-binding.json "$artifact/governance/v0213-post-merge-binding.json" 2>/dev/null || true
+          cp docs/evidence/github-governance-v0220/v0213-state-truth-correction-v1.json "$artifact/governance/v0213-state-truth-correction-v1.json" 2>/dev/null || true
           cp -R docs/evidence/maps-minimap-runtime-v0213/. "$artifact/maps-minimap/" 2>/dev/null || true
           cp -R docs/evidence/environment-tilesets-runtime-v0203/. "$artifact/environment-tilesets/" 2>/dev/null || true
           cp docs/evidence/items-props-runtime-v0191/execution-evidence-v0191.json "$artifact/items-props/" 2>/dev/null || true
@@ -200,12 +202,12 @@ jobs:
         if: always()
         run: |
           {
-            echo '## UGAS GitHub-native v0.21.3 MAPS_MINIMAP raster/governance correction evidence'
+            echo '## UGAS GitHub-native v0.21.3 post-merge closure evidence'
             echo "- Base: \`$BASE_REF\`"
             echo "- Head: \`$HEAD_REF\`"
             echo "- PR number: \`$PR_NUMBER\`"
             echo '- Production: `real_environment_asset_coverage=NONE`, `synthetic_environment_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`; production registry is empty.'
-            echo '- Final stop: v0.21.3 is technically qualified and remains OPEN for external review; do not merge, enable production or start UI, VFX, orchestration or production art.'
+            echo '- Final stop: governance-only closure PR remains OPEN for external Sol review; do not merge it or start UI, VFX, orchestration or production art.'
             echo "- Artifact: \`ugas-review-evidence-pr-${PR_NUMBER}-${HEAD_REF}\`"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload bounded GitHub review artifact

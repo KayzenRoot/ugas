@@ -45,7 +45,7 @@ def main() -> int:
         "unit_tests": {"status": "PASS" if tests["status"] == "passed" else "FAIL", "detail": tests},
         "official_validation": {"status": "PASS" if validation["status"] == "passed" else "FAIL", "detail": validation},
         "maps_minimap_runtime": {"status": "PASS" if _code(args.environment_exit_code) == 0 else "FAIL", "detail": "run_maps_minimap_runtime_v0210.py (v0.21.3 correction)"},
-        "state_consistency": {"status": "PASS" if _code(args.state_exit_code) == 0 else "FAIL", "detail": "validate_state_consistency_v0213.py"},
+        "state_consistency": {"status": "PASS" if _code(args.state_exit_code) == 0 else "FAIL", "detail": "validate_post_merge_closure_v0213.py"},
         "frozen_regressions": {"status": "PASS" if _code(args.regressions_exit_code) == 0 else "FAIL", "detail": "historical runtime regressions"},
         "capability_matrix": {"status": "PASS" if _code(args.matrix_exit_code) == 0 else "FAIL", "detail": "validate_v1_capability_matrix.py"},
         "workflow_validation": {"status": "PASS" if _code(args.workflow_exit_code) == 0 else "FAIL", "detail": "validate_github_workflows_v0124.py"},
