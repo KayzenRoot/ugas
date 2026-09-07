@@ -73,6 +73,7 @@ from ugas.state_consistency_v0210 import validate_state_consistency as validate_
 from ugas.state_consistency_v0211 import validate_state_consistency as validate_state_consistency_v0211
 from ugas.state_consistency_v0212 import validate_state_consistency as validate_state_consistency_v0212
 from ugas.state_consistency_v0213 import validate_state_consistency as validate_state_consistency_v0213
+from ugas.state_consistency_post_merge_v0213 import validate_post_merge_state as validate_post_merge_state_v0213
 from ugas.item_prop_runtime_v0190 import validate_item_prop_manifest as validate_item_prop_manifest_v0190
 from ugas.item_prop_runtime_v0191 import load_equipment_authority, validate_item_prop_manifest as validate_item_prop_manifest_v0191
 from ugas.environment_tileset_runtime_v0200 import validate_tileset_manifest as validate_tileset_manifest_v0200
@@ -3583,9 +3584,9 @@ def _v0213_checks() -> None:
     """Validate the active v0.21.3 historical byte-integrity correction."""
     evidence_root = ROOT / "docs/evidence/maps-minimap-runtime-v0213"
     required = [
-        "REVIEW-v0.21.3.md", "schemas/current-state-v0213.json", "schemas/maps-minimap-runtime-v0213.json",
+        "REVIEW-v0.21.3.md", "schemas/current-state-v0213.json", "schemas/current-state-v0213-merged.json", "schemas/maps-minimap-runtime-v0213.json",
         "src/ugas/maps_minimap_runtime_v0210.py", "src/ugas/state_consistency_v0213.py",
-        "scripts/validation/run_maps_minimap_runtime_v0210.py", "scripts/validation/validate_state_consistency_v0213.py",
+        "scripts/validation/run_maps_minimap_runtime_v0210.py", "scripts/validation/validate_state_consistency_v0213.py", "scripts/validation/validate_post_merge_closure_v0213.py", "src/ugas/state_consistency_post_merge_v0213.py", "docs/chat-continuity-protocol.md", "docs/project-review-response-protocol.md", "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json",
         "tests/test_maps_minimap_runtime_v0210.py", "docs/evidence/current-state.json", "docs/ugas-v1-capability-matrix.json",
         "docs/evidence/github-governance-v0210/v0203-external-approval.json",
         "docs/evidence/maps-minimap-runtime-v0213/v0.21.2-rejection-correction-record-v0213.json",
@@ -3603,10 +3604,11 @@ def _v0213_checks() -> None:
         check(f"v0213:path:{relative}", path.is_file(), "present" if path.is_file() else "missing")
     try:
         state = load_json(ROOT / "docs/evidence/current-state.json")
-        state_schema = load_json(ROOT / "schemas/current-state-v0213.json")
+        state_schema = load_json(ROOT / "schemas/current-state-v0213-merged.json")
         validate_schema_document(state_schema); validate_instance(state, state_schema)
-        consistency = validate_state_consistency_v0213(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.21.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
-        check("v0213:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.21.3 state is consistent")
+        post_merge_binding = load_json(ROOT / "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json")
+        consistency = validate_post_merge_state_v0213(state, post_merge_binding, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "docs/chat-continuity-protocol.md").read_text(encoding="utf-8"), (ROOT / "docs/project-review-response-protocol.md").read_text(encoding="utf-8"))
+        check("v0213:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.21.3 post-merge state is consistent")
         execution = load_json(evidence_root / "execution-evidence-v0213.json")
         validate_instance(execution, load_json(ROOT / "schemas/maps-minimap-runtime-v0213.json"))
         check("v0213:execution", execution.get("status") == "MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED" and execution.get("hard_gate_count") == 22 and execution.get("negative_control_count") == 30 and execution.get("production_routing") == "BLOCKED" and execution.get("new_generation") == 0, "historical byte correction is technically qualified and blocked from production")

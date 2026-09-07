@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.22.0",
+  "record_type": "post_merge_governance_binding",
+  "status": "POST_MERGE_BOUND",
+  "repository": "KayzenRoot/ugas",
+  "merged_pr": 11,
+  "merged": true,
+  "final_bookkeeping_head": "1ba088b40583a0ac6f287cbcc8ed8511031cd7e5",
+  "merge_commit": "0c9b721b43d3cc12605ce009f6e0deb232b00045",
+  "semantic_approval_head": "812a2bed1f77df3d630425f23032c22fc72d5961",
+  "pre_merge_approval_record": "docs/evidence/github-governance-v0220/v0213-external-approval.json",
+  "pre_merge_reproof_artifact": {
+    "id": 9999459003,
+    "name": "ugas-review-evidence-pr-11-1ba088b40583a0ac6f287cbcc8ed8511031cd7e5",
+    "digest": "sha256:927eddebde4387d0f6a3d9007f9375f4b5ee0db8ca6e3a4c6830a936d804aa08",
+    "status": "PASS"
+  },
+  "main_ci_result": {
+    "required_contexts": [
+      {"name": "UGAS CI / unit-and-validation", "status": "success"},
+      {"name": "UGAS CI / docker-smoke", "status": "success"},
+      {"name": "UGAS Review / evidence", "status": "success"}
+    ],
+    "unit_tests": {"passed": 559, "failed": 0},
+    "official_validation": {"passed": 2552, "failed": 0}
+  },
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "real_map_asset_coverage": "NONE",
+  "real_minimap_asset_coverage": "NONE",
+  "synthetic_map_fixture": "TEST_ONLY",
+  "new_generation": 0,
+  "runtime_semantic_diff_final_head_to_merge": false,
+  "semantic_diff": {
+    "from_head": "1ba088b40583a0ac6f287cbcc8ed8511031cd7e5",
+    "to_merge": "0c9b721b43d3cc12605ce009f6e0deb232b00045",
+    "changed_files": 0,
+    "runtime_semantics_changed": false
+  },
+  "closure_branch": "codex/v0.21.3-post-merge-closure-continuity",
+  "closure_base_sha": "0c9b721b43d3cc12605ce009f6e0deb232b00045",
+  "closure_pr": {
+    "number": null,
+    "state": "NOT_CREATED",
+    "branch": "codex/v0.21.3-post-merge-closure-continuity",
+    "base_sha": "0c9b721b43d3cc12605ce009f6e0deb232b00045",
+    "opened_head_sha": null,
+    "final_head_sha_source": "GitHub live exact-head metadata"
+  },
+  "approval_record_immutable": true,
+  "semantic_evidence_roots_immutable": true,
+  "ui_started": false,
+  "vfx_started": false,
+  "orchestration_started": false
+}

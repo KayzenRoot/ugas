@@ -25,15 +25,19 @@ def main() -> int:
         value = json.loads(args.manifest.read_text(encoding="utf-8"))
         required = ("schema_version", "manifest_type", "repository", "pull_request", "scope", "tests", "validation", "gates", "maps_minimap_evidence", "production_boundary", "review_boundary")
         failures.extend(f"missing:{name}" for name in required if name not in value)
-        if value.get("schema_version") != "0.21.3" or value.get("manifest_type") != "github-ci-maps-minimap-v0213-review": failures.append("manifest-identity-invalid")
+        if value.get("schema_version") != "0.21.3" or value.get("manifest_type") not in {"github-ci-maps-minimap-v0213-review", "github-ci-maps-minimap-v0213-post-merge-closure"}: failures.append("manifest-identity-invalid")
         pr = value.get("pull_request", {}); current_head = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=False).stdout.strip()
         if pr.get("number") is None or pr.get("number") < 0 or not pr.get("head_sha") or not pr.get("base_sha") or not pr.get("head_branch"): failures.append("pull-request-binding-invalid")
         if current_head and current_head != pr.get("head_sha"): failures.append("head-sha-does-not-match-checked-out-head")
         scope = value.get("scope", {})
-        if scope.get("version") != "0.21.3" or scope.get("phase") != "MAPS_MINIMAP" or scope.get("current_gate") != "MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED" or scope.get("allowed_next_actions") != ["bookkeeping_reproof_and_governed_merge_pr_11"]: failures.append("active-scope-invalid")
+        post_merge = value.get("manifest_type") == "github-ci-maps-minimap-v0213-post-merge-closure"
+        expected_gate = "MAPS_MINIMAP_APPROVED_FOUNDATION_MERGED" if post_merge else "MAPS_MINIMAP_RASTER_GOVERNANCE_INTEGRITY_TECHNICALLY_QUALIFIED"
+        expected_action = ["start_ui_asset_family_v0220"] if post_merge else ["bookkeeping_reproof_and_governed_merge_pr_11"]
+        if scope.get("version") != "0.21.3" or scope.get("phase") != "MAPS_MINIMAP" or scope.get("current_gate") != expected_gate or scope.get("allowed_next_actions") != expected_action: failures.append("active-scope-invalid")
         if value.get("production_boundary") != {"approved": False, "routing": "BLOCKED", "new_generation": 0, "real_map_asset_coverage": "NONE", "real_minimap_asset_coverage": "NONE", "synthetic_map_fixture": "TEST_ONLY"}: failures.append("production-boundary-invalid")
         review = value.get("review_boundary", {})
-        if review.get("external_review_required") is not True or review.get("do_not_merge") is not True or review.get("merge_authorization") != "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF": failures.append("review-boundary-invalid")
+        expected_authorization = "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL" if post_merge else "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF"
+        if review.get("external_review_required") is not True or review.get("do_not_merge") is not True or review.get("merge_authorization") != expected_authorization: failures.append("review-boundary-invalid")
         if value.get("tests", {}).get("status") != "passed" or value.get("tests", {}).get("failed") != 0: failures.append("unit-tests-not-pass")
         if value.get("validation", {}).get("status") != "passed" or value.get("validation", {}).get("failed") != 0: failures.append("official-validation-not-pass")
         if not value.get("gates") or any(item.get("status") != "PASS" for item in value["gates"].values()): failures.append("gates-not-pass")
