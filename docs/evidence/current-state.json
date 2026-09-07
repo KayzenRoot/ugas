@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.22.2",
-  "version": "0.22.2",
+  "schema_version": "0.22.3",
+  "version": "0.22.3",
   "phase": "UI_ASSET_FAMILY",
   "baseline_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
   "ui_base_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
@@ -17,14 +17,15 @@
     "v0.21.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "185e03d057779f7f3ffea4ef5a14f891d518b61f", "historical_evidence_unchanged": true},
     "v0.21.1": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "cfde03cce2e31cc688f9d94a659b577042b8538a", "historical_evidence_unchanged": true},
     "v0.21.2": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "b80f30074374c539e008ce160846848f1c171d9a", "historical_evidence_unchanged": true},
-    "v0.21.3": {"status": "APPROVED_FOUNDATION", "reviewed_head": "a019784d2c4fcd0751f61fe70509cadc32888a0e", "merge_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "record": "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json", "historical_evidence_unchanged": true},
+    "v0.21.3": {"status": "APPROVED_FOUNDATION", "reviewed_head": "a019784d2c4fcd0751f61fe70509cadc32888a0e", "merge_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "record": "docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json", "historical_evidence_unchanged": true},
     "v0.22.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "0fad4721c0bfd52822cb3f1e952f306b5c50a151", "historical_evidence_unchanged": true, "correction_record": "docs/evidence/ui-asset-family-runtime-v0221/v0.22.0-rejection-correction-record-v0221.json"},
-    "v0.22.1": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "9afcf52143f27db3bfbb88fa4394e0e77f9c404a", "historical_evidence_unchanged": true, "correction_record": "docs/evidence/ui-asset-family-runtime-v0222/v0.22.1-rejection-correction-record-v0222.json"}
+    "v0.22.1": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "9afcf52143f27db3bfbb88fa4394e0e77f9c404a", "historical_evidence_unchanged": true, "correction_record": "docs/evidence/ui-asset-family-runtime-v0222/v0.22.1-rejection-correction-record-v0222.json"},
+    "v0.22.2": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "97dde2064bd7b381362e3d79f2a27d2bb78ddc36", "historical_evidence_unchanged": true, "correction_record": "docs/evidence/ui-asset-family-runtime-v0223/v0.22.2-rejection-correction-record-v0223.json"}
   },
   "current_gate": "UI_ASSET_FAMILY_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
-  "stop_reason": "UI_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_F15_F16_F18_F20_F21_CORRECTION",
+  "stop_reason": "UI_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_F15_F16_F18_F21_CORRECTION",
   "next_candidate": "UI_ASSET_FAMILY",
-  "allowed_next_actions": ["external_review_ui_asset_family_v0222"],
+  "allowed_next_actions": ["external_review_ui_asset_family_v0223"],
   "ui_start_gate": {"status": "ACTIVE_FOUNDATION", "capability": "UI_ASSET_FAMILY", "authority": "REPOSITORY_STATE"},
   "vfx_start_gate": {"status": "BLOCKED", "condition": "UI_APPROVED_FOUNDATION_MERGED_CLOSED_AND_POST_MERGE_MAIN_CI_SUCCESS", "authority": "GITHUB_LIVE"},
   "next_capability_started": false,
@@ -53,9 +54,9 @@
   "synthetic_equipment_fixture": "TEST_ONLY",
   "new_generation": 0,
   "review": {"repository": "KayzenRoot/ugas", "baseline_head": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "branch_base_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "feature_branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 13, "pr_state": "OPEN", "head_sha": null, "head_sha_source": "GitHub LIVE exact-head metadata", "external_review_required": true, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "do_not_merge": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"]},
-  "closure_authority": {"authority_version": "0.21.3", "canonical": "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json", "superseded": ["docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json"], "authority_source": "immutable historical record"},
-  "closure_completion_binding": "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json",
+  "closure_authority": {"authority_version": "0.21.3", "canonical": "docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json", "superseded": ["docs/evidence/github-governance-v0220/v0213-post-merge-binding.json", "docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json"], "authority_source": "immutable final closure record"},
+  "closure_completion_binding": "docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json",
   "post_merge_closure_binding": "docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json",
-  "evidence": {"ui_root": "docs/evidence/ui-asset-family-runtime-v0222/", "manifest": "docs/evidence/ui-asset-family-runtime-v0222/ui-family-manifest-v0222.json", "hard_gates": "docs/evidence/ui-asset-family-runtime-v0222/hard-gates-v0222.json", "negative_controls": "docs/evidence/ui-asset-family-runtime-v0222/negative-controls-v0222.json", "determinism": "docs/evidence/ui-asset-family-runtime-v0222/full-slice-two-run-determinism-v0222.json", "production_registry": "docs/evidence/ui-asset-family-runtime-v0222/production-registry-v0222.json", "execution": "docs/evidence/ui-asset-family-runtime-v0222/execution-evidence-v0222.json", "historical_bindings": ["docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json"]},
-  "state_consistency": {"status": "UI_ASSET_FAMILY_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "version": "0.22.2", "phase": "UI_ASSET_FAMILY", "current_gate": "UI_ASSET_FAMILY_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "feature_branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "branch_base_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "baseline_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_ui_asset_family_v0222"], "next_capability_started": false}
+  "evidence": {"ui_root": "docs/evidence/ui-asset-family-runtime-v0223/", "manifest": "docs/evidence/ui-asset-family-runtime-v0223/ui-family-manifest-v0223.json", "hard_gates": "docs/evidence/ui-asset-family-runtime-v0223/hard-gates-v0223.json", "negative_controls": "docs/evidence/ui-asset-family-runtime-v0223/negative-controls-v0223.json", "determinism": "docs/evidence/ui-asset-family-runtime-v0223/full-slice-two-run-determinism-v0223.json", "production_registry": "docs/evidence/ui-asset-family-runtime-v0223/production-registry-v0223.json", "execution": "docs/evidence/ui-asset-family-runtime-v0223/execution-evidence-v0223.json", "historical_bindings": ["docs/evidence/github-governance-v0221/v0213-closure-completion-binding-v2.json"], "governance_binding": "docs/evidence/github-governance-v0223/v0223-ui-closure-binding.json"},
+  "state_consistency": {"status": "UI_ASSET_FAMILY_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "version": "0.22.3", "phase": "UI_ASSET_FAMILY", "current_gate": "UI_ASSET_FAMILY_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "feature_branch": "codex/v0.22.0-ui-asset-family-runtime-foundation", "branch_base_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "baseline_main_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_ui_asset_family_v0223"], "next_capability_started": false}
 }

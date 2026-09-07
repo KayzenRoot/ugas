@@ -65,13 +65,15 @@ class UIAssetFamilyRuntimeV0222Tests(unittest.TestCase):
             validate_cache_record(record, component)
 
     def test_lifecycle_four_live_scenarios(self):
-        unresolved = resolve_next_actions(self.state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": False, "merged": False})
+        historical_state = deepcopy(self.state)
+        historical_state["allowed_next_actions"] = ["external_review_ui_asset_family_v0222"]
+        unresolved = resolve_next_actions(historical_state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": False, "merged": False})
         self.assertEqual(unresolved["allowed_next_actions"], ["external_review_ui_asset_family_v0222"])
-        approved = resolve_next_actions(self.state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": True, "merged": False})
+        approved = resolve_next_actions(historical_state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": True, "merged": False})
         self.assertEqual(approved["allowed_next_actions"], ["governed_merge_pr_13"])
-        pending = resolve_next_actions(self.state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": True, "merged": True, "post_merge_main_ci": {"supported_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke"], "contexts": [{"name": "UGAS CI / unit-and-validation", "status": "in_progress", "conclusion": None, "head_sha": "future"}, {"name": "UGAS CI / docker-smoke", "status": "in_progress", "conclusion": None, "head_sha": "future"}]}})
+        pending = resolve_next_actions(historical_state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": True, "merged": True, "post_merge_main_ci": {"supported_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke"], "contexts": [{"name": "UGAS CI / unit-and-validation", "status": "in_progress", "conclusion": None, "head_sha": "future"}, {"name": "UGAS CI / docker-smoke", "status": "in_progress", "conclusion": None, "head_sha": "future"}]}})
         self.assertFalse(pending["vfx_allowed"])
-        closed = resolve_next_actions(self.state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": True, "merged": True, "post_merge_main_ci": {"supported_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke"], "contexts": [{"name": "UGAS CI / unit-and-validation", "status": "completed", "conclusion": "success", "head_sha": "future"}, {"name": "UGAS CI / docker-smoke", "status": "completed", "conclusion": "success", "head_sha": "future"}]}})
+        closed = resolve_next_actions(historical_state, {"source_mode": "GITHUB_LIVE", "pr_number": 13, "external_approval": True, "merged": True, "post_merge_main_ci": {"supported_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke"], "contexts": [{"name": "UGAS CI / unit-and-validation", "status": "completed", "conclusion": "success", "head_sha": "future"}, {"name": "UGAS CI / docker-smoke", "status": "completed", "conclusion": "success", "head_sha": "future"}]}})
         self.assertEqual(closed["allowed_next_actions"], ["start_vfx_asset_family_v0230"])
 
     def test_two_isolated_fixture_runs_are_deterministic(self):
