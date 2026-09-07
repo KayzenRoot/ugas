@@ -106,15 +106,20 @@ CLASS_SPECS: dict[str, dict[str, Any]] = {
 
 
 APPROVED_AUTHORITY_SOURCES: dict[str, dict[str, str]] = {
-    "items_props": {"capability_id": "items_props", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/items-props-runtime-v0191/item-prop-contract-v0191.json", "semantic_revision": "v0.19.1"},
-    "equipment_outfits": {"capability_id": "equipment_outfits", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/equipment-outfits-runtime-v0171/equipment-contract-v0171.json", "semantic_revision": "v0.17.1"},
-    "maps_minimap_runtime": {"capability_id": "maps_minimap_runtime", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json", "semantic_revision": "v0.21.3"},
-    "ui_asset_family": {"capability_id": "ui_asset_family", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json", "semantic_revision": "v0.21.3"},
+    "items_props": {"capability_id": "items_props", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/items-props-runtime-v0191/item-prop-contract-v0191.json", "semantic_revision": "v0.19.1", "expected_git_blob_sha": "d7e25ae1e0ab19f857d2ddf6c40d87f94f3385be", "expected_raw_bytes_sha256": "d14fd3175d3387bef4e96fbf0a7fe30006d7349eede8287062910772693c01f7"},
+    "equipment_outfits": {"capability_id": "equipment_outfits", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/equipment-outfits-runtime-v0171/equipment-contract-v0171.json", "semantic_revision": "v0.17.1", "expected_git_blob_sha": "7467a42c0096f14598c5cdcf969db9a49720b699", "expected_raw_bytes_sha256": "a6c021c6e93216c3496c0f13a18dce79fcd10d3c2e10482b997d8c2e19c2e031"},
+    "maps_minimap_runtime": {"capability_id": "maps_minimap_runtime", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json", "semantic_revision": "v0.21.3", "expected_git_blob_sha": "c2709c9ce79bdc686e26ac6b1dc25f64fa9da18e", "expected_raw_bytes_sha256": "c9c52304774afa3f7ac1d997f709bae7ec57a3c35f5a9b1a0c56fefa10eca035"},
+    "ui_asset_family": {"capability_id": "ui_asset_family", "approved_commit": BASE_MAIN_SHA, "authoritative_path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json", "semantic_revision": "v0.21.3", "expected_git_blob_sha": "c2709c9ce79bdc686e26ac6b1dc25f64fa9da18e", "expected_raw_bytes_sha256": "c9c52304774afa3f7ac1d997f709bae7ec57a3c35f5a9b1a0c56fefa10eca035"},
 }
 
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
+
+
+def _git_blob_sha(raw: bytes) -> str:
+    header = f"blob {len(raw)}\0".encode("ascii")
+    return hashlib.sha1(header + raw).hexdigest()
 
 
 @lru_cache(maxsize=None)
@@ -124,12 +129,27 @@ def resolve_approved_authority(authority_name: str) -> dict[str, Any]:
     _require(source is not None, "UI_INTEGRATION_AUTHORITY_UNKNOWN", authority_name)
     root = _repo_root()
     object_ref = f"{source['approved_commit']}:{source['authoritative_path']}"
-    blob = subprocess.run(["git", "show", object_ref], cwd=root, capture_output=True, check=False)
-    _require(blob.returncode == 0, "UI_INTEGRATION_AUTHORITY_UNRESOLVED", object_ref)
-    blob_sha = subprocess.run(["git", "rev-parse", object_ref], cwd=root, capture_output=True, text=True, check=False)
-    _require(blob_sha.returncode == 0, "UI_INTEGRATION_AUTHORITY_UNRESOLVED", object_ref)
-    raw = bytes(blob.stdout)
-    return {**source, "git_blob_sha": blob_sha.stdout.strip(), "raw_bytes_sha256": sha256_bytes(raw)}
+    expected_blob = source["expected_git_blob_sha"]
+    expected_raw = source["expected_raw_bytes_sha256"]
+    git_context = subprocess.run(["git", "rev-parse", "--git-dir"], cwd=root, capture_output=True, check=False)
+    if git_context.returncode == 0:
+        blob = subprocess.run(["git", "show", object_ref], cwd=root, capture_output=True, check=False)
+        _require(blob.returncode == 0, "UI_INTEGRATION_AUTHORITY_UNRESOLVED", object_ref)
+        blob_sha = subprocess.run(["git", "rev-parse", object_ref], cwd=root, capture_output=True, text=True, check=False)
+        _require(blob_sha.returncode == 0, "UI_INTEGRATION_AUTHORITY_UNRESOLVED", object_ref)
+        raw = bytes(blob.stdout)
+        resolved_blob = blob_sha.stdout.strip()
+    else:
+        # A Git archive/snapshot has no object database.  Its tracked authority
+        # copy is accepted only after both pinned Git-object and raw-byte
+        # fingerprints match; a missing or mutated copy still fails closed.
+        authority_path = root / source["authoritative_path"]
+        _require(authority_path.is_file(), "UI_INTEGRATION_AUTHORITY_UNRESOLVED", object_ref)
+        raw = authority_path.read_bytes()
+        resolved_blob = _git_blob_sha(raw)
+    _require(resolved_blob == expected_blob, "UI_INTEGRATION_AUTHORITY_STALE", object_ref)
+    _require(sha256_bytes(raw) == expected_raw, "UI_INTEGRATION_AUTHORITY_STALE", object_ref)
+    return {**source, "git_blob_sha": resolved_blob, "raw_bytes_sha256": sha256_bytes(raw)}
 
 
 def build_test_only_style_tokens() -> dict[str, Any]:
