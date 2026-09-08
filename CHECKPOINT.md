@@ -1,4 +1,12 @@
-# UGAS checkpoint - v0.23.3 VFX_ASSET_FAMILY correction F-26S/F-29/F-30
+# UGAS checkpoint - v0.23.4 VFX_ASSET_FAMILY correction F-29R
+
+## Current v0.23.4 VFX_ASSET_FAMILY handoff
+
+`version=0.23.4`; `phase=VFX_ASSET_FAMILY`; `current_gate=VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F29R_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED`; `stop_reason=VFX_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_F29R_CORRECTION`; `vfx_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`; `vfx_asset_family_external_review=REQUIRED`; `baseline_main_sha=b08b9c3df74ef6a23046be396289e2fd72dc336b`; this is historical branch context and current `main`/PR head are resolved from GitHub LIVE; `real_vfx_asset_coverage=NONE`; `synthetic_vfx_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `next_candidate=ORCHESTRATION_RUNTIME_HARDENING`; `allowed_next_actions=[external_review_vfx_asset_family_v0234]`; `next_capability_started=false`. v0.23.0 through v0.23.3 remain frozen history; the v0.23.3 rejected reviewed head is `9eda08b25a674a5423a99d35a42711102df91b8b` and its evidence is not rewritten. F-29R proves exact tracked-tree and filesystem file-set immutability for the v0.23.0 and v0.23.1 authorities, including real extra-file and mutation rejection. PR #14 remains OPEN/unmerged for Sol review; do not merge, start Orchestration, enable production or generate real VFX.
+
+Executor work orders use **UADS GLOBAL-FIRST**: route and dispatch through the global UADS runtime before implementation; keep UADS operational state external with zero repository footprint. Hive and additional orchestration harnesses remain disabled until explicitly enabled by a later authorized work order.
+
+## Current v0.23.3 VFX_ASSET_FAMILY handoff
 
 ## Current v0.23.3 VFX_ASSET_FAMILY handoff
 

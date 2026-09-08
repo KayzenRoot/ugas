@@ -1,5 +1,9 @@
 # UGAS roadmap
 
+## v0.23.4 - VFX_ASSET_FAMILY F-29R exact historical-tree immutability correction
+
+The active phase remains `VFX_ASSET_FAMILY` on PR #14 and branch `codex/v0.23.0-vfx-asset-family-runtime-foundation`, over historical baseline main `b08b9c3df74ef6a23046be396289e2fd72dc336b`. This forward-only correction preserves v0.23.0 through v0.23.3 evidence and adds `docs/evidence/vfx-asset-family-runtime-v0234/`. The historical validator derives the candidate tracked tree from Git objects, compares the exact path/mode/type/blob/byte set against both immutable authorities, and exercises real extra-file and mutation rejection controls. `vfx_asset_family_external_review=REQUIRED`, `real_vfx_asset_coverage=NONE`, `synthetic_vfx_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The sole tracked action is `external_review_vfx_asset_family_v0234`; PR #14 must remain OPEN/unmerged for Sol review and Orchestration remains blocked.
+
 ## v0.23.3 - VFX_ASSET_FAMILY F-26S/F-29/F-30 correction
 
 The active phase remains `VFX_ASSET_FAMILY` over historical baseline main `b08b9c3df74ef6a23046be396289e2fd72dc336b`. This forward-only correction on PR #14 preserves the v0.23.0, v0.23.1 and v0.23.2 evidence roots unchanged and adds `docs/evidence/vfx-asset-family-runtime-v0233/`. It validates degraded pixels against the authoritative fallback result and exact replay order, binds historical immutability to the reviewed git refs, and persists an independently rendered second degraded output with independent frame hashes. `vfx_asset_family_external_review=REQUIRED`, `real_vfx_asset_coverage=NONE`, `synthetic_vfx_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The sole tracked action is `external_review_vfx_asset_family_v0233`; PR #14 must remain OPEN/unmerged for Sol review and Orchestration remains blocked.
