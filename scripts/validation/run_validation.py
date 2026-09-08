@@ -233,7 +233,12 @@ def snapshot_check() -> None:
             ("snapshot:models", [sys.executable, "-m", "ugas.cli", "models", "list"]),
         ):
             print(f"RUN {name}", flush=True)
-            result = _run(command, snapshot, env=env)
+            # The complete unittest discovery run is intentionally retained,
+            # but on this Windows repository it can exceed the generic
+            # subprocess budget while remaining healthy. Keep the timeout
+            # bounded and scoped to that one snapshot command.
+            timeout = 900 if name == "snapshot:unit-tests" else 360
+            result = _run(command, snapshot, env=env, timeout=timeout)
             # The historical dashboard API test can transiently exceed its
             # short request timeout on a loaded Windows host. Re-run the
             # complete command once; the retry still requires its real zero
@@ -241,7 +246,7 @@ def snapshot_check() -> None:
             if result.returncode != 0 and name in {"snapshot:unit-tests", "snapshot:validation"}:
                 for retry_index in range(2):
                     print(f"RETRY {name} attempt={retry_index + 1}", flush=True)
-                    result = _run(command, snapshot, env=env)
+                    result = _run(command, snapshot, env=env, timeout=timeout)
                     if result.returncode == 0:
                         break
             print(f"DONE {name} returncode={result.returncode}", flush=True)
