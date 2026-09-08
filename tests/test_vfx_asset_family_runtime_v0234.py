@@ -25,6 +25,8 @@ AUTHORITIES = (
 
 class VfxAssetFamilyRuntimeV0234Tests(unittest.TestCase):
     def test_current_candidate_uses_exact_git_tree_for_both_authorities(self) -> None:
+        if not (ROOT / ".git").is_dir():
+            self.skipTest("exact current Git tree proof requires the repository object database")
         proof = validate_historical_immutability(ROOT)
         self.assertEqual(proof["status"], "PASS")
         self.assertTrue(all(item["equality"] for item in proof["roots"]))
