@@ -118,6 +118,7 @@ jobs:
           mkdir -p "$artifact/docs/evidence/vfx-asset-family-runtime-v0231" "$artifact/docs/evidence/vfx-asset-family-runtime-v0230" "$artifact/docs/evidence/ui-asset-family-runtime-v0223" "$artifact/docs/evidence/ui-asset-family-runtime-v0222" "$artifact/docs/evidence/ui-asset-family-runtime-v0221" "$artifact/docs/evidence/ui-asset-family-runtime-v0220" "$artifact/docs/evidence/github-governance-v0223" "$artifact/docs/evidence/github-governance-v0221" "$artifact/docs/evidence/github-governance-v0220" "$artifact/docs/evidence/maps-minimap-runtime-v0213" "$artifact/logs"
           cp -R docs/evidence/vfx-asset-family-runtime-v0231/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0231/" 2>/dev/null || true
           cp -R docs/evidence/vfx-asset-family-runtime-v0230/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0230/" 2>/dev/null || true
+          cp REVIEW-v0.23.0.md "$artifact/REVIEW-v0.23.0.md" 2>/dev/null || true
           cp -R docs/evidence/ui-asset-family-runtime-v0223/. "$artifact/docs/evidence/ui-asset-family-runtime-v0223/" 2>/dev/null || true
           cp -R docs/evidence/ui-asset-family-runtime-v0222/. "$artifact/docs/evidence/ui-asset-family-runtime-v0222/" 2>/dev/null || true
           cp -R docs/evidence/ui-asset-family-runtime-v0221/. "$artifact/docs/evidence/ui-asset-family-runtime-v0221/" 2>/dev/null || true
