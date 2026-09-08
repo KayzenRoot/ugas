@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/vfx-asset-family-runtime-v0233.json",
+  "title": "UGAS VFX asset family runtime v0.23.3 F-26S-F-29-F-30 correction",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "family_id", "registry_mode", "effect_classes", "effects", "production_routing", "production_approved", "new_generation"],
+  "properties": {
+    "schema_version": {"const": "0.23.3"},
+    "family_id": {"const": "vfx_asset_family"},
+    "registry_mode": {"const": "TEST_ONLY"},
+    "effect_classes": {"type": "array", "minItems": 10, "items": {"type": "string"}},
+    "effects": {"type": "array", "minItems": 10, "items": {"type": "object", "required": ["effect_id", "effect_class", "stable_class_id", "intent", "semantic_input", "semantic_contract", "semantic_contract_hash", "lifecycle", "blend_alpha", "spatial", "budget_profile", "fallback", "representation", "integration", "frames", "semantic_input_hash", "content_hash", "cache_key", "provenance", "test_only"]}},
+    "production_routing": {"const": "BLOCKED"},
+    "production_approved": {"const": false},
+    "new_generation": {"const": 0}
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.23.2",
-  "version": "0.23.2",
+  "schema_version": "0.23.3",
+  "version": "0.23.3",
   "phase": "VFX_ASSET_FAMILY",
   "baseline_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
   "vfx_base_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
@@ -24,12 +24,13 @@
     "v0.22.3": {"status": "APPROVED_FOUNDATION", "reviewed_head": "d7484c59b3b312366e35694c1601e199125cad0b", "merge_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "historical_evidence_unchanged": true, "transition_record": "docs/evidence/vfx-asset-family-runtime-v0230/v0.22.3-approval-transition-v0230.json"},
     "v0.23.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "c8967f5f7b4d3f66b402d10ae8fe5f29cb9fbb72", "historical_evidence_unchanged": true},
     "v0.23.1": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "136079540f674c7467d93bd28e9834addbfce5c3", "historical_evidence_unchanged": true},
-    "v0.23.2": {"status": "TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "rejected_reviewed_head": "136079540f674c7467d93bd28e9834addbfce5c3", "historical_evidence_unchanged": true}
+    "v0.23.2": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "d7501177a9f4480921226b9832ffc237544a6433", "historical_evidence_unchanged": true},
+    "v0.23.3": {"status": "TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "corrects": ["F-26S", "F-29", "F-30"], "historical_evidence_unchanged": true}
   },
-  "current_gate": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F23R_F26R_F27R_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
-  "stop_reason": "VFX_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_F23R_F26R_F27R_TEST_ONLY_PRODUCTION_BLOCKED",
+  "current_gate": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F26S_F29_F30_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
+  "stop_reason": "VFX_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_F26S_F29_F30_TEST_ONLY_PRODUCTION_BLOCKED",
   "next_candidate": "ORCHESTRATION_RUNTIME_HARDENING",
-  "allowed_next_actions": ["external_review_vfx_asset_family_v0232"],
+  "allowed_next_actions": ["external_review_vfx_asset_family_v0233"],
   "ui_start_gate": {"status": "APPROVED_FOUNDATION", "capability": "UI_ASSET_FAMILY", "lifecycle": "MERGED_CLOSED", "authority": "GITHUB_LIVE"},
   "vfx_start_gate": {"status": "ACTIVE_FOUNDATION", "capability": "VFX_ASSET_FAMILY", "authority": "REPOSITORY_STATE"},
   "orchestration_start_gate": {"status": "BLOCKED", "condition": "VFX_APPROVED_FOUNDATION_MERGED_CLOSED_AND_POST_MERGE_MAIN_CI_SUCCESS", "authority": "GITHUB_LIVE"},
@@ -54,6 +55,6 @@
   "real_minimap_asset_coverage": "NONE",
   "new_generation": 0,
   "review": {"repository": "KayzenRoot/ugas", "baseline_head": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "branch_base_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "feature_branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 14, "pr_state": "OPEN", "head_sha": null, "head_sha_source": "GitHub LIVE exact-head metadata", "external_review_required": true, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "do_not_merge": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"]},
-  "evidence": {"vfx_root": "docs/evidence/vfx-asset-family-runtime-v0232/", "manifest": "docs/evidence/vfx-asset-family-runtime-v0232/vfx-family-manifest-v0232.json", "hard_gates": "docs/evidence/vfx-asset-family-runtime-v0232/hard-gates-v0232.json", "negative_controls": "docs/evidence/vfx-asset-family-runtime-v0232/negative-controls-v0232.json", "determinism": "docs/evidence/vfx-asset-family-runtime-v0232/full-slice-two-run-determinism-v0232.json", "production_registry": "docs/evidence/vfx-asset-family-runtime-v0232/production-registry-v0232.json", "execution": "docs/evidence/vfx-asset-family-runtime-v0232/execution-evidence-v0232.json", "historical_transition": "docs/evidence/vfx-asset-family-runtime-v0232/v0.23.1-rejection-correction-v0232.json"},
-  "state_consistency": {"status": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F23R_F26R_F27R_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "version": "0.23.2", "phase": "VFX_ASSET_FAMILY", "current_gate": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F23R_F26R_F27R_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "feature_branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation", "branch_base_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "baseline_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_vfx_asset_family_v0232"], "next_capability_started": false}
+  "evidence": {"vfx_root": "docs/evidence/vfx-asset-family-runtime-v0233/", "manifest": "docs/evidence/vfx-asset-family-runtime-v0233/vfx-family-manifest-v0233.json", "hard_gates": "docs/evidence/vfx-asset-family-runtime-v0233/hard-gates-v0233.json", "negative_controls": "docs/evidence/vfx-asset-family-runtime-v0233/negative-controls-v0233.json", "determinism": "docs/evidence/vfx-asset-family-runtime-v0233/full-slice-two-run-determinism-v0233.json", "production_registry": "docs/evidence/vfx-asset-family-runtime-v0233/production-registry-v0233.json", "execution": "docs/evidence/vfx-asset-family-runtime-v0233/execution-evidence-v0233.json", "historical_transition": "docs/evidence/vfx-asset-family-runtime-v0233/v0.23.2-rejection-correction-v0233.json"},
+  "state_consistency": {"status": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F26S_F29_F30_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "version": "0.23.3", "phase": "VFX_ASSET_FAMILY", "current_gate": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F26S_F29_F30_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "feature_branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation", "branch_base_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "baseline_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_vfx_asset_family_v0233"], "next_capability_started": false}
 }

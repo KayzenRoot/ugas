@@ -1,4 +1,4 @@
-# Active governed release: v0.23.2 VFX Asset Family F-23R/F-26R/F-27R correction; exact-head CI and bounded artifact are required before external Sol review. Production remains BLOCKED, real VFX coverage is NONE, and no provider generation, orchestration or production art is authorized.
+# Active governed release: v0.23.3 VFX Asset Family F-26S/F-29/F-30 correction; exact-head CI and bounded artifact are required before external Sol review. Production remains BLOCKED, real VFX coverage is NONE, and no provider generation, orchestration or production art is authorized.
 
 ## Current v0.18.1 boundary
 

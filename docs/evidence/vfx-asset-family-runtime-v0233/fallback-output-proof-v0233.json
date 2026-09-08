@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "proofs": [
+    {
+      "class": "projectile_trail",
+      "full_content_hash": "218587d73e6694d7e8b206b6fc33b3017c082781b258f9c88116c93afcab7543",
+      "first_output_hash": "5cbae985253905f388027e9435e82064c65a9d8a19623d676d2d4a75eb6790cd",
+      "repeat_output_hash": "5cbae985253905f388027e9435e82064c65a9d8a19623d676d2d4a75eb6790cd",
+      "first_root": "docs/evidence/vfx-asset-family-runtime-v0233/degraded-first",
+      "repeat_root": "docs/evidence/vfx-asset-family-runtime-v0233/degraded-repeat",
+      "first_frame_hashes": [
+        "9f64aea8fe695a9a84a5dfc7c251b76115364712f3d82f631cd7d154d7295916",
+        "f725c826a4f0edfa673e4eedd6094af60f339f1bbeaa1bd11ba76fb79d3c16a9",
+        "3284439f453fb3c752288b454662dcc70bfaa208ddd2a4857a9237c7185b19a5",
+        "9f0412da6ab08943b6580fd3bc0ed2e2d7c86fabfe38107faed5a0f1271addda",
+        "2bfdb7512dd4db5de0bf245d5ec6441571e9fec0bb78b531a0b91ab7d03bfa95",
+        "7a11740f9e66cd03e808e415b5c8853a9179a31f9df99d0f8bb6407112f0d64b",
+        "3f87751bd6b564c9452227f88ee9ca27ef47b7339349376f935140489dafc6e2",
+        "4eb101cdccc73805a85c1dd9e16adb0cf743562d841bbb7847801c5dddb44e8f"
+      ],
+      "repeat_frame_hashes": [
+        "9f64aea8fe695a9a84a5dfc7c251b76115364712f3d82f631cd7d154d7295916",
+        "f725c826a4f0edfa673e4eedd6094af60f339f1bbeaa1bd11ba76fb79d3c16a9",
+        "3284439f453fb3c752288b454662dcc70bfaa208ddd2a4857a9237c7185b19a5",
+        "9f0412da6ab08943b6580fd3bc0ed2e2d7c86fabfe38107faed5a0f1271addda",
+        "2bfdb7512dd4db5de0bf245d5ec6441571e9fec0bb78b531a0b91ab7d03bfa95",
+        "7a11740f9e66cd03e808e415b5c8853a9179a31f9df99d0f8bb6407112f0d64b",
+        "3f87751bd6b564c9452227f88ee9ca27ef47b7339349376f935140489dafc6e2",
+        "4eb101cdccc73805a85c1dd9e16adb0cf743562d841bbb7847801c5dddb44e8f"
+      ],
+      "equal": true
+    },
+    {
+      "class": "weapon_arc",
+      "degraded_output_hash": "e926baf69362c7357aeb21ad5f93efd968ba69832252116b24a02118fc07180d",
+      "alpha_range_full": [
+        0,
+        220
+      ],
+      "alpha_range_degraded": [
+        0,
+        110
+      ],
+      "mechanisms": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "REDUCE_VISUAL_AREA"
+      ]
+    },
+    {
+      "class": "persistent_aura",
+      "degraded_output_hash": "208592558b8346c3a0b47ec3432ee7c174bc2ff028de094b8bfdc30896a6bca6",
+      "bounds_degraded": [
+        35,
+        35,
+        61,
+        61
+      ],
+      "mechanisms": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_RADIUS",
+        "REDUCE_VISUAL_AREA"
+      ]
+    },
+    {
+      "class": "projectile_trail",
+      "terminal_skip": {
+        "status": "SKIPPED",
+        "terminal_step": "SKIP_VISUAL",
+        "skipped_output": {
+          "status": "SKIPPED_VISUAL",
+          "reason": "terminal fallback step emitted no visual bytes"
+        },
+        "effect_id": "vfx-test-projectile_trail-v0233",
+        "profile_id": "constrained-v1",
+        "semantic_identity": {
+          "effect_id": "vfx-test-projectile_trail-v0233",
+          "effect_class": "projectile_trail",
+          "stable_class_id": "VFX-CLS-PROJECTILE-TRAIL",
+          "semantic_input_hash": "745b73c937adbad9f721cb2630202beb0c98eae259847e09964a553d8f721549",
+          "semantic_contract_hash": "b57e829d9203dd8794c6737b725098978beab67ba7fcc71672797af84d6dbfc7",
+          "visual_only": true,
+          "gameplay_authority": "NONE"
+        },
+        "fallback_result": {
+          "effect_id": "vfx-test-projectile_trail-v0233",
+          "profile_id": "constrained-v1",
+          "deterministic": true,
+          "fallback_order": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_SPAWN_RATE",
+            "REDUCE_VISUAL_AREA",
+            "SKIP_VISUAL"
+          ],
+          "applied_steps": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_SPAWN_RATE",
+            "REDUCE_VISUAL_AREA"
+          ],
+          "before": {
+            "visible": true,
+            "particles": 48,
+            "layers": 3,
+            "spawn_rate": 30,
+            "visual_area_ratio": 0.6,
+            "opacity": 1.0,
+            "frame_count": 8,
+            "radius": 1.0
+          },
+          "after": {
+            "visible": true,
+            "particles": 8,
+            "layers": 1,
+            "spawn_rate": 10,
+            "visual_area_ratio": 0.2,
+            "opacity": 1.0,
+            "frame_count": 8,
+            "radius": 1.0
+          },
+          "visual_degraded": true,
+          "semantic_preserved": true,
+          "changes_gameplay": false,
+          "constraint_profile": {
+            "profile_id": "constrained-v1",
+            "max_particles_per_instance": 8,
+            "max_layers": 1,
+            "max_spawn_events_per_second": 10,
+            "max_visual_area_ratio": 0.2,
+            "supported_steps": [
+              "REDUCE_PARTICLE_COUNT",
+              "REDUCE_LAYER_COUNT",
+              "REDUCE_SPAWN_RATE",
+              "REDUCE_VISUAL_AREA",
+              "REDUCE_FRAME_COUNT",
+              "REDUCE_OPACITY",
+              "REDUCE_RADIUS",
+              "SKIP_VISUAL"
+            ]
+          }
+        },
+        "fallback_profile": {
+          "profile_id": "constrained-v1",
+          "max_particles_per_instance": 8,
+          "max_layers": 1,
+          "max_spawn_events_per_second": 10,
+          "max_visual_area_ratio": 0.2,
+          "supported_steps": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_SPAWN_RATE",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_FRAME_COUNT",
+            "REDUCE_OPACITY",
+            "REDUCE_RADIUS",
+            "SKIP_VISUAL"
+          ]
+        },
+        "output_hash": "2f235affdf451dcfd7f212505af9cc320ac795e7905d659f2c1fecd9a9aceea5",
+        "frames": [],
+        "semantic_preserved": true,
+        "changes_gameplay": false,
+        "degradation_mechanisms": [
+          "REDUCE_PARTICLE_COUNT",
+          "REDUCE_LAYER_COUNT",
+          "REDUCE_SPAWN_RATE",
+          "REDUCE_VISUAL_AREA",
+          "SKIP_VISUAL"
+        ]
+      }
+    }
+  ]
+}
