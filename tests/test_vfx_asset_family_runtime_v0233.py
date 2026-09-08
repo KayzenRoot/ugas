@@ -85,6 +85,8 @@ class VfxAssetFamilyRuntimeV0233Tests(unittest.TestCase):
         self.assertEqual(context.exception.rejection_class, "VFX_DEGRADED_DETERMINISM_MISMATCH")
 
     def test_git_object_bound_historical_validator_rejects_injected_mutation(self) -> None:
+        if not (ROOT / ".git").exists():
+            self.skipTest("immutable Git-object authority requires a repository object database")
         proof = validate_historical_immutability(ROOT)
         self.assertEqual(proof["status"], "PASS")
         with tempfile.TemporaryDirectory(prefix="ugas-test-history-v0233-") as temp:
