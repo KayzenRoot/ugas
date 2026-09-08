@@ -1,6 +1,6 @@
-# Installing UGAS 0.23.0
+# Installing UGAS 0.23.1
 
-The active foundation is v0.23.0 VFX Asset Family runtime integrity over approved/merged UI v0.22.3; prior UI correction evidence remains immutable history.
+The active correction is v0.23.1 VFX Asset Family F-22-F-28 integrity over approved/merged UI v0.22.3; v0.23.0 evidence remains immutable history.
 
 The active slice is the UI asset-family runtime foundation. It is TEST_ONLY and requires external review; production routing remains BLOCKED, real UI coverage is NONE, and new_generation=0. The branch/PR must remain open and unmerged until the exact-head GitHub checks and bounded artifact pass.
 
@@ -30,7 +30,7 @@ pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1
 
 ## GitHub-native review
 
-The active candidate is v0.23.0 on a GitHub-first PR. Use [REVIEW-v0.23.0.md](REVIEW-v0.23.0.md), the v0.23.0 evidence root and exact-head artifact as the authoritative handoff. Do not merge and do not start orchestration or production VFX art.
+The active candidate is v0.23.1 on the existing GitHub-first PR #14. Use [REVIEW-v0.23.1.md](REVIEW-v0.23.1.md), the v0.23.1 evidence root and exact-head artifact as the authoritative handoff. Do not merge and do not start orchestration or production VFX art.
 
 Use the PR-first flow in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded GitHub Actions artifact; it never includes secrets, local credentials, telemetry databases, model weights or large generation directories.
 
@@ -85,3 +85,4 @@ After installation, validate a profile with `python -m ugas.animation validate-s
 # Current governed slice: v0.21.3 MAPS_MINIMAP approved foundation / bookkeeping reproof
 
 Installation and validation commands are evaluated against the active v0.21.3 Maps/Minimap foundation. Use `python scripts/validation/run_validation.py` for the read-only full validation; the isolated TEST_ONLY slice remains bound to its immutable v0.21.3 evidence and does not enable production routing or create real assets.
+# Current release metadata: UGAS v0.23.1.

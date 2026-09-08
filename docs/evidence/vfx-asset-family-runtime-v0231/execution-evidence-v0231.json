@@ -1,0 +1,27 @@
+{
+  "status": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F22_F28_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
+  "overall_pass": true,
+  "schema_version": "0.23.1",
+  "family_id": "vfx_asset_family",
+  "corrections": [
+    "F-22",
+    "F-23",
+    "F-24",
+    "F-25",
+    "F-26",
+    "F-27",
+    "F-28"
+  ],
+  "hard_gate_count": 32,
+  "negative_control_count": 30,
+  "effect_class_count": 10,
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "real_vfx_asset_coverage": "NONE",
+  "synthetic_vfx_fixture": "TEST_ONLY",
+  "new_generation": 0,
+  "provider_generation_jobs": 0,
+  "diffusion_runs": 0,
+  "base_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
+  "rejected_reviewed_head": "c8967f5f7b4d3f66b402d10ae8fe5f29cb9fbb72"
+}

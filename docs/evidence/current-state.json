@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.23.0",
-  "version": "0.23.0",
+  "schema_version": "0.23.1",
+  "version": "0.23.1",
   "phase": "VFX_ASSET_FAMILY",
   "baseline_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
   "vfx_base_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
@@ -21,12 +21,14 @@
     "v0.22.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "0fad4721c0bfd52822cb3f1e952f306b5c50a151", "historical_evidence_unchanged": true},
     "v0.22.1": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "9afcf52143f27db3bfbb88fa4394e0e77f9c404a", "historical_evidence_unchanged": true},
     "v0.22.2": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "97dde2064bd7b381362e3d79f2a27d2bb78ddc36", "historical_evidence_unchanged": true},
-    "v0.22.3": {"status": "APPROVED_FOUNDATION", "reviewed_head": "d7484c59b3b312366e35694c1601e199125cad0b", "merge_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "historical_evidence_unchanged": true, "transition_record": "docs/evidence/vfx-asset-family-runtime-v0230/v0.22.3-approval-transition-v0230.json"}
+    "v0.22.3": {"status": "APPROVED_FOUNDATION", "reviewed_head": "d7484c59b3b312366e35694c1601e199125cad0b", "merge_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "historical_evidence_unchanged": true, "transition_record": "docs/evidence/vfx-asset-family-runtime-v0230/v0.22.3-approval-transition-v0230.json"},
+    "v0.23.0": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "c8967f5f7b4d3f66b402d10ae8fe5f29cb9fbb72", "historical_evidence_unchanged": true},
+    "v0.23.1": {"status": "CORRECTION_REQUIRED", "rejected_reviewed_head": "c8967f5f7b4d3f66b402d10ae8fe5f29cb9fbb72", "historical_evidence_unchanged": true}
   },
-  "current_gate": "VFX_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
+  "current_gate": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F22_F28_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
   "stop_reason": "VFX_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_TEST_ONLY_PRODUCTION_BLOCKED",
   "next_candidate": "ORCHESTRATION_RUNTIME_HARDENING",
-  "allowed_next_actions": ["external_review_vfx_asset_family_v0230"],
+  "allowed_next_actions": ["external_review_vfx_asset_family_v0231"],
   "ui_start_gate": {"status": "APPROVED_FOUNDATION", "capability": "UI_ASSET_FAMILY", "lifecycle": "MERGED_CLOSED", "authority": "GITHUB_LIVE"},
   "vfx_start_gate": {"status": "ACTIVE_FOUNDATION", "capability": "VFX_ASSET_FAMILY", "authority": "REPOSITORY_STATE"},
   "orchestration_start_gate": {"status": "BLOCKED", "condition": "VFX_APPROVED_FOUNDATION_MERGED_CLOSED_AND_POST_MERGE_MAIN_CI_SUCCESS", "authority": "GITHUB_LIVE"},
@@ -50,7 +52,7 @@
   "real_map_asset_coverage": "NONE",
   "real_minimap_asset_coverage": "NONE",
   "new_generation": 0,
-  "review": {"repository": "KayzenRoot/ugas", "baseline_head": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "branch_base_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "feature_branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 14, "pr_state": "OPEN", "head_sha": "49b1a6fc550d12ac5c797c4e1c9088dd17a72c4b", "head_sha_source": "GitHub LIVE exact-head metadata", "external_review_required": true, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "do_not_merge": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"]},
-  "evidence": {"vfx_root": "docs/evidence/vfx-asset-family-runtime-v0230/", "manifest": "docs/evidence/vfx-asset-family-runtime-v0230/vfx-family-manifest-v0230.json", "hard_gates": "docs/evidence/vfx-asset-family-runtime-v0230/hard-gates-v0230.json", "negative_controls": "docs/evidence/vfx-asset-family-runtime-v0230/negative-controls-v0230.json", "determinism": "docs/evidence/vfx-asset-family-runtime-v0230/full-slice-two-run-determinism-v0230.json", "production_registry": "docs/evidence/vfx-asset-family-runtime-v0230/production-registry-v0230.json", "execution": "docs/evidence/vfx-asset-family-runtime-v0230/execution-evidence-v0230.json", "historical_transition": "docs/evidence/vfx-asset-family-runtime-v0230/v0.22.3-approval-transition-v0230.json"},
-  "state_consistency": {"status": "VFX_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "version": "0.23.0", "phase": "VFX_ASSET_FAMILY", "current_gate": "VFX_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "feature_branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation", "branch_base_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "baseline_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_vfx_asset_family_v0230"], "next_capability_started": false}
+  "review": {"repository": "KayzenRoot/ugas", "baseline_head": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "branch_base_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "feature_branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation", "execution_mode": "GITHUB_PR_FIRST", "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW", "no_self_merge_until_external_approval": true, "pr_number": 14, "pr_state": "OPEN", "head_sha": null, "head_sha_source": "GitHub LIVE exact-head metadata", "external_review_required": true, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "do_not_merge": true, "required_contexts": ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"]},
+  "evidence": {"vfx_root": "docs/evidence/vfx-asset-family-runtime-v0231/", "manifest": "docs/evidence/vfx-asset-family-runtime-v0231/vfx-family-manifest-v0231.json", "hard_gates": "docs/evidence/vfx-asset-family-runtime-v0231/hard-gates-v0231.json", "negative_controls": "docs/evidence/vfx-asset-family-runtime-v0231/negative-controls-v0231.json", "determinism": "docs/evidence/vfx-asset-family-runtime-v0231/full-slice-two-run-determinism-v0231.json", "production_registry": "docs/evidence/vfx-asset-family-runtime-v0231/production-registry-v0231.json", "execution": "docs/evidence/vfx-asset-family-runtime-v0231/execution-evidence-v0231.json", "historical_transition": "docs/evidence/vfx-asset-family-runtime-v0231/v0.23.0-rejection-correction-v0231.json"},
+  "state_consistency": {"status": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F22_F28_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "version": "0.23.1", "phase": "VFX_ASSET_FAMILY", "current_gate": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F22_F28_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", "feature_branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation", "branch_base_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "baseline_main_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b", "production_routing": "BLOCKED", "production_approved": false, "new_generation": 0, "allowed_next_actions": ["external_review_vfx_asset_family_v0231"], "next_capability_started": false}
 }

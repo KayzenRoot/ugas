@@ -1,3 +1,9 @@
+# UGAS checkpoint - v0.23.1 VFX_ASSET_FAMILY correction F-22..F-28
+
+## Current v0.23.1 VFX_ASSET_FAMILY handoff
+
+`version=0.23.1`; `phase=VFX_ASSET_FAMILY`; `current_gate=VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F22_F28_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED`; `stop_reason=VFX_ASSET_FAMILY_EXTERNAL_REVIEW_REQUIRED_F22_F28_CORRECTION`; `vfx_asset_family=TECHNICALLY_QUALIFIED_FOUNDATION`; `vfx_asset_family_external_review=REQUIRED`; `ui_asset_family=APPROVED_FOUNDATION`; `ui_asset_family_lifecycle=MERGED_CLOSED`; `baseline_main_sha=b08b9c3df74ef6a23046be396289e2fd72dc336b`; the baseline is historical branch context and current `main`/PR head are resolved from GitHub LIVE. `real_vfx_asset_coverage=NONE`; `synthetic_vfx_fixture=TEST_ONLY`; `production_approved=false`; `production_routing=BLOCKED`; `new_generation=0`; `next_candidate=ORCHESTRATION_RUNTIME_HARDENING`; `allowed_next_actions=[external_review_vfx_asset_family_v0231]`; `next_capability_started=false`. v0.23.0 is frozen `CORRECTION_REQUIRED` history at reviewed HEAD `c8967f5f7b4d3f66b402d10ae8fe5f29cb9fbb72`; its evidence root is immutable. v0.23.1 corrects F-22 through F-28 with typed semantics, explicit loop/budget authority, decoded straight-alpha proof, deterministic constrained fallback, complete semantic identity and exact live merged-main CI gating. PR #14 remains OPEN/unmerged for Sol review; do not merge, start Orchestration, enable production or generate real VFX.
+
 # UGAS checkpoint - v0.22.3 UI_ASSET_FAMILY correction delta
 
 ## Current v0.22.3 UI_ASSET_FAMILY handoff
