@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "proofs": [
+    {
+      "class": "projectile_trail",
+      "full_content_hash": "d7a05344ef50b67cdb3a99692a6c92e19ff494158d3d9e3e92acece89e51a058",
+      "degraded_output_hash": "b98ef1fdc294013087b2314856489b4665c235e1aff94cf6b31993c38ae31767",
+      "deterministic_repeat_hash": "b98ef1fdc294013087b2314856489b4665c235e1aff94cf6b31993c38ae31767",
+      "mechanisms": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "REDUCE_SPAWN_RATE",
+        "REDUCE_VISUAL_AREA"
+      ],
+      "frame_count_full": 8,
+      "frame_count_degraded": 8,
+      "semantic_preserved": true
+    },
+    {
+      "class": "weapon_arc",
+      "degraded_output_hash": "0228ecae5f979778db4f4c081d983e932d72cf629e9ffd879355b36b8ee6a3ca",
+      "alpha_range_full": [
+        0,
+        220
+      ],
+      "alpha_range_degraded": [
+        0,
+        110
+      ],
+      "mechanisms": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "REDUCE_VISUAL_AREA"
+      ]
+    },
+    {
+      "class": "persistent_aura",
+      "degraded_output_hash": "af1558170dd050b10950375aa266209911a575134659f8db23fc896d99a5e815",
+      "bounds_full": "decoded source alpha bounds",
+      "bounds_degraded": [
+        35,
+        35,
+        61,
+        61
+      ],
+      "mechanisms": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_RADIUS",
+        "REDUCE_VISUAL_AREA"
+      ]
+    },
+    {
+      "class": "projectile_trail",
+      "terminal_skip": {
+        "status": "SKIPPED",
+        "terminal_step": "SKIP_VISUAL",
+        "skipped_output": {
+          "status": "SKIPPED_VISUAL",
+          "reason": "terminal fallback step emitted no visual bytes"
+        },
+        "effect_id": "vfx-test-projectile_trail-v0232",
+        "semantic_identity": {
+          "effect_id": "vfx-test-projectile_trail-v0232",
+          "effect_class": "projectile_trail",
+          "stable_class_id": "VFX-CLS-PROJECTILE-TRAIL",
+          "semantic_input_hash": "d470e83c23cd624f65aeb1291a896a684de463fad3eee434b8062a333e110d8d",
+          "semantic_contract_hash": "adce55b4130cc91a3fe335e1cd1a7ac2c67cc5c37e52e3e1b4f7956bd4fa2311",
+          "visual_only": true,
+          "gameplay_authority": "NONE"
+        },
+        "output_hash": "32cd6bb7869b8566acdc1563eeaae7e4e70096e6d5bc425cb79058743783f250",
+        "frames": [],
+        "semantic_preserved": true,
+        "changes_gameplay": false,
+        "degradation_mechanisms": [
+          "REDUCE_PARTICLE_COUNT",
+          "REDUCE_LAYER_COUNT",
+          "REDUCE_SPAWN_RATE",
+          "REDUCE_VISUAL_AREA",
+          "SKIP_VISUAL"
+        ]
+      }
+    }
+  ]
+}

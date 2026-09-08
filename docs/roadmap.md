@@ -1,6 +1,10 @@
 # UGAS roadmap
 
-## v0.23.1 - VFX_ASSET_FAMILY F-22..F-28 correction
+## v0.23.2 - VFX_ASSET_FAMILY F-23R/F-26R/F-27R correction
+
+The active phase remains `VFX_ASSET_FAMILY` over historical baseline main `b08b9c3df74ef6a23046be396289e2fd72dc336b`. This forward-only correction on PR #14 preserves the v0.23.0 and v0.23.1 evidence roots unchanged and adds `docs/evidence/vfx-asset-family-runtime-v0232/`. It enforces exact per-class semantic allowlists, renders deterministic degraded bytes with decoded alpha/frame/bounds proofs and records terminal `SKIP_VISUAL`, while binding provenance input to the complete semantic-contract hash and retaining `raw_semantic_input_hash` as the narrow input hash. `vfx_asset_family_external_review=REQUIRED`, `real_vfx_asset_coverage=NONE`, `synthetic_vfx_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The sole tracked action is `external_review_vfx_asset_family_v0232`; PR #14 must remain OPEN/unmerged for Sol review and Orchestration remains blocked.
+
+## v0.23.1 - VFX_ASSET_FAMILY F-22..F-28 correction (historical CORRECTION_REQUIRED)
 
 The active phase remains `VFX_ASSET_FAMILY` over historical baseline main `b08b9c3df74ef6a23046be396289e2fd72dc336b`. This forward-only correction on PR #14 preserves `docs/evidence/vfx-asset-family-runtime-v0230/` unchanged and adds `docs/evidence/vfx-asset-family-runtime-v0231/`. It removes tracked current-head self-reference in favor of GitHub LIVE, rejects gameplay vocabulary through typed class semantics, makes owner-bound loops and per-effect budgets explicit, validates decoded straight-alpha pixels, applies deterministic constrained fallback profiles, binds cache/provenance to the complete effective semantic payload, and unlocks Orchestration only after exact merged-main SHA/context proof. `vfx_asset_family_external_review=REQUIRED`, `real_vfx_asset_coverage=NONE`, `synthetic_vfx_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, and `new_generation=0`. The sole tracked action is `external_review_vfx_asset_family_v0231`; PR #14 must remain OPEN/unmerged for Sol review and Orchestration remains blocked.
 

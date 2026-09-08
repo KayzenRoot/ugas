@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "historical_evidence_unchanged": true,
+  "checks": [
+    {
+      "root": "docs/evidence/vfx-asset-family-runtime-v0230",
+      "authority_ref": "git:HEAD:docs/evidence/vfx-asset-family-runtime-v0230",
+      "authority_tree": "efbd119d49b2bbdefe363668de2d3b86a4ca76d1",
+      "observed_tree": "efbd119d49b2bbdefe363668de2d3b86a4ca76d1",
+      "tree_identical": true
+    },
+    {
+      "root": "docs/evidence/vfx-asset-family-runtime-v0231",
+      "authority_ref": "git:HEAD:docs/evidence/vfx-asset-family-runtime-v0231",
+      "authority_tree": "2d7b6e871da2f0ff85c0f4fe4886dbea512adf95",
+      "observed_tree": "2d7b6e871da2f0ff85c0f4fe4886dbea512adf95",
+      "tree_identical": true
+    },
+    {
+      "review": "REVIEW-v0.23.0.md",
+      "authority_sha256": "5bcd9875b90cb3634d2430171338e1f3957a9aca63a781f1069a624373c280da",
+      "observed_sha256": "5bcd9875b90cb3634d2430171338e1f3957a9aca63a781f1069a624373c280da",
+      "byte_identical": true
+    },
+    {
+      "review": "REVIEW-v0.23.1.md",
+      "authority_sha256": "519b1a0db586e89918b366b3be33f052cbab2cd04f4b6d93cb3e662e96004bbe",
+      "observed_sha256": "519b1a0db586e89918b366b3be33f052cbab2cd04f4b6d93cb3e662e96004bbe",
+      "byte_identical": true
+    }
+  ]
+}
