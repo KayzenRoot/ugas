@@ -121,6 +121,7 @@ jobs:
           cp -R docs/evidence/vfx-asset-family-runtime-v0230/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0230/" 2>/dev/null || true
           cp REVIEW-v0.23.0.md "$artifact/REVIEW-v0.23.0.md" 2>/dev/null || true
           cp REVIEW-v0.23.1.md "$artifact/REVIEW-v0.23.1.md" 2>/dev/null || true
+          cp REVIEW-v0.23.2.md "$artifact/REVIEW-v0.23.2.md" 2>/dev/null || true
           cp -R docs/evidence/ui-asset-family-runtime-v0223/. "$artifact/docs/evidence/ui-asset-family-runtime-v0223/" 2>/dev/null || true
           cp -R docs/evidence/ui-asset-family-runtime-v0222/. "$artifact/docs/evidence/ui-asset-family-runtime-v0222/" 2>/dev/null || true
           cp -R docs/evidence/ui-asset-family-runtime-v0221/. "$artifact/docs/evidence/ui-asset-family-runtime-v0221/" 2>/dev/null || true
@@ -165,7 +166,7 @@ jobs:
             echo "- Base: \`$BASE_REF\`"
             echo "- Head: \`$HEAD_REF\`"
             echo "- PR number: \`$PR_NUMBER\`"
-            echo '- Production: `real_ui_asset_coverage=NONE`, `synthetic_ui_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`.'
+            echo '- Production: `real_vfx_asset_coverage=NONE`, `synthetic_vfx_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`.'
             echo '- Stop: PR #14 remains OPEN/unmerged for external Sol review; do not start orchestration or production VFX.'
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload bounded GitHub review artifact
