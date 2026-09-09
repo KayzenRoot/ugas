@@ -11,7 +11,7 @@ from pathlib import Path
 def main() -> int:
     parser = argparse.ArgumentParser(); parser.add_argument("--artifact-dir", required=True); parser.add_argument("--manifest", required=True); parser.add_argument("--output", required=True); args = parser.parse_args()
     root = Path(args.artifact_dir).resolve(); manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8")); failures: list[str] = []
-    allowed_prefixes = ("docs/evidence/orchestration-runtime-v0240/", "docs/evidence/current-state.json", "schemas/current-state-v0240.json", "schemas/orchestration-runtime-v0240.json", "REVIEW-v0.24.0.md", "github-review-manifest-v0240.json", "logs/")
+    allowed_prefixes = ("docs/evidence/orchestration-runtime-v0240/", "docs/evidence/current-state.json", "schemas/current-state-v0240.json", "schemas/orchestration-runtime-v0240.json", "REVIEW-v0.24.0.md", "github-review-manifest-v0240.json", "test-results-v0240.json", "validation-results-v0240.json", "logs/")
     forbidden_tokens = ("secret", "credential", "password", "token", ".safetensors", ".ckpt", ".sqlite", ".db")
     for path in root.rglob("*"):
         if not path.is_file(): continue
