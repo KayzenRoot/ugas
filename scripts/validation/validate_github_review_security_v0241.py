@@ -27,6 +27,7 @@ def main() -> int:
         "test-results-v0241.json",
         "validation-results-v0241.json",
         "state-validation-v0241.json",
+        "schema-validation-v0241.json",
         "security-results-v0241.json",
         "manifest-validation-results-v0241.json",
         "logs/",
