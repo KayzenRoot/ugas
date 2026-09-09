@@ -1,0 +1,102 @@
+{
+  "dag": {
+    "dag_hash": "6c828c998fd5ed93acd3ec51cdfc104cb75dcd8f7f7d71473a1d07bccbe884cd",
+    "dag_id": "dag-1",
+    "nodes": [
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [],
+        "dependency_hashes": {},
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "prepare",
+        "operation": "EXECUTE",
+        "priority": 30,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "prepare"
+        ],
+        "dependency_hashes": {
+          "prepare": "d055c9c7910abe8cbafb44da6001d81477039d0c2a9b1571e26417ca66966ad2"
+        },
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "render",
+        "operation": "EXECUTE",
+        "priority": 20,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "render"
+        ],
+        "dependency_hashes": {
+          "render": "c780ad12969e3bd84434181825f709bd0b7f46e6a5cb6134289281451503f8e4"
+        },
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "qa",
+        "operation": "EXECUTE",
+        "priority": 20,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "qa"
+        ],
+        "dependency_hashes": {
+          "qa": "0fa56e433aaa349979fc909f86166b1a7b209fa4e5baa65c585ef8da3a08ec60"
+        },
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "package",
+        "operation": "EXECUTE",
+        "priority": 10,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      }
+    ],
+    "project_id": "ugas-v1-test-project",
+    "request_hash": "bfb7b06dd40ab8bf94b9d34411ede65eddc504d7a1397716eba5b08f62c340f4",
+    "schema_version": "0.24.0"
+  },
+  "schedule": [
+    "prepare",
+    "render",
+    "qa",
+    "package"
+  ],
+  "status": "PASS"
+}

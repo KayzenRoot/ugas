@@ -1,0 +1,336 @@
+{
+  "controls": {
+    "NC-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-01",
+      "detail": "DAG contains a cycle",
+      "expected_rejection_class": "ORCH_DAG_CYCLE",
+      "injected_defect": "cycle",
+      "observed_rejection_class": "ORCH_DAG_CYCLE",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-02",
+      "detail": "node cannot depend on itself",
+      "expected_rejection_class": "ORCH_DAG_SELF_DEPENDENCY",
+      "injected_defect": "self dependency",
+      "observed_rejection_class": "ORCH_DAG_SELF_DEPENDENCY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-03": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-03",
+      "detail": "unknown dependency missing",
+      "expected_rejection_class": "ORCH_DAG_MISSING_DEPENDENCY",
+      "injected_defect": "missing dependency",
+      "observed_rejection_class": "ORCH_DAG_MISSING_DEPENDENCY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-04": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-04",
+      "detail": "node identifiers must be unique",
+      "expected_rejection_class": "ORCH_DAG_DUPLICATE_NODE_ID",
+      "injected_defect": "duplicate node id",
+      "observed_rejection_class": "ORCH_DAG_DUPLICATE_NODE_ID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-05": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-05",
+      "detail": "DAG node count is outside the bounded range",
+      "expected_rejection_class": "ORCH_DAG_BOUNDS_EXCEEDED",
+      "injected_defect": "more than MAX_NODES",
+      "observed_rejection_class": "ORCH_DAG_BOUNDS_EXCEEDED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-06": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-06",
+      "detail": "DAG depth exceeds the bounded limit",
+      "expected_rejection_class": "ORCH_DAG_DEPTH_EXCEEDED",
+      "injected_defect": "depth over bound",
+      "observed_rejection_class": "ORCH_DAG_DEPTH_EXCEEDED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-07": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-07",
+      "detail": "observed schedule differs from the canonical schedule",
+      "expected_rejection_class": "ORCH_SCHEDULER_NONDETERMINISTIC",
+      "injected_defect": "reordered schedule",
+      "observed_rejection_class": "ORCH_SCHEDULER_NONDETERMINISTIC",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-08": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-08",
+      "detail": "observed peak exceeds global concurrency",
+      "expected_rejection_class": "ORCH_GLOBAL_CONCURRENCY_EXCEEDED",
+      "injected_defect": "global concurrency over bound",
+      "observed_rejection_class": "ORCH_GLOBAL_CONCURRENCY_EXCEEDED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-09": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-09",
+      "detail": "execution introduced or removed a node",
+      "expected_rejection_class": "ORCH_DYNAMIC_NODE_REJECTED",
+      "injected_defect": "dynamic node injected",
+      "observed_rejection_class": "ORCH_DYNAMIC_NODE_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-10": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-10",
+      "detail": "duplicate dispatch executed work twice",
+      "expected_rejection_class": "ORCH_IDEMPOTENT_REPLAY_VIOLATION",
+      "injected_defect": "duplicate dispatch executes twice",
+      "observed_rejection_class": "ORCH_IDEMPOTENT_REPLAY_VIOLATION",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-11": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-11",
+      "detail": "dependency hash is stale for prepare",
+      "expected_rejection_class": "ORCH_DAG_STALE_DEPENDENCY_HASH",
+      "injected_defect": "stale dependency hash",
+      "observed_rejection_class": "ORCH_DAG_STALE_DEPENDENCY_HASH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-12": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-12",
+      "detail": "request hash does not match canonical request bytes",
+      "expected_rejection_class": "ORCH_REQUEST_HASH_MISMATCH",
+      "injected_defect": "reused request hash after semantic mutation",
+      "observed_rejection_class": "ORCH_REQUEST_HASH_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-13": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-13",
+      "detail": "SUCCEEDED -> FAILED is not allowed",
+      "expected_rejection_class": "ORCH_ILLEGAL_STATE_TRANSITION",
+      "injected_defect": "illegal terminal transition",
+      "observed_rejection_class": "ORCH_ILLEGAL_STATE_TRANSITION",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-14": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-14",
+      "detail": "terminal execution cannot be retried",
+      "expected_rejection_class": "ORCH_RETRY_AFTER_TERMINAL_REJECTED",
+      "injected_defect": "retry after success",
+      "observed_rejection_class": "ORCH_RETRY_AFTER_TERMINAL_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-15": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-15",
+      "detail": "retry_policy.max_attempts exceeds the bounded limit",
+      "expected_rejection_class": "ORCH_RETRY_POLICY_INVALID",
+      "injected_defect": "unbounded retry",
+      "observed_rejection_class": "ORCH_RETRY_POLICY_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-16": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-16",
+      "detail": "contract/security errors may not be retried",
+      "expected_rejection_class": "ORCH_NONRETRYABLE_ERROR_POLICY_REJECTED",
+      "injected_defect": "non-retryable contract error marked retryable",
+      "observed_rejection_class": "ORCH_NONRETRYABLE_ERROR_POLICY_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-17": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-17",
+      "detail": "node timeout is not bounded",
+      "expected_rejection_class": "ORCH_DAG_TIMEOUT_INVALID",
+      "injected_defect": "missing/zero timeout",
+      "observed_rejection_class": "ORCH_DAG_TIMEOUT_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-18": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-18",
+      "detail": "checkpoint DAG identity is stale",
+      "expected_rejection_class": "ORCH_CHECKPOINT_STALE",
+      "injected_defect": "stale checkpoint DAG",
+      "observed_rejection_class": "ORCH_CHECKPOINT_STALE",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-19": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-19",
+      "detail": "checkpoint hash is absent or invalid",
+      "expected_rejection_class": "ORCH_CHECKPOINT_TAMPERED",
+      "injected_defect": "tampered checkpoint bytes",
+      "observed_rejection_class": "ORCH_CHECKPOINT_TAMPERED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-20": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-20",
+      "detail": "DAG project does not match request project",
+      "expected_rejection_class": "ORCH_CROSS_PROJECT_IDENTITY",
+      "injected_defect": "cross-project checkpoint",
+      "observed_rejection_class": "ORCH_CROSS_PROJECT_IDENTITY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-21": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-21",
+      "detail": "failed, blocked or cancelled execution cannot populate success cache",
+      "expected_rejection_class": "ORCH_CACHE_NON_SUCCESS_REJECTED",
+      "injected_defect": "failed execution promoted to success cache",
+      "observed_rejection_class": "ORCH_CACHE_NON_SUCCESS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-22": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-22",
+      "detail": "completed result is not bound for package",
+      "expected_rejection_class": "ORCH_CHECKPOINT_RESULT_HASH_TAMPERED",
+      "injected_defect": "dependency result hash tamper",
+      "observed_rejection_class": "ORCH_CHECKPOINT_RESULT_HASH_TAMPERED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-23": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-23",
+      "detail": "terminal execution changed after cancellation/retry input",
+      "expected_rejection_class": "ORCH_TERMINAL_MUTATION_REJECTED",
+      "injected_defect": "cancellation corrupts success",
+      "observed_rejection_class": "ORCH_TERMINAL_MUTATION_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-24": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-24",
+      "detail": "open circuit accepted a dispatch",
+      "expected_rejection_class": "ORCH_CIRCUIT_BREAKER_BYPASS",
+      "injected_defect": "open circuit bypass",
+      "observed_rejection_class": "ORCH_CIRCUIT_BREAKER_BYPASS",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-25": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-25",
+      "detail": "asset family is not in the closed runtime registry",
+      "expected_rejection_class": "ORCH_UNKNOWN_ASSET_FAMILY",
+      "injected_defect": "unknown/future family",
+      "observed_rejection_class": "ORCH_UNKNOWN_ASSET_FAMILY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-26": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-26",
+      "detail": "production_intent must be the literal false",
+      "expected_rejection_class": "ORCH_PRODUCTION_INTENT_REJECTED",
+      "injected_defect": "production intent true",
+      "observed_rejection_class": "ORCH_PRODUCTION_INTENT_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-27": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-27",
+      "detail": "production routing, approval and generation must remain blocked",
+      "expected_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+      "injected_defect": "production routing attempt",
+      "observed_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-28": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-28",
+      "detail": "provider submission count must remain zero",
+      "expected_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+      "injected_defect": "real provider submit",
+      "observed_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-29": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-29",
+      "detail": "production routing, approval and generation must remain blocked",
+      "expected_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+      "injected_defect": "new generation",
+      "observed_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-30": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-30",
+      "detail": "secret-like fields are not allowed in orchestration evidence",
+      "expected_rejection_class": "ORCH_SECRET_LIKE_DATA_REJECTED",
+      "injected_defect": "secret-like evidence",
+      "observed_rejection_class": "ORCH_SECRET_LIKE_DATA_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-31": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-31",
+      "detail": "path traversal is forbidden",
+      "expected_rejection_class": "ORCH_PATH_TRAVERSAL_REJECTED",
+      "injected_defect": "absolute/path traversal",
+      "observed_rejection_class": "ORCH_PATH_TRAVERSAL_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-32": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-32",
+      "detail": "output project identity does not match request",
+      "expected_rejection_class": "ORCH_CROSS_PROJECT_OUTPUT",
+      "injected_defect": "cross-project output",
+      "observed_rejection_class": "ORCH_CROSS_PROJECT_OUTPUT",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-33": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-33",
+      "detail": "UADS runtime state must remain outside the repository",
+      "expected_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+      "injected_defect": "repository-local UADS footprint",
+      "observed_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+      "result": "REJECT",
+      "status": "PASS"
+    }
+  },
+  "schema_version": "0.24.0",
+  "status": "PASS"
+}

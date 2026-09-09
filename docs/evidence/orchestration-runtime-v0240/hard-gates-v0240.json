@@ -1,0 +1,251 @@
+{
+  "gates": {
+    "asset_contracts_read_only": {
+      "detail": "actual checker observation",
+      "gate_id": "asset_contracts_read_only",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "bounded_cancellation": {
+      "detail": "actual checker observation",
+      "gate_id": "bounded_cancellation",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "bounded_family_concurrency": {
+      "detail": "actual checker observation",
+      "gate_id": "bounded_family_concurrency",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "bounded_global_concurrency": {
+      "detail": "actual checker observation",
+      "gate_id": "bounded_global_concurrency",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "bounded_retry": {
+      "detail": "actual checker observation",
+      "gate_id": "bounded_retry",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "cache_identity": {
+      "detail": "actual checker observation",
+      "gate_id": "cache_identity",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "cache_success_only": {
+      "detail": "actual checker observation",
+      "gate_id": "cache_success_only",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "canonical_request": {
+      "detail": "actual checker observation",
+      "gate_id": "canonical_request",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "checkpoint_binding": {
+      "detail": "actual checker observation",
+      "gate_id": "checkpoint_binding",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "checkpoint_tamper_rejection": {
+      "detail": "actual checker observation",
+      "gate_id": "checkpoint_tamper_rejection",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "circuit_breaker_isolated": {
+      "detail": "actual checker observation",
+      "gate_id": "circuit_breaker_isolated",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "dag_acyclic": {
+      "detail": "actual checker observation",
+      "gate_id": "dag_acyclic",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "dag_dependency_hashes": {
+      "detail": "actual checker observation",
+      "gate_id": "dag_dependency_hashes",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "dag_schema": {
+      "detail": "actual checker observation",
+      "gate_id": "dag_schema",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "failure_isolation": {
+      "detail": "actual checker observation",
+      "gate_id": "failure_isolation",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "fake_executor_determinism": {
+      "detail": "actual checker observation",
+      "gate_id": "fake_executor_determinism",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "historical_closure_binding": {
+      "detail": "actual checker observation",
+      "gate_id": "historical_closure_binding",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "idempotent_dispatch": {
+      "detail": "actual checker observation",
+      "gate_id": "idempotent_dispatch",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "legacy_adapter_narrow": {
+      "detail": "actual checker observation",
+      "gate_id": "legacy_adapter_narrow",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "no_dynamic_nodes": {
+      "detail": "actual checker observation",
+      "gate_id": "no_dynamic_nodes",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "no_retry_after_cancel": {
+      "detail": "actual checker observation",
+      "gate_id": "no_retry_after_cancel",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "no_retry_after_success": {
+      "detail": "actual checker observation",
+      "gate_id": "no_retry_after_success",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "production_boundary": {
+      "detail": "actual checker observation",
+      "gate_id": "production_boundary",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "provider_submit_count_zero": {
+      "detail": "actual checker observation",
+      "gate_id": "provider_submit_count_zero",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "request_hash": {
+      "detail": "actual checker observation",
+      "gate_id": "request_hash",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "result_provenance": {
+      "detail": "actual checker observation",
+      "gate_id": "result_provenance",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "resume_identity": {
+      "detail": "actual checker observation",
+      "gate_id": "resume_identity",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "retryable_error_class": {
+      "detail": "actual checker observation",
+      "gate_id": "retryable_error_class",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "scheduler_dependency_first": {
+      "detail": "actual checker observation",
+      "gate_id": "scheduler_dependency_first",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "scheduler_deterministic": {
+      "detail": "actual checker observation",
+      "gate_id": "scheduler_deterministic",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "scheduler_priority_lexical": {
+      "detail": "actual checker observation",
+      "gate_id": "scheduler_priority_lexical",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "state_transition_contract": {
+      "detail": "actual checker observation",
+      "gate_id": "state_transition_contract",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "telemetry_sanitized": {
+      "detail": "actual checker observation",
+      "gate_id": "telemetry_sanitized",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "terminal_immutability": {
+      "detail": "actual checker observation",
+      "gate_id": "terminal_immutability",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    },
+    "timeout_determinism": {
+      "detail": "actual checker observation",
+      "gate_id": "timeout_determinism",
+      "observed": true,
+      "observed_type": "bool",
+      "status": "PASS"
+    }
+  },
+  "overall_pass": true,
+  "schema_version": "0.24.0"
+}

@@ -34,25 +34,23 @@ jobs:
           python-version: '3.12'
           cache: pip
       - name: Install project reproducibly
-        if: always()
-        continue-on-error: true
         run: python -m pip install --disable-pip-version-check .
       - name: Prepare bounded evidence directories
         if: always()
         run: |
-          mkdir -p "$RUNNER_TEMP/ugas-review-evidence" "$RUNNER_TEMP/ugas-review-artifact"
+          mkdir -p "$RUNNER_TEMP/ugas-review-evidence" "$RUNNER_TEMP/ugas-review-artifact" "$RUNNER_TEMP/logs"
           : > "$RUNNER_TEMP/ugas-tests.log"
           : > "$RUNNER_TEMP/ugas-validation.log"
-          for file in vfx state matrix workflow; do printf '%s\n' 99 > "$RUNNER_TEMP/$file.exit"; done
-      - name: Run VFX asset family v0.23.4 correction and capture evidence
+          for file in state matrix orchestration workflow; do printf '%s\n' 99 > "$RUNNER_TEMP/$file.exit"; done
+      - name: Run orchestration runtime v0.24.0 and capture evidence
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/run_vfx_asset_family_runtime_v0234.py 2>&1 | tee "$RUNNER_TEMP/vfx.log"
+          python scripts/validation/run_orchestration_runtime_v0240.py 2>&1 | tee "$RUNNER_TEMP/orchestration.log"
           code=${PIPESTATUS[0]}
-          printf '%s\n' "$code" > "$RUNNER_TEMP/vfx.exit"
+          printf '%s\n' "$code" > "$RUNNER_TEMP/orchestration.exit"
           exit "$code"
       - name: Run unit tests and capture totals
         if: always()
@@ -64,13 +62,13 @@ jobs:
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/ugas-tests.exit"
           exit "$code"
-      - name: Validate active state
+      - name: Validate active v0.24.0 state
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_state_consistency_v0234.py
+          python scripts/validation/validate_state_consistency_v0240.py
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/state.exit"
           exit "$code"
@@ -104,75 +102,57 @@ jobs:
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/workflow.exit"
           exit "$code"
-      - name: Record v0.23.4 results
+      - name: Record v0.24.0 results
         if: always()
         continue-on-error: true
         run: |
-          python scripts/validation/record_vfx_asset_family_results_v0234.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --tests-exit "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --vfx-exit "$(cat "$RUNNER_TEMP/vfx.exit")" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --matrix-exit "$(cat "$RUNNER_TEMP/matrix.exit")" --workflow-exit "$(cat "$RUNNER_TEMP/workflow.exit")"
+          python scripts/validation/record_orchestration_results_v0240.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --tests-exit "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --matrix-exit "$(cat "$RUNNER_TEMP/matrix.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --workflow-exit "$(cat "$RUNNER_TEMP/workflow.exit")"
       - name: Assemble bounded evidence artifact
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           artifact="$RUNNER_TEMP/ugas-review-artifact"
-          mkdir -p "$artifact/docs/evidence/vfx-asset-family-runtime-v0234" "$artifact/docs/evidence/vfx-asset-family-runtime-v0233" "$artifact/docs/evidence/vfx-asset-family-runtime-v0232" "$artifact/docs/evidence/vfx-asset-family-runtime-v0231" "$artifact/docs/evidence/vfx-asset-family-runtime-v0230" "$artifact/docs/evidence/ui-asset-family-runtime-v0223" "$artifact/docs/evidence/ui-asset-family-runtime-v0222" "$artifact/docs/evidence/ui-asset-family-runtime-v0221" "$artifact/docs/evidence/ui-asset-family-runtime-v0220" "$artifact/docs/evidence/github-governance-v0230" "$artifact/docs/evidence/github-governance-v0223" "$artifact/docs/evidence/github-governance-v0221" "$artifact/docs/evidence/github-governance-v0220" "$artifact/docs/evidence/maps-minimap-runtime-v0213" "$artifact/logs"
-          cp -R docs/evidence/vfx-asset-family-runtime-v0234/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0234/" 2>/dev/null || true
-          cp -R docs/evidence/vfx-asset-family-runtime-v0233/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0233/" 2>/dev/null || true
-          cp -R docs/evidence/vfx-asset-family-runtime-v0232/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0232/" 2>/dev/null || true
-          cp -R docs/evidence/vfx-asset-family-runtime-v0231/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0231/" 2>/dev/null || true
-          cp -R docs/evidence/vfx-asset-family-runtime-v0230/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0230/" 2>/dev/null || true
-          cp REVIEW-v0.23.0.md "$artifact/REVIEW-v0.23.0.md" 2>/dev/null || true
-          cp REVIEW-v0.23.1.md "$artifact/REVIEW-v0.23.1.md" 2>/dev/null || true
-          cp REVIEW-v0.23.2.md "$artifact/REVIEW-v0.23.2.md" 2>/dev/null || true
-          cp REVIEW-v0.23.4.md "$artifact/REVIEW-v0.23.4.md" 2>/dev/null || true
-          cp REVIEW-v0.23.3.md "$artifact/REVIEW-v0.23.3.md" 2>/dev/null || true
-          cp -R docs/evidence/ui-asset-family-runtime-v0223/. "$artifact/docs/evidence/ui-asset-family-runtime-v0223/" 2>/dev/null || true
-          cp -R docs/evidence/ui-asset-family-runtime-v0222/. "$artifact/docs/evidence/ui-asset-family-runtime-v0222/" 2>/dev/null || true
-          cp -R docs/evidence/ui-asset-family-runtime-v0221/. "$artifact/docs/evidence/ui-asset-family-runtime-v0221/" 2>/dev/null || true
-          cp -R docs/evidence/ui-asset-family-runtime-v0220/. "$artifact/docs/evidence/ui-asset-family-runtime-v0220/" 2>/dev/null || true
-          cp docs/evidence/current-state.json "$artifact/docs/evidence/current-state.json" 2>/dev/null || true
-          cp docs/evidence/current-state-v0213.json "$artifact/docs/evidence/current-state-v0213.json" 2>/dev/null || true
-          cp -R docs/evidence/github-governance-v0223/. "$artifact/docs/evidence/github-governance-v0223/" 2>/dev/null || true
-          cp -R docs/evidence/github-governance-v0230/. "$artifact/docs/evidence/github-governance-v0230/" 2>/dev/null || true
-          cp -R docs/evidence/github-governance-v0221/. "$artifact/docs/evidence/github-governance-v0221/" 2>/dev/null || true
-          cp docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
-          cp docs/evidence/github-governance-v0220/v0213-post-merge-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
-          cp -R docs/evidence/maps-minimap-runtime-v0213/. "$artifact/docs/evidence/maps-minimap-runtime-v0213/" 2>/dev/null || true
-          cp REVIEW-v0.22.3.md "$artifact/REVIEW-v0.22.3.md" 2>/dev/null || true
+          mkdir -p "$artifact/docs/evidence/orchestration-runtime-v0240" "$artifact/logs"
+          cp -R docs/evidence/orchestration-runtime-v0240/. "$artifact/docs/evidence/orchestration-runtime-v0240/"
+          cp docs/evidence/current-state.json "$artifact/docs/evidence/current-state.json"
+          mkdir -p "$artifact/schemas"
+          cp schemas/current-state-v0240.json "$artifact/schemas/current-state-v0240.json"
+          cp schemas/orchestration-runtime-v0240.json "$artifact/schemas/orchestration-runtime-v0240.json"
+          cp REVIEW-v0.24.0.md "$artifact/REVIEW-v0.24.0.md"
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
-          cp "$RUNNER_TEMP/governance-v0223.json" "$artifact/governance-v0223.json" 2>/dev/null || true
-          cp "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log" 2>/dev/null || true
-          cp "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log" 2>/dev/null || true
-          cp "$RUNNER_TEMP/vfx.log" "$artifact/logs/vfx.log" 2>/dev/null || true
+          cp "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log"
+          cp "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log"
+          cp "$RUNNER_TEMP/orchestration.log" "$artifact/logs/orchestration.log"
           cp "$RUNNER_TEMP/workflow-validation.json" "$artifact/logs/workflow-validation.json" 2>/dev/null || true
-      - name: Build v0.23.4 exact-head manifest
+      - name: Build v0.24.0 exact-head manifest
         if: always()
         continue-on-error: true
         run: |
-          python scripts/validation/build_github_review_manifest_v0234.py --output-dir "$RUNNER_TEMP/ugas-review-artifact" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0234.json" --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0234.json" --gates-json "docs/evidence/vfx-asset-family-runtime-v0234/hard-gates-v0234.json" --controls-json "docs/evidence/vfx-asset-family-runtime-v0234/negative-controls-v0234.json" --determinism-json "docs/evidence/vfx-asset-family-runtime-v0234/full-slice-two-run-determinism-v0234.json" --production-json "docs/evidence/vfx-asset-family-runtime-v0234/production-registry-v0234.json"
-      - name: Validate bounded artifact security v0.23.4
+          python scripts/validation/build_github_review_manifest_v0240.py --output-dir "$RUNNER_TEMP/ugas-review-artifact" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0240.json" --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0240.json" --gates-json docs/evidence/orchestration-runtime-v0240/hard-gates-v0240.json --controls-json docs/evidence/orchestration-runtime-v0240/negative-controls-v0240.json --determinism-json docs/evidence/orchestration-runtime-v0240/full-slice-two-run-determinism-v0240.json --production-json docs/evidence/orchestration-runtime-v0240/production-boundary-v0240.json
+      - name: Validate bounded artifact security v0.24.0
         if: always()
         continue-on-error: true
-        run: python scripts/validation/validate_github_review_security_v0234.py --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0234.json" --output "$RUNNER_TEMP/security-v0234.json"
-      - name: Validate v0.23.4 exact-head manifest
+        run: python scripts/validation/validate_github_review_security_v0240.py --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0240.json" --output "$RUNNER_TEMP/security-v0240.json"
+      - name: Validate v0.24.0 exact-head manifest
         if: always()
         continue-on-error: true
-        run: python scripts/validation/validate_github_review_manifest_v0234.py "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0234.json" --result-output "$RUNNER_TEMP/final-manifest-validation-v0234.json"
+        run: python scripts/validation/validate_github_review_manifest_v0240.py "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0240.json" --result-output "$RUNNER_TEMP/final-manifest-validation-v0240.json"
       - name: Add final manifest/security results
         if: always()
         run: |
-          cp "$RUNNER_TEMP/security-v0234.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0234.json" 2>/dev/null || true
-          cp "$RUNNER_TEMP/final-manifest-validation-v0234.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0234.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/security-v0240.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0240.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/final-manifest-validation-v0240.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0240.json" 2>/dev/null || true
       - name: Write GitHub Step Summary
         if: always()
         run: |
           {
-            echo '## UGAS GitHub-native v0.23.4 VFX asset-family correction evidence'
+            echo '## UGAS GitHub-native v0.24.0 orchestration runtime evidence'
             echo "- Base: \`$BASE_REF\`"
             echo "- Head: \`$HEAD_REF\`"
             echo "- PR number: \`$PR_NUMBER\`"
-            echo '- Production: `real_vfx_asset_coverage=NONE`, `synthetic_vfx_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`.'
-            echo '- Stop: PR #14 remains OPEN/unmerged for external Sol review; do not start orchestration or production VFX.'
+            echo '- Production: `real_asset_generation=NONE`, `synthetic_fixture=TEST_ONLY`, `production_approved=false`, `production_routing=BLOCKED`, `new_generation=0`.'
+            echo '- Stop: PR remains OPEN/unmerged for external Sol review; V1 final acceptance has not started.'
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload bounded GitHub review artifact
         if: always()
@@ -182,6 +162,6 @@ jobs:
           path: ${{ runner.temp }}/ugas-review-artifact
           if-no-files-found: error
           retention-days: 21
-      - name: Enforce final review result after artifact upload (v0.23.4)
+      - name: Enforce final review result after artifact upload (v0.24.0)
         if: always()
-        run: python scripts/validation/enforce_github_review_v0234.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0234.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0234.json" --security "$RUNNER_TEMP/security-v0234.json" --vfx-exit "$RUNNER_TEMP/vfx.exit" --state-exit "$RUNNER_TEMP/state.exit"
+        run: python scripts/validation/enforce_github_review_v0240.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0240.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0240.json" --security "$RUNNER_TEMP/security-v0240.json" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")"
