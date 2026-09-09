@@ -14,7 +14,7 @@ VERSION = "0.24.1"
 BASE_MAIN = "dee98f8cd89ebd83a36ead7a22a184700d6e916f"
 REJECTED_HEAD = "36064a215bf3e7bff06ac22e750a242c6556f83e"
 EVIDENCE = "docs/evidence/orchestration-runtime-v0241"
-SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+GIT_SHA_RE = re.compile(r"^[0-9a-f]{40}$")
 
 
 def load(path: Path) -> dict[str, Any]:
@@ -101,7 +101,7 @@ def main() -> int:
     evidence_files = sorted(path.relative_to(root).as_posix() for path in (root / EVIDENCE).rglob("*") if path.is_file())
     gate_values = gates.get("gates", {})
     control_values = controls.get("controls", {})
-    exact_refs = bool(SHA256_RE.fullmatch(args.base_ref)) and bool(SHA256_RE.fullmatch(args.head_ref))
+    exact_refs = bool(GIT_SHA_RE.fullmatch(args.base_ref)) and bool(GIT_SHA_RE.fullmatch(args.head_ref))
     overall = (
         exact_refs
         and args.base_ref == BASE_MAIN

@@ -12,7 +12,7 @@ from typing import Any
 VERSION = "0.24.1"
 BASE_MAIN = "dee98f8cd89ebd83a36ead7a22a184700d6e916f"
 REJECTED_HEAD = "36064a215bf3e7bff06ac22e750a242c6556f83e"
-SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+GIT_SHA_RE = re.compile(r"^[0-9a-f]{40}$")
 
 
 def strict_true(value: Any) -> bool:
@@ -43,7 +43,7 @@ def main() -> int:
     }
     failures.extend(f"scope:{key}" for key, expected in expected_scope.items() if scope.get(key) != expected)
     pr = value.get("pull_request", {})
-    if pr.get("number") != 15 or pr.get("base_sha") != BASE_MAIN or not SHA256_RE.fullmatch(str(pr.get("head_sha", ""))) or not pr.get("head_branch"):
+    if pr.get("number") != 15 or pr.get("base_sha") != BASE_MAIN or not GIT_SHA_RE.fullmatch(str(pr.get("head_sha", ""))) or not pr.get("head_branch"):
         failures.append("pull-request")
     gates = value.get("gates", {})
     if not isinstance(gates, dict) or len(gates) < 40 or any(not isinstance(item, dict) or item.get("status") != "PASS" or not strict_true(item.get("observed")) or item.get("observed_type") != "bool" for item in gates.values()):
