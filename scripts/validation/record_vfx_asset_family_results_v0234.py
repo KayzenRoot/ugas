@@ -30,7 +30,7 @@ def main() -> int:
     (a.output_dir / "test-results-v0234.json").write_text(json.dumps(tests, indent=2) + "\n", encoding="utf-8")
     (a.output_dir / "validation-results-v0234.json").write_text(json.dumps(validation, indent=2) + "\n", encoding="utf-8")
     (a.output_dir / "gate-results-v0234.json").write_text(json.dumps({"schema_version": "0.23.4", "gates": {k: {"status": "PASS" if v else "FAIL"} for k, v in gates.items()}, "overall_status": "PASS" if overall else "FAIL"}, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"status": "V0233_RESULTS_RECORDED", "overall_status": "PASS" if overall else "FAIL", "test_count": count, "validation_checks": validation["checks"]}))
+    print(json.dumps({"status": "V0234_RESULTS_RECORDED", "overall_status": "PASS" if overall else "FAIL", "test_count": count, "validation_checks": validation["checks"]}))
     return 0 if overall else 1
 
 

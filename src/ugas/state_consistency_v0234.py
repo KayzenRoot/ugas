@@ -10,10 +10,15 @@ BASELINE_MAIN_SHA = "b08b9c3df74ef6a23046be396289e2fd72dc336b"
 FEATURE_BRANCH = "codex/v0.23.0-vfx-asset-family-runtime-foundation"
 PR_NUMBER = 14
 CURRENT_GATE = "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F29R_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED"
-NEXT_ACTION = "external_review_vfx_asset_family_v0234"
+EXTERNAL_REVIEW_ACTION = "external_review_vfx_asset_family_v0234"
+NEXT_ACTION = "governed_merge_vfx_pr_14"
 GOVERNED_MERGE_ACTION = "governed_merge_vfx_pr_14"
 ORCHESTRATION_ACTION = "start_orchestration_runtime_hardening"
 NEXT_CANDIDATE = "ORCHESTRATION_RUNTIME_HARDENING"
+APPROVED_SEMANTIC_HEAD = "9f8030d2c0ee0e00d10d64a9331899e21ebd5842"
+APPROVAL_COMMENT_ID = 5593830005
+APPROVAL_RECORD = "docs/evidence/github-governance-v0230/v0234-external-approval.json"
+APPROVAL_AUTHORIZATION = "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF"
 REQUIRED_MAIN_CONTEXTS = ("UGAS CI / unit-and-validation", "UGAS CI / docker-smoke")
 LIVE_HEAD_SOURCE = "GitHub LIVE exact-head metadata"
 
@@ -31,7 +36,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
     _check(failures, state.get("current_gate") == CURRENT_GATE, "current-gate")
     _check(failures, state.get("next_candidate") == NEXT_CANDIDATE and state.get("allowed_next_actions") == [NEXT_ACTION], "next-action")
     _check(failures, state.get("production_approved") is False and state.get("production_routing") == "BLOCKED" and state.get("new_generation") == 0, "production-boundary")
-    _check(failures, state.get("vfx_asset_family") == "TECHNICALLY_QUALIFIED_FOUNDATION" and state.get("vfx_asset_family_external_review") == "REQUIRED", "vfx-status")
+    _check(failures, state.get("vfx_asset_family") == "APPROVED_FOUNDATION" and state.get("vfx_asset_family_external_review") == "APPROVED_FOUNDATION" and state.get("vfx_asset_family_lifecycle") == "APPROVED_FOUNDATION_AWAITING_GOVERNED_MERGE", "vfx-status")
     _check(failures, state.get("real_vfx_asset_coverage") == "NONE" and state.get("synthetic_vfx_fixture") == "TEST_ONLY", "fixture-boundary")
     forbidden = set(state.get("forbidden_actions", []))
     for required in ("direct_main_push", "force_push_or_history_rewrite", "enable_production_routing", "new_generation", "orchestration_runtime_hardening", "real_vfx_assets", "provider_generation", "diffusion_generation"):
@@ -41,9 +46,10 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str = 
     _check(failures, review.get("branch_base_commit") == BASELINE_MAIN_SHA and review.get("baseline_head") == BASELINE_MAIN_SHA and review.get("feature_branch") == FEATURE_BRANCH, "review-binding")
     _check(failures, review.get("execution_mode") == "GITHUB_PR_FIRST" and review.get("merge_policy") == "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW" and review.get("external_review_required") is True and review.get("do_not_merge") is True and review.get("head_sha_source") == LIVE_HEAD_SOURCE, "review-boundary")
     _check(failures, review.get("head_sha") is None, "review-head-must-be-live-only")
+    _check(failures, review.get("merge_authorization") == APPROVAL_AUTHORIZATION and review.get("approved_semantic_head") == APPROVED_SEMANTIC_HEAD and review.get("approval_comment_id") == APPROVAL_COMMENT_ID and review.get("approval_record") == APPROVAL_RECORD and review.get("post_bookkeeping_reproof_required") is True, "approval-binding")
     _check(failures, review.get("required_contexts") == ["UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"], "required-contexts")
     evidence = state.get("evidence") or {}
-    _check(failures, evidence.get("vfx_root") == "docs/evidence/vfx-asset-family-runtime-v0234/", "evidence-root")
+    _check(failures, evidence.get("vfx_root") == "docs/evidence/vfx-asset-family-runtime-v0234/" and evidence.get("approval_transition") == APPROVAL_RECORD, "evidence-root")
     _check(failures, "VFX_ASSET_FAMILY" in checkpoint_text and CURRENT_GATE in checkpoint_text and "v0.23.4" in checkpoint_text, "checkpoint-binding")
     _check(failures, "v0.23.4" in roadmap_text and NEXT_ACTION in roadmap_text, "roadmap-binding")
     if matrix is not None:
@@ -82,7 +88,7 @@ def resolve_next_actions(state: Mapping[str, Any], live: Mapping[str, Any]) -> d
     if binding["failures"]:
         return {"allowed_next_actions": [], "orchestration_allowed": False, "source_mode": "GITHUB_LIVE", "reason": "live PR binding invalid", "failures": binding["failures"]}
     if live.get("pr_state") == "OPEN" and live.get("external_approval") is False and live.get("merged") is False:
-        return {"allowed_next_actions": [NEXT_ACTION], "orchestration_allowed": False, "source_mode": "GITHUB_LIVE", "reason": "external review required"}
+        return {"allowed_next_actions": [EXTERNAL_REVIEW_ACTION], "orchestration_allowed": False, "source_mode": "GITHUB_LIVE", "reason": "external review required"}
     if live.get("pr_state") == "OPEN" and live.get("external_approval") is True and live.get("merged") is False:
         return {"allowed_next_actions": [GOVERNED_MERGE_ACTION], "orchestration_allowed": False, "source_mode": "GITHUB_LIVE", "reason": "external approval recorded but merge not performed"}
     if live.get("pr_state") == "MERGED" and live.get("external_approval") is True and live.get("merged") is True and _exact_post_merge_ci(live):

@@ -27,7 +27,9 @@ from ugas.schema_validation import validate_instance, validate_schema_document
 from ugas.state_consistency_v0234 import (
     BASELINE_MAIN_SHA,
     CURRENT_GATE,
+    EXTERNAL_REVIEW_ACTION,
     FEATURE_BRANCH,
+    GOVERNED_MERGE_ACTION,
     NEXT_ACTION,
     NEXT_CANDIDATE,
     PR_NUMBER,
@@ -347,7 +349,7 @@ def main() -> int:
         ("VFX234-HG-25", lambda: strict_boolean_observation(False) is False),
         ("VFX234-HG-26", lambda: strict_boolean_observation(1) is False),
         ("VFX234-HG-27", lambda: strict_boolean_observation("PASS") is False),
-        ("VFX234-HG-28", lambda: resolve_next_actions(state, {"source": "GITHUB_LIVE", "repository": "KayzenRoot/ugas", "pr_number": PR_NUMBER, "branch": FEATURE_BRANCH, "base_sha": BASELINE_MAIN_SHA, "head_sha": "a" * 40, "pr_state": "OPEN", "merged": False, "external_approval": False})["allowed_next_actions"] == [NEXT_ACTION]),
+        ("VFX234-HG-28", lambda: resolve_next_actions(state, {"source": "GITHUB_LIVE", "repository": "KayzenRoot/ugas", "pr_number": PR_NUMBER, "branch": FEATURE_BRANCH, "base_sha": BASELINE_MAIN_SHA, "head_sha": "a" * 40, "pr_state": "OPEN", "merged": False, "external_approval": False})["allowed_next_actions"] == [EXTERNAL_REVIEW_ACTION] and resolve_next_actions(state, {"source": "GITHUB_LIVE", "repository": "KayzenRoot/ugas", "pr_number": PR_NUMBER, "branch": FEATURE_BRANCH, "base_sha": BASELINE_MAIN_SHA, "head_sha": "a" * 40, "pr_state": "OPEN", "merged": False, "external_approval": True})["allowed_next_actions"] == [GOVERNED_MERGE_ACTION]),
         ("VFX234-HG-29", lambda: validate_production_registry([])["registry"] == []),
         ("VFX234-HG-30", lambda: manifest["production_routing"] == "BLOCKED" and manifest["production_approved"] is False and manifest["new_generation"] == 0),
         ("VFX234-HG-31", lambda: all(item["provenance"]["provider"] is None for item in records)),

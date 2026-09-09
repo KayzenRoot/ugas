@@ -14,6 +14,13 @@ from ugas.historical_immutability_v0234 import (
     validate_historical_immutability,
     validate_historical_root,
 )
+from ugas.state_consistency_v0234 import (
+    BASELINE_MAIN_SHA,
+    FEATURE_BRANCH,
+    GOVERNED_MERGE_ACTION,
+    PR_NUMBER,
+    resolve_next_actions,
+)
 from ugas.vfx_asset_family_runtime_v0233 import VFXAssetFamilyContractError
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +31,22 @@ AUTHORITIES = (
 
 
 class VfxAssetFamilyRuntimeV0234Tests(unittest.TestCase):
+    def test_live_approval_resolves_only_to_governed_merge(self) -> None:
+        live = {
+            "source": "GITHUB_LIVE",
+            "repository": "KayzenRoot/ugas",
+            "pr_number": PR_NUMBER,
+            "branch": FEATURE_BRANCH,
+            "base_sha": BASELINE_MAIN_SHA,
+            "head_sha": "9f8030d2c0ee0e00d10d64a9331899e21ebd5842",
+            "pr_state": "OPEN",
+            "merged": False,
+            "external_approval": True,
+        }
+        result = resolve_next_actions({}, live)
+        self.assertEqual(result["allowed_next_actions"], [GOVERNED_MERGE_ACTION])
+        self.assertFalse(result["orchestration_allowed"])
+
     def test_current_candidate_uses_exact_git_tree_for_both_authorities(self) -> None:
         if not (ROOT / ".git").is_dir():
             self.skipTest("exact current Git tree proof requires the repository object database")

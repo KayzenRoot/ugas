@@ -115,7 +115,7 @@ jobs:
         shell: bash
         run: |
           artifact="$RUNNER_TEMP/ugas-review-artifact"
-          mkdir -p "$artifact/docs/evidence/vfx-asset-family-runtime-v0234" "$artifact/docs/evidence/vfx-asset-family-runtime-v0233" "$artifact/docs/evidence/vfx-asset-family-runtime-v0232" "$artifact/docs/evidence/vfx-asset-family-runtime-v0231" "$artifact/docs/evidence/vfx-asset-family-runtime-v0230" "$artifact/docs/evidence/ui-asset-family-runtime-v0223" "$artifact/docs/evidence/ui-asset-family-runtime-v0222" "$artifact/docs/evidence/ui-asset-family-runtime-v0221" "$artifact/docs/evidence/ui-asset-family-runtime-v0220" "$artifact/docs/evidence/github-governance-v0223" "$artifact/docs/evidence/github-governance-v0221" "$artifact/docs/evidence/github-governance-v0220" "$artifact/docs/evidence/maps-minimap-runtime-v0213" "$artifact/logs"
+          mkdir -p "$artifact/docs/evidence/vfx-asset-family-runtime-v0234" "$artifact/docs/evidence/vfx-asset-family-runtime-v0233" "$artifact/docs/evidence/vfx-asset-family-runtime-v0232" "$artifact/docs/evidence/vfx-asset-family-runtime-v0231" "$artifact/docs/evidence/vfx-asset-family-runtime-v0230" "$artifact/docs/evidence/ui-asset-family-runtime-v0223" "$artifact/docs/evidence/ui-asset-family-runtime-v0222" "$artifact/docs/evidence/ui-asset-family-runtime-v0221" "$artifact/docs/evidence/ui-asset-family-runtime-v0220" "$artifact/docs/evidence/github-governance-v0230" "$artifact/docs/evidence/github-governance-v0223" "$artifact/docs/evidence/github-governance-v0221" "$artifact/docs/evidence/github-governance-v0220" "$artifact/docs/evidence/maps-minimap-runtime-v0213" "$artifact/logs"
           cp -R docs/evidence/vfx-asset-family-runtime-v0234/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0234/" 2>/dev/null || true
           cp -R docs/evidence/vfx-asset-family-runtime-v0233/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0233/" 2>/dev/null || true
           cp -R docs/evidence/vfx-asset-family-runtime-v0232/. "$artifact/docs/evidence/vfx-asset-family-runtime-v0232/" 2>/dev/null || true
@@ -133,6 +133,7 @@ jobs:
           cp docs/evidence/current-state.json "$artifact/docs/evidence/current-state.json" 2>/dev/null || true
           cp docs/evidence/current-state-v0213.json "$artifact/docs/evidence/current-state-v0213.json" 2>/dev/null || true
           cp -R docs/evidence/github-governance-v0223/. "$artifact/docs/evidence/github-governance-v0223/" 2>/dev/null || true
+          cp -R docs/evidence/github-governance-v0230/. "$artifact/docs/evidence/github-governance-v0230/" 2>/dev/null || true
           cp -R docs/evidence/github-governance-v0221/. "$artifact/docs/evidence/github-governance-v0221/" 2>/dev/null || true
           cp docs/evidence/github-governance-v0220/v0213-closure-completion-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
           cp docs/evidence/github-governance-v0220/v0213-post-merge-binding.json "$artifact/docs/evidence/github-governance-v0220/" 2>/dev/null || true
