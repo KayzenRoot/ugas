@@ -1,0 +1,185 @@
+{
+  "schema_version": "0.23.4",
+  "effects": [
+    {
+      "effect_class": "impact_burst",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.impact_burst",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "weapon_arc",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.weapon_arc",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "projectile_trail",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.projectile_trail",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "projectile_impact",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.projectile_impact",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "cast_charge",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.cast_charge",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "persistent_aura",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.persistent_aura",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "area_telegraph",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.area_telegraph",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "status_loop",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.status_loop",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "buff_heal_burst",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.buff_heal_burst",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    },
+    {
+      "effect_class": "environment_ambient",
+      "mode": "READ_ONLY",
+      "authority": {
+        "authority_type": "VFX_RUNTIME_CONTRACT",
+        "path": "src/ugas/vfx_asset_family_runtime_v0234.py",
+        "revision": "0.23.4",
+        "sha256": "d9ba0e3d5d205da61b76425ea65e2f024d342bca6a68ff1c38147f01e9328bf0"
+      },
+      "event_binding": {
+        "source": "VFX_LOCAL_EVENT_BUS",
+        "event_id": "vfx.fixture.environment_ambient",
+        "read_only": true,
+        "gameplay_authoritative": false
+      },
+      "no_gameplay_mutation": true,
+      "integration_revision": "read-only-v1"
+    }
+  ]
+}

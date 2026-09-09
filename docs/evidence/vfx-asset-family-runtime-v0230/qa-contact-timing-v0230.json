@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "classes": [
+    {
+      "effect_class": "impact_burst",
+      "frame_count": 6,
+      "duration_ms": 240,
+      "loop": false,
+      "fallback": [
+        "REDUCE_FRAME_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "weapon_arc",
+      "frame_count": 5,
+      "duration_ms": 200,
+      "loop": false,
+      "fallback": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "projectile_trail",
+      "frame_count": 8,
+      "duration_ms": 640,
+      "loop": true,
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "projectile_impact",
+      "frame_count": 5,
+      "duration_ms": 200,
+      "loop": false,
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_OPACITY",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "cast_charge",
+      "frame_count": 8,
+      "duration_ms": 800,
+      "loop": true,
+      "fallback": [
+        "REDUCE_RADIUS",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "persistent_aura",
+      "frame_count": 8,
+      "duration_ms": 960,
+      "loop": true,
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_RADIUS",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "area_telegraph",
+      "frame_count": 8,
+      "duration_ms": 1200,
+      "loop": true,
+      "fallback": [
+        "REDUCE_OPACITY",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "status_loop",
+      "frame_count": 8,
+      "duration_ms": 960,
+      "loop": true,
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_OPACITY",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "buff_heal_burst",
+      "frame_count": 6,
+      "duration_ms": 300,
+      "loop": false,
+      "fallback": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "SKIP_VISUAL"
+      ]
+    },
+    {
+      "effect_class": "environment_ambient",
+      "frame_count": 8,
+      "duration_ms": 1600,
+      "loop": true,
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ]
+    }
+  ]
+}

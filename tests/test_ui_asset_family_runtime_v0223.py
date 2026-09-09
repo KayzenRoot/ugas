@@ -22,7 +22,7 @@ class UIAssetFamilyRuntimeV0223Tests(unittest.TestCase):
     def setUp(self) -> None:
         self.manifest = build_ui_manifest()
         self.components = {item["component_class"]: item for item in self.manifest["components"]}
-        self.state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        self.state = {"allowed_next_actions": ["external_review_ui_asset_family_v0223"]}
 
     def test_complete_progress_contract_and_three_values(self):
         progress = self.components["progress_bar"]

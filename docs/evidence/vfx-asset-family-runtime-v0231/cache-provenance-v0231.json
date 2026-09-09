@@ -1,0 +1,1404 @@
+{
+  "schema_version": "0.23.1",
+  "effects": [
+    {
+      "effect_class": "impact_burst",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-impact_burst-v0231",
+        "effect_class": "impact_burst",
+        "stable_class_id": "VFX-CLS-IMPACT-BURST",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-impact_burst-v0231",
+          "effect_class": "impact_burst",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "short readable impact response",
+          "semantics": {
+            "impact_origin": [
+              0.0,
+              0.0
+            ],
+            "radius_curve": [
+              0.25,
+              0.7,
+              1.0
+            ],
+            "termination": "FRAME_END",
+            "fixture_index": 0,
+            "fixture_seed": 23100,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "ONE_SHOT",
+          "frame_count": 6,
+          "duration_ms": 240,
+          "frame_duration_ms": 40,
+          "loop": false,
+          "loop_period_ms": null,
+          "max_concurrent_instances": 1,
+          "owner_termination": null,
+          "safety_termination": "FRAME_END",
+          "termination": "FRAME_END",
+          "max_lifetime_ms": 240
+        },
+        "blend_alpha": {
+          "blend_mode": "ADDITIVE",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "WORLD",
+          "anchor": {
+            "kind": "IMPACT_POINT",
+            "id": "anchor-impact_burst-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "RADIAL",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.45
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 12,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.45,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 1,
+          "max_layers": 2,
+          "max_particles_per_instance": 24
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_FRAME_COUNT",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_SPAWN_RATE",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 6,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.impact_burst",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "c0dcccd091ec28b401a233f0cc835da5d4041bbb0db7e50be86e38b65c334e1e",
+        "content_hash": "5956bbf8c1b5b376f713f1e4814664106313a401e83028f489e19482b8661ee6",
+        "test_only": true
+      },
+      "semantic_contract_hash": "eb5e043c219aa2c2dfeb1226bba25648c8eac37beff538782a2757be82ce5a60",
+      "cache_key": "99d8f56cd0ea02394145c4000d1eddef557a762961cf74b8a27d12c094bbc7b3",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23100,
+        "source": "runtime_contract_fixture",
+        "input_hash": "6d42c14ced5de4e86514b1b0d8d58032a15bb605e35b5691de155dd656d4ae13",
+        "output_hash": "5956bbf8c1b5b376f713f1e4814664106313a401e83028f489e19482b8661ee6",
+        "effective_semantic_hash": "eb5e043c219aa2c2dfeb1226bba25648c8eac37beff538782a2757be82ce5a60",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "weapon_arc",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-weapon_arc-v0231",
+        "effect_class": "weapon_arc",
+        "stable_class_id": "VFX-CLS-WEAPON-ARC",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-weapon_arc-v0231",
+          "effect_class": "weapon_arc",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "directional weapon sweep accent",
+          "semantics": {
+            "weapon_anchor": "weapon.fixture",
+            "facing": "E",
+            "arc_span_degrees": 110.0,
+            "termination": "FRAME_END",
+            "fixture_index": 1,
+            "fixture_seed": 23101,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "ONE_SHOT",
+          "frame_count": 5,
+          "duration_ms": 200,
+          "frame_duration_ms": 40,
+          "loop": false,
+          "loop_period_ms": null,
+          "max_concurrent_instances": 1,
+          "owner_termination": null,
+          "safety_termination": "FRAME_END",
+          "termination": "FRAME_END",
+          "max_lifetime_ms": 200
+        },
+        "blend_alpha": {
+          "blend_mode": "ALPHA",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "ENTITY_ANCHOR",
+          "anchor": {
+            "kind": "WEAPON_SWEEP",
+            "id": "anchor-weapon_arc-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "EXPLICIT_FACING",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.45
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 12,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.45,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 1,
+          "max_layers": 2,
+          "max_particles_per_instance": 24
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_OPACITY",
+            "REDUCE_FRAME_COUNT",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_SPAWN_RATE",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 5,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.weapon_arc",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "be136321f74854aa2e59ff4695e3ed5bdcc670266216b7874d9f2b7cc0f2f55f",
+        "content_hash": "363810e7783143600ce8fa2afd97befe477fed25e0ed5f7e54cbfc55d8c20c53",
+        "test_only": true
+      },
+      "semantic_contract_hash": "3f895325859c25df394ae08eb7938359301503d5bb9350c4a7e086ce97cad39a",
+      "cache_key": "b1da913ecd31420b1da6f888f83af0d40ffb0baffd9470ae111637467c0caea0",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23101,
+        "source": "runtime_contract_fixture",
+        "input_hash": "87e7046350c0367e686d950fe5dc9c612a9e6831e027e81e4c1ec902cf0a5eb0",
+        "output_hash": "363810e7783143600ce8fa2afd97befe477fed25e0ed5f7e54cbfc55d8c20c53",
+        "effective_semantic_hash": "3f895325859c25df394ae08eb7938359301503d5bb9350c4a7e086ce97cad39a",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "projectile_trail",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-projectile_trail-v0231",
+        "effect_class": "projectile_trail",
+        "stable_class_id": "VFX-CLS-PROJECTILE-TRAIL",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-projectile_trail-v0231",
+          "effect_class": "projectile_trail",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "bounded projectile motion trail",
+          "semantics": {
+            "owner_anchor": "projectile.fixture",
+            "velocity_vector": [
+              4.0,
+              0.0
+            ],
+            "max_lifetime_ms": 640.0,
+            "termination": "OWNER_OR_EVENT_TERMINATION",
+            "fixture_index": 2,
+            "fixture_seed": 23102,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "OWNER_BOUND_LOOP",
+          "frame_count": 8,
+          "duration_ms": 640,
+          "frame_duration_ms": 80,
+          "loop": true,
+          "loop_period_ms": 640,
+          "max_concurrent_instances": 2,
+          "owner_termination": "OWNER_DESPAWN_OR_EVENT",
+          "safety_termination": "HARD_LIFETIME",
+          "termination": "OWNER_OR_EVENT_TERMINATION",
+          "max_lifetime_ms": 640
+        },
+        "blend_alpha": {
+          "blend_mode": "ADDITIVE",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "ENTITY_ANCHOR",
+          "anchor": {
+            "kind": "PROJECTILE_OWNER",
+            "id": "anchor-projectile_trail-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "VELOCITY_VECTOR",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.6
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 30,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.6,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 2,
+          "max_layers": 3,
+          "max_particles_per_instance": 48
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_SPAWN_RATE",
+            "REDUCE_VISUAL_AREA",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 8,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.projectile_trail",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "2f7faa0d48efea504acf8d9934c45474baee56098c10a560000ca0fad4aa84ec",
+        "content_hash": "012009137912283c4251961949970fc55932c826fc29c662f80ac6bf1098e469",
+        "test_only": true
+      },
+      "semantic_contract_hash": "1675e7528adc063a1b77c401e0e664b4d0ccfbf7249d3bba587331e7d6421912",
+      "cache_key": "95cae2e1f0bd53cceedaee8102082d58784a463cae3e3d2477900e7a183f6378",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23102,
+        "source": "runtime_contract_fixture",
+        "input_hash": "7385aeb6f8e4ab6ec66f21f150d1439f779314f3e2575e91336a21668c2ad906",
+        "output_hash": "012009137912283c4251961949970fc55932c826fc29c662f80ac6bf1098e469",
+        "effective_semantic_hash": "1675e7528adc063a1b77c401e0e664b4d0ccfbf7249d3bba587331e7d6421912",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "projectile_impact",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-projectile_impact-v0231",
+        "effect_class": "projectile_impact",
+        "stable_class_id": "VFX-CLS-PROJECTILE-IMPACT",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-projectile_impact-v0231",
+          "effect_class": "projectile_impact",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "projectile arrival accent",
+          "semantics": {
+            "impact_origin": [
+              3.0,
+              -1.0
+            ],
+            "projectile_type": "BOLT",
+            "termination": "FRAME_END",
+            "fixture_index": 3,
+            "fixture_seed": 23103,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "ONE_SHOT",
+          "frame_count": 5,
+          "duration_ms": 200,
+          "frame_duration_ms": 40,
+          "loop": false,
+          "loop_period_ms": null,
+          "max_concurrent_instances": 1,
+          "owner_termination": null,
+          "safety_termination": "FRAME_END",
+          "termination": "FRAME_END",
+          "max_lifetime_ms": 200
+        },
+        "blend_alpha": {
+          "blend_mode": "ADDITIVE",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "WORLD",
+          "anchor": {
+            "kind": "IMPACT_POINT",
+            "id": "anchor-projectile_impact-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "RADIAL",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.45
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 12,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.45,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 1,
+          "max_layers": 2,
+          "max_particles_per_instance": 24
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_OPACITY",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_SPAWN_RATE",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 5,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.projectile_impact",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "8b6c8d7911ca0f6a9ecec734da0705409ddbf010a5a2b01281d0bff3817c66e7",
+        "content_hash": "c7a772c0f04b3321b04cc18db687573a5eb692d9dc58dfd1b78c21b875b05639",
+        "test_only": true
+      },
+      "semantic_contract_hash": "554b1aec5ba2b81b2df6fe72feb135d8d05264af6ba752d9a5c570035b1f0b87",
+      "cache_key": "1cd43b4e869d7cb7e883b533a80aefa107983b0f4c1a1d16610c5764ba412c82",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23103,
+        "source": "runtime_contract_fixture",
+        "input_hash": "4eb62135fbc289beb3c5e644805ee1cbcae13b37fc41ed163ba65e7e9a79b459",
+        "output_hash": "c7a772c0f04b3321b04cc18db687573a5eb692d9dc58dfd1b78c21b875b05639",
+        "effective_semantic_hash": "554b1aec5ba2b81b2df6fe72feb135d8d05264af6ba752d9a5c570035b1f0b87",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "cast_charge",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-cast_charge-v0231",
+        "effect_class": "cast_charge",
+        "stable_class_id": "VFX-CLS-CAST-CHARGE",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-cast_charge-v0231",
+          "effect_class": "cast_charge",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "bounded charge-up readability",
+          "semantics": {
+            "caster_anchor": "caster.fixture",
+            "charge_phase": "MID",
+            "termination": "OWNER_OR_EVENT_TERMINATION",
+            "fixture_index": 4,
+            "fixture_seed": 23104,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "OWNER_BOUND_LOOP",
+          "frame_count": 8,
+          "duration_ms": 800,
+          "frame_duration_ms": 100,
+          "loop": true,
+          "loop_period_ms": 800,
+          "max_concurrent_instances": 2,
+          "owner_termination": "OWNER_DESPAWN_OR_EVENT",
+          "safety_termination": "HARD_LIFETIME",
+          "termination": "OWNER_OR_EVENT_TERMINATION",
+          "max_lifetime_ms": 800
+        },
+        "blend_alpha": {
+          "blend_mode": "ALPHA",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "ENTITY_ANCHOR",
+          "anchor": {
+            "kind": "CASTER",
+            "id": "anchor-cast_charge-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "EXPLICIT_FACING",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.6
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 30,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.6,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 2,
+          "max_layers": 3,
+          "max_particles_per_instance": 48
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_RADIUS",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_SPAWN_RATE",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 8,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.cast_charge",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "7f7a72e4360177ba294542a8370ed81901849b901d0100aca6755ef7022437c9",
+        "content_hash": "9c25d229488395b75d35f192c920d4ab683891ed48bfb7ac8f774bb44c4c44e6",
+        "test_only": true
+      },
+      "semantic_contract_hash": "c67e3b0484e5c9354c78b3de8e55d9913b04bcf6d58e76a20688a94760022559",
+      "cache_key": "3758233558f15bc5adf662720151967be18044e7d5e2cb44976284018c24c4bf",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23104,
+        "source": "runtime_contract_fixture",
+        "input_hash": "0103559cc7e28bfc8c5be239c165f2cc818c3b0fc680cebe64ff5d37167e5ed6",
+        "output_hash": "9c25d229488395b75d35f192c920d4ab683891ed48bfb7ac8f774bb44c4c44e6",
+        "effective_semantic_hash": "c67e3b0484e5c9354c78b3de8e55d9913b04bcf6d58e76a20688a94760022559",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "persistent_aura",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-persistent_aura-v0231",
+        "effect_class": "persistent_aura",
+        "stable_class_id": "VFX-CLS-PERSISTENT-AURA",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-persistent_aura-v0231",
+          "effect_class": "persistent_aura",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "persistent owner-bound aura",
+          "semantics": {
+            "owner_anchor": "aura-owner.fixture",
+            "aura_radius": 3.5,
+            "termination_condition": "OWNER_DESPAWN_OR_EVENT",
+            "fixture_index": 5,
+            "fixture_seed": 23105,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "OWNER_BOUND_LOOP",
+          "frame_count": 8,
+          "duration_ms": 960,
+          "frame_duration_ms": 120,
+          "loop": true,
+          "loop_period_ms": 960,
+          "max_concurrent_instances": 2,
+          "owner_termination": "OWNER_DESPAWN_OR_EVENT",
+          "safety_termination": "HARD_LIFETIME",
+          "termination": "OWNER_OR_EVENT_TERMINATION",
+          "max_lifetime_ms": 960
+        },
+        "blend_alpha": {
+          "blend_mode": "ADDITIVE",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "ENTITY_ANCHOR",
+          "anchor": {
+            "kind": "AURA_OWNER",
+            "id": "anchor-persistent_aura-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "NONE",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.6
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 30,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.6,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 2,
+          "max_layers": 3,
+          "max_particles_per_instance": 48
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_RADIUS",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_SPAWN_RATE",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 8,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.persistent_aura",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "aa485b2ce388480583515473daf0d02a1af2bba32814cdc631ae612ddecf82bd",
+        "content_hash": "a8017abf9d5fe9c695fa686a9d600cbe927477a855488b7cd9e77c9339a61ffa",
+        "test_only": true
+      },
+      "semantic_contract_hash": "9a55cd4903e6d8ba1aeb55b2666a318a17375dffa51af3bba503fbdef1ebc8a5",
+      "cache_key": "bdd536f85e8665fe11898f13e8e2411c7973de6db844293ce9f47f3c2597498f",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23105,
+        "source": "runtime_contract_fixture",
+        "input_hash": "196ba3971c36dc4a31b6d1c546be64c9225bc3ec20b455fe2c737dd1b9c3edb5",
+        "output_hash": "a8017abf9d5fe9c695fa686a9d600cbe927477a855488b7cd9e77c9339a61ffa",
+        "effective_semantic_hash": "9a55cd4903e6d8ba1aeb55b2666a318a17375dffa51af3bba503fbdef1ebc8a5",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "area_telegraph",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-area_telegraph-v0231",
+        "effect_class": "area_telegraph",
+        "stable_class_id": "VFX-CLS-AREA-TELEGRAPH",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-area_telegraph-v0231",
+          "effect_class": "area_telegraph",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "read-only area warning",
+          "semantics": {
+            "area_origin": [
+              2.0,
+              2.0
+            ],
+            "shape": "CIRCLE",
+            "duration_ms": 1200,
+            "termination": "OWNER_OR_EVENT_TERMINATION",
+            "fixture_index": 6,
+            "fixture_seed": 23106,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "OWNER_BOUND_LOOP",
+          "frame_count": 8,
+          "duration_ms": 1200,
+          "frame_duration_ms": 150,
+          "loop": true,
+          "loop_period_ms": 1200,
+          "max_concurrent_instances": 2,
+          "owner_termination": "OWNER_DESPAWN_OR_EVENT",
+          "safety_termination": "HARD_LIFETIME",
+          "termination": "OWNER_OR_EVENT_TERMINATION",
+          "max_lifetime_ms": 1200
+        },
+        "blend_alpha": {
+          "blend_mode": "ALPHA",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "WORLD",
+          "anchor": {
+            "kind": "AREA_ORIGIN",
+            "id": "anchor-area_telegraph-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "NONE",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.6
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 30,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.6,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 2,
+          "max_layers": 3,
+          "max_particles_per_instance": 48
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_OPACITY",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_SPAWN_RATE",
+            "REDUCE_VISUAL_AREA",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 8,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.area_telegraph",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "5f57864bf2f7b9f49993ba415424cc75426d3c0407173e77b9bfd3aa55e7fc90",
+        "content_hash": "3b730fbcfaa7533f0d0132ce9d62d2d34f4119bbcf517e59799fd3006d6c0270",
+        "test_only": true
+      },
+      "semantic_contract_hash": "4a7ac807c6e181ecc5c7d4c0ee748e6fb4022d7cb54c67e07aa217cd55037471",
+      "cache_key": "0542d7d016215aa59211974cf2d0c0a8f1c241b73249f64a8f69b7bdc1daac66",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23106,
+        "source": "runtime_contract_fixture",
+        "input_hash": "9c930552608db8f90f3841387688b82b079e31d01229888ed538c606308c20f7",
+        "output_hash": "3b730fbcfaa7533f0d0132ce9d62d2d34f4119bbcf517e59799fd3006d6c0270",
+        "effective_semantic_hash": "4a7ac807c6e181ecc5c7d4c0ee748e6fb4022d7cb54c67e07aa217cd55037471",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "status_loop",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-status_loop-v0231",
+        "effect_class": "status_loop",
+        "stable_class_id": "VFX-CLS-STATUS-LOOP",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-status_loop-v0231",
+          "effect_class": "status_loop",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "owner-bound status readability",
+          "semantics": {
+            "owner_anchor": "status-owner.fixture",
+            "status_kind": "FROST",
+            "termination_condition": "OWNER_DESPAWN_OR_EVENT",
+            "fixture_index": 7,
+            "fixture_seed": 23107,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "OWNER_BOUND_LOOP",
+          "frame_count": 8,
+          "duration_ms": 960,
+          "frame_duration_ms": 120,
+          "loop": true,
+          "loop_period_ms": 960,
+          "max_concurrent_instances": 2,
+          "owner_termination": "OWNER_DESPAWN_OR_EVENT",
+          "safety_termination": "HARD_LIFETIME",
+          "termination": "OWNER_OR_EVENT_TERMINATION",
+          "max_lifetime_ms": 960
+        },
+        "blend_alpha": {
+          "blend_mode": "ALPHA",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "ENTITY_ANCHOR",
+          "anchor": {
+            "kind": "STATUS_OWNER",
+            "id": "anchor-status_loop-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "NONE",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.6
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 30,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.6,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 2,
+          "max_layers": 3,
+          "max_particles_per_instance": 48
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_OPACITY",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_SPAWN_RATE",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 8,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.status_loop",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "4e59541c4021d12feeb78da709668d288bfa85d1727f32b67b99946194c09c3f",
+        "content_hash": "011086e968680a9495dbdcf74bec2f832661cd3d6844ef893a18f3de8c894f10",
+        "test_only": true
+      },
+      "semantic_contract_hash": "d90aeed160993c0fb0abc87599cf662981dd0464702ddf8497f988f5fbe75264",
+      "cache_key": "6aafdd1230cdb0d4c0be406676919d3466efc0e71d5e01c7974c6dbe0844b3e1",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23107,
+        "source": "runtime_contract_fixture",
+        "input_hash": "ec97ed2e0b69b35fb7998bc9ce0e3891c86ad28b756ca483617df648413f21a0",
+        "output_hash": "011086e968680a9495dbdcf74bec2f832661cd3d6844ef893a18f3de8c894f10",
+        "effective_semantic_hash": "d90aeed160993c0fb0abc87599cf662981dd0464702ddf8497f988f5fbe75264",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "buff_heal_burst",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-buff_heal_burst-v0231",
+        "effect_class": "buff_heal_burst",
+        "stable_class_id": "VFX-CLS-BUFF-HEAL-BURST",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-buff_heal_burst-v0231",
+          "effect_class": "buff_heal_burst",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "positive buff or heal feedback",
+          "semantics": {
+            "target_anchor": "target.fixture",
+            "feedback_kind": "HEAL",
+            "termination": "FRAME_END",
+            "fixture_index": 8,
+            "fixture_seed": 23108,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "ONE_SHOT",
+          "frame_count": 6,
+          "duration_ms": 300,
+          "frame_duration_ms": 50,
+          "loop": false,
+          "loop_period_ms": null,
+          "max_concurrent_instances": 1,
+          "owner_termination": null,
+          "safety_termination": "FRAME_END",
+          "termination": "FRAME_END",
+          "max_lifetime_ms": 300
+        },
+        "blend_alpha": {
+          "blend_mode": "ADDITIVE",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "ENTITY_ANCHOR",
+          "anchor": {
+            "kind": "TARGET_ENTITY",
+            "id": "anchor-buff_heal_burst-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "RADIAL",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.45
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 12,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.45,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 1,
+          "max_layers": 2,
+          "max_particles_per_instance": 24
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_OPACITY",
+            "REDUCE_FRAME_COUNT",
+            "REDUCE_VISUAL_AREA",
+            "REDUCE_SPAWN_RATE",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 6,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.buff_heal_burst",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "b350ed1bd2ce0a890e812a68ec6b51912fd9a2663bef6339d29882bb419d3d03",
+        "content_hash": "bca585f3e24e9556ff8ca123e9571dc46609a44624c2b79c599e8b56a7db857b",
+        "test_only": true
+      },
+      "semantic_contract_hash": "af6b712c0c2865083a04f7403e392073dcf69fd5afd224b9b9bc6990583da3e0",
+      "cache_key": "5e5dd50bb20a8cd7c3a100b841333a19bd69aabfdcc7be6e1524110032f96a8b",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23108,
+        "source": "runtime_contract_fixture",
+        "input_hash": "e3fb0bb82fc0f50a2c602cb365efb83878640fe70082c09bdad74d9471469dae",
+        "output_hash": "bca585f3e24e9556ff8ca123e9571dc46609a44624c2b79c599e8b56a7db857b",
+        "effective_semantic_hash": "af6b712c0c2865083a04f7403e392073dcf69fd5afd224b9b9bc6990583da3e0",
+        "production_claim": false
+      }
+    },
+    {
+      "effect_class": "environment_ambient",
+      "semantic_contract": {
+        "family_id": "vfx_asset_family",
+        "schema_version": "0.23.1",
+        "effect_id": "vfx-test-environment_ambient-v0231",
+        "effect_class": "environment_ambient",
+        "stable_class_id": "VFX-CLS-ENVIRONMENT-AMBIENT",
+        "intent": "VISUAL_ONLY",
+        "semantic_input": {
+          "effect_id": "vfx-test-environment_ambient-v0231",
+          "effect_class": "environment_ambient",
+          "semantic_revision": "0.23.1",
+          "intent": "VISUAL_ONLY",
+          "readability_role": "bounded environment atmosphere",
+          "semantics": {
+            "ambient_region": "forest.fixture",
+            "seed": 23010,
+            "termination_condition": "OWNER_DESPAWN_OR_EVENT",
+            "fixture_index": 9,
+            "fixture_seed": 23109,
+            "visual_only": true,
+            "gameplay_authority": "NONE"
+          },
+          "registry_mode": "TEST_ONLY"
+        },
+        "lifecycle": {
+          "mode": "OWNER_BOUND_LOOP",
+          "frame_count": 8,
+          "duration_ms": 1600,
+          "frame_duration_ms": 200,
+          "loop": true,
+          "loop_period_ms": 1600,
+          "max_concurrent_instances": 2,
+          "owner_termination": "OWNER_DESPAWN_OR_EVENT",
+          "safety_termination": "HARD_LIFETIME",
+          "termination": "OWNER_OR_EVENT_TERMINATION",
+          "max_lifetime_ms": 1600
+        },
+        "blend_alpha": {
+          "blend_mode": "ALPHA",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "opacity_range": [
+            0.0,
+            1.0
+          ],
+          "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+        },
+        "spatial": {
+          "space": "WORLD",
+          "anchor": {
+            "kind": "AMBIENT_REGION",
+            "id": "anchor-environment_ambient-fixture",
+            "read_only": true
+          },
+          "pivot": [
+            0.5,
+            0.5
+          ],
+          "direction_policy": "NONE",
+          "bounds_policy": "DECLARED_AND_BOUNDED",
+          "max_visual_area_ratio": 0.6
+        },
+        "budget_profile": {
+          "profile_id": "vfx-runtime-safe-v2",
+          "max_concurrent_effects": 64,
+          "max_layers_per_effect": 4,
+          "max_spawn_events_per_second": 30,
+          "max_particles_per_effect": 96,
+          "max_visual_area_ratio": 0.6,
+          "authority_sha256": "4ff0712f615f1bfd1678da084d9a4ad44d5be11dff267094861e58d6edc64b35",
+          "max_concurrent_instances": 2,
+          "max_layers": 3,
+          "max_particles_per_instance": 48
+        },
+        "fallback": {
+          "ordered_steps": [
+            "REDUCE_PARTICLE_COUNT",
+            "REDUCE_LAYER_COUNT",
+            "REDUCE_SPAWN_RATE",
+            "REDUCE_VISUAL_AREA",
+            "SKIP_VISUAL"
+          ],
+          "deterministic": true,
+          "changes_gameplay": false,
+          "preserves_intent": true,
+          "profile_selection": "DETERMINISTIC_CONSTRAINED_PROFILE",
+          "unsupported_steps_rejected": true
+        },
+        "representation": {
+          "kind": "SPRITE_SEQUENCE",
+          "frame_width": 96,
+          "frame_height": 96,
+          "frame_count": 8,
+          "import_scale": 1.0,
+          "pixel_snap": true,
+          "color_space": "SRGB",
+          "alpha_mode": "STRAIGHT",
+          "premultiplied": false,
+          "decoded_pixel_contract": "STRAIGHT_RGBA"
+        },
+        "integration": {
+          "mode": "READ_ONLY",
+          "authority": {
+            "authority_type": "VFX_RUNTIME_CONTRACT",
+            "path": "src/ugas/vfx_asset_family_runtime_v0231.py",
+            "revision": "0.23.1",
+            "sha256": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db"
+          },
+          "event_binding": {
+            "source": "VFX_LOCAL_EVENT_BUS",
+            "event_id": "vfx.fixture.environment_ambient",
+            "read_only": true,
+            "gameplay_authoritative": false
+          },
+          "no_gameplay_mutation": true,
+          "integration_revision": "read-only-v1"
+        },
+        "authority_identity_hash": "1c5f3cbd75f5638eae78b7212b55f5633fded197c26551dfbc1dc71cb83237db",
+        "frame_set_hash": "67697d0caa65bbf83bc59be0926362ec1e13bb4bf9cfd342daf206d6bec0d10a",
+        "content_hash": "cc33f7fcd69f8ba77054386203c9d4e3a0316c64878a74c4d5d86db914daf4df",
+        "test_only": true
+      },
+      "semantic_contract_hash": "a7efc28b68dea00e52cb80ad1efc3d93de2654a15c75c0113b875edda9cd3dc7",
+      "cache_key": "bad1f88cb3686d114acbe6151ed62b4142f01b6cc832c72bf2030548f08a906c",
+      "provenance": {
+        "generator": "deterministic-test-fixture-renderer-v0231",
+        "provider": null,
+        "generation_model": null,
+        "seed": 23109,
+        "source": "runtime_contract_fixture",
+        "input_hash": "b1acca203ebffbb66c70c17aaae2e06677d9430d74cc9759db12f4907fdefc1a",
+        "output_hash": "cc33f7fcd69f8ba77054386203c9d4e3a0316c64878a74c4d5d86db914daf4df",
+        "effective_semantic_hash": "a7efc28b68dea00e52cb80ad1efc3d93de2654a15c75c0113b875edda9cd3dc7",
+        "production_claim": false
+      }
+    }
+  ]
+}

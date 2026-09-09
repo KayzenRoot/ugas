@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/current-state-v0234.json",
+  "title": "UGAS active state v0.23.4 VFX F-29R correction",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "baseline_main_sha", "vfx_base_main_sha", "current_gate", "next_candidate", "allowed_next_actions", "production_approved", "production_routing", "new_generation", "vfx_asset_family", "vfx_asset_family_external_review", "vfx_asset_family_lifecycle", "review", "evidence", "state_consistency"],
+  "not": {"required": ["main_sha"]},
+  "properties": {
+    "schema_version": {"const": "0.23.4"},
+    "version": {"const": "0.23.4"},
+    "phase": {"const": "VFX_ASSET_FAMILY"},
+    "baseline_main_sha": {"const": "b08b9c3df74ef6a23046be396289e2fd72dc336b"},
+    "vfx_base_main_sha": {"const": "b08b9c3df74ef6a23046be396289e2fd72dc336b"},
+    "current_gate": {"const": "VFX_ASSET_FAMILY_RUNTIME_CORRECTION_F29R_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED"},
+    "next_candidate": {"const": "ORCHESTRATION_RUNTIME_HARDENING"},
+    "allowed_next_actions": {"const": ["governed_merge_vfx_pr_14"]},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "real_vfx_asset_coverage": {"const": "NONE"},
+    "synthetic_vfx_fixture": {"const": "TEST_ONLY"},
+    "new_generation": {"const": 0},
+    "vfx_asset_family": {"const": "APPROVED_FOUNDATION"},
+    "vfx_asset_family_external_review": {"const": "APPROVED_FOUNDATION"},
+    "vfx_asset_family_lifecycle": {"const": "APPROVED_FOUNDATION_AWAITING_GOVERNED_MERGE"},
+    "review": {"type": "object", "required": ["repository", "baseline_head", "branch_base_commit", "feature_branch", "execution_mode", "merge_policy", "pr_number", "pr_state", "head_sha", "head_sha_source", "external_review_required", "merge_authorization", "do_not_merge", "approved_semantic_head", "approval_comment_id", "approval_record", "post_bookkeeping_reproof_required", "required_contexts"], "properties": {"pr_number": {"const": 14}, "pr_state": {"const": "OPEN"}, "head_sha": {"type": ["null", "string"]}, "head_sha_source": {"const": "GitHub LIVE exact-head metadata"}, "merge_authorization": {"const": "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF"}, "approved_semantic_head": {"const": "9f8030d2c0ee0e00d10d64a9331899e21ebd5842"}, "approval_comment_id": {"const": 5593830005}, "approval_record": {"const": "docs/evidence/github-governance-v0230/v0234-external-approval.json"}, "post_bookkeeping_reproof_required": {"const": true}}},
+    "evidence": {"type": "object", "required": ["vfx_root", "manifest", "hard_gates", "negative_controls", "determinism", "production_registry", "execution", "approval_transition"], "properties": {"approval_transition": {"const": "docs/evidence/github-governance-v0230/v0234-external-approval.json"}}},
+    "state_consistency": {"type": "object"}
+  }
+}

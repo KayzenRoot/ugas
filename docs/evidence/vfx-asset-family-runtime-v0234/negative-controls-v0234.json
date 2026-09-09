@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "required_control_count": 18,
+  "controls": {
+    "VFX234-NC-01": {
+      "control_id": "VFX234-NC-01",
+      "injected_defect": "REDUCE_OPACITY with unchanged full alpha pixels",
+      "expected_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "observed_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "D:\\Projeto Codexx\\ugas-v0210-maps-minimap\\docs\\evidence\\vfx-asset-family-runtime-v0234\\controls\\opacity-claim-full.png"
+    },
+    "VFX234-NC-02": {
+      "control_id": "VFX234-NC-02",
+      "injected_defect": "REDUCE_FRAME_COUNT while all full frames remain",
+      "expected_rejection_class": "VFX_FRAME_COUNT_INVALID",
+      "observed_rejection_class": "VFX_FRAME_COUNT_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-weapon_arc-v0234"
+    },
+    "VFX234-NC-03": {
+      "control_id": "VFX234-NC-03",
+      "injected_defect": "REDUCE_RADIUS with unchanged decoded bounds",
+      "expected_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "observed_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "D:\\Projeto Codexx\\ugas-v0210-maps-minimap\\docs\\evidence\\vfx-asset-family-runtime-v0234\\controls\\vfx234-nc-03-full.png"
+    },
+    "VFX234-NC-04": {
+      "control_id": "VFX234-NC-04",
+      "injected_defect": "REDUCE_VISUAL_AREA with unchanged decoded bounds",
+      "expected_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "observed_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "D:\\Projeto Codexx\\ugas-v0210-maps-minimap\\docs\\evidence\\vfx-asset-family-runtime-v0234\\controls\\vfx234-nc-04-full.png"
+    },
+    "VFX234-NC-05": {
+      "control_id": "VFX234-NC-05",
+      "injected_defect": "copy full frame bytes and recompute hashes",
+      "expected_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "observed_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "D:\\Projeto Codexx\\ugas-v0210-maps-minimap\\docs\\evidence\\vfx-asset-family-runtime-v0234\\controls\\copied-full-frame.png"
+    },
+    "VFX234-NC-06": {
+      "control_id": "VFX234-NC-06",
+      "injected_defect": "replace with unrelated valid PNG and recompute hashes",
+      "expected_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "observed_rejection_class": "VFX_DEGRADED_PIXELS_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "D:\\Projeto Codexx\\ugas-v0210-maps-minimap\\docs\\evidence\\vfx-asset-family-runtime-v0234\\controls\\unrelated-valid-reencoded.png"
+    },
+    "VFX234-NC-07": {
+      "control_id": "VFX234-NC-07",
+      "injected_defect": "reorder applied fallback steps",
+      "expected_rejection_class": "VFX_FALLBACK_ORDER_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_ORDER_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-08": {
+      "control_id": "VFX234-NC-08",
+      "injected_defect": "skip an earlier required fallback step",
+      "expected_rejection_class": "VFX_FALLBACK_ORDER_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_ORDER_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-09": {
+      "control_id": "VFX234-NC-09",
+      "injected_defect": "add mechanism absent from validated steps",
+      "expected_rejection_class": "VFX_FALLBACK_MECHANISM_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_MECHANISM_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-10": {
+      "control_id": "VFX234-NC-10",
+      "injected_defect": "mutate gameplay authority during fallback",
+      "expected_rejection_class": "VFX_DEGRADED_OUTPUT_SEMANTIC_INVALID",
+      "observed_rejection_class": "VFX_DEGRADED_OUTPUT_SEMANTIC_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-11": {
+      "control_id": "VFX234-NC-11",
+      "injected_defect": "terminal SKIP_VISUAL with non-empty frames",
+      "expected_rejection_class": "VFX_FALLBACK_SKIP_RECORD_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_SKIP_RECORD_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-12": {
+      "control_id": "VFX234-NC-12",
+      "injected_defect": "mismatched independent repeat hash",
+      "expected_rejection_class": "VFX_DEGRADED_DETERMINISM_MISMATCH",
+      "observed_rejection_class": "VFX_DEGRADED_DETERMINISM_MISMATCH",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-13": {
+      "control_id": "VFX234-NC-13",
+      "injected_defect": "mutate fallback after-state",
+      "expected_rejection_class": "VFX_FALLBACK_STATE_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_STATE_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-14": {
+      "control_id": "VFX234-NC-14",
+      "injected_defect": "mutate selected source frame index",
+      "expected_rejection_class": "VFX_FRAME_SELECTION_INVALID",
+      "observed_rejection_class": "VFX_FRAME_SELECTION_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-15": {
+      "control_id": "VFX234-NC-15",
+      "injected_defect": "omit a validated degradation mechanism",
+      "expected_rejection_class": "VFX_FALLBACK_MECHANISM_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_MECHANISM_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-weapon_arc-v0234"
+    },
+    "VFX234-NC-16": {
+      "control_id": "VFX234-NC-16",
+      "injected_defect": "remove explicit skipped-output record",
+      "expected_rejection_class": "VFX_FALLBACK_SKIP_RECORD_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_SKIP_RECORD_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0234"
+    },
+    "VFX234-NC-17": {
+      "control_id": "VFX234-NC-17",
+      "injected_defect": "non-boolean hard gate",
+      "expected_rejection_class": "VFX_HARD_GATE_NON_BOOLEAN_REJECTED",
+      "observed_rejection_class": "VFX_HARD_GATE_NON_BOOLEAN_REJECTED",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "PASS"
+    },
+    "VFX234-NC-18": {
+      "control_id": "VFX234-NC-18",
+      "injected_defect": "production registry entry",
+      "expected_rejection_class": "VFX_PRODUCTION_BOUNDARY_REJECTED",
+      "observed_rejection_class": "VFX_PRODUCTION_BOUNDARY_REJECTED",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "production must remain blocked"
+    }
+  }
+}

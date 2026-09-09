@@ -1,0 +1,115 @@
+{
+  "schema_version": "0.23.0",
+  "effects": [
+    {
+      "effect_class": "impact_burst",
+      "ordered_steps": [
+        "REDUCE_FRAME_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "weapon_arc",
+      "ordered_steps": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "projectile_trail",
+      "ordered_steps": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "projectile_impact",
+      "ordered_steps": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_OPACITY",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "cast_charge",
+      "ordered_steps": [
+        "REDUCE_RADIUS",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "persistent_aura",
+      "ordered_steps": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_RADIUS",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "area_telegraph",
+      "ordered_steps": [
+        "REDUCE_OPACITY",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "status_loop",
+      "ordered_steps": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_OPACITY",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "buff_heal_burst",
+      "ordered_steps": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    },
+    {
+      "effect_class": "environment_ambient",
+      "ordered_steps": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "deterministic": true,
+      "changes_gameplay": false,
+      "preserves_intent": true
+    }
+  ]
+}

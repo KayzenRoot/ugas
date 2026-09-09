@@ -1,0 +1,115 @@
+{
+  "schema_version": "0.23.4",
+  "effects": [
+    {
+      "effect_class": "impact_burst",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "weapon_arc",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "projectile_trail",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "projectile_impact",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "cast_charge",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "persistent_aura",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "area_telegraph",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "status_loop",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "buff_heal_burst",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    },
+    {
+      "effect_class": "environment_ambient",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "premultiplied": false,
+      "opacity_range": [
+        0.0,
+        1.0
+      ],
+      "pixel_proof": "DECODED_RGBA_FRAME_PIXELS"
+    }
+  ]
+}

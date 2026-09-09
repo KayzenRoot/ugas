@@ -1,0 +1,366 @@
+{
+  "status": "PASS",
+  "required_control_count": 36,
+  "controls": {
+    "VFX-NC-01": {
+      "control_id": "VFX-NC-01",
+      "injected_defect": "unknown effect class",
+      "expected_rejection_class": "VFX_CLASS_IDENTITY_INVALID",
+      "observed_rejection_class": "VFX_CLASS_IDENTITY_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-02": {
+      "control_id": "VFX-NC-02",
+      "injected_defect": "stable class identity mutation",
+      "expected_rejection_class": "VFX_CLASS_IDENTITY_INVALID",
+      "observed_rejection_class": "VFX_CLASS_IDENTITY_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-03": {
+      "control_id": "VFX-NC-03",
+      "injected_defect": "non visual-only intent",
+      "expected_rejection_class": "VFX_INTENT_NOT_VISUAL_ONLY",
+      "observed_rejection_class": "VFX_INTENT_NOT_VISUAL_ONLY",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-04": {
+      "control_id": "VFX-NC-04",
+      "injected_defect": "semantic input hash mutation",
+      "expected_rejection_class": "VFX_SEMANTIC_HASH_INVALID",
+      "observed_rejection_class": "VFX_SEMANTIC_HASH_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-05": {
+      "control_id": "VFX-NC-05",
+      "injected_defect": "missing lifecycle mode",
+      "expected_rejection_class": "VFX_LIFECYCLE_CLASS_MISMATCH",
+      "observed_rejection_class": "VFX_LIFECYCLE_CLASS_MISMATCH",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-06": {
+      "control_id": "VFX-NC-06",
+      "injected_defect": "negative duration",
+      "expected_rejection_class": "VFX_TIMING_INVALID",
+      "observed_rejection_class": "VFX_TIMING_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-07": {
+      "control_id": "VFX-NC-07",
+      "injected_defect": "inconsistent frame timing",
+      "expected_rejection_class": "VFX_TIMING_INVALID",
+      "observed_rejection_class": "VFX_TIMING_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-08": {
+      "control_id": "VFX-NC-08",
+      "injected_defect": "owner loop marked one-shot",
+      "expected_rejection_class": "VFX_LOOP_POLICY_INVALID",
+      "observed_rejection_class": "VFX_LOOP_POLICY_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-persistent_aura-v0230"
+    },
+    "VFX-NC-09": {
+      "control_id": "VFX-NC-09",
+      "injected_defect": "unknown blend mode",
+      "expected_rejection_class": "VFX_BLEND_ALPHA_INVALID",
+      "observed_rejection_class": "VFX_BLEND_ALPHA_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-10": {
+      "control_id": "VFX-NC-10",
+      "injected_defect": "premultiply metadata mismatch",
+      "expected_rejection_class": "VFX_PREMULTIPLIED_METADATA_INVALID",
+      "observed_rejection_class": "VFX_PREMULTIPLIED_METADATA_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0230"
+    },
+    "VFX-NC-11": {
+      "control_id": "VFX-NC-11",
+      "injected_defect": "alpha range outside contract",
+      "expected_rejection_class": "VFX_ALPHA_RANGE_INVALID",
+      "observed_rejection_class": "VFX_ALPHA_RANGE_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-12": {
+      "control_id": "VFX-NC-12",
+      "injected_defect": "unknown spatial space",
+      "expected_rejection_class": "VFX_SPATIAL_CONTRACT_INVALID",
+      "observed_rejection_class": "VFX_SPATIAL_CONTRACT_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-13": {
+      "control_id": "VFX-NC-13",
+      "injected_defect": "mutable anchor binding",
+      "expected_rejection_class": "VFX_ANCHOR_BINDING_INVALID",
+      "observed_rejection_class": "VFX_ANCHOR_BINDING_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-14": {
+      "control_id": "VFX-NC-14",
+      "injected_defect": "pivot outside normalized bounds",
+      "expected_rejection_class": "VFX_PIVOT_INVALID",
+      "observed_rejection_class": "VFX_PIVOT_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-15": {
+      "control_id": "VFX-NC-15",
+      "injected_defect": "particle budget exceeded",
+      "expected_rejection_class": "VFX_BUDGET_EXCEEDED",
+      "observed_rejection_class": "VFX_BUDGET_EXCEEDED",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "max_particles_per_effect"
+    },
+    "VFX-NC-16": {
+      "control_id": "VFX-NC-16",
+      "injected_defect": "budget authority mutation",
+      "expected_rejection_class": "VFX_BUDGET_AUTHORITY_STALE",
+      "observed_rejection_class": "VFX_BUDGET_AUTHORITY_STALE",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-17": {
+      "control_id": "VFX-NC-17",
+      "injected_defect": "fallback mutates gameplay",
+      "expected_rejection_class": "VFX_FALLBACK_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-18": {
+      "control_id": "VFX-NC-18",
+      "injected_defect": "fallback order mutation",
+      "expected_rejection_class": "VFX_FALLBACK_INVALID",
+      "observed_rejection_class": "VFX_FALLBACK_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-19": {
+      "control_id": "VFX-NC-19",
+      "injected_defect": "unsupported representation",
+      "expected_rejection_class": "VFX_REPRESENTATION_INVALID",
+      "observed_rejection_class": "VFX_REPRESENTATION_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-20": {
+      "control_id": "VFX-NC-20",
+      "injected_defect": "import scale mutation",
+      "expected_rejection_class": "VFX_IMPORT_METADATA_INVALID",
+      "observed_rejection_class": "VFX_IMPORT_METADATA_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-21": {
+      "control_id": "VFX-NC-21",
+      "injected_defect": "representation alpha mutation",
+      "expected_rejection_class": "VFX_IMPORT_ALPHA_METADATA_INVALID",
+      "observed_rejection_class": "VFX_IMPORT_ALPHA_METADATA_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-projectile_trail-v0230"
+    },
+    "VFX-NC-22": {
+      "control_id": "VFX-NC-22",
+      "injected_defect": "write integration mode",
+      "expected_rejection_class": "VFX_INTEGRATION_MODE_INVALID",
+      "observed_rejection_class": "VFX_INTEGRATION_MODE_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-23": {
+      "control_id": "VFX-NC-23",
+      "injected_defect": "stale integration authority",
+      "expected_rejection_class": "VFX_INTEGRATION_AUTHORITY_STALE",
+      "observed_rejection_class": "VFX_INTEGRATION_AUTHORITY_STALE",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-24": {
+      "control_id": "VFX-NC-24",
+      "injected_defect": "gameplay-authoritative event",
+      "expected_rejection_class": "VFX_GAMEPLAY_AUTHORITY_FORBIDDEN",
+      "observed_rejection_class": "VFX_GAMEPLAY_AUTHORITY_FORBIDDEN",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-25": {
+      "control_id": "VFX-NC-25",
+      "injected_defect": "integration mutation permission",
+      "expected_rejection_class": "VFX_GAMEPLAY_AUTHORITY_FORBIDDEN",
+      "observed_rejection_class": "VFX_GAMEPLAY_AUTHORITY_FORBIDDEN",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-26": {
+      "control_id": "VFX-NC-26",
+      "injected_defect": "cache key mutation",
+      "expected_rejection_class": "VFX_CACHE_KEY_INVALID",
+      "observed_rejection_class": "VFX_CACHE_KEY_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-27": {
+      "control_id": "VFX-NC-27",
+      "injected_defect": "content hash mutation",
+      "expected_rejection_class": "VFX_CONTENT_HASH_INVALID",
+      "observed_rejection_class": "VFX_CONTENT_HASH_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-28": {
+      "control_id": "VFX-NC-28",
+      "injected_defect": "frame set hash mutation",
+      "expected_rejection_class": "VFX_FRAME_SET_HASH_INVALID",
+      "observed_rejection_class": "VFX_FRAME_SET_HASH_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-29": {
+      "control_id": "VFX-NC-29",
+      "injected_defect": "provider generation claim",
+      "expected_rejection_class": "VFX_PROVENANCE_INVALID",
+      "observed_rejection_class": "VFX_PROVENANCE_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-30": {
+      "control_id": "VFX-NC-30",
+      "injected_defect": "production provenance claim",
+      "expected_rejection_class": "VFX_PROVENANCE_HASH_INVALID",
+      "observed_rejection_class": "VFX_PROVENANCE_HASH_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-31": {
+      "control_id": "VFX-NC-31",
+      "injected_defect": "frame hash mutation",
+      "expected_rejection_class": "VFX_FRAME_SET_HASH_INVALID",
+      "observed_rejection_class": "VFX_FRAME_SET_HASH_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-32": {
+      "control_id": "VFX-NC-32",
+      "injected_defect": "fixture boundary mutation",
+      "expected_rejection_class": "VFX_TEST_ONLY_BOUNDARY_INVALID",
+      "observed_rejection_class": "VFX_TEST_ONLY_BOUNDARY_INVALID",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "vfx-test-impact_burst-v0230"
+    },
+    "VFX-NC-33": {
+      "control_id": "VFX-NC-33",
+      "injected_defect": "production registry entry",
+      "expected_rejection_class": "VFX_PRODUCTION_BOUNDARY_REJECTED",
+      "observed_rejection_class": "VFX_PRODUCTION_BOUNDARY_REJECTED",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "production must remain blocked"
+    },
+    "VFX-NC-34": {
+      "control_id": "VFX-NC-34",
+      "injected_defect": "production routing enabled",
+      "expected_rejection_class": "VFX_PRODUCTION_BOUNDARY_REJECTED",
+      "observed_rejection_class": "VFX_PRODUCTION_BOUNDARY_REJECTED",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "production must remain blocked"
+    },
+    "VFX-NC-35": {
+      "control_id": "VFX-NC-35",
+      "injected_defect": "hard gate None observation",
+      "expected_rejection_class": "VFX_HARD_GATE_NON_BOOLEAN_REJECTED",
+      "observed_rejection_class": "VFX_HARD_GATE_NON_BOOLEAN_REJECTED",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "None is not bool"
+    },
+    "VFX-NC-36": {
+      "control_id": "VFX-NC-36",
+      "injected_defect": "hard gate truthy string observation",
+      "expected_rejection_class": "VFX_HARD_GATE_NON_BOOLEAN_REJECTED",
+      "observed_rejection_class": "VFX_HARD_GATE_NON_BOOLEAN_REJECTED",
+      "status": "PASS",
+      "result": "REJECT",
+      "actual_exception": "VFXAssetFamilyContractError",
+      "detail": "string is not bool"
+    }
+  }
+}

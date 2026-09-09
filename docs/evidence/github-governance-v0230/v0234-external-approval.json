@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.23.4",
+  "record_type": "forward_only_external_approval",
+  "approved_increment": "v0.23.4",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 14,
+  "branch": "codex/v0.23.0-vfx-asset-family-runtime-foundation",
+  "base_branch": "main",
+  "base_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
+  "approved_semantic_head": "9f8030d2c0ee0e00d10d64a9331899e21ebd5842",
+  "reviewed_runtime_head": "9f8030d2c0ee0e00d10d64a9331899e21ebd5842",
+  "reviewer": "Sol external review",
+  "approval_comment_id": 5593830005,
+  "decision": "APPROVED_FOUNDATION / APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF",
+  "status": "APPROVED_FOUNDATION",
+  "merge_authorization": "APPROVED_TO_MERGE_AFTER_BOOKKEEPING_REPROOF",
+  "merge_verified_via_protected_path": false,
+  "scope": "v0.23.4 VFX_ASSET_FAMILY F-29R historical immutability",
+  "technical_artifact": {
+    "name": "ugas-review-evidence-pr-14-9f8030d2c0ee0e00d10d64a9331899e21ebd5842",
+    "id": 10080712341,
+    "digest": "sha256:ea8ec8f0b485ca8e0ed06b6b9868ea1926930898d5078a23dd4e15897c38cba8",
+    "status": "PASS",
+    "security": "PASS",
+    "manifest": "PASS",
+    "enforcement": "PASS"
+  },
+  "approval_boundary": {
+    "vfx_asset_family": "APPROVED_FOUNDATION",
+    "runtime_and_qa_only": true,
+    "real_vfx_asset_coverage": "NONE",
+    "synthetic_vfx_fixture": "TEST_ONLY",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "new_generation": 0,
+    "orchestration": "NOT_AUTHORIZED_UNTIL_MERGED_CLOSED_AND_POST_MERGE_MAIN_CI_SUCCESS",
+    "real_vfx_generation": "NOT_AUTHORIZED"
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "docs/evidence/current-state.json",
+      "docs/evidence/current-state-v0234.json",
+      "CHECKPOINT.md",
+      "docs/roadmap.md",
+      "docs/ugas-v1-capability-matrix.json",
+      "approval transition and governance evidence",
+      "state/schema/validation wiring strictly required for approved state",
+      "v0.23.4 result-recorder label"
+    ],
+    "forbidden_changes": [
+      "VFX runtime behavior",
+      "semantic validators, fallback logic, provenance, taxonomy or budgets",
+      "v0.23.0 through v0.23.4 technical evidence bytes",
+      "historical evidence roots and review files",
+      "production routing, real assets, UI or orchestration"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any diff outside the bookkeeping allowlist or any semantic/runtime/fixture content change"
+  }
+}

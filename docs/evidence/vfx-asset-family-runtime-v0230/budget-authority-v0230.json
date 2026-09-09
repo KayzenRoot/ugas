@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.23.0",
+  "authority": {
+    "profile_id": "vfx-runtime-safe-v1",
+    "max_concurrent_effects": 64,
+    "max_layers_per_effect": 4,
+    "max_spawn_events_per_second": 120,
+    "max_particles_per_effect": 96,
+    "max_visual_area_ratio": 0.8,
+    "authority_sha256": "2704afc12f97e240fc8c472ab5b390a572a777fd5bbafc6f542c5555759ce75d"
+  },
+  "scope": "TEST_ONLY_VFX_FIXTURES"
+}

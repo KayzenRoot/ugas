@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/current-state-v0230.json",
+  "title": "UGAS active state v0.23.0 VFX asset family runtime foundation",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "baseline_main_sha", "vfx_base_main_sha", "current_gate", "next_candidate", "allowed_next_actions", "production_approved", "production_routing", "new_generation", "review", "evidence", "state_consistency"],
+  "not": {"required": ["main_sha"]},
+  "properties": {
+    "schema_version": {"const": "0.23.0"},
+    "version": {"const": "0.23.0"},
+    "phase": {"const": "VFX_ASSET_FAMILY"},
+    "baseline_main_sha": {"const": "b08b9c3df74ef6a23046be396289e2fd72dc336b"},
+    "vfx_base_main_sha": {"const": "b08b9c3df74ef6a23046be396289e2fd72dc336b"},
+    "current_gate": {"const": "VFX_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED"},
+    "next_candidate": {"const": "ORCHESTRATION_RUNTIME_HARDENING"},
+    "allowed_next_actions": {"const": ["external_review_vfx_asset_family_v0230"]},
+    "production_approved": {"const": false},
+    "production_routing": {"const": "BLOCKED"},
+    "real_vfx_asset_coverage": {"const": "NONE"},
+    "synthetic_vfx_fixture": {"const": "TEST_ONLY"},
+    "new_generation": {"const": 0},
+    "review": {"type": "object", "required": ["repository", "baseline_head", "branch_base_commit", "feature_branch", "execution_mode", "merge_policy", "external_review_required", "do_not_merge", "required_contexts"]},
+    "evidence": {"type": "object", "required": ["vfx_root", "manifest", "hard_gates", "negative_controls", "determinism", "production_registry", "execution"]},
+    "state_consistency": {"type": "object"}
+  }
+}

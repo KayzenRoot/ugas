@@ -1,0 +1,279 @@
+{
+  "schema_version": "0.23.0",
+  "family_id": "vfx_asset_family",
+  "classes": {
+    "impact_burst": {
+      "effect_class": "impact_burst",
+      "stable_id": "VFX-CLS-IMPACT-BURST",
+      "lifecycle": "ONE_SHOT",
+      "frame_count": 6,
+      "duration_ms": 240,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "SPRITE_SHEET"
+      ],
+      "space": "WORLD",
+      "anchor_kind": "IMPACT_POINT",
+      "direction_policy": "RADIAL",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_FRAME_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "short readable impact response",
+      "required_semantics": [
+        "impact_origin",
+        "radius_curve",
+        "termination"
+      ]
+    },
+    "weapon_arc": {
+      "effect_class": "weapon_arc",
+      "stable_id": "VFX-CLS-WEAPON-ARC",
+      "lifecycle": "ONE_SHOT",
+      "frame_count": 5,
+      "duration_ms": 200,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "SPRITE_SHEET"
+      ],
+      "space": "ENTITY_ANCHOR",
+      "anchor_kind": "WEAPON_SWEEP",
+      "direction_policy": "EXPLICIT_FACING",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "directional weapon sweep accent",
+      "required_semantics": [
+        "weapon_anchor",
+        "facing",
+        "arc_span_degrees",
+        "termination"
+      ]
+    },
+    "projectile_trail": {
+      "effect_class": "projectile_trail",
+      "stable_id": "VFX-CLS-PROJECTILE-TRAIL",
+      "lifecycle": "OWNER_BOUND_LOOP",
+      "frame_count": 8,
+      "duration_ms": 640,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "PARTICLE_RECIPE"
+      ],
+      "space": "ENTITY_ANCHOR",
+      "anchor_kind": "PROJECTILE_OWNER",
+      "direction_policy": "VELOCITY_VECTOR",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "PREMULTIPLIED",
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "bounded projectile motion trail",
+      "required_semantics": [
+        "owner_anchor",
+        "velocity_vector",
+        "max_lifetime",
+        "termination"
+      ]
+    },
+    "projectile_impact": {
+      "effect_class": "projectile_impact",
+      "stable_id": "VFX-CLS-PROJECTILE-IMPACT",
+      "lifecycle": "ONE_SHOT",
+      "frame_count": 5,
+      "duration_ms": 200,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "PARTICLE_RECIPE"
+      ],
+      "space": "WORLD",
+      "anchor_kind": "IMPACT_POINT",
+      "direction_policy": "RADIAL",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_OPACITY",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "projectile arrival accent",
+      "required_semantics": [
+        "impact_origin",
+        "projectile_type",
+        "termination"
+      ]
+    },
+    "cast_charge": {
+      "effect_class": "cast_charge",
+      "stable_id": "VFX-CLS-CAST-CHARGE",
+      "lifecycle": "OWNER_BOUND_LOOP",
+      "frame_count": 8,
+      "duration_ms": 800,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "SPRITE_SHEET"
+      ],
+      "space": "ENTITY_ANCHOR",
+      "anchor_kind": "CASTER",
+      "direction_policy": "EXPLICIT_FACING",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_RADIUS",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "bounded charge-up readability",
+      "required_semantics": [
+        "caster_anchor",
+        "charge_phase",
+        "termination"
+      ]
+    },
+    "persistent_aura": {
+      "effect_class": "persistent_aura",
+      "stable_id": "VFX-CLS-PERSISTENT-AURA",
+      "lifecycle": "OWNER_BOUND_LOOP",
+      "frame_count": 8,
+      "duration_ms": 960,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "PARTICLE_RECIPE"
+      ],
+      "space": "ENTITY_ANCHOR",
+      "anchor_kind": "AURA_OWNER",
+      "direction_policy": "NONE",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "PREMULTIPLIED",
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_RADIUS",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "persistent owner-bound aura",
+      "required_semantics": [
+        "owner_anchor",
+        "aura_radius",
+        "termination_condition"
+      ]
+    },
+    "area_telegraph": {
+      "effect_class": "area_telegraph",
+      "stable_id": "VFX-CLS-AREA-TELEGRAPH",
+      "lifecycle": "OWNER_BOUND_LOOP",
+      "frame_count": 8,
+      "duration_ms": 1200,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "SPRITE_SHEET"
+      ],
+      "space": "WORLD",
+      "anchor_kind": "AREA_ORIGIN",
+      "direction_policy": "NONE",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_OPACITY",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "read-only area warning",
+      "required_semantics": [
+        "area_origin",
+        "shape",
+        "duration",
+        "termination"
+      ]
+    },
+    "status_loop": {
+      "effect_class": "status_loop",
+      "stable_id": "VFX-CLS-STATUS-LOOP",
+      "lifecycle": "OWNER_BOUND_LOOP",
+      "frame_count": 8,
+      "duration_ms": 960,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "PARTICLE_RECIPE"
+      ],
+      "space": "ENTITY_ANCHOR",
+      "anchor_kind": "STATUS_OWNER",
+      "direction_policy": "NONE",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_OPACITY",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "owner-bound status readability",
+      "required_semantics": [
+        "owner_anchor",
+        "status_kind",
+        "termination_condition"
+      ]
+    },
+    "buff_heal_burst": {
+      "effect_class": "buff_heal_burst",
+      "stable_id": "VFX-CLS-BUFF-HEAL-BURST",
+      "lifecycle": "ONE_SHOT",
+      "frame_count": 6,
+      "duration_ms": 300,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "SPRITE_SHEET"
+      ],
+      "space": "ENTITY_ANCHOR",
+      "anchor_kind": "TARGET_ENTITY",
+      "direction_policy": "RADIAL",
+      "blend_mode": "ADDITIVE",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_OPACITY",
+        "REDUCE_FRAME_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "positive buff or heal feedback",
+      "required_semantics": [
+        "target_anchor",
+        "feedback_kind",
+        "termination"
+      ]
+    },
+    "environment_ambient": {
+      "effect_class": "environment_ambient",
+      "stable_id": "VFX-CLS-ENVIRONMENT-AMBIENT",
+      "lifecycle": "OWNER_BOUND_LOOP",
+      "frame_count": 8,
+      "duration_ms": 1600,
+      "representations": [
+        "SPRITE_SEQUENCE",
+        "PARTICLE_RECIPE"
+      ],
+      "space": "WORLD",
+      "anchor_kind": "AMBIENT_REGION",
+      "direction_policy": "NONE",
+      "blend_mode": "ALPHA",
+      "alpha_mode": "STRAIGHT",
+      "fallback": [
+        "REDUCE_PARTICLE_COUNT",
+        "REDUCE_LAYER_COUNT",
+        "SKIP_VISUAL"
+      ],
+      "semantic_role": "bounded environment atmosphere",
+      "required_semantics": [
+        "ambient_region",
+        "seed",
+        "termination_condition"
+      ]
+    }
+  }
+}

@@ -123,11 +123,16 @@ class AssetActivityTracker:
                         return
                     yield root, path
 
+    def _record_values(self, root: ApprovedRoot, path: Path, *, action: str, size_bytes: int, mtime: float, sha256: str | None, relative: str | None = None, project_relative: str | None = None, file_kind: str | None = None, media_type: str | None = None, previewable: bool | None = None) -> dict[str, Any]:
+        relative = relative if relative is not None else path.resolve().relative_to(root.path.resolve()).as_posix()
+        project_relative = project_relative if project_relative is not None else path.resolve().relative_to(self.repo_root).as_posix()
+        media_type = MEDIA_TYPES.get(path.suffix.casefold()) if media_type is None else media_type
+        file_kind = classify_file(path) if file_kind is None else file_kind
+        previewable = bool(media_type and root.key != "repository") if previewable is None else previewable
+        return {"safe_id": _encode(root.key, relative), "path": project_relative, "root": root.label, "file_kind": file_kind, "action": action, "size_bytes": size_bytes, "mtime": mtime, "sha256": sha256, "status": "STABLE" if sha256 else "STABILIZING", "media_type": media_type, "previewable": previewable, "timestamp": mtime}
+
     def _record(self, root: ApprovedRoot, path: Path, *, action: str, stat: os.stat_result, sha256: str | None) -> dict[str, Any]:
-        relative = path.resolve().relative_to(root.path.resolve()).as_posix()
-        project_relative = path.resolve().relative_to(self.repo_root).as_posix()
-        media_type = MEDIA_TYPES.get(path.suffix.casefold())
-        return {"safe_id": _encode(root.key, relative), "path": project_relative, "root": root.label, "file_kind": classify_file(path), "action": action, "size_bytes": stat.st_size, "mtime": stat.st_mtime, "sha256": sha256, "status": "STABLE" if sha256 else "STABILIZING", "media_type": media_type, "previewable": bool(media_type and root.key != "repository"), "timestamp": stat.st_mtime}
+        return self._record_values(root, path, action=action, size_bytes=stat.st_size, mtime=stat.st_mtime, sha256=sha256)
 
     @staticmethod
     def _hash(path: Path) -> str | None:
@@ -156,7 +161,10 @@ class AssetActivityTracker:
                 sha256 = None
             elif not sha256 and not (prior or {}).get("baseline"):
                 sha256 = self._hash(path)
-            current[key] = {"size": stat.st_size, "mtime_ns": stat.st_mtime_ns, "sha256": sha256, "path": path, "root": root, "baseline": not self._bootstrapped and prior is None}
+            relative = path.relative_to(root.path).as_posix()
+            project_relative = path.relative_to(self.repo_root).as_posix()
+            media_type = MEDIA_TYPES.get(path.suffix.casefold())
+            current[key] = {"size": stat.st_size, "mtime_ns": stat.st_mtime_ns, "size_bytes": stat.st_size, "mtime": stat.st_mtime, "sha256": sha256, "path": path, "root": root, "relative": relative, "project_relative": project_relative, "file_kind": classify_file(path), "media_type": media_type, "previewable": bool(media_type and root.key != "repository"), "baseline": not self._bootstrapped and prior is None}
             if self._bootstrapped and (prior is None or not same):
                 changes.append(self._record(root, path, action="created" if prior is None else "updated", stat=stat, sha256=sha256))
             elif self._bootstrapped and prior and same and not prior.get("sha256") and sha256:
@@ -172,11 +180,7 @@ class AssetActivityTracker:
         items: list[dict[str, Any]] = []
         for item in self._known.values():
             path = item["path"]
-            try:
-                stat = path.stat()
-            except OSError:
-                continue
-            items.append(self._record(item["root"], path, action="observed", stat=stat, sha256=item.get("sha256")))
+            items.append(self._record_values(item["root"], path, action="observed", size_bytes=int(item.get("size_bytes", 0)), mtime=float(item.get("mtime", 0.0)), sha256=item.get("sha256"), relative=item.get("relative"), project_relative=item.get("project_relative"), file_kind=item.get("file_kind"), media_type=item.get("media_type"), previewable=item.get("previewable")))
         return sorted(items, key=lambda value: value["mtime"], reverse=True)[:limit]
 
     def resolve_preview(self, safe_id: str) -> tuple[Path, str] | None:
