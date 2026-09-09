@@ -176,4 +176,13 @@ jobs:
           retention-days: 21
       - name: Enforce final review result after artifact upload (v0.24.1)
         if: always()
-        run: python scripts/validation/enforce_github_review_v0241.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0241.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0241.json" --security "$RUNNER_TEMP/security-v0241.json" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --schema-exit "$(cat "$RUNNER_TEMP/schema.exit")"
+        shell: bash
+        run: |
+          set +e
+          python scripts/validation/enforce_github_review_v0241.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0241.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0241.json" --security "$RUNNER_TEMP/security-v0241.json" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --schema-exit "$(cat "$RUNNER_TEMP/schema.exit")" 2>&1 | tee "$RUNNER_TEMP/final-enforcement-v0241.log"
+          code=${PIPESTATUS[0]}
+          {
+            echo '## UGAS v0.24.1 final enforcement'
+            cat "$RUNNER_TEMP/final-enforcement-v0241.log"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$code"
