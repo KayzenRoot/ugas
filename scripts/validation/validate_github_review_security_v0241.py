@@ -50,6 +50,8 @@ def main() -> int:
     result = {"schema_version": "0.24.1", "status": "PASS" if not failures else "FAIL", "failures": failures, "file_count": len(files), "secrets_included": False, "model_weights_included": False, "telemetry_db_included": False, "local_credentials_included": False}
     Path(args.output).write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False))
+    for failure in failures:
+        print(f"::error title=UGAS v0.24.1 artifact security::{failure}")
     return 0 if not failures else 1
 
 

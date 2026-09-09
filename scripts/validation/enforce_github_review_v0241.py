@@ -34,6 +34,7 @@ def main() -> int:
             "manifest": {"value": manifest.get("overall_status"), "type": type(manifest.get("overall_status")).__name__},
             "manifest_validation": {"value": validation.get("status"), "type": type(validation.get("status")).__name__},
             "security": {"value": security.get("status"), "type": type(security.get("status")).__name__},
+            "security_failures": security.get("failures"),
             "state_exit": {"value": args.state_exit, "type": type(args.state_exit).__name__},
             "orchestration_exit": {"value": args.orchestration_exit, "type": type(args.orchestration_exit).__name__},
             "schema_exit": {"value": args.schema_exit, "type": type(args.schema_exit).__name__},
@@ -43,6 +44,8 @@ def main() -> int:
     if not passed:
         for name in result["failed_checks"]:
             print(f"::error title=UGAS v0.24.1 final enforcement::{name} failed")
+        for failure in security.get("failures", []):
+            print(f"::error title=UGAS v0.24.1 final enforcement::security:{failure}")
     return 0 if passed else 1
 
 
