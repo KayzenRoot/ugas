@@ -1,6 +1,6 @@
-# UGAS 0.24.3
+# UGAS 0.24.4
 
-Current active slice: v0.24.3 Orchestration Runtime Hardening F-32RR/F-35RR/F-35RC/F-37 correction on PR #15 over merged VFX v0.23.4. The orchestration runtime remains provider-neutral and TEST_ONLY; production remains BLOCKED and external Sol review is required.
+Current active slice: v0.24.4 Orchestration Runtime Hardening F-38/F-37R/F-39/F-40 correction on PR #15 over merged VFX v0.23.4. The orchestration runtime remains provider-neutral and TEST_ONLY; production remains BLOCKED and external Sol review is required.
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.22.0 qualifica tecnicamente a fundação runtime da família de UI com fixtures RGBA determinísticos TEST_ONLY, 14 classes, estados, 9-slice, safe areas, escala 1x/2x, cache completo, provenance e 22 gates/negative controls. A aprovação externa do PR #12 é requisito; o PR v0.22.0 permanece aberto e não mergeado. Produção segue `BLOCKED`, `production_approved=false`, `real_ui_asset_coverage=NONE` e `new_generation=0`; não iniciar VFX, orquestração ou arte real.
 
@@ -32,7 +32,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.24.3.md](REVIEW-v0.24.3.md). UI, Maps/Minimap e VFX permanecem `APPROVED_FOUNDATION`/`MERGED_CLOSED`; o único próximo passo é `external_review_orchestration_runtime_v0243`. O SHA base registrado é histórico (`baseline_main_sha`), enquanto o `main` atual deve ser resolvido do GitHub LIVE. A geração real permanece `NONE`, os fixtures são `TEST_ONLY`, e o registro de produção está vazio.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.24.4.md](REVIEW-v0.24.4.md). UI, Maps/Minimap e VFX permanecem `APPROVED_FOUNDATION`/`MERGED_CLOSED`; o único próximo passo é `external_review_orchestration_runtime_v0244`. O SHA base registrado é histórico (`baseline_main_sha`), enquanto o `main` atual deve ser resolvido do GitHub LIVE. A geração real permanece `NONE`, os fixtures são `TEST_ONLY`, e o registro de produção está vazio.
 
 ## v0.20.1 ENVIRONMENT_TILESETS QA integrity correction
 
