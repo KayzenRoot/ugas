@@ -17,9 +17,14 @@ V0241_REJECTED_HEAD = "ed9fa927fd50193130b3e085ef077dea267f2790"
 BRANCH = "codex/v0.24.0-orchestration-runtime-hardening-foundation"
 CURRENT_PHASE = "ORCHESTRATION_RUNTIME_HARDENING"
 CURRENT_GATE = "ORCHESTRATION_RUNTIME_HARDENING_F44R_F46R_CORRECTION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED"
-STOP_REASON = "ORCHESTRATION_RUNTIME_HARDENING_F44R_F46R_EXTERNAL_REVIEW_REQUIRED"
-NEXT_ACTION = "external_review_orchestration_runtime_v0247"
+STOP_REASON = "ORCHESTRATION_RUNTIME_HARDENING_APPROVED_FOUNDATION_AWAITING_GOVERNED_MERGE"
+NEXT_ACTION = "governed_merge_orchestration_pr_15"
+GOVERNED_MERGE_ACTION = "governed_merge_orchestration_pr_15"
 NEXT_CANDIDATE = "V1_FINAL_ACCEPTANCE"
+APPROVED_SEMANTIC_HEAD = "6b1af57ec5f488d71bafafa17a892467adf1d1c1"
+APPROVAL_COMMENT_ID = 5621522467
+APPROVAL_RECORD = "docs/evidence/github-governance-v0247/v0247-external-approval.json"
+APPROVAL_AUTHORIZATION = "GOVERNED_MERGE_AUTHORIZED_AFTER_EXACT_HEAD_REPROOF"
 
 
 def _mapping(value: Any) -> Mapping[str, Any]:
@@ -38,9 +43,9 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         "stop_reason": STOP_REASON,
         "next_candidate": NEXT_CANDIDATE,
         "allowed_next_actions": [NEXT_ACTION],
-        "orchestration_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
-        "orchestration_runtime_external_review": "REQUIRED",
-        "orchestration_lifecycle": "ACTIVE_FOUNDATION",
+        "orchestration_runtime": "APPROVED_FOUNDATION",
+        "orchestration_runtime_external_review": "APPROVED_FOUNDATION",
+        "orchestration_lifecycle": "APPROVED_FOUNDATION_AWAITING_GOVERNED_MERGE",
         "production_routing": "BLOCKED",
         "production_approved": False,
         "real_asset_generation": "NONE",
@@ -75,18 +80,20 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     if v0246.get("status") != "CORRECTION_REQUIRED" or v0246.get("rejected_reviewed_head") != V0246_REJECTED_HEAD or v0246.get("historical_evidence_unchanged") is not True:
         failures.append("v0246_correction_history_invalid")
     review = _mapping(state.get("review"))
-    for key, expected_value in {"repository": "KayzenRoot/ugas", "feature_branch": BRANCH, "base_sha": BASELINE_MAIN_SHA, "external_review_required": True, "do_not_merge": True, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "pr_number": 15}.items():
+    for key, expected_value in {"repository": "KayzenRoot/ugas", "feature_branch": BRANCH, "base_sha": BASELINE_MAIN_SHA, "external_review_required": True, "do_not_merge": True, "merge_authorization": APPROVAL_AUTHORIZATION, "pr_number": 15}.items():
         if review.get(key) != expected_value:
             failures.append(f"review:{key}")
     if review.get("pr_state") != "OPEN":
         failures.append("review:pr_state")
     if review.get("head_sha_source") != "GitHub LIVE exact-head metadata":
         failures.append("review:head_sha_source")
+    if review.get("approved_semantic_head") != APPROVED_SEMANTIC_HEAD or review.get("approval_comment_id") != APPROVAL_COMMENT_ID or review.get("approval_record") != APPROVAL_RECORD or review.get("post_bookkeeping_reproof_required") is not True:
+        failures.append("review:approval_binding")
     capabilities = matrix.get("capabilities") if isinstance(matrix.get("capabilities"), list) else []
     by_id = {item.get("id"): item for item in capabilities if isinstance(item, Mapping)}
     if matrix.get("version") != VERSION or matrix.get("next_candidate") != NEXT_CANDIDATE or matrix.get("production_routing") != "BLOCKED" or matrix.get("new_generation") != 0:
         failures.append("matrix:global")
-    if by_id.get("orchestration_runtime_hardening", {}).get("status") != "TECHNICALLY_QUALIFIED_FOUNDATION; EXTERNAL REVIEW REQUIRED":
+    if by_id.get("orchestration_runtime_hardening", {}).get("status") != "APPROVED_FOUNDATION; GOVERNED_MERGE_PENDING":
         failures.append("matrix:orchestration_status")
     if by_id.get("vfx_asset_family", {}).get("status") != "APPROVED_FOUNDATION; MERGED_CLOSED":
         failures.append("matrix:vfx_not_closed")
@@ -101,7 +108,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         if binding_value.get("base_main_sha") != BASELINE_MAIN_SHA or binding_value.get("reviewed_head") != REJECTED_REVIEWED_HEAD or binding_value.get("status") != "CORRECTION_REQUIRED":
             failures.append("v0246_binding_invalid")
     evidence_value = evidence or {}
-    if evidence_value and evidence_value.get("orchestration_root") != "docs/evidence/orchestration-runtime-v0247/":
+    if evidence_value and (evidence_value.get("orchestration_root") != "docs/evidence/orchestration-runtime-v0247/" or evidence_value.get("approval_transition") != APPROVAL_RECORD):
         failures.append("evidence_root_invalid")
     active = "\n".join((checkpoint_text, roadmap_text))
     for literal in (VERSION, CURRENT_GATE, STOP_REASON, NEXT_ACTION, "baseline_main_sha", "production_routing=BLOCKED", "new_generation=0", "F-44R", "F-46R", "F-43R", "F-45", "F-41", "F-42", "F-38", "F-37R", "F-39", "F-40", "F-31R", "F-32RR", "F-33", "F-34", "F-35RR", "F-35RC", "F-36", "external review"):
@@ -110,4 +117,4 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     return {"status": CURRENT_GATE if not failures else "ORCHESTRATION_STATE_FAILED", "version": VERSION, "failures": failures, "checked": {"baseline_main_sha": state.get("baseline_main_sha"), "phase": state.get("phase"), "current_gate": state.get("current_gate"), "allowed_next_actions": state.get("allowed_next_actions"), "production_routing": state.get("production_routing"), "new_generation": state.get("new_generation"), "rejected_reviewed_head": REJECTED_REVIEWED_HEAD, "v0244_semantic_head": V0244_SEMANTIC_HEAD}}
 
 
-__all__ = ["BASELINE_MAIN_SHA", "BRANCH", "CURRENT_GATE", "CURRENT_PHASE", "NEXT_ACTION", "NEXT_CANDIDATE", "REJECTED_REVIEWED_HEAD", "STOP_REASON", "V0241_REJECTED_HEAD", "V0242_REJECTED_HEAD", "V0243_REJECTED_HEAD", "V0244_REJECTED_HEAD", "V0244_SEMANTIC_HEAD", "V0245_REJECTED_HEAD", "V0246_REJECTED_HEAD", "VERSION", "validate_state_consistency"]
+__all__ = ["APPROVAL_AUTHORIZATION", "APPROVAL_COMMENT_ID", "APPROVAL_RECORD", "APPROVED_SEMANTIC_HEAD", "BASELINE_MAIN_SHA", "BRANCH", "CURRENT_GATE", "CURRENT_PHASE", "GOVERNED_MERGE_ACTION", "NEXT_ACTION", "NEXT_CANDIDATE", "REJECTED_REVIEWED_HEAD", "STOP_REASON", "V0241_REJECTED_HEAD", "V0242_REJECTED_HEAD", "V0243_REJECTED_HEAD", "V0244_REJECTED_HEAD", "V0244_SEMANTIC_HEAD", "V0245_REJECTED_HEAD", "V0246_REJECTED_HEAD", "VERSION", "validate_state_consistency"]

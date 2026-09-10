@@ -125,9 +125,10 @@ jobs:
         shell: bash
         run: |
           artifact="$RUNNER_TEMP/ugas-review-artifact"
-          mkdir -p "$artifact/docs/evidence/orchestration-runtime-v0247" "$artifact/logs" "$artifact/schemas"
+          mkdir -p "$artifact/docs/evidence/orchestration-runtime-v0247" "$artifact/docs/evidence/github-governance-v0247" "$artifact/logs" "$artifact/schemas"
           cp -R docs/evidence/orchestration-runtime-v0247/. "$artifact/docs/evidence/orchestration-runtime-v0247/"
           cp docs/evidence/current-state.json "$artifact/docs/evidence/current-state.json"
+          cp -R docs/evidence/github-governance-v0247/. "$artifact/docs/evidence/github-governance-v0247/" 2>/dev/null || true
           cp schemas/current-state-v0247.json "$artifact/schemas/current-state-v0247.json"
           cp schemas/orchestration-runtime-v0247.json "$artifact/schemas/orchestration-runtime-v0247.json"
           cp REVIEW-v0.24.7.md "$artifact/REVIEW-v0.24.7.md"

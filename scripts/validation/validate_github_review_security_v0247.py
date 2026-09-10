@@ -18,6 +18,7 @@ REQUIRED_BRANCH = "codex/v0.24.0-orchestration-runtime-hardening-foundation"
 PRIVATE_PATH_MARKERS = ("/home/runner/", "/Users/", "C:\\Users\\", "c:\\users\\", "~/.uads")
 ALLOWED_PREFIXES = (
     "docs/evidence/orchestration-runtime-v0247/",
+    "docs/evidence/github-governance-v0247/",
     "docs/evidence/current-state.json",
     "schemas/current-state-v0247.json",
     "schemas/orchestration-runtime-v0247.json",

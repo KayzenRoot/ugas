@@ -12,7 +12,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
-from ugas.state_consistency_v0247 import CURRENT_GATE, NEXT_ACTION, REJECTED_REVIEWED_HEAD, VERSION as STATE_VERSION
+from ugas.state_consistency_v0247 import APPROVAL_AUTHORIZATION, APPROVAL_COMMENT_ID, APPROVAL_RECORD, APPROVED_SEMANTIC_HEAD, CURRENT_GATE, NEXT_ACTION, REJECTED_REVIEWED_HEAD, VERSION as STATE_VERSION
 
 VERSION = STATE_VERSION
 BASE_MAIN = "dee98f8cd89ebd83a36ead7a22a184700d6e916f"
@@ -151,7 +151,7 @@ def main() -> int:
         and family.get("peak_global", 0) <= 3
         and state.get("review", {}).get("pr_state") == "OPEN"
         and state.get("review", {}).get("do_not_merge") is True
-        and state.get("review", {}).get("merge_authorization") == "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL"
+        and state.get("review", {}).get("merge_authorization") == APPROVAL_AUTHORIZATION
         and history_ok
         and uads_handoff.get("execution_mode") == "GLOBAL_FIRST"
         and uads_handoff.get("project_footprint") == "ZERO"
@@ -183,7 +183,8 @@ def main() -> int:
         "uads_handoff": uads_handoff,
         "uads_handoff_status": "PASS" if uads_handoff.get("route_status") == "SELECTED" and uads_handoff.get("dispatch_status") == "DISPATCHED" else "FAIL",
         "production_boundary": {"approved": False, "routing": "BLOCKED", "new_generation": 0, "real_asset_generation": "NONE", "synthetic_fixture": "TEST_ONLY", "provider_submit_calls": 0},
-        "review_boundary": {"external_review_required": True, "do_not_merge": True, "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL", "pr_open_required": True, "pr_merged": False, "v1_final_acceptance_started": False, "provider_generation_started": False},
+        "review_boundary": {"external_review_required": True, "do_not_merge": True, "merge_authorization": APPROVAL_AUTHORIZATION, "approved_semantic_head": APPROVED_SEMANTIC_HEAD, "approval_comment_id": APPROVAL_COMMENT_ID, "approval_record": APPROVAL_RECORD, "post_bookkeeping_reproof_required": True, "pr_open_required": True, "pr_merged": False, "v1_final_acceptance_started": False, "provider_generation_started": False},
+        "governance": {"approval_record": APPROVAL_RECORD, "approved_semantic_head": APPROVED_SEMANTIC_HEAD, "approval_comment_id": APPROVAL_COMMENT_ID},
         "security_boundary": {"secrets_included": False, "model_weights_included": False, "telemetry_db_included": False, "local_credentials_included": False},
         "overall_status": "PASS" if overall else "FAIL",
     }

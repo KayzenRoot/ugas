@@ -154,10 +154,10 @@
     }
   },
   "current_gate": "ORCHESTRATION_RUNTIME_HARDENING_F44R_F46R_CORRECTION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
-  "stop_reason": "ORCHESTRATION_RUNTIME_HARDENING_F44R_F46R_EXTERNAL_REVIEW_REQUIRED",
+  "stop_reason": "ORCHESTRATION_RUNTIME_HARDENING_APPROVED_FOUNDATION_AWAITING_GOVERNED_MERGE",
   "next_candidate": "V1_FINAL_ACCEPTANCE",
   "allowed_next_actions": [
-    "external_review_orchestration_runtime_v0247"
+    "governed_merge_orchestration_pr_15"
   ],
   "forbidden_actions": [
     "direct_main_push",
@@ -181,9 +181,9 @@
   "ui_asset_family_lifecycle": "MERGED_CLOSED",
   "maps_minimap_assets": "APPROVED_FOUNDATION",
   "maps_minimap_lifecycle": "MERGED_CLOSED",
-  "orchestration_runtime": "TECHNICALLY_QUALIFIED_FOUNDATION",
-  "orchestration_runtime_external_review": "REQUIRED",
-  "orchestration_lifecycle": "ACTIVE_FOUNDATION",
+  "orchestration_runtime": "APPROVED_FOUNDATION",
+  "orchestration_runtime_external_review": "APPROVED_FOUNDATION",
+  "orchestration_lifecycle": "APPROVED_FOUNDATION_AWAITING_GOVERNED_MERGE",
   "synthetic_fixture": "TEST_ONLY",
   "review": {
     "repository": "KayzenRoot/ugas",
@@ -196,7 +196,11 @@
     "head_sha": null,
     "head_sha_source": "GitHub LIVE exact-head metadata",
     "external_review_required": true,
-    "merge_authorization": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL",
+    "merge_authorization": "GOVERNED_MERGE_AUTHORIZED_AFTER_EXACT_HEAD_REPROOF",
+    "approved_semantic_head": "6b1af57ec5f488d71bafafa17a892467adf1d1c1",
+    "approval_comment_id": 5621522467,
+    "approval_record": "docs/evidence/github-governance-v0247/v0247-external-approval.json",
+    "post_bookkeeping_reproof_required": true,
     "do_not_merge": true,
     "required_contexts": [
       "UGAS CI / unit-and-validation",
@@ -216,7 +220,8 @@
     "dependency_authority": "docs/evidence/orchestration-runtime-v0247/dependency-authority-v0247.json",
     "provider_boundary": "docs/evidence/orchestration-runtime-v0247/provider-boundary-v0247.json",
     "checkpoint_resume": "docs/evidence/orchestration-runtime-v0247/checkpoint-resume-v0247.json",
-    "correction_history": "docs/evidence/orchestration-runtime-v0247/correction-history-v0247.json"
+    "correction_history": "docs/evidence/orchestration-runtime-v0247/correction-history-v0247.json",
+    "approval_transition": "docs/evidence/github-governance-v0247/v0247-external-approval.json"
   },
   "state_consistency": {
     "status": "ORCHESTRATION_RUNTIME_HARDENING_F44R_F46R_CORRECTION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED",
@@ -229,7 +234,7 @@
     "production_approved": false,
     "new_generation": 0,
     "allowed_next_actions": [
-      "external_review_orchestration_runtime_v0247"
+      "governed_merge_orchestration_pr_15"
     ],
     "next_capability_started": false,
     "rejected_reviewed_head": "cdc49dd96e7c683c0426d209e0bef162442a3bbb"

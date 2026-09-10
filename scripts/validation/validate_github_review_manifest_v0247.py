@@ -11,7 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
-from ugas.state_consistency_v0247 import CURRENT_GATE, NEXT_ACTION, REJECTED_REVIEWED_HEAD, VERSION as STATE_VERSION
+from ugas.state_consistency_v0247 import APPROVAL_AUTHORIZATION, APPROVAL_COMMENT_ID, APPROVAL_RECORD, APPROVED_SEMANTIC_HEAD, CURRENT_GATE, NEXT_ACTION, REJECTED_REVIEWED_HEAD, VERSION as STATE_VERSION
 
 VERSION = STATE_VERSION
 BASE_MAIN = "dee98f8cd89ebd83a36ead7a22a184700d6e916f"
@@ -101,6 +101,15 @@ def main() -> int:
     for field_name in ("status", "rejected_reviewed_head", "findings", "historical_evidence_unchanged"):
         if manifest_history.get(field_name) != canonical.get(field_name):
             failures.append(f"correction-history:{field_name}")
+    review = value.get("review_boundary", {})
+    if review.get("external_review_required") is not True or review.get("do_not_merge") is not True or review.get("merge_authorization") != APPROVAL_AUTHORIZATION or review.get("approved_semantic_head") != APPROVED_SEMANTIC_HEAD or review.get("approval_comment_id") != APPROVAL_COMMENT_ID or review.get("approval_record") != APPROVAL_RECORD or review.get("post_bookkeeping_reproof_required") is not True or review.get("pr_open_required") is not True or review.get("pr_merged") is not False:
+        failures.append("review-boundary")
+    governance = value.get("governance", {})
+    if governance.get("approval_record") != APPROVAL_RECORD or governance.get("approved_semantic_head") != APPROVED_SEMANTIC_HEAD or governance.get("approval_comment_id") != APPROVAL_COMMENT_ID:
+        failures.append("governance")
+    approval_record = governance.get("approval_record")
+    if approval_record != APPROVAL_RECORD or not (Path(args.manifest).parent / approval_record).is_file():
+        failures.append("approval-record-missing")
     if value.get("overall_status") != "PASS":
         failures.append("overall-status")
     result = {"schema_version": VERSION, "status": "PASS" if not failures else "FAIL", "failures": failures, "manifest": str(args.manifest)}

@@ -64,7 +64,7 @@ def main() -> int:
     if value["version"] in {"0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7"}:
         vfx = next(item for item in capabilities if item["id"] == "vfx_asset_family")
         orchestration = next(item for item in capabilities if item["id"] == "orchestration_runtime_hardening")
-        if maps["status"] != "APPROVED_FOUNDATION" or ui["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or vfx["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or orchestration["status"] != "TECHNICALLY_QUALIFIED_FOUNDATION; EXTERNAL REVIEW REQUIRED" or value["next_candidate"] != "V1_FINAL_ACCEPTANCE":
+        if maps["status"] != "APPROVED_FOUNDATION" or ui["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or vfx["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or orchestration["status"] not in {"TECHNICALLY_QUALIFIED_FOUNDATION; EXTERNAL REVIEW REQUIRED", "APPROVED_FOUNDATION; GOVERNED_MERGE_PENDING"} or value["next_candidate"] != "V1_FINAL_ACCEPTANCE":
             failures.append("orchestration-runtime-active-state-invalid")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")

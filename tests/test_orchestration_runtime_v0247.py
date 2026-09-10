@@ -371,6 +371,39 @@ class OrchestrationRuntimev0247Tests(unittest.TestCase):
         self.assertEqual(version_failed["status"], "ORCHESTRATION_STATE_FAILED")
         self.assertIn("version_invalid", version_failed["failures"])
 
+    def test_f39r_approval_binding_drives_governed_merge_state(self) -> None:
+        import json
+        from ugas.state_consistency_v0247 import APPROVAL_AUTHORIZATION, APPROVAL_COMMENT_ID, APPROVAL_RECORD, APPROVED_SEMANTIC_HEAD, CURRENT_GATE, validate_state_consistency
+
+        root = Path(__file__).resolve().parents[1]
+        state = json.loads((root / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        checkpoint = (root / "CHECKPOINT.md").read_text(encoding="utf-8")
+        roadmap = (root / "docs/roadmap.md").read_text(encoding="utf-8")
+        matrix = json.loads((root / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))
+        binding = {"base_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "reviewed_head": "cdc49dd96e7c683c0426d209e0bef162442a3bbb", "status": "CORRECTION_REQUIRED"}
+        self.assertEqual(state["review"]["merge_authorization"], APPROVAL_AUTHORIZATION)
+        self.assertEqual(state["review"]["approved_semantic_head"], APPROVED_SEMANTIC_HEAD)
+        self.assertEqual(state["review"]["approval_comment_id"], APPROVAL_COMMENT_ID)
+        self.assertEqual(state["review"]["approval_record"], APPROVAL_RECORD)
+        ok = validate_state_consistency(state, checkpoint, roadmap, matrix, binding, state.get("evidence", {}))
+        self.assertEqual(ok["status"], CURRENT_GATE)
+        self.assertEqual(ok["failures"], [])
+        tampered_authorization = copy.deepcopy(state)
+        tampered_authorization["review"]["merge_authorization"] = "MERGE_IMMEDIATELY"
+        authorization_failed = validate_state_consistency(tampered_authorization, checkpoint, roadmap, matrix, binding, tampered_authorization.get("evidence", {}))
+        self.assertEqual(authorization_failed["status"], "ORCHESTRATION_STATE_FAILED")
+        self.assertIn("review:merge_authorization", authorization_failed["failures"])
+        tampered_binding = copy.deepcopy(state)
+        tampered_binding["review"]["approval_comment_id"] = 0
+        binding_failed = validate_state_consistency(tampered_binding, checkpoint, roadmap, matrix, binding, tampered_binding.get("evidence", {}))
+        self.assertEqual(binding_failed["status"], "ORCHESTRATION_STATE_FAILED")
+        self.assertIn("review:approval_binding", binding_failed["failures"])
+        tampered_transition = copy.deepcopy(state)
+        tampered_transition["evidence"]["approval_transition"] = "docs/evidence/github-governance-v0247/missing.json"
+        transition_failed = validate_state_consistency(tampered_transition, checkpoint, roadmap, matrix, binding, tampered_transition.get("evidence", {}))
+        self.assertEqual(transition_failed["status"], "ORCHESTRATION_STATE_FAILED")
+        self.assertIn("evidence_root_invalid", transition_failed["failures"])
+
     def test_f43r_sanitize_uads_handoff_is_fail_closed(self) -> None:
         valid = {
             "work_order_id": "wo_22268aa2ff8736ca",
