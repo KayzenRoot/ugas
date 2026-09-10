@@ -88,7 +88,7 @@ SCHEMAS = [
     "cutout-rig",
 ]
 
-UGAS_VERSION = "0.24.5"
+UGAS_VERSION = "0.24.6"
 
 CONSUMER_FILES = [
     "studio.json",

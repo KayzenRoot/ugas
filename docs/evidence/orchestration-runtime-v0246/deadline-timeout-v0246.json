@@ -1,0 +1,588 @@
+{
+  "clock": 0.0,
+  "node_deadlines": {
+    "child": {
+      "deadline_seconds": 30.0,
+      "elapsed_seconds": 0.0,
+      "parent_deadline_seconds": 30.0,
+      "started_seconds": 0.0,
+      "status": "SUCCEEDED"
+    },
+    "prepare": {
+      "deadline_seconds": 30.0,
+      "elapsed_seconds": 0.0,
+      "parent_deadline_seconds": 30.0,
+      "started_seconds": 0.0,
+      "status": "SUCCEEDED"
+    },
+    "tail": {
+      "deadline_seconds": 30.0,
+      "elapsed_seconds": 0.0,
+      "parent_deadline_seconds": 30.0,
+      "started_seconds": 0.0,
+      "status": "SUCCEEDED"
+    }
+  },
+  "probes": {
+    "authority_mutation_changes_identity": true,
+    "cancellation": {
+      "attempts": {},
+      "authority_binding_hash": "",
+      "circuit": {
+        "failure_threshold": 2,
+        "failures": 0,
+        "probe_in_flight": false,
+        "project_id": "ugas-v1-test-project",
+        "route_executor_identity": "test-only-fake-executor-v0246",
+        "state": "CLOSED"
+      },
+      "clock_elapsed_seconds": 0.0,
+      "dag_hash": "b7f0b89de2c69768180bd305ab200432ceb8bc5bc59e0c395a448190e4fead94",
+      "event_hash": "6e236e6a2dc60240d48d9b8997d0a7a99057a14a6f82b0eae58f89694806b11e",
+      "event_sequence": 1,
+      "events": [
+        {
+          "detail": "explicit bounded cancellation",
+          "elapsed_seconds": 0.0,
+          "event_hash": "6e236e6a2dc60240d48d9b8997d0a7a99057a14a6f82b0eae58f89694806b11e",
+          "from": "PLANNED",
+          "node_id": "cancel",
+          "request_deadline_seconds": 30,
+          "sequence": 1,
+          "to": "CANCELLED"
+        }
+      ],
+      "execution_identity": {
+        "authority_binding_hash": "",
+        "dag_hash": "b7f0b89de2c69768180bd305ab200432ceb8bc5bc59e0c395a448190e4fead94",
+        "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+        "idempotency_key": "orchestration-v0246-fixture-idempotency",
+        "identity_hash": "383019b63ec189ac02a74bfe17560f9b00ca69d3dd3d9ca06d9f449eb40ad3b5",
+        "project_id": "ugas-v1-test-project",
+        "request_hash": "67aefc47788dbecccf0482ed97e20cd2db88152cb5bd61de33df05d6b224691c"
+      },
+      "execution_policy": {},
+      "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+      "family_limits": {},
+      "max_concurrency": 4,
+      "node_deadlines": {},
+      "peak_concurrency": 0,
+      "project_id": "ugas-v1-test-project",
+      "provider_submit_calls": 0,
+      "request_deadline_seconds": 30,
+      "request_hash": "67aefc47788dbecccf0482ed97e20cd2db88152cb5bd61de33df05d6b224691c",
+      "request_id": "orchestration-v0246-fixture",
+      "results": {},
+      "scheduler_hash": "83de6c23768a3f3d45062c2222faf1b857db3f7d181fe29323cb7f73300ca16a",
+      "schema_version": "0.24.6",
+      "states": {
+        "cancel": "CANCELLED"
+      },
+      "status": "COMPLETE",
+      "test_only": true
+    },
+    "dag_hash_changes": true,
+    "deadline": {
+      "attempts": {
+        "deadline-first": 1
+      },
+      "authority_binding_hash": "",
+      "circuit": {
+        "failure_threshold": 2,
+        "failures": 1,
+        "probe_in_flight": false,
+        "project_id": "ugas-v1-test-project",
+        "route_executor_identity": "test-only-fake-executor-v0246",
+        "state": "CLOSED"
+      },
+      "clock_elapsed_seconds": 3.0,
+      "dag_hash": "10a903205b70640a1d3b4703bee7c09c3a905f0181890000cb1d1f0cb573a88e",
+      "event_hash": "2a24f26309391b73ed91fdb3a5296e3f8c35776730e092dcf74a19f119ca2e7a",
+      "event_sequence": 6,
+      "events": [
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "b2e72647da2ac6faaab7da04ef0fd9cc07a34f6e47f72abcbd1b599540d58942",
+          "from": "PLANNED",
+          "node_id": "deadline-first",
+          "request_deadline_seconds": 3,
+          "sequence": 1,
+          "to": "VALIDATED"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "a6e0733b1b1477556ae9e71b16e6312f37268302336d4dc7cb4c3f7a367ffd09",
+          "from": "VALIDATED",
+          "node_id": "deadline-first",
+          "request_deadline_seconds": 3,
+          "sequence": 2,
+          "to": "READY"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "c549d3b445add1e46d815fd10771532d2c39041c7ba286dd36631d1c1c987c0d",
+          "from": "READY",
+          "node_id": "deadline-first",
+          "request_deadline_seconds": 3,
+          "sequence": 3,
+          "to": "DISPATCHED"
+        },
+        {
+          "circuit_state": "CLOSED",
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "6715907e7f6eb619fa5c8c8d16762b18c5e2f29d27f67bf16af63811c4dc6a09",
+          "from": "DISPATCHED",
+          "node_id": "deadline-first",
+          "request_deadline_seconds": 3,
+          "sequence": 4,
+          "to": "RUNNING"
+        },
+        {
+          "attempt": 1,
+          "detail": "REQUEST_DEADLINE_EXCEEDED",
+          "elapsed_seconds": 3.0,
+          "event_hash": "83133fef1906a9a54dff5890408de5378b4fa1d246bf7109a63568257cde714a",
+          "from": "RUNNING",
+          "node_id": "deadline-first",
+          "request_deadline_seconds": 3,
+          "sequence": 5,
+          "timeout_type": "RequestDeadlineExceeded",
+          "to": "FAILED"
+        },
+        {
+          "detail": "dependency terminal failure",
+          "elapsed_seconds": 3.0,
+          "event_hash": "2a24f26309391b73ed91fdb3a5296e3f8c35776730e092dcf74a19f119ca2e7a",
+          "from": "PLANNED",
+          "node_id": "deadline-later",
+          "request_deadline_seconds": 3,
+          "sequence": 6,
+          "to": "BLOCKED"
+        }
+      ],
+      "execution_identity": {
+        "authority_binding_hash": "",
+        "dag_hash": "10a903205b70640a1d3b4703bee7c09c3a905f0181890000cb1d1f0cb573a88e",
+        "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+        "idempotency_key": "orchestration-v0246-fixture-idempotency",
+        "identity_hash": "3f9df115b639a6d64c80c556b0a85a7044d28db9d5ca926678b1dccaf2f66214",
+        "project_id": "ugas-v1-test-project",
+        "request_hash": "9a6beca6218aed4187454610c67aec68b1fd21541799f2b5839f5897458270ba"
+      },
+      "execution_policy": {},
+      "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+      "family_limits": {},
+      "max_concurrency": 4,
+      "node_deadlines": {
+        "deadline-first": {
+          "deadline_seconds": 3.0,
+          "elapsed_seconds": 3.0,
+          "error_class": "REQUEST_DEADLINE_EXCEEDED",
+          "parent_deadline_seconds": 3.0,
+          "started_seconds": 0.0,
+          "status": "TIMEOUT"
+        }
+      },
+      "peak_concurrency": 1,
+      "project_id": "ugas-v1-test-project",
+      "provider_submit_calls": 0,
+      "request_deadline_seconds": 3,
+      "request_hash": "9a6beca6218aed4187454610c67aec68b1fd21541799f2b5839f5897458270ba",
+      "request_id": "orchestration-v0246-fixture",
+      "results": {},
+      "scheduler_hash": "648b723548b9e539219a282626e60ce91240db545faba4ddfe75e515ed46bcba",
+      "schema_version": "0.24.6",
+      "states": {
+        "deadline-first": "FAILED",
+        "deadline-later": "BLOCKED"
+      },
+      "status": "COMPLETE",
+      "test_only": true
+    },
+    "deadline_probe": {
+      "after_boundary": true,
+      "before_boundary": true,
+      "canonical_rule": "duration == allowed remaining budget succeeds; duration > allowed fails",
+      "exact_boundary": true,
+      "node_exact_boundary": true,
+      "proof_source": "deterministic fake clock probe"
+    },
+    "legacy_request": {
+      "asset_family": "maps_minimap",
+      "budget_profile": "bounded-test-only",
+      "dependency_refs": [],
+      "idempotency_key": "legacy:legacy-0242",
+      "inputs": {
+        "legacy": {
+          "fixture": "legacy"
+        },
+        "profile": "qa",
+        "seed": 1
+      },
+      "operation": "EXECUTE",
+      "outputs": {
+        "path": "results/legacy.json",
+        "project_id": "ugas-v1-test-project"
+      },
+      "priority": 0,
+      "production_intent": false,
+      "project_id": "ugas-v1-test-project",
+      "quality_profile": "legacy-compatible",
+      "request_hash": "90be659691f9a9719f1213ed1f5a7e42576fc5ac3bcc80cb01599596a26804b3",
+      "request_id": "legacy-0242",
+      "request_kind": "ASSET_OPERATION",
+      "retry_policy": {
+        "max_attempts": 1,
+        "retryable_errors": []
+      },
+      "schema_version": "0.24.6",
+      "test_only": true,
+      "timeout_seconds": 60
+    },
+    "retry_class": {
+      "attempts": {
+        "retry-class": 1
+      },
+      "authority_binding_hash": "",
+      "circuit": {
+        "failure_threshold": 2,
+        "failures": 1,
+        "probe_in_flight": false,
+        "project_id": "ugas-v1-test-project",
+        "route_executor_identity": "test-only-fake-executor-v0246",
+        "state": "CLOSED"
+      },
+      "clock_elapsed_seconds": 0.0,
+      "dag_hash": "9e605440386a93405bcc687c86ead82a0904bb50829bfc1e20736f3e3d2cab5b",
+      "event_hash": "f386f7daa7df61b178144520b423034a40b521edd09a156dbee3c50c617064c8",
+      "event_sequence": 5,
+      "events": [
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "443e24b11dbece627013cd5582e813f738d720734f8c532b09970d390baea872",
+          "from": "PLANNED",
+          "node_id": "retry-class",
+          "request_deadline_seconds": 30,
+          "sequence": 1,
+          "to": "VALIDATED"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "67cd4b1f5408befeda4641f99623523ed78b411bec73de3173c5e2101fbdcd6a",
+          "from": "VALIDATED",
+          "node_id": "retry-class",
+          "request_deadline_seconds": 30,
+          "sequence": 2,
+          "to": "READY"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "3edac8848f46267ad75a81104e9f1e4726e07a3adcbb1e1f53d5fd1dcb7259a9",
+          "from": "READY",
+          "node_id": "retry-class",
+          "request_deadline_seconds": 30,
+          "sequence": 3,
+          "to": "DISPATCHED"
+        },
+        {
+          "circuit_state": "CLOSED",
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "45f62e1bb9a90e6dcde193bc1a246a4b664875886b33677c61e7b3d476a0d7a9",
+          "from": "DISPATCHED",
+          "node_id": "retry-class",
+          "request_deadline_seconds": 30,
+          "sequence": 4,
+          "to": "RUNNING"
+        },
+        {
+          "attempt": 1,
+          "detail": "TRANSIENT_EXECUTION_ERROR",
+          "elapsed_seconds": 0.0,
+          "event_hash": "f386f7daa7df61b178144520b423034a40b521edd09a156dbee3c50c617064c8",
+          "from": "RUNNING",
+          "node_id": "retry-class",
+          "request_deadline_seconds": 30,
+          "sequence": 5,
+          "timeout_type": null,
+          "to": "FAILED"
+        }
+      ],
+      "execution_identity": {
+        "authority_binding_hash": "",
+        "dag_hash": "9e605440386a93405bcc687c86ead82a0904bb50829bfc1e20736f3e3d2cab5b",
+        "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+        "idempotency_key": "orchestration-v0246-fixture-idempotency",
+        "identity_hash": "046d4ac3493abf4b1b39da4d0ea014dc0200b32f54d191f1624a1567c56e4f88",
+        "project_id": "ugas-v1-test-project",
+        "request_hash": "67aefc47788dbecccf0482ed97e20cd2db88152cb5bd61de33df05d6b224691c"
+      },
+      "execution_policy": {},
+      "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+      "family_limits": {},
+      "max_concurrency": 4,
+      "node_deadlines": {
+        "retry-class": {
+          "deadline_seconds": 30.0,
+          "elapsed_seconds": 0.0,
+          "error_class": "TRANSIENT_EXECUTION_ERROR",
+          "parent_deadline_seconds": 30.0,
+          "started_seconds": 0.0,
+          "status": "RETRYABLE"
+        }
+      },
+      "peak_concurrency": 1,
+      "project_id": "ugas-v1-test-project",
+      "provider_submit_calls": 0,
+      "request_deadline_seconds": 30,
+      "request_hash": "67aefc47788dbecccf0482ed97e20cd2db88152cb5bd61de33df05d6b224691c",
+      "request_id": "orchestration-v0246-fixture",
+      "results": {},
+      "scheduler_hash": "35a8ff161df300deebb4e5a92ad6da47493b0ab54b19bd2c51697177ffee29ad",
+      "schema_version": "0.24.6",
+      "states": {
+        "retry-class": "FAILED"
+      },
+      "status": "COMPLETE",
+      "test_only": true
+    },
+    "retry_deadline": {
+      "attempts": {
+        "retry-deadline": 2
+      },
+      "authority_binding_hash": "",
+      "circuit": {
+        "failure_threshold": 2,
+        "failures": 2,
+        "probe_in_flight": false,
+        "project_id": "ugas-v1-test-project",
+        "route_executor_identity": "test-only-fake-executor-v0246",
+        "state": "OPEN"
+      },
+      "clock_elapsed_seconds": 3.0,
+      "dag_hash": "7ab462471fb2e5dd8b789d3178bf4e2b1651a8a5cb1d6221715c849c9e1b36aa",
+      "event_hash": "8592eaef6fadd7b176dc48ed0ce5bd88e843b5e142a8e8bbb9ef1f9f09d58831",
+      "event_sequence": 5,
+      "events": [
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "8bf19f54f28d95e5b0d366b68502fb92506a1cb7148e04d6a6b7d9d8edfea701",
+          "from": "PLANNED",
+          "node_id": "retry-deadline",
+          "request_deadline_seconds": 3,
+          "sequence": 1,
+          "to": "VALIDATED"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "1c2fd22e9823092a9c3c0651ff5566bfed57bc7516d13f5ac43a25daefd787c7",
+          "from": "VALIDATED",
+          "node_id": "retry-deadline",
+          "request_deadline_seconds": 3,
+          "sequence": 2,
+          "to": "READY"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "03f416d2d0ba54aab0bc98da2e2cc8e74d863a6948c767d83fdbe0de68f6c0e5",
+          "from": "READY",
+          "node_id": "retry-deadline",
+          "request_deadline_seconds": 3,
+          "sequence": 3,
+          "to": "DISPATCHED"
+        },
+        {
+          "circuit_state": "CLOSED",
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "932ab392aae0a999cffb10d50800d8857beeedcb6b0923d544b0c1e554f6cb91",
+          "from": "DISPATCHED",
+          "node_id": "retry-deadline",
+          "request_deadline_seconds": 3,
+          "sequence": 4,
+          "to": "RUNNING"
+        },
+        {
+          "attempt": 2,
+          "detail": "REQUEST_DEADLINE_EXCEEDED",
+          "elapsed_seconds": 3.0,
+          "event_hash": "8592eaef6fadd7b176dc48ed0ce5bd88e843b5e142a8e8bbb9ef1f9f09d58831",
+          "from": "RUNNING",
+          "node_id": "retry-deadline",
+          "request_deadline_seconds": 3,
+          "sequence": 5,
+          "timeout_type": "RequestDeadlineExceeded",
+          "to": "FAILED"
+        }
+      ],
+      "execution_identity": {
+        "authority_binding_hash": "",
+        "dag_hash": "7ab462471fb2e5dd8b789d3178bf4e2b1651a8a5cb1d6221715c849c9e1b36aa",
+        "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+        "idempotency_key": "orchestration-v0246-fixture-idempotency",
+        "identity_hash": "b348cf4c32ca24ff37ffbdca0b8a6d0f8f901f72158c4f32806e68d71ba33a7a",
+        "project_id": "ugas-v1-test-project",
+        "request_hash": "9a6beca6218aed4187454610c67aec68b1fd21541799f2b5839f5897458270ba"
+      },
+      "execution_policy": {},
+      "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+      "family_limits": {},
+      "max_concurrency": 4,
+      "node_deadlines": {
+        "retry-deadline": {
+          "deadline_seconds": 3.0,
+          "elapsed_seconds": 3.0,
+          "error_class": "REQUEST_DEADLINE_EXCEEDED",
+          "parent_deadline_seconds": 3.0,
+          "started_seconds": 0.0,
+          "status": "TIMEOUT"
+        }
+      },
+      "peak_concurrency": 1,
+      "project_id": "ugas-v1-test-project",
+      "provider_submit_calls": 0,
+      "request_deadline_seconds": 3,
+      "request_hash": "9a6beca6218aed4187454610c67aec68b1fd21541799f2b5839f5897458270ba",
+      "request_id": "orchestration-v0246-fixture",
+      "results": {},
+      "scheduler_hash": "af76dfb5cdcf6ff5f4c94f6a70b3f13aee50b151effe90f802e9030d325a6100",
+      "schema_version": "0.24.6",
+      "states": {
+        "retry-deadline": "FAILED"
+      },
+      "status": "COMPLETE",
+      "test_only": true
+    },
+    "retry_success": {
+      "attempts": {
+        "retry": 2
+      },
+      "authority_binding_hash": "",
+      "circuit": {
+        "failure_threshold": 2,
+        "failures": 0,
+        "probe_in_flight": false,
+        "project_id": "ugas-v1-test-project",
+        "route_executor_identity": "test-only-fake-executor-v0246",
+        "state": "CLOSED"
+      },
+      "clock_elapsed_seconds": 0.0,
+      "dag_hash": "16b68224ce0dc7463705c8942b379b6b38ae1ad25b528371a86c31deca0ac04b",
+      "event_hash": "594d21868625118fe325bd486f27e508567ea341a242df2e918df6460d08501b",
+      "event_sequence": 5,
+      "events": [
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "75d92fde1cbe87d73883c6624433e8c3692051acc7084e1bac425f529da8cec9",
+          "from": "PLANNED",
+          "node_id": "retry",
+          "request_deadline_seconds": 30,
+          "sequence": 1,
+          "to": "VALIDATED"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "325df40a0d9bd2e3e3ce748b0b4bbe385cf791adadef85bdcc920b912d64b251",
+          "from": "VALIDATED",
+          "node_id": "retry",
+          "request_deadline_seconds": 30,
+          "sequence": 2,
+          "to": "READY"
+        },
+        {
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "4686e0f6cb0b8c87230fed0c96d5dcf8c3fdce56215963cac56a7c380c787bac",
+          "from": "READY",
+          "node_id": "retry",
+          "request_deadline_seconds": 30,
+          "sequence": 3,
+          "to": "DISPATCHED"
+        },
+        {
+          "circuit_state": "CLOSED",
+          "detail": "",
+          "elapsed_seconds": 0.0,
+          "event_hash": "5eb40e327169f995ea34f218d2800d1a1486ab201a4705662a33462807566b48",
+          "from": "DISPATCHED",
+          "node_id": "retry",
+          "request_deadline_seconds": 30,
+          "sequence": 4,
+          "to": "RUNNING"
+        },
+        {
+          "attempt": 2,
+          "detail": "",
+          "duration_seconds": 0.0,
+          "elapsed_seconds": 0.0,
+          "event_hash": "594d21868625118fe325bd486f27e508567ea341a242df2e918df6460d08501b",
+          "from": "RUNNING",
+          "node_id": "retry",
+          "request_deadline_seconds": 30,
+          "sequence": 5,
+          "to": "SUCCEEDED"
+        }
+      ],
+      "execution_identity": {
+        "authority_binding_hash": "",
+        "dag_hash": "16b68224ce0dc7463705c8942b379b6b38ae1ad25b528371a86c31deca0ac04b",
+        "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+        "idempotency_key": "orchestration-v0246-fixture-idempotency",
+        "identity_hash": "6912142758830dc20b1201fba831f6f23021577bf99f7496fab3ae08d6ba58a2",
+        "project_id": "ugas-v1-test-project",
+        "request_hash": "67aefc47788dbecccf0482ed97e20cd2db88152cb5bd61de33df05d6b224691c"
+      },
+      "execution_policy": {},
+      "execution_policy_identity": "d1a982755325b60adee0460c43f894642dd1dbb15ff7acfb55102e65e3e5e433",
+      "family_limits": {},
+      "max_concurrency": 4,
+      "node_deadlines": {
+        "retry": {
+          "deadline_seconds": 30.0,
+          "elapsed_seconds": 0.0,
+          "parent_deadline_seconds": 30.0,
+          "started_seconds": 0.0,
+          "status": "SUCCEEDED"
+        }
+      },
+      "peak_concurrency": 1,
+      "project_id": "ugas-v1-test-project",
+      "provider_submit_calls": 0,
+      "request_deadline_seconds": 30,
+      "request_hash": "67aefc47788dbecccf0482ed97e20cd2db88152cb5bd61de33df05d6b224691c",
+      "request_id": "orchestration-v0246-fixture",
+      "results": {
+        "retry": {
+          "attempt": 2,
+          "execution_id": "fake-c02e77babaaf81b6",
+          "provider": null,
+          "result_hash": "c02e77babaaf81b6ae3ef6e38e978dc0de7f1a080b41e1c59db2876a2d96c42f",
+          "status": "SUCCEEDED",
+          "synthetic": true,
+          "test_only": true
+        }
+      },
+      "scheduler_hash": "ea2e452fbd548992c5450062bb52426d44f35d2718741ce262e965a6cf0caac9",
+      "schema_version": "0.24.6",
+      "states": {
+        "retry": "SUCCEEDED"
+      },
+      "status": "COMPLETE",
+      "test_only": true
+    }
+  },
+  "request_deadline_seconds": 30,
+  "status": "PASS"
+}

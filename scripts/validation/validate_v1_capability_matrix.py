@@ -39,8 +39,8 @@ def main() -> int:
     items = next(item for item in capabilities if item["id"] == "items_props")
     environment = next(item for item in capabilities if item["id"] == "environment_tilesets")
     maps = next(item for item in capabilities if item["id"] == "maps_minimap_assets")
-    if value["version"] not in {"0.20.3", "0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5"}:
-        failures.append("active-matrix-version-must-be-v0203-through-v0245")
+    if value["version"] not in {"0.20.3", "0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6"}:
+        failures.append("active-matrix-version-must-be-v0203-through-v0246")
     ui = next(item for item in capabilities if item["id"] == "ui_asset_family")
     if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "APPROVED_FOUNDATION" or environment["status"] not in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"} or value["next_candidate"] not in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP", "UI_ASSET_FAMILY", "ORCHESTRATION_RUNTIME_HARDENING", "V1_FINAL_ACCEPTANCE"}:
         failures.append("items-props-closure-or-environment-active-state-invalid")
@@ -61,7 +61,7 @@ def main() -> int:
         orchestration = next(item for item in capabilities if item["id"] == "orchestration_runtime_hardening")
         if maps["status"] != "APPROVED_FOUNDATION" or ui["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or not (vfx["status"].startswith("TECHNICALLY_QUALIFIED_FOUNDATION") or vfx["status"].startswith("APPROVED_FOUNDATION")) or orchestration["status"] != "Blocked until VFX merged closed and post-merge main CI succeeds" or value["next_candidate"] != "ORCHESTRATION_RUNTIME_HARDENING":
             failures.append("vfx-asset-family-active-state-invalid")
-    if value["version"] in {"0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5"}:
+    if value["version"] in {"0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6"}:
         vfx = next(item for item in capabilities if item["id"] == "vfx_asset_family")
         orchestration = next(item for item in capabilities if item["id"] == "orchestration_runtime_hardening")
         if maps["status"] != "APPROVED_FOUNDATION" or ui["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or vfx["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or orchestration["status"] != "TECHNICALLY_QUALIFIED_FOUNDATION; EXTERNAL REVIEW REQUIRED" or value["next_candidate"] != "V1_FINAL_ACCEPTANCE":
@@ -80,6 +80,8 @@ def main() -> int:
         output = ROOT / "docs/evidence/orchestration-runtime-v0244/capability-matrix-validation-v0244.json"
     if value["version"] == "0.24.5":
         output = ROOT / "docs/evidence/orchestration-runtime-v0245/capability-matrix-validation-v0245.json"
+    if value["version"] == "0.24.6":
+        output = ROOT / "docs/evidence/orchestration-runtime-v0246/capability-matrix-validation-v0246.json"
     if value["version"] == "0.21.3":
         # The v0.21.3 file is immutable technical history. The active matrix
         # is validated above and printed, while the runner restores this exact
