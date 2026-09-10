@@ -1,0 +1,222 @@
+{
+  "approved_registry": {
+    "items_props": {
+      "approved_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+      "content_hash": "01b0b467ae5eb6b60d561552ee21766f1edab31fb8835b4570a2886b39a07b58",
+      "path": "docs/evidence/maps-minimap-runtime-v0212/items-props-authority-bindings-v0212.json",
+      "revision": "v0.19.1",
+      "semantic_hash": "59cfa25b1dbeff5cb7628c0f18b770788f2477fd5dc3ba750f0f632becb581b9",
+      "status": "APPROVED_FOUNDATION"
+    },
+    "maps_minimap": {
+      "approved_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+      "content_hash": "c9c52304774afa3f7ac1d997f709bae7ec57a3c35f5a9b1a0c56fefa10eca035",
+      "path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+      "revision": "v0.21.3",
+      "semantic_hash": "da3448da66edaa7f254a060ae67988df62da4a2ccceebfb1cf032af7e8b4c3dd",
+      "status": "MERGED_CLOSED"
+    },
+    "ui_asset_family": {
+      "approved_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
+      "content_hash": "50fef443249098c703a14f2027ec7e67538a749110de51b318ee604652a44dbd",
+      "path": "docs/evidence/ui-asset-family-runtime-v0223/ui-style-authority-v0223.json",
+      "revision": "v0.22.3",
+      "semantic_hash": "993337cf2b0ab3c5ea37c1a7f371acf93242b5b21227950d8c3529a8fc0a37a8",
+      "status": "MERGED_CLOSED"
+    },
+    "vfx_asset_family": {
+      "approved_commit": "dee98f8cd89ebd83a36ead7a22a184700d6e916f",
+      "content_hash": "4d9e6fe3b056b0987b6c7978f826813ece340701d481fdc22436e450f7b2119c",
+      "path": "docs/evidence/vfx-asset-family-runtime-v0234/vfx-family-manifest-v0234.json",
+      "revision": "v0.23.4",
+      "semantic_hash": "ebc9bdfb045e2a240f93d60f92a0b402f45262dca5f438be74b36916ad6ffefc",
+      "status": "MERGED_CLOSED"
+    }
+  },
+  "mutation_controls": [
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-01",
+      "detail": "authority bytes do not match docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "injected_defect": "mutated content hash",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-02",
+      "detail": "authority tuple does not match approved registry for ui_asset_family",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "injected_defect": "wrong family tuple",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-03",
+      "detail": "authority tuple does not match approved registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "injected_defect": "wrong revision",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-04",
+      "detail": "authority tuple does not match approved registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "injected_defect": "caller labels unapproved tuple",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-05",
+      "detail": "approved_commit is required for governed family maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_APPROVED_COMMIT_REQUIRED",
+      "injected_defect": "missing approved_commit",
+      "observed_rejection_class": "ORCH_DEPENDENCY_APPROVED_COMMIT_REQUIRED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-07",
+      "detail": "approved_commit does not match registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_APPROVED_COMMIT_REGISTRY_MISMATCH",
+      "injected_defect": "wrong approved_commit",
+      "observed_rejection_class": "ORCH_DEPENDENCY_APPROVED_COMMIT_REGISTRY_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    }
+  ],
+  "refs": [
+    {
+      "approved_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+      "content_hash": "c9c52304774afa3f7ac1d997f709bae7ec57a3c35f5a9b1a0c56fefa10eca035",
+      "family": "maps_minimap",
+      "path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.21.3",
+      "semantic_hash": "da3448da66edaa7f254a060ae67988df62da4a2ccceebfb1cf032af7e8b4c3dd",
+      "status": "MERGED_CLOSED"
+    },
+    {
+      "approved_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
+      "content_hash": "50fef443249098c703a14f2027ec7e67538a749110de51b318ee604652a44dbd",
+      "family": "ui_asset_family",
+      "path": "docs/evidence/ui-asset-family-runtime-v0223/ui-style-authority-v0223.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.22.3",
+      "semantic_hash": "993337cf2b0ab3c5ea37c1a7f371acf93242b5b21227950d8c3529a8fc0a37a8",
+      "status": "MERGED_CLOSED"
+    },
+    {
+      "approved_commit": "dee98f8cd89ebd83a36ead7a22a184700d6e916f",
+      "content_hash": "4d9e6fe3b056b0987b6c7978f826813ece340701d481fdc22436e450f7b2119c",
+      "family": "vfx_asset_family",
+      "path": "docs/evidence/vfx-asset-family-runtime-v0234/vfx-family-manifest-v0234.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.23.4",
+      "semantic_hash": "ebc9bdfb045e2a240f93d60f92a0b402f45262dca5f438be74b36916ad6ffefc",
+      "status": "MERGED_CLOSED"
+    },
+    {
+      "approved_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+      "content_hash": "01b0b467ae5eb6b60d561552ee21766f1edab31fb8835b4570a2886b39a07b58",
+      "family": "items_props",
+      "path": "docs/evidence/maps-minimap-runtime-v0212/items-props-authority-bindings-v0212.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.19.1",
+      "semantic_hash": "59cfa25b1dbeff5cb7628c0f18b770788f2477fd5dc3ba750f0f632becb581b9",
+      "status": "APPROVED_FOUNDATION"
+    }
+  ],
+  "resolved": {
+    "authorities": [
+      {
+        "approved_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+        "content_hash": "c9c52304774afa3f7ac1d997f709bae7ec57a3c35f5a9b1a0c56fefa10eca035",
+        "family": "maps_minimap",
+        "path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 977,
+        "resolved_content_hash": "c9c52304774afa3f7ac1d997f709bae7ec57a3c35f5a9b1a0c56fefa10eca035",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "da3448da66edaa7f254a060ae67988df62da4a2ccceebfb1cf032af7e8b4c3dd",
+        "revision": "v0.21.3",
+        "semantic_hash": "da3448da66edaa7f254a060ae67988df62da4a2ccceebfb1cf032af7e8b4c3dd",
+        "status": "MERGED_CLOSED",
+        "verification_mode": "GIT_COMMIT_WITNESS"
+      },
+      {
+        "approved_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
+        "content_hash": "50fef443249098c703a14f2027ec7e67538a749110de51b318ee604652a44dbd",
+        "family": "ui_asset_family",
+        "path": "docs/evidence/ui-asset-family-runtime-v0223/ui-style-authority-v0223.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 281,
+        "resolved_content_hash": "50fef443249098c703a14f2027ec7e67538a749110de51b318ee604652a44dbd",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "993337cf2b0ab3c5ea37c1a7f371acf93242b5b21227950d8c3529a8fc0a37a8",
+        "revision": "v0.22.3",
+        "semantic_hash": "993337cf2b0ab3c5ea37c1a7f371acf93242b5b21227950d8c3529a8fc0a37a8",
+        "status": "MERGED_CLOSED",
+        "verification_mode": "GIT_COMMIT_WITNESS"
+      },
+      {
+        "approved_commit": "dee98f8cd89ebd83a36ead7a22a184700d6e916f",
+        "content_hash": "4d9e6fe3b056b0987b6c7978f826813ece340701d481fdc22436e450f7b2119c",
+        "family": "vfx_asset_family",
+        "path": "docs/evidence/vfx-asset-family-runtime-v0234/vfx-family-manifest-v0234.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 118976,
+        "resolved_content_hash": "4d9e6fe3b056b0987b6c7978f826813ece340701d481fdc22436e450f7b2119c",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "ebc9bdfb045e2a240f93d60f92a0b402f45262dca5f438be74b36916ad6ffefc",
+        "revision": "v0.23.4",
+        "semantic_hash": "ebc9bdfb045e2a240f93d60f92a0b402f45262dca5f438be74b36916ad6ffefc",
+        "status": "MERGED_CLOSED",
+        "verification_mode": "GIT_COMMIT_WITNESS"
+      },
+      {
+        "approved_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+        "content_hash": "01b0b467ae5eb6b60d561552ee21766f1edab31fb8835b4570a2886b39a07b58",
+        "family": "items_props",
+        "path": "docs/evidence/maps-minimap-runtime-v0212/items-props-authority-bindings-v0212.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 2857,
+        "resolved_content_hash": "01b0b467ae5eb6b60d561552ee21766f1edab31fb8835b4570a2886b39a07b58",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "59cfa25b1dbeff5cb7628c0f18b770788f2477fd5dc3ba750f0f632becb581b9",
+        "revision": "v0.19.1",
+        "semantic_hash": "59cfa25b1dbeff5cb7628c0f18b770788f2477fd5dc3ba750f0f632becb581b9",
+        "status": "APPROVED_FOUNDATION",
+        "verification_mode": "GIT_COMMIT_WITNESS"
+      }
+    ],
+    "authority_binding_hash": "5b949ed7b1d8c632ab266a7616bdfe1eecf2d5986a1eddcb7d6c93131cf617a8",
+    "resolved_authority_hashes": {
+      "items_props": "01b0b467ae5eb6b60d561552ee21766f1edab31fb8835b4570a2886b39a07b58",
+      "maps_minimap": "c9c52304774afa3f7ac1d997f709bae7ec57a3c35f5a9b1a0c56fefa10eca035",
+      "ui_asset_family": "50fef443249098c703a14f2027ec7e67538a749110de51b318ee604652a44dbd",
+      "vfx_asset_family": "4d9e6fe3b056b0987b6c7978f826813ece340701d481fdc22436e450f7b2119c"
+    },
+    "status": "PASS",
+    "verification_mode": "GIT_COMMIT_WITNESS"
+  },
+  "status": "PASS"
+}

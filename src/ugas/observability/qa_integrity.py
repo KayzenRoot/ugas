@@ -26,6 +26,14 @@ from ..state_consistency_v0231 import validate_state_consistency as validate_sta
 from ..state_consistency_v0232 import validate_state_consistency as validate_state_consistency_v0232
 from ..state_consistency_v0233 import validate_state_consistency as validate_state_consistency_v0233
 from ..state_consistency_v0234 import validate_state_consistency as validate_state_consistency_v0234
+from ..state_consistency_v0240 import validate_state_consistency as validate_state_consistency_v0240
+from ..state_consistency_v0241 import validate_state_consistency as validate_state_consistency_v0241
+from ..state_consistency_v0242 import validate_state_consistency as validate_state_consistency_v0242
+from ..state_consistency_v0243 import validate_state_consistency as validate_state_consistency_v0243
+from ..state_consistency_v0244 import validate_state_consistency as validate_state_consistency_v0244
+from ..state_consistency_v0245 import validate_state_consistency as validate_state_consistency_v0245
+from ..state_consistency_v0246 import validate_state_consistency as validate_state_consistency_v0246
+from ..state_consistency_v0247 import validate_state_consistency as validate_state_consistency_v0247
 
 # The active state/review moved to v0.21.0. The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
@@ -168,6 +176,14 @@ class ActiveEvidenceCache:
             except (OSError, json.JSONDecodeError, AttributeError):
                 active_version = None
             schema_by_version = {
+                "0.24.7": "schemas/current-state-v0247.json",
+                "0.24.6": "schemas/current-state-v0246.json",
+                "0.24.5": "schemas/current-state-v0245.json",
+                "0.24.4": "schemas/current-state-v0244.json",
+                "0.24.3": "schemas/current-state-v0243.json",
+                "0.24.2": "schemas/current-state-v0242.json",
+                "0.24.1": "schemas/current-state-v0241.json",
+                "0.24.0": "schemas/current-state-v0240.json",
                 "0.23.4": "schemas/current-state-v0234.json",
                 "0.23.3": "schemas/current-state-v0233.json",
                 "0.23.2": "schemas/current-state-v0232.json",
@@ -185,6 +201,14 @@ class ActiveEvidenceCache:
             self.state_schema_path = self.repo_root / schema_by_version.get(active_version, "schemas/current-state-v0203.json")
         self.checkpoint_path = checkpoint_path or self.repo_root / "CHECKPOINT.md"
         review_by_schema = {
+            "current-state-v0247.json": "REVIEW-v0.24.7.md",
+            "current-state-v0246.json": "REVIEW-v0.24.6.md",
+            "current-state-v0245.json": "REVIEW-v0.24.5.md",
+            "current-state-v0244.json": "REVIEW-v0.24.4.md",
+            "current-state-v0243.json": "REVIEW-v0.24.3.md",
+            "current-state-v0242.json": "REVIEW-v0.24.2.md",
+            "current-state-v0241.json": "REVIEW-v0.24.1.md",
+            "current-state-v0240.json": "REVIEW-v0.24.0.md",
             "current-state-v0234.json": "REVIEW-v0.23.4.md",
             "current-state-v0233.json": "REVIEW-v0.23.3.md",
             "current-state-v0232.json": "REVIEW-v0.23.2.md",
@@ -276,7 +300,78 @@ class ActiveEvidenceCache:
             schema = _load(self.state_schema_path)
             validate_schema_document(schema)
             validate_instance(state, schema)
-            if state.get("version") == "0.23.4":
+            if state.get("version") == "0.24.7":
+                consistency = validate_state_consistency_v0247(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0247/correction-history-v0247.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.6":
+                consistency = validate_state_consistency_v0246(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0246/correction-history-v0246.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.5":
+                consistency = validate_state_consistency_v0245(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0245/correction-history-v0245.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.4":
+                consistency = validate_state_consistency_v0244(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0244/correction-history-v0244.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.3":
+                consistency = validate_state_consistency_v0243(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0243/correction-history-v0243.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.2":
+                consistency = validate_state_consistency_v0242(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0242/correction-history-v0242.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.1":
+                consistency = validate_state_consistency_v0241(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0241/correction-history-v0241.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.0":
+                consistency = validate_state_consistency_v0240(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0240/v0234-post-merge-closure-binding-v0240.json"),
+                )
+            elif state.get("version") == "0.23.4":
                 consistency = validate_state_consistency_v0234(
                     state,
                     self.checkpoint_path.read_text(encoding="utf-8"),

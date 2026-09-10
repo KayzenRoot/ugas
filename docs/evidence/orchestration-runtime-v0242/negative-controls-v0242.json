@@ -1,0 +1,139 @@
+{
+  "controls": {
+    "NC-AUTH-06": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-06",
+      "detail": "authority tuple does not match approved registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "injected_defect": "missing authority path",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-01",
+      "detail": "checkpoint states must contain exactly the DAG nodes",
+      "expected_rejection_class": "ORCH_CHECKPOINT_NODE_SET_MISMATCH",
+      "injected_defect": "extra checkpoint node",
+      "observed_rejection_class": "ORCH_CHECKPOINT_NODE_SET_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-02",
+      "detail": "event references an unknown node",
+      "expected_rejection_class": "ORCH_CHECKPOINT_EVENT_NODE_UNKNOWN",
+      "injected_defect": "unknown checkpoint event node",
+      "observed_rejection_class": "ORCH_CHECKPOINT_EVENT_NODE_UNKNOWN",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-03": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-03",
+      "detail": "event replay does not equal checkpoint states",
+      "expected_rejection_class": "ORCH_CHECKPOINT_EVENT_STATE_MISMATCH",
+      "injected_defect": "fake completed result",
+      "observed_rejection_class": "ORCH_CHECKPOINT_EVENT_STATE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-04": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-04",
+      "detail": "top-level event_hash does not match the verified event chain",
+      "expected_rejection_class": "ORCH_CHECKPOINT_EVENT_HASH_MISMATCH",
+      "injected_defect": "tampered top-level event_hash",
+      "observed_rejection_class": "ORCH_CHECKPOINT_EVENT_HASH_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-05": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-05",
+      "detail": "never-dispatched node tail may not carry attempt count",
+      "expected_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "injected_defect": "attempt on never-dispatched node",
+      "observed_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-06": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-06",
+      "detail": "attempt count for prepare is out of bounds",
+      "expected_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "injected_defect": "bool attempt count",
+      "observed_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-07": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-07",
+      "detail": "deadline references unknown node injected",
+      "expected_rejection_class": "ORCH_CHECKPOINT_NODE_DEADLINES_UNKNOWN_NODE",
+      "injected_defect": "unknown node_deadlines entry",
+      "observed_rejection_class": "ORCH_CHECKPOINT_NODE_DEADLINES_UNKNOWN_NODE",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-08": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-08",
+      "detail": "OPEN circuit may not carry an in-flight probe",
+      "expected_rejection_class": "ORCH_CHECKPOINT_CIRCUIT_INVALID",
+      "injected_defect": "invalid circuit invariants",
+      "observed_rejection_class": "ORCH_CHECKPOINT_CIRCUIT_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-COORD-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-COORD-01",
+      "detail": "family limit for maps_minimap must be between 1 and global limit",
+      "expected_rejection_class": "ORCH_FAMILY_LIMIT_INVALID",
+      "injected_defect": "invalid family limit",
+      "observed_rejection_class": "ORCH_FAMILY_LIMIT_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-COORD-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-COORD-02",
+      "detail": "observed peak exceeds family bound for maps_minimap",
+      "expected_rejection_class": "ORCH_FAMILY_CONCURRENCY_EXCEEDED",
+      "injected_defect": "family peak above limit",
+      "observed_rejection_class": "ORCH_FAMILY_CONCURRENCY_EXCEEDED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-GATE-01": {
+      "actual_exception": null,
+      "control_id": "NC-GATE-01",
+      "detail": "actual observed value and type preserved",
+      "expected_rejection_class": "STRICT_BOOLEAN_FAIL",
+      "injected_defect": "non-bool hard-gate result",
+      "observed_gate_status": "FAIL",
+      "observed_rejection_class": null,
+      "observed_type": "str",
+      "observed_value": "true",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-PROVIDER-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-PROVIDER-01",
+      "detail": "provider spy recorded a call: ugas.comfyui_client.ComfyUIClient.submit_workflow",
+      "expected_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+      "injected_defect": "injected provider call",
+      "observed_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    }
+  },
+  "schema_version": "0.24.2",
+  "status": "PASS"
+}

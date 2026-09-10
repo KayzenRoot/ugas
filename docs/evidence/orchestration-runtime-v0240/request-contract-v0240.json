@@ -1,0 +1,33 @@
+{
+  "request": {
+    "asset_family": "maps_minimap",
+    "budget_profile": "bounded-cpu-test",
+    "dependency_refs": [],
+    "idempotency_key": "orchestration-v0240-fixture-idempotency",
+    "inputs": {
+      "fixture": "synthetic-map-minimap-001"
+    },
+    "operation": "EXECUTE",
+    "outputs": {
+      "path": "results/maps-minimap.json",
+      "project_id": "ugas-v1-test-project"
+    },
+    "priority": 50,
+    "production_intent": false,
+    "project_id": "ugas-v1-test-project",
+    "quality_profile": "foundation-qa",
+    "request_hash": "bfb7b06dd40ab8bf94b9d34411ede65eddc504d7a1397716eba5b08f62c340f4",
+    "request_id": "orchestration-v0240-fixture",
+    "request_kind": "ASSET_OPERATION",
+    "retry_policy": {
+      "max_attempts": 2,
+      "retryable_errors": [
+        "TRANSIENT_EXECUTION_ERROR"
+      ]
+    },
+    "schema_version": "0.24.0",
+    "test_only": true,
+    "timeout_seconds": 30
+  },
+  "status": "PASS"
+}

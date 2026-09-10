@@ -1,0 +1,80 @@
+{
+  "dag": {
+    "dag_hash": "eab1929190fe76b0d5d903ea89efca992399cd70d9c0a4aa01a52b426a8709c9",
+    "dag_id": "dag-1",
+    "nodes": [
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [],
+        "dependency_hashes": {},
+        "input_contract_hash": "9d4fb3db06c839019505c61b241793b1ba90398d1470b0d5d8dae48db22d0228",
+        "node_id": "prepare",
+        "operation": "EXECUTE",
+        "priority": 30,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR",
+            "REQUEST_DEADLINE_EXCEEDED",
+            "NODE_DEADLINE_EXCEEDED"
+          ]
+        },
+        "scheduling_key": "orchestration-v0242",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "prepare"
+        ],
+        "dependency_hashes": {
+          "prepare": "0b675fddef6fa409c373ef7afa6a647820e629e4f62598c028ed560a83bcf776"
+        },
+        "input_contract_hash": "21fe5a2ad830d645f1853dd6131cb68de5f1cff017e0b97f8dfa1a7ee1a3c380",
+        "node_id": "child",
+        "operation": "EXECUTE",
+        "priority": 20,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR",
+            "REQUEST_DEADLINE_EXCEEDED",
+            "NODE_DEADLINE_EXCEEDED"
+          ]
+        },
+        "scheduling_key": "orchestration-v0242",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "child"
+        ],
+        "dependency_hashes": {
+          "child": "273632021c9d0f0892655a9b88e2f55d02dbd90297d5a63b628b5b4414c2d9c3"
+        },
+        "input_contract_hash": "116294562e010340a06ef3200472d9bacbd7cc4e23b63354ca1f63c5c076b95d",
+        "node_id": "tail",
+        "operation": "EXECUTE",
+        "priority": 10,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR",
+            "REQUEST_DEADLINE_EXCEEDED",
+            "NODE_DEADLINE_EXCEEDED"
+          ]
+        },
+        "scheduling_key": "orchestration-v0242",
+        "timeout_seconds": 30
+      }
+    ],
+    "project_id": "ugas-v1-test-project",
+    "request_hash": "412a4c0521c15df422ae963bd132a672a15c502d6aede014157bd48d4ad23d88",
+    "schema_version": "0.24.2"
+  },
+  "status": "PASS"
+}

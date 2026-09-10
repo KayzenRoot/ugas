@@ -1,0 +1,986 @@
+{
+  "cache": {
+    "dag_hash": "6c828c998fd5ed93acd3ec51cdfc104cb75dcd8f7f7d71473a1d07bccbe884cd",
+    "project_id": "ugas-v1-test-project",
+    "request_hash": "bfb7b06dd40ab8bf94b9d34411ede65eddc504d7a1397716eba5b08f62c340f4",
+    "result_hashes": {
+      "package": "808847ff43956c6f426f2dbd6aa298849fc7d946b21fe07c8c7a609e6b456ef5",
+      "prepare": "aa2adf1a72a1560f807d96191798dae5f116523c51244bbf9c663062f9d4ffcd",
+      "qa": "bd744bf56cab2ac5a51de0267bd03ae65f1ce5ff68de0fd17da2a6e21a11a798",
+      "render": "01d5c92caa8ca96e80f85f37897c49a53929f84aa00988a349fa67e0594fd9ec"
+    },
+    "source_execution_id": "ddd2f8facdca4e8f",
+    "status": "SUCCEEDED"
+  },
+  "checkpoint": {
+    "completed": 4,
+    "dag_hash": "6c828c998fd5ed93acd3ec51cdfc104cb75dcd8f7f7d71473a1d07bccbe884cd",
+    "event_sequence": 20,
+    "request_hash": "bfb7b06dd40ab8bf94b9d34411ede65eddc504d7a1397716eba5b08f62c340f4",
+    "status": "PASS"
+  },
+  "closure_binding": {
+    "closure_review_comment_id": 5594761528,
+    "evidence_status": "MERGED_CLOSED",
+    "final_bookkeeping_head": "025805306784dee7e97ee70d4309aa671500eb2d",
+    "historical_evidence_immutable": true,
+    "merge_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f",
+    "new_generation": 0,
+    "post_merge_main_ci": {
+      "contexts": [
+        "UGAS CI / unit-and-validation",
+        "UGAS CI / docker-smoke"
+      ],
+      "docker_job_id": 102305017485,
+      "status": "SUCCESS",
+      "unit_job_id": 102305017275,
+      "workflow_run_id": 34300109485
+    },
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "record_type": "v0234_post_merge_closure_binding",
+    "repository": "KayzenRoot/ugas",
+    "schema_version": "0.24.0",
+    "semantic_approval_head": "9f8030d2c0ee0e00d10d64a9331899e21ebd5842",
+    "source_pr": 14
+  },
+  "dag": {
+    "dag_hash": "6c828c998fd5ed93acd3ec51cdfc104cb75dcd8f7f7d71473a1d07bccbe884cd",
+    "dag_id": "dag-1",
+    "nodes": [
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [],
+        "dependency_hashes": {},
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "prepare",
+        "operation": "EXECUTE",
+        "priority": 30,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "prepare"
+        ],
+        "dependency_hashes": {
+          "prepare": "d055c9c7910abe8cbafb44da6001d81477039d0c2a9b1571e26417ca66966ad2"
+        },
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "render",
+        "operation": "EXECUTE",
+        "priority": 20,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "render"
+        ],
+        "dependency_hashes": {
+          "render": "c780ad12969e3bd84434181825f709bd0b7f46e6a5cb6134289281451503f8e4"
+        },
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "qa",
+        "operation": "EXECUTE",
+        "priority": 20,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      },
+      {
+        "asset_family": "maps_minimap",
+        "dependencies": [
+          "qa"
+        ],
+        "dependency_hashes": {
+          "qa": "0fa56e433aaa349979fc909f86166b1a7b209fa4e5baa65c585ef8da3a08ec60"
+        },
+        "input_contract_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "node_id": "package",
+        "operation": "EXECUTE",
+        "priority": 10,
+        "resource_class": "cpu-test",
+        "retry_policy": {
+          "max_attempts": 2,
+          "retryable_errors": [
+            "TRANSIENT_EXECUTION_ERROR"
+          ]
+        },
+        "scheduling_key": "orchestration-v0240",
+        "timeout_seconds": 30
+      }
+    ],
+    "project_id": "ugas-v1-test-project",
+    "request_hash": "bfb7b06dd40ab8bf94b9d34411ede65eddc504d7a1397716eba5b08f62c340f4",
+    "schema_version": "0.24.0"
+  },
+  "gates": {
+    "gates": {
+      "asset_contracts_read_only": {
+        "detail": "actual checker observation",
+        "gate_id": "asset_contracts_read_only",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "bounded_cancellation": {
+        "detail": "actual checker observation",
+        "gate_id": "bounded_cancellation",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "bounded_family_concurrency": {
+        "detail": "actual checker observation",
+        "gate_id": "bounded_family_concurrency",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "bounded_global_concurrency": {
+        "detail": "actual checker observation",
+        "gate_id": "bounded_global_concurrency",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "bounded_retry": {
+        "detail": "actual checker observation",
+        "gate_id": "bounded_retry",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "cache_identity": {
+        "detail": "actual checker observation",
+        "gate_id": "cache_identity",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "cache_success_only": {
+        "detail": "actual checker observation",
+        "gate_id": "cache_success_only",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "canonical_request": {
+        "detail": "actual checker observation",
+        "gate_id": "canonical_request",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "checkpoint_binding": {
+        "detail": "actual checker observation",
+        "gate_id": "checkpoint_binding",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "checkpoint_tamper_rejection": {
+        "detail": "actual checker observation",
+        "gate_id": "checkpoint_tamper_rejection",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "circuit_breaker_isolated": {
+        "detail": "actual checker observation",
+        "gate_id": "circuit_breaker_isolated",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "dag_acyclic": {
+        "detail": "actual checker observation",
+        "gate_id": "dag_acyclic",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "dag_dependency_hashes": {
+        "detail": "actual checker observation",
+        "gate_id": "dag_dependency_hashes",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "dag_schema": {
+        "detail": "actual checker observation",
+        "gate_id": "dag_schema",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "failure_isolation": {
+        "detail": "actual checker observation",
+        "gate_id": "failure_isolation",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "fake_executor_determinism": {
+        "detail": "actual checker observation",
+        "gate_id": "fake_executor_determinism",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "historical_closure_binding": {
+        "detail": "actual checker observation",
+        "gate_id": "historical_closure_binding",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "idempotent_dispatch": {
+        "detail": "actual checker observation",
+        "gate_id": "idempotent_dispatch",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "legacy_adapter_narrow": {
+        "detail": "actual checker observation",
+        "gate_id": "legacy_adapter_narrow",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "no_dynamic_nodes": {
+        "detail": "actual checker observation",
+        "gate_id": "no_dynamic_nodes",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "no_retry_after_cancel": {
+        "detail": "actual checker observation",
+        "gate_id": "no_retry_after_cancel",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "no_retry_after_success": {
+        "detail": "actual checker observation",
+        "gate_id": "no_retry_after_success",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "production_boundary": {
+        "detail": "actual checker observation",
+        "gate_id": "production_boundary",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "provider_submit_count_zero": {
+        "detail": "actual checker observation",
+        "gate_id": "provider_submit_count_zero",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "request_hash": {
+        "detail": "actual checker observation",
+        "gate_id": "request_hash",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "result_provenance": {
+        "detail": "actual checker observation",
+        "gate_id": "result_provenance",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "resume_identity": {
+        "detail": "actual checker observation",
+        "gate_id": "resume_identity",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "retryable_error_class": {
+        "detail": "actual checker observation",
+        "gate_id": "retryable_error_class",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "scheduler_dependency_first": {
+        "detail": "actual checker observation",
+        "gate_id": "scheduler_dependency_first",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "scheduler_deterministic": {
+        "detail": "actual checker observation",
+        "gate_id": "scheduler_deterministic",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "scheduler_priority_lexical": {
+        "detail": "actual checker observation",
+        "gate_id": "scheduler_priority_lexical",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "state_transition_contract": {
+        "detail": "actual checker observation",
+        "gate_id": "state_transition_contract",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "telemetry_sanitized": {
+        "detail": "actual checker observation",
+        "gate_id": "telemetry_sanitized",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "terminal_immutability": {
+        "detail": "actual checker observation",
+        "gate_id": "terminal_immutability",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      },
+      "timeout_determinism": {
+        "detail": "actual checker observation",
+        "gate_id": "timeout_determinism",
+        "observed": true,
+        "observed_type": "bool",
+        "status": "PASS"
+      }
+    },
+    "overall_pass": true,
+    "schema_version": "0.24.0"
+  },
+  "negative_controls": {
+    "controls": {
+      "NC-01": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-01",
+        "detail": "DAG contains a cycle",
+        "expected_rejection_class": "ORCH_DAG_CYCLE",
+        "injected_defect": "cycle",
+        "observed_rejection_class": "ORCH_DAG_CYCLE",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-02": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-02",
+        "detail": "node cannot depend on itself",
+        "expected_rejection_class": "ORCH_DAG_SELF_DEPENDENCY",
+        "injected_defect": "self dependency",
+        "observed_rejection_class": "ORCH_DAG_SELF_DEPENDENCY",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-03": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-03",
+        "detail": "unknown dependency missing",
+        "expected_rejection_class": "ORCH_DAG_MISSING_DEPENDENCY",
+        "injected_defect": "missing dependency",
+        "observed_rejection_class": "ORCH_DAG_MISSING_DEPENDENCY",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-04": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-04",
+        "detail": "node identifiers must be unique",
+        "expected_rejection_class": "ORCH_DAG_DUPLICATE_NODE_ID",
+        "injected_defect": "duplicate node id",
+        "observed_rejection_class": "ORCH_DAG_DUPLICATE_NODE_ID",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-05": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-05",
+        "detail": "DAG node count is outside the bounded range",
+        "expected_rejection_class": "ORCH_DAG_BOUNDS_EXCEEDED",
+        "injected_defect": "more than MAX_NODES",
+        "observed_rejection_class": "ORCH_DAG_BOUNDS_EXCEEDED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-06": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-06",
+        "detail": "DAG depth exceeds the bounded limit",
+        "expected_rejection_class": "ORCH_DAG_DEPTH_EXCEEDED",
+        "injected_defect": "depth over bound",
+        "observed_rejection_class": "ORCH_DAG_DEPTH_EXCEEDED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-07": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-07",
+        "detail": "observed schedule differs from the canonical schedule",
+        "expected_rejection_class": "ORCH_SCHEDULER_NONDETERMINISTIC",
+        "injected_defect": "reordered schedule",
+        "observed_rejection_class": "ORCH_SCHEDULER_NONDETERMINISTIC",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-08": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-08",
+        "detail": "observed peak exceeds global concurrency",
+        "expected_rejection_class": "ORCH_GLOBAL_CONCURRENCY_EXCEEDED",
+        "injected_defect": "global concurrency over bound",
+        "observed_rejection_class": "ORCH_GLOBAL_CONCURRENCY_EXCEEDED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-09": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-09",
+        "detail": "execution introduced or removed a node",
+        "expected_rejection_class": "ORCH_DYNAMIC_NODE_REJECTED",
+        "injected_defect": "dynamic node injected",
+        "observed_rejection_class": "ORCH_DYNAMIC_NODE_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-10": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-10",
+        "detail": "duplicate dispatch executed work twice",
+        "expected_rejection_class": "ORCH_IDEMPOTENT_REPLAY_VIOLATION",
+        "injected_defect": "duplicate dispatch executes twice",
+        "observed_rejection_class": "ORCH_IDEMPOTENT_REPLAY_VIOLATION",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-11": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-11",
+        "detail": "dependency hash is stale for prepare",
+        "expected_rejection_class": "ORCH_DAG_STALE_DEPENDENCY_HASH",
+        "injected_defect": "stale dependency hash",
+        "observed_rejection_class": "ORCH_DAG_STALE_DEPENDENCY_HASH",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-12": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-12",
+        "detail": "request hash does not match canonical request bytes",
+        "expected_rejection_class": "ORCH_REQUEST_HASH_MISMATCH",
+        "injected_defect": "reused request hash after semantic mutation",
+        "observed_rejection_class": "ORCH_REQUEST_HASH_MISMATCH",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-13": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-13",
+        "detail": "SUCCEEDED -> FAILED is not allowed",
+        "expected_rejection_class": "ORCH_ILLEGAL_STATE_TRANSITION",
+        "injected_defect": "illegal terminal transition",
+        "observed_rejection_class": "ORCH_ILLEGAL_STATE_TRANSITION",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-14": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-14",
+        "detail": "terminal execution cannot be retried",
+        "expected_rejection_class": "ORCH_RETRY_AFTER_TERMINAL_REJECTED",
+        "injected_defect": "retry after success",
+        "observed_rejection_class": "ORCH_RETRY_AFTER_TERMINAL_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-15": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-15",
+        "detail": "retry_policy.max_attempts exceeds the bounded limit",
+        "expected_rejection_class": "ORCH_RETRY_POLICY_INVALID",
+        "injected_defect": "unbounded retry",
+        "observed_rejection_class": "ORCH_RETRY_POLICY_INVALID",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-16": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-16",
+        "detail": "contract/security errors may not be retried",
+        "expected_rejection_class": "ORCH_NONRETRYABLE_ERROR_POLICY_REJECTED",
+        "injected_defect": "non-retryable contract error marked retryable",
+        "observed_rejection_class": "ORCH_NONRETRYABLE_ERROR_POLICY_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-17": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-17",
+        "detail": "node timeout is not bounded",
+        "expected_rejection_class": "ORCH_DAG_TIMEOUT_INVALID",
+        "injected_defect": "missing/zero timeout",
+        "observed_rejection_class": "ORCH_DAG_TIMEOUT_INVALID",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-18": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-18",
+        "detail": "checkpoint DAG identity is stale",
+        "expected_rejection_class": "ORCH_CHECKPOINT_STALE",
+        "injected_defect": "stale checkpoint DAG",
+        "observed_rejection_class": "ORCH_CHECKPOINT_STALE",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-19": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-19",
+        "detail": "checkpoint hash is absent or invalid",
+        "expected_rejection_class": "ORCH_CHECKPOINT_TAMPERED",
+        "injected_defect": "tampered checkpoint bytes",
+        "observed_rejection_class": "ORCH_CHECKPOINT_TAMPERED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-20": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-20",
+        "detail": "DAG project does not match request project",
+        "expected_rejection_class": "ORCH_CROSS_PROJECT_IDENTITY",
+        "injected_defect": "cross-project checkpoint",
+        "observed_rejection_class": "ORCH_CROSS_PROJECT_IDENTITY",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-21": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-21",
+        "detail": "failed, blocked or cancelled execution cannot populate success cache",
+        "expected_rejection_class": "ORCH_CACHE_NON_SUCCESS_REJECTED",
+        "injected_defect": "failed execution promoted to success cache",
+        "observed_rejection_class": "ORCH_CACHE_NON_SUCCESS_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-22": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-22",
+        "detail": "completed result is not bound for package",
+        "expected_rejection_class": "ORCH_CHECKPOINT_RESULT_HASH_TAMPERED",
+        "injected_defect": "dependency result hash tamper",
+        "observed_rejection_class": "ORCH_CHECKPOINT_RESULT_HASH_TAMPERED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-23": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-23",
+        "detail": "terminal execution changed after cancellation/retry input",
+        "expected_rejection_class": "ORCH_TERMINAL_MUTATION_REJECTED",
+        "injected_defect": "cancellation corrupts success",
+        "observed_rejection_class": "ORCH_TERMINAL_MUTATION_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-24": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-24",
+        "detail": "open circuit accepted a dispatch",
+        "expected_rejection_class": "ORCH_CIRCUIT_BREAKER_BYPASS",
+        "injected_defect": "open circuit bypass",
+        "observed_rejection_class": "ORCH_CIRCUIT_BREAKER_BYPASS",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-25": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-25",
+        "detail": "asset family is not in the closed runtime registry",
+        "expected_rejection_class": "ORCH_UNKNOWN_ASSET_FAMILY",
+        "injected_defect": "unknown/future family",
+        "observed_rejection_class": "ORCH_UNKNOWN_ASSET_FAMILY",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-26": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-26",
+        "detail": "production_intent must be the literal false",
+        "expected_rejection_class": "ORCH_PRODUCTION_INTENT_REJECTED",
+        "injected_defect": "production intent true",
+        "observed_rejection_class": "ORCH_PRODUCTION_INTENT_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-27": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-27",
+        "detail": "production routing, approval and generation must remain blocked",
+        "expected_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+        "injected_defect": "production routing attempt",
+        "observed_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-28": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-28",
+        "detail": "provider submission count must remain zero",
+        "expected_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+        "injected_defect": "real provider submit",
+        "observed_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-29": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-29",
+        "detail": "production routing, approval and generation must remain blocked",
+        "expected_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+        "injected_defect": "new generation",
+        "observed_rejection_class": "ORCH_PRODUCTION_BOUNDARY_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-30": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-30",
+        "detail": "secret-like fields are not allowed in orchestration evidence",
+        "expected_rejection_class": "ORCH_SECRET_LIKE_DATA_REJECTED",
+        "injected_defect": "secret-like evidence",
+        "observed_rejection_class": "ORCH_SECRET_LIKE_DATA_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-31": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-31",
+        "detail": "path traversal is forbidden",
+        "expected_rejection_class": "ORCH_PATH_TRAVERSAL_REJECTED",
+        "injected_defect": "absolute/path traversal",
+        "observed_rejection_class": "ORCH_PATH_TRAVERSAL_REJECTED",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-32": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-32",
+        "detail": "output project identity does not match request",
+        "expected_rejection_class": "ORCH_CROSS_PROJECT_OUTPUT",
+        "injected_defect": "cross-project output",
+        "observed_rejection_class": "ORCH_CROSS_PROJECT_OUTPUT",
+        "result": "REJECT",
+        "status": "PASS"
+      },
+      "NC-33": {
+        "actual_exception": "OrchestrationContractError",
+        "control_id": "NC-33",
+        "detail": "UADS runtime state must remain outside the repository",
+        "expected_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+        "injected_defect": "repository-local UADS footprint",
+        "observed_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+        "result": "REJECT",
+        "status": "PASS"
+      }
+    },
+    "schema_version": "0.24.0",
+    "status": "PASS"
+  },
+  "overall_pass": true,
+  "production": {
+    "new_generation": 0,
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "provider_submit_calls": 0,
+    "real_asset_generation": "NONE",
+    "synthetic_fixture": "TEST_ONLY"
+  },
+  "request": {
+    "asset_family": "maps_minimap",
+    "budget_profile": "bounded-cpu-test",
+    "dependency_refs": [],
+    "idempotency_key": "orchestration-v0240-fixture-idempotency",
+    "inputs": {
+      "fixture": "synthetic-map-minimap-001"
+    },
+    "operation": "EXECUTE",
+    "outputs": {
+      "path": "results/maps-minimap.json",
+      "project_id": "ugas-v1-test-project"
+    },
+    "priority": 50,
+    "production_intent": false,
+    "project_id": "ugas-v1-test-project",
+    "quality_profile": "foundation-qa",
+    "request_hash": "bfb7b06dd40ab8bf94b9d34411ede65eddc504d7a1397716eba5b08f62c340f4",
+    "request_id": "orchestration-v0240-fixture",
+    "request_kind": "ASSET_OPERATION",
+    "retry_policy": {
+      "max_attempts": 2,
+      "retryable_errors": [
+        "TRANSIENT_EXECUTION_ERROR"
+      ]
+    },
+    "schema_version": "0.24.0",
+    "test_only": true,
+    "timeout_seconds": 30
+  },
+  "schema_version": "0.24.0",
+  "snapshot": {
+    "attempts": {
+      "package": 1,
+      "prepare": 1,
+      "qa": 1,
+      "render": 1
+    },
+    "dag_hash": "6c828c998fd5ed93acd3ec51cdfc104cb75dcd8f7f7d71473a1d07bccbe884cd",
+    "event_hash": "92fc120ff849470969d5b44d2215aee938812ab72c6fb766f58f249676a62b73",
+    "event_sequence": 20,
+    "events": [
+      {
+        "detail": "",
+        "event_hash": "cd94582f6db5e14140c912eacf4f63a1863246d1197d858b82a8247647c7321c",
+        "from": "PLANNED",
+        "node_id": "prepare",
+        "sequence": 1,
+        "to": "VALIDATED"
+      },
+      {
+        "detail": "",
+        "event_hash": "02107d748c3d114d8109b5f41817f82e1e9ba524268175fc367b0cae3a43d476",
+        "from": "VALIDATED",
+        "node_id": "prepare",
+        "sequence": 2,
+        "to": "READY"
+      },
+      {
+        "detail": "",
+        "event_hash": "ec8650136edec05fca7607ee49dc1d6dd9583aeeaafc27a5afeba4c7e15fcfda",
+        "from": "READY",
+        "node_id": "prepare",
+        "sequence": 3,
+        "to": "DISPATCHED"
+      },
+      {
+        "detail": "",
+        "event_hash": "db0751c6c288a7e8259287ba58497ffac1fbbd6f5c06f94b4e7ceeb90f3713e3",
+        "from": "DISPATCHED",
+        "node_id": "prepare",
+        "sequence": 4,
+        "to": "RUNNING"
+      },
+      {
+        "detail": "",
+        "event_hash": "8be81e4930c78fac56b32b01dbb2684fe355c2b6165a16a86fcc5edca766faee",
+        "from": "RUNNING",
+        "node_id": "prepare",
+        "sequence": 5,
+        "to": "SUCCEEDED"
+      },
+      {
+        "detail": "",
+        "event_hash": "9155fa76ef63603b82fc4256ebc60b4218775d38339d52ad1a5e5e60a84c64ec",
+        "from": "PLANNED",
+        "node_id": "render",
+        "sequence": 6,
+        "to": "VALIDATED"
+      },
+      {
+        "detail": "",
+        "event_hash": "794bcc1d3c2bb6167eb955478b6bd5bf03aa207b7718c17f4f2e0c70725b5bea",
+        "from": "VALIDATED",
+        "node_id": "render",
+        "sequence": 7,
+        "to": "READY"
+      },
+      {
+        "detail": "",
+        "event_hash": "d08f8866af4ac3ded2acc5b901f986ab50b567b4e993b47cc72bcb8fd15ec899",
+        "from": "READY",
+        "node_id": "render",
+        "sequence": 8,
+        "to": "DISPATCHED"
+      },
+      {
+        "detail": "",
+        "event_hash": "fb5fead95d075fc1f9f778039947049881347ea1665448f5093661de83c315c8",
+        "from": "DISPATCHED",
+        "node_id": "render",
+        "sequence": 9,
+        "to": "RUNNING"
+      },
+      {
+        "detail": "",
+        "event_hash": "ba978b322bbefbea92ff344ba90d007894db77ccc114e934a2680100d8656ab6",
+        "from": "RUNNING",
+        "node_id": "render",
+        "sequence": 10,
+        "to": "SUCCEEDED"
+      },
+      {
+        "detail": "",
+        "event_hash": "de06602703ea3e7bcb2e34bf211418ce2f5be27fdfe79c83d0c44bc473c6c49b",
+        "from": "PLANNED",
+        "node_id": "qa",
+        "sequence": 11,
+        "to": "VALIDATED"
+      },
+      {
+        "detail": "",
+        "event_hash": "9cbbc316e62985516828f1af3c4584cb022653c1d73880d451e31d38f9e04252",
+        "from": "VALIDATED",
+        "node_id": "qa",
+        "sequence": 12,
+        "to": "READY"
+      },
+      {
+        "detail": "",
+        "event_hash": "fce5f5536a145aa56993dc7296833e97ed8ae78d8106827f5d34b37546936846",
+        "from": "READY",
+        "node_id": "qa",
+        "sequence": 13,
+        "to": "DISPATCHED"
+      },
+      {
+        "detail": "",
+        "event_hash": "70798161f0f036f084792ef8538a0d66eacaab5f773670d663672234c57af065",
+        "from": "DISPATCHED",
+        "node_id": "qa",
+        "sequence": 14,
+        "to": "RUNNING"
+      },
+      {
+        "detail": "",
+        "event_hash": "231cc4789b330d7960820803683353c652493f9f57188845326db5a1969d56fe",
+        "from": "RUNNING",
+        "node_id": "qa",
+        "sequence": 15,
+        "to": "SUCCEEDED"
+      },
+      {
+        "detail": "",
+        "event_hash": "1d6ddfbbfa18fd4d175b064cbad35c11b79932fea11ff4cd8fb830fd432b7541",
+        "from": "PLANNED",
+        "node_id": "package",
+        "sequence": 16,
+        "to": "VALIDATED"
+      },
+      {
+        "detail": "",
+        "event_hash": "39ebc463acd4a5a3c5f3dded332307c2c03017b40f56387760df23b19ed85426",
+        "from": "VALIDATED",
+        "node_id": "package",
+        "sequence": 17,
+        "to": "READY"
+      },
+      {
+        "detail": "",
+        "event_hash": "d1e216606e7980b1b3c0f6e6f9cd11a94d57ae45fd1a4c3134bf1875cae688b7",
+        "from": "READY",
+        "node_id": "package",
+        "sequence": 18,
+        "to": "DISPATCHED"
+      },
+      {
+        "detail": "",
+        "event_hash": "19694a075b621534fbfcbc8e7e375735e32e750a1ee74887f0fede400c323e9e",
+        "from": "DISPATCHED",
+        "node_id": "package",
+        "sequence": 19,
+        "to": "RUNNING"
+      },
+      {
+        "detail": "",
+        "event_hash": "92fc120ff849470969d5b44d2215aee938812ab72c6fb766f58f249676a62b73",
+        "from": "RUNNING",
+        "node_id": "package",
+        "sequence": 20,
+        "to": "SUCCEEDED"
+      }
+    ],
+    "peak_concurrency": 1,
+    "provider_submit_calls": 0,
+    "request_hash": "bfb7b06dd40ab8bf94b9d34411ede65eddc504d7a1397716eba5b08f62c340f4",
+    "results": {
+      "package": {
+        "execution_id": "fake-808847ff43956c6f",
+        "provider": null,
+        "result_hash": "808847ff43956c6f426f2dbd6aa298849fc7d946b21fe07c8c7a609e6b456ef5",
+        "status": "SUCCEEDED",
+        "synthetic": true,
+        "test_only": true
+      },
+      "prepare": {
+        "execution_id": "fake-aa2adf1a72a1560f",
+        "provider": null,
+        "result_hash": "aa2adf1a72a1560f807d96191798dae5f116523c51244bbf9c663062f9d4ffcd",
+        "status": "SUCCEEDED",
+        "synthetic": true,
+        "test_only": true
+      },
+      "qa": {
+        "execution_id": "fake-bd744bf56cab2ac5",
+        "provider": null,
+        "result_hash": "bd744bf56cab2ac5a51de0267bd03ae65f1ce5ff68de0fd17da2a6e21a11a798",
+        "status": "SUCCEEDED",
+        "synthetic": true,
+        "test_only": true
+      },
+      "render": {
+        "execution_id": "fake-01d5c92caa8ca96e",
+        "provider": null,
+        "result_hash": "01d5c92caa8ca96e80f85f37897c49a53929f84aa00988a349fa67e0594fd9ec",
+        "status": "SUCCEEDED",
+        "synthetic": true,
+        "test_only": true
+      }
+    },
+    "scheduler_hash": "61218c33146b06dfdffdacf76af0c3fdba41b1dba5fe2d835371c821170f0c76",
+    "schema_version": "0.24.0",
+    "states": {
+      "package": "SUCCEEDED",
+      "prepare": "SUCCEEDED",
+      "qa": "SUCCEEDED",
+      "render": "SUCCEEDED"
+    },
+    "test_only": true
+  }
+}

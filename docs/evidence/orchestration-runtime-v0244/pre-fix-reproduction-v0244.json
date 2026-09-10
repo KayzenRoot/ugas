@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.24.4",
+  "status": "REPRODUCED",
+  "rejected_head": "5a619c0b98ced7e4c09afd9ca117a039f0d5d068",
+  "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING",
+  "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING",
+  "git_show_command": "git show 1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3:docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+  "git_show_exit_code": 128,
+  "snapshot_has_git": false,
+  "detail": "Isolated git-archive snapshot without .git: git show of the maps_minimap approved_commit failed with exit 128 (fatal: not a git repository). resolve_dependency_refs(..., require_approved_commit=True) at rejected v0.24.3 HEAD rejected with ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING and did not fall back to filesystem bytes.",
+  "production_routing": "BLOCKED",
+  "production_approved": false,
+  "new_generation": 0
+}

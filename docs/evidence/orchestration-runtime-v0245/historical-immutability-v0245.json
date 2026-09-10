@@ -1,0 +1,165 @@
+{
+  "status": "PASS",
+  "v0241": {
+    "authority_commit": "ed9fa927fd50193130b3e085ef077dea267f2790",
+    "authority_entries_count": 20,
+    "authority_fingerprint": "8d92836bf7ab15d053b42686483817048f312cb3785d3c871adbac011b233047",
+    "authority_ref": "ed9fa927fd50193130b3e085ef077dea267f2790",
+    "authority_root_objects": [
+      {
+        "requested_root": "REVIEW-v0.24.1.md",
+        "root_object": {
+          "mode": "100644",
+          "object_id": "18c07b3f2d7699803390ad25b60a53f79bdbc3b1",
+          "path": "REVIEW-v0.24.1.md",
+          "type": "blob"
+        }
+      },
+      {
+        "requested_root": "docs/evidence/orchestration-runtime-v0241",
+        "root_object": {
+          "mode": "040000",
+          "object_id": "d36de9888cf35db3b2f937610b45d9fbf0b8bf2d",
+          "path": "docs/evidence/orchestration-runtime-v0241",
+          "type": "tree"
+        }
+      }
+    ],
+    "differences": [],
+    "equality": true,
+    "exact_entry_set": true,
+    "label": "v0241-historical",
+    "observed_entries_count": 20,
+    "observed_fingerprint": "8d92836bf7ab15d053b42686483817048f312cb3785d3c871adbac011b233047",
+    "observed_ref": "HEAD",
+    "observed_root_objects": [
+      {
+        "requested_root": "REVIEW-v0.24.1.md",
+        "root_object": {
+          "mode": "100644",
+          "object_id": "18c07b3f2d7699803390ad25b60a53f79bdbc3b1",
+          "path": "REVIEW-v0.24.1.md",
+          "type": "blob"
+        }
+      },
+      {
+        "requested_root": "docs/evidence/orchestration-runtime-v0241",
+        "root_object": {
+          "mode": "040000",
+          "object_id": "d36de9888cf35db3b2f937610b45d9fbf0b8bf2d",
+          "path": "docs/evidence/orchestration-runtime-v0241",
+          "type": "tree"
+        }
+      }
+    ],
+    "paths": [
+      "REVIEW-v0.24.1.md",
+      "docs/evidence/orchestration-runtime-v0241/capability-matrix-validation-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/checkpoint-resume-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/circuit-breaker-runtime-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/correction-history-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/dag-scheduler-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/deadline-timeout-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/dependency-authority-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/execution-evidence-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/execution-state-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/family-concurrency-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/frozen-v0240-fingerprint-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/full-slice-two-run-determinism-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/hard-gates-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/idempotency-coordinator-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/negative-controls-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/production-boundary-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/provider-boundary-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/request-contract-v0241.json",
+      "docs/evidence/orchestration-runtime-v0241/schema-validation-v0241.json"
+    ],
+    "requested_roots": [
+      "REVIEW-v0.24.1.md",
+      "docs/evidence/orchestration-runtime-v0241"
+    ],
+    "set_equal": true,
+    "status": "PASS"
+  },
+  "v0242": {
+    "authority_commit": "cd3345db7c0e587915e56eb9314879c4a9cf98a3",
+    "authority_entries_count": 20,
+    "authority_fingerprint": "44c893a64790df89f9c1a6b3325a78a52b863eaedb5e153dd7b59e775b36d83d",
+    "authority_ref": "cd3345db7c0e587915e56eb9314879c4a9cf98a3",
+    "authority_root_objects": [
+      {
+        "requested_root": "REVIEW-v0.24.2.md",
+        "root_object": {
+          "mode": "100644",
+          "object_id": "df7109c82c7bed488d85f9702e281c1e43a9b831",
+          "path": "REVIEW-v0.24.2.md",
+          "type": "blob"
+        }
+      },
+      {
+        "requested_root": "docs/evidence/orchestration-runtime-v0242",
+        "root_object": {
+          "mode": "040000",
+          "object_id": "b0a56d856f583ed81e5773bd0d71b8223910135b",
+          "path": "docs/evidence/orchestration-runtime-v0242",
+          "type": "tree"
+        }
+      }
+    ],
+    "differences": [],
+    "equality": true,
+    "exact_entry_set": true,
+    "label": "v0242-historical",
+    "observed_entries_count": 20,
+    "observed_fingerprint": "44c893a64790df89f9c1a6b3325a78a52b863eaedb5e153dd7b59e775b36d83d",
+    "observed_ref": "HEAD",
+    "observed_root_objects": [
+      {
+        "requested_root": "REVIEW-v0.24.2.md",
+        "root_object": {
+          "mode": "100644",
+          "object_id": "df7109c82c7bed488d85f9702e281c1e43a9b831",
+          "path": "REVIEW-v0.24.2.md",
+          "type": "blob"
+        }
+      },
+      {
+        "requested_root": "docs/evidence/orchestration-runtime-v0242",
+        "root_object": {
+          "mode": "040000",
+          "object_id": "b0a56d856f583ed81e5773bd0d71b8223910135b",
+          "path": "docs/evidence/orchestration-runtime-v0242",
+          "type": "tree"
+        }
+      }
+    ],
+    "paths": [
+      "REVIEW-v0.24.2.md",
+      "docs/evidence/orchestration-runtime-v0242/capability-matrix-validation-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/checkpoint-resume-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/circuit-breaker-runtime-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/correction-history-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/dag-scheduler-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/deadline-timeout-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/dependency-authority-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/execution-evidence-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/execution-state-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/family-concurrency-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/frozen-v0241-fingerprint-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/full-slice-two-run-determinism-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/hard-gates-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/idempotency-coordinator-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/negative-controls-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/production-boundary-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/provider-boundary-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/request-contract-v0242.json",
+      "docs/evidence/orchestration-runtime-v0242/schema-validation-v0242.json"
+    ],
+    "requested_roots": [
+      "REVIEW-v0.24.2.md",
+      "docs/evidence/orchestration-runtime-v0242"
+    ],
+    "set_equal": true,
+    "status": "PASS"
+  }
+}

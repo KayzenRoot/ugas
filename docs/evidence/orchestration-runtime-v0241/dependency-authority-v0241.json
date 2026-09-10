@@ -1,0 +1,135 @@
+{
+  "mutation_controls": [
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-01",
+      "detail": "authority bytes do not match docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "injected_defect": "mutated content hash",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-02",
+      "detail": "dependency authority is not approved",
+      "expected_rejection_class": "ORCH_DEPENDENCY_REF_STATUS_REJECTED",
+      "injected_defect": "rejected authority record",
+      "observed_rejection_class": "ORCH_DEPENDENCY_REF_STATUS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    }
+  ],
+  "refs": [
+    {
+      "content_hash": "80fec7c14896edae6f9ffe34785d0cc9818754bbddbebc0b3afaa4b13ae10feb",
+      "family": "maps_minimap",
+      "path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.21.3",
+      "semantic_hash": "da3448da66edaa7f254a060ae67988df62da4a2ccceebfb1cf032af7e8b4c3dd",
+      "status": "MERGED_CLOSED"
+    },
+    {
+      "content_hash": "c58c15808a8b626f075abea0f866eeab0d0d03db0196b654d3a84ef98ac39fe2",
+      "family": "ui_asset_family",
+      "path": "docs/evidence/ui-asset-family-runtime-v0223/ui-style-authority-v0223.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.22.3",
+      "semantic_hash": "993337cf2b0ab3c5ea37c1a7f371acf93242b5b21227950d8c3529a8fc0a37a8",
+      "status": "MERGED_CLOSED"
+    },
+    {
+      "content_hash": "c79180757c1e669f2ebcd670318d38733fab8f720e4992ac9960cf4e254e9ae7",
+      "family": "vfx_asset_family",
+      "path": "docs/evidence/vfx-asset-family-runtime-v0234/vfx-family-manifest-v0234.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.23.4",
+      "semantic_hash": "ebc9bdfb045e2a240f93d60f92a0b402f45262dca5f438be74b36916ad6ffefc",
+      "status": "MERGED_CLOSED"
+    },
+    {
+      "content_hash": "36d64eb57c8653bb432feef798d948fc90ed79405c348319bf083dedee68b21f",
+      "family": "items_props",
+      "path": "docs/evidence/maps-minimap-runtime-v0212/items-props-authority-bindings-v0212.json",
+      "project_id": "ugas-v1-test-project",
+      "read_only": true,
+      "revision": "v0.19.1",
+      "semantic_hash": "59cfa25b1dbeff5cb7628c0f18b770788f2477fd5dc3ba750f0f632becb581b9",
+      "status": "APPROVED_FOUNDATION"
+    }
+  ],
+  "resolved": {
+    "authorities": [
+      {
+        "content_hash": "80fec7c14896edae6f9ffe34785d0cc9818754bbddbebc0b3afaa4b13ae10feb",
+        "family": "maps_minimap",
+        "path": "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 978,
+        "resolved_content_hash": "80fec7c14896edae6f9ffe34785d0cc9818754bbddbebc0b3afaa4b13ae10feb",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "da3448da66edaa7f254a060ae67988df62da4a2ccceebfb1cf032af7e8b4c3dd",
+        "revision": "v0.21.3",
+        "semantic_hash": "da3448da66edaa7f254a060ae67988df62da4a2ccceebfb1cf032af7e8b4c3dd",
+        "status": "MERGED_CLOSED"
+      },
+      {
+        "content_hash": "c58c15808a8b626f075abea0f866eeab0d0d03db0196b654d3a84ef98ac39fe2",
+        "family": "ui_asset_family",
+        "path": "docs/evidence/ui-asset-family-runtime-v0223/ui-style-authority-v0223.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 282,
+        "resolved_content_hash": "c58c15808a8b626f075abea0f866eeab0d0d03db0196b654d3a84ef98ac39fe2",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "993337cf2b0ab3c5ea37c1a7f371acf93242b5b21227950d8c3529a8fc0a37a8",
+        "revision": "v0.22.3",
+        "semantic_hash": "993337cf2b0ab3c5ea37c1a7f371acf93242b5b21227950d8c3529a8fc0a37a8",
+        "status": "MERGED_CLOSED"
+      },
+      {
+        "content_hash": "c79180757c1e669f2ebcd670318d38733fab8f720e4992ac9960cf4e254e9ae7",
+        "family": "vfx_asset_family",
+        "path": "docs/evidence/vfx-asset-family-runtime-v0234/vfx-family-manifest-v0234.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 122508,
+        "resolved_content_hash": "c79180757c1e669f2ebcd670318d38733fab8f720e4992ac9960cf4e254e9ae7",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "ebc9bdfb045e2a240f93d60f92a0b402f45262dca5f438be74b36916ad6ffefc",
+        "revision": "v0.23.4",
+        "semantic_hash": "ebc9bdfb045e2a240f93d60f92a0b402f45262dca5f438be74b36916ad6ffefc",
+        "status": "MERGED_CLOSED"
+      },
+      {
+        "content_hash": "36d64eb57c8653bb432feef798d948fc90ed79405c348319bf083dedee68b21f",
+        "family": "items_props",
+        "path": "docs/evidence/maps-minimap-runtime-v0212/items-props-authority-bindings-v0212.json",
+        "project_id": "ugas-v1-test-project",
+        "read_only": true,
+        "resolved_bytes": 2858,
+        "resolved_content_hash": "36d64eb57c8653bb432feef798d948fc90ed79405c348319bf083dedee68b21f",
+        "resolved_from": "repository",
+        "resolved_semantic_hash": "59cfa25b1dbeff5cb7628c0f18b770788f2477fd5dc3ba750f0f632becb581b9",
+        "revision": "v0.19.1",
+        "semantic_hash": "59cfa25b1dbeff5cb7628c0f18b770788f2477fd5dc3ba750f0f632becb581b9",
+        "status": "APPROVED_FOUNDATION"
+      }
+    ],
+    "authority_binding_hash": "54a6486b559a4817122195a369bd70029589bc725c1304ffee7d1a696cb5600d",
+    "resolved_authority_hashes": {
+      "items_props": "36d64eb57c8653bb432feef798d948fc90ed79405c348319bf083dedee68b21f",
+      "maps_minimap": "80fec7c14896edae6f9ffe34785d0cc9818754bbddbebc0b3afaa4b13ae10feb",
+      "ui_asset_family": "c58c15808a8b626f075abea0f866eeab0d0d03db0196b654d3a84ef98ac39fe2",
+      "vfx_asset_family": "c79180757c1e669f2ebcd670318d38733fab8f720e4992ac9960cf4e254e9ae7"
+    },
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

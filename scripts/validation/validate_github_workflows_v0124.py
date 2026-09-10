@@ -39,6 +39,14 @@ def validate_workflow(path: Path, *, kind: str) -> dict[str, Any]:
         for stable in ("UGAS CI / unit-and-validation", "UGAS CI / docker-smoke"):
             if stable not in text:
                 failures.append(f"stable-job-missing:{stable}")
+        if "scripts/validation/run_orchestration_runtime_v0247.py" not in text or "scripts/validation/validate_state_consistency_v0247.py" not in text:
+            failures.append("active-orchestration-command-version-mismatch")
+        if "v0.24.7" not in text:
+            failures.append("active-human-version-missing")
+        if "run_orchestration_runtime_v0246.py" in text or "validate_state_consistency_v0246.py" in text:
+            failures.append("stale-v0246-command")
+        if "F31-F36" in text:
+            failures.append("stale-f31-f36-label")
         if "docker compose -f compose.yaml config" not in text or "docker compose -f compose.yaml build dashboard" not in text or "docker compose -f compose.yaml up -d dashboard" not in text:
             failures.append("docker-smoke-lifecycle-incomplete")
         if "docker compose -f compose.yaml rm -sf dashboard" not in text:
@@ -52,16 +60,34 @@ def validate_workflow(path: Path, *, kind: str) -> dict[str, Any]:
     elif kind == "review":
         if "UGAS Review / evidence" not in text:
             failures.append("stable-review-job-missing")
+        if "scripts/validation/run_orchestration_runtime_v0247.py" not in text or "REVIEW-v0.24.7.md" not in text:
+            failures.append("active-review-command-version-mismatch")
+        if "v0.24.7" not in text:
+            failures.append("active-human-version-missing")
+        if "run_orchestration_runtime_v0246.py" in text or "REVIEW-v0.24.6.md" in text:
+            failures.append("stale-v0246-review-command")
+        if "F31-F36" in text:
+            failures.append("stale-f31-f36-label")
         if "if: always()" not in text:
             failures.append("failure-safe-evidence-missing")
         if "actions/upload-artifact@" not in text:
             failures.append("artifact-upload-missing")
         if "Enforce final review result after artifact upload" not in text:
             failures.append("post-upload-enforcement-missing")
+        if "pre-upload-enforcement-v0247.json" not in text:
+            failures.append("pre-upload-enforcement-missing")
+        if "artifact identity preflight enforcement" not in text.casefold() and "artifact preflight enforcement" not in text.casefold():
+            failures.append("preflight-summary-missing")
         upload = text.find("Upload bounded GitHub review artifact")
         enforce = text.find("Enforce final review result after artifact upload")
+        preflight = text.find("pre-upload-enforcement-v0247.json")
+        security = text.find("validate_github_review_security_v0247.py")
         if upload < 0 or enforce <= upload:
             failures.append("enforcement-order-invalid")
+        if preflight < 0 or upload < 0 or not (0 <= preflight < upload):
+            failures.append("preflight-order-invalid")
+        if security < 0 or preflight < 0 or not (0 <= preflight < security < upload):
+            failures.append("security-scan-before-complete-staging")
     else:
         failures.append("unknown-workflow-kind")
     return {"status": "PASS" if not failures else "FAIL", "workflow": path.as_posix(), "kind": kind, "action_pin_count": len(ACTION_RE.findall(text)), "failures": failures}

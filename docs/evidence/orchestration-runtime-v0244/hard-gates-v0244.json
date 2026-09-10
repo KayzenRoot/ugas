@@ -1,0 +1,454 @@
+{
+  "gates": {
+    "authority_binding_equal_across_modes": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_binding_equal_across_modes",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "authority_content_hash": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_content_hash",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "authority_frozen_registry_witness": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_frozen_registry_witness",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "authority_git_commit_witness": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_git_commit_witness",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "authority_payload_identity": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_payload_identity",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "authority_read_only": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_read_only",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "authority_ref_schema": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_ref_schema",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "authority_revision_binding": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "authority_revision_binding",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "bounded_cancellation": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "bounded_cancellation",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "bounded_family_concurrency": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "bounded_family_concurrency",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "bounded_global_concurrency": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "bounded_global_concurrency",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "bounded_retry": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "bounded_retry",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "cache_identity": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "cache_identity",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "cache_success_only": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "cache_success_only",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "canonical_request": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "canonical_request",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "checkpoint_event_chain": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "checkpoint_event_chain",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "checkpoint_exact_node_set": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "checkpoint_exact_node_set",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "checkpoint_identity": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "checkpoint_identity",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "checkpoint_state_result_pair": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "checkpoint_state_result_pair",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "checkpoint_tamper_rejection": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "checkpoint_tamper_rejection",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "circuit_breaker_runtime": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "circuit_breaker_runtime",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "circuit_half_open_single_probe": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "circuit_half_open_single_probe",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "circuit_nonretryable_not_transient": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "circuit_nonretryable_not_transient",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "circuit_open_dispatch_blocked": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "circuit_open_dispatch_blocked",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "cross_runtime_idempotency": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "cross_runtime_idempotency",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "dag_acyclic": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "dag_acyclic",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "dag_dependency_hashes": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "dag_dependency_hashes",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "dag_schema": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "dag_schema",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "failure_isolation": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "failure_isolation",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "fake_executor_determinism": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "fake_executor_determinism",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "family_limits_integer_bounded": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "family_limits_integer_bounded",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "global_family_admission_observed": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "global_family_admission_observed",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "historical_closure_binding": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "historical_closure_binding",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "idempotent_dispatch": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "idempotent_dispatch",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "later_nodes_blocked_after_deadline": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "later_nodes_blocked_after_deadline",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "legacy_adapter_narrow": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "legacy_adapter_narrow",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "no_dynamic_nodes": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "no_dynamic_nodes",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "node_deadline_parent_bound": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "node_deadline_parent_bound",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "partial_checkpoint_resume": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "partial_checkpoint_resume",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "production_boundary": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "production_boundary",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "provider_client_spy_zero": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "provider_client_spy_zero",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "provider_legacy_spy_zero": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "provider_legacy_spy_zero",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "provider_source_boundary": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "provider_source_boundary",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "request_deadline_clock": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "request_deadline_clock",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "deterministic fake clock probe",
+      "status": "PASS"
+    },
+    "request_hash": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "request_hash",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "result_provenance": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "result_provenance",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "resume_no_reexecution": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "resume_no_reexecution",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "retry_consumes_parent_deadline": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "retry_consumes_parent_deadline",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "retryable_error_class": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "retryable_error_class",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "scheduler_dependency_first": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "scheduler_dependency_first",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "scheduler_deterministic": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "scheduler_deterministic",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "scheduler_priority_lexical": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "scheduler_priority_lexical",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "state_transition_contract": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "state_transition_contract",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "telemetry_sanitized": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "telemetry_sanitized",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "terminal_immutability": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "terminal_immutability",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    },
+    "timeout_rejection_typed": {
+      "detail": "actual runtime/checker observation",
+      "gate_id": "timeout_rejection_typed",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "runtime observation",
+      "status": "PASS"
+    }
+  },
+  "overall_pass": true,
+  "schema_version": "0.24.4"
+}
