@@ -29,6 +29,7 @@ from ..state_consistency_v0234 import validate_state_consistency as validate_sta
 from ..state_consistency_v0240 import validate_state_consistency as validate_state_consistency_v0240
 from ..state_consistency_v0241 import validate_state_consistency as validate_state_consistency_v0241
 from ..state_consistency_v0242 import validate_state_consistency as validate_state_consistency_v0242
+from ..state_consistency_v0243 import validate_state_consistency as validate_state_consistency_v0243
 
 # The active state/review moved to v0.21.0. The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
@@ -171,6 +172,9 @@ class ActiveEvidenceCache:
             except (OSError, json.JSONDecodeError, AttributeError):
                 active_version = None
             schema_by_version = {
+                "0.24.3": "schemas/current-state-v0243.json",
+                "0.24.2": "schemas/current-state-v0242.json",
+                "0.24.1": "schemas/current-state-v0241.json",
                 "0.24.0": "schemas/current-state-v0240.json",
                 "0.23.4": "schemas/current-state-v0234.json",
                 "0.23.3": "schemas/current-state-v0233.json",
@@ -189,6 +193,9 @@ class ActiveEvidenceCache:
             self.state_schema_path = self.repo_root / schema_by_version.get(active_version, "schemas/current-state-v0203.json")
         self.checkpoint_path = checkpoint_path or self.repo_root / "CHECKPOINT.md"
         review_by_schema = {
+            "current-state-v0243.json": "REVIEW-v0.24.3.md",
+            "current-state-v0242.json": "REVIEW-v0.24.2.md",
+            "current-state-v0241.json": "REVIEW-v0.24.1.md",
             "current-state-v0240.json": "REVIEW-v0.24.0.md",
             "current-state-v0234.json": "REVIEW-v0.23.4.md",
             "current-state-v0233.json": "REVIEW-v0.23.3.md",
@@ -281,7 +288,16 @@ class ActiveEvidenceCache:
             schema = _load(self.state_schema_path)
             validate_schema_document(schema)
             validate_instance(state, schema)
-            if state.get("version") == "0.24.2":
+            if state.get("version") == "0.24.3":
+                consistency = validate_state_consistency_v0243(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0243/correction-history-v0243.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.2":
                 consistency = validate_state_consistency_v0242(
                     state,
                     self.checkpoint_path.read_text(encoding="utf-8"),

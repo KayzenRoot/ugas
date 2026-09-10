@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/current-state-v0243.json",
+  "title": "UGAS active state v0.24.3 orchestration runtime correction",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "version", "phase", "baseline_main_sha", "orchestration_base_main_sha", "current_gate", "stop_reason", "next_candidate", "allowed_next_actions", "orchestration_runtime", "orchestration_runtime_external_review", "orchestration_lifecycle", "production_routing", "production_approved", "real_asset_generation", "new_generation", "next_capability_started", "review", "evidence", "state_consistency"],
+  "not": {"required": ["main_sha"]},
+  "properties": {
+    "schema_version": {"const": "0.24.3"},
+    "version": {"const": "0.24.3"},
+    "phase": {"const": "ORCHESTRATION_RUNTIME_HARDENING"},
+    "baseline_main_sha": {"const": "dee98f8cd89ebd83a36ead7a22a184700d6e916f"},
+    "orchestration_base_main_sha": {"const": "dee98f8cd89ebd83a36ead7a22a184700d6e916f"},
+    "current_gate": {"const": "ORCHESTRATION_RUNTIME_HARDENING_F32RR_F35RR_F35RC_F37_CORRECTION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED"},
+    "stop_reason": {"const": "ORCHESTRATION_RUNTIME_HARDENING_F32RR_F35RR_F35RC_F37_EXTERNAL_REVIEW_REQUIRED"},
+    "next_candidate": {"const": "V1_FINAL_ACCEPTANCE"},
+    "allowed_next_actions": {"const": ["external_review_orchestration_runtime_v0243"]},
+    "orchestration_runtime": {"const": "TECHNICALLY_QUALIFIED_FOUNDATION"},
+    "orchestration_runtime_external_review": {"const": "REQUIRED"},
+    "orchestration_lifecycle": {"const": "ACTIVE_FOUNDATION"},
+    "production_routing": {"const": "BLOCKED"},
+    "production_approved": {"const": false},
+    "real_asset_generation": {"const": "NONE"},
+    "new_generation": {"const": 0},
+    "next_capability_started": {"const": false},
+    "review": {"type": "object", "required": ["repository", "base_sha", "feature_branch", "pr_number", "pr_state", "head_sha_source", "external_review_required", "merge_authorization", "do_not_merge"], "properties": {"repository": {"const": "KayzenRoot/ugas"}, "base_sha": {"const": "dee98f8cd89ebd83a36ead7a22a184700d6e916f"}, "feature_branch": {"const": "codex/v0.24.0-orchestration-runtime-hardening-foundation"}, "pr_number": {"const": 15}, "pr_state": {"const": "OPEN"}, "head_sha_source": {"const": "GitHub LIVE exact-head metadata"}, "external_review_required": {"const": true}, "merge_authorization": {"const": "NOT_AUTHORIZED_UNTIL_SOL_APPROVAL"}, "do_not_merge": {"const": true}}},
+    "evidence": {"type": "object", "required": ["orchestration_root", "execution", "hard_gates", "negative_controls", "determinism", "production_boundary", "correction_history"]},
+    "state_consistency": {"type": "object", "required": ["status", "version", "current_gate"]}
+  }
+}
