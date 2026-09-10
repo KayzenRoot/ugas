@@ -34,18 +34,18 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m unittest discover -s tests -q
-      - name: Active v0.24.4 orchestration state consistency
+      - name: Active v0.24.5 orchestration state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0244.py
-      - name: Orchestration runtime v0.24.4 F-38/F-37R/F-39/F-40 correction and negative controls
+        run: python scripts/validation/validate_state_consistency_v0245.py
+      - name: Orchestration runtime v0.24.5 F-41/F-42/F-43 correction and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_orchestration_runtime_v0244.py
-      - name: Orchestration runtime v0.24.4 schema validation
+        run: python scripts/validation/run_orchestration_runtime_v0245.py
+      - name: Orchestration runtime v0.24.5 schema validation
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_orchestration_schema_v0244.py
+        run: python scripts/validation/validate_orchestration_schema_v0245.py
       - name: Frozen VFX v0.23.4 read-only regression
         env:
           PYTHONPATH: src

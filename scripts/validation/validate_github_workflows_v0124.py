@@ -39,10 +39,12 @@ def validate_workflow(path: Path, *, kind: str) -> dict[str, Any]:
         for stable in ("UGAS CI / unit-and-validation", "UGAS CI / docker-smoke"):
             if stable not in text:
                 failures.append(f"stable-job-missing:{stable}")
-        if "scripts/validation/run_orchestration_runtime_v0244.py" not in text or "scripts/validation/validate_state_consistency_v0244.py" not in text:
+        if "scripts/validation/run_orchestration_runtime_v0245.py" not in text or "scripts/validation/validate_state_consistency_v0245.py" not in text:
             failures.append("active-orchestration-command-version-mismatch")
-        if "v0.24.4" not in text:
+        if "v0.24.5" not in text:
             failures.append("active-human-version-missing")
+        if "run_orchestration_runtime_v0244.py" in text or "validate_state_consistency_v0244.py" in text:
+            failures.append("stale-v0244-command")
         if "F31-F36" in text:
             failures.append("stale-f31-f36-label")
         if "docker compose -f compose.yaml config" not in text or "docker compose -f compose.yaml build dashboard" not in text or "docker compose -f compose.yaml up -d dashboard" not in text:
@@ -58,10 +60,12 @@ def validate_workflow(path: Path, *, kind: str) -> dict[str, Any]:
     elif kind == "review":
         if "UGAS Review / evidence" not in text:
             failures.append("stable-review-job-missing")
-        if "scripts/validation/run_orchestration_runtime_v0244.py" not in text or "REVIEW-v0.24.4.md" not in text:
+        if "scripts/validation/run_orchestration_runtime_v0245.py" not in text or "REVIEW-v0.24.5.md" not in text:
             failures.append("active-review-command-version-mismatch")
-        if "v0.24.4" not in text:
+        if "v0.24.5" not in text:
             failures.append("active-human-version-missing")
+        if "run_orchestration_runtime_v0244.py" in text or "REVIEW-v0.24.4.md" in text:
+            failures.append("stale-v0244-review-command")
         if "F31-F36" in text:
             failures.append("stale-f31-f36-label")
         if "if: always()" not in text:

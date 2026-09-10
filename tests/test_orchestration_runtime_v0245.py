@@ -1,4 +1,4 @@
-"""Focused v0.24.4 correction tests with real negative paths."""
+"""Focused v0.24.5 correction tests with real negative paths."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ugas.orchestration_runtime_v0244 import (
+from ugas.orchestration_runtime_v0245 import (
     HARD_GATE_IDS,
     BoundedExecutionStore,
     CircuitBreaker,
@@ -65,13 +65,13 @@ def make_node(node_id: str, dependencies: list[str] | None = None, *, family: st
         "timeout_seconds": timeout,
         "retry_policy": {"max_attempts": 2, "retryable_errors": ["TRANSIENT_EXECUTION_ERROR", "REQUEST_DEADLINE_EXCEEDED", "NODE_DEADLINE_EXCEEDED"]},
         "resource_class": "cpu-test",
-        "scheduling_key": "orchestration-v0244",
+        "scheduling_key": "orchestration-v0245",
         "priority": priority,
         "asset_family": family,
     }
 
 
-class OrchestrationRuntimev0244Tests(unittest.TestCase):
+class OrchestrationRuntimev0245Tests(unittest.TestCase):
     def dag(self, request: dict | None = None, nodes: list[dict] | None = None) -> tuple[dict, dict]:
         req = request or make_request()
         value = nodes or [make_node("root"), make_node("child", ["root"]), make_node("tail", ["child"])]
@@ -224,7 +224,7 @@ class OrchestrationRuntimev0244Tests(unittest.TestCase):
         self.reject("ORCH_UNKNOWN_FIELD", lambda: validate_dependency_ref(unknown))
 
     def test_provider_boundary_and_zero_spy_are_real_contracts(self) -> None:
-        proof = assert_provider_boundary(Path(__file__).resolve().parents[1] / "src/ugas/orchestration_runtime_v0244.py")
+        proof = assert_provider_boundary(Path(__file__).resolve().parents[1] / "src/ugas/orchestration_runtime_v0245.py")
         self.assertEqual(proof["status"], "PASS")
         self.assertEqual(len(provider_spy_targets()), 2)
         self.assertEqual(validate_provider_spy_counts({target: 0 for target in provider_spy_targets()})["status"], "PASS")
@@ -240,7 +240,7 @@ class OrchestrationRuntimev0244Tests(unittest.TestCase):
         self.assertEqual(negative["gates"]["provider_client_spy_zero"]["observed_type"], "str")
 
     def test_f38_git_and_no_git_modes_share_binding_hash(self) -> None:
-        from ugas.orchestration_runtime_v0244 import (
+        from ugas.orchestration_runtime_v0245 import (
             APPROVED_AUTHORITY_REGISTRY,
             FROZEN_REGISTRY_WITNESS,
             GIT_COMMIT_WITNESS,
@@ -271,7 +271,7 @@ class OrchestrationRuntimev0244Tests(unittest.TestCase):
 
     def test_f38_git_missing_object_does_not_fallback(self) -> None:
         import subprocess
-        from ugas.orchestration_runtime_v0244 import (
+        from ugas.orchestration_runtime_v0245 import (
             APPROVED_AUTHORITY_REGISTRY,
             build_governed_dependency_refs,
             git_object_witness_available,
@@ -292,7 +292,7 @@ class OrchestrationRuntimev0244Tests(unittest.TestCase):
             self.reject("ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING", lambda: resolve_dependency_refs(refs, empty, expected_project_id="project-0244", require_approved_commit=True))
 
     def test_f37r_public_historical_validator_rejects_mismatch(self) -> None:
-        from ugas.orchestration_runtime_v0244 import compare_historical_evidence_tree
+        from ugas.orchestration_runtime_v0245 import compare_historical_evidence_tree
 
         root = Path(__file__).resolve().parents[1]
         if not (root / ".git").exists():
@@ -300,33 +300,59 @@ class OrchestrationRuntimev0244Tests(unittest.TestCase):
         proof = compare_historical_evidence_tree(root, "ed9fa927fd50193130b3e085ef077dea267f2790", ["REVIEW-v0.24.1.md", "docs/evidence/orchestration-runtime-v0241"], label="v0241-positive")
         self.assertEqual(proof["status"], "PASS")
         self.assertEqual(proof["differences"], [])
-        empty_tree = "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
-        self.reject("HISTORICAL_TREE_MISMATCH", lambda: compare_historical_evidence_tree(root, empty_tree, ["REVIEW-v0.24.1.md"], label="v0241-empty-tree"))
+        self.assertTrue(proof["equality"])
+        self.assertEqual(proof["authority_fingerprint"], proof["observed_fingerprint"])
+        self.assertNotIn("authority_tree", proof)
+        self.assertNotIn("observed_tree", proof)
+        self.reject("HISTORICAL_REF_UNRESOLVED", lambda: compare_historical_evidence_tree(root, "0" * 40, ["REVIEW-v0.24.1.md"], label="v0241-unresolved"))
+        self.reject("HISTORICAL_ROOT_EMPTY", lambda: compare_historical_evidence_tree(root, "ed9fa927fd50193130b3e085ef077dea267f2790", ["docs/evidence/does-not-exist-v0245"], label="v0241-missing-root"))
+
+    def test_f41_status_must_equal_canonical_registry(self) -> None:
+        from ugas.orchestration_runtime_v0245 import (
+            APPROVED_AUTHORITY_REGISTRY,
+            build_dependency_ref,
+            build_governed_dependency_refs,
+            resolve_dependency_ref,
+        )
+
+        root = Path(__file__).resolve().parents[1]
+        maps = APPROVED_AUTHORITY_REGISTRY["maps_minimap"]
+        built = build_dependency_ref(root, project_id="project-0245", family="maps_minimap", revision=maps["revision"], path=maps["path"])
+        self.assertEqual(built["status"], maps["status"])
+        self.assertEqual(maps["status"], "MERGED_CLOSED")
+        refs = build_governed_dependency_refs(root, project_id="project-0245")
+        mutated = dict(refs[0]); mutated["status"] = "APPROVED_FOUNDATION"
+        self.reject("ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH", lambda: resolve_dependency_ref(mutated, root, expected_project_id="project-0245"))
+        items = APPROVED_AUTHORITY_REGISTRY["items_props"]
+        items_ref = build_dependency_ref(root, project_id="project-0245", family="items_props", revision=items["revision"], path=items["path"])
+        self.assertEqual(items_ref["status"], "APPROVED_FOUNDATION")
+        items_mutated = dict(items_ref); items_mutated["status"] = "MERGED_CLOSED"
+        self.reject("ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH", lambda: resolve_dependency_ref(items_mutated, root, expected_project_id="project-0245"))
+
+    def test_f42_mode_and_type_identity_are_compared(self) -> None:
+        from ugas.orchestration_runtime_v0245 import diff_historical_entry_sets
+
+        blob = {"mode": "100644", "type": "blob", "object_id": "a" * 40, "path": "REVIEW-v0.24.1.md"}
+        chmod_only = {"mode": "100755", "type": "blob", "object_id": "a" * 40, "path": "REVIEW-v0.24.1.md"}
+        symlink = {"mode": "120000", "type": "blob", "object_id": "a" * 40, "path": "REVIEW-v0.24.1.md"}
+        tree = {"mode": "040000", "type": "tree", "object_id": "b" * 40, "path": "REVIEW-v0.24.1.md"}
+        mode_diff = diff_historical_entry_sets([blob], [chmod_only])
+        self.assertEqual(mode_diff[0]["reason"], "mode_mismatch")
+        symlink_diff = diff_historical_entry_sets([blob], [symlink])
+        self.assertEqual(symlink_diff[0]["reason"], "mode_mismatch")
+        type_diff = diff_historical_entry_sets([blob], [tree])
+        self.assertEqual(type_diff[0]["reason"], "type_mismatch")
 
     def test_f39_stale_gate_fails_state_consistency(self) -> None:
         import json
-        import subprocess
-        from ugas.state_consistency_v0244 import CURRENT_GATE, validate_state_consistency
+        from ugas.state_consistency_v0245 import CURRENT_GATE, validate_state_consistency
 
         root = Path(__file__).resolve().parents[1]
         state = json.loads((root / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         checkpoint = (root / "CHECKPOINT.md").read_text(encoding="utf-8")
         roadmap = (root / "docs/roadmap.md").read_text(encoding="utf-8")
         matrix = json.loads((root / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))
-        if state.get("version") != "0.24.4":
-            if not (root / ".git").exists():
-                self.skipTest("official no-git snapshot has no frozen v0.24.4 tree; F-39 live proof is v0.24.5")
-            frozen_ref = "0c5226fcaaf90e0ddc5131749976afb6d6dd3153"
-
-            def _frozen(path: str) -> str:
-                result = subprocess.run(["git", "show", f"{frozen_ref}:{path}"], cwd=root, check=True, capture_output=True)
-                return result.stdout.decode("utf-8")
-
-            state = json.loads(_frozen("docs/evidence/current-state.json"))
-            checkpoint = _frozen("CHECKPOINT.md")
-            roadmap = _frozen("docs/roadmap.md")
-            matrix = json.loads(_frozen("docs/ugas-v1-capability-matrix.json"))
-        binding = {"base_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "reviewed_head": "5a619c0b98ced7e4c09afd9ca117a039f0d5d068", "status": "CORRECTION_REQUIRED"}
+        binding = {"base_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "reviewed_head": "55d6ee80f29d4cf6ed9f2d65e0173dbba570a124", "status": "CORRECTION_REQUIRED"}
         self.assertEqual(state["current_gate"], CURRENT_GATE)
         self.assertNotIn("ORCHESTRATION_RUNTIME_HARDENING_F31R_F36_CORRECTION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", CURRENT_GATE)
         ok = validate_state_consistency(state, checkpoint, roadmap, matrix, binding, state.get("evidence", {}))
