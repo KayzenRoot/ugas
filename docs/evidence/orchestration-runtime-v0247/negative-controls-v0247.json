@@ -1,0 +1,743 @@
+{
+  "controls": {
+    "NC-ART-01": {
+      "actual_exception": null,
+      "control_id": "NC-ART-01",
+      "detail": "{\"failures\": [\"added:logs/injected.txt\"], \"final_staged_file_count\": 6, \"reason\": \"ARTIFACT_FILE_ADDED\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "add file after inventory",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-02": {
+      "actual_exception": null,
+      "control_id": "NC-ART-02",
+      "detail": "{\"failures\": [\"modified:REVIEW-v0.24.7.md\"], \"final_staged_file_count\": 5, \"reason\": \"ARTIFACT_FILE_MODIFIED\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "modify bytes after inventory",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-03": {
+      "actual_exception": null,
+      "control_id": "NC-ART-03",
+      "detail": "{\"failures\": [\"removed:logs/ugas-tests.log\"], \"final_staged_file_count\": 4, \"reason\": \"ARTIFACT_FILE_REMOVED\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "remove scanned file",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-04": {
+      "actual_exception": null,
+      "control_id": "NC-ART-04",
+      "detail": "{\"failures\": [\"renamed:logs/ugas-tests.log->logs/ugas-tests-renamed.log\"], \"final_staged_file_count\": 5, \"reason\": \"ARTIFACT_FILE_RENAMED\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "rename scanned file",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-05": {
+      "actual_exception": null,
+      "control_id": "NC-ART-05",
+      "detail": "{\"failures\": [\"unexpected:injected-root.txt\"], \"final_staged_file_count\": 6, \"reason\": \"ARTIFACT_UNEXPECTED_EXTRA\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "inject unexpected extra file",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-06": {
+      "actual_exception": null,
+      "control_id": "NC-ART-06",
+      "detail": "{\"failures\": [\"size:REVIEW-v0.24.7.md\"], \"final_staged_file_count\": 5, \"reason\": \"ARTIFACT_SIZE_TAMPER\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "tamper recorded size",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-07": {
+      "actual_exception": null,
+      "control_id": "NC-ART-07",
+      "detail": "{\"failures\": [\"sha256:REVIEW-v0.24.7.md\"], \"final_staged_file_count\": 5, \"reason\": \"ARTIFACT_SHA_TAMPER\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "tamper recorded SHA-256",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-08": {
+      "actual_exception": null,
+      "control_id": "NC-ART-08",
+      "detail": "{\"failures\": [\"stale-inventory-digest\"], \"final_staged_file_count\": 5, \"reason\": \"ARTIFACT_STALE_DIGEST\", \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "stale inventory_digest",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-09": {
+      "actual_exception": null,
+      "control_id": "NC-ART-09",
+      "detail": "{\"failures\": [\"multi-self-exclusion\"], \"final_staged_file_count\": null, \"reason\": \"ARTIFACT_MULTI_SELF_EXCLUSION\", \"scanned_file_count\": null}",
+      "expected_rejection_class": null,
+      "injected_defect": "more than one self-exclusion",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-PASS": {
+      "actual_exception": null,
+      "control_id": "NC-ART-PASS",
+      "detail": "{\"failures\": [], \"final_staged_file_count\": 6, \"reason\": null, \"scanned_file_count\": 5}",
+      "expected_rejection_class": null,
+      "injected_defect": "complete staged artifact plus trusted self-attestation",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-AUTH-06": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-06",
+      "detail": "authority tuple does not match approved registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "injected_defect": "missing authority path",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-08": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-08",
+      "detail": "authority binding does not match resolved repository bytes",
+      "expected_rejection_class": "ORCH_AUTHORITY_BINDING_MISMATCH",
+      "injected_defect": "arbitrary authority_binding_hash",
+      "observed_rejection_class": "ORCH_AUTHORITY_BINDING_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-09": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-09",
+      "detail": "input_contract_hash is stale for prepare",
+      "expected_rejection_class": "ORCH_AUTHORITY_INPUT_CONTRACT_MISMATCH",
+      "injected_defect": "arbitrary node input hash",
+      "observed_rejection_class": "ORCH_AUTHORITY_INPUT_CONTRACT_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-11": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-11",
+      "detail": "approved authority commit could not be resolved: Command '['git', '-C', 'C:\\\\Users\\\\csn19\\\\AppData\\\\Local\\\\Temp\\\\ugas-emptygit-v0247-ubd2l3lr', 'show', '1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3:docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json']' returned non-zero exit status 128.",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING",
+      "injected_defect": "git mode missing canonical object",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-12": {
+      "actual_exception": null,
+      "control_id": "NC-AUTH-12",
+      "detail": "no-git snapshot frozen registry witness",
+      "expected_rejection_class": null,
+      "injected_defect": "none",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-AUTH-13": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-13",
+      "detail": "authority bytes do not match docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "injected_defect": "no-git authority byte mutation",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-14": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-14",
+      "detail": "authority bytes do not match docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "injected_defect": "no-git semantic JSON mutation",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_HASH_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-15": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-15",
+      "detail": "approved_commit does not match registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_APPROVED_COMMIT_REGISTRY_MISMATCH",
+      "injected_defect": "no-git caller changes approved_commit",
+      "observed_rejection_class": "ORCH_DEPENDENCY_APPROVED_COMMIT_REGISTRY_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-16": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-16",
+      "detail": "canonical registry hashes are required for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_REGISTRY_HASH_MISSING",
+      "injected_defect": "no-git missing canonical registry hashes",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_REGISTRY_HASH_MISSING",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-17": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-17",
+      "detail": "status APPROVED_FOUNDATION does not match canonical registry status MERGED_CLOSED for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH",
+      "injected_defect": "no-git MERGED_CLOSED to APPROVED_FOUNDATION",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-18": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-18",
+      "detail": "status MERGED_CLOSED does not match canonical registry status APPROVED_FOUNDATION for items_props",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH",
+      "injected_defect": "no-git APPROVED_FOUNDATION to MERGED_CLOSED",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-19": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-19",
+      "detail": "authority tuple does not match approved registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "injected_defect": "no-git revision mutation",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-20": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-20",
+      "detail": "authority tuple does not match approved registry for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "injected_defect": "no-git path mutation",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_TUPLE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-21": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-AUTH-21",
+      "detail": "status APPROVED_FOUNDATION does not match canonical registry status MERGED_CLOSED for maps_minimap",
+      "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH",
+      "injected_defect": "git-backed status mutation",
+      "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-AUTH-BIND-EQ": {
+      "actual_exception": null,
+      "control_id": "NC-AUTH-BIND-EQ",
+      "detail": "binding hash equal across git and no-git modes",
+      "expected_rejection_class": null,
+      "git_binding": "884c6bba2ad0e99239e7b81ecd0972114eb6d22d6380083a75599ac095ba060b",
+      "git_mode": "GIT_COMMIT_WITNESS",
+      "injected_defect": "none",
+      "no_git_binding": "884c6bba2ad0e99239e7b81ecd0972114eb6d22d6380083a75599ac095ba060b",
+      "no_git_mode": "FROZEN_REGISTRY_WITNESS",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-AUTH-GIT-PASS": {
+      "actual_exception": null,
+      "control_id": "NC-AUTH-GIT-PASS",
+      "detail": "git-backed correct approved commit/bytes",
+      "expected_rejection_class": null,
+      "injected_defect": "none",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-AUTH-STATUS-CANON": {
+      "actual_exception": null,
+      "control_id": "NC-AUTH-STATUS-CANON",
+      "detail": "resolved status is canonical registry status",
+      "expected_rejection_class": null,
+      "injected_defect": "none",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-CHIST-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHIST-01",
+      "detail": "manifest correction_history does not match canonical file: ['findings']",
+      "expected_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "injected_defect": "stale prior-cycle findings",
+      "observed_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHIST-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHIST-02",
+      "detail": "manifest correction_history does not match canonical file: ['rejected_reviewed_head']",
+      "expected_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "injected_defect": "wrong rejected_reviewed_head",
+      "observed_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHIST-03": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHIST-03",
+      "detail": "manifest correction_history does not match canonical file: ['findings']",
+      "expected_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "injected_defect": "missing finding",
+      "observed_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHIST-04": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHIST-04",
+      "detail": "manifest correction_history does not match canonical file: ['findings']",
+      "expected_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "injected_defect": "extra fabricated finding",
+      "observed_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHIST-05": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHIST-05",
+      "detail": "manifest correction_history does not match canonical file: ['historical_evidence_unchanged']",
+      "expected_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "injected_defect": "historical_evidence_unchanged false",
+      "observed_rejection_class": "ORCH_CORRECTION_HISTORY_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHIST-PASS": {
+      "actual_exception": null,
+      "control_id": "NC-CHIST-PASS",
+      "detail": "positive manifest binds exact canonical correction-history object",
+      "expected_rejection_class": null,
+      "injected_defect": "none",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-CHK-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-01",
+      "detail": "checkpoint states must contain exactly the DAG nodes",
+      "expected_rejection_class": "ORCH_CHECKPOINT_NODE_SET_MISMATCH",
+      "injected_defect": "extra checkpoint node",
+      "observed_rejection_class": "ORCH_CHECKPOINT_NODE_SET_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-02",
+      "detail": "event references an unknown node",
+      "expected_rejection_class": "ORCH_CHECKPOINT_EVENT_NODE_UNKNOWN",
+      "injected_defect": "unknown checkpoint event node",
+      "observed_rejection_class": "ORCH_CHECKPOINT_EVENT_NODE_UNKNOWN",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-03": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-03",
+      "detail": "event replay does not equal checkpoint states",
+      "expected_rejection_class": "ORCH_CHECKPOINT_EVENT_STATE_MISMATCH",
+      "injected_defect": "fake completed result",
+      "observed_rejection_class": "ORCH_CHECKPOINT_EVENT_STATE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-04": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-04",
+      "detail": "top-level event_hash does not match the verified event chain",
+      "expected_rejection_class": "ORCH_CHECKPOINT_EVENT_HASH_MISMATCH",
+      "injected_defect": "tampered top-level event_hash",
+      "observed_rejection_class": "ORCH_CHECKPOINT_EVENT_HASH_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-05": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-05",
+      "detail": "never-dispatched node tail may not carry attempt count",
+      "expected_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "injected_defect": "attempt on never-dispatched node",
+      "observed_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-06": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-06",
+      "detail": "attempt count for prepare is out of bounds",
+      "expected_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "injected_defect": "bool attempt count",
+      "observed_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-07": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-07",
+      "detail": "deadline references unknown node injected",
+      "expected_rejection_class": "ORCH_CHECKPOINT_NODE_DEADLINES_UNKNOWN_NODE",
+      "injected_defect": "unknown node_deadlines entry",
+      "observed_rejection_class": "ORCH_CHECKPOINT_NODE_DEADLINES_UNKNOWN_NODE",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-08": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-08",
+      "detail": "OPEN circuit may not carry an in-flight probe",
+      "expected_rejection_class": "ORCH_CHECKPOINT_CIRCUIT_INVALID",
+      "injected_defect": "invalid circuit invariants",
+      "observed_rejection_class": "ORCH_CHECKPOINT_CIRCUIT_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-09": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-09",
+      "detail": "OPEN circuit requires failures >= failure_threshold",
+      "expected_rejection_class": "ORCH_CHECKPOINT_CIRCUIT_INVALID",
+      "injected_defect": "OPEN circuit with zero failures",
+      "observed_rejection_class": "ORCH_CHECKPOINT_CIRCUIT_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-10": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-10",
+      "detail": "dispatched node prepare must carry exactly one attempt count",
+      "expected_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "injected_defect": "deleted executed attempt",
+      "observed_rejection_class": "ORCH_CHECKPOINT_ATTEMPTS_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CHK-11": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-CHK-11",
+      "detail": "deadline record is required for node prepare that entered RUNNING",
+      "expected_rejection_class": "ORCH_CHECKPOINT_NODE_DEADLINES_INVALID",
+      "injected_defect": "deleted executed deadline",
+      "observed_rejection_class": "ORCH_CHECKPOINT_NODE_DEADLINES_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-COORD-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-COORD-01",
+      "detail": "family limit for maps_minimap must be between 1 and global limit",
+      "expected_rejection_class": "ORCH_FAMILY_LIMIT_INVALID",
+      "injected_defect": "invalid family limit",
+      "observed_rejection_class": "ORCH_FAMILY_LIMIT_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-COORD-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-COORD-02",
+      "detail": "observed peak exceeds family bound for maps_minimap",
+      "expected_rejection_class": "ORCH_FAMILY_CONCURRENCY_EXCEEDED",
+      "injected_defect": "family peak above limit",
+      "observed_rejection_class": "ORCH_FAMILY_CONCURRENCY_EXCEEDED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-GATE-01": {
+      "actual_exception": null,
+      "control_id": "NC-GATE-01",
+      "detail": "actual observed value and type preserved",
+      "expected_rejection_class": "STRICT_BOOLEAN_FAIL",
+      "injected_defect": "non-bool hard-gate result",
+      "observed_gate_status": "FAIL",
+      "observed_rejection_class": null,
+      "observed_type": "str",
+      "observed_value": "true",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-HIST-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-HIST-01",
+      "detail": "v0241-historical-mutation historical evidence tree mismatch: 1 difference(s)",
+      "expected_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "injected_defect": "deleted historical file",
+      "observed_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-HIST-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-HIST-02",
+      "detail": "v0241-historical-mutation historical evidence tree mismatch: 1 difference(s)",
+      "expected_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "injected_defect": "extra unauthorized file",
+      "observed_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-HIST-03": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-HIST-03",
+      "detail": "v0241-historical-mutation historical evidence tree mismatch: 1 difference(s)",
+      "expected_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "injected_defect": "historical file byte mutation",
+      "observed_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-HIST-04": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-HIST-04",
+      "detail": "v0241-historical-mutation historical evidence tree mismatch: 1 difference(s)",
+      "expected_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "injected_defect": "historical mode-only mutation",
+      "observed_rejection_class": "HISTORICAL_TREE_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-HIST-05": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-HIST-05",
+      "detail": "requested historical root has zero git entries: docs/evidence/does-not-exist-v0247",
+      "expected_rejection_class": "HISTORICAL_ROOT_EMPTY",
+      "injected_defect": "nonexistent historical root",
+      "observed_rejection_class": "HISTORICAL_ROOT_EMPTY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-HIST-06": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-HIST-06",
+      "detail": "unresolved historical ref 0000000000000000000000000000000000000000: Command '['git', '-C', 'D:\\\\Projeto Codexx\\\\ugas-v0210-maps-minimap', 'rev-parse', '--verify', '0000000000000000000000000000000000000000^{commit}']' returned non-zero exit status 128.",
+      "expected_rejection_class": "HISTORICAL_REF_UNRESOLVED",
+      "injected_defect": "unresolvable historical authority ref",
+      "observed_rejection_class": "HISTORICAL_REF_UNRESOLVED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-PROVIDER-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-PROVIDER-01",
+      "detail": "provider spy recorded a call: ugas.comfyui_client.ComfyUIClient.submit_workflow",
+      "expected_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+      "injected_defect": "injected provider call",
+      "observed_rejection_class": "ORCH_REAL_PROVIDER_SUBMIT_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-SUM-01": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-01",
+      "detail": "{\"canonical_summary_count\": 2, \"checks\": 120, \"reason\": null, \"selected_summary_index\": 1, \"selected_terminal_line\": 1, \"summary_prefixed_count\": 2}",
+      "expected_rejection_class": null,
+      "injected_defect": "early 100 then final 120",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-SUM-02": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-02",
+      "detail": "{\"canonical_summary_count\": 2, \"checks\": 120, \"reason\": \"FINAL_SUMMARY_NOT_CLEAN\", \"selected_summary_index\": 1, \"selected_terminal_line\": 1, \"summary_prefixed_count\": 2}",
+      "expected_rejection_class": null,
+      "injected_defect": "early PASS plus final FAIL",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-SUM-03": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-03",
+      "detail": "{\"canonical_summary_count\": 2, \"checks\": 120, \"reason\": null, \"selected_summary_index\": 1, \"selected_terminal_line\": 1, \"summary_prefixed_count\": 2}",
+      "expected_rejection_class": null,
+      "injected_defect": "early FAIL plus final PASS",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-SUM-04": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-04",
+      "detail": "{\"canonical_summary_count\": 1, \"checks\": 3050, \"reason\": null, \"selected_summary_index\": 0, \"selected_terminal_line\": 2, \"summary_prefixed_count\": 1}",
+      "expected_rejection_class": null,
+      "injected_defect": "snapshot summaries plus final aggregate",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    },
+    "NC-SUM-05": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-05",
+      "detail": "{\"canonical_summary_count\": 0, \"checks\": null, \"reason\": \"NO_FINAL_SUMMARY\", \"selected_summary_index\": null, \"selected_terminal_line\": null, \"summary_prefixed_count\": 0}",
+      "expected_rejection_class": null,
+      "injected_defect": "no SUMMARY-prefixed aggregate",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-SUM-06": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-06",
+      "detail": "{\"canonical_summary_count\": 1, \"checks\": null, \"reason\": \"MALFORMED_TERMINAL_SUMMARY\", \"selected_summary_index\": 1, \"selected_terminal_line\": 1, \"summary_prefixed_count\": 2}",
+      "expected_rejection_class": null,
+      "injected_defect": "early valid plus terminal missing failed",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-SUM-07": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-07",
+      "detail": "{\"canonical_summary_count\": 1, \"checks\": null, \"reason\": \"MALFORMED_TERMINAL_SUMMARY\", \"selected_summary_index\": 1, \"selected_terminal_line\": 1, \"summary_prefixed_count\": 2}",
+      "expected_rejection_class": null,
+      "injected_defect": "early valid plus terminal failed=x",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-SUM-08": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-08",
+      "detail": "{\"canonical_summary_count\": 1, \"checks\": null, \"reason\": \"MALFORMED_TERMINAL_SUMMARY\", \"selected_summary_index\": 1, \"selected_terminal_line\": 1, \"summary_prefixed_count\": 2}",
+      "expected_rejection_class": null,
+      "injected_defect": "early valid plus trailing junk",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-SUM-09": {
+      "actual_exception": null,
+      "control_id": "NC-SUM-09",
+      "detail": "{\"canonical_summary_count\": 0, \"checks\": null, \"reason\": \"NO_FINAL_SUMMARY\", \"selected_summary_index\": null, \"selected_terminal_line\": null, \"summary_prefixed_count\": 0}",
+      "expected_rejection_class": null,
+      "injected_defect": "embedded summary token without standalone aggregate",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-01": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-01",
+      "detail": "UADS route_status must be SELECTED",
+      "expected_rejection_class": "ORCH_UADS_ROUTE_STATUS_REJECTED",
+      "injected_defect": "route_status=BLOCKED",
+      "observed_rejection_class": "ORCH_UADS_ROUTE_STATUS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-02": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-02",
+      "detail": "UADS route_status must be SELECTED",
+      "expected_rejection_class": "ORCH_UADS_ROUTE_STATUS_REJECTED",
+      "injected_defect": "route_status=UNKNOWN",
+      "observed_rejection_class": "ORCH_UADS_ROUTE_STATUS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-03": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-03",
+      "detail": "UADS dispatch_status must be a successful dispatch state",
+      "expected_rejection_class": "ORCH_UADS_DISPATCH_STATUS_REJECTED",
+      "injected_defect": "dispatch_status=NOT_DISPATCHED",
+      "observed_rejection_class": "ORCH_UADS_DISPATCH_STATUS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-04": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-04",
+      "detail": "UADS dispatch_status must be a successful dispatch state",
+      "expected_rejection_class": "ORCH_UADS_DISPATCH_STATUS_REJECTED",
+      "injected_defect": "dispatch_status=FAILED",
+      "observed_rejection_class": "ORCH_UADS_DISPATCH_STATUS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-05": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-05",
+      "detail": "missing sanitized UADS handoff fields: ['selected_profile_id']",
+      "expected_rejection_class": "ORCH_UADS_HANDOFF_INVALID",
+      "injected_defect": "missing selected_profile_id",
+      "observed_rejection_class": "ORCH_UADS_HANDOFF_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-06": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-06",
+      "detail": "UADS handoff field work_order_id contains unsafe runtime material",
+      "expected_rejection_class": "ORCH_UADS_HANDOFF_PATH_REJECTED",
+      "injected_defect": "absolute or tilde path in ID",
+      "observed_rejection_class": "ORCH_UADS_HANDOFF_PATH_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-07": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-07",
+      "detail": "secret-like fields are not allowed in orchestration evidence",
+      "expected_rejection_class": "ORCH_SECRET_LIKE_DATA_REJECTED",
+      "injected_defect": "secret-like extra field",
+      "observed_rejection_class": "ORCH_SECRET_LIKE_DATA_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-08": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-08",
+      "detail": "UADS runtime state must remain outside repository",
+      "expected_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+      "injected_defect": "project-local .uads directory",
+      "observed_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-09": {
+      "actual_exception": "OrchestrationContractError",
+      "control_id": "NC-UADS-09",
+      "detail": "UADS runtime material is tracked in the repository: .uads/state.json",
+      "expected_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+      "injected_defect": "tracked .uads path",
+      "observed_rejection_class": "ORCH_REPO_LOCAL_UADS_FOOTPRINT",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-PASS": {
+      "actual_exception": null,
+      "control_id": "NC-UADS-PASS",
+      "detail": "positive actual v0.24.7 UADS handoff",
+      "expected_rejection_class": null,
+      "injected_defect": "none",
+      "observed_rejection_class": null,
+      "result": null,
+      "status": "PASS"
+    }
+  },
+  "schema_version": "0.24.7",
+  "status": "PASS"
+}

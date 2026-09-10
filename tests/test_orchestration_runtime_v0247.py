@@ -1,4 +1,4 @@
-"""Focused v0.24.6 correction tests with real negative paths."""
+"""Focused v0.24.7 correction tests with real negative paths."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ugas.orchestration_runtime_v0246 import (
+from ugas.orchestration_runtime_v0247 import (
     HARD_GATE_IDS,
     BoundedExecutionStore,
     CircuitBreaker,
@@ -67,13 +67,13 @@ def make_node(node_id: str, dependencies: list[str] | None = None, *, family: st
         "timeout_seconds": timeout,
         "retry_policy": {"max_attempts": 2, "retryable_errors": ["TRANSIENT_EXECUTION_ERROR", "REQUEST_DEADLINE_EXCEEDED", "NODE_DEADLINE_EXCEEDED"]},
         "resource_class": "cpu-test",
-        "scheduling_key": "orchestration-v0246",
+        "scheduling_key": "orchestration-v0247",
         "priority": priority,
         "asset_family": family,
     }
 
 
-class OrchestrationRuntimev0246Tests(unittest.TestCase):
+class OrchestrationRuntimev0247Tests(unittest.TestCase):
     def dag(self, request: dict | None = None, nodes: list[dict] | None = None) -> tuple[dict, dict]:
         req = request or make_request()
         value = nodes or [make_node("root"), make_node("child", ["root"]), make_node("tail", ["child"])]
@@ -226,7 +226,7 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
         self.reject("ORCH_UNKNOWN_FIELD", lambda: validate_dependency_ref(unknown))
 
     def test_provider_boundary_and_zero_spy_are_real_contracts(self) -> None:
-        proof = assert_provider_boundary(Path(__file__).resolve().parents[1] / "src/ugas/orchestration_runtime_v0246.py")
+        proof = assert_provider_boundary(Path(__file__).resolve().parents[1] / "src/ugas/orchestration_runtime_v0247.py")
         self.assertEqual(proof["status"], "PASS")
         self.assertEqual(len(provider_spy_targets()), 2)
         self.assertEqual(validate_provider_spy_counts({target: 0 for target in provider_spy_targets()})["status"], "PASS")
@@ -242,7 +242,7 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
         self.assertEqual(negative["gates"]["provider_client_spy_zero"]["observed_type"], "str")
 
     def test_f38_git_and_no_git_modes_share_binding_hash(self) -> None:
-        from ugas.orchestration_runtime_v0246 import (
+        from ugas.orchestration_runtime_v0247 import (
             APPROVED_AUTHORITY_REGISTRY,
             FROZEN_REGISTRY_WITNESS,
             GIT_COMMIT_WITNESS,
@@ -273,7 +273,7 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
 
     def test_f38_git_missing_object_does_not_fallback(self) -> None:
         import subprocess
-        from ugas.orchestration_runtime_v0246 import (
+        from ugas.orchestration_runtime_v0247 import (
             APPROVED_AUTHORITY_REGISTRY,
             build_governed_dependency_refs,
             git_object_witness_available,
@@ -294,7 +294,7 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
             self.reject("ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING", lambda: resolve_dependency_refs(refs, empty, expected_project_id="project-0244", require_approved_commit=True))
 
     def test_f37r_public_historical_validator_rejects_mismatch(self) -> None:
-        from ugas.orchestration_runtime_v0246 import compare_historical_evidence_tree
+        from ugas.orchestration_runtime_v0247 import compare_historical_evidence_tree
 
         root = Path(__file__).resolve().parents[1]
         if not (root / ".git").exists():
@@ -307,10 +307,10 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
         self.assertNotIn("authority_tree", proof)
         self.assertNotIn("observed_tree", proof)
         self.reject("HISTORICAL_REF_UNRESOLVED", lambda: compare_historical_evidence_tree(root, "0" * 40, ["REVIEW-v0.24.1.md"], label="v0241-unresolved"))
-        self.reject("HISTORICAL_ROOT_EMPTY", lambda: compare_historical_evidence_tree(root, "ed9fa927fd50193130b3e085ef077dea267f2790", ["docs/evidence/does-not-exist-v0246"], label="v0241-missing-root"))
+        self.reject("HISTORICAL_ROOT_EMPTY", lambda: compare_historical_evidence_tree(root, "ed9fa927fd50193130b3e085ef077dea267f2790", ["docs/evidence/does-not-exist-v0247"], label="v0241-missing-root"))
 
     def test_f41_status_must_equal_canonical_registry(self) -> None:
-        from ugas.orchestration_runtime_v0246 import (
+        from ugas.orchestration_runtime_v0247 import (
             APPROVED_AUTHORITY_REGISTRY,
             build_dependency_ref,
             build_governed_dependency_refs,
@@ -332,7 +332,7 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
         self.reject("ORCH_DEPENDENCY_AUTHORITY_STATUS_MISMATCH", lambda: resolve_dependency_ref(items_mutated, root, expected_project_id="project-0245"))
 
     def test_f42_mode_and_type_identity_are_compared(self) -> None:
-        from ugas.orchestration_runtime_v0246 import diff_historical_entry_sets
+        from ugas.orchestration_runtime_v0247 import diff_historical_entry_sets
 
         blob = {"mode": "100644", "type": "blob", "object_id": "a" * 40, "path": "REVIEW-v0.24.1.md"}
         chmod_only = {"mode": "100755", "type": "blob", "object_id": "a" * 40, "path": "REVIEW-v0.24.1.md"}
@@ -347,28 +347,14 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
 
     def test_f39_stale_gate_fails_state_consistency(self) -> None:
         import json
-        import subprocess
-        from ugas.state_consistency_v0246 import CURRENT_GATE, validate_state_consistency
+        from ugas.state_consistency_v0247 import CURRENT_GATE, validate_state_consistency
 
         root = Path(__file__).resolve().parents[1]
         state = json.loads((root / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
         checkpoint = (root / "CHECKPOINT.md").read_text(encoding="utf-8")
         roadmap = (root / "docs/roadmap.md").read_text(encoding="utf-8")
         matrix = json.loads((root / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))
-        if state.get("version") != "0.24.6":
-            if not (root / ".git").exists():
-                self.skipTest("official no-git snapshot has no frozen v0.24.6 tree; F-39 live proof is v0.24.7")
-            frozen_ref = "cdc49dd96e7c683c0426d209e0bef162442a3bbb"
-
-            def _frozen(path: str) -> str:
-                result = subprocess.run(["git", "show", f"{frozen_ref}:{path}"], cwd=root, check=True, capture_output=True)
-                return result.stdout.decode("utf-8")
-
-            state = json.loads(_frozen("docs/evidence/current-state.json"))
-            checkpoint = _frozen("CHECKPOINT.md")
-            roadmap = _frozen("docs/roadmap.md")
-            matrix = json.loads(_frozen("docs/ugas-v1-capability-matrix.json"))
-        binding = {"base_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "reviewed_head": "2a5c1d6d88c1348c1490cb9c89f16e2cc6b64362", "status": "CORRECTION_REQUIRED"}
+        binding = {"base_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "reviewed_head": "cdc49dd96e7c683c0426d209e0bef162442a3bbb", "status": "CORRECTION_REQUIRED"}
         self.assertEqual(state["current_gate"], CURRENT_GATE)
         self.assertNotIn("ORCHESTRATION_RUNTIME_HARDENING_F31R_F36_CORRECTION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", CURRENT_GATE)
         ok = validate_state_consistency(state, checkpoint, roadmap, matrix, binding, state.get("evidence", {}))
@@ -387,8 +373,8 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
 
     def test_f43r_sanitize_uads_handoff_is_fail_closed(self) -> None:
         valid = {
-            "work_order_id": "wo_272925c17d095c45",
-            "run_or_dispatch_id": "er_f3520c0beb88114a",
+            "work_order_id": "wo_22268aa2ff8736ca",
+            "run_or_dispatch_id": "er_eda99105fa43d383",
             "route_status": "SELECTED",
             "selected_profile_id": "codex-global-strong-v1",
             "selected_profile_digest_unavailable_reason": "UADS model execution plan does not expose a profile digest",
@@ -399,8 +385,10 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
         sanitized = sanitize_uads_handoff(valid)
         self.assertEqual(sanitized["route_status"], "SELECTED")
         self.assertEqual(sanitized["dispatch_status"], "DISPATCHED")
-        self.assertEqual(len(HARD_GATE_IDS), 62)
+        self.assertEqual(len(HARD_GATE_IDS), 64)
         self.assertIn("uads_global_first_mode", HARD_GATE_IDS)
+        self.assertIn("artifact_inventory_consistent", HARD_GATE_IDS)
+        self.assertIn("artifact_single_self_attestation", HARD_GATE_IDS)
         blocked = dict(valid)
         blocked["route_status"] = "BLOCKED"
         self.reject("ORCH_UADS_ROUTE_STATUS_REJECTED", lambda: sanitize_uads_handoff(blocked))
@@ -417,10 +405,10 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
         missing_profile.pop("selected_profile_id")
         self.reject("ORCH_UADS_HANDOFF_INVALID", lambda: sanitize_uads_handoff(missing_profile))
 
-    def test_f44_selects_final_official_summary(self) -> None:
+    def test_f44r_rejects_malformed_terminal_summary(self) -> None:
         import importlib.util
-        path = Path(__file__).resolve().parents[1] / "scripts/validation/record_orchestration_results_v0246.py"
-        spec = importlib.util.spec_from_file_location("record_orchestration_results_v0246", path)
+        path = Path(__file__).resolve().parents[1] / "scripts/validation/record_orchestration_results_v0247.py"
+        spec = importlib.util.spec_from_file_location("record_orchestration_results_v0247", path)
         module = importlib.util.module_from_spec(spec)
         assert spec is not None and spec.loader is not None
         spec.loader.exec_module(module)
@@ -432,12 +420,23 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
         selected = module.select_final_validation_summary(nested)
         self.assertEqual(selected["status"], "PASS")
         self.assertEqual(selected["checks"], 3050)
-        self.assertEqual(selected["selected_summary_index"], 2)
-        self.assertEqual(selected["summary_count"], 3)
+        self.assertEqual(selected["selected_summary_index"], 0)
+        self.assertEqual(selected["summary_prefixed_count"], 1)
+        self.assertEqual(selected["canonical_summary_count"], 1)
+        self.assertEqual(selected["selected_terminal_line"], 2)
+        malformed = module.select_final_validation_summary("SUMMARY checks=100 passed=100 failed=0\nSUMMARY checks=120 passed=120\n")
+        self.assertEqual(malformed["status"], "FAIL")
+        self.assertEqual(malformed["reason"], "MALFORMED_TERMINAL_SUMMARY")
+        self.assertEqual(malformed["selected_summary_index"], 1)
+        junk = module.select_final_validation_summary("SUMMARY checks=100 passed=100 failed=0\nSUMMARY checks=120 passed=120 failed=0 trailing\n")
+        self.assertEqual(junk["status"], "FAIL")
+        self.assertEqual(junk["reason"], "MALFORMED_TERMINAL_SUMMARY")
+        embedded = module.select_final_validation_summary("nested text SUMMARY checks=120 passed=120 failed=0 inside a line\n")
+        self.assertEqual(embedded["status"], "FAIL")
+        self.assertEqual(embedded["reason"], "NO_FINAL_SUMMARY")
         early_fail_final_pass = module.select_final_validation_summary("SUMMARY checks=100 passed=90 failed=10\nSUMMARY checks=120 passed=120 failed=0\n")
         self.assertEqual(early_fail_final_pass["status"], "PASS")
         self.assertEqual(early_fail_final_pass["checks"], 120)
-        self.assertEqual(early_fail_final_pass["selected_summary_index"], 1)
         missing = module.select_final_validation_summary("official validation started\n")
         self.assertEqual(missing["status"], "FAIL")
         self.assertEqual(missing["reason"], "NO_FINAL_SUMMARY")
@@ -445,18 +444,45 @@ class OrchestrationRuntimev0246Tests(unittest.TestCase):
     def test_f45_canonical_correction_history_mismatch_fails(self) -> None:
         canonical = {
             "status": "CORRECTION_REQUIRED",
-            "rejected_reviewed_head": "2a5c1d6d88c1348c1490cb9c89f16e2cc6b64362",
-            "findings": ["F-43R", "F-44", "F-45", "F-46"],
+            "rejected_reviewed_head": "cdc49dd96e7c683c0426d209e0bef162442a3bbb",
+            "findings": ["F-44R", "F-46R"],
             "historical_evidence_unchanged": True,
         }
         matched = validate_canonical_correction_history(canonical, canonical)
         self.assertEqual(matched["status"], "PASS")
         stale = dict(canonical)
-        stale["findings"] = ["F-41", "F-42", "F-43"]
+        stale["findings"] = ["F-43R", "F-44", "F-45", "F-46"]
         self.reject("ORCH_CORRECTION_HISTORY_MISMATCH", lambda: validate_canonical_correction_history(stale, canonical))
         wrong_head = dict(canonical)
         wrong_head["rejected_reviewed_head"] = "0" * 40
         self.reject("ORCH_CORRECTION_HISTORY_MISMATCH", lambda: validate_canonical_correction_history(wrong_head, canonical))
+
+    def test_f46r_inventory_rejects_post_scan_mutation(self) -> None:
+        import importlib.util
+        import tempfile
+        path = Path(__file__).resolve().parents[1] / "scripts/validation/validate_github_review_security_v0247.py"
+        spec = importlib.util.spec_from_file_location("validate_github_review_security_v0247", path)
+        module = importlib.util.module_from_spec(spec)
+        assert spec is not None and spec.loader is not None
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "REVIEW-v0.24.7.md").write_text("ok\n", encoding="utf-8")
+            (root / "logs").mkdir()
+            (root / "logs/ugas-tests.log").write_text("ok\n", encoding="utf-8")
+            inventory = module.build_artifact_inventory(root, excluded_paths=(module.SELF_ATTESTATION,))
+            (root / "logs/injected.txt").write_text("extra\n", encoding="utf-8")
+            added = module.verify_artifact_inventory(root, inventory, excluded_paths=(module.SELF_ATTESTATION,))
+            self.assertEqual(added["status"], "FAIL")
+            self.assertEqual(added["reason"], "ARTIFACT_FILE_ADDED")
+            (root / "logs/injected.txt").unlink()
+            (root / module.SELF_ATTESTATION).write_text("{}\n", encoding="utf-8")
+            positive = module.verify_artifact_inventory(root, inventory, excluded_paths=(module.SELF_ATTESTATION,))
+            self.assertEqual(positive["status"], "PASS")
+            self.assertEqual(positive["final_staged_file_count"], inventory["scanned_file_count"] + 1)
+            multi = module.verify_artifact_inventory(root, inventory, excluded_paths=(module.SELF_ATTESTATION, "REVIEW-v0.24.7.md"))
+            self.assertEqual(multi["status"], "FAIL")
+            self.assertEqual(multi["reason"], "ARTIFACT_MULTI_SELF_EXCLUSION")
 
 
 if __name__ == "__main__":
