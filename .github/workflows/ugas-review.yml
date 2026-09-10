@@ -172,6 +172,28 @@ jobs:
             cat "$RUNNER_TEMP/pre-upload-enforcement-v0247.log"
           } >> "$GITHUB_STEP_SUMMARY"
           exit "$code"
+      - name: Sanitize bounded artifact export paths v0.24.7
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os, sys
+          sys.path.insert(0, "scripts/validation")
+          from validate_github_review_security_v0247 import sanitize_exported_text
+          root = Path(os.environ["RUNNER_TEMP"]) / "ugas-review-artifact"
+          for path in sorted(root.rglob("*")):
+              if not path.is_file():
+                  continue
+              try:
+                  text = path.read_text(encoding="utf-8")
+              except (OSError, UnicodeDecodeError):
+                  continue
+              sanitized = sanitize_exported_text(text)
+              if sanitized != text:
+                  path.write_text(sanitized, encoding="utf-8")
+          PY
       - name: Validate bounded artifact security v0.24.7
         if: always()
         continue-on-error: true

@@ -16,6 +16,8 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "scripts" / "validation"))
+from validate_github_review_security_v0247 import sanitize_exported_text
 
 from ugas.orchestration_runtime_v0247 import (
     APPROVED_AUTHORITY_REGISTRY,
@@ -94,9 +96,19 @@ CANONICAL_CORRECTION_HISTORY = {
 }
 
 
+def _sanitize_exported_value(value: Any) -> Any:
+    if isinstance(value, str):
+        return sanitize_exported_text(value)
+    if isinstance(value, dict):
+        return {key: _sanitize_exported_value(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_sanitize_exported_value(item) for item in value]
+    return value
+
+
 def _write(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(_sanitize_exported_value(value), indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def _expect_rejection(control_id: str, defect: str, expected: str, action: Callable[[], Any]) -> dict[str, Any]:
@@ -104,9 +116,9 @@ def _expect_rejection(control_id: str, defect: str, expected: str, action: Calla
         action()
     except OrchestrationContractError as exc:
         observed = exc.rejection_class
-        return {"control_id": control_id, "injected_defect": defect, "expected_rejection_class": expected, "observed_rejection_class": observed, "status": "PASS" if observed == expected else "FAIL", "result": "REJECT" if observed == expected else "WRONG_REJECTION", "actual_exception": type(exc).__name__, "detail": exc.detail}
+        return {"control_id": control_id, "injected_defect": defect, "expected_rejection_class": expected, "observed_rejection_class": observed, "status": "PASS" if observed == expected else "FAIL", "result": "REJECT" if observed == expected else "WRONG_REJECTION", "actual_exception": type(exc).__name__, "detail": sanitize_exported_text(str(exc.detail))}
     except Exception as exc:
-        return {"control_id": control_id, "injected_defect": defect, "expected_rejection_class": expected, "observed_rejection_class": None, "status": "FAIL", "result": "UNEXPECTED_EXCEPTION", "actual_exception": type(exc).__name__, "detail": str(exc)}
+        return {"control_id": control_id, "injected_defect": defect, "expected_rejection_class": expected, "observed_rejection_class": None, "status": "FAIL", "result": "UNEXPECTED_EXCEPTION", "actual_exception": type(exc).__name__, "detail": sanitize_exported_text(str(exc))}
     return {"control_id": control_id, "injected_defect": defect, "expected_rejection_class": expected, "observed_rejection_class": None, "status": "FAIL", "result": "ACCEPT", "actual_exception": None, "detail": "validator accepted injected defect"}
 
 

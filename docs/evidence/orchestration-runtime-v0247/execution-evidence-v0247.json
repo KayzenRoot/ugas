@@ -3983,7 +3983,7 @@
       "NC-AUTH-11": {
         "actual_exception": "OrchestrationContractError",
         "control_id": "NC-AUTH-11",
-        "detail": "approved authority commit could not be resolved: Command '['git', '-C', 'C:\\\\Users\\\\csn19\\\\AppData\\\\Local\\\\Temp\\\\ugas-emptygit-v0247-ubd2l3lr', 'show', '1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3:docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json']' returned non-zero exit status 128.",
+        "detail": "approved authority commit could not be resolved: Command '['git', '-C', 'C:\\\\Users\\\\csn19\\\\AppData\\\\Local\\\\Temp\\\\ugas-emptygit-v0247-rx7vkqhv', 'show', '1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3:docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json']' returned non-zero exit status 128.",
         "expected_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING",
         "injected_defect": "git mode missing canonical object",
         "observed_rejection_class": "ORCH_DEPENDENCY_AUTHORITY_COMMIT_MISSING",
@@ -4603,7 +4603,7 @@
   "provider": {
     "boundary": {
       "forbidden_hits": [],
-      "source": "D:/Projeto Codexx/ugas-v0210-maps-minimap/src/ugas/orchestration_runtime_v0247.py",
+      "source": "src/ugas/orchestration_runtime_v0247.py",
       "spy_targets": [
         "ugas.comfyui_client.ComfyUIClient.submit_workflow",
         "ugas.generation.ComfyUIClient.submit_workflow"

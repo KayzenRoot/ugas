@@ -1636,6 +1636,14 @@ def provider_spy_targets() -> tuple[str, ...]:
     )
 
 
+def _relative_repo_path(path: Path) -> str:
+    resolved = path.resolve()
+    parts = resolved.parts
+    if "src" in parts:
+        return "/".join(parts[parts.index("src") :])
+    return resolved.name
+
+
 def assert_provider_boundary(source: str | Path | None = None) -> dict[str, Any]:
     if source is None:
         source_text = inspect.getsource(OrchestrationRuntime)
@@ -1643,7 +1651,7 @@ def assert_provider_boundary(source: str | Path | None = None) -> dict[str, Any]
     elif isinstance(source, Path) or (isinstance(source, str) and "\n" not in source and Path(source).is_file()):
         source_path = Path(source)
         source_text = source_path.read_text(encoding="utf-8")
-        source_name = source_path.as_posix()
+        source_name = _relative_repo_path(source_path)
     else:
         source_text = str(source)
         source_name = "provided-source"
