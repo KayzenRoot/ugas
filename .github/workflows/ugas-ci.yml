@@ -37,15 +37,15 @@ jobs:
       - name: Active v0.24.1 orchestration state consistency
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_state_consistency_v0241.py
+        run: python scripts/validation/validate_state_consistency_v0242.py
       - name: Orchestration runtime v0.24.1 F31-F36 correction and negative controls
         env:
           PYTHONPATH: src
-        run: python scripts/validation/run_orchestration_runtime_v0241.py
+        run: python scripts/validation/run_orchestration_runtime_v0242.py
       - name: Orchestration runtime v0.24.1 schema validation
         env:
           PYTHONPATH: src
-        run: python scripts/validation/validate_orchestration_schema_v0241.py
+        run: python scripts/validation/validate_orchestration_schema_v0242.py
       - name: Frozen VFX v0.23.4 read-only regression
         env:
           PYTHONPATH: src

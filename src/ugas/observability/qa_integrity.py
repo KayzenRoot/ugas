@@ -28,6 +28,7 @@ from ..state_consistency_v0233 import validate_state_consistency as validate_sta
 from ..state_consistency_v0234 import validate_state_consistency as validate_state_consistency_v0234
 from ..state_consistency_v0240 import validate_state_consistency as validate_state_consistency_v0240
 from ..state_consistency_v0241 import validate_state_consistency as validate_state_consistency_v0241
+from ..state_consistency_v0242 import validate_state_consistency as validate_state_consistency_v0242
 
 # The active state/review moved to v0.21.0. The v0.12.2 index remains the
 # immutable baseline evidence used to bind the local observer.
@@ -280,7 +281,16 @@ class ActiveEvidenceCache:
             schema = _load(self.state_schema_path)
             validate_schema_document(schema)
             validate_instance(state, schema)
-            if state.get("version") == "0.24.1":
+            if state.get("version") == "0.24.2":
+                consistency = validate_state_consistency_v0242(
+                    state,
+                    self.checkpoint_path.read_text(encoding="utf-8"),
+                    self.roadmap_path.read_text(encoding="utf-8"),
+                    _load(self.repo_root / "docs/ugas-v1-capability-matrix.json"),
+                    _load(self.repo_root / "docs/evidence/orchestration-runtime-v0242/correction-history-v0242.json"),
+                    state.get("evidence", {}),
+                )
+            elif state.get("version") == "0.24.1":
                 consistency = validate_state_consistency_v0241(
                     state,
                     self.checkpoint_path.read_text(encoding="utf-8"),

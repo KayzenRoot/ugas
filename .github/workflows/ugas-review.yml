@@ -48,7 +48,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python scripts/validation/run_orchestration_runtime_v0241.py 2>&1 | tee "$RUNNER_TEMP/orchestration.log"
+          python scripts/validation/run_orchestration_runtime_v0242.py 2>&1 | tee "$RUNNER_TEMP/orchestration.log"
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/orchestration.exit"
           exit "$code"
@@ -68,7 +68,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_state_consistency_v0241.py | tee "$RUNNER_TEMP/state-validation-v0241.json"
+          python scripts/validation/validate_state_consistency_v0242.py | tee "$RUNNER_TEMP/state-validation-v0242.json"
           code=${PIPESTATUS[0]}
           printf '%s\n' "$code" > "$RUNNER_TEMP/state.exit"
           exit "$code"
@@ -88,7 +88,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          python scripts/validation/validate_orchestration_schema_v0241.py
+          python scripts/validation/validate_orchestration_schema_v0242.py
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/schema.exit"
           exit "$code"
@@ -116,21 +116,21 @@ jobs:
         if: always()
         continue-on-error: true
         run: |
-          python scripts/validation/record_orchestration_results_v0241.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --tests-exit "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --matrix-exit "$(cat "$RUNNER_TEMP/matrix.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --workflow-exit "$(cat "$RUNNER_TEMP/workflow.exit")" --schema-exit "$(cat "$RUNNER_TEMP/schema.exit")"
-          cp "$RUNNER_TEMP/state-validation-v0241.json" "$RUNNER_TEMP/ugas-review-evidence/state-validation-v0241.json" 2>/dev/null || true
-          cp docs/evidence/orchestration-runtime-v0241/schema-validation-v0241.json "$RUNNER_TEMP/ugas-review-evidence/schema-validation-v0241.json" 2>/dev/null || true
+          python scripts/validation/record_orchestration_results_v0242.py --output-dir "$RUNNER_TEMP/ugas-review-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --tests-exit "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --matrix-exit "$(cat "$RUNNER_TEMP/matrix.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --workflow-exit "$(cat "$RUNNER_TEMP/workflow.exit")" --schema-exit "$(cat "$RUNNER_TEMP/schema.exit")"
+          cp "$RUNNER_TEMP/state-validation-v0242.json" "$RUNNER_TEMP/ugas-review-evidence/state-validation-v0242.json" 2>/dev/null || true
+          cp docs/evidence/orchestration-runtime-v0242/schema-validation-v0242.json "$RUNNER_TEMP/ugas-review-evidence/schema-validation-v0242.json" 2>/dev/null || true
       - name: Assemble bounded evidence artifact
         if: always()
         continue-on-error: true
         shell: bash
         run: |
           artifact="$RUNNER_TEMP/ugas-review-artifact"
-          mkdir -p "$artifact/docs/evidence/orchestration-runtime-v0241" "$artifact/logs"
-          cp -R docs/evidence/orchestration-runtime-v0241/. "$artifact/docs/evidence/orchestration-runtime-v0241/"
+          mkdir -p "$artifact/docs/evidence/orchestration-runtime-v0242" "$artifact/logs"
+          cp -R docs/evidence/orchestration-runtime-v0242/. "$artifact/docs/evidence/orchestration-runtime-v0242/"
           cp docs/evidence/current-state.json "$artifact/docs/evidence/current-state.json"
           mkdir -p "$artifact/schemas"
-          cp schemas/current-state-v0241.json "$artifact/schemas/current-state-v0241.json"
-          cp schemas/orchestration-runtime-v0241.json "$artifact/schemas/orchestration-runtime-v0241.json"
+          cp schemas/current-state-v0242.json "$artifact/schemas/current-state-v0242.json"
+          cp schemas/orchestration-runtime-v0242.json "$artifact/schemas/orchestration-runtime-v0242.json"
           cp REVIEW-v0.24.1.md "$artifact/REVIEW-v0.24.1.md"
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log"
@@ -141,20 +141,20 @@ jobs:
         if: always()
         continue-on-error: true
         run: |
-          python scripts/validation/build_github_review_manifest_v0241.py --output-dir "$RUNNER_TEMP/ugas-review-artifact" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0241.json" --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0241.json" --state-validation-json "$RUNNER_TEMP/ugas-review-evidence/state-validation-v0241.json" --gates-json docs/evidence/orchestration-runtime-v0241/hard-gates-v0241.json --controls-json docs/evidence/orchestration-runtime-v0241/negative-controls-v0241.json --determinism-json docs/evidence/orchestration-runtime-v0241/full-slice-two-run-determinism-v0241.json --production-json docs/evidence/orchestration-runtime-v0241/production-boundary-v0241.json --provider-json docs/evidence/orchestration-runtime-v0241/provider-boundary-v0241.json --family-json docs/evidence/orchestration-runtime-v0241/family-concurrency-v0241.json
+          python scripts/validation/build_github_review_manifest_v0242.py --output-dir "$RUNNER_TEMP/ugas-review-artifact" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-review-evidence/test-results-v0242.json" --validation-json "$RUNNER_TEMP/ugas-review-evidence/validation-results-v0242.json" --state-validation-json "$RUNNER_TEMP/ugas-review-evidence/state-validation-v0242.json" --gates-json docs/evidence/orchestration-runtime-v0242/hard-gates-v0242.json --controls-json docs/evidence/orchestration-runtime-v0242/negative-controls-v0242.json --determinism-json docs/evidence/orchestration-runtime-v0242/full-slice-two-run-determinism-v0242.json --production-json docs/evidence/orchestration-runtime-v0242/production-boundary-v0242.json --provider-json docs/evidence/orchestration-runtime-v0242/provider-boundary-v0242.json --family-json docs/evidence/orchestration-runtime-v0242/family-concurrency-v0242.json
       - name: Validate bounded artifact security v0.24.1
         if: always()
         continue-on-error: true
-        run: python scripts/validation/validate_github_review_security_v0241.py --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0241.json" --output "$RUNNER_TEMP/security-v0241.json"
+        run: python scripts/validation/validate_github_review_security_v0242.py --artifact-dir "$RUNNER_TEMP/ugas-review-artifact" --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0242.json" --output "$RUNNER_TEMP/security-v0242.json"
       - name: Validate v0.24.1 exact-head manifest
         if: always()
         continue-on-error: true
-        run: python scripts/validation/validate_github_review_manifest_v0241.py "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0241.json" --result-output "$RUNNER_TEMP/final-manifest-validation-v0241.json"
+        run: python scripts/validation/validate_github_review_manifest_v0242.py "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0242.json" --result-output "$RUNNER_TEMP/final-manifest-validation-v0242.json"
       - name: Add final manifest/security results
         if: always()
         run: |
-          cp "$RUNNER_TEMP/security-v0241.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0241.json" 2>/dev/null || true
-          cp "$RUNNER_TEMP/final-manifest-validation-v0241.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0241.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/security-v0242.json" "$RUNNER_TEMP/ugas-review-artifact/security-results-v0242.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/final-manifest-validation-v0242.json" "$RUNNER_TEMP/ugas-review-artifact/manifest-validation-results-v0242.json" 2>/dev/null || true
       - name: Write GitHub Step Summary
         if: always()
         run: |
@@ -179,10 +179,10 @@ jobs:
         shell: bash
         run: |
           set +e
-          python scripts/validation/enforce_github_review_v0241.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0241.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0241.json" --security "$RUNNER_TEMP/security-v0241.json" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --schema-exit "$(cat "$RUNNER_TEMP/schema.exit")" 2>&1 | tee "$RUNNER_TEMP/final-enforcement-v0241.log"
+          python scripts/validation/enforce_github_review_v0242.py --manifest "$RUNNER_TEMP/ugas-review-artifact/github-review-manifest-v0242.json" --manifest-validation "$RUNNER_TEMP/final-manifest-validation-v0242.json" --security "$RUNNER_TEMP/security-v0242.json" --state-exit "$(cat "$RUNNER_TEMP/state.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --schema-exit "$(cat "$RUNNER_TEMP/schema.exit")" 2>&1 | tee "$RUNNER_TEMP/final-enforcement-v0242.log"
           code=${PIPESTATUS[0]}
           {
             echo '## UGAS v0.24.1 final enforcement'
-            cat "$RUNNER_TEMP/final-enforcement-v0241.log"
+            cat "$RUNNER_TEMP/final-enforcement-v0242.log"
           } >> "$GITHUB_STEP_SUMMARY"
           exit "$code"
