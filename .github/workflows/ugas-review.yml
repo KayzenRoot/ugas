@@ -131,7 +131,7 @@ jobs:
           mkdir -p "$artifact/schemas"
           cp schemas/current-state-v0242.json "$artifact/schemas/current-state-v0242.json"
           cp schemas/orchestration-runtime-v0242.json "$artifact/schemas/orchestration-runtime-v0242.json"
-          cp REVIEW-v0.24.1.md "$artifact/REVIEW-v0.24.1.md"
+          cp REVIEW-v0.24.2.md "$artifact/REVIEW-v0.24.2.md"
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-tests.log" "$artifact/logs/ugas-tests.log"
           cp "$RUNNER_TEMP/ugas-validation.log" "$artifact/logs/ugas-validation.log"
