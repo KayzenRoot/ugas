@@ -214,6 +214,8 @@ class OrchestrationRuntimeV0242Tests(unittest.TestCase):
 
     def test_dependency_ref_is_byte_and_revision_bound(self) -> None:
         root = Path(__file__).resolve().parents[1]
+        if not (root / ".git").exists():
+            self.skipTest("historical v0.24.2 git-show authority path is not available in official no-git snapshots")
         path = "docs/evidence/maps-minimap-runtime-v0213/map-contract-v0213.json"
         ref = build_dependency_ref(root, project_id="project-0242", family="maps_minimap", revision="v0.21.3", path=path, status="MERGED_CLOSED")
         resolved = resolve_dependency_ref(ref, root, expected_project_id="project-0242")
