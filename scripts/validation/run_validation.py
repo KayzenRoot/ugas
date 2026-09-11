@@ -3504,7 +3504,7 @@ def _v0203_checks() -> None:
             consistency = validate_state_consistency_v0203(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0203:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.3 state is consistent")
         else:
-            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0"} and state.get("previous_release", {}).get("merge_commit") in {"0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "b08b9c3df74ef6a23046be396289e2fd72dc336b", "dee98f8cd89ebd83a36ead7a22a184700d6e916f"}, "approved history remains immutable while active state advances")
+            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0"} and state.get("previous_release", {}).get("merge_commit") in {"0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "b08b9c3df74ef6a23046be396289e2fd72dc336b", "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "6c6d53dab5a95226bf9578a6099d755d51327d8e"}, "approved history remains immutable while active state advances")
         history = state["correction_history"]["v0.20.2"]
         check("v0203:v0202-rejected-history", history.get("status") == "CORRECTION_REQUIRED" and history.get("rejected_reviewed_head") == "6022cf3c6158ebb762519a04e79ed42378438ccc" and history.get("historical_evidence_unchanged") is True, "v0.20.2 is explicitly rejected and frozen")
 
@@ -4078,13 +4078,14 @@ def _v0242_checks() -> None:
         "scripts/validation/run_orchestration_runtime_v0242.py", "scripts/validation/validate_state_consistency_v0242.py", "scripts/validation/validate_orchestration_schema_v0242.py",
         "scripts/validation/build_github_review_manifest_v0242.py", "scripts/validation/validate_github_review_manifest_v0242.py", "scripts/validation/validate_github_review_security_v0242.py", "scripts/validation/enforce_github_review_v0242.py", "scripts/validation/record_orchestration_results_v0242.py",
         "tests/test_orchestration_runtime_v0242.py", "CHECKPOINT.md", "docs/roadmap.md", "docs/ugas-v1-capability-matrix.json", "docs/evidence/current-state.json", "REVIEW-v0.24.2.md",
+        "docs/evidence/orchestration-runtime-v0242/state-snapshot-v0242.json",
     ]
     names = ("request-contract-v0242.json", "dag-scheduler-v0242.json", "execution-state-v0242.json", "deadline-timeout-v0242.json", "checkpoint-resume-v0242.json", "idempotency-coordinator-v0242.json", "circuit-breaker-runtime-v0242.json", "dependency-authority-v0242.json", "provider-boundary-v0242.json", "family-concurrency-v0242.json", "frozen-v0241-fingerprint-v0242.json", "hard-gates-v0242.json", "negative-controls-v0242.json", "full-slice-two-run-determinism-v0242.json", "production-boundary-v0242.json", "correction-history-v0242.json", "execution-evidence-v0242.json", "schema-validation-v0242.json", "capability-matrix-validation-v0242.json")
     required += [f"docs/evidence/orchestration-runtime-v0242/{name}" for name in names]
     for relative in required:
         check(f"v0242:path:{relative}", (ROOT / relative).is_file(), "present" if (ROOT / relative).is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/current-state.json")
+        state = load_json(ROOT / "docs/evidence/orchestration-runtime-v0242/state-snapshot-v0242.json")
         state_schema = load_json(ROOT / "schemas/current-state-v0242.json")
         runtime_schema = load_json(ROOT / "schemas/orchestration-runtime-v0242.json")
         execution = load_json(evidence_root / "execution-evidence-v0242.json")
