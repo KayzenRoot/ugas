@@ -154,11 +154,11 @@
     },
     "pr_open_unmerged_at_candidate_head": {
       "gate_id": "pr_open_unmerged_at_candidate_head",
-      "observed": false,
+      "observed": true,
       "observed_type": "bool",
       "proof_source": "GitHub LIVE PR metadata recorded in docs/evidence/current-state.json with the candidate head still on the acceptance branch",
-      "reason": "OBSERVED_FALSE",
-      "status": "FAIL"
+      "reason": null,
+      "status": "PASS"
     },
     "production_approved_false": {
       "gate_id": "production_approved_false",
@@ -226,6 +226,6 @@
     }
   },
   "missing_observations": [],
-  "overall_pass": false,
+  "overall_pass": true,
   "schema_version": "0.25.0"
 }

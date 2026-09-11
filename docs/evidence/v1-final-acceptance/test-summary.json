@@ -1,17 +1,15 @@
 {
   "acceptance": {
-    "acceptance_claim_allowed": false,
+    "acceptance_claim_allowed": true,
     "critical": 0,
-    "failed_gates": [
-      "pr_open_unmerged_at_candidate_head"
-    ],
+    "failed_gates": [],
     "high": 0,
     "low": 0,
     "medium": 2,
     "medium_blocking_acceptance": 0,
     "observability_visual_review": "PASS",
     "schema_version": "0.25.0",
-    "status": "INCOMPLETE_ACCEPTANCE_EVIDENCE",
+    "status": "V1_ACCEPTANCE_CANDIDATE",
     "unresolved_high_critical": 0
   },
   "environment": {
@@ -60,10 +58,8 @@
     }
   ],
   "hard_gates": {
-    "failed": [
-      "pr_open_unmerged_at_candidate_head"
-    ],
-    "overall_pass": false,
+    "failed": [],
+    "overall_pass": true,
     "total": 28
   },
   "schema_version": "0.25.0"
