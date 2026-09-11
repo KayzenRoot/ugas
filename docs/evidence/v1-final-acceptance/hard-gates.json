@@ -1,0 +1,247 @@
+{
+  "gates": {
+    "acceptance_evidence_inventory_pass": {
+      "gate_id": "acceptance_evidence_inventory_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "complete bounded docs/evidence/v1-final-acceptance inventory written by this runner",
+      "reason": null,
+      "status": "PASS"
+    },
+    "acceptance_evidence_security_pass": {
+      "gate_id": "acceptance_evidence_security_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "audit_security over the candidate files and the acceptance evidence root",
+      "reason": null,
+      "status": "PASS"
+    },
+    "active_documents_free_of_production_claims": {
+      "gate_id": "active_documents_free_of_production_claims",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "active documents are free of production approval and routing claims",
+      "reason": null,
+      "status": "PASS"
+    },
+    "base_main_equals_authorized_merge": {
+      "gate_id": "base_main_equals_authorized_merge",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "docs/evidence/current-state.json baseline_main_sha equals the authorized orchestration merge main",
+      "reason": null,
+      "status": "PASS"
+    },
+    "bookkeeping_delta_within_reviewed_scope": {
+      "gate_id": "bookkeeping_delta_within_reviewed_scope",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "the committed delta from the approved semantic head stays inside the reviewed bookkeeping allowlist",
+      "reason": null,
+      "status": "PASS"
+    },
+    "capability_evidence_pointers_present": {
+      "gate_id": "capability_evidence_pointers_present",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "audit_capability_matrix resolves every evidence and test pointer from repository bytes",
+      "reason": null,
+      "status": "PASS"
+    },
+    "capability_lifecycle_not_promoted": {
+      "gate_id": "capability_lifecycle_not_promoted",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "audit_capability_matrix rejects any lifecycle promotion beyond the proven claim",
+      "reason": null,
+      "status": "PASS"
+    },
+    "capability_records_audited_all_16": {
+      "gate_id": "capability_records_audited_all_16",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "audit_capability_matrix traverses the tracked matrix and the audited 16 capability records",
+      "reason": null,
+      "status": "PASS"
+    },
+    "checkpoint_roadmap_consistent": {
+      "gate_id": "checkpoint_roadmap_consistent",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "validate_state_consistency document literals over CHECKPOINT.md and docs/roadmap.md",
+      "reason": null,
+      "status": "PASS"
+    },
+    "definition_of_done_distinguishes_production": {
+      "gate_id": "definition_of_done_distinguishes_production",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "docs/definition-of-done.md technical acceptance versus production readiness separation",
+      "reason": null,
+      "status": "PASS"
+    },
+    "docker_smoke_pass": {
+      "gate_id": "docker_smoke_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "environment-results-v0250.json docker_smoke_pass record",
+      "reason": null,
+      "status": "PASS"
+    },
+    "external_approval_authority_bound": {
+      "gate_id": "external_approval_authority_bound",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "the tracked WO-0251 external approval record validates against the approved semantic head, review, CI checks and artifact identity",
+      "reason": null,
+      "status": "PASS"
+    },
+    "matrix_consistent_with_state": {
+      "gate_id": "matrix_consistent_with_state",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "audit_capability_matrix plus the v1_final_acceptance state binding",
+      "reason": null,
+      "status": "PASS"
+    },
+    "new_generation_zero": {
+      "gate_id": "new_generation_zero",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "docs/evidence/current-state.json and capability matrix new_generation",
+      "reason": null,
+      "status": "PASS"
+    },
+    "no_git_validation_pass": {
+      "gate_id": "no_git_validation_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "environment-results-v0250.json no_git_validation_pass record",
+      "reason": null,
+      "status": "PASS"
+    },
+    "no_high_or_critical_findings": {
+      "gate_id": "no_high_or_critical_findings",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "acceptance findings register with zero unresolved CRITICAL/HIGH entries",
+      "reason": null,
+      "status": "PASS"
+    },
+    "no_repo_local_uads": {
+      "gate_id": "no_repo_local_uads",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "audit_security repo-local UADS discovery plus the sanitized UADS handoff",
+      "reason": null,
+      "status": "PASS"
+    },
+    "observability_visual_review_resolved": {
+      "gate_id": "observability_visual_review_resolved",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "observability_binding resolves the external visual approval record and visual file hashes",
+      "reason": null,
+      "status": "PASS"
+    },
+    "official_validation_pass": {
+      "gate_id": "official_validation_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "environment-results-v0250.json official_validation_pass record",
+      "reason": null,
+      "status": "PASS"
+    },
+    "orchestration_closure_binding_complete": {
+      "gate_id": "orchestration_closure_binding_complete",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "docs/evidence/current-state.json orchestration_closure binds the GitHub LIVE MERGED_CLOSED closure",
+      "reason": null,
+      "status": "PASS"
+    },
+    "orchestration_closure_matches_frozen_evidence": {
+      "gate_id": "orchestration_closure_matches_frozen_evidence",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "frozen v0.24.7 snapshot digests plus the recorded closure authority",
+      "reason": null,
+      "status": "PASS"
+    },
+    "pr_open_unmerged_at_candidate_head": {
+      "gate_id": "pr_open_unmerged_at_candidate_head",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "GitHub LIVE PR metadata recorded in docs/evidence/current-state.json with the candidate head still on the acceptance branch",
+      "reason": null,
+      "status": "PASS"
+    },
+    "production_approved_false": {
+      "gate_id": "production_approved_false",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "docs/evidence/current-state.json production_approved strict false",
+      "reason": null,
+      "status": "PASS"
+    },
+    "production_boundary_record_blocked": {
+      "gate_id": "production_boundary_record_blocked",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "the written production-boundary.json acceptance record",
+      "reason": null,
+      "status": "PASS"
+    },
+    "production_routing_blocked": {
+      "gate_id": "production_routing_blocked",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "docs/evidence/current-state.json and capability matrix production_routing",
+      "reason": null,
+      "status": "PASS"
+    },
+    "provider_submit_calls_zero": {
+      "gate_id": "provider_submit_calls_zero",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "docs/evidence/current-state.json provider_submit_calls plus the acceptance production boundary",
+      "reason": null,
+      "status": "PASS"
+    },
+    "snapshot_validation_pass": {
+      "gate_id": "snapshot_validation_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "environment-results-v0250.json snapshot_validation_pass record",
+      "reason": null,
+      "status": "PASS"
+    },
+    "state_schema_consistent": {
+      "gate_id": "state_schema_consistent",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "validate_state_consistency over the active state, checkpoint and roadmap",
+      "reason": null,
+      "status": "PASS"
+    },
+    "two_run_determinism_pass": {
+      "gate_id": "two_run_determinism_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "two independent executions of the acceptance core with one canonical digest",
+      "reason": null,
+      "status": "PASS"
+    },
+    "unit_suite_pass": {
+      "gate_id": "unit_suite_pass",
+      "observed": true,
+      "observed_type": "bool",
+      "proof_source": "environment-results-v0250.json unit_suite_pass record",
+      "reason": null,
+      "status": "PASS"
+    }
+  },
+  "missing_observations": [],
+  "overall_pass": true,
+  "schema_version": "0.25.0"
+}

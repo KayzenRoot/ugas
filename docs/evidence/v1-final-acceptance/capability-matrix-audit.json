@@ -1,0 +1,322 @@
+{
+  "accepted_or_preserved": 16,
+  "blocked": 0,
+  "capabilities": [
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/sdxl-qualification",
+      "blocker_reason": null,
+      "claimed_status": "Existing foundation",
+      "evidence_pointers": [
+        "docs/evidence/sdxl-qualification",
+        "docs/evidence/r4-cutout-parts-v071",
+        "docs/evidence/pose-metric-fixtures"
+      ],
+      "id": "core_2d_generation",
+      "lifecycle": "PRESERVED",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the preserved 2D generation foundation",
+      "test_pointers": [
+        "tests/test_sdxl_provider_v060.py",
+        "tests/test_sdxl_smoke_v061.py",
+        "tests/test_cutout_rig_v071.py",
+        "tests/test_revision_integrity_v042.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/walk-front-v081",
+      "blocker_reason": null,
+      "claimed_status": "Pilot-qualified history",
+      "evidence_pointers": [
+        "docs/evidence/walk-front-v080",
+        "docs/evidence/walk-front-v081",
+        "docs/evidence/idle-front-v090",
+        "docs/evidence/r4-cutout-masks"
+      ],
+      "id": "deterministic_cutout_rig",
+      "lifecycle": "PRESERVED",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the preserved cutout rig pilot history",
+      "test_pointers": [
+        "tests/test_cutout_front_walk_v080.py",
+        "tests/test_cutout_front_walk_v081.py",
+        "tests/test_cutout_structural_v073.py",
+        "tests/test_cutout_occlusion_v072.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/observability-v0122",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_PILOT; EXTERNAL_VISUAL_APPROVAL_BOUND",
+      "evidence_pointers": [
+        "docs/evidence/observability-v0122",
+        "docs/evidence/github-governance-v0124/dashboard-external-visual-approval.json"
+      ],
+      "id": "local_always_on_observability",
+      "lifecycle": "PILOT",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "external visual approval bound to reviewed head 2f8d04f03a6f4de0ead7683899f945cd60d5000f",
+      "test_pointers": [
+        "tests/test_observability_v0122.py",
+        "tests/test_observability_v0121.py",
+        "tests/test_observability_v0120.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/github-review-v0123",
+      "blocker_reason": null,
+      "claimed_status": "Established",
+      "evidence_pointers": [
+        "docs/evidence/github-review-v0123",
+        "docs/evidence/github-governance-v0124"
+      ],
+      "id": "github_native_review_infrastructure",
+      "lifecycle": "ESTABLISHED",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the established GitHub-native review infrastructure",
+      "test_pointers": [
+        "tests/test_github_review_integrity_v0123.py",
+        "tests/test_github_governance_v0124.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/animation-runtime-v0131",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_PILOT",
+      "evidence_pointers": [
+        "docs/evidence/animation-runtime-v0130",
+        "docs/evidence/animation-runtime-v0131"
+      ],
+      "id": "run_front_v1",
+      "lifecycle": "PILOT",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the approved v0.13.1 run-front pilot",
+      "test_pointers": [
+        "tests/test_animation_runtime_v0130.py",
+        "tests/test_animation_runtime_v0131.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/animation-runtime-v0141",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_PILOT",
+      "evidence_pointers": [
+        "docs/evidence/animation-runtime-v0140",
+        "docs/evidence/animation-runtime-v0141"
+      ],
+      "id": "hit_reaction_front",
+      "lifecycle": "PILOT",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the approved v0.14.1 hit-reaction pilot",
+      "test_pointers": [
+        "tests/test_animation_runtime_v0140.py",
+        "tests/test_animation_runtime_v0141.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/animation-runtime-v0151",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_PILOT",
+      "evidence_pointers": [
+        "docs/evidence/animation-runtime-v0150",
+        "docs/evidence/animation-runtime-v0151"
+      ],
+      "id": "death_animation_front",
+      "lifecycle": "PILOT",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the approved v0.15.1 death-animation pilot",
+      "test_pointers": [
+        "tests/test_animation_runtime_v0150.py",
+        "tests/test_animation_runtime_v0151.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/multi-direction-runtime-v0162",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION",
+      "evidence_pointers": [
+        "docs/evidence/multi-direction-runtime-v0160",
+        "docs/evidence/multi-direction-runtime-v0162"
+      ],
+      "id": "multi_direction_animation_runtime",
+      "lifecycle": "FOUNDATION",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the approved v0.16.2 foundation",
+      "test_pointers": [
+        "tests/test_direction_runtime_v0162.py",
+        "tests/test_direction_runtime_v0161.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/equipment-outfits-runtime-v0171",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION",
+      "evidence_pointers": [
+        "docs/evidence/equipment-outfits-runtime-v0170",
+        "docs/evidence/equipment-outfits-runtime-v0171"
+      ],
+      "id": "equipment_outfits",
+      "lifecycle": "FOUNDATION",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the approved v0.17.1 foundation",
+      "test_pointers": [
+        "tests/test_equipment_runtime_v0171.py",
+        "tests/test_equipment_runtime_v0170.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/creatures-monsters-runtime-v0182",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION",
+      "evidence_pointers": [
+        "docs/evidence/creatures-monsters-runtime-v0180",
+        "docs/evidence/creatures-monsters-runtime-v0182"
+      ],
+      "id": "creatures_monsters",
+      "lifecycle": "FOUNDATION",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the approved v0.18.2 foundation",
+      "test_pointers": [
+        "tests/test_creature_runtime_v0182.py",
+        "tests/test_creature_runtime_v0181.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/items-props-runtime-v0191",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION",
+      "evidence_pointers": [
+        "docs/evidence/items-props-runtime-v0190",
+        "docs/evidence/items-props-runtime-v0191"
+      ],
+      "id": "items_props",
+      "lifecycle": "FOUNDATION",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "authorized baseline main containing the approved v0.19.1 foundation",
+      "test_pointers": [
+        "tests/test_item_prop_runtime_v0191.py",
+        "tests/test_item_prop_runtime_v0190.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/environment-tilesets-runtime-v0203",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION",
+      "evidence_pointers": [
+        "docs/evidence/environment-tilesets-runtime-v0203",
+        "docs/evidence/github-governance-v0210/v0203-external-approval.json"
+      ],
+      "id": "environment_tilesets",
+      "lifecycle": "FOUNDATION",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05",
+      "reviewed_head_source": "v0.20.3 governed merge closure",
+      "test_pointers": [
+        "tests/test_environment_tileset_governance_v0203.py",
+        "tests/test_environment_tileset_runtime_v0202.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/maps-minimap-runtime-v0213",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION",
+      "evidence_pointers": [
+        "docs/evidence/maps-minimap-runtime-v0213",
+        "docs/evidence/github-governance-v0220/v0213-post-merge-binding.json"
+      ],
+      "id": "maps_minimap_assets",
+      "lifecycle": "FOUNDATION",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+      "reviewed_head_source": "v0.21.3 governed merge closure",
+      "test_pointers": [
+        "tests/test_maps_minimap_runtime_v0210.py",
+        "tests/test_post_merge_closure_v0213.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/ui-asset-family-runtime-v0223",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION; MERGED_CLOSED",
+      "evidence_pointers": [
+        "docs/evidence/ui-asset-family-runtime-v0223",
+        "docs/evidence/github-governance-v0223"
+      ],
+      "id": "ui_asset_family",
+      "lifecycle": "MERGED_CLOSED",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
+      "reviewed_head_source": "v0.22.3 governed merge closure",
+      "test_pointers": [
+        "tests/test_ui_asset_family_runtime_v0223.py",
+        "tests/test_ui_asset_family_runtime_v0222.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/vfx-asset-family-runtime-v0234",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION; MERGED_CLOSED",
+      "evidence_pointers": [
+        "docs/evidence/vfx-asset-family-runtime-v0234",
+        "docs/evidence/github-governance-v0230"
+      ],
+      "id": "vfx_asset_family",
+      "lifecycle": "MERGED_CLOSED",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f",
+      "reviewed_head_source": "v0.23.4 governed merge closure",
+      "test_pointers": [
+        "tests/test_vfx_asset_family_runtime_v0234.py",
+        "tests/test_vfx_asset_family_runtime_v0233.py"
+      ]
+    },
+    {
+      "acceptance_status": "ACCEPTED",
+      "authoritative_source": "docs/evidence/orchestration-runtime-v0247",
+      "blocker_reason": null,
+      "claimed_status": "APPROVED_FOUNDATION; MERGED_CLOSED",
+      "evidence_pointers": [
+        "docs/evidence/orchestration-runtime-v0247",
+        "docs/evidence/github-governance-v0247/v0247-external-approval.json"
+      ],
+      "id": "orchestration_runtime_hardening",
+      "lifecycle": "MERGED_CLOSED",
+      "regression_status": "PASS",
+      "reviewed_head_or_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "reviewed_head_source": "v0.24.7 governed merge closure",
+      "test_pointers": [
+        "tests/test_orchestration_runtime_v0247.py",
+        "tests/test_orchestration_runtime_v0246.py"
+      ]
+    }
+  ],
+  "capability_count": 16,
+  "orchestration_merge_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+  "schema_version": "0.25.0",
+  "status": "PASS"
+}

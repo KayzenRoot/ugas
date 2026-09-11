@@ -1,6 +1,6 @@
-# Installing UGAS 0.24.7
+# Installing UGAS 0.25.0
 
-The active correction is v0.24.7 Orchestration Runtime Hardening F-44R/F-46R over merged VFX v0.23.4; v0.24.0, v0.24.1, v0.24.2, v0.24.3, v0.24.4, v0.24.5 and v0.24.6 evidence remain immutable correction history.
+The active slice is v0.25.0 V1 Final Acceptance over the governed merge `6c6d53dab5a95226bf9578a6099d755d51327d8e`; v0.24.0 through v0.24.7 evidence remains immutable correction/approval history.
 
 The active slice is the UI asset-family runtime foundation. It is TEST_ONLY and requires external review; production routing remains BLOCKED, real UI coverage is NONE, and new_generation=0. The branch/PR must remain open and unmerged until the exact-head GitHub checks and bounded artifact pass.
 
@@ -30,7 +30,7 @@ pwsh -ExecutionPolicy Bypass -File scripts/docker/ugas-dashboard-up.ps1
 
 ## GitHub-native review
 
-The active candidate is v0.24.7 on the existing GitHub-first PR #15. Use [REVIEW-v0.24.7.md](REVIEW-v0.24.7.md), the v0.24.7 evidence root and exact-head artifact as the authoritative handoff. Do not merge and do not start V1 Final Acceptance or production routing.
+The active candidate is v0.25.0 on a new GitHub-first PR. Use [REVIEW-UGAS-V1-FINAL-ACCEPTANCE.md](REVIEW-UGAS-V1-FINAL-ACCEPTANCE.md), the v1-final-acceptance evidence root and the exact-head review artifact as the authoritative handoff. Do not merge and do not enable production routing.
 
 Use the PR-first flow in [docs/github-review-protocol.md](docs/github-review-protocol.md). The review workflow produces a bounded GitHub Actions artifact; it never includes secrets, local credentials, telemetry databases, model weights or large generation directories.
 
@@ -85,4 +85,4 @@ After installation, validate a profile with `python -m ugas.animation validate-s
 # Current governed slice: v0.21.3 MAPS_MINIMAP approved foundation / bookkeeping reproof
 
 Installation and validation commands are evaluated against the active v0.21.3 Maps/Minimap foundation. Use `python scripts/validation/run_validation.py` for the read-only full validation; the isolated TEST_ONLY slice remains bound to its immutable v0.21.3 evidence and does not enable production routing or create real assets.
-# Current release metadata: UGAS v0.24.7.
+# Current release metadata: UGAS v0.25.0.

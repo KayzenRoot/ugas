@@ -39,8 +39,8 @@ def main() -> int:
     items = next(item for item in capabilities if item["id"] == "items_props")
     environment = next(item for item in capabilities if item["id"] == "environment_tilesets")
     maps = next(item for item in capabilities if item["id"] == "maps_minimap_assets")
-    if value["version"] not in {"0.20.3", "0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7"}:
-        failures.append("active-matrix-version-must-be-v0203-through-v0247")
+    if value["version"] not in {"0.20.3", "0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0"}:
+        failures.append("active-matrix-version-must-be-v0203-through-v0250")
     ui = next(item for item in capabilities if item["id"] == "ui_asset_family")
     if death["status"] != "APPROVED_PILOT" or direction["status"] != "APPROVED_FOUNDATION" or equipment["status"] != "APPROVED_FOUNDATION" or creatures["status"] != "APPROVED_FOUNDATION" or items["status"] != "APPROVED_FOUNDATION" or environment["status"] not in {"APPROVED_FOUNDATION", "TECHNICALLY_QUALIFIED_FOUNDATION; QA GOVERNANCE INTEGRITY CORRECTION; EXTERNAL REVIEW REQUIRED"} or value["next_candidate"] not in {"ENVIRONMENT_TILESETS", "MAPS_MINIMAP", "UI_ASSET_FAMILY", "ORCHESTRATION_RUNTIME_HARDENING", "V1_FINAL_ACCEPTANCE"}:
         failures.append("items-props-closure-or-environment-active-state-invalid")
@@ -66,6 +66,12 @@ def main() -> int:
         orchestration = next(item for item in capabilities if item["id"] == "orchestration_runtime_hardening")
         if maps["status"] != "APPROVED_FOUNDATION" or ui["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or vfx["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or orchestration["status"] not in {"TECHNICALLY_QUALIFIED_FOUNDATION; EXTERNAL REVIEW REQUIRED", "APPROVED_FOUNDATION; GOVERNED_MERGE_PENDING"} or value["next_candidate"] != "V1_FINAL_ACCEPTANCE":
             failures.append("orchestration-runtime-active-state-invalid")
+    if value["version"] == "0.25.0":
+        vfx = next(item for item in capabilities if item["id"] == "vfx_asset_family")
+        orchestration = next(item for item in capabilities if item["id"] == "orchestration_runtime_hardening")
+        observability = next(item for item in capabilities if item["id"] == "local_always_on_observability")
+        if maps["status"] != "APPROVED_FOUNDATION" or ui["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or vfx["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or orchestration["status"] != "APPROVED_FOUNDATION; MERGED_CLOSED" or observability["status"] != "APPROVED_PILOT; EXTERNAL_VISUAL_APPROVAL_BOUND" or value["next_candidate"] != "V1_FINAL_ACCEPTANCE":
+            failures.append("v1-final-acceptance-active-state-invalid")
     if value["production_routing"] != "BLOCKED" or value["new_generation"] != 0:
         failures.append("matrix-crosses-production-or-generation-boundary")
     result = {"status": "V1_CAPABILITY_MATRIX_PASSED" if not failures else "V1_CAPABILITY_MATRIX_FAILED", "failures": failures, "version": value["version"], "capability_count": len(capabilities), "ids": ids, "next_candidate": value["next_candidate"], "items_props_status": items["status"], "environment_tilesets_status": environment["status"], "production_routing": value["production_routing"], "new_generation": value["new_generation"]}
@@ -84,6 +90,8 @@ def main() -> int:
         output = ROOT / "docs/evidence/orchestration-runtime-v0246/capability-matrix-validation-v0246.json"
     if value["version"] == "0.24.7":
         output = ROOT / "docs/evidence/orchestration-runtime-v0247/capability-matrix-validation-v0247.json"
+    if value["version"] == "0.25.0":
+        output = ROOT / "docs/evidence/v1-final-acceptance/capability-matrix-validation-v0250.json"
     if value["version"] == "0.21.3":
         # The v0.21.3 file is immutable technical history. The active matrix
         # is validated above and printed, while the runner restores this exact

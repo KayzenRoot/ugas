@@ -1,0 +1,30 @@
+{
+  "determinism": {
+    "run_1": null,
+    "run_2": null,
+    "schema_version": "0.25.0",
+    "status": "PASS"
+  },
+  "schema_version": "0.25.0",
+  "snapshot_binding": {
+    "entries": [
+      {
+        "expected_sha256": "5ce5015d7b9b5530287ed4d519c0f4aaea9675ad4f0883630e99d32689c5420b",
+        "name": "state_snapshot",
+        "observed_sha256": "5ce5015d7b9b5530287ed4d519c0f4aaea9675ad4f0883630e99d32689c5420b",
+        "path": "docs/evidence/orchestration-runtime-v0247/state-snapshot-v0247.json",
+        "status": "MATCH"
+      },
+      {
+        "expected_sha256": "93d01c93a26c091b3105c02316981f485eca87db0f3224915298f1f535a1f38d",
+        "name": "matrix_snapshot",
+        "observed_sha256": "93d01c93a26c091b3105c02316981f485eca87db0f3224915298f1f535a1f38d",
+        "path": "docs/evidence/orchestration-runtime-v0247/matrix-snapshot-v0247.json",
+        "status": "MATCH"
+      }
+    ],
+    "schema_version": "0.25.0",
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.25.0",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "current-state",
+      "status": "PASS"
+    },
+    {
+      "name": "capability-matrix-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "architecture-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "security-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "reproducibility-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "state-consistency-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "test-summary.json",
+      "status": "PASS"
+    },
+    {
+      "name": "hard-gates.json",
+      "status": "PASS"
+    },
+    {
+      "name": "negative-controls.json",
+      "status": "PASS"
+    },
+    {
+      "name": "production-boundary.json",
+      "status": "PASS"
+    },
+    {
+      "name": "uads-handoff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final-acceptance-summary.json",
+      "status": "PASS"
+    }
+  ],
+  "failures": []
+}

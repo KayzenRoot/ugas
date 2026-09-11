@@ -1,0 +1,32 @@
+{
+  "gates": {
+    "docker_smoke_pass": {
+      "command": "docker compose -f compose.yaml config; docker compose -f compose.yaml build dashboard; docker compose -f compose.yaml up -d dashboard; curl --fail http://127.0.0.1:18765/api/status and /api/health; docker compose -f compose.yaml rm -sf dashboard",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "no_git_validation_pass": {
+      "command": "UGAS_REVIEW_SNAPSHOT=1 PYTHONPATH=<snapshot>/src python scripts/validation/run_validation.py executed in the no-git copy by the official validation run",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "official_validation_pass": {
+      "command": "python scripts/validation/run_validation.py",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "snapshot_validation_pass": {
+      "command": "python scripts/validation/run_validation.py executed in the isolated git-archive snapshot by the official validation run",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "unit_suite_pass": {
+      "command": "python -m unittest discover -s tests -q",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  },
+  "note": "Observed environment gate exit codes at commit ef69c3613bff601c89a51806eaee9d2e70dd3308: official validation summary checks=3226 passed=3226 failed=0; unit count 845; docker smoke build=0, config=0, curl=0, rm=0, up=0. snapshot_validation_pass/no_git_validation_pass are the exit codes of the nested isolated runs printed by the official validation log.",
+  "schema_version": "0.25.0",
+  "status": "PASS"
+}
