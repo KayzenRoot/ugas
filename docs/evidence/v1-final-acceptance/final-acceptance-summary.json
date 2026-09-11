@@ -15,8 +15,8 @@
   "binding": {
     "base_main_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
     "branch": "codex/v1-final-acceptance",
-    "candidate_head": "6db6843ef460372396b1e9b2181182a2a62805ed",
-    "generated_at": "2026-09-11T05:07:38Z",
+    "candidate_head": "af4466a1dbc43fcd7f8db5a8482867f3c06f7b00",
+    "generated_at": "2026-09-11T05:49:33Z",
     "repository": "KayzenRoot/ugas",
     "schema_version": "0.25.0",
     "work_order_id": "UGAS-WO-V1-FINAL-ACCEPTANCE-001"
@@ -61,9 +61,9 @@
     "status": "PASS"
   },
   "determinism": {
-    "run_1": "084c369ee097ff6fb6b81dda98437a388c1e57d30b83fbdfe1b5e913f8bed7f0",
-    "run_2": "084c369ee097ff6fb6b81dda98437a388c1e57d30b83fbdfe1b5e913f8bed7f0",
-    "run_3": "084c369ee097ff6fb6b81dda98437a388c1e57d30b83fbdfe1b5e913f8bed7f0",
+    "run_1": "d1b01d6673f88fbff578980b28fdfb70d02792a671bfde67fc653e682139724a",
+    "run_2": "d1b01d6673f88fbff578980b28fdfb70d02792a671bfde67fc653e682139724a",
+    "run_3": "d1b01d6673f88fbff578980b28fdfb70d02792a671bfde67fc653e682139724a",
     "schema_version": "0.25.0",
     "self_attestation_normalized": true,
     "status": "PASS"
@@ -93,7 +93,7 @@
     },
     {
       "name": "security-audit.json",
-      "sha256": "bb57866c9d2c14c737b4bf6458bf5952ed23f74dbab4040f434475308e1cc701",
+      "sha256": "2c1d471dd523027ac65164312123615fc3e49c72f8828b946095127e4f32513a",
       "size": 334,
       "status": "PRESENT"
     },
@@ -129,8 +129,8 @@
     },
     {
       "name": "production-boundary.json",
-      "sha256": "e45f38ac90e4b310db968f7286bc50d452122070001b5624e0bcc0a3776d22f4",
-      "size": 536,
+      "sha256": "b4214cc0fc129503e315d81637c16800316ea4f484462f4a27a749b6db21fd42",
+      "size": 537,
       "status": "PRESENT"
     },
     {
@@ -202,7 +202,7 @@
     "schema_version": "0.25.0",
     "total": 28
   },
-  "generated_at": "2026-09-11T05:07:38Z",
+  "generated_at": "2026-09-11T05:49:33Z",
   "pr_title": "UGAS V1 Final Acceptance",
   "production_boundary": {
     "new_generation": 0,
@@ -218,7 +218,7 @@
     "do_not_merge": true,
     "external_review_required": true,
     "merge_authorization": "NO_SELF_MERGE_SOL_EXTERNAL_REVIEW_REQUIRED",
-    "pr_head_sha": "6db6843ef460372396b1e9b2181182a2a62805ed",
+    "pr_head_sha": "af4466a1dbc43fcd7f8db5a8482867f3c06f7b00",
     "pr_number": 16,
     "pr_state": "OPEN",
     "required_contexts": [

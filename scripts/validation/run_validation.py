@@ -4078,14 +4078,14 @@ def _v0242_checks() -> None:
         "scripts/validation/run_orchestration_runtime_v0242.py", "scripts/validation/validate_state_consistency_v0242.py", "scripts/validation/validate_orchestration_schema_v0242.py",
         "scripts/validation/build_github_review_manifest_v0242.py", "scripts/validation/validate_github_review_manifest_v0242.py", "scripts/validation/validate_github_review_security_v0242.py", "scripts/validation/enforce_github_review_v0242.py", "scripts/validation/record_orchestration_results_v0242.py",
         "tests/test_orchestration_runtime_v0242.py", "CHECKPOINT.md", "docs/roadmap.md", "docs/ugas-v1-capability-matrix.json", "docs/evidence/current-state.json", "REVIEW-v0.24.2.md",
-        "docs/evidence/orchestration-runtime-v0242/state-snapshot-v0242.json",
+        "docs/evidence/current-state-v0243.json",
     ]
     names = ("request-contract-v0242.json", "dag-scheduler-v0242.json", "execution-state-v0242.json", "deadline-timeout-v0242.json", "checkpoint-resume-v0242.json", "idempotency-coordinator-v0242.json", "circuit-breaker-runtime-v0242.json", "dependency-authority-v0242.json", "provider-boundary-v0242.json", "family-concurrency-v0242.json", "frozen-v0241-fingerprint-v0242.json", "hard-gates-v0242.json", "negative-controls-v0242.json", "full-slice-two-run-determinism-v0242.json", "production-boundary-v0242.json", "correction-history-v0242.json", "execution-evidence-v0242.json", "schema-validation-v0242.json", "capability-matrix-validation-v0242.json")
     required += [f"docs/evidence/orchestration-runtime-v0242/{name}" for name in names]
     for relative in required:
         check(f"v0242:path:{relative}", (ROOT / relative).is_file(), "present" if (ROOT / relative).is_file() else "missing")
     try:
-        state = load_json(ROOT / "docs/evidence/orchestration-runtime-v0242/state-snapshot-v0242.json")
+        state = load_json(ROOT / "docs/evidence/current-state-v0243.json")
         state_schema = load_json(ROOT / "schemas/current-state-v0242.json")
         runtime_schema = load_json(ROOT / "schemas/orchestration-runtime-v0242.json")
         execution = load_json(evidence_root / "execution-evidence-v0242.json")

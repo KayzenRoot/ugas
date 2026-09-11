@@ -999,7 +999,7 @@ def _pre_write_payloads(core: Mapping[str, Any]) -> dict[str, Any]:
             "schema_version": VERSION,
             "status": "BLOCKED",
             "production_boundary": dict(PRODUCTION_BOUNDARY),
-            "acceptance_claim_allowed": core["acceptance"].get("acceptance_claim_allowed"),
+            "acceptance_claim_allowed": PRODUCTION_BOUNDARY.get("production_approved") is True,
             "planning_approval_is_not_production_approval": True,
         },
         "uads-handoff.json": {
