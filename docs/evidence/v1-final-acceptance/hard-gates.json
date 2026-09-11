@@ -74,11 +74,11 @@
     },
     "docker_smoke_pass": {
       "gate_id": "docker_smoke_pass",
-      "observed": false,
+      "observed": true,
       "observed_type": "bool",
       "proof_source": "environment-results-v0250.json docker_smoke_pass record",
-      "reason": "OBSERVED_FALSE",
-      "status": "FAIL"
+      "reason": null,
+      "status": "PASS"
     },
     "matrix_consistent_with_state": {
       "gate_id": "matrix_consistent_with_state",
@@ -98,11 +98,11 @@
     },
     "no_git_validation_pass": {
       "gate_id": "no_git_validation_pass",
-      "observed": false,
+      "observed": true,
       "observed_type": "bool",
       "proof_source": "environment-results-v0250.json no_git_validation_pass record",
-      "reason": "OBSERVED_FALSE",
-      "status": "FAIL"
+      "reason": null,
+      "status": "PASS"
     },
     "no_high_or_critical_findings": {
       "gate_id": "no_high_or_critical_findings",
@@ -130,11 +130,11 @@
     },
     "official_validation_pass": {
       "gate_id": "official_validation_pass",
-      "observed": false,
+      "observed": true,
       "observed_type": "bool",
       "proof_source": "environment-results-v0250.json official_validation_pass record",
-      "reason": "OBSERVED_FALSE",
-      "status": "FAIL"
+      "reason": null,
+      "status": "PASS"
     },
     "orchestration_closure_binding_complete": {
       "gate_id": "orchestration_closure_binding_complete",
@@ -194,11 +194,11 @@
     },
     "snapshot_validation_pass": {
       "gate_id": "snapshot_validation_pass",
-      "observed": false,
+      "observed": true,
       "observed_type": "bool",
       "proof_source": "environment-results-v0250.json snapshot_validation_pass record",
-      "reason": "OBSERVED_FALSE",
-      "status": "FAIL"
+      "reason": null,
+      "status": "PASS"
     },
     "state_schema_consistent": {
       "gate_id": "state_schema_consistent",
@@ -218,11 +218,11 @@
     },
     "unit_suite_pass": {
       "gate_id": "unit_suite_pass",
-      "observed": false,
+      "observed": true,
       "observed_type": "bool",
       "proof_source": "environment-results-v0250.json unit_suite_pass record",
-      "reason": "OBSERVED_FALSE",
-      "status": "FAIL"
+      "reason": null,
+      "status": "PASS"
     }
   },
   "missing_observations": [],

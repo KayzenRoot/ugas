@@ -3,12 +3,7 @@
     "acceptance_claim_allowed": false,
     "critical": 0,
     "failed_gates": [
-      "docker_smoke_pass",
-      "no_git_validation_pass",
-      "official_validation_pass",
-      "pr_open_unmerged_at_candidate_head",
-      "snapshot_validation_pass",
-      "unit_suite_pass"
+      "pr_open_unmerged_at_candidate_head"
     ],
     "high": 0,
     "low": 0,
@@ -22,8 +17,8 @@
   "binding": {
     "base_main_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
     "branch": "codex/v1-final-acceptance",
-    "candidate_head": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
-    "generated_at": "2026-09-11T02:48:04Z",
+    "candidate_head": "ef69c3613bff601c89a51806eaee9d2e70dd3308",
+    "generated_at": "2026-09-11T05:04:01Z",
     "repository": "KayzenRoot/ugas",
     "schema_version": "0.25.0",
     "work_order_id": "UGAS-WO-V1-FINAL-ACCEPTANCE-001"
@@ -68,22 +63,22 @@
     "status": "PASS"
   },
   "determinism": {
-    "run_1": "8a5614c463b5d264d9c406e621d4d375f4c694ce9fe8f7ddfa02463ea1614acd",
-    "run_2": "8a5614c463b5d264d9c406e621d4d375f4c694ce9fe8f7ddfa02463ea1614acd",
-    "run_3": "8a5614c463b5d264d9c406e621d4d375f4c694ce9fe8f7ddfa02463ea1614acd",
+    "run_1": "208088a2994e0c76ad1eee4101b817655e1d91f565af64fbea2389c93c8deca9",
+    "run_2": "208088a2994e0c76ad1eee4101b817655e1d91f565af64fbea2389c93c8deca9",
+    "run_3": "208088a2994e0c76ad1eee4101b817655e1d91f565af64fbea2389c93c8deca9",
     "schema_version": "0.25.0",
     "self_attestation_normalized": true,
     "status": "PASS"
   },
   "environment": {
     "gates": {
-      "docker_smoke_pass": "PENDING",
-      "no_git_validation_pass": "PENDING",
-      "official_validation_pass": "PENDING",
-      "snapshot_validation_pass": "PENDING",
-      "unit_suite_pass": "PENDING"
+      "docker_smoke_pass": "PASS",
+      "no_git_validation_pass": "PASS",
+      "official_validation_pass": "PASS",
+      "snapshot_validation_pass": "PASS",
+      "unit_suite_pass": "PASS"
     },
-    "status": "PENDING"
+    "status": "PASS"
   },
   "evidence_inventory": [
     {
@@ -100,7 +95,7 @@
     },
     {
       "name": "security-audit.json",
-      "sha256": "93e02db2b645b3a5ecb928bda725bfc484980aad406a2b766d670c435e2fa0e3",
+      "sha256": "86d09ecd388c1ca68f027a989b186fbf6272f257308ff3cedd23c1408f8bb5c5",
       "size": 334,
       "status": "PRESENT"
     },
@@ -118,14 +113,14 @@
     },
     {
       "name": "test-summary.json",
-      "sha256": "90b6649e0ac4d959e3f07132d51f605f32c8e061118d1606c0b38607c9b209e1",
-      "size": 3092,
+      "sha256": "54fb01729755667f903bdff6b47559bebc1b27ac805a8d72efbbc28acd62707e",
+      "size": 3005,
       "status": "PRESENT"
     },
     {
       "name": "hard-gates.json",
-      "sha256": "92ef5d4a536d96fc228bc5a0ab03659a3b859f09c7ca5cba6945ec85bfbff0a4",
-      "size": 8773,
+      "sha256": "fa52c51d0ae5e2a694715c036802146ef793a2b5eed7daca18819f6793586166",
+      "size": 8708,
       "status": "PRESENT"
     },
     {
@@ -142,8 +137,8 @@
     },
     {
       "name": "uads-handoff.json",
-      "sha256": "8100635766b739094181d2416457bdcaa09fe9356ec5501ca993b2c95316dced",
-      "size": 744,
+      "sha256": "1a96a7a30f8cc36b657223df694baff7ad3dcfa2e67c26258577a476b5609a2e",
+      "size": 748,
       "status": "PRESENT"
     },
     {
@@ -173,16 +168,11 @@
   ],
   "gates": {
     "failed": [
-      "docker_smoke_pass",
-      "no_git_validation_pass",
-      "official_validation_pass",
-      "pr_open_unmerged_at_candidate_head",
-      "snapshot_validation_pass",
-      "unit_suite_pass"
+      "pr_open_unmerged_at_candidate_head"
     ],
     "missing_observations": [],
     "overall_pass": false,
-    "passed": 22,
+    "passed": 27,
     "proof_sources": {
       "acceptance_evidence_inventory_pass": "complete bounded docs/evidence/v1-final-acceptance inventory written by this runner",
       "acceptance_evidence_security_pass": "audit_security over the candidate files and the acceptance evidence root",
@@ -216,7 +206,7 @@
     "schema_version": "0.25.0",
     "total": 28
   },
-  "generated_at": "2026-09-11T02:48:04Z",
+  "generated_at": "2026-09-11T05:04:01Z",
   "pr_title": "UGAS V1 Final Acceptance",
   "production_boundary": {
     "new_generation": 0,
@@ -255,19 +245,19 @@
     "version": "0.25.0"
   },
   "uads": {
-    "dispatch_status": "PENDING_DISPATCH",
+    "dispatch_status": "DISPATCHED",
     "project_footprint": "ZERO",
     "route_status": "SELECTED",
-    "run_or_dispatch_id": null,
+    "run_or_dispatch_id": "er_1f6aa04783c6b1af",
     "selected_profile_id": "codex-global-strong-v1",
     "validation": {
-      "dispatch_id_present": false,
-      "dispatch_status": "PENDING_DISPATCH",
+      "dispatch_id_present": true,
+      "dispatch_status": "DISPATCHED",
       "repo_local_material": "ABSENT",
       "schema_version": "0.25.0",
       "status": "PASS"
     },
-    "work_order_id": "wo_29c638ee07be8ef0"
+    "work_order_id": "wo_930e9b78f60af9f0"
   },
   "work_order_id": "UGAS-WO-V1-FINAL-ACCEPTANCE-001"
 }

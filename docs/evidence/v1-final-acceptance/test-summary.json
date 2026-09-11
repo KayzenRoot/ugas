@@ -3,12 +3,7 @@
     "acceptance_claim_allowed": false,
     "critical": 0,
     "failed_gates": [
-      "docker_smoke_pass",
-      "no_git_validation_pass",
-      "official_validation_pass",
-      "pr_open_unmerged_at_candidate_head",
-      "snapshot_validation_pass",
-      "unit_suite_pass"
+      "pr_open_unmerged_at_candidate_head"
     ],
     "high": 0,
     "low": 0,
@@ -21,29 +16,29 @@
   },
   "environment": {
     "docker_smoke_pass": {
-      "command": "docker compose -f compose.yaml config / build dashboard / up -d dashboard / curl /api/status and /api/health / rm -sf dashboard",
-      "exit_code": -1,
-      "status": "PENDING"
+      "command": "docker compose -f compose.yaml config; docker compose -f compose.yaml build dashboard; docker compose -f compose.yaml up -d dashboard; curl --fail http://127.0.0.1:18765/api/status and /api/health; docker compose -f compose.yaml rm -sf dashboard",
+      "exit_code": 0,
+      "status": "PASS"
     },
     "no_git_validation_pass": {
-      "command": "explicit no-git validation executed inside the official validation run",
-      "exit_code": -1,
-      "status": "PENDING"
+      "command": "UGAS_REVIEW_SNAPSHOT=1 PYTHONPATH=<snapshot>/src python scripts/validation/run_validation.py executed in the no-git copy by the official validation run",
+      "exit_code": 0,
+      "status": "PASS"
     },
     "official_validation_pass": {
       "command": "python scripts/validation/run_validation.py",
-      "exit_code": -1,
-      "status": "PENDING"
+      "exit_code": 0,
+      "status": "PASS"
     },
     "snapshot_validation_pass": {
-      "command": "isolated snapshot validation executed inside the official validation run",
-      "exit_code": -1,
-      "status": "PENDING"
+      "command": "python scripts/validation/run_validation.py executed in the isolated git-archive snapshot by the official validation run",
+      "exit_code": 0,
+      "status": "PASS"
     },
     "unit_suite_pass": {
       "command": "python -m unittest discover -s tests -q",
-      "exit_code": -1,
-      "status": "PENDING"
+      "exit_code": 0,
+      "status": "PASS"
     }
   },
   "findings": [
@@ -66,12 +61,7 @@
   ],
   "hard_gates": {
     "failed": [
-      "docker_smoke_pass",
-      "no_git_validation_pass",
-      "official_validation_pass",
-      "pr_open_unmerged_at_candidate_head",
-      "snapshot_validation_pass",
-      "unit_suite_pass"
+      "pr_open_unmerged_at_candidate_head"
     ],
     "overall_pass": false,
     "total": 28
