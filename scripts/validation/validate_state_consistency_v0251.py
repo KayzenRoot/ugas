@@ -1,4 +1,4 @@
-"""Validate the active v0.25.0 V1 final acceptance state and its closure binding."""
+"""Validate the active v0.25.1 canonical-state reconciliation and its merged closure binding."""
 
 from __future__ import annotations
 
@@ -10,11 +10,11 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from ugas.acceptance_v0250 import observability_binding
-from ugas.state_consistency_v0250 import validate_state_consistency
+from ugas.state_consistency_v0251 import validate_state_consistency
 
 
 def main() -> int:
-    state = json.loads((ROOT / "docs/evidence/canonical-state-reconciliation-v0251/v0250-state-snapshot.json").read_text(encoding="utf-8"))
+    state = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
     checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
     roadmap = (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")
     matrix = json.loads((ROOT / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))
@@ -31,7 +31,7 @@ def main() -> int:
         }
     result = validate_state_consistency(state, checkpoint, roadmap, matrix, audit_input)
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))
-    return 0 if result["status"] != "V1_FINAL_ACCEPTANCE_STATE_FAILED" else 1
+    return 0 if result["status"] != "V1_CANONICAL_STATE_FAILED" else 1
 
 
 if __name__ == "__main__":

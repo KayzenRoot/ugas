@@ -37,7 +37,7 @@ def main() -> int:
     failures: list[str] = []
     try:
         schema = json.loads((ROOT / "schemas/current-state-v0250.json").read_text(encoding="utf-8"))
-        value = json.loads((ROOT / "docs/evidence/current-state.json").read_text(encoding="utf-8"))
+        value = json.loads((ROOT / "docs/evidence/canonical-state-reconciliation-v0251/v0250-state-snapshot.json").read_text(encoding="utf-8"))
         validate_schema_document(schema)
         validate_instance(value, schema)
         checks.append({"name": "current-state", "status": "PASS"})

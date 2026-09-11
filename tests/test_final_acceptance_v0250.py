@@ -171,8 +171,8 @@ class FinalAcceptancev0250Tests(unittest.TestCase):
         self.assertFalse(result["secrets_included"])
         self.assertEqual(result["repo_local_uads"], [])
 
-    def test_a10_state_consistency_accepts_the_active_state(self) -> None:
-        state = read_json("docs/evidence/current-state.json")
+    def test_a10_state_consistency_accepts_the_preserved_v0250_snapshot(self) -> None:
+        state = read_json("docs/evidence/canonical-state-reconciliation-v0251/v0250-state-snapshot.json")
         result = validate_state_consistency(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"), read_json("docs/ugas-v1-capability-matrix.json"), audit_input())
         self.assertEqual(result["status"], CURRENT_GATE)
         self.assertEqual(result["failures"], [])

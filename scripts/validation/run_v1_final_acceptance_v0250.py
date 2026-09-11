@@ -88,7 +88,7 @@ from ugas.state_consistency_v0250 import (
 
 
 EVIDENCE = ROOT / EVIDENCE_ROOT
-STATE_PATH = ROOT / "docs/evidence/current-state.json"
+STATE_PATH = ROOT / "docs/evidence/canonical-state-reconciliation-v0251/v0250-state-snapshot.json"
 MATRIX_PATH = ROOT / "docs/ugas-v1-capability-matrix.json"
 CHECKPOINT_PATH = ROOT / "CHECKPOINT.md"
 ROADMAP_PATH = ROOT / "docs/roadmap.md"
