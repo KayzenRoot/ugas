@@ -1,0 +1,312 @@
+{
+  "control_count": 30,
+  "controls": {
+    "NC-ART-01": {
+      "actual_exception": null,
+      "control_id": "NC-ART-01",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"identity-base-sha\"], \"reason\": null, \"status\": \"FAIL\"}",
+      "expected_rejection_class": "identity-base-sha",
+      "injected_defect": "artifact manifest bound to a foreign base sha",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-02": {
+      "actual_exception": null,
+      "control_id": "NC-ART-02",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"forbidden:logs/credential-notes.txt\"], \"reason\": null, \"status\": \"FAIL\"}",
+      "expected_rejection_class": "forbidden:logs/credential-notes.txt",
+      "injected_defect": "artifact path carrying a forbidden token",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-ART-03": {
+      "actual_exception": null,
+      "control_id": "NC-ART-03",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"private-path:docs/evidence/v1-final-acceptance/probe.json\"], \"reason\": null, \"status\": \"FAIL\"}",
+      "expected_rejection_class": "private-path:docs/evidence/v1-final-acceptance/probe.json",
+      "injected_defect": "artifact content carrying a private host path",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CAP-01": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-CAP-01",
+      "detail": "CAPABILITY_STATUS_UNSUPPORTED: core_2d_generation claims 'APPROVED_PRODUCTION' but the audited claim is 'Existing foundation'",
+      "expected_rejection_class": "CAPABILITY_STATUS_UNSUPPORTED",
+      "injected_defect": "capability row claims an unsupported lifecycle status",
+      "observed_rejection_class": "CAPABILITY_STATUS_UNSUPPORTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CAP-02": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-CAP-02",
+      "detail": "ORCHESTRATION_CLOSURE_AUTHORITY_MISSING: ui_asset_family claims MERGED_CLOSED without merge authority",
+      "expected_rejection_class": "ORCHESTRATION_CLOSURE_AUTHORITY_MISSING",
+      "injected_defect": "merged capability record stripped of its governed merge authority",
+      "observed_rejection_class": "ORCHESTRATION_CLOSURE_AUTHORITY_MISSING",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CAP-03": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-CAP-03",
+      "detail": "CAPABILITY_EVIDENCE_MISSING: core_2d_generation evidences missing: ['docs/evidence/v0250-unwritten-pointer']",
+      "expected_rejection_class": "CAPABILITY_EVIDENCE_MISSING",
+      "injected_defect": "capability record pointing at unwritten evidence",
+      "observed_rejection_class": "CAPABILITY_EVIDENCE_MISSING",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CAP-04": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-CAP-04",
+      "detail": "CAPABILITY_DUPLICATE_ID: capability matrix contains duplicate ids",
+      "expected_rejection_class": "CAPABILITY_DUPLICATE_ID",
+      "injected_defect": "duplicated capability id prepended to the matrix",
+      "observed_rejection_class": "CAPABILITY_DUPLICATE_ID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CAP-05": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-CAP-05",
+      "detail": "CAPABILITY_SET_MISMATCH: capability id set differs from the audited 16: ['core_2d_generation', 'deterministic_cutout_rig', 'local_always_on_observability', 'github_native_review_infrastructure', 'run_front_v1', 'hit_reaction_front', 'death_animation_front', 'multi_direction_animation_runtime', 'equipment_outfits', 'creatures_monsters', 'items_props', 'environment_tilesets', 'maps_minimap_assets', 'ui_asset_family', 'vfx_asset_family']",
+      "expected_rejection_class": "CAPABILITY_SET_MISMATCH",
+      "injected_defect": "matrix missing its final audited capability row",
+      "observed_rejection_class": "CAPABILITY_SET_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CAP-06": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-CAP-06",
+      "detail": "CAPABILITY_SET_MISMATCH: capability id set differs from the audited 16: ['core_2d_generation', 'deterministic_cutout_rig', 'local_always_on_observability', 'github_native_review_infrastructure', 'run_front_v1', 'hit_reaction_front', 'death_animation_front', 'multi_direction_animation_runtime', 'equipment_outfits', 'creatures_monsters', 'items_props', 'environment_tilesets', 'maps_minimap_assets', 'ui_asset_family', 'vfx_asset_family', 'orchestration_runtime_hardening', 'v0250_unregistered_extra']",
+      "expected_rejection_class": "CAPABILITY_SET_MISMATCH",
+      "injected_defect": "matrix carrying an extra unregistered capability row",
+      "observed_rejection_class": "CAPABILITY_SET_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-CAP-07": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-CAP-07",
+      "detail": "OBSERVABILITY_PROMOTION_REJECTED: observability row must bind the external visual approval without promotion",
+      "expected_rejection_class": "OBSERVABILITY_PROMOTION_REJECTED",
+      "injected_defect": "observability row downgraded away from the bound external approval",
+      "observed_rejection_class": "OBSERVABILITY_PROMOTION_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-GATE-01": {
+      "actual_exception": null,
+      "control_id": "NC-GATE-01",
+      "detail": "{\"failure_count\": null, \"observed_gate_status\": \"FAIL\", \"observed_type\": \"str\", \"observed_value\": \"true\", \"reason\": \"OBSERVED_VALUE_NOT_STRICT_BOOLEAN\", \"status\": \"PASS\"}",
+      "expected_rejection_class": "OBSERVED_VALUE_NOT_STRICT_BOOLEAN",
+      "injected_defect": "non boolean gate observation must fail closed as a strict boolean",
+      "observed_gate_status": "FAIL",
+      "observed_rejection_class": "OBSERVED_VALUE_NOT_STRICT_BOOLEAN",
+      "observed_type": "str",
+      "observed_value": "true",
+      "result": "GUARD_HELD",
+      "status": "PASS"
+    },
+    "NC-LOCAL-01": {
+      "actual_exception": null,
+      "control_id": "NC-LOCAL-01",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"repo-local-uads:.uads\"], \"reason\": null, \"status\": \"FAIL\"}",
+      "expected_rejection_class": "repo-local-uads",
+      "injected_defect": "repository-local UADS runtime footprint must be detected",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-PROD-01": {
+      "actual_exception": null,
+      "control_id": "NC-PROD-01",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"production_approved_invalid\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "production_approved_invalid",
+      "injected_defect": "production approval flipped true in the active state",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-PROD-02": {
+      "actual_exception": null,
+      "control_id": "NC-PROD-02",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"production_routing_invalid\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "production_routing_invalid",
+      "injected_defect": "production routing enabled in the active state",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-PROD-03": {
+      "actual_exception": null,
+      "control_id": "NC-PROD-03",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"new_generation_invalid\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "new_generation_invalid",
+      "injected_defect": "new asset generation recorded in the active state",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-PROD-04": {
+      "actual_exception": null,
+      "control_id": "NC-PROD-04",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"provider_submit_calls_invalid\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "provider_submit_calls_invalid",
+      "injected_defect": "provider submit calls recorded in the active state",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-SNAP-01": {
+      "actual_exception": null,
+      "control_id": "NC-SNAP-01",
+      "detail": "{\"entry_statuses\": [\"DRIFT\"], \"status\": \"FAIL\"}",
+      "expected_rejection_class": "entry:DRIFT",
+      "injected_defect": "tampered frozen snapshot bytes must drift from the bound digest",
+      "observed_rejection_class": "DRIFT",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-01": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-01",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"orchestration_lifecycle_invalid\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "orchestration_lifecycle_invalid",
+      "injected_defect": "orchestration lifecycle regressed to awaiting merge",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-02": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-02",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"version_invalid\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "version_invalid",
+      "injected_defect": "active state pinned to the superseded release version",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-03": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-03",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"orchestration_closure:closure_comment_id\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "orchestration_closure:closure_comment_id",
+      "injected_defect": "orchestration closure missing the closure comment binding",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-04": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-04",
+      "detail": "{\"failure_count\": 3, \"first_failures\": [\"allowed_next_actions_invalid\", \"allowed_action_forbidden_contradiction\", \"unsafe_next_action\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "allowed_action_forbidden_contradiction",
+      "injected_defect": "allowed next actions contradicting the forbidden action list",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-05": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-05",
+      "detail": "{\"failure_count\": 13, \"first_failures\": [\"documents_missing:0.25.0\", \"documents_missing:V1_FINAL_ACCEPTANCE\", \"documents_missing:V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED\", \"documents_missing:V1_ACCEPTANCE_CANDIDATE_AWAITING_SOL_EXTERNAL_REVIEW\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "documents_missing",
+      "injected_defect": "checkpoint and roadmap without the bound acceptance literals",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-01": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-UADS-01",
+      "detail": "UADS_ROUTE_STATUS_REJECTED: route status 'REJECTED' is not SELECTED",
+      "expected_rejection_class": "UADS_ROUTE_STATUS_REJECTED",
+      "injected_defect": "handoff route status is not SELECTED",
+      "observed_rejection_class": "UADS_ROUTE_STATUS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-02": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-UADS-02",
+      "detail": "UADS_DISPATCH_STATUS_REJECTED: dispatch status 'FAILED' is not an accepted UADS dispatch state",
+      "expected_rejection_class": "UADS_DISPATCH_STATUS_REJECTED",
+      "injected_defect": "handoff dispatch status is a failed state",
+      "observed_rejection_class": "UADS_DISPATCH_STATUS_REJECTED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-03": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-UADS-03",
+      "detail": "UADS_HANDOFF_ID_INVALID: work order id must be a sanitized wo_ identifier",
+      "expected_rejection_class": "UADS_HANDOFF_ID_INVALID",
+      "injected_defect": "handoff work order id is not a sanitized wo_ identifier",
+      "observed_rejection_class": "UADS_HANDOFF_ID_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-04": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-UADS-04",
+      "detail": "UADS_HANDOFF_UNSAFE: UADS handoff must not carry project-local UADS material",
+      "expected_rejection_class": "UADS_HANDOFF_UNSAFE",
+      "injected_defect": "handoff profile id carrying project-local UADS material",
+      "observed_rejection_class": "UADS_HANDOFF_UNSAFE",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-UADS-05": {
+      "actual_exception": null,
+      "control_id": "NC-UADS-05",
+      "detail": "{\"dispatch_id_present\": true, \"dispatch_status\": \"DISPATCHED\", \"repo_local_material\": \"ABSENT\", \"status\": \"PASS\"}",
+      "expected_rejection_class": "PASS",
+      "injected_defect": "positive control: a dispatched sanitized handoff is accepted",
+      "observed_rejection_class": "PASS",
+      "result": "ACCEPT",
+      "status": "PASS"
+    },
+    "NC-VERDICT-01": {
+      "actual_exception": null,
+      "control_id": "NC-VERDICT-01",
+      "detail": "{\"critical\": 0, \"failed_gates\": [], \"high\": 1, \"low\": 0, \"medium\": 0, \"medium_blocking_acceptance\": 0, \"status\": \"CORRECTION_REQUIRED\", \"unresolved_high_critical\": 1}",
+      "expected_rejection_class": "CORRECTION_REQUIRED",
+      "injected_defect": "unresolved HIGH finding",
+      "observed_rejection_class": "CORRECTION_REQUIRED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-VERDICT-02": {
+      "actual_exception": null,
+      "control_id": "NC-VERDICT-02",
+      "detail": "{\"critical\": 0, \"failed_gates\": [], \"high\": 0, \"low\": 0, \"medium\": 0, \"medium_blocking_acceptance\": 0, \"status\": \"BLOCKED_PENDING_OBSERVABILITY_VISUAL_REVIEW\", \"unresolved_high_critical\": 0}",
+      "expected_rejection_class": "BLOCKED_PENDING_OBSERVABILITY_VISUAL_REVIEW",
+      "injected_defect": "observability visual review not resolved",
+      "observed_rejection_class": "BLOCKED_PENDING_OBSERVABILITY_VISUAL_REVIEW",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-VERDICT-03": {
+      "actual_exception": null,
+      "control_id": "NC-VERDICT-03",
+      "detail": "{\"critical\": 0, \"failed_gates\": [\"state_schema_consistent\"], \"high\": 0, \"low\": 0, \"medium\": 0, \"medium_blocking_acceptance\": 0, \"status\": \"INCOMPLETE_ACCEPTANCE_EVIDENCE\", \"unresolved_high_critical\": 0}",
+      "expected_rejection_class": "INCOMPLETE_ACCEPTANCE_EVIDENCE",
+      "injected_defect": "failing gate with incomplete acceptance evidence",
+      "observed_rejection_class": "INCOMPLETE_ACCEPTANCE_EVIDENCE",
+      "result": "REJECT",
+      "status": "PASS"
+    }
+  },
+  "failures": [],
+  "minimum_required": 25,
+  "schema_version": "0.25.0",
+  "status": "PASS"
+}

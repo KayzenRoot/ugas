@@ -1,0 +1,36 @@
+{
+  "cycles": [],
+  "failures": [],
+  "gates_observed_not_hardcoded": true,
+  "module_count": 133,
+  "network_import_modules": {
+    "comfyui_client": [
+      "urllib.error",
+      "urllib.parse",
+      "urllib.request"
+    ],
+    "model_registry": [
+      "urllib.request"
+    ],
+    "multiview": [
+      "urllib.request"
+    ],
+    "pose_qa_estimator": [
+      "urllib.request"
+    ],
+    "providers": [
+      "urllib.error",
+      "urllib.request"
+    ],
+    "refcontrol": [
+      "urllib.request"
+    ],
+    "render_node": [
+      "urllib.parse"
+    ]
+  },
+  "orchestration_provider_neutral": true,
+  "provider_endpoint_patterns_checked": 3,
+  "schema_version": "0.25.0",
+  "status": "PASS"
+}

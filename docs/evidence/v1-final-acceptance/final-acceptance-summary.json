@@ -1,0 +1,273 @@
+{
+  "acceptance": {
+    "acceptance_claim_allowed": false,
+    "critical": 0,
+    "failed_gates": [
+      "docker_smoke_pass",
+      "no_git_validation_pass",
+      "official_validation_pass",
+      "pr_open_unmerged_at_candidate_head",
+      "snapshot_validation_pass",
+      "unit_suite_pass"
+    ],
+    "high": 0,
+    "low": 0,
+    "medium": 2,
+    "medium_blocking_acceptance": 0,
+    "observability_visual_review": "PASS",
+    "schema_version": "0.25.0",
+    "status": "INCOMPLETE_ACCEPTANCE_EVIDENCE",
+    "unresolved_high_critical": 0
+  },
+  "binding": {
+    "base_main_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+    "branch": "codex/v1-final-acceptance",
+    "candidate_head": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+    "generated_at": "2026-09-11T02:48:04Z",
+    "repository": "KayzenRoot/ugas",
+    "schema_version": "0.25.0",
+    "work_order_id": "UGAS-WO-V1-FINAL-ACCEPTANCE-001"
+  },
+  "controls": {
+    "control_count": 30,
+    "control_ids": [
+      "NC-ART-01",
+      "NC-ART-02",
+      "NC-ART-03",
+      "NC-CAP-01",
+      "NC-CAP-02",
+      "NC-CAP-03",
+      "NC-CAP-04",
+      "NC-CAP-05",
+      "NC-CAP-06",
+      "NC-CAP-07",
+      "NC-GATE-01",
+      "NC-LOCAL-01",
+      "NC-PROD-01",
+      "NC-PROD-02",
+      "NC-PROD-03",
+      "NC-PROD-04",
+      "NC-SNAP-01",
+      "NC-STATE-01",
+      "NC-STATE-02",
+      "NC-STATE-03",
+      "NC-STATE-04",
+      "NC-STATE-05",
+      "NC-UADS-01",
+      "NC-UADS-02",
+      "NC-UADS-03",
+      "NC-UADS-04",
+      "NC-UADS-05",
+      "NC-VERDICT-01",
+      "NC-VERDICT-02",
+      "NC-VERDICT-03"
+    ],
+    "failures": [],
+    "minimum_required": 25,
+    "schema_version": "0.25.0",
+    "status": "PASS"
+  },
+  "determinism": {
+    "run_1": "8a5614c463b5d264d9c406e621d4d375f4c694ce9fe8f7ddfa02463ea1614acd",
+    "run_2": "8a5614c463b5d264d9c406e621d4d375f4c694ce9fe8f7ddfa02463ea1614acd",
+    "run_3": "8a5614c463b5d264d9c406e621d4d375f4c694ce9fe8f7ddfa02463ea1614acd",
+    "schema_version": "0.25.0",
+    "self_attestation_normalized": true,
+    "status": "PASS"
+  },
+  "environment": {
+    "gates": {
+      "docker_smoke_pass": "PENDING",
+      "no_git_validation_pass": "PENDING",
+      "official_validation_pass": "PENDING",
+      "snapshot_validation_pass": "PENDING",
+      "unit_suite_pass": "PENDING"
+    },
+    "status": "PENDING"
+  },
+  "evidence_inventory": [
+    {
+      "name": "capability-matrix-audit.json",
+      "sha256": "cff6c01ef09b633bc8be44cee47728445a7c865e4d261e6eb0e9a1bc2a3f6669",
+      "size": 13109,
+      "status": "PRESENT"
+    },
+    {
+      "name": "architecture-audit.json",
+      "sha256": "d992e28fbda88de80e07be702c3852e7a864cc20685e84155d0ab22c1a830ef6",
+      "size": 733,
+      "status": "PRESENT"
+    },
+    {
+      "name": "security-audit.json",
+      "sha256": "93e02db2b645b3a5ecb928bda725bfc484980aad406a2b766d670c435e2fa0e3",
+      "size": 334,
+      "status": "PRESENT"
+    },
+    {
+      "name": "reproducibility-audit.json",
+      "sha256": "55d92d2429ecacc6265cb0ee4dc7804c08062fedc31cddd09b4d984bbd34549b",
+      "size": 1013,
+      "status": "PRESENT"
+    },
+    {
+      "name": "state-consistency-audit.json",
+      "sha256": "5ebe10115cb653777c45a2dc978064de35d826a48dd6dcc3a4a20c276118684d",
+      "size": 630,
+      "status": "PRESENT"
+    },
+    {
+      "name": "test-summary.json",
+      "sha256": "90b6649e0ac4d959e3f07132d51f605f32c8e061118d1606c0b38607c9b209e1",
+      "size": 3092,
+      "status": "PRESENT"
+    },
+    {
+      "name": "hard-gates.json",
+      "sha256": "92ef5d4a536d96fc228bc5a0ab03659a3b859f09c7ca5cba6945ec85bfbff0a4",
+      "size": 8773,
+      "status": "PRESENT"
+    },
+    {
+      "name": "negative-controls.json",
+      "sha256": "9022acc0ac727f1693c616bc18f791226b40cf6cde905cf73660046cc36c9ee5",
+      "size": 16413,
+      "status": "PRESENT"
+    },
+    {
+      "name": "production-boundary.json",
+      "sha256": "b4214cc0fc129503e315d81637c16800316ea4f484462f4a27a749b6db21fd42",
+      "size": 537,
+      "status": "PRESENT"
+    },
+    {
+      "name": "uads-handoff.json",
+      "sha256": "8100635766b739094181d2416457bdcaa09fe9356ec5501ca993b2c95316dced",
+      "size": 744,
+      "status": "PRESENT"
+    },
+    {
+      "name": "final-acceptance-summary.json",
+      "sha256": null,
+      "size": null,
+      "status": "SELF_ATTESTATION"
+    }
+  ],
+  "findings": [
+    {
+      "blocks_acceptance": false,
+      "id": "F-V1-01",
+      "resolution": "Forward-only binding of the GitHub LIVE MERGED_CLOSED closure (semantic head, bookkeeping head, merge main, post-merge CI run, unit job, docker job and closure comment) into docs/evidence/current-state.json, docs/ugas-v1-capability-matrix.json, CHECKPOINT.md, docs/roadmap.md and the v0.25.0 state validator without rewriting frozen historical evidence.",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Tracked state and capability matrix still carried the pre-merge orchestration status after the governed v0.24.7 merge."
+    },
+    {
+      "blocks_acceptance": false,
+      "id": "F-V1-02",
+      "resolution": "Bound the existing external visual approval record (artifact id, digest and reviewed head) into the APPROVED_PILOT; EXTERNAL_VISUAL_APPROVAL_BOUND row status, the observability binding audit and the final acceptance summary without self-approval and without promoting the capability beyond APPROVED_PILOT.",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "The local_always_on_observability capability row still described the external visual review as pending."
+    }
+  ],
+  "gates": {
+    "failed": [
+      "docker_smoke_pass",
+      "no_git_validation_pass",
+      "official_validation_pass",
+      "pr_open_unmerged_at_candidate_head",
+      "snapshot_validation_pass",
+      "unit_suite_pass"
+    ],
+    "missing_observations": [],
+    "overall_pass": false,
+    "passed": 22,
+    "proof_sources": {
+      "acceptance_evidence_inventory_pass": "complete bounded docs/evidence/v1-final-acceptance inventory written by this runner",
+      "acceptance_evidence_security_pass": "audit_security over the candidate files and the acceptance evidence root",
+      "active_documents_free_of_production_claims": "active documents are free of production approval and routing claims",
+      "base_main_equals_authorized_merge": "docs/evidence/current-state.json baseline_main_sha equals the authorized orchestration merge main",
+      "capability_evidence_pointers_present": "audit_capability_matrix resolves every evidence and test pointer from repository bytes",
+      "capability_lifecycle_not_promoted": "audit_capability_matrix rejects any lifecycle promotion beyond the proven claim",
+      "capability_records_audited_all_16": "audit_capability_matrix traverses the tracked matrix and the audited 16 capability records",
+      "checkpoint_roadmap_consistent": "validate_state_consistency document literals over CHECKPOINT.md and docs/roadmap.md",
+      "definition_of_done_distinguishes_production": "docs/definition-of-done.md technical acceptance versus production readiness separation",
+      "docker_smoke_pass": "environment-results-v0250.json docker_smoke_pass record",
+      "matrix_consistent_with_state": "audit_capability_matrix plus the v1_final_acceptance state binding",
+      "new_generation_zero": "docs/evidence/current-state.json and capability matrix new_generation",
+      "no_git_validation_pass": "environment-results-v0250.json no_git_validation_pass record",
+      "no_high_or_critical_findings": "acceptance findings register with zero unresolved CRITICAL/HIGH entries",
+      "no_repo_local_uads": "audit_security repo-local UADS discovery plus the sanitized UADS handoff",
+      "observability_visual_review_resolved": "observability_binding resolves the external visual approval record and visual file hashes",
+      "official_validation_pass": "environment-results-v0250.json official_validation_pass record",
+      "orchestration_closure_binding_complete": "docs/evidence/current-state.json orchestration_closure binds the GitHub LIVE MERGED_CLOSED closure",
+      "orchestration_closure_matches_frozen_evidence": "frozen v0.24.7 snapshot digests plus the recorded closure authority",
+      "pr_open_unmerged_at_candidate_head": "GitHub LIVE PR metadata recorded in docs/evidence/current-state.json with the candidate head still on the acceptance branch",
+      "production_approved_false": "docs/evidence/current-state.json production_approved strict false",
+      "production_boundary_record_blocked": "the written production-boundary.json acceptance record",
+      "production_routing_blocked": "docs/evidence/current-state.json and capability matrix production_routing",
+      "provider_submit_calls_zero": "docs/evidence/current-state.json provider_submit_calls plus the acceptance production boundary",
+      "snapshot_validation_pass": "environment-results-v0250.json snapshot_validation_pass record",
+      "state_schema_consistent": "validate_state_consistency over the active state, checkpoint and roadmap",
+      "two_run_determinism_pass": "two independent executions of the acceptance core with one canonical digest",
+      "unit_suite_pass": "environment-results-v0250.json unit_suite_pass record"
+    },
+    "schema_version": "0.25.0",
+    "total": 28
+  },
+  "generated_at": "2026-09-11T02:48:04Z",
+  "pr_title": "UGAS V1 Final Acceptance",
+  "production_boundary": {
+    "new_generation": 0,
+    "production_approved": false,
+    "production_readiness_workstream": "NOT_STARTED_REQUIRED_SEPARATELY",
+    "production_routing": "BLOCKED",
+    "provider_submit_calls": 0,
+    "real_asset_generation": "NONE",
+    "synthetic_fixture": "TEST_ONLY",
+    "v1_technical_acceptance_is_not_production_approval": true
+  },
+  "review": {
+    "do_not_merge": true,
+    "external_review_required": true,
+    "merge_authorization": "NO_SELF_MERGE_SOL_EXTERNAL_REVIEW_REQUIRED",
+    "pr_head_sha": null,
+    "pr_number": 0,
+    "pr_state": "OPEN",
+    "required_contexts": [
+      "UGAS CI / unit-and-validation",
+      "UGAS CI / docker-smoke",
+      "UGAS Review / evidence"
+    ]
+  },
+  "schema_version": "0.25.0",
+  "state_summary": {
+    "acceptance_verdict": "V1_ACCEPTANCE_CANDIDATE",
+    "current_gate": "V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED",
+    "new_generation": 0,
+    "orchestration_lifecycle": "MERGED_CLOSED",
+    "phase": "V1_FINAL_ACCEPTANCE",
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "provider_submit_calls": 0,
+    "stop_reason": "V1_ACCEPTANCE_CANDIDATE_AWAITING_SOL_EXTERNAL_REVIEW",
+    "version": "0.25.0"
+  },
+  "uads": {
+    "dispatch_status": "PENDING_DISPATCH",
+    "project_footprint": "ZERO",
+    "route_status": "SELECTED",
+    "run_or_dispatch_id": null,
+    "selected_profile_id": "codex-global-strong-v1",
+    "validation": {
+      "dispatch_id_present": false,
+      "dispatch_status": "PENDING_DISPATCH",
+      "repo_local_material": "ABSENT",
+      "schema_version": "0.25.0",
+      "status": "PASS"
+    },
+    "work_order_id": "wo_29c638ee07be8ef0"
+  },
+  "work_order_id": "UGAS-WO-V1-FINAL-ACCEPTANCE-001"
+}

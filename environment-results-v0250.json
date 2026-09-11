@@ -1,0 +1,32 @@
+{
+  "gates": {
+    "docker_smoke_pass": {
+      "command": "docker compose -f compose.yaml config / build dashboard / up -d dashboard / curl /api/status and /api/health / rm -sf dashboard",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "no_git_validation_pass": {
+      "command": "explicit no-git validation executed inside the official validation run",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "official_validation_pass": {
+      "command": "python scripts/validation/run_validation.py",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "snapshot_validation_pass": {
+      "command": "isolated snapshot validation executed inside the official validation run",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "unit_suite_pass": {
+      "command": "python -m unittest discover -s tests -q",
+      "exit_code": -1,
+      "status": "PENDING"
+    }
+  },
+  "note": "Environment gates are not executed yet at this commit; commit2 records the real observed exit codes.",
+  "schema_version": "0.25.0",
+  "status": "PENDING"
+}

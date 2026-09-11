@@ -1,0 +1,80 @@
+{
+  "acceptance": {
+    "acceptance_claim_allowed": false,
+    "critical": 0,
+    "failed_gates": [
+      "docker_smoke_pass",
+      "no_git_validation_pass",
+      "official_validation_pass",
+      "pr_open_unmerged_at_candidate_head",
+      "snapshot_validation_pass",
+      "unit_suite_pass"
+    ],
+    "high": 0,
+    "low": 0,
+    "medium": 2,
+    "medium_blocking_acceptance": 0,
+    "observability_visual_review": "PASS",
+    "schema_version": "0.25.0",
+    "status": "INCOMPLETE_ACCEPTANCE_EVIDENCE",
+    "unresolved_high_critical": 0
+  },
+  "environment": {
+    "docker_smoke_pass": {
+      "command": "docker compose -f compose.yaml config / build dashboard / up -d dashboard / curl /api/status and /api/health / rm -sf dashboard",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "no_git_validation_pass": {
+      "command": "explicit no-git validation executed inside the official validation run",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "official_validation_pass": {
+      "command": "python scripts/validation/run_validation.py",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "snapshot_validation_pass": {
+      "command": "isolated snapshot validation executed inside the official validation run",
+      "exit_code": -1,
+      "status": "PENDING"
+    },
+    "unit_suite_pass": {
+      "command": "python -m unittest discover -s tests -q",
+      "exit_code": -1,
+      "status": "PENDING"
+    }
+  },
+  "findings": [
+    {
+      "blocks_acceptance": false,
+      "id": "F-V1-01",
+      "resolution": "Forward-only binding of the GitHub LIVE MERGED_CLOSED closure (semantic head, bookkeeping head, merge main, post-merge CI run, unit job, docker job and closure comment) into docs/evidence/current-state.json, docs/ugas-v1-capability-matrix.json, CHECKPOINT.md, docs/roadmap.md and the v0.25.0 state validator without rewriting frozen historical evidence.",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "Tracked state and capability matrix still carried the pre-merge orchestration status after the governed v0.24.7 merge."
+    },
+    {
+      "blocks_acceptance": false,
+      "id": "F-V1-02",
+      "resolution": "Bound the existing external visual approval record (artifact id, digest and reviewed head) into the APPROVED_PILOT; EXTERNAL_VISUAL_APPROVAL_BOUND row status, the observability binding audit and the final acceptance summary without self-approval and without promoting the capability beyond APPROVED_PILOT.",
+      "severity": "MEDIUM",
+      "status": "RESOLVED",
+      "summary": "The local_always_on_observability capability row still described the external visual review as pending."
+    }
+  ],
+  "hard_gates": {
+    "failed": [
+      "docker_smoke_pass",
+      "no_git_validation_pass",
+      "official_validation_pass",
+      "pr_open_unmerged_at_candidate_head",
+      "snapshot_validation_pass",
+      "unit_suite_pass"
+    ],
+    "overall_pass": false,
+    "total": 28
+  },
+  "schema_version": "0.25.0"
+}

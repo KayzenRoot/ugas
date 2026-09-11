@@ -1,6 +1,6 @@
-# UGAS 0.24.7
+# UGAS 0.25.0
 
-Current active slice: v0.24.7 Orchestration Runtime Hardening F-44R/F-46R correction on PR #15 over merged VFX v0.23.4. Accepted v0.24.6 semantics, including F-43R and F-45, are preserved. The orchestration runtime remains provider-neutral and TEST_ONLY; production remains BLOCKED and external Sol review is required.
+Current active slice: v0.25.0 V1 Final Acceptance audit at exact main `6c6d53dab5a95226bf9578a6099d755d51327d8e`, the governed merge of the approved v0.24.7 orchestration runtime. All sixteen capability records are audited with authoritative sources and evidence pointers; orchestration is `MERGED_CLOSED`. The candidate remains provider-neutral and TEST_ONLY; production remains BLOCKED and external Sol review is required.
 
 Universal Game Asset Studio: pipeline local-first para assets 2D com evidência reproduzível, transparência e governança de revisão. O release ativo v0.22.0 qualifica tecnicamente a fundação runtime da família de UI com fixtures RGBA determinísticos TEST_ONLY, 14 classes, estados, 9-slice, safe areas, escala 1x/2x, cache completo, provenance e 22 gates/negative controls. A aprovação externa do PR #12 é requisito; o PR v0.22.0 permanece aberto e não mergeado. Produção segue `BLOCKED`, `production_approved=false`, `real_ui_asset_coverage=NONE` e `new_generation=0`; não iniciar VFX, orquestração ou arte real.
 
@@ -32,7 +32,7 @@ python -m ugas.cli --version
 python -m ugas.cli dashboard --host 127.0.0.1 --port 8765 --no-open
 ```
 
-Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-v0.24.7.md](REVIEW-v0.24.7.md). UI, Maps/Minimap e VFX permanecem `APPROVED_FOUNDATION`/`MERGED_CLOSED`; o único próximo passo é `external_review_orchestration_runtime_v0247`. O SHA base registrado é histórico (`baseline_main_sha`), enquanto o `main` atual deve ser resolvido do GitHub LIVE. A geração real permanece `NONE`, os fixtures são `TEST_ONLY`, e o registro de produção está vazio.
+Leia `docs/evidence/current-state.json` e siga os gates documentados em [REVIEW-UGAS-V1-FINAL-ACCEPTANCE.md](REVIEW-UGAS-V1-FINAL-ACCEPTANCE.md). UI, Maps/Minimap, VFX e Orchestration Runtime permanecem `APPROVED_FOUNDATION`/`MERGED_CLOSED`; o único próximo passo é `external_review_v1_final_acceptance_pr`. O SHA base registrado é o merge governado autorizado (`baseline_main_sha`), enquanto o `main` atual deve ser resolvido do GitHub LIVE. A geração real permanece `NONE`, os fixtures são `TEST_ONLY`, e o registro de produção está vazio.
 
 ## v0.20.1 ENVIRONMENT_TILESETS QA integrity correction
 
@@ -111,4 +111,4 @@ The v0.10.0 historical release added optional hash-bound `event_markers[]` and g
 # Historical v0.21.0 MAPS_MINIMAP foundation
 
 The v0.21.0 runtime foundation is preserved as `CORRECTION_REQUIRED` history. The active v0.21.1 correction is the TEST_ONLY maps/minimap slice; real map/minimap asset coverage is `NONE`, production routing is `BLOCKED`, and PR #11 must remain open and unmerged until external approval.
-# Current release metadata: UGAS v0.23.2 (VFX correction under external review; production remains blocked).
+# Current release metadata: UGAS v0.25.0 (V1 Final Acceptance candidate under external review; production remains blocked).
