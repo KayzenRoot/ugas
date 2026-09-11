@@ -43,12 +43,12 @@ The forward-only evidence root is `docs/evidence/v1-final-acceptance/` with `cap
 
 - `execution_mode`: GLOBAL_FIRST
 - `project_footprint`: ZERO
-- `work_order_id`: wo_29c638ee07be8ef0
-- `run_or_dispatch_id`: pending sanitized dispatch receipt
+- `work_order_id`: wo_930e9b78f60af9f0
+- `run_or_dispatch_id`: er_1f6aa04783c6b1af
 - `route_status`: SELECTED
 - `selected_profile_id`: codex-global-strong-v1
 - `selected_profile_digest_unavailable_reason`: UADS model execution plan does not expose a profile digest
-- `dispatch_status`: PENDING_DISPATCH
+- `dispatch_status`: DISPATCHED
 
 The repository carries no project-local UADS runtime material.
 

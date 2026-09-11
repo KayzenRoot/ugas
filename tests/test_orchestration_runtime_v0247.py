@@ -347,6 +347,7 @@ class OrchestrationRuntimev0247Tests(unittest.TestCase):
 
     def test_f39_stale_gate_fails_state_consistency(self) -> None:
         import json
+        import subprocess
         from ugas.state_consistency_v0247 import CURRENT_GATE, validate_state_consistency
 
         root = Path(__file__).resolve().parents[1]
@@ -354,6 +355,19 @@ class OrchestrationRuntimev0247Tests(unittest.TestCase):
         checkpoint = (root / "CHECKPOINT.md").read_text(encoding="utf-8")
         roadmap = (root / "docs/roadmap.md").read_text(encoding="utf-8")
         matrix = json.loads((root / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))
+        if state.get("version") != "0.24.7":
+            if not (root / ".git").exists():
+                self.skipTest("official no-git snapshot has no frozen v0.24.7 tree; F-39 live proof is the v1.0.0 final acceptance candidate")
+            frozen_ref = "984a517d823aa426778c3bf2469eed72457eb028"
+
+            def _frozen(path: str) -> str:
+                result = subprocess.run(["git", "show", f"{frozen_ref}:{path}"], cwd=root, check=True, capture_output=True)
+                return result.stdout.decode("utf-8")
+
+            state = json.loads(_frozen("docs/evidence/current-state.json"))
+            checkpoint = _frozen("CHECKPOINT.md")
+            roadmap = _frozen("docs/roadmap.md")
+            matrix = json.loads(_frozen("docs/ugas-v1-capability-matrix.json"))
         binding = {"base_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "reviewed_head": "cdc49dd96e7c683c0426d209e0bef162442a3bbb", "status": "CORRECTION_REQUIRED"}
         self.assertEqual(state["current_gate"], CURRENT_GATE)
         self.assertNotIn("ORCHESTRATION_RUNTIME_HARDENING_F31R_F36_CORRECTION_TECHNICALLY_QUALIFIED_EXTERNAL_REVIEW_REQUIRED", CURRENT_GATE)
@@ -373,6 +387,7 @@ class OrchestrationRuntimev0247Tests(unittest.TestCase):
 
     def test_f39r_approval_binding_drives_governed_merge_state(self) -> None:
         import json
+        import subprocess
         from ugas.state_consistency_v0247 import APPROVAL_AUTHORIZATION, APPROVAL_COMMENT_ID, APPROVAL_RECORD, APPROVED_SEMANTIC_HEAD, CURRENT_GATE, validate_state_consistency
 
         root = Path(__file__).resolve().parents[1]
@@ -380,6 +395,19 @@ class OrchestrationRuntimev0247Tests(unittest.TestCase):
         checkpoint = (root / "CHECKPOINT.md").read_text(encoding="utf-8")
         roadmap = (root / "docs/roadmap.md").read_text(encoding="utf-8")
         matrix = json.loads((root / "docs/ugas-v1-capability-matrix.json").read_text(encoding="utf-8"))
+        if state.get("version") != "0.24.7":
+            if not (root / ".git").exists():
+                self.skipTest("official no-git snapshot has no frozen v0.24.7 tree; F-39R live proof is the v1.0.0 final acceptance candidate")
+            frozen_ref = "984a517d823aa426778c3bf2469eed72457eb028"
+
+            def _frozen(path: str) -> str:
+                result = subprocess.run(["git", "show", f"{frozen_ref}:{path}"], cwd=root, check=True, capture_output=True)
+                return result.stdout.decode("utf-8")
+
+            state = json.loads(_frozen("docs/evidence/current-state.json"))
+            checkpoint = _frozen("CHECKPOINT.md")
+            roadmap = _frozen("docs/roadmap.md")
+            matrix = json.loads(_frozen("docs/ugas-v1-capability-matrix.json"))
         binding = {"base_main_sha": "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "reviewed_head": "cdc49dd96e7c683c0426d209e0bef162442a3bbb", "status": "CORRECTION_REQUIRED"}
         self.assertEqual(state["review"]["merge_authorization"], APPROVAL_AUTHORIZATION)
         self.assertEqual(state["review"]["approved_semantic_head"], APPROVED_SEMANTIC_HEAD)
