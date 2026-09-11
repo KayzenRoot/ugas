@@ -13,5 +13,6 @@ The active canonical checkpoint/roadmap/state move from the pre-merge pending st
 - `production_routing=BLOCKED`, `production_approved=false`, `real_asset_generation=NONE`, `new_generation=0`, `provider_submit_calls=0`
 - Definition of Done hard-gate count corrected to 30, matching the accepted 30/30 evidence
 - append-only closure evidence root: `docs/evidence/canonical-state-reconciliation-v0251/`; frozen v0.25.0 evidence remains byte-identical; v0.25.0 tracked-state snapshot preserved at `docs/evidence/canonical-state-reconciliation-v0251/v0250-state-snapshot.json`
+- F-0253-01 correction: the review block no longer stores a tracked current PR-head SHA or a misleading exact-head source label; `review.current_exact_head_authority=GITHUB_LIVE_ONLY` makes the current exact PR head resolvable from GitHub LIVE only (no self-referential commit contract)
 
 The stale pending-merge wording is removed from the active canonical surfaces; the historical v0.25.0 records are retained unchanged in the superseded sections.

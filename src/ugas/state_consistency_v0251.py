@@ -51,6 +51,7 @@ APPROVED_SEMANTIC_HEAD = "66db255fdb2483da4bae08e418c904f24d215ebb"
 APPROVAL_RECORD = "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json"
 APPROVAL_REVIEW_ID_NUMERIC = 5177113418
 POST_BOOKKEEPING_REPROOF_REQUIRED = True
+CURRENT_EXACT_HEAD_AUTHORITY = "GITHUB_LIVE_ONLY"
 REQUIRED_CONTEXTS = ("UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence")
 UNSAFE_FORBIDDEN_ACTIONS = (
     "start_production_readiness",
@@ -98,6 +99,9 @@ NEGATIVE_CONTROL_IDS = (
     "NEG-0253-12-REAL-ASSET-DRIFT",
     "NEG-0253-13-HARD-GATE-COUNT-DRIFT",
     "NEG-0253-14-NEXT-CANDIDATE-DRIFT",
+    "NEG-0253-15-STALE-CURRENT-HEAD-CLAIM",
+    "NEG-0253-16-MISLABELLED-HEAD-SOURCE",
+    "NEG-0253-17-EXACT-HEAD-AUTHORITY-DRIFT",
 )
 
 
@@ -202,7 +206,6 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         "feature_branch": BRANCH,
         "pr_title": PR_TITLE,
         "pr_state": "OPEN",
-        "head_sha_source": "GitHub LIVE exact-head metadata",
         "pr_number_source": "GitHub LIVE PR metadata",
         "external_review_required": True,
         "merge_authorization": MERGE_AUTHORIZATION,
@@ -217,9 +220,12 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     pr_number = review.get("pr_number")
     if type(pr_number) is not int or pr_number < 0:
         failures.append("review:pr_number")
-    head_sha = review.get("head_sha")
-    if head_sha is not None and (not isinstance(head_sha, str) or len(head_sha) != 40 or any(character not in "0123456789abcdef" for character in head_sha)):
-        failures.append("review:head_sha")
+    if "head_sha" in review:
+        failures.append("head_sha_invalid")
+    if "head_sha_source" in review:
+        failures.append("head_sha_source_invalid")
+    if review.get("current_exact_head_authority") != CURRENT_EXACT_HEAD_AUTHORITY:
+        failures.append("current_exact_head_authority_invalid")
     if set(REQUIRED_CONTEXTS) - set(review.get("required_contexts", [])):
         failures.append("review:required_contexts")
     acceptance = _mapping(state.get("v1_final_acceptance"))
@@ -429,4 +435,4 @@ def negative_control_failures(evidence: Mapping[str, Any]) -> list[str]:
     return failures
 
 
-__all__ = ["ACCEPTANCE_VERDICT", "APPROVAL_RECORD", "APPROVAL_REVIEW_ID_NUMERIC", "APPROVED_SEMANTIC_HEAD", "BASELINE_MAIN_SHA", "BRANCH", "CAPABILITY_COUNT", "CLOSURE_EVIDENCE_FILES", "CLOSURE_EVIDENCE_ROOT", "CURRENT_GATE", "FINAL_ACCEPTANCE_SUMMARY", "FROZEN_ACCEPTANCE_ROOT", "HARD_GATE_COUNT", "IMMUTABILITY_FROZEN_ROOTS", "MERGE_AUTHORIZATION", "NEGATIVE_CONTROL_IDS", "NEXT_ACTION", "NEXT_CANDIDATE", "OBSERVABILITY_APPROVAL_ARTIFACT_DIGEST", "OBSERVABILITY_APPROVAL_ARTIFACT_ID", "OBSERVABILITY_APPROVAL_RECORD", "OBSERVABILITY_APPROVED_HEAD", "OBSERVABILITY_ROW_STATUS", "OBSERVABILITY_STATUS", "ORCHESTRATION_EVIDENCE_ROOT", "ORCHESTRATION_LIFECYCLE", "PHASE", "POST_BOOKKEEPING_REPROOF_REQUIRED", "PREVIOUS_RELEASE_VERSION", "PR_TITLE", "REQUIRED_CONTEXTS", "REQUIRED_FORBIDDEN_ACTIONS", "RETAINED_MATRIX_NEXT_CANDIDATE", "RETAINED_MATRIX_VERSION", "STOP_REASON", "UNSAFE_FORBIDDEN_ACTIONS", "V1_AUDIT_COMMENT_ID", "V1_AUDIT_VERDICT", "V1_BOOKKEEPING_HEAD", "V1_CLOSURE_COMMENT_ID", "V1_DOCKER_JOB", "V1_EVIDENCE_ROOT", "V1_MERGE_MAIN_SHA", "V1_POST_MERGE_CI_RUN", "V1_PR_NUMBER", "V1_SEMANTIC_HEAD", "V1_STATE_SNAPSHOT", "V1_UNIT_JOB", "VERSION", "closure_binding_failures", "definition_of_done_hard_gate_count", "immutability_failures", "negative_control_failures", "validate_state_consistency"]
+__all__ = ["ACCEPTANCE_VERDICT", "APPROVAL_RECORD", "APPROVAL_REVIEW_ID_NUMERIC", "APPROVED_SEMANTIC_HEAD", "BASELINE_MAIN_SHA", "BRANCH", "CAPABILITY_COUNT", "CLOSURE_EVIDENCE_FILES", "CLOSURE_EVIDENCE_ROOT", "CURRENT_EXACT_HEAD_AUTHORITY", "CURRENT_GATE", "FINAL_ACCEPTANCE_SUMMARY", "FROZEN_ACCEPTANCE_ROOT", "HARD_GATE_COUNT", "IMMUTABILITY_FROZEN_ROOTS", "MERGE_AUTHORIZATION", "NEGATIVE_CONTROL_IDS", "NEXT_ACTION", "NEXT_CANDIDATE", "OBSERVABILITY_APPROVAL_ARTIFACT_DIGEST", "OBSERVABILITY_APPROVAL_ARTIFACT_ID", "OBSERVABILITY_APPROVAL_RECORD", "OBSERVABILITY_APPROVED_HEAD", "OBSERVABILITY_ROW_STATUS", "OBSERVABILITY_STATUS", "ORCHESTRATION_EVIDENCE_ROOT", "ORCHESTRATION_LIFECYCLE", "PHASE", "POST_BOOKKEEPING_REPROOF_REQUIRED", "PREVIOUS_RELEASE_VERSION", "PR_TITLE", "REQUIRED_CONTEXTS", "REQUIRED_FORBIDDEN_ACTIONS", "RETAINED_MATRIX_NEXT_CANDIDATE", "RETAINED_MATRIX_VERSION", "STOP_REASON", "UNSAFE_FORBIDDEN_ACTIONS", "V1_AUDIT_COMMENT_ID", "V1_AUDIT_VERDICT", "V1_BOOKKEEPING_HEAD", "V1_CLOSURE_COMMENT_ID", "V1_DOCKER_JOB", "V1_EVIDENCE_ROOT", "V1_MERGE_MAIN_SHA", "V1_POST_MERGE_CI_RUN", "V1_PR_NUMBER", "V1_SEMANTIC_HEAD", "V1_STATE_SNAPSHOT", "V1_UNIT_JOB", "VERSION", "closure_binding_failures", "definition_of_done_hard_gate_count", "immutability_failures", "negative_control_failures", "validate_state_consistency"]

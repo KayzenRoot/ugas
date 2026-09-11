@@ -21,12 +21,13 @@ from ugas.acceptance_v0250 import (
     observability_binding,
     validate_external_approval,
 )
-from ugas.schema_validation import validate_instance, validate_schema_document
+from ugas.schema_validation import SchemaValidationError, validate_instance, validate_schema_document
 from ugas.state_consistency_v0251 import (
     ACCEPTANCE_VERDICT,
     BASELINE_MAIN_SHA,
     BRANCH,
     CLOSURE_EVIDENCE_ROOT,
+    CURRENT_EXACT_HEAD_AUTHORITY,
     CURRENT_GATE,
     FROZEN_ACCEPTANCE_ROOT,
     HARD_GATE_COUNT,
@@ -104,7 +105,7 @@ class CanonicalStateReconciliationv0251Tests(unittest.TestCase):
         self.assertEqual(NEXT_CANDIDATE, "PRODUCTION_READINESS")
         self.assertEqual(NEXT_ACTION, "define_and_review_production_readiness_work_order")
         self.assertEqual(HARD_GATE_COUNT, 30)
-        self.assertEqual(len(NEGATIVE_CONTROL_IDS), 14)
+        self.assertEqual(len(NEGATIVE_CONTROL_IDS), 17)
         self.assertEqual(V1_SEMANTIC_HEAD, "66db255fdb2483da4bae08e418c904f24d215ebb")
         self.assertEqual(V1_BOOKKEEPING_HEAD, "5046b3ed8c626540fa8258d25afc9a2abbf0a182")
         self.assertEqual(V1_POST_MERGE_CI_RUN, 34610394648)
@@ -299,3 +300,42 @@ class CanonicalStateReconciliationv0251Tests(unittest.TestCase):
         self.assertEqual(approval["status"], "PASS")
         self.assertIs(approval["production_approved"], False)
         self.assertEqual(approval["production_routing"], "BLOCKED")
+
+    def test_b17_current_exact_head_authority_is_github_live_only(self) -> None:
+        schema = read_json("schemas/current-state-v0251.json")
+        state = read_json("docs/evidence/current-state.json")
+        review = state["review"]
+        self.assertNotIn("head_sha", review)
+        self.assertNotIn("head_sha_source", review)
+        self.assertEqual(review["current_exact_head_authority"], CURRENT_EXACT_HEAD_AUTHORITY)
+        review_schema = schema["properties"]["review"]
+        self.assertIn("current_exact_head_authority", review_schema["required"])
+        self.assertNotIn("head_sha", review_schema["required"])
+        self.assertNotIn("head_sha_source", review_schema["required"])
+        validate_instance(state, schema)
+        live_state, checkpoint, roadmap, matrix = live_inputs()
+        result = validate_state_consistency(live_state, checkpoint, roadmap, matrix, audit_input(live_state))
+        self.assertEqual(result["status"], CURRENT_GATE)
+        self.assertEqual(result["failures"], [])
+
+    def test_b18_stale_or_mislabelled_exact_head_claims_fail_closed(self) -> None:
+        state, checkpoint, roadmap, matrix = live_inputs()
+        stale = copy.deepcopy(state)
+        stale["review"]["head_sha"] = "1b0811d7d1b58704316769a430750f8fc1b488d1"
+        result = validate_state_consistency(stale, checkpoint, roadmap, matrix, audit_input(state))
+        self.assertEqual(result["status"], "V1_CANONICAL_STATE_FAILED")
+        self.assertIn("head_sha_invalid", result["failures"])
+        mislabelled = copy.deepcopy(state)
+        mislabelled["review"]["head_sha_source"] = "GitHub LIVE exact-head metadata"
+        result = validate_state_consistency(mislabelled, checkpoint, roadmap, matrix, audit_input(state))
+        self.assertIn("head_sha_source_invalid", result["failures"])
+        drifted = copy.deepcopy(state)
+        drifted["review"]["current_exact_head_authority"] = "TRACKED_SHA"
+        result = validate_state_consistency(drifted, checkpoint, roadmap, matrix, audit_input(state))
+        self.assertIn("current_exact_head_authority_invalid", result["failures"])
+        schema = read_json("schemas/current-state-v0251.json")
+        for mutation in ({"head_sha": "1b0811d7d1b58704316769a430750f8fc1b488d1"}, {"head_sha_source": "GitHub LIVE exact-head metadata"}):
+            legacy = copy.deepcopy(state)
+            legacy["review"].update(mutation)
+            with self.assertRaises(SchemaValidationError):
+                validate_instance(legacy, schema)

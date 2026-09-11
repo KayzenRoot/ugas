@@ -193,6 +193,9 @@ NEGATIVE_CONTROL_MUTATIONS: dict[str, dict[str, Any]] = {
     "NEG-0253-12-REAL-ASSET-DRIFT": {"path": ["real_asset_generation"], "value": "REAL"},
     "NEG-0253-13-HARD-GATE-COUNT-DRIFT": {"definition_of_done": "each of the 28 hard gates", "expected": 28},
     "NEG-0253-14-NEXT-CANDIDATE-DRIFT": {"path": ["next_candidate"], "value": "V1_FINAL_ACCEPTANCE"},
+    "NEG-0253-15-STALE-CURRENT-HEAD-CLAIM": {"path": ["review", "head_sha"], "value": "1b0811d7d1b58704316769a430750f8fc1b488d1"},
+    "NEG-0253-16-MISLABELLED-HEAD-SOURCE": {"path": ["review", "head_sha_source"], "value": "GitHub LIVE exact-head metadata"},
+    "NEG-0253-17-EXACT-HEAD-AUTHORITY-DRIFT": {"path": ["review", "current_exact_head_authority"], "value": "TRACKED_SHA"},
 }
 
 
@@ -315,6 +318,7 @@ def proposed_checkpoint_delta() -> str:
             "- `production_routing=BLOCKED`, `production_approved=false`, `real_asset_generation=NONE`, `new_generation=0`, `provider_submit_calls=0`",
             "- Definition of Done hard-gate count corrected to 30, matching the accepted 30/30 evidence",
             f"- append-only closure evidence root: `docs/evidence/canonical-state-reconciliation-v0251/`; frozen v0.25.0 evidence remains byte-identical; v0.25.0 tracked-state snapshot preserved at `{V1_STATE_SNAPSHOT}`",
+            "- F-0253-01 correction: the review block no longer stores a tracked current PR-head SHA or a misleading exact-head source label; `review.current_exact_head_authority=GITHUB_LIVE_ONLY` makes the current exact PR head resolvable from GitHub LIVE only (no self-referential commit contract)",
             "",
             "The stale pending-merge wording is removed from the active canonical surfaces; the historical v0.25.0 records are retained unchanged in the superseded sections.",
             "",

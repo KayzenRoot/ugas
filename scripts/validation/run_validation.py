@@ -97,6 +97,7 @@ from ugas.acceptance_v0250 import ACCEPTANCE_COMPUTATION_GATE_IDS, APPROVAL_ARTI
 from ugas.state_consistency_v0251 import CLOSURE_EVIDENCE_FILES as V0251_CLOSURE_EVIDENCE_FILES
 from ugas.state_consistency_v0251 import CURRENT_GATE as CURRENT_GATE_V0251
 from ugas.state_consistency_v0251 import HARD_GATE_COUNT as V0251_HARD_GATE_COUNT
+from ugas.state_consistency_v0251 import NEGATIVE_CONTROL_IDS as V0251_NEGATIVE_CONTROL_IDS
 from ugas.state_consistency_v0251 import V1_STATE_SNAPSHOT
 from ugas.state_consistency_v0251 import VERSION as V0251_VERSION
 from ugas.state_consistency_v0251 import closure_binding_failures as validate_closure_binding_v0251
@@ -4662,7 +4663,7 @@ def _v0251_checks() -> None:
         check("v0251:state-snapshot-digest", snapshot.get("sha256") == snapshot_sha256 and snapshot_sha256 == "f843e21c378dbc7bd6eca02fb580bb3a995d1513ed126f897ebeff7fc99ad1a9" and snapshot.get("path") == V1_STATE_SNAPSHOT, f"v0.25.0 state snapshot sha256={snapshot_sha256}")
         controls_evidence = load_json(evidence_root / "negative-controls-v0251.json")
         control_failures = validate_negative_controls_v0251(controls_evidence)
-        check("v0251:negative-controls", not control_failures, "; ".join(control_failures) or "all 14 canonical-state negative controls observed their expected rejection class on a real path")
+        check("v0251:negative-controls", not control_failures, "; ".join(control_failures) or f"all {len(V0251_NEGATIVE_CONTROL_IDS)} canonical-state negative controls observed their expected rejection class on a real path")
         immutability_evidence = load_json(evidence_root / "immutability-proof-v0251.json")
         immutability_problems = validate_immutability_v0251(immutability_evidence, ROOT)
         frozen_roots = immutability_evidence.get("frozen_roots", {}) if isinstance(immutability_evidence.get("frozen_roots"), dict) else {}

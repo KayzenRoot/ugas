@@ -3,8 +3,8 @@
   "version": "0.25.1",
   "status": "PASS",
   "work_order": "UGAS-WO-0253",
-  "minimum_required": 14,
-  "control_count": 14,
+  "minimum_required": 17,
+  "control_count": 17,
   "controls": {
     "NEG-0253-01-STALE-PENDING-MERGE": {
       "status": "PASS",
@@ -118,6 +118,30 @@
       "expected_rejection_class": "next_candidate_invalid",
       "observed_rejection_class": "next_candidate_invalid",
       "failing_key": "next_candidate",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-15-STALE-CURRENT-HEAD-CLAIM": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "head_sha_invalid",
+      "observed_rejection_class": "head_sha_invalid",
+      "failing_key": "review.head_sha",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-16-MISLABELLED-HEAD-SOURCE": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "head_sha_source_invalid",
+      "observed_rejection_class": "head_sha_source_invalid",
+      "failing_key": "review.head_sha_source",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-17-EXACT-HEAD-AUTHORITY-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "current_exact_head_authority_invalid",
+      "observed_rejection_class": "current_exact_head_authority_invalid",
+      "failing_key": "review.current_exact_head_authority",
       "observed_failure_count": 1
     }
   },
