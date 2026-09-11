@@ -9,11 +9,11 @@ Candidate head: the exact head SHA of `codex/v1-final-acceptance`, bound by the 
 
 ## Status and boundary
 
-This is the system-wide V1 technical baseline acceptance. The active state is `V1_FINAL_ACCEPTANCE` with current gate `V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED`, verdict `V1_ACCEPTANCE_CANDIDATE` and `stop_reason=V1_ACCEPTANCE_CANDIDATE_AWAITING_SOL_EXTERNAL_REVIEW`. The sole allowed next action is `external_review_v1_final_acceptance_pr`.
+This is the system-wide V1 technical baseline acceptance. The active state is `V1_FINAL_ACCEPTANCE` with current gate `V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE`, verdict `V1_ACCEPTANCE_CANDIDATE` and `stop_reason=V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_AWAITING_GOVERNED_MERGE`. The sole allowed next action is `external_review_v1_final_acceptance_pr`: the final exact-head external review of the bookkeeping head.
 
 The Orchestration Runtime v0.24.7 closure is carried forward-only from the merged baseline: semantic head `6b1af57ec5f488d71bafafa17a892467adf1d1c1`, bookkeeping head `984a517d823aa426778c3bf2469eed72457eb028`, merge/main `6c6d53dab5a95226bf9578a6099d755d51327d8e`, post-merge CI run `34523428088` (unit job `103026362729`, docker job `103026362968`) and closure comment `5625161567`. Frozen v0.24.7 evidence under `docs/evidence/orchestration-runtime-v0247/` is not rewritten.
 
-V1 technical acceptance is not production approval. `production_approved=false`, `production_routing=BLOCKED`, `real_asset_generation=NONE`, `new_generation=0`, `provider_submit_calls=0`; a separate Production Readiness workstream is required later. The PR must stay OPEN and unmerged for Sol external review; this work order never self-merges.
+V1 technical acceptance is not production approval. `production_approved=false`, `production_routing=BLOCKED`, `real_asset_generation=NONE`, `new_generation=0`, `provider_submit_calls=0`; a separate Production Readiness workstream is required later. The Sol external review of PR #16 is complete and recorded as an immutable approval authority in `docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json`: numeric review `5177113418`, GraphQL `PRR_kwDOUHpC088AAAABNJR7Sg`, submitted `2026-09-11T09:28:54Z`, verdict `APPROVED_TECHNICAL_BASELINE_APPROVED_TO_GOVERNED_MERGE_WORKFLOW`, reviewed semantic head `66db255fdb2483da4bae08e418c904f24d215ebb`, required contexts bound to check ids `103163096334`, `103163096242` and `103163096320`, exact-head artifact `10186848053` (`sha256:9eaac2bf31af424ebf2fc1d68652abb3a5f784c7208d86526c22d7d571612331`, 54 files, zero hash mismatches, independent ZIP digest match) and merge authorization `GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_BOOKKEEPING_REVIEW`. Merge may only be authorized after a final exact-head external review of the bookkeeping head; the PR must stay OPEN and unmerged until then, and this work order never self-merges.
 
 ## Capability matrix
 
@@ -33,7 +33,7 @@ The acceptance evidence records the full unit suite, official validation with `f
 
 ## Acceptance evidence root
 
-The forward-only evidence root is `docs/evidence/v1-final-acceptance/` with `capability-matrix-audit.json`, `architecture-audit.json`, `security-audit.json`, `reproducibility-audit.json`, `state-consistency-audit.json`, `test-summary.json`, `hard-gates.json`, `negative-controls.json`, `production-boundary.json`, `uads-handoff.json` and the machine-readable `final-acceptance-summary.json`. Each file binds repository, base main, branch, version and generation timestamp; no historical evidence root was rewritten.
+The forward-only evidence root is `docs/evidence/v1-final-acceptance/` with `capability-matrix-audit.json`, `architecture-audit.json`, `security-audit.json`, `reproducibility-audit.json`, `state-consistency-audit.json`, `test-summary.json`, `hard-gates.json`, `negative-controls.json`, `production-boundary.json`, `uads-handoff.json` and the machine-readable `final-acceptance-summary.json`; the immutable approval authority `sol-external-approval-v0251.json` is carried beside them. Each file binds repository, base main, branch, version and generation timestamp; no historical evidence root was rewritten.
 
 ## Production boundary
 
@@ -43,8 +43,8 @@ The forward-only evidence root is `docs/evidence/v1-final-acceptance/` with `cap
 
 - `execution_mode`: GLOBAL_FIRST
 - `project_footprint`: ZERO
-- `work_order_id`: wo_930e9b78f60af9f0
-- `run_or_dispatch_id`: er_1f6aa04783c6b1af
+- `work_order_id`: wo_080f0ec7318ab40b
+- `run_or_dispatch_id`: er_5ecebd0482d03d9a
 - `route_status`: SELECTED
 - `selected_profile_id`: codex-global-strong-v1
 - `selected_profile_digest_unavailable_reason`: UADS model execution plan does not expose a profile digest

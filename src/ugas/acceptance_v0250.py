@@ -27,6 +27,48 @@ OBSERVABILITY_APPROVAL_ARTIFACT_ID = "9867524286"
 OBSERVABILITY_APPROVAL_ARTIFACT_DIGEST = "sha256:6ffe21738ed7960aabb5cd874cc44c4030a3b5fee0463f58c004805637a4d6d2"
 OBSERVABILITY_APPROVED_HEAD = "2f8d04f03a6f4de0ead7683899f945cd60d5000f"
 OBSERVABILITY_ROW_STATUS = "APPROVED_PILOT; EXTERNAL_VISUAL_APPROVAL_BOUND"
+# WO-0251 forward-only approval bookkeeping: Sol external approval of the V1 technical baseline.
+# The record authorizes only the governed-merge workflow; production stays blocked, and any
+# post-bookkeeping head may differ from the approved semantic head solely by allowlisted files.
+APPROVAL_RECORD_PATH = "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json"
+APPROVAL_RECORD_TYPE = "forward_only_external_approval"
+APPROVAL_PR_NUMBER = 16
+APPROVED_SEMANTIC_HEAD = "66db255fdb2483da4bae08e418c904f24d215ebb"
+APPROVAL_REVIEW_ID_NUMERIC = 5177113418
+APPROVAL_REVIEW_ID_GRAPHQL = "PRR_kwDOUHpC088AAAABNJR7Sg"
+APPROVAL_VERDICT = "APPROVED_TECHNICAL_BASELINE_APPROVED_TO_GOVERNED_MERGE_WORKFLOW"
+APPROVAL_STATUS = "APPROVED_TECHNICAL_BASELINE"
+MERGE_AUTHORIZATION = "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_BOOKKEEPING_REVIEW"
+APPROVAL_ARTIFACT_ID = "10186848053"
+APPROVAL_ARTIFACT_DIGEST = "sha256:9eaac2bf31af424ebf2fc1d68652abb3a5f784c7208d86526c22d7d571612331"
+APPROVAL_ARTIFACT_INVENTORY_FILES = 54
+APPROVAL_CI_RUN_ID = 34567701297
+APPROVAL_REVIEW_RUN_ID = 34567701283
+APPROVAL_REQUIRED_CONTEXTS = (
+    ("UGAS CI / unit-and-validation", 103163096334),
+    ("UGAS CI / docker-smoke", 103163096242),
+    ("UGAS Review / evidence", 103163096320),
+)
+APPROVAL_UADS_WORK_ORDER_ID = "wo_080f0ec7318ab40b"
+APPROVAL_UADS_DISPATCH_ID = "er_5ecebd0482d03d9a"
+REVIEWED_BOOKKEEPING_ALLOWLIST = (
+    "CHECKPOINT.md",
+    "REVIEW-UGAS-V1-FINAL-ACCEPTANCE.md",
+    "docs/evidence/current-state.json",
+    "docs/evidence/v1-final-acceptance",
+    "docs/roadmap.md",
+    "schemas/current-state-v0250.json",
+    "scripts/validation/build_github_review_manifest_v0250.py",
+    "scripts/validation/enforce_github_review_v0250.py",
+    "scripts/validation/run_v1_final_acceptance_v0250.py",
+    "scripts/validation/run_validation.py",
+    "scripts/validation/validate_github_review_manifest_v0250.py",
+    "scripts/validation/validate_github_review_security_v0250.py",
+    "scripts/validation/validate_state_consistency_v0250.py",
+    "src/ugas/acceptance_v0250.py",
+    "src/ugas/state_consistency_v0250.py",
+    "tests/test_final_acceptance_v0250.py",
+)
 ORCHESTRATION_SEMANTIC_HEAD = "6b1af57ec5f488d71bafafa17a892467adf1d1c1"
 ORCHESTRATION_BOOKKEEPING_HEAD = "984a517d823aa426778c3bf2469eed72457eb028"
 ORCHESTRATION_MERGE_MAIN_SHA = BASE_MAIN_SHA
@@ -134,6 +176,8 @@ HARD_GATE_IDS = (
     "pr_open_unmerged_at_candidate_head",
     "production_boundary_record_blocked",
     "active_documents_free_of_production_claims",
+    "external_approval_authority_bound",
+    "bookkeeping_delta_within_reviewed_scope",
 )
 
 
@@ -618,15 +662,181 @@ def acceptance_status(*, findings: Sequence[Mapping[str, Any]], gates: Mapping[s
     }
 
 
+def validate_external_approval(record: Mapping[str, Any], *, candidate_head: str, root: Path) -> dict[str, Any]:
+    """Bind the WO-0251 Sol external approval to exact tracked bytes. Fail-closed."""
+
+    root = Path(root)
+    if not isinstance(record, Mapping):
+        _reject("EXTERNAL_APPROVAL_RECORD_INVALID", "approval record is not a mapping")
+    if not GITHUB_SHA_RE.fullmatch(str(candidate_head)):
+        _reject("EXTERNAL_APPROVAL_HEAD_INVALID", "candidate head is not an exact commit sha")
+    if candidate_head != APPROVED_SEMANTIC_HEAD:
+        _reject("EXTERNAL_APPROVAL_HEAD_UNTRACKED", "candidate head is not the tracked approved semantic head")
+    record_path = root / APPROVAL_RECORD_PATH
+    if not record_path.is_file():
+        _reject("EXTERNAL_APPROVAL_RECORD_MISSING", APPROVAL_RECORD_PATH + " is not tracked")
+    try:
+        tracked = load_json_file(record_path)
+    except (OSError, json.JSONDecodeError, ValueError):
+        _reject("EXTERNAL_APPROVAL_RECORD_UNREADABLE", APPROVAL_RECORD_PATH + " cannot be parsed")
+    if record.get("schema_version") != VERSION:
+        _reject("EXTERNAL_APPROVAL_SCHEMA", "approval record schema_version is stale")
+    if record.get("record_type") != APPROVAL_RECORD_TYPE:
+        _reject("EXTERNAL_APPROVAL_RECORD_TYPE", "approval record_type is not forward_only_external_approval")
+    if record.get("repository") != REPOSITORY:
+        _reject("EXTERNAL_APPROVAL_REPOSITORY", "approval repository is not the active repository")
+    if type(record.get("pull_request")) is not int or record.get("pull_request") != APPROVAL_PR_NUMBER:
+        _reject("EXTERNAL_APPROVAL_PR", "approval does not bind pull request 16")
+    if record.get("branch") != BRANCH or record.get("base_branch") != "main":
+        _reject("EXTERNAL_APPROVAL_BRANCH", "approval branch/base_branch mismatch")
+    if record.get("base_sha") != BASE_MAIN_SHA or record.get("authorized_base_main") != BASE_MAIN_SHA:
+        _reject("EXTERNAL_APPROVAL_BASE", "approval base does not equal the authorized baseline main")
+    if record.get("approved_semantic_head") != candidate_head or record.get("reviewed_runtime_head") != candidate_head:
+        _reject("EXTERNAL_APPROVAL_HEAD", "approval does not bind the approved semantic head")
+    if type(record.get("review_id_numeric")) is not int or record.get("review_id_numeric") != APPROVAL_REVIEW_ID_NUMERIC:
+        _reject("EXTERNAL_APPROVAL_REVIEW_ID", "approval review id numeric mismatch")
+    if record.get("review_id_graphql") != APPROVAL_REVIEW_ID_GRAPHQL:
+        _reject("EXTERNAL_APPROVAL_REVIEW_ID", "approval review id graphql mismatch")
+    if record.get("verdict") != APPROVAL_VERDICT or record.get("status") != APPROVAL_STATUS:
+        _reject("EXTERNAL_APPROVAL_VERDICT", "approval verdict is not the governed-merge approval")
+    if record.get("merge_authorization") != MERGE_AUTHORIZATION:
+        _reject("EXTERNAL_APPROVAL_MERGE_AUTHORIZATION", "approval merge authorization changed")
+    if record.get("merge_verified_via_protected_path") is not False:
+        _reject("EXTERNAL_APPROVAL_MERGE_AUTHORIZATION", "approval claims protected-path merge verification")
+    if WORK_ORDER_ID not in str(record.get("scope", "")):
+        _reject("EXTERNAL_APPROVAL_SCOPE", "approval scope does not bind this work order")
+    contexts = record.get("required_contexts")
+    observed_contexts = tuple((str(item.get("workflow")), item.get("check_id")) for item in contexts if isinstance(item, Mapping)) if isinstance(contexts, list) else ()
+    if observed_contexts != APPROVAL_REQUIRED_CONTEXTS:
+        _reject("EXTERNAL_APPROVAL_CONTEXTS", "required contexts/check ids do not match the exact-head CI checks")
+    ci = record.get("ci") if isinstance(record.get("ci"), Mapping) else {}
+    if ci.get("run_id") != APPROVAL_CI_RUN_ID or ci.get("run_status") != "SUCCESS" or ci.get("review_run_id") != APPROVAL_REVIEW_RUN_ID or ci.get("review_run_status") != "SUCCESS" or ci.get("reviewed_head") != candidate_head:
+        _reject("EXTERNAL_APPROVAL_CI", "CI binding is not the successful exact-head run pair")
+    artifact = record.get("technical_artifact") if isinstance(record.get("technical_artifact"), Mapping) else {}
+    if str(artifact.get("id")) != APPROVAL_ARTIFACT_ID or str(artifact.get("digest")) != APPROVAL_ARTIFACT_DIGEST or candidate_head not in str(artifact.get("name", "")):
+        _reject("EXTERNAL_APPROVAL_ARTIFACT", "technical artifact id/digest/name does not bind the approved head")
+    if artifact.get("inventory_files") != APPROVAL_ARTIFACT_INVENTORY_FILES or artifact.get("hash_mismatches") != 0 or artifact.get("independent_zip_digest_match") is not True:
+        _reject("EXTERNAL_APPROVAL_ARTIFACT", "artifact inventory or independent digest match is not clean")
+    if any(artifact.get(key) != "PASS" for key in ("status", "security", "manifest", "enforcement")):
+        _reject("EXTERNAL_APPROVAL_ARTIFACT", "artifact validator status is not PASS")
+    findings = record.get("findings") if isinstance(record.get("findings"), Mapping) else {}
+    if findings.get("critical") != 0 or findings.get("high") != 0:
+        _reject("EXTERNAL_APPROVAL_FINDINGS", "approval carries CRITICAL or HIGH findings")
+    if findings.get("medium_blocking_acceptance") != 0 or findings.get("medium_resolved") != 2:
+        _reject("EXTERNAL_APPROVAL_FINDINGS", "approval medium findings do not match the recorded resolution")
+    boundary = record.get("approval_boundary") if isinstance(record.get("approval_boundary"), Mapping) else {}
+    if boundary.get("v1_technical_acceptance_is_not_production_approval") is not True or boundary.get("production_approved") is not False:
+        _reject("EXTERNAL_APPROVAL_BOUNDARY", "approval boundary is not non-production")
+    if boundary.get("production_routing") != "BLOCKED" or boundary.get("production_readiness_workstream") != "NOT_STARTED_REQUIRED_SEPARATELY":
+        _reject("EXTERNAL_APPROVAL_BOUNDARY", "production routing or readiness boundary changed")
+    if boundary.get("provider_submit_calls") != 0 or boundary.get("new_generation") != 0 or boundary.get("real_asset_generation") != "NONE" or boundary.get("synthetic_fixture") != "TEST_ONLY":
+        _reject("EXTERNAL_APPROVAL_BOUNDARY", "provider calls or generation are not zero")
+    if boundary.get("orchestration_lifecycle") != "MERGED_CLOSED":
+        _reject("EXTERNAL_APPROVAL_BOUNDARY", "orchestration lifecycle is not MERGED_CLOSED")
+    uads = record.get("uads") if isinstance(record.get("uads"), Mapping) else {}
+    if uads.get("work_order_id") != APPROVAL_UADS_WORK_ORDER_ID or uads.get("run_or_dispatch_id") != APPROVAL_UADS_DISPATCH_ID:
+        _reject("EXTERNAL_APPROVAL_UADS", "approval UADS work order or dispatch binding mismatch")
+    if uads.get("execution_mode") != "GLOBAL_FIRST" or uads.get("project_footprint") != "ZERO" or uads.get("repo_local_material") != "ABSENT":
+        _reject("EXTERNAL_APPROVAL_UADS", "approval UADS footprint is not zero-project-footprint")
+    bookkeeping = record.get("bookkeeping_authorization") if isinstance(record.get("bookkeeping_authorization"), Mapping) else {}
+    if bookkeeping.get("permitted") is not True or bookkeeping.get("post_bookkeeping_reproof_required") is not True:
+        _reject("EXTERNAL_APPROVAL_BOOKKEEPING", "bookkeeping authorization is not permitted with mandatory reproof")
+    if not isinstance(bookkeeping.get("forbidden_changes"), list) or not bookkeeping.get("forbidden_changes") or not str(bookkeeping.get("review_invalidation_condition", "")):
+        _reject("EXTERNAL_APPROVAL_BOOKKEEPING", "bookkeeping forbidden scope or invalidation condition is missing")
+    if tracked != dict(record):
+        _reject("EXTERNAL_APPROVAL_RECORD_MISMATCH", "record differs from the tracked approval bytes")
+    return {
+        "schema_version": VERSION,
+        "status": "PASS",
+        "approval_record": APPROVAL_RECORD_PATH,
+        "approved_semantic_head": candidate_head,
+        "review_id_numeric": APPROVAL_REVIEW_ID_NUMERIC,
+        "review_id_graphql": APPROVAL_REVIEW_ID_GRAPHQL,
+        "verdict": APPROVAL_VERDICT,
+        "merge_authorization": MERGE_AUTHORIZATION,
+        "ci_run_id": APPROVAL_CI_RUN_ID,
+        "review_run_id": APPROVAL_REVIEW_RUN_ID,
+        "required_contexts": [{"workflow": workflow, "check_id": check_id} for workflow, check_id in APPROVAL_REQUIRED_CONTEXTS],
+        "artifact_id": APPROVAL_ARTIFACT_ID,
+        "artifact_digest": APPROVAL_ARTIFACT_DIGEST,
+        "artifact_inventory_files": APPROVAL_ARTIFACT_INVENTORY_FILES,
+        "production_approved": False,
+        "production_routing": "BLOCKED",
+        "provider_submit_calls": 0,
+        "new_generation": 0,
+        "uads_work_order_id": APPROVAL_UADS_WORK_ORDER_ID,
+        "uads_dispatch_id": APPROVAL_UADS_DISPATCH_ID,
+        "post_bookkeeping_reproof_required": True,
+        "does_not_approve_production": True,
+    }
+
+
+def _bookkeeping_path_allowed(relative: str, allowlist: Sequence[str]) -> bool:
+    for entry in allowlist:
+        candidate = str(entry).replace("\\", "/").strip("/")
+        if not candidate:
+            continue
+        if relative == candidate or relative.startswith(candidate + "/"):
+            return True
+    return False
+
+
+def evaluate_bookkeeping_delta(ancestor: Any, changed_files: Sequence[str], allowlist: Sequence[str]) -> dict[str, Any]:
+    """PASS/REJECT for the forward-only bookkeeping delta between the approved head and the candidate.
+
+    Pure decision function: git facts (ancestor relation, changed paths) are supplied by the caller.
+    """
+
+    if ancestor is not True:
+        return {"status": "REJECT", "reason": "BOOKKEEPING_DELTA_NOT_ANCESTOR", "ancestor": False, "changed_files": [], "forbidden_files": [], "changed_file_count": 0, "allowlist": [str(entry) for entry in allowlist]}
+    normalized: list[str] = []
+    forbidden: list[str] = []
+    for item in changed_files:
+        raw = str(item).strip()
+        relative = raw.replace("\\", "/")
+        while relative.startswith("./"):
+            relative = relative[2:]
+        normalized.append(relative or raw)
+        invalid_path = (not relative) or relative.startswith("/") or ".." in relative.split("/")
+        if invalid_path or not _bookkeeping_path_allowed(relative, allowlist):
+            forbidden.append(relative or raw)
+    return {
+        "status": "REJECT" if forbidden else "PASS",
+        "reason": "BOOKKEEPING_DELTA_FILE_OUT_OF_SCOPE" if forbidden else None,
+        "ancestor": True,
+        "changed_files": normalized,
+        "forbidden_files": forbidden,
+        "changed_file_count": len(normalized),
+        "allowlist": [str(entry) for entry in allowlist],
+    }
+
+
 __all__ = [
     "ACCEPTANCE_COMPUTATION_GATE_IDS",
+    "APPROVAL_ARTIFACT_DIGEST",
+    "APPROVAL_ARTIFACT_ID",
+    "APPROVAL_ARTIFACT_INVENTORY_FILES",
+    "APPROVAL_CI_RUN_ID",
+    "APPROVAL_PR_NUMBER",
+    "APPROVAL_RECORD_PATH",
+    "APPROVAL_RECORD_TYPE",
+    "APPROVAL_REQUIRED_CONTEXTS",
+    "APPROVAL_REVIEW_ID_GRAPHQL",
+    "APPROVAL_REVIEW_ID_NUMERIC",
+    "APPROVAL_REVIEW_RUN_ID",
+    "APPROVAL_STATUS",
+    "APPROVAL_UADS_DISPATCH_ID",
+    "APPROVAL_UADS_WORK_ORDER_ID",
+    "APPROVAL_VERDICT",
+    "APPROVED_SEMANTIC_HEAD",
     "AcceptanceContractError",
     "BASE_MAIN_SHA",
     "BRANCH",
     "CAPABILITY_RECORDS",
-    "EVIDENCE_ROOT",
     "ENVIRONMENT_GATE_IDS",
+    "EVIDENCE_ROOT",
     "HARD_GATE_IDS",
+    "MERGE_AUTHORIZATION",
     "OBSERVABILITY_APPROVAL_ARTIFACT_DIGEST",
     "OBSERVABILITY_APPROVAL_ARTIFACT_ID",
     "OBSERVABILITY_APPROVAL_RECORD",
@@ -637,6 +847,7 @@ __all__ = [
     "ORCHESTRATION_SEMANTIC_HEAD",
     "PR_TITLE",
     "REQUIRED_CAPABILITY_IDS",
+    "REVIEWED_BOOKKEEPING_ALLOWLIST",
     "VERSION",
     "WORK_ORDER_ID",
     "acceptance_status",
@@ -645,7 +856,9 @@ __all__ = [
     "audit_security",
     "canonical_acceptance_digest",
     "evaluate_acceptance_gates",
+    "evaluate_bookkeeping_delta",
     "file_sha256",
     "load_json_file",
     "observability_binding",
+    "validate_external_approval",
 ]

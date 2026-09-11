@@ -92,8 +92,8 @@ from ugas.state_consistency_v0243 import validate_state_consistency as validate_
 from ugas.state_consistency_v0244 import validate_state_consistency as validate_state_consistency_v0244
 from ugas.state_consistency_v0246 import validate_state_consistency as validate_state_consistency_v0246
 from ugas.state_consistency_v0247 import validate_state_consistency as validate_state_consistency_v0247
-from ugas.state_consistency_v0250 import validate_state_consistency as validate_state_consistency_v0250
-from ugas.acceptance_v0250 import ACCEPTANCE_COMPUTATION_GATE_IDS, BASE_MAIN_SHA, BRANCH, ENVIRONMENT_GATE_IDS, HARD_GATE_IDS, PR_TITLE, WORK_ORDER_ID
+from ugas.state_consistency_v0250 import CURRENT_GATE, MERGE_AUTHORIZATION, validate_state_consistency as validate_state_consistency_v0250
+from ugas.acceptance_v0250 import ACCEPTANCE_COMPUTATION_GATE_IDS, APPROVAL_ARTIFACT_DIGEST, APPROVAL_ARTIFACT_ID, APPROVAL_PR_NUMBER, APPROVAL_RECORD_PATH, APPROVAL_REVIEW_ID_NUMERIC, APPROVED_SEMANTIC_HEAD, REVIEWED_BOOKKEEPING_ALLOWLIST, AcceptanceContractError, BASE_MAIN_SHA, BRANCH, ENVIRONMENT_GATE_IDS, HARD_GATE_IDS, PR_TITLE, WORK_ORDER_ID, validate_external_approval
 from scripts.validation.validate_github_governance_v0221 import validate_binding as validate_governance_binding_v0221
 from scripts.validation.validate_github_governance_v0222 import validate_binding as validate_governance_binding_v0222
 from scripts.validation.validate_github_governance_v0223 import validate_binding as validate_governance_binding_v0223
@@ -264,10 +264,15 @@ def snapshot_check() -> None:
         no_git = Path(directory) / "no-git"; shutil.copytree(snapshot, no_git, ignore=shutil.ignore_patterns(".venv", "__pycache__", "*.pyc"))
         no_git_env = env.copy(); no_git_env.pop("UGAS_SKIP_TRACKED_SNAPSHOT", None); no_git_env["UGAS_REVIEW_SNAPSHOT"] = "1"; no_git_env["PYTHONPATH"] = str(no_git / "src")
         print("RUN snapshot:no-git", flush=True)
-        result = _run([sys.executable, "scripts/validation/run_validation.py"], no_git, env=no_git_env)
+        # The isolated no-git run repeats the complete validation payload
+        # from a cold copy and can exceed the generic subprocess budget on
+        # this Windows repository while remaining healthy.  Match the
+        # bounded 1800-second budget used by the other complete snapshot
+        # commands.
+        result = _run([sys.executable, "scripts/validation/run_validation.py"], no_git, env=no_git_env, timeout=1800)
         if result.returncode != 0:
             print("RETRY snapshot:no-git", flush=True)
-            result = _run([sys.executable, "scripts/validation/run_validation.py"], no_git, env=no_git_env)
+            result = _run([sys.executable, "scripts/validation/run_validation.py"], no_git, env=no_git_env, timeout=1800)
         print(f"DONE snapshot:no-git returncode={result.returncode}", flush=True)
         check("snapshot:no-git", _snapshot_validation_ok(result) and "SKIP_EXTERNAL_GIT_CONTEXT" in result.stdout, _result_detail(result) or "known immutable-history drift accepted in isolated snapshot")
 
@@ -4429,6 +4434,7 @@ def _v0250_checks() -> None:
         "scripts/validation/enforce_github_review_v0250.py", "scripts/validation/record_v1_acceptance_results_v0250.py",
         "tests/test_final_acceptance_v0250.py", "CHECKPOINT.md", "docs/roadmap.md",
         "docs/ugas-v1-capability-matrix.json", "docs/evidence/current-state.json",
+        "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json",
         "docs/evidence/v1-final-acceptance/capability-matrix-validation-v0250.json",
     ]
     required += [f"docs/evidence/v1-final-acceptance/{name}" for name in evidence_names]
@@ -4460,7 +4466,7 @@ def _v0250_checks() -> None:
         binding = summary.get("binding", {}) if isinstance(summary.get("binding"), dict) else {}
         check("v0250:binding", binding.get("base_main_sha") == BASE_MAIN_SHA and binding.get("branch") == BRANCH and binding.get("work_order_id") == WORK_ORDER_ID and binding.get("repository") == "KayzenRoot/ugas" and summary.get("pr_title") == PR_TITLE, "candidate evidence binds the authorized base main, branch, work order and PR title")
         closure = state.get("orchestration_closure", {}) if isinstance(state.get("orchestration_closure"), dict) else {}
-        check("v0250:closure-binding", state.get("baseline_main_sha") == BASE_MAIN_SHA and state.get("orchestration_lifecycle") == "MERGED_CLOSED" and state.get("current_gate") == "V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED" and state.get("phase") == "V1_FINAL_ACCEPTANCE" and state.get("acceptance_verdict") == "V1_ACCEPTANCE_CANDIDATE" and state.get("production_approved") is False and state.get("production_routing") == "BLOCKED" and state.get("new_generation") == 0 and state.get("provider_submit_calls") == 0 and state.get("real_asset_generation") == "NONE" and closure.get("semantic_head") == "6b1af57ec5f488d71bafafa17a892467adf1d1c1" and closure.get("bookkeeping_head") == "984a517d823aa426778c3bf2469eed72457eb028" and closure.get("merge_main_sha") == BASE_MAIN_SHA and closure.get("post_merge_ci_run") == 34523428088 and closure.get("unit_job") == 103026362729 and closure.get("docker_job") == 103026362968 and closure.get("closure_comment_id") == 5625161567 and closure.get("tracked_state_binding") == "PASS", "tracked state writes the GitHub LIVE orchestration closure forward-only inside the production block")
+        check("v0250:closure-binding", state.get("baseline_main_sha") == BASE_MAIN_SHA and state.get("orchestration_lifecycle") == "MERGED_CLOSED" and state.get("current_gate") == CURRENT_GATE and state.get("phase") == "V1_FINAL_ACCEPTANCE" and state.get("acceptance_verdict") == "V1_ACCEPTANCE_CANDIDATE" and state.get("production_approved") is False and state.get("production_routing") == "BLOCKED" and state.get("new_generation") == 0 and state.get("provider_submit_calls") == 0 and state.get("real_asset_generation") == "NONE" and closure.get("semantic_head") == "6b1af57ec5f488d71bafafa17a892467adf1d1c1" and closure.get("bookkeeping_head") == "984a517d823aa426778c3bf2469eed72457eb028" and closure.get("merge_main_sha") == BASE_MAIN_SHA and closure.get("post_merge_ci_run") == 34523428088 and closure.get("unit_job") == 103026362729 and closure.get("docker_job") == 103026362968 and closure.get("closure_comment_id") == 5625161567 and closure.get("tracked_state_binding") == "PASS", "tracked state writes the GitHub LIVE orchestration closure forward-only inside the production block")
         check("v0250:capability-matrix-audit", capability_audit.get("status") == "PASS" and capability_audit.get("capability_count") == 16 and capability_audit.get("accepted_or_preserved") == 16 and capability_audit.get("blocked") == 0 and len(capability_audit.get("capabilities", [])) == 16, "all 16 V1 capability records were audited without promoting a lifecycle")
         check("v0250:architecture", architecture.get("status") == "PASS" and not architecture.get("cycles") and architecture.get("gates_observed_not_hardcoded") is True and architecture.get("orchestration_provider_neutral") is True, "module boundaries stay acyclic, hard gates stay observed and orchestration stays provider neutral")
         check("v0250:security", security.get("status") == "PASS" and not security.get("failures") and security.get("secrets_included") is False and not security.get("repo_local_uads"), "evidence root carries no secret, private host path or repo-local UADS material")
@@ -4501,7 +4507,64 @@ def _v0250_checks() -> None:
         tolerated = set() if pr_bound else {"pr_open_unmerged_at_candidate_head"}
         failed_computation = sorted(gate_id for gate_id in ACCEPTANCE_COMPUTATION_GATE_IDS if gate_records.get(gate_id, {}).get("status") != "PASS" and gate_id not in tolerated)
         check("v0250:computation-gates", not failed_computation, "; ".join(failed_computation) or f"{len(ACCEPTANCE_COMPUTATION_GATE_IDS)} computation gates PASS")
-        check("v0250:review-binding", review.get("do_not_merge") is True and review.get("external_review_required") is True and review.get("merge_authorization") == "NO_SELF_MERGE_SOL_EXTERNAL_REVIEW_REQUIRED" and {"UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"} <= set(review.get("required_contexts", [])) and (not pr_bound or gate_records.get("pr_open_unmerged_at_candidate_head", {}).get("status") == "PASS"), "review block keeps the PR open, unmerged and bound to the required exact-head contexts")
+        check("v0250:review-binding", review.get("do_not_merge") is True and review.get("external_review_required") is True and review.get("merge_authorization") == MERGE_AUTHORIZATION and {"UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence"} <= set(review.get("required_contexts", [])) and (not pr_bound or gate_records.get("pr_open_unmerged_at_candidate_head", {}).get("status") == "PASS"), "review block keeps the PR open, unmerged and bound to the required exact-head contexts")
+        state_review = state.get("review", {}) if isinstance(state.get("review"), dict) else {}
+        approval_failures = []
+        approval_result = {}
+        try:
+            approval_result = validate_external_approval(load_json(ROOT / APPROVAL_RECORD_PATH), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)
+        except (AcceptanceContractError, OSError, json.JSONDecodeError, ValueError, TypeError) as exc:
+            approval_failures.append(str(exc))
+        approval_cross_binding = (
+            state_review.get("approved_semantic_head") == APPROVED_SEMANTIC_HEAD
+            and state_review.get("approval_record") == APPROVAL_RECORD_PATH
+            and state_review.get("approval_review_id_numeric") == APPROVAL_REVIEW_ID_NUMERIC
+            and state_review.get("post_bookkeeping_reproof_required") is True
+            and state_review.get("merge_authorization") == MERGE_AUTHORIZATION
+            and state_review.get("pr_number") == APPROVAL_PR_NUMBER
+            and review.get("approved_semantic_head") == APPROVED_SEMANTIC_HEAD
+            and review.get("approval_record") == APPROVAL_RECORD_PATH
+            and review.get("approval_review_id_numeric") == APPROVAL_REVIEW_ID_NUMERIC
+            and review.get("post_bookkeeping_reproof_required") is True
+        )
+        check("v0250:external-approval-binding", not approval_failures and approval_result.get("status") == "PASS" and approval_result.get("artifact_id") == APPROVAL_ARTIFACT_ID and approval_result.get("artifact_digest") == APPROVAL_ARTIFACT_DIGEST and approval_cross_binding, "; ".join(approval_failures) or "the tracked external approval record validates and binds the reviewed semantic head, review id, artifact identity and the tracked review blocks")
+        raw_approval = {}
+        try:
+            raw_approval = load_json(ROOT / APPROVAL_RECORD_PATH)
+        except (OSError, json.JSONDecodeError, ValueError, TypeError):
+            raw_approval = {}
+        bookkeeping_authorization = raw_approval.get("bookkeeping_authorization", {}) if isinstance(raw_approval.get("bookkeeping_authorization"), dict) else {}
+        delta = summary.get("bookkeeping_delta", {}) if isinstance(summary.get("bookkeeping_delta"), dict) else {}
+        delta_files = delta.get("changed_files", []) if isinstance(delta.get("changed_files"), list) else []
+        delta_forbidden = delta.get("forbidden_files", []) if isinstance(delta.get("forbidden_files"), list) else []
+        delta_ok = (
+            delta.get("status") == "PASS"
+            and delta.get("ancestor") is True
+            and not delta_forbidden
+            and isinstance(delta.get("changed_file_count"), int)
+            and delta.get("changed_file_count") == len(delta_files)
+        )
+        recorded_approval = summary.get("approval_validation", {}) if isinstance(summary.get("approval_validation"), dict) else {}
+
+        def _bookkeeping_allowlisted(relative):
+            return any(relative == str(entry) or relative.startswith(str(entry) + "/") for entry in REVIEWED_BOOKKEEPING_ALLOWLIST)
+
+        scope_ok = (
+            bookkeeping_authorization.get("permitted") is True
+            and bookkeeping_authorization.get("post_bookkeeping_reproof_required") is True
+            and isinstance(bookkeeping_authorization.get("permitted_changes"), list)
+            and bool(bookkeeping_authorization.get("permitted_changes"))
+            and isinstance(bookkeeping_authorization.get("forbidden_changes"), list)
+            and bool(bookkeeping_authorization.get("forbidden_changes"))
+            and isinstance(bookkeeping_authorization.get("review_invalidation_condition"), str)
+            and bool(bookkeeping_authorization.get("review_invalidation_condition"))
+            and len(REVIEWED_BOOKKEEPING_ALLOWLIST) >= 1
+            and _bookkeeping_allowlisted("docs/evidence/current-state.json")
+            and _bookkeeping_allowlisted(APPROVAL_RECORD_PATH)
+            and recorded_approval.get("status") == "PASS"
+            and delta_ok
+        )
+        check("v0250:bookkeeping-scope", scope_ok, "the external approval authorizes only the reviewed bookkeeping scope and the recorded delta from the approved semantic head stays inside it with mandatory re-proof")
         control_records = controls.get("controls", {}) if isinstance(controls.get("controls"), dict) else {}
         check("v0250:negative-controls", controls.get("status") == "PASS" and not controls.get("failures") and controls.get("minimum_required") == 25 and controls.get("control_count", 0) >= 25 and len(control_records) == controls.get("control_count") and all(record.get("status") == "PASS" for record in control_records.values() if isinstance(record, dict)), "every negative control executed a real path and passed by expected rejection")
         boundary = production.get("production_boundary", {}) if isinstance(production.get("production_boundary"), dict) else {}

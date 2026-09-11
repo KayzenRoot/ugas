@@ -10,12 +10,12 @@ BASELINE_MAIN_SHA = "6c6d53dab5a95226bf9578a6099d755d51327d8e"
 BRANCH = "codex/v1-final-acceptance"
 PR_TITLE = "UGAS V1 Final Acceptance"
 PREVIOUS_RELEASE_VERSION = "0.24.7"
-CURRENT_GATE = "V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED"
-STOP_REASON = "V1_ACCEPTANCE_CANDIDATE_AWAITING_SOL_EXTERNAL_REVIEW"
+CURRENT_GATE = "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE"
+STOP_REASON = "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_AWAITING_GOVERNED_MERGE"
 ACCEPTANCE_VERDICT = "V1_ACCEPTANCE_CANDIDATE"
 NEXT_ACTION = "external_review_v1_final_acceptance_pr"
 NEXT_CANDIDATE = "V1_FINAL_ACCEPTANCE"
-MERGE_AUTHORIZATION = "NO_SELF_MERGE_SOL_EXTERNAL_REVIEW_REQUIRED"
+MERGE_AUTHORIZATION = "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_BOOKKEEPING_REVIEW"
 ORCHESTRATION_SEMANTIC_HEAD = "6b1af57ec5f488d71bafafa17a892467adf1d1c1"
 ORCHESTRATION_BOOKKEEPING_HEAD = "984a517d823aa426778c3bf2469eed72457eb028"
 ORCHESTRATION_MERGE_MAIN_SHA = BASELINE_MAIN_SHA
@@ -34,6 +34,10 @@ EVIDENCE_ROOT = "docs/evidence/v1-final-acceptance/"
 FINAL_ACCEPTANCE_SUMMARY = "docs/evidence/v1-final-acceptance/final-acceptance-summary.json"
 CAPABILITY_COUNT = 16
 REQUIRED_CONTEXTS = ("UGAS CI / unit-and-validation", "UGAS CI / docker-smoke", "UGAS Review / evidence")
+APPROVED_SEMANTIC_HEAD = "66db255fdb2483da4bae08e418c904f24d215ebb"
+APPROVAL_RECORD = "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json"
+APPROVAL_REVIEW_ID_NUMERIC = 5177113418
+POST_BOOKKEEPING_REPROOF_REQUIRED = True
 
 
 def _mapping(value: Any) -> Mapping[str, Any]:
@@ -107,7 +111,7 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
         if observability.get(key) != expected_value:
             failures.append(f"observability:{key}")
     review = _mapping(state.get("review"))
-    for key, expected_value in {"repository": "KayzenRoot/ugas", "base_sha": BASELINE_MAIN_SHA, "feature_branch": BRANCH, "pr_title": PR_TITLE, "pr_state": "OPEN", "head_sha_source": "GitHub LIVE exact-head metadata", "pr_number_source": "GitHub LIVE PR metadata", "external_review_required": True, "merge_authorization": MERGE_AUTHORIZATION, "do_not_merge": True}.items():
+    for key, expected_value in {"repository": "KayzenRoot/ugas", "base_sha": BASELINE_MAIN_SHA, "feature_branch": BRANCH, "pr_title": PR_TITLE, "pr_state": "OPEN", "head_sha_source": "GitHub LIVE exact-head metadata", "pr_number_source": "GitHub LIVE PR metadata", "external_review_required": True, "merge_authorization": MERGE_AUTHORIZATION, "do_not_merge": True, "approved_semantic_head": APPROVED_SEMANTIC_HEAD, "approval_record": APPROVAL_RECORD, "approval_review_id_numeric": APPROVAL_REVIEW_ID_NUMERIC, "post_bookkeeping_reproof_required": POST_BOOKKEEPING_REPROOF_REQUIRED}.items():
         if review.get(key) != expected_value:
             failures.append(f"review:{key}")
     pr_number = review.get("pr_number")
@@ -158,4 +162,4 @@ def validate_state_consistency(state: Mapping[str, Any], checkpoint_text: str, r
     return {"status": CURRENT_GATE if not failures else "V1_FINAL_ACCEPTANCE_STATE_FAILED", "version": VERSION, "failures": failures, "checked": {"baseline_main_sha": state.get("baseline_main_sha"), "phase": state.get("phase"), "current_gate": state.get("current_gate"), "allowed_next_actions": state.get("allowed_next_actions"), "production_routing": state.get("production_routing"), "new_generation": state.get("new_generation"), "orchestration_lifecycle": state.get("orchestration_lifecycle"), "closure_comment_id": closure.get("closure_comment_id"), "capability_count": len(capabilities)}}
 
 
-__all__ = ["ACCEPTANCE_VERDICT", "BASELINE_MAIN_SHA", "BRANCH", "CAPABILITY_COUNT", "CLOSURE_COMMENT_ID", "CURRENT_GATE", "EVIDENCE_ROOT", "FINAL_ACCEPTANCE_SUMMARY", "MERGE_AUTHORIZATION", "NEXT_ACTION", "NEXT_CANDIDATE", "OBSERVABILITY_APPROVAL_ARTIFACT_DIGEST", "OBSERVABILITY_APPROVAL_ARTIFACT_ID", "OBSERVABILITY_APPROVAL_RECORD", "OBSERVABILITY_APPROVED_HEAD", "OBSERVABILITY_ROW_STATUS", "OBSERVABILITY_STATUS", "ORCHESTRATION_BOOKKEEPING_HEAD", "ORCHESTRATION_LIFECYCLE", "ORCHESTRATION_MERGE_MAIN_SHA", "ORCHESTRATION_SEMANTIC_HEAD", "PHASE", "POST_MERGE_CI_RUN", "POST_MERGE_DOCKER_JOB", "POST_MERGE_UNIT_JOB", "PREVIOUS_RELEASE_VERSION", "PR_TITLE", "REQUIRED_CONTEXTS", "STOP_REASON", "VERSION", "validate_state_consistency"]
+__all__ = ["ACCEPTANCE_VERDICT", "APPROVAL_RECORD", "APPROVAL_REVIEW_ID_NUMERIC", "APPROVED_SEMANTIC_HEAD", "BASELINE_MAIN_SHA", "BRANCH", "CAPABILITY_COUNT", "CLOSURE_COMMENT_ID", "CURRENT_GATE", "EVIDENCE_ROOT", "FINAL_ACCEPTANCE_SUMMARY", "MERGE_AUTHORIZATION", "NEXT_ACTION", "NEXT_CANDIDATE", "OBSERVABILITY_APPROVAL_ARTIFACT_DIGEST", "OBSERVABILITY_APPROVAL_ARTIFACT_ID", "OBSERVABILITY_APPROVAL_RECORD", "OBSERVABILITY_APPROVED_HEAD", "OBSERVABILITY_ROW_STATUS", "OBSERVABILITY_STATUS", "ORCHESTRATION_BOOKKEEPING_HEAD", "ORCHESTRATION_LIFECYCLE", "ORCHESTRATION_MERGE_MAIN_SHA", "ORCHESTRATION_SEMANTIC_HEAD", "PHASE", "POST_BOOKKEEPING_REPROOF_REQUIRED", "POST_MERGE_CI_RUN", "POST_MERGE_DOCKER_JOB", "POST_MERGE_UNIT_JOB", "PREVIOUS_RELEASE_VERSION", "PR_TITLE", "REQUIRED_CONTEXTS", "STOP_REASON", "VERSION", "validate_state_consistency"]

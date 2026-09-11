@@ -1,6 +1,156 @@
 {
-  "control_count": 30,
+  "control_count": 51,
   "controls": {
+    "NC-APPR-01": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-01",
+      "detail": "EXTERNAL_APPROVAL_REPOSITORY: approval repository is not the active repository",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_REPOSITORY",
+      "injected_defect": "approval record bound to a foreign repository",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_REPOSITORY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-02": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-02",
+      "detail": "EXTERNAL_APPROVAL_PR: approval does not bind pull request 16",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_PR",
+      "injected_defect": "approval record bound to a different pull request",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_PR",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-03": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-03",
+      "detail": "EXTERNAL_APPROVAL_BASE: approval base does not equal the authorized baseline main",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_BASE",
+      "injected_defect": "approval record bound to a foreign base main",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_BASE",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-04": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-04",
+      "detail": "EXTERNAL_APPROVAL_HEAD_UNTRACKED: candidate head is not the tracked approved semantic head",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_HEAD_UNTRACKED",
+      "injected_defect": "candidate head that is not the tracked approved semantic head",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_HEAD_UNTRACKED",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-05": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-05",
+      "detail": "EXTERNAL_APPROVAL_HEAD_INVALID: candidate head is not an exact commit sha",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_HEAD_INVALID",
+      "injected_defect": "candidate head that is not an exact commit sha",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_HEAD_INVALID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-06": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-06",
+      "detail": "EXTERNAL_APPROVAL_REVIEW_ID: approval review id numeric mismatch",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_REVIEW_ID",
+      "injected_defect": "approval record carrying an invalid review id",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_REVIEW_ID",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-07": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-07",
+      "detail": "EXTERNAL_APPROVAL_VERDICT: approval verdict is not the governed-merge approval",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_VERDICT",
+      "injected_defect": "approval record carrying a tampered verdict",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_VERDICT",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-08": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-08",
+      "detail": "EXTERNAL_APPROVAL_ARTIFACT: technical artifact id/digest/name does not bind the approved head",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_ARTIFACT",
+      "injected_defect": "artifact name that does not bind the approved head",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_ARTIFACT",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-09": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-09",
+      "detail": "EXTERNAL_APPROVAL_ARTIFACT: technical artifact id/digest/name does not bind the approved head",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_ARTIFACT",
+      "injected_defect": "artifact digest that does not match the reviewed artifact",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_ARTIFACT",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-10": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-10",
+      "detail": "EXTERNAL_APPROVAL_FINDINGS: approval carries CRITICAL or HIGH findings",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_FINDINGS",
+      "injected_defect": "approval record carrying a HIGH finding",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_FINDINGS",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-11": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-11",
+      "detail": "EXTERNAL_APPROVAL_BOUNDARY: approval boundary is not non-production",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_BOUNDARY",
+      "injected_defect": "approval boundary claiming production approval",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_BOUNDARY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-12": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-12",
+      "detail": "EXTERNAL_APPROVAL_BOUNDARY: production routing or readiness boundary changed",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_BOUNDARY",
+      "injected_defect": "approval boundary enabling production routing",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_BOUNDARY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-13": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-13",
+      "detail": "EXTERNAL_APPROVAL_BOUNDARY: provider calls or generation are not zero",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_BOUNDARY",
+      "injected_defect": "approval boundary recording a provider submit call",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_BOUNDARY",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-14": {
+      "actual_exception": "AcceptanceContractError",
+      "control_id": "NC-APPR-14",
+      "detail": "EXTERNAL_APPROVAL_RECORD_MISMATCH: record differs from the tracked approval bytes",
+      "expected_rejection_class": "EXTERNAL_APPROVAL_RECORD_MISMATCH",
+      "injected_defect": "approval record with an unreviewed extra field",
+      "observed_rejection_class": "EXTERNAL_APPROVAL_RECORD_MISMATCH",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-APPR-15": {
+      "actual_exception": null,
+      "control_id": "NC-APPR-15",
+      "detail": "{\"dispatch_id_present\": null, \"dispatch_status\": null, \"repo_local_material\": null, \"status\": \"PASS\"}",
+      "expected_rejection_class": "PASS",
+      "injected_defect": "positive control: the tracked external approval record validates against the approved semantic head",
+      "observed_rejection_class": "PASS",
+      "result": "ACCEPT",
+      "status": "PASS"
+    },
     "NC-ART-01": {
       "actual_exception": null,
       "control_id": "NC-ART-01",
@@ -29,6 +179,36 @@
       "injected_defect": "artifact content carrying a private host path",
       "observed_rejection_class": null,
       "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-BOOK-01": {
+      "actual_exception": null,
+      "control_id": "NC-BOOK-01",
+      "detail": "{\"failure_count\": 0, \"first_failures\": [], \"reason\": \"BOOKKEEPING_DELTA_NOT_ANCESTOR\", \"status\": \"REJECT\"}",
+      "expected_rejection_class": "BOOKKEEPING_DELTA_NOT_ANCESTOR",
+      "injected_defect": "bookkeeping delta whose reviewed semantic head is not an ancestor",
+      "observed_rejection_class": "BOOKKEEPING_DELTA_NOT_ANCESTOR",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-BOOK-02": {
+      "actual_exception": null,
+      "control_id": "NC-BOOK-02",
+      "detail": "{\"failure_count\": 0, \"first_failures\": [], \"reason\": \"BOOKKEEPING_DELTA_FILE_OUT_OF_SCOPE\", \"status\": \"REJECT\"}",
+      "expected_rejection_class": "BOOKKEEPING_DELTA_FILE_OUT_OF_SCOPE",
+      "injected_defect": "bookkeeping delta touching a file outside the reviewed scope",
+      "observed_rejection_class": "BOOKKEEPING_DELTA_FILE_OUT_OF_SCOPE",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-BOOK-03": {
+      "actual_exception": null,
+      "control_id": "NC-BOOK-03",
+      "detail": "{\"dispatch_id_present\": null, \"dispatch_status\": null, \"repo_local_material\": null, \"status\": \"PASS\"}",
+      "expected_rejection_class": "PASS",
+      "injected_defect": "positive control: an allowlisted forward-only bookkeeping delta is accepted",
+      "observed_rejection_class": "PASS",
+      "result": "ACCEPT",
       "status": "PASS"
     },
     "NC-CAP-01": {
@@ -217,9 +397,39 @@
     "NC-STATE-05": {
       "actual_exception": null,
       "control_id": "NC-STATE-05",
-      "detail": "{\"failure_count\": 13, \"first_failures\": [\"documents_missing:0.25.0\", \"documents_missing:V1_FINAL_ACCEPTANCE\", \"documents_missing:V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED\", \"documents_missing:V1_ACCEPTANCE_CANDIDATE_AWAITING_SOL_EXTERNAL_REVIEW\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "detail": "{\"failure_count\": 13, \"first_failures\": [\"documents_missing:0.25.0\", \"documents_missing:V1_FINAL_ACCEPTANCE\", \"documents_missing:V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE\", \"documents_missing:V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_AWAITING_GOVERNED_MERGE\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
       "expected_rejection_class": "documents_missing",
       "injected_defect": "checkpoint and roadmap without the bound acceptance literals",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-06": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-06",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"stop_reason_invalid\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "stop_reason_invalid",
+      "injected_defect": "active state still carrying the stale awaiting-review stop reason",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-07": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-07",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"review:approved_semantic_head\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "review:approved_semantic_head",
+      "injected_defect": "state review approval binding pointing at a foreign head",
+      "observed_rejection_class": null,
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-STATE-08": {
+      "actual_exception": null,
+      "control_id": "NC-STATE-08",
+      "detail": "{\"failure_count\": 1, \"first_failures\": [\"review:post_bookkeeping_reproof_required\"], \"reason\": null, \"status\": \"V1_FINAL_ACCEPTANCE_STATE_FAILED\"}",
+      "expected_rejection_class": "review:post_bookkeeping_reproof_required",
+      "injected_defect": "state review dropping the mandatory post-bookkeeping reproof",
       "observed_rejection_class": null,
       "result": "REJECT",
       "status": "PASS"

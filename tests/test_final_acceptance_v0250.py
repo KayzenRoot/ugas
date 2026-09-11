@@ -15,6 +15,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from ugas.acceptance_v0250 import (
     ACCEPTANCE_COMPUTATION_GATE_IDS,
+    APPROVAL_RECORD_PATH,
+    APPROVED_SEMANTIC_HEAD,
     BASE_MAIN_SHA,
     BRANCH,
     CAPABILITY_RECORDS,
@@ -23,6 +25,7 @@ from ugas.acceptance_v0250 import (
     OBSERVABILITY_ROW_STATUS,
     PR_TITLE,
     REQUIRED_CAPABILITY_IDS,
+    REVIEWED_BOOKKEEPING_ALLOWLIST,
     VERSION,
     WORK_ORDER_ID,
     AcceptanceContractError,
@@ -32,8 +35,10 @@ from ugas.acceptance_v0250 import (
     audit_security,
     canonical_acceptance_digest,
     evaluate_acceptance_gates,
+    evaluate_bookkeeping_delta,
     observability_binding,
     strict_gate_observation,
+    validate_external_approval,
 )
 from ugas.state_consistency_v0250 import CURRENT_GATE, validate_state_consistency
 
@@ -83,8 +88,8 @@ class FinalAcceptancev0250Tests(unittest.TestCase):
         self.assertEqual(BASE_MAIN_SHA, "6c6d53dab5a95226bf9578a6099d755d51327d8e")
         self.assertEqual(BRANCH, "codex/v1-final-acceptance")
         self.assertEqual(PR_TITLE, "UGAS V1 Final Acceptance")
-        self.assertEqual(len(HARD_GATE_IDS), 28)
-        self.assertEqual(len(set(HARD_GATE_IDS)), 28)
+        self.assertEqual(len(HARD_GATE_IDS), 30)
+        self.assertEqual(len(set(HARD_GATE_IDS)), 30)
         self.assertEqual(set(ENVIRONMENT_GATE_IDS) | set(ACCEPTANCE_COMPUTATION_GATE_IDS), set(HARD_GATE_IDS))
         self.assertEqual(REQUIRED_CAPABILITY_IDS, tuple(record["id"] for record in CAPABILITY_RECORDS))
         self.assertEqual(len(REQUIRED_CAPABILITY_IDS), 16)
@@ -251,7 +256,7 @@ class FinalAcceptancev0250Tests(unittest.TestCase):
         first = runner.compute_core(determinism_pass=True)
         second = runner.compute_core(determinism_pass=True)
         self.assertEqual(canonical_acceptance_digest(runner._determinism_view(first)), canonical_acceptance_digest(runner._determinism_view(second)))
-        self.assertEqual(len(first["gates"]["gates"]), 28)
+        self.assertEqual(len(first["gates"]["gates"]), 30)
         self.assertTrue(all(type(value) is bool for value in first["observations"].values()))
         self.assertEqual(first["controls"]["status"], "PASS")
         self.assertEqual(first["snapshot_binding"]["status"], "PASS")
@@ -260,3 +265,49 @@ class FinalAcceptancev0250Tests(unittest.TestCase):
         runner = load_script("run_v1_final_acceptance_v0250")
         self.assertTrue(runner._definition_of_done_binding(ROOT))
         self.assertEqual(runner._production_claim_hits(ROOT), [])
+
+    def test_a19_external_approval_record_binds_the_reviewed_head(self) -> None:
+        record = read_json(APPROVAL_RECORD_PATH)
+        result = validate_external_approval(record, candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)
+        self.assertEqual(result["status"], "PASS")
+        self.assertEqual(result["approved_semantic_head"], APPROVED_SEMANTIC_HEAD)
+        self.assertEqual(result["review_id_numeric"], 5177113418)
+        self.assertIs(result["production_approved"], False)
+        self.assertEqual(result["production_routing"], "BLOCKED")
+        self.assertIs(result["post_bookkeeping_reproof_required"], True)
+        state_review = read_json("docs/evidence/current-state.json")["review"]
+        self.assertEqual(state_review["approved_semantic_head"], APPROVED_SEMANTIC_HEAD)
+        self.assertEqual(state_review["approval_record"], APPROVAL_RECORD_PATH)
+        self.assertEqual(state_review["approval_review_id_numeric"], 5177113418)
+        self.assertIs(state_review["post_bookkeeping_reproof_required"], True)
+
+    def test_a20_external_approval_rejects_stale_foreign_and_tampered_records(self) -> None:
+        record = read_json(APPROVAL_RECORD_PATH)
+        self.reject("EXTERNAL_APPROVAL_HEAD_UNTRACKED", lambda: validate_external_approval(record, candidate_head=BASE_MAIN_SHA, root=ROOT))
+        self.reject("EXTERNAL_APPROVAL_HEAD_INVALID", lambda: validate_external_approval(record, candidate_head="z" * 40, root=ROOT))
+        foreign = copy.deepcopy(record)
+        foreign["repository"] = "other/repository"
+        self.reject("EXTERNAL_APPROVAL_REPOSITORY", lambda: validate_external_approval(foreign, candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT))
+        stale = copy.deepcopy(record)
+        stale["review_id_numeric"] = 0
+        self.reject("EXTERNAL_APPROVAL_REVIEW_ID", lambda: validate_external_approval(stale, candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT))
+        promoted = copy.deepcopy(record)
+        promoted["approval_boundary"]["production_approved"] = True
+        self.reject("EXTERNAL_APPROVAL_BOUNDARY", lambda: validate_external_approval(promoted, candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT))
+        extended = copy.deepcopy(record)
+        extended["unreviewed_extension"] = True
+        self.reject("EXTERNAL_APPROVAL_RECORD_MISMATCH", lambda: validate_external_approval(extended, candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT))
+
+    def test_a21_bookkeeping_delta_is_forward_only_and_allowlisted(self) -> None:
+        allowlist = REVIEWED_BOOKKEEPING_ALLOWLIST
+        accepted = evaluate_bookkeeping_delta(True, ["CHECKPOINT.md", "docs/roadmap.md", APPROVAL_RECORD_PATH, "docs/evidence/current-state.json"], allowlist)
+        self.assertEqual(accepted["status"], "PASS")
+        self.assertEqual(accepted["forbidden_files"], [])
+        self.assertEqual(accepted["changed_file_count"], 4)
+        not_ancestor = evaluate_bookkeeping_delta(False, [], allowlist)
+        self.assertEqual(not_ancestor["status"], "REJECT")
+        self.assertEqual(not_ancestor["reason"], "BOOKKEEPING_DELTA_NOT_ANCESTOR")
+        out_of_scope = evaluate_bookkeeping_delta(True, ["CHECKPOINT.md", "src/ugas/production_router.py"], allowlist)
+        self.assertEqual(out_of_scope["status"], "REJECT")
+        self.assertEqual(out_of_scope["reason"], "BOOKKEEPING_DELTA_FILE_OUT_OF_SCOPE")
+        self.assertEqual(out_of_scope["forbidden_files"], ["src/ugas/production_router.py"])

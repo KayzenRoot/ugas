@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.25.0",
+  "record_type": "forward_only_external_approval",
+  "approved_increment": "v1.0.0",
+  "scope": "UGAS V1 technical baseline final acceptance (UGAS-WO-V1-FINAL-ACCEPTANCE-001)",
+  "repository": "KayzenRoot/ugas",
+  "pull_request": 16,
+  "branch": "codex/v1-final-acceptance",
+  "base_branch": "main",
+  "base_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+  "authorized_base_main": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+  "approved_semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
+  "reviewed_runtime_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
+  "reviewer": "Sol external review",
+  "review_id_numeric": 5177113418,
+  "review_id_graphql": "PRR_kwDOUHpC088AAAABNJR7Sg",
+  "submitted_at": "2026-09-11T09:28:54Z",
+  "decision": "APPROVED_TECHNICAL_BASELINE / APPROVED_TO_GOVERNED_MERGE_WORKFLOW",
+  "verdict": "APPROVED_TECHNICAL_BASELINE_APPROVED_TO_GOVERNED_MERGE_WORKFLOW",
+  "status": "APPROVED_TECHNICAL_BASELINE",
+  "merge_authorization": "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_BOOKKEEPING_REVIEW",
+  "merge_verified_via_protected_path": false,
+  "required_contexts": [
+    {"workflow": "UGAS CI / unit-and-validation", "check_id": 103163096334},
+    {"workflow": "UGAS CI / docker-smoke", "check_id": 103163096242},
+    {"workflow": "UGAS Review / evidence", "check_id": 103163096320}
+  ],
+  "ci": {
+    "run_id": 34567701297,
+    "run_status": "SUCCESS",
+    "review_run_id": 34567701283,
+    "review_run_status": "SUCCESS",
+    "reviewed_head": "66db255fdb2483da4bae08e418c904f24d215ebb"
+  },
+  "technical_artifact": {
+    "name": "ugas-v1-final-acceptance-evidence-pr-16-66db255fdb2483da4bae08e418c904f24d215ebb",
+    "id": 10186848053,
+    "digest": "sha256:9eaac2bf31af424ebf2fc1d68652abb3a5f784c7208d86526c22d7d571612331",
+    "status": "PASS",
+    "security": "PASS",
+    "manifest": "PASS",
+    "enforcement": "PASS",
+    "inventory_files": 54,
+    "hash_mismatches": 0,
+    "independent_zip_digest_match": true
+  },
+  "findings": {
+    "critical": 0,
+    "high": 0,
+    "medium_resolved": 2,
+    "medium_blocking_acceptance": 0
+  },
+  "approval_boundary": {
+    "v1_technical_acceptance_is_not_production_approval": true,
+    "production_approved": false,
+    "production_routing": "BLOCKED",
+    "production_readiness_workstream": "NOT_STARTED_REQUIRED_SEPARATELY",
+    "provider_submit_calls": 0,
+    "real_asset_generation": "NONE",
+    "synthetic_fixture": "TEST_ONLY",
+    "new_generation": 0,
+    "v1_final_acceptance": "APPROVED_TECHNICAL_BASELINE_AWAITING_GOVERNED_MERGE",
+    "orchestration_lifecycle": "MERGED_CLOSED"
+  },
+  "uads": {
+    "execution_mode": "GLOBAL_FIRST",
+    "project_footprint": "ZERO",
+    "work_order_id": "wo_080f0ec7318ab40b",
+    "run_or_dispatch_id": "er_5ecebd0482d03d9a",
+    "route_status": "SELECTED",
+    "selected_profile_id": "codex-global-strong-v1",
+    "dispatch_status": "DISPATCHED",
+    "repo_local_material": "ABSENT"
+  },
+  "bookkeeping_authorization": {
+    "permitted": true,
+    "permitted_changes": [
+      "docs/evidence/current-state.json",
+      "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json",
+      "CHECKPOINT.md",
+      "docs/roadmap.md",
+      "REVIEW-UGAS-V1-FINAL-ACCEPTANCE.md",
+      "approval transition and governance evidence",
+      "state/schema/validation wiring strictly required for approved state",
+      "exact-head review manifest/security/enforcement wiring for the approval record"
+    ],
+    "forbidden_changes": [
+      "runtime, request, DAG, scheduler, state-machine, checkpoint/resume, retry, timeout, circuit breaker, cache or provenance semantics",
+      "v0.24.0 through v0.25.0 technical evidence bytes and frozen historical evidence roots",
+      "production routing, real assets, provider calls, UI or asset-family authorities",
+      "merge, close, force push or new pull request"
+    ],
+    "post_bookkeeping_reproof_required": true,
+    "review_invalidation_condition": "any diff outside the bookkeeping allowlist or any semantic/runtime/fixture content change"
+  }
+}

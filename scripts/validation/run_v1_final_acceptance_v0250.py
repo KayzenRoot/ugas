@@ -24,6 +24,11 @@ from validate_github_review_security_v0250 import evaluate_artifact_security, sa
 import ugas.acceptance_v0250 as acceptance_v0250
 from ugas.acceptance_v0250 import (
     ACCEPTANCE_COMPUTATION_GATE_IDS,
+    APPROVAL_ARTIFACT_DIGEST,
+    APPROVAL_ARTIFACT_ID,
+    APPROVAL_PR_NUMBER,
+    APPROVAL_RECORD_PATH,
+    APPROVAL_VERDICT,
     BASE_MAIN_SHA,
     BRANCH,
     CAPABILITY_RECORDS,
@@ -51,6 +56,7 @@ from ugas.acceptance_v0250 import (
     PRODUCTION_TOKENS,
     REPOSITORY,
     REQUIRED_CAPABILITY_IDS,
+    REVIEWED_BOOKKEEPING_ALLOWLIST,
     SECRET_PATTERNS,
     STATE_SNAPSHOT,
     STATE_SNAPSHOT_SHA256,
@@ -63,11 +69,22 @@ from ugas.acceptance_v0250 import (
     audit_security,
     canonical_acceptance_digest,
     evaluate_acceptance_gates,
+    evaluate_bookkeeping_delta,
     file_sha256,
     load_json_file,
     observability_binding,
+    validate_external_approval,
 )
-from ugas.state_consistency_v0250 import validate_state_consistency
+from ugas.state_consistency_v0250 import (
+    APPROVAL_RECORD,
+    APPROVAL_REVIEW_ID_NUMERIC,
+    APPROVED_SEMANTIC_HEAD,
+    CURRENT_GATE,
+    MERGE_AUTHORIZATION,
+    POST_BOOKKEEPING_REPROOF_REQUIRED,
+    STOP_REASON,
+    validate_state_consistency,
+)
 
 
 EVIDENCE = ROOT / EVIDENCE_ROOT
@@ -107,8 +124,8 @@ PENDING_DISPATCH_HANDOFF = {
     "schema_version": VERSION,
     "execution_mode": "GLOBAL_FIRST",
     "project_footprint": "ZERO",
-    "work_order_id": "wo_930e9b78f60af9f0",
-    "run_or_dispatch_id": "er_1f6aa04783c6b1af",
+    "work_order_id": "wo_080f0ec7318ab40b",
+    "run_or_dispatch_id": "er_5ecebd0482d03d9a",
     "route_status": "SELECTED",
     "selected_profile_id": "codex-global-strong-v1",
     "selected_profile_digest_unavailable_reason": "UADS model execution plan does not expose a profile digest",
@@ -123,8 +140,8 @@ SNAPSHOT_BINDINGS = (
 DOCUMENT_LITERALS = (
     VERSION,
     "V1_FINAL_ACCEPTANCE",
-    "V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED",
-    "V1_ACCEPTANCE_CANDIDATE_AWAITING_SOL_EXTERNAL_REVIEW",
+    CURRENT_GATE,
+    STOP_REASON,
     "external_review_v1_final_acceptance_pr",
     "MERGED_CLOSED",
     "production_routing=BLOCKED",
@@ -167,12 +184,23 @@ def _git_head() -> str:
     return ""
 
 
+def _git_delta_scan(ancestor: str) -> dict[str, Any]:
+    relation = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", str(ancestor), "HEAD"], capture_output=True, text=True, check=False)
+    if relation.returncode != 0:
+        return evaluate_bookkeeping_delta(False, [], REVIEWED_BOOKKEEPING_ALLOWLIST)
+    diff = subprocess.run(["git", "-C", str(ROOT), "diff", "--name-only", f"{ancestor}..HEAD"], capture_output=True, text=True, check=False)
+    if diff.returncode != 0:
+        return evaluate_bookkeeping_delta(False, [], REVIEWED_BOOKKEEPING_ALLOWLIST)
+    return evaluate_bookkeeping_delta(True, [line.strip() for line in diff.stdout.splitlines() if line.strip()], REVIEWED_BOOKKEEPING_ALLOWLIST)
+
+
 def _binding() -> dict[str, Any]:
     return {
         "repository": REPOSITORY,
         "base_main_sha": BASE_MAIN_SHA,
         "branch": BRANCH,
         "candidate_head": _git_head(),
+        "approved_semantic_head": APPROVED_SEMANTIC_HEAD,
         "work_order_id": WORK_ORDER_ID,
         "schema_version": VERSION,
         "generated_at": _generated_at(),
@@ -348,6 +376,8 @@ GATE_PROOF_SOURCES: dict[str, str] = {
     "pr_open_unmerged_at_candidate_head": "GitHub LIVE PR metadata recorded in docs/evidence/current-state.json with the candidate head still on the acceptance branch",
     "production_boundary_record_blocked": "the written production-boundary.json acceptance record",
     "active_documents_free_of_production_claims": "active documents are free of production approval and routing claims",
+    "external_approval_authority_bound": "the tracked WO-0251 external approval record validates against the approved semantic head, review, CI checks and artifact identity",
+    "bookkeeping_delta_within_reviewed_scope": "the committed delta from the approved semantic head stays inside the reviewed bookkeeping allowlist",
 }
 
 
@@ -492,11 +522,13 @@ def _gate_observations(
     closure: Mapping[str, Any],
     capability_audit: Mapping[str, Any],
     observability: Mapping[str, Any],
+    approval_validation: Mapping[str, Any],
     security: Mapping[str, Any],
     state_validation: Mapping[str, Any],
     snapshot: Mapping[str, Any],
     environment: Mapping[str, Any],
     uads_validation: Mapping[str, Any],
+    bookkeeping_delta: Mapping[str, Any],
     findings: Sequence[Mapping[str, Any]],
     pr_number: Any,
     pr_head_sha: Any,
@@ -507,6 +539,7 @@ def _gate_observations(
 ) -> dict[str, Any]:
     previous = state.get("previous_release") if isinstance(state.get("previous_release"), Mapping) else {}
     acceptance_binding = state.get("v1_final_acceptance") if isinstance(state.get("v1_final_acceptance"), Mapping) else {}
+    review = state.get("review") if isinstance(state.get("review"), Mapping) else {}
     capabilities = capability_audit.get("capabilities") if isinstance(capability_audit.get("capabilities"), list) else []
     audit_ok = capability_audit.get("status") == "PASS"
     closure_complete = (
@@ -545,6 +578,18 @@ def _gate_observations(
         "capability_evidence_pointers_present": audit_ok and all(bool(row.get("evidence_pointers")) and bool(row.get("test_pointers")) for row in capabilities),
         "capability_lifecycle_not_promoted": audit_ok and not any(token in str(row.get("claimed_status")) for row in capabilities for token in PRODUCTION_TOKENS),
         "observability_visual_review_resolved": observability.get("status") == "PASS" and observability.get("visual_review_status") == "PASS" and observability.get("self_approval") is False,
+        "external_approval_authority_bound": (
+            approval_validation.get("status") == "PASS"
+            and approval_validation.get("production_approved") is False
+            and approval_validation.get("artifact_id") == APPROVAL_ARTIFACT_ID
+            and approval_validation.get("artifact_digest") == APPROVAL_ARTIFACT_DIGEST
+            and review.get("approved_semantic_head") == APPROVED_SEMANTIC_HEAD
+            and review.get("approval_record") == APPROVAL_RECORD
+            and review.get("approval_review_id_numeric") == APPROVAL_REVIEW_ID_NUMERIC
+            and review.get("merge_authorization") == MERGE_AUTHORIZATION
+            and review.get("post_bookkeeping_reproof_required") is True
+        ),
+        "bookkeeping_delta_within_reviewed_scope": bookkeeping_delta.get("status") == "PASS" and bookkeeping_delta.get("ancestor") is True,
         "unit_suite_pass": _environment_gate_status(environment, "unit_suite_pass") == "PASS",
         "official_validation_pass": _environment_gate_status(environment, "official_validation_pass") == "PASS",
         "snapshot_validation_pass": _environment_gate_status(environment, "snapshot_validation_pass") == "PASS",
@@ -555,9 +600,9 @@ def _gate_observations(
         "production_approved_false": state.get("production_approved") is False and PRODUCTION_BOUNDARY["production_approved"] is False,
         "new_generation_zero": type(state.get("new_generation")) is int and state.get("new_generation") == 0 and type(matrix.get("new_generation")) is int and matrix.get("new_generation") == 0,
         "no_repo_local_uads": security.get("repo_local_uads") == [] and uads_validation.get("status") == "PASS",
-        "state_schema_consistent": state_validation.get("status") == "V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED",
+        "state_schema_consistent": state_validation.get("status") == CURRENT_GATE,
         "matrix_consistent_with_state": audit_ok and acceptance_binding.get("capability_count") == 16 and acceptance_binding.get("capabilities_audited") == 16 and acceptance_binding.get("observability_visual_review") == "PASS" and acceptance_binding.get("production_scope") == "EXCLUDED",
-        "checkpoint_roadmap_consistent": state_validation.get("status") == "V1_FINAL_ACCEPTANCE_TECHNICAL_BASELINE_ACCEPTED_EXTERNAL_REVIEW_REQUIRED" and not any(str(item).startswith("documents_missing") for item in (state_validation.get("failures") or [])),
+        "checkpoint_roadmap_consistent": state_validation.get("status") == CURRENT_GATE and not any(str(item).startswith("documents_missing") for item in (state_validation.get("failures") or [])),
         "definition_of_done_distinguishes_production": definition_of_done_ok,
         "no_high_or_critical_findings": not unresolved_high_critical,
         "acceptance_evidence_inventory_pass": inventory_ok and security.get("status") == "PASS",
@@ -610,6 +655,15 @@ def compute_core(
         profile_id=uads_profile_id,
     )
     uads_validation = _guard({"schema_version": VERSION, "status": "FAIL"}, lambda: validate_uads_handoff(uads_handoff))
+    approval_record = _read_json_object(ROOT / APPROVAL_RECORD_PATH)
+    approval_validation = _guard(
+        {"schema_version": VERSION, "status": "FAIL", "production_approved": None, "artifact_id": None, "artifact_digest": None},
+        lambda: validate_external_approval(approval_record, candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT),
+    )
+    bookkeeping_delta = _guard(
+        {"schema_version": VERSION, "status": "REJECT", "reason": "BOOKKEEPING_DELTA_NOT_ANCESTOR", "ancestor": False, "changed_files": [], "forbidden_files": []},
+        lambda: _git_delta_scan(APPROVED_SEMANTIC_HEAD),
+    )
     review = state.get("review") if isinstance(state.get("review"), Mapping) else {}
     effective_pr_number = pr_number if pr_number is not None else review.get("pr_number")
     effective_pr_head = pr_head_sha if pr_head_sha is not None else review.get("head_sha")
@@ -623,11 +677,13 @@ def compute_core(
         closure=closure,
         capability_audit=capability_audit,
         observability=observability,
+        approval_validation=approval_validation,
         security=security,
         state_validation=state_validation,
         snapshot=snapshot,
         environment=environment,
         uads_validation=uads_validation,
+        bookkeeping_delta=bookkeeping_delta,
         findings=findings,
         pr_number=effective_pr_number,
         pr_head_sha=effective_pr_head,
@@ -665,6 +721,8 @@ def compute_core(
         "evidence_inventory": _evidence_inventory(ROOT),
         "uads_handoff": uads_handoff,
         "uads_validation": uads_validation,
+        "approval_validation": approval_validation,
+        "bookkeeping_delta": bookkeeping_delta,
         "review": {
             "pr_number": effective_pr_number,
             "pr_head_sha": effective_pr_head,
@@ -672,6 +730,10 @@ def compute_core(
             "external_review_required": review.get("external_review_required"),
             "do_not_merge": review.get("do_not_merge"),
             "merge_authorization": review.get("merge_authorization"),
+            "approved_semantic_head": review.get("approved_semantic_head"),
+            "approval_record": review.get("approval_record"),
+            "approval_review_id_numeric": review.get("approval_review_id_numeric"),
+            "post_bookkeeping_reproof_required": review.get("post_bookkeeping_reproof_required"),
             "required_contexts": list(review.get("required_contexts")) if isinstance(review.get("required_contexts"), list) else [],
         },
         "findings": findings,
@@ -728,6 +790,12 @@ def _tampered_matrix(mutator: Callable[[dict[str, Any]], None]) -> dict[str, Any
     matrix = copy.deepcopy(_read_json_object(MATRIX_PATH))
     mutator(matrix)
     return matrix
+
+
+def _tampered_approval(mutator: Callable[[dict[str, Any]], None]) -> dict[str, Any]:
+    record = copy.deepcopy(_read_json_object(ROOT / APPROVAL_RECORD_PATH))
+    mutator(record)
+    return record
 
 
 def _matrix_row(matrix: Mapping[str, Any], capability_id: str) -> dict[str, Any]:
@@ -802,6 +870,22 @@ def _mutate_state_closure(value: dict[str, Any]) -> None:
     closure = value.get("orchestration_closure")
     if isinstance(closure, dict):
         closure.pop("closure_comment_id", None)
+
+
+def _mutate_state_stop_reason(value: dict[str, Any]) -> None:
+    value["stop_reason"] = STOP_REASON + "_STALE"
+
+
+def _mutate_state_approval_head(value: dict[str, Any]) -> None:
+    review = value.get("review")
+    if isinstance(review, dict):
+        review["approved_semantic_head"] = BASE_MAIN_SHA
+
+
+def _mutate_state_reproof_flag(value: dict[str, Any]) -> None:
+    review = value.get("review")
+    if isinstance(review, dict):
+        review["post_bookkeeping_reproof_required"] = not POST_BOOKKEEPING_REPROOF_REQUIRED
 
 
 def _mutate_state_allowed(value: dict[str, Any]) -> None:
@@ -916,6 +1000,9 @@ def _negative_controls() -> list[dict[str, Any]]:
     controls.append(_expect_failure("NC-STATE-03", "orchestration closure missing the closure comment binding", "orchestration_closure:closure_comment_id", lambda: _state_control(_mutate_state_closure)))
     controls.append(_expect_failure("NC-STATE-04", "allowed next actions contradicting the forbidden action list", "allowed_action_forbidden_contradiction", lambda: _state_control(_mutate_state_allowed)))
     controls.append(_expect_failure("NC-STATE-05", "checkpoint and roadmap without the bound acceptance literals", "documents_missing", lambda: validate_state_consistency(_state_copy(), "", "", matrix, None)))
+    controls.append(_expect_failure("NC-STATE-06", "active state still carrying the stale awaiting-review stop reason", "stop_reason_invalid", lambda: _state_control(_mutate_state_stop_reason)))
+    controls.append(_expect_failure("NC-STATE-07", "state review approval binding pointing at a foreign head", "review:approved_semantic_head", lambda: _state_control(_mutate_state_approval_head)))
+    controls.append(_expect_failure("NC-STATE-08", "state review dropping the mandatory post-bookkeeping reproof", "review:post_bookkeeping_reproof_required", lambda: _state_control(_mutate_state_reproof_flag)))
     controls.append(_expect_failure("NC-PROD-01", "production approval flipped true in the active state", "production_approved_invalid", lambda: _state_control(_mutate_state_production_approved)))
     controls.append(_expect_failure("NC-PROD-02", "production routing enabled in the active state", "production_routing_invalid", lambda: _state_control(_mutate_state_production_routing)))
     controls.append(_expect_failure("NC-PROD-03", "new asset generation recorded in the active state", "new_generation_invalid", lambda: _state_control(_mutate_state_new_generation)))
@@ -934,6 +1021,24 @@ def _negative_controls() -> list[dict[str, Any]]:
     controls.append(_expect_verdict("NC-VERDICT-02", "observability visual review not resolved", "BLOCKED_PENDING_OBSERVABILITY_VISUAL_REVIEW", lambda: acceptance_status(findings=[], gates=_passing_gates(), observability={"status": "BLOCKED_PENDING_OBSERVABILITY_VISUAL_REVIEW"}, evidence_complete=True)))
     controls.append(_expect_verdict("NC-VERDICT-03", "failing gate with incomplete acceptance evidence", "INCOMPLETE_ACCEPTANCE_EVIDENCE", lambda: acceptance_status(findings=[], gates=_failing_gates(), observability={"status": "PASS"}, evidence_complete=False)))
     controls.append(_expect_failure("NC-LOCAL-01", "repository-local UADS runtime footprint must be detected", "repo-local-uads", _repo_local_uads_probe))
+    controls.append(_expect_rejection("NC-APPR-01", "approval record bound to a foreign repository", "EXTERNAL_APPROVAL_REPOSITORY", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"repository": "other/repository"})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-02", "approval record bound to a different pull request", "EXTERNAL_APPROVAL_PR", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"pull_request": APPROVAL_PR_NUMBER + 1})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-03", "approval record bound to a foreign base main", "EXTERNAL_APPROVAL_BASE", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"base_sha": BASE_MAIN_SHA[:-1] + "0"})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-04", "candidate head that is not the tracked approved semantic head", "EXTERNAL_APPROVAL_HEAD_UNTRACKED", lambda: validate_external_approval(_tampered_approval(lambda record: None), candidate_head=BASE_MAIN_SHA, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-05", "candidate head that is not an exact commit sha", "EXTERNAL_APPROVAL_HEAD_INVALID", lambda: validate_external_approval(_tampered_approval(lambda record: None), candidate_head="z" * 40, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-06", "approval record carrying an invalid review id", "EXTERNAL_APPROVAL_REVIEW_ID", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"review_id_numeric": 0})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-07", "approval record carrying a tampered verdict", "EXTERNAL_APPROVAL_VERDICT", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"verdict": APPROVAL_VERDICT + "_TAMPERED"})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-08", "artifact name that does not bind the approved head", "EXTERNAL_APPROVAL_ARTIFACT", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"technical_artifact": {**record["technical_artifact"], "name": "ugas-v1-final-acceptance-evidence-unbound"}})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-09", "artifact digest that does not match the reviewed artifact", "EXTERNAL_APPROVAL_ARTIFACT", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"technical_artifact": {**record["technical_artifact"], "digest": "sha256:" + "0" * 64}})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-10", "approval record carrying a HIGH finding", "EXTERNAL_APPROVAL_FINDINGS", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"findings": {**record["findings"], "high": 1}})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-11", "approval boundary claiming production approval", "EXTERNAL_APPROVAL_BOUNDARY", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"approval_boundary": {**record["approval_boundary"], "production_approved": True}})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-12", "approval boundary enabling production routing", "EXTERNAL_APPROVAL_BOUNDARY", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"approval_boundary": {**record["approval_boundary"], "production_routing": "ENABLED"}})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-13", "approval boundary recording a provider submit call", "EXTERNAL_APPROVAL_BOUNDARY", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"approval_boundary": {**record["approval_boundary"], "provider_submit_calls": 1}})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_rejection("NC-APPR-14", "approval record with an unreviewed extra field", "EXTERNAL_APPROVAL_RECORD_MISMATCH", lambda: validate_external_approval(_tampered_approval(lambda record: record.update({"unreviewed_extension": True})), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_status("NC-APPR-15", "positive control: the tracked external approval record validates against the approved semantic head", "PASS", lambda: validate_external_approval(_tampered_approval(lambda record: None), candidate_head=APPROVED_SEMANTIC_HEAD, root=ROOT)))
+    controls.append(_expect_failure("NC-BOOK-01", "bookkeeping delta whose reviewed semantic head is not an ancestor", "BOOKKEEPING_DELTA_NOT_ANCESTOR", lambda: evaluate_bookkeeping_delta(False, [], REVIEWED_BOOKKEEPING_ALLOWLIST)))
+    controls.append(_expect_failure("NC-BOOK-02", "bookkeeping delta touching a file outside the reviewed scope", "BOOKKEEPING_DELTA_FILE_OUT_OF_SCOPE", lambda: evaluate_bookkeeping_delta(True, ["CHECKPOINT.md", "src/ugas/production_router.py"], REVIEWED_BOOKKEEPING_ALLOWLIST)))
+    controls.append(_expect_status("NC-BOOK-03", "positive control: an allowlisted forward-only bookkeeping delta is accepted", "PASS", lambda: evaluate_bookkeeping_delta(True, ["CHECKPOINT.md", "docs/roadmap.md", "docs/evidence/v1-final-acceptance/final-acceptance-summary.json"], REVIEWED_BOOKKEEPING_ALLOWLIST)))
     return controls
 
 
@@ -1056,6 +1161,8 @@ def _summary_payload(core: Mapping[str, Any], *, digests: Mapping[str, Any], det
             "project_footprint": core["uads_handoff"].get("project_footprint"),
             "validation": dict(core["uads_validation"]),
         },
+        "approval_validation": dict(core["approval_validation"]),
+        "bookkeeping_delta": dict(core["bookkeeping_delta"]),
         "review": dict(core["review"]),
         "production_boundary": dict(PRODUCTION_BOUNDARY),
         "findings": [dict(item) for item in core["findings"]],
