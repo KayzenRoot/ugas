@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -35,6 +36,8 @@ IMMUTABILITY_PROOF = "immutability-proof-v0251.json"
 NEGATIVE_CONTROLS = "negative-controls-v0251.json"
 UADS_HANDOFF = "uads-handoff-v0251.json"
 HISTORICAL_V0251_HEAD = "5f4a56bf019cc10994ee2974430c3ffca3090a50"
+HISTORICAL_V0251_STATE_SNAPSHOT = ROOT / "docs/evidence/post-merge-canonical-promotion-v0252/historical-v0251-current-state.json"
+HISTORICAL_V0251_STATE_SNAPSHOT_SHA256 = "ddb7825b01fddcc92e938ffa7a709746ced22ceb38dc2fbc862e820cf95b3010"
 
 
 def _load(relative: str) -> Any:
@@ -46,9 +49,16 @@ def _active_v0251_state() -> dict[str, Any]:
     if current.get("version") == VERSION:
         return current
     result = subprocess.run(["git", "-C", str(ROOT), "show", f"{HISTORICAL_V0251_HEAD}:docs/evidence/current-state.json"], capture_output=True, check=False)
-    if result.returncode != 0:
-        raise OSError("historical v0.25.1 active state unavailable")
-    return json.loads(result.stdout)
+    if result.returncode == 0:
+        return json.loads(result.stdout)
+    try:
+        snapshot = HISTORICAL_V0251_STATE_SNAPSHOT.read_bytes()
+    except OSError as exc:
+        raise OSError("historical v0.25.1 active state unavailable") from exc
+    normalized = snapshot.replace(b"\r\n", b"\n")
+    if hashlib.sha256(normalized).hexdigest() != HISTORICAL_V0251_STATE_SNAPSHOT_SHA256:
+        raise OSError("historical v0.25.1 active state snapshot is not authoritative")
+    return json.loads(snapshot)
 
 
 def _closure_cross_binding(state: dict[str, Any], binding: dict[str, Any]) -> list[str]:

@@ -23,6 +23,7 @@ PR #18 is bound as `MERGED` at merge SHA `38606625d5b59b09c407f9cc903bd748d91e6b
 - State/schema validation: v0.25.2 active state and split binding.
 - Negative controls: stale PR state, stale merge flag, wrong merge identity, wrong closure ID, production drift, premature readiness and fabricated main context.
 - Historical immutability: v0.25.1 evidence root remains Git-guarded and unchanged.
+- Frozen v0.25.1 compatibility: no-Git snapshot validation uses the materialized historical state only after its source SHA is verified.
 - Snapshot/no-git and Docker: required by repository CI.
 - Determinism: three identical v0.25.2 promotion evidence computations.
 

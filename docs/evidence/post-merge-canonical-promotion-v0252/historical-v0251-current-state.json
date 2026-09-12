@@ -1,0 +1,315 @@
+{
+  "schema_version": "0.25.1",
+  "version": "0.25.1",
+  "phase": "V1_FINAL_ACCEPTANCE",
+  "baseline_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+  "v1_closure": {
+    "semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
+    "bookkeeping_head": "5046b3ed8c626540fa8258d25afc9a2abbf0a182",
+    "merge_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "post_merge_ci_run": 34610394648,
+    "unit_job": 103299136405,
+    "docker_job": 103299136059,
+    "closure_comment_id": 5636295417,
+    "audit_comment_id": 5637818972,
+    "audit_verdict": "APPROVED",
+    "tracked_state_binding": "PASS"
+  },
+  "previous_release": {
+    "version": "0.25.0",
+    "status": "MERGED_CLOSED",
+    "merge_commit": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "evidence": "docs/evidence/v1-final-acceptance/"
+  },
+  "orchestration_closure": {
+    "semantic_head": "6b1af57ec5f488d71bafafa17a892467adf1d1c1",
+    "bookkeeping_head": "984a517d823aa426778c3bf2469eed72457eb028",
+    "merge_main_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+    "post_merge_ci_run": 34523428088,
+    "unit_job": 103026362729,
+    "docker_job": 103026362968,
+    "closure_comment_id": 5625161567,
+    "tracked_state_binding": "PASS"
+  },
+  "correction_history": {
+    "v0.16.2": {
+      "status": "APPROVED_FOUNDATION",
+      "historical_evidence_unchanged": true
+    },
+    "v0.17.1": {
+      "status": "APPROVED_FOUNDATION",
+      "historical_evidence_unchanged": true
+    },
+    "v0.18.2": {
+      "status": "APPROVED_FOUNDATION",
+      "historical_evidence_unchanged": true
+    },
+    "v0.19.1": {
+      "status": "APPROVED_FOUNDATION",
+      "historical_evidence_unchanged": true
+    },
+    "v0.20.0": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "ae335ba198bb7f23210873e30948e8a19bc71cbd",
+      "historical_evidence_unchanged": true
+    },
+    "v0.20.1": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "0353e6785017c08db6e55c9448d9fa60e5908802",
+      "historical_evidence_unchanged": true
+    },
+    "v0.20.2": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "6022cf3c6158ebb762519a04e79ed42378438ccc",
+      "historical_evidence_unchanged": true
+    },
+    "v0.20.3": {
+      "status": "APPROVED_FOUNDATION",
+      "merge_commit": "0bf04cb92e8619ea10cf82af8dbf2d9abe599e05",
+      "historical_evidence_unchanged": true
+    },
+    "v0.21.0": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "185e03d057779f7f3ffea4ef5a14f891d518b61f",
+      "historical_evidence_unchanged": true
+    },
+    "v0.21.1": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "cfde03cce2e31cc688f9d94a659b577042b8538a",
+      "historical_evidence_unchanged": true
+    },
+    "v0.21.2": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "b80f30074374c539e008ce160846848f1c171d9a",
+      "historical_evidence_unchanged": true
+    },
+    "v0.21.3": {
+      "status": "APPROVED_FOUNDATION",
+      "merge_commit": "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3",
+      "historical_evidence_unchanged": true
+    },
+    "v0.22.0": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "0fad4721c0bfd52822cb3f1e952f306b5c50a151",
+      "historical_evidence_unchanged": true
+    },
+    "v0.22.1": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "9afcf52143f27db3bfbb88fa4394e0e77f9c404a",
+      "historical_evidence_unchanged": true
+    },
+    "v0.22.2": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "97dde2064bd7b381362e3d79f2a27d2bb78ddc36",
+      "historical_evidence_unchanged": true
+    },
+    "v0.22.3": {
+      "status": "APPROVED_FOUNDATION",
+      "merge_commit": "b08b9c3df74ef6a23046be396289e2fd72dc336b",
+      "historical_evidence_unchanged": true
+    },
+    "v0.23.0": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "c8967f5f7b4d3f66b402d10ae8fe5f29cb9fbb72",
+      "historical_evidence_unchanged": true
+    },
+    "v0.23.1": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "136079540f674c7467d93bd28e9834addbfce5c3",
+      "historical_evidence_unchanged": true
+    },
+    "v0.23.2": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "d7501177a9f4480921226b9832ffc237544a6433",
+      "historical_evidence_unchanged": true
+    },
+    "v0.23.3": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "9eda08b25a674a5423a99d35a42711102df91b8b",
+      "historical_evidence_unchanged": true
+    },
+    "v0.23.4": {
+      "status": "MERGED_CLOSED",
+      "reviewed_head": "9f8030d2c0ee0e00d10d64a9331899e21ebd5842",
+      "bookkeeping_head": "025805306784dee7e97ee70d4309aa671500eb2d",
+      "merge_commit": "dee98f8cd89ebd83a36ead7a22a184700d6e916f",
+      "post_merge_ci_run": 34300109485,
+      "closure_comment_id": 5594761528,
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.0": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "36064a215bf3e7bff06ac22e750a242c6556f83e",
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.1": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "ed9fa927fd50193130b3e085ef077dea267f2790",
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.2": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "cd3345db7c0e587915e56eb9314879c4a9cf98a3",
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.3": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "5a619c0b98ced7e4c09afd9ca117a039f0d5d068",
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.4": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "55d6ee80f29d4cf6ed9f2d65e0173dbba570a124",
+      "semantic_head": "0c5226fcaaf90e0ddc5131749976afb6d6dd3153",
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.5": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "2a5c1d6d88c1348c1490cb9c89f16e2cc6b64362",
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.6": {
+      "status": "CORRECTION_REQUIRED",
+      "rejected_reviewed_head": "cdc49dd96e7c683c0426d209e0bef162442a3bbb",
+      "historical_evidence_unchanged": true
+    },
+    "v0.24.7": {
+      "status": "MERGED_CLOSED",
+      "semantic_head": "6b1af57ec5f488d71bafafa17a892467adf1d1c1",
+      "bookkeeping_head": "984a517d823aa426778c3bf2469eed72457eb028",
+      "merge_commit": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "post_merge_ci_run": 34523428088,
+      "unit_job": 103026362729,
+      "docker_job": 103026362968,
+      "closure_comment_id": 5625161567,
+      "historical_evidence_unchanged": true
+    },
+    "v0.25.0": {
+      "status": "MERGED_CLOSED",
+      "semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
+      "bookkeeping_head": "5046b3ed8c626540fa8258d25afc9a2abbf0a182",
+      "merge_commit": "02fa44f2173aca46b4484209abccf218fe688a63",
+      "post_merge_ci_run": 34610394648,
+      "unit_job": 103299136405,
+      "docker_job": 103299136059,
+      "closure_comment_id": 5636295417,
+      "audit_comment_id": 5637818972,
+      "audit_verdict": "APPROVED",
+      "historical_evidence_unchanged": true
+    }
+  },
+  "observability": {
+    "status": "APPROVED_PILOT",
+    "scope": "visual_and_pilot_only",
+    "external_visual_review": "PASS",
+    "approval_record": "docs/evidence/github-governance-v0124/dashboard-external-visual-approval.json",
+    "approval_artifact_id": "9867524286",
+    "approval_artifact_digest": "sha256:6ffe21738ed7960aabb5cd874cc44c4030a3b5fee0463f58c004805637a4d6d2",
+    "approved_reviewed_head": "2f8d04f03a6f4de0ead7683899f945cd60d5000f",
+    "visuals_bound": 2,
+    "self_approval": false,
+    "historical_sources_rewritten": false,
+    "production_approved": false
+  },
+  "current_gate": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
+  "stop_reason": "V1_TECHNICAL_BASELINE_CLOSED_PRODUCTION_READINESS_NOT_STARTED",
+  "acceptance_verdict": "V1_TECHNICAL_BASELINE_ACCEPTED",
+  "next_candidate": "PRODUCTION_READINESS",
+  "allowed_next_actions": [
+    "define_and_review_production_readiness_work_order"
+  ],
+  "forbidden_actions": [
+    "direct_main_push",
+    "force_push_or_history_rewrite",
+    "merge_without_sol_approval",
+    "self_merge_v1_final_acceptance_pr",
+    "merge_v1_final_acceptance_pr",
+    "enable_production_routing",
+    "start_production_readiness",
+    "real_asset_generation",
+    "provider_network",
+    "start_ugas_v2",
+    "self_merge_canonical_state_reconciliation_pr",
+    "merge_canonical_state_reconciliation_pr"
+  ],
+  "production_approved": false,
+  "production_routing": "BLOCKED",
+  "real_asset_generation": "NONE",
+  "new_generation": 0,
+  "provider_submit_calls": 0,
+  "next_capability_started": false,
+  "production_readiness_workstream": "NOT_STARTED_REQUIRED_SEPARATELY",
+  "vfx_asset_family": "APPROVED_FOUNDATION",
+  "vfx_asset_family_lifecycle": "MERGED_CLOSED",
+  "ui_asset_family": "APPROVED_FOUNDATION",
+  "ui_asset_family_lifecycle": "MERGED_CLOSED",
+  "maps_minimap_assets": "APPROVED_FOUNDATION",
+  "maps_minimap_lifecycle": "MERGED_CLOSED",
+  "orchestration_runtime": "APPROVED_FOUNDATION",
+  "orchestration_lifecycle": "MERGED_CLOSED",
+  "synthetic_fixture": "TEST_ONLY",
+  "review": {
+    "repository": "KayzenRoot/ugas",
+    "base_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "feature_branch": "codex/ugas-wo-0253-v1-canonical-state-reconciliation",
+    "pr_title": "UGAS WO-0253 V1 canonical-state reconciliation",
+    "execution_mode": "GITHUB_PR_FIRST",
+    "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW",
+    "pr_number": 18,
+    "pr_number_source": "GitHub LIVE PR metadata",
+    "pr_state": "OPEN",
+    "current_exact_head_authority": "GITHUB_LIVE_ONLY",
+    "external_review_required": true,
+    "merge_authorization": "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_BOOKKEEPING_REVIEW",
+    "do_not_merge": true,
+    "approved_semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
+    "approval_record": "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json",
+    "approval_review_id_numeric": 5177113418,
+    "post_bookkeeping_reproof_required": true,
+    "required_contexts": [
+      "UGAS CI / unit-and-validation",
+      "UGAS CI / docker-smoke",
+      "UGAS Review / evidence"
+    ]
+  },
+  "evidence": {
+    "root": "docs/evidence/v1-final-acceptance/",
+    "capability_audit": "docs/evidence/v1-final-acceptance/capability-matrix-audit.json",
+    "architecture_audit": "docs/evidence/v1-final-acceptance/architecture-audit.json",
+    "security_audit": "docs/evidence/v1-final-acceptance/security-audit.json",
+    "reproducibility_audit": "docs/evidence/v1-final-acceptance/reproducibility-audit.json",
+    "state_consistency_audit": "docs/evidence/v1-final-acceptance/state-consistency-audit.json",
+    "test_summary": "docs/evidence/v1-final-acceptance/test-summary.json",
+    "hard_gates": "docs/evidence/v1-final-acceptance/hard-gates.json",
+    "negative_controls": "docs/evidence/v1-final-acceptance/negative-controls.json",
+    "production_boundary": "docs/evidence/v1-final-acceptance/production-boundary.json",
+    "uads_handoff": "docs/evidence/v1-final-acceptance/uads-handoff.json",
+    "final_acceptance_summary": "docs/evidence/v1-final-acceptance/final-acceptance-summary.json",
+    "orchestration_closure": "docs/evidence/orchestration-runtime-v0247/",
+    "observability_approval": "docs/evidence/github-governance-v0124/dashboard-external-visual-approval.json"
+  },
+  "v1_final_acceptance": {
+    "evidence_root": "docs/evidence/v1-final-acceptance/",
+    "capability_count": 16,
+    "capabilities_audited": 16,
+    "observability_visual_review": "PASS",
+    "acceptance_scope": "SYSTEM_WIDE_V1_TECHNICAL_BASELINE",
+    "production_scope": "EXCLUDED"
+  },
+  "state_consistency": {
+    "status": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
+    "version": "0.25.1",
+    "phase": "V1_FINAL_ACCEPTANCE",
+    "current_gate": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
+    "baseline_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "feature_branch": "codex/ugas-wo-0253-v1-canonical-state-reconciliation",
+    "production_routing": "BLOCKED",
+    "production_approved": false,
+    "new_generation": 0,
+    "allowed_next_actions": [
+      "define_and_review_production_readiness_work_order"
+    ],
+    "next_capability_started": false,
+    "orchestration_lifecycle": "MERGED_CLOSED"
+  }
+}

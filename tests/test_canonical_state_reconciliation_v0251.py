@@ -292,6 +292,14 @@ class CanonicalStateReconciliationv0251Tests(unittest.TestCase):
         self.assertEqual(result["status"], "PASS")
         self.assertEqual(result["failures"], [])
 
+    def test_b14_no_git_snapshot_uses_hash_bound_historical_state(self) -> None:
+        validator = load_script("validate_v1_closure_v0251")
+        unavailable_git = subprocess.CompletedProcess([], 128, stdout=b"", stderr=b"not a git repository")
+        with patch.object(validator.subprocess, "run", return_value=unavailable_git):
+            state = validator._active_v0251_state()
+        self.assertEqual(state["version"], VERSION)
+        self.assertEqual(state["current_gate"], CURRENT_GATE)
+
     def test_b15_definition_of_done_declares_the_accepted_hard_gate_count(self) -> None:
         definition = (ROOT / "docs/definition-of-done.md").read_text(encoding="utf-8")
         self.assertEqual(definition_of_done_hard_gate_count(definition), HARD_GATE_COUNT)
