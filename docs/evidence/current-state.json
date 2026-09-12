@@ -1,8 +1,26 @@
 {
-  "schema_version": "0.25.1",
-  "version": "0.25.1",
+  "schema_version": "0.25.2",
+  "version": "0.25.2",
   "phase": "V1_FINAL_ACCEPTANCE",
-  "baseline_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+  "baseline_main_sha": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+  "post_merge_canonical_promotion": {
+    "source_pr": 18,
+    "source_pr_base_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "source_reviewed_head": "5f4a56bf019cc10994ee2974430c3ffca3090a50",
+    "source_merge_sha": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+    "source_merged_at": "2026-09-12T11:21:46Z",
+    "source_merge_parents": [
+      "02fa44f2173aca46b4484209abccf218fe688a63",
+      "5f4a56bf019cc10994ee2974430c3ffca3090a50"
+    ],
+    "source_post_merge_ci_run": 34690855982,
+    "source_unit_job": 103545700293,
+    "source_docker_job": 103545700226,
+    "source_closure_comment_id": 5645638986,
+    "source_approval_comment_id": 5646607566,
+    "source_approval_verdict": "APPROVED",
+    "tracked_state_binding": "PASS"
+  },
   "v1_closure": {
     "semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
     "bookkeeping_head": "5046b3ed8c626540fa8258d25afc9a2abbf0a182",
@@ -16,10 +34,10 @@
     "tracked_state_binding": "PASS"
   },
   "previous_release": {
-    "version": "0.25.0",
+    "version": "0.25.1",
     "status": "MERGED_CLOSED",
-    "merge_commit": "02fa44f2173aca46b4484209abccf218fe688a63",
-    "evidence": "docs/evidence/v1-final-acceptance/"
+    "merge_commit": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+    "evidence": "docs/evidence/canonical-state-reconciliation-v0251/"
   },
   "orchestration_closure": {
     "semantic_head": "6b1af57ec5f488d71bafafa17a892467adf1d1c1",
@@ -196,6 +214,16 @@
       "audit_comment_id": 5637818972,
       "audit_verdict": "APPROVED",
       "historical_evidence_unchanged": true
+    },
+    "v0.25.1": {
+      "status": "MERGED_CLOSED",
+      "reviewed_head": "5f4a56bf019cc10994ee2974430c3ffca3090a50",
+      "merge_commit": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+      "closure_comment_id": 5645638986,
+      "approval_comment_id": 5646607566,
+      "approval_verdict": "APPROVED",
+      "evidence": "docs/evidence/canonical-state-reconciliation-v0251/",
+      "historical_evidence_unchanged": true
     }
   },
   "observability": {
@@ -211,12 +239,12 @@
     "historical_sources_rewritten": false,
     "production_approved": false
   },
-  "current_gate": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
-  "stop_reason": "V1_TECHNICAL_BASELINE_CLOSED_PRODUCTION_READINESS_NOT_STARTED",
-  "acceptance_verdict": "V1_TECHNICAL_BASELINE_ACCEPTED",
+  "current_gate": "V1_CANONICAL_STATE_POST_MERGE_PROMOTION_EXTERNAL_REVIEW_REQUIRED",
+  "stop_reason": "V1_CANONICAL_STATE_PROMOTION_READY_FOR_EXTERNAL_REVIEW",
+  "acceptance_verdict": "V1_CANONICAL_STATE_PROMOTION_TECHNICALLY_QUALIFIED",
   "next_candidate": "PRODUCTION_READINESS",
   "allowed_next_actions": [
-    "define_and_review_production_readiness_work_order"
+    "external_review_post_merge_canonical_state_promotion_pr"
   ],
   "forbidden_actions": [
     "direct_main_push",
@@ -230,7 +258,9 @@
     "provider_network",
     "start_ugas_v2",
     "self_merge_canonical_state_reconciliation_pr",
-    "merge_canonical_state_reconciliation_pr"
+    "merge_canonical_state_reconciliation_pr",
+    "self_merge_post_merge_canonical_state_promotion_pr",
+    "merge_post_merge_canonical_state_promotion_pr"
   ],
   "production_approved": false,
   "production_routing": "BLOCKED",
@@ -250,22 +280,18 @@
   "synthetic_fixture": "TEST_ONLY",
   "review": {
     "repository": "KayzenRoot/ugas",
-    "base_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
-    "feature_branch": "codex/ugas-wo-0253-v1-canonical-state-reconciliation",
-    "pr_title": "UGAS WO-0253 V1 canonical-state reconciliation",
+    "base_sha": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+    "feature_branch": "codex/ugas-wo-0255-v1-post-merge-canonical-state-promotion",
+    "pr_title": "UGAS WO-0255 V1 post-merge canonical-state promotion",
     "execution_mode": "GITHUB_PR_FIRST",
     "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW",
-    "pr_number": 18,
+    "pr_number": 19,
     "pr_number_source": "GitHub LIVE PR metadata",
     "pr_state": "OPEN",
     "current_exact_head_authority": "GITHUB_LIVE_ONLY",
     "external_review_required": true,
-    "merge_authorization": "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_BOOKKEEPING_REVIEW",
+    "merge_authorization": "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_EXTERNAL_REVIEW",
     "do_not_merge": true,
-    "approved_semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
-    "approval_record": "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json",
-    "approval_review_id_numeric": 5177113418,
-    "post_bookkeeping_reproof_required": true,
     "required_contexts": [
       "UGAS CI / unit-and-validation",
       "UGAS CI / docker-smoke",
@@ -273,7 +299,12 @@
     ]
   },
   "evidence": {
-    "root": "docs/evidence/v1-final-acceptance/",
+    "root": "docs/evidence/post-merge-canonical-promotion-v0252/",
+    "post_merge_binding": "docs/evidence/post-merge-canonical-promotion-v0252/post-merge-binding-v0252.json",
+    "historical_immutability": "docs/evidence/post-merge-canonical-promotion-v0252/historical-v0251-immutability-v0252.json",
+    "negative_controls": "docs/evidence/post-merge-canonical-promotion-v0252/negative-controls-v0252.json",
+    "uads_handoff": "docs/evidence/post-merge-canonical-promotion-v0252/uads-handoff-v0252.json",
+    "proposed_checkpoint_delta": "docs/evidence/post-merge-canonical-promotion-v0252/proposed-checkpoint-delta-v0252.md",
     "capability_audit": "docs/evidence/v1-final-acceptance/capability-matrix-audit.json",
     "architecture_audit": "docs/evidence/v1-final-acceptance/architecture-audit.json",
     "security_audit": "docs/evidence/v1-final-acceptance/security-audit.json",
@@ -297,19 +328,19 @@
     "production_scope": "EXCLUDED"
   },
   "state_consistency": {
-    "status": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
-    "version": "0.25.1",
+    "status": "V1_CANONICAL_STATE_POST_MERGE_PROMOTION_EXTERNAL_REVIEW_REQUIRED",
+    "version": "0.25.2",
     "phase": "V1_FINAL_ACCEPTANCE",
-    "current_gate": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
-    "baseline_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
-    "feature_branch": "codex/ugas-wo-0253-v1-canonical-state-reconciliation",
+    "current_gate": "V1_CANONICAL_STATE_POST_MERGE_PROMOTION_EXTERNAL_REVIEW_REQUIRED",
+    "baseline_main_sha": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+    "feature_branch": "codex/ugas-wo-0255-v1-post-merge-canonical-state-promotion",
     "production_routing": "BLOCKED",
     "production_approved": false,
     "new_generation": 0,
     "allowed_next_actions": [
-      "define_and_review_production_readiness_work_order"
+      "external_review_post_merge_canonical_state_promotion_pr"
     ],
     "next_capability_started": false,
-    "orchestration_lifecycle": "MERGED_CLOSED"
+    "production_readiness_workstream": "NOT_STARTED_REQUIRED_SEPARATELY"
   }
 }

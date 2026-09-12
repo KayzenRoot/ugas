@@ -6,6 +6,7 @@ import copy
 import hashlib
 import importlib.util
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -54,6 +55,7 @@ from ugas.state_consistency_v0251 import (
 
 SNAPSHOT_SHA256 = "f843e21c378dbc7bd6eca02fb580bb3a995d1513ed126f897ebeff7fc99ad1a9"
 STALE_PENDING_GATE = "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE"
+HISTORICAL_BASELINE = "5f4a56bf019cc10994ee2974430c3ffca3090a50"
 
 
 def load_script(name: str):
@@ -66,7 +68,15 @@ def load_script(name: str):
 
 
 def read_json(relative: str):
+    if relative == "docs/evidence/current-state.json":
+        result = subprocess.run(["git", "show", f"{HISTORICAL_BASELINE}:{relative}"], cwd=ROOT, capture_output=True, check=True)
+        return json.loads(result.stdout)
     return json.loads((ROOT / relative).read_text(encoding="utf-8"))
+
+
+def historical_text(relative: str) -> str:
+    result = subprocess.run(["git", "show", f"{HISTORICAL_BASELINE}:{relative}"], cwd=ROOT, capture_output=True, check=True)
+    return result.stdout.decode("utf-8")
 
 
 def normalized_digest(path: Path) -> str:
@@ -77,8 +87,8 @@ def normalized_digest(path: Path) -> str:
 def live_inputs() -> tuple[dict, str, str, dict]:
     return (
         read_json("docs/evidence/current-state.json"),
-        (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"),
-        (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"),
+        historical_text("CHECKPOINT.md"),
+        historical_text("docs/roadmap.md"),
         read_json("docs/ugas-v1-capability-matrix.json"),
     )
 
@@ -139,8 +149,8 @@ class CanonicalStateReconciliationv0251Tests(unittest.TestCase):
         self.assertEqual(result["failures"], [])
 
     def test_b04_active_documents_carry_the_merged_closure(self) -> None:
-        checkpoint = (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8")
-        roadmap = (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")
+        checkpoint = historical_text("CHECKPOINT.md")
+        roadmap = historical_text("docs/roadmap.md")
         for document in (checkpoint, roadmap):
             self.assertIn(CURRENT_GATE, document)
             self.assertIn(V1_SEMANTIC_HEAD, document)

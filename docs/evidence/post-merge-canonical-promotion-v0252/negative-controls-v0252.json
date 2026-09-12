@@ -1,0 +1,88 @@
+{
+  "control_count": 7,
+  "controls": {
+    "NC-0255-01-STALE-PR-OPEN": {
+      "actual_failure_count": 1,
+      "actual_failures": [
+        "review:pr_state_invalid"
+      ],
+      "expected_rejection_class": "review:pr_state_invalid",
+      "failing_key": "review.pr_state",
+      "observed_rejection_class": "review:pr_state_invalid",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-0255-02-STALE-DO-NOT-MERGE": {
+      "actual_failure_count": 1,
+      "actual_failures": [
+        "review:do_not_merge_invalid"
+      ],
+      "expected_rejection_class": "review:do_not_merge_invalid",
+      "failing_key": "review.do_not_merge",
+      "observed_rejection_class": "review:do_not_merge_invalid",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-0255-03-WRONG-MERGE-IDENTITY": {
+      "actual_failure_count": 1,
+      "actual_failures": [
+        "post_merge_canonical_promotion:source_merge_sha_invalid"
+      ],
+      "expected_rejection_class": "post_merge_canonical_promotion:source_merge_sha_invalid",
+      "failing_key": "post_merge_canonical_promotion.source_merge_sha",
+      "observed_rejection_class": "post_merge_canonical_promotion:source_merge_sha_invalid",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-0255-04-WRONG-CLOSURE-ID": {
+      "actual_failure_count": 1,
+      "actual_failures": [
+        "post_merge_canonical_promotion:source_closure_comment_id_invalid"
+      ],
+      "expected_rejection_class": "post_merge_canonical_promotion:source_closure_comment_id_invalid",
+      "failing_key": "post_merge_canonical_promotion.source_closure_comment_id",
+      "observed_rejection_class": "post_merge_canonical_promotion:source_closure_comment_id_invalid",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-0255-05-PRODUCTION-DRIFT": {
+      "actual_failure_count": 1,
+      "actual_failures": [
+        "production_approved_invalid"
+      ],
+      "expected_rejection_class": "production_approved_invalid",
+      "failing_key": "production_approved",
+      "observed_rejection_class": "production_approved_invalid",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-0255-06-READINESS-PREMATURE": {
+      "actual_failure_count": 1,
+      "actual_failures": [
+        "production_readiness_workstream_invalid"
+      ],
+      "expected_rejection_class": "production_readiness_workstream_invalid",
+      "failing_key": "production_readiness_workstream",
+      "observed_rejection_class": "production_readiness_workstream_invalid",
+      "result": "REJECT",
+      "status": "PASS"
+    },
+    "NC-0255-07-FABRICATED-MAIN-CONTEXT": {
+      "actual_failure_count": 2,
+      "actual_failures": [
+        "main_ci_result:context_set",
+        "main_ci_result:review_context_forbidden"
+      ],
+      "expected_rejection_class": "main_ci_result:context_set",
+      "failing_key": "provenance.post_merge_main_ci.contexts",
+      "observed_rejection_class": "main_ci_result:context_set",
+      "result": "REJECT",
+      "status": "PASS"
+    }
+  },
+  "method": "each negative control mutates the active state or split main-CI binding and executes the real fail-closed validator path",
+  "schema_version": "0.25.2",
+  "status": "PASS",
+  "version": "0.25.2",
+  "work_order": "UGAS-WO-0255"
+}

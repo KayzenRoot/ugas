@@ -275,7 +275,9 @@ class FinalAcceptancev0250Tests(unittest.TestCase):
         self.assertIs(result["production_approved"], False)
         self.assertEqual(result["production_routing"], "BLOCKED")
         self.assertIs(result["post_bookkeeping_reproof_required"], True)
-        state_review = read_json("docs/evidence/current-state.json")["review"]
+        # The active state was promoted to v0.25.2; v0.25.0 approval fields
+        # remain authoritative only in the preserved historical snapshot.
+        state_review = read_json("docs/evidence/canonical-state-reconciliation-v0251/v0250-state-snapshot.json")["review"]
         self.assertEqual(state_review["approved_semantic_head"], APPROVED_SEMANTIC_HEAD)
         self.assertEqual(state_review["approval_record"], APPROVAL_RECORD_PATH)
         self.assertEqual(state_review["approval_review_id_numeric"], 5177113418)

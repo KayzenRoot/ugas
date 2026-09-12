@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -33,10 +34,21 @@ CLOSURE_BINDING = "closure-binding-v0251.json"
 IMMUTABILITY_PROOF = "immutability-proof-v0251.json"
 NEGATIVE_CONTROLS = "negative-controls-v0251.json"
 UADS_HANDOFF = "uads-handoff-v0251.json"
+HISTORICAL_V0251_HEAD = "5f4a56bf019cc10994ee2974430c3ffca3090a50"
 
 
 def _load(relative: str) -> Any:
     return json.loads(Path(relative).read_text(encoding="utf-8"))
+
+
+def _active_v0251_state() -> dict[str, Any]:
+    current = _load(str(STATE_PATH))
+    if current.get("version") == VERSION:
+        return current
+    result = subprocess.run(["git", "-C", str(ROOT), "show", f"{HISTORICAL_V0251_HEAD}:docs/evidence/current-state.json"], capture_output=True, check=False)
+    if result.returncode != 0:
+        raise OSError("historical v0.25.1 active state unavailable")
+    return json.loads(result.stdout)
 
 
 def _closure_cross_binding(state: dict[str, Any], binding: dict[str, Any]) -> list[str]:
@@ -82,7 +94,7 @@ def main() -> int:
 
     try:
         schema = _load(str(SCHEMA_PATH))
-        state = _load(str(STATE_PATH))
+        state = _active_v0251_state()
         validate_schema_document(schema)
         validate_instance(state, schema)
         checks.append({"name": "current-state-v0251-schema", "status": "PASS"})

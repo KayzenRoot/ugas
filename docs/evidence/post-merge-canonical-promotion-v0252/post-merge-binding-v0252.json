@@ -1,0 +1,64 @@
+{
+  "determinism": {
+    "run_1": "847f627520fc56dd08c884eb47b269111092548a219182ed5e7f8b01f94205b3",
+    "run_2": "847f627520fc56dd08c884eb47b269111092548a219182ed5e7f8b01f94205b3",
+    "run_3": "847f627520fc56dd08c884eb47b269111092548a219182ed5e7f8b01f94205b3",
+    "status": "PASS"
+  },
+  "historical_evidence_unchanged": true,
+  "issue": 19,
+  "provenance": {
+    "closure_authority": {
+      "closure_comment_id": 5645638986,
+      "source": "GitHub LIVE issue comment"
+    },
+    "post_merge_main_ci": {
+      "conclusion": "SUCCESS",
+      "context_set_semantics": "exactly the two observed main push workflow jobs; PR-only UGAS Review / evidence is not copied here",
+      "contexts": [
+        {
+          "conclusion": "SUCCESS",
+          "job_id": 103545700293,
+          "name": "UGAS CI / unit-and-validation"
+        },
+        {
+          "conclusion": "SUCCESS",
+          "job_id": 103545700226,
+          "name": "UGAS CI / docker-smoke"
+        }
+      ],
+      "head_sha": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+      "run_attempt": 1,
+      "run_id": 34690855982,
+      "source": "GitHub LIVE workflow run on merged main"
+    },
+    "sol_approval": {
+      "approval_comment_id": 5646607566,
+      "source": "GitHub LIVE issue comment",
+      "verdict": "APPROVED"
+    }
+  },
+  "schema_version": "0.25.2",
+  "source": "GitHub LIVE PR #18, merge commit, exact-main CI jobs, closure comment and Sol approval comment re-fetched before generation",
+  "source_pr_18": {
+    "approval_comment_id": 5646607566,
+    "approval_verdict": "APPROVED",
+    "base_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "closure_comment_id": 5645638986,
+    "merge_parents": [
+      "02fa44f2173aca46b4484209abccf218fe688a63",
+      "5f4a56bf019cc10994ee2974430c3ffca3090a50"
+    ],
+    "merge_sha": "38606625d5b59b09c407f9cc903bd748d91e6b35",
+    "merged_at": "2026-09-12T11:21:46Z",
+    "post_merge_ci_run": 34690855982,
+    "pr_number": 18,
+    "pr_state": "MERGED",
+    "reviewed_head": "5f4a56bf019cc10994ee2974430c3ffca3090a50",
+    "run_attempt": 1
+  },
+  "status": "PASS",
+  "tracked_state_binding": "PASS",
+  "version": "0.25.2",
+  "work_order": "UGAS-WO-0255"
+}

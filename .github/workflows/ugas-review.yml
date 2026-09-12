@@ -126,18 +126,18 @@ jobs:
           fi
           printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"
           echo "Active canonical state version: $version"
-      - name: Validate reconciled canonical state v0.25.1
-        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.1'
+      - name: Validate post-merge canonical state v0.25.2
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.2'
         shell: bash
         run: |
           set -o pipefail
-          python scripts/validation/validate_state_consistency_v0251.py 2>&1 | tee "$RUNNER_TEMP/state-validation-v0251.json"
-      - name: Validate V1 closure evidence v0.25.1
-        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.1'
+          python scripts/validation/validate_state_consistency_v0252.py 2>&1 | tee "$RUNNER_TEMP/state-validation-v0252.json"
+      - name: Validate post-merge canonical promotion evidence v0.25.2
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.2'
         shell: bash
         run: |
           set -o pipefail
-          python scripts/validation/validate_v1_closure_v0251.py --output "$RUNNER_TEMP/closure-validation-v0251.json" 2>&1 | tee "$RUNNER_TEMP/closure-validation-v0251.log"
+          python scripts/validation/validate_post_merge_canonical_promotion_v0252.py --output "$RUNNER_TEMP/post-merge-canonical-promotion-v0252.json" 2>&1 | tee "$RUNNER_TEMP/post-merge-canonical-promotion-v0252.log"
       - name: Record v0.24.7 results
         if: always()
         continue-on-error: true
@@ -158,6 +158,12 @@ jobs:
           cp schemas/current-state-v0247.json "$artifact/schemas/current-state-v0247.json"
           cp schemas/orchestration-runtime-v0247.json "$artifact/schemas/orchestration-runtime-v0247.json"
           cp REVIEW-v0.24.7.md "$artifact/REVIEW-v0.24.7.md"
+          mkdir -p "$artifact/docs/evidence/post-merge-canonical-promotion-v0252"
+          cp -R docs/evidence/post-merge-canonical-promotion-v0252/. "$artifact/docs/evidence/post-merge-canonical-promotion-v0252/"
+          cp schemas/current-state-v0252.json "$artifact/schemas/current-state-v0252.json"
+          cp REVIEW-v0.25.2.md "$artifact/REVIEW-v0.25.2.md"
+          cp "$RUNNER_TEMP/state-validation-v0252.json" "$artifact/state-validation-v0252.json" 2>/dev/null || true
+          cp "$RUNNER_TEMP/post-merge-canonical-promotion-v0252.json" "$artifact/post-merge-canonical-promotion-v0252.json" 2>/dev/null || true
           cp "$RUNNER_TEMP/ugas-review-evidence/"*.json "$artifact/" 2>/dev/null || true
           python - <<'PY'
           from pathlib import Path
