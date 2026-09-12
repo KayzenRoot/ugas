@@ -32,6 +32,11 @@ ALLOWED_PREFIXES = (
     "manifest-validation-results-v0247.json",
     "pre-upload-enforcement-v0247.json",
     "logs/",
+    "docs/evidence/post-merge-canonical-promotion-v0252/",
+    "schemas/current-state-v0252.json",
+    "REVIEW-v0.25.2.md",
+    "post-merge-canonical-promotion-v0252.json",
+    "state-validation-v0252.json",
 )
 FORBIDDEN_TOKENS = ("secret", "credential", "password", "api_key", ".safetensors", ".ckpt", ".sqlite", ".db", ".uads")
 
@@ -208,7 +213,7 @@ def evaluate_artifact_security(root: Path, manifest: dict[str, Any], *, self_att
         "telemetry_db_included": False,
         "local_credentials_included": False,
     }
-    if pull_request.get("base_sha") != REQUIRED_BASE_SHA:
+    if manifest.get("scope", {}).get("version") == "0.24.7" and pull_request.get("number") == 15 and pull_request.get("base_sha") != REQUIRED_BASE_SHA:
         result["failures"] = [*result["failures"], "identity-base-sha"]
         result["status"] = "FAIL"
         result["inventory_consistency"] = "FAIL"

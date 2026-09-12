@@ -105,6 +105,18 @@ from ugas.state_consistency_v0251 import definition_of_done_hard_gate_count as d
 from ugas.state_consistency_v0251 import immutability_failures as validate_immutability_v0251
 from ugas.state_consistency_v0251 import negative_control_failures as validate_negative_controls_v0251
 from ugas.state_consistency_v0251 import validate_state_consistency as validate_state_consistency_v0251
+from ugas.state_consistency_v0252 import CURRENT_GATE as CURRENT_GATE_V0252
+from ugas.state_consistency_v0252 import HARD_GATE_COUNT as V0252_HARD_GATE_COUNT
+from ugas.state_consistency_v0252 import NEGATIVE_CONTROL_IDS as V0252_NEGATIVE_CONTROL_IDS
+from ugas.state_consistency_v0252 import PROMOTION_BINDING as V0252_PROMOTION_BINDING
+from ugas.state_consistency_v0252 import PROMOTION_IMMUTABILITY as V0252_PROMOTION_IMMUTABILITY
+from ugas.state_consistency_v0252 import PROMOTION_NEGATIVE_CONTROLS as V0252_PROMOTION_NEGATIVE_CONTROLS
+from ugas.state_consistency_v0252 import PROMOTION_UADS as V0252_PROMOTION_UADS
+from ugas.state_consistency_v0252 import VERSION as V0252_VERSION
+from ugas.state_consistency_v0252 import historical_immutability_failures as validate_historical_immutability_v0252
+from ugas.state_consistency_v0252 import negative_control_failures as validate_negative_controls_v0252
+from ugas.state_consistency_v0252 import validate_post_merge_binding as validate_post_merge_binding_v0252
+from ugas.state_consistency_v0252 import validate_state_consistency as validate_state_consistency_v0252
 from scripts.validation.validate_github_governance_v0221 import validate_binding as validate_governance_binding_v0221
 from scripts.validation.validate_github_governance_v0222 import validate_binding as validate_governance_binding_v0222
 from scripts.validation.validate_github_governance_v0223 import validate_binding as validate_governance_binding_v0223
@@ -3371,7 +3383,7 @@ def _v0201_checks() -> None:
             consistency = validate_state_consistency_v0201(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.1.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0201:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.1 state is consistent")
         else:
-            check("v0201:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1"} and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.1 active state advanced forward")
+            check("v0201:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1", "0.25.2"} and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.1 active state advanced forward")
         fixture_root = evidence_root / "fixture"
         manifest = load_json(fixture_root / "tileset-manifest-v0201.json")
         schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0201.json")
@@ -3436,7 +3448,7 @@ def _v0202_checks() -> None:
             consistency = validate_state_consistency_v0202(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.2.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0202:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.2 state is consistent")
         else:
-            check("v0202:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1"} and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.2 active state advanced forward")
+            check("v0202:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1", "0.25.2"} and state.get("environment_tilesets") == "APPROVED_FOUNDATION", "v0.20.2 active state advanced forward")
         fixture_root = evidence_root / "fixture"
         manifest = load_json(fixture_root / "tileset-manifest-v0202.json")
         schema = load_json(ROOT / "schemas/environment-tileset-runtime-v0202.json")
@@ -3520,7 +3532,7 @@ def _v0203_checks() -> None:
             consistency = validate_state_consistency_v0203(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "REVIEW-v0.20.3.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0203:state-consistency", consistency["status"] == state["current_gate"] and not consistency["failures"], "; ".join(consistency["failures"]) or "active v0.20.3 state is consistent")
         else:
-            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1"} and state.get("previous_release", {}).get("merge_commit") in {"0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "b08b9c3df74ef6a23046be396289e2fd72dc336b", "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "6c6d53dab5a95226bf9578a6099d755d51327d8e", "02fa44f2173aca46b4484209abccf218fe688a63"}, "approved history remains immutable while active state advances")
+            check("v0203:state-forward-advanced", state.get("version") in {"0.21.0", "0.21.1", "0.21.2", "0.21.3", "0.22.0", "0.22.1", "0.22.2", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1", "0.25.2"} and state.get("previous_release", {}).get("merge_commit") in {"0bf04cb92e8619ea10cf82af8dbf2d9abe599e05", "1fb298885c56ccbf3df7dfdcb1be37fe2dc23af3", "b08b9c3df74ef6a23046be396289e2fd72dc336b", "dee98f8cd89ebd83a36ead7a22a184700d6e916f", "6c6d53dab5a95226bf9578a6099d755d51327d8e", "02fa44f2173aca46b4484209abccf218fe688a63", "38606625d5b59b09c407f9cc903bd748d91e6b35"}, "approved history remains immutable while active state advances")
         history = state["correction_history"]["v0.20.2"]
         check("v0203:v0202-rejected-history", history.get("status") == "CORRECTION_REQUIRED" and history.get("rejected_reviewed_head") == "6022cf3c6158ebb762519a04e79ed42378438ccc" and history.get("historical_evidence_unchanged") is True, "v0.20.2 is explicitly rejected and frozen")
 
@@ -3728,7 +3740,7 @@ def _v0220_checks() -> None:
             result = validate_state_consistency_v0220(state, binding, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "docs/project-review-response-protocol.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"))
             check("v0220:state-consistency", result["status"] == "UI_ASSET_FAMILY_RUNTIME_FOUNDATION_TECHNICALLY_QUALIFIED" and not result["failures"], "; ".join(result["failures"]) or "active UI state is consistent")
         else:
-            check("v0220:state-forward-advanced", state.get("version") in {"0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1"} and state.get("correction_history", {}).get("v0.22.0", {}).get("historical_evidence_unchanged") is True, "v0.22.0 state/evidence is preserved while active state advances")
+            check("v0220:state-forward-advanced", state.get("version") in {"0.22.1", "0.22.2", "0.22.3", "0.23.0", "0.23.1", "0.23.2", "0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1", "0.25.2"} and state.get("correction_history", {}).get("v0.22.0", {}).get("historical_evidence_unchanged") is True, "v0.22.0 state/evidence is preserved while active state advances")
         manifest = load_json(evidence_root / "ui-family-manifest-v0220.json")
         check("v0220:manifest", manifest.get("schema_version") == "0.22.0" and len(manifest.get("component_classes", [])) == 14 and manifest.get("production_routing") == "BLOCKED" and manifest.get("new_generation") == 0, "14-class TEST_ONLY UI manifest is present")
         gates = load_json(evidence_root / "hard-gates-v0220.json"); controls = load_json(evidence_root / "negative-controls-v0220.json")
@@ -3885,7 +3897,7 @@ def _v0230_checks() -> None:
     try:
         state = load_json(ROOT / "docs/evidence/current-state.json"); schema = load_json(ROOT / "schemas/current-state-v0230.json"); manifest = load_json(evidence_root / "vfx-family-manifest-v0230.json"); gates = load_json(evidence_root / "hard-gates-v0230.json"); controls = load_json(evidence_root / "negative-controls-v0230.json"); execution = load_json(evidence_root / "execution-evidence-v0230.json"); determinism = load_json(evidence_root / "full-slice-two-run-determinism-v0230.json"); production = load_json(evidence_root / "production-registry-v0230.json"); matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
         validate_schema_document(schema)
-        check("v0230:state-consistency", state.get("version") in {"0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1"} and state.get("correction_history", {}).get("v0.23.0", {}).get("historical_evidence_unchanged") is True, "v0.23.0 is preserved as immutable history while active state advances")
+        check("v0230:state-consistency", state.get("version") in {"0.23.3", "0.23.4", "0.24.0", "0.24.1", "0.24.2", "0.24.3", "0.24.4", "0.24.5", "0.24.6", "0.24.7", "0.25.0", "0.25.1", "0.25.2"} and state.get("correction_history", {}).get("v0.23.0", {}).get("historical_evidence_unchanged") is True, "v0.23.0 is preserved as immutable history while active state advances")
         check("v0230:manifest", manifest.get("schema_version") == "0.23.0" and manifest.get("family_id") == "vfx_asset_family" and manifest.get("registry_mode") == "TEST_ONLY" and len(manifest.get("effects", [])) == 10, "ten-class TEST_ONLY VFX manifest is present")
         check("v0230:hard-gates", gates.get("status") == "PASS" and gates.get("required_gate_count") == 25 and len(gates.get("gates", {})) == 25 and all(item.get("status") == "PASS" and type(item.get("observed")) is bool and item.get("observed") is True for item in gates["gates"].values()), "all 25 VFX hard gates have strict observed booleans")
         check("v0230:negative-controls", controls.get("status") == "PASS" and controls.get("required_control_count") == 36 and len(controls.get("controls", {})) == 36 and all(item.get("status") == "PASS" and item.get("result") == "REJECT" and item.get("expected_rejection_class") == item.get("observed_rejection_class") for item in controls["controls"].values()), "all 36 VFX negative controls observe real rejection classes")
@@ -4683,6 +4695,62 @@ def _v0251_checks() -> None:
         check("v0251:evidence", False, str(exc))
 
 
+def _v0252_checks() -> None:
+    """Validate the active v0.25.2 post-merge canonical-state promotion."""
+    required = [
+        "schemas/current-state-v0252.json",
+        "src/ugas/state_consistency_v0252.py",
+        "scripts/validation/run_post_merge_canonical_promotion_v0252.py",
+        "scripts/validation/validate_state_consistency_v0252.py",
+        "scripts/validation/validate_post_merge_canonical_promotion_v0252.py",
+        "tests/test_post_merge_canonical_promotion_v0252.py",
+        "CHECKPOINT.md",
+        "docs/roadmap.md",
+        "docs/evidence/current-state.json",
+        "docs/definition-of-done.md",
+        "docs/evidence/v1-final-acceptance/hard-gates.json",
+        "REVIEW-v0.25.2.md",
+    ]
+    required += [
+        "docs/evidence/post-merge-canonical-promotion-v0252/post-merge-binding-v0252.json",
+        "docs/evidence/post-merge-canonical-promotion-v0252/historical-v0251-immutability-v0252.json",
+        "docs/evidence/post-merge-canonical-promotion-v0252/negative-controls-v0252.json",
+        "docs/evidence/post-merge-canonical-promotion-v0252/uads-handoff-v0252.json",
+        "docs/evidence/post-merge-canonical-promotion-v0252/proposed-checkpoint-delta-v0252.md",
+    ]
+    for relative in required:
+        check(f"v0252:path:{relative}", (ROOT / relative).is_file(), "present" if (ROOT / relative).is_file() else "missing")
+    try:
+        state = load_json(ROOT / "docs/evidence/current-state.json")
+        schema = load_json(ROOT / "schemas/current-state-v0252.json")
+        validate_schema_document(schema)
+        validate_instance(state, schema)
+        check("v0252:state-schema", state.get("version") == V0252_VERSION and state.get("schema_version") == V0252_VERSION, "active state validates against the v0.25.2 schema")
+        binding = load_json(ROOT / V0252_PROMOTION_BINDING)
+        matrix = load_json(ROOT / "docs/ugas-v1-capability-matrix.json")
+        consistency = validate_state_consistency_v0252(state, (ROOT / "CHECKPOINT.md").read_text(encoding="utf-8"), (ROOT / "docs/roadmap.md").read_text(encoding="utf-8"), matrix, binding)
+        check("v0252:state-consistency", consistency["status"] == CURRENT_GATE_V0252 and not consistency["failures"], "; ".join(consistency["failures"]) or "active post-merge canonical state is consistent")
+        binding_failures = validate_post_merge_binding_v0252(binding)
+        check("v0252:post-merge-binding", not binding_failures, "; ".join(binding_failures) or "PR #18 merge identity and split main-CI provenance are exact")
+        immutability = load_json(ROOT / V0252_PROMOTION_IMMUTABILITY)
+        immutability_failures = validate_historical_immutability_v0252(immutability, ROOT)
+        check("v0252:historical-v0251-immutability", not immutability_failures, "; ".join(immutability_failures) or "v0.25.1 evidence root is Git-guarded and unchanged")
+        controls = load_json(ROOT / V0252_PROMOTION_NEGATIVE_CONTROLS)
+        control_failures = validate_negative_controls_v0252(controls)
+        check("v0252:negative-controls", not control_failures and len(controls.get("controls", {})) == len(V0252_NEGATIVE_CONTROL_IDS), "; ".join(control_failures) or f"all {len(V0252_NEGATIVE_CONTROL_IDS)} negative controls rejected through real validator paths")
+        handoff = load_json(ROOT / V0252_PROMOTION_UADS)
+        handoff_block = handoff.get("handoff", {}) if isinstance(handoff.get("handoff"), dict) else {}
+        handoff_ok = handoff.get("status") == "PASS" and handoff.get("version") == V0252_VERSION and handoff_block.get("execution_mode") == "GLOBAL_FIRST" and handoff_block.get("project_footprint") == "ZERO" and handoff_block.get("repo_local_material") == "ABSENT" and ".uads" not in json.dumps(handoff).casefold()
+        check("v0252:uads-handoff", handoff_ok, "sanitized UADS handoff is global-first with zero repository-local footprint")
+        deterministic = binding.get("determinism", {}) if isinstance(binding.get("determinism"), dict) else {}
+        check("v0252:determinism", deterministic.get("status") == "PASS" and deterministic.get("run_1") == deterministic.get("run_2") == deterministic.get("run_3"), "promotion binding evidence is deterministic across three declared runs")
+        definition = (ROOT / "docs/definition-of-done.md").read_text(encoding="utf-8")
+        hard_gates = load_json(ROOT / "docs/evidence/v1-final-acceptance/hard-gates.json")
+        check("v0252:retained-hard-gates", definition_of_done_hard_gate_count_v0251(definition) == V0252_HARD_GATE_COUNT and len(hard_gates.get("gates", {})) == V0252_HARD_GATE_COUNT and hard_gates.get("overall_pass") is True, "retained V1 technical baseline hard-gate evidence remains 30/30")
+    except (OSError, json.JSONDecodeError, KeyError, SchemaValidationError, ValueError, TypeError) as exc:
+        check("v0252:evidence", False, str(exc))
+
+
 def _v0210_checks() -> None:
     """Validate the active v0.21.0 maps/minimap foundation and boundaries."""
     _v0212_checks()
@@ -4694,7 +4762,7 @@ def _v0210_checks() -> None:
     _v0230_checks()
     _v0231_checks()
     _v0232_checks()
-    _v0233_checks(); _v0234_checks(); _v0240_checks(); _v0241_checks(); _v0242_checks(); _v0243_checks(); _v0244_checks(); _v0245_checks(); _v0246_checks(); _v0247_checks(); _v0250_checks(); _v0251_checks()
+    _v0233_checks(); _v0234_checks(); _v0240_checks(); _v0241_checks(); _v0242_checks(); _v0243_checks(); _v0244_checks(); _v0245_checks(); _v0246_checks(); _v0247_checks(); _v0250_checks(); _v0252_checks()
     return
     evidence_root = ROOT / "docs/evidence/maps-minimap-runtime-v0210"
     required = [
@@ -4933,7 +5001,7 @@ def main() -> int:
     init_version = __import__("ugas").__version__
     current_state_version = load_json(ROOT / "docs/evidence/current-state.json").get("version")
     active_maps_schema_version = load_json(ROOT / "schemas/maps-minimap-runtime-v0213.json").get("properties", {}).get("schema_version", {}).get("const")
-    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.25.0" and current_state_version in {"0.25.0", "0.25.1"}, f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}, current_state={current_state_version}")
+    check("version:consistency", UGAS_VERSION == package_version == pyproject_version == init_version == "0.25.0" and current_state_version in {"0.25.0", "0.25.1", "0.25.2"}, f"runtime={UGAS_VERSION}, package={package_version}, pyproject={pyproject_version}, current_state={current_state_version}")
     check("version:maps-schema", active_maps_schema_version == "0.21.3", f"active maps/minimap schema={active_maps_schema_version}")
     docs = ["CHECKPOINT.md", "REVIEW-v0.24.2.md", "docs/roadmap.md"]
     check("docs:version", all("v0.24.2" in (ROOT / path).read_text(encoding="utf-8") for path in docs), "current operational docs identify 0.24.2")

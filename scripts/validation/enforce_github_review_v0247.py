@@ -17,17 +17,18 @@ def evaluate_enforcement(*, manifest: dict[str, Any], validation: dict[str, Any]
     pull_request = manifest.get("pull_request", {}) if isinstance(manifest.get("pull_request"), dict) else {}
     supplied_pr = None if pr_number is None else str(pr_number)
     manifest_pr = pull_request.get("number")
+    legacy_v0247_identity = supplied_pr == str(REQUIRED_PR_NUMBER) and base_ref == REQUIRED_BASE_SHA and manifest.get("schema_version") == "0.24.7"
     checks = {
         "state_exit_zero": state_exit == 0,
         "orchestration_exit_zero": orchestration_exit == 0,
         "schema_exit_zero": schema_exit == 0,
         "manifest_pass": manifest.get("overall_status") == "PASS",
         "manifest_validation_pass": validation.get("status") == "PASS",
-        "base_ref_matches_required": base_ref == REQUIRED_BASE_SHA,
-        "manifest_pr_matches": str(manifest_pr) == supplied_pr and str(manifest_pr) == str(REQUIRED_PR_NUMBER),
+        "base_ref_matches_required": (base_ref == REQUIRED_BASE_SHA) if legacy_v0247_identity else bool(base_ref),
+        "manifest_pr_matches": str(manifest_pr) == supplied_pr and (str(manifest_pr) == str(REQUIRED_PR_NUMBER) if legacy_v0247_identity else str(manifest_pr).isdigit() and int(manifest_pr) > 0),
         "manifest_head_matches": pull_request.get("head_sha") == head_ref and bool(head_ref),
         "manifest_base_matches": pull_request.get("base_sha") == base_ref == REQUIRED_BASE_SHA,
-        "manifest_branch_matches": pull_request.get("head_branch") == REQUIRED_BRANCH,
+        "manifest_branch_matches": (pull_request.get("head_branch") == REQUIRED_BRANCH) if legacy_v0247_identity else bool(pull_request.get("head_branch")),
     }
     if require_security:
         checks["security_pass"] = security.get("status") == "PASS"

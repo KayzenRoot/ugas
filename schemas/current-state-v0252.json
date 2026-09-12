@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ugas.dev/schema/current-state-v0252.json",
+  "title": "UGAS active state v0.25.2 post-merge canonical-state promotion",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version", "version", "phase", "baseline_main_sha", "post_merge_canonical_promotion",
+    "previous_release", "current_gate", "stop_reason", "acceptance_verdict", "next_candidate",
+    "allowed_next_actions", "forbidden_actions", "production_routing", "production_approved",
+    "real_asset_generation", "new_generation", "provider_submit_calls", "next_capability_started",
+    "production_readiness_workstream", "synthetic_fixture", "review", "evidence", "state_consistency"
+  ],
+  "not": {"required": ["main_sha"]},
+  "properties": {
+    "schema_version": {"const": "0.25.2"},
+    "version": {"const": "0.25.2"},
+    "phase": {"const": "V1_FINAL_ACCEPTANCE"},
+    "baseline_main_sha": {"const": "38606625d5b59b09c407f9cc903bd748d91e6b35"},
+    "post_merge_canonical_promotion": {
+      "type": "object",
+      "required": [
+        "source_pr", "source_pr_base_sha", "source_reviewed_head", "source_merge_sha", "source_merged_at",
+        "source_post_merge_ci_run", "source_unit_job", "source_docker_job", "source_closure_comment_id",
+        "source_approval_comment_id", "source_approval_verdict", "source_merge_parents", "tracked_state_binding"
+      ],
+      "properties": {
+        "source_pr": {"const": 18},
+        "source_pr_base_sha": {"const": "02fa44f2173aca46b4484209abccf218fe688a63"},
+        "source_reviewed_head": {"const": "5f4a56bf019cc10994ee2974430c3ffca3090a50"},
+        "source_merge_sha": {"const": "38606625d5b59b09c407f9cc903bd748d91e6b35"},
+        "source_merged_at": {"const": "2026-09-12T11:21:46Z"},
+        "source_post_merge_ci_run": {"const": 34690855982},
+        "source_unit_job": {"const": 103545700293},
+        "source_docker_job": {"const": 103545700226},
+        "source_closure_comment_id": {"const": 5645638986},
+        "source_approval_comment_id": {"const": 5646607566},
+        "source_approval_verdict": {"const": "APPROVED"},
+        "source_merge_parents": {"const": ["02fa44f2173aca46b4484209abccf218fe688a63", "5f4a56bf019cc10994ee2974430c3ffca3090a50"]},
+        "tracked_state_binding": {"const": "PASS"}
+      }
+    },
+    "previous_release": {
+      "type": "object",
+      "required": ["version", "status", "merge_commit", "evidence"],
+      "properties": {
+        "version": {"const": "0.25.1"},
+        "status": {"const": "MERGED_CLOSED"},
+        "merge_commit": {"const": "38606625d5b59b09c407f9cc903bd748d91e6b35"},
+        "evidence": {"const": "docs/evidence/canonical-state-reconciliation-v0251/"}
+      }
+    },
+    "current_gate": {"const": "V1_CANONICAL_STATE_POST_MERGE_PROMOTION_EXTERNAL_REVIEW_REQUIRED"},
+    "stop_reason": {"const": "V1_CANONICAL_STATE_PROMOTION_READY_FOR_EXTERNAL_REVIEW"},
+    "acceptance_verdict": {"const": "V1_CANONICAL_STATE_PROMOTION_TECHNICALLY_QUALIFIED"},
+    "next_candidate": {"const": "PRODUCTION_READINESS"},
+    "allowed_next_actions": {"const": ["external_review_post_merge_canonical_state_promotion_pr"]},
+    "production_routing": {"const": "BLOCKED"},
+    "production_approved": {"const": false},
+    "real_asset_generation": {"const": "NONE"},
+    "new_generation": {"const": 0},
+    "provider_submit_calls": {"const": 0},
+    "next_capability_started": {"const": false},
+    "production_readiness_workstream": {"const": "NOT_STARTED_REQUIRED_SEPARATELY"},
+    "synthetic_fixture": {"const": "TEST_ONLY"},
+    "review": {
+      "type": "object",
+      "required": ["repository", "base_sha", "feature_branch", "pr_title", "pr_number", "pr_number_source", "pr_state", "current_exact_head_authority", "external_review_required", "merge_authorization", "do_not_merge"],
+      "allOf": [{"not": {"required": ["head_sha"]}}, {"not": {"required": ["head_sha_source"]}}],
+      "properties": {
+        "repository": {"const": "KayzenRoot/ugas"},
+        "base_sha": {"const": "38606625d5b59b09c407f9cc903bd748d91e6b35"},
+        "feature_branch": {"const": "codex/ugas-wo-0255-v1-post-merge-canonical-state-promotion"},
+        "pr_title": {"const": "UGAS WO-0255 V1 post-merge canonical-state promotion"},
+        "pr_number": {"type": "integer", "minimum": 1},
+        "pr_number_source": {"const": "GitHub LIVE PR metadata"},
+        "pr_state": {"const": "OPEN"},
+        "current_exact_head_authority": {"const": "GITHUB_LIVE_ONLY"},
+        "external_review_required": {"const": true},
+        "merge_authorization": {"const": "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_EXTERNAL_REVIEW"},
+        "do_not_merge": {"const": true}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["root", "post_merge_binding", "historical_immutability", "negative_controls", "uads_handoff", "proposed_checkpoint_delta"],
+      "properties": {
+        "root": {"const": "docs/evidence/post-merge-canonical-promotion-v0252/"},
+        "post_merge_binding": {"const": "docs/evidence/post-merge-canonical-promotion-v0252/post-merge-binding-v0252.json"},
+        "historical_immutability": {"const": "docs/evidence/post-merge-canonical-promotion-v0252/historical-v0251-immutability-v0252.json"},
+        "negative_controls": {"const": "docs/evidence/post-merge-canonical-promotion-v0252/negative-controls-v0252.json"},
+        "uads_handoff": {"const": "docs/evidence/post-merge-canonical-promotion-v0252/uads-handoff-v0252.json"},
+        "proposed_checkpoint_delta": {"const": "docs/evidence/post-merge-canonical-promotion-v0252/proposed-checkpoint-delta-v0252.md"}
+      }
+    },
+    "state_consistency": {
+      "type": "object",
+      "required": ["status", "version", "current_gate", "baseline_main_sha", "feature_branch", "production_routing", "production_approved", "new_generation", "allowed_next_actions", "next_capability_started", "production_readiness_workstream"],
+      "properties": {
+        "status": {"const": "V1_CANONICAL_STATE_POST_MERGE_PROMOTION_EXTERNAL_REVIEW_REQUIRED"},
+        "version": {"const": "0.25.2"},
+        "current_gate": {"const": "V1_CANONICAL_STATE_POST_MERGE_PROMOTION_EXTERNAL_REVIEW_REQUIRED"},
+        "baseline_main_sha": {"const": "38606625d5b59b09c407f9cc903bd748d91e6b35"},
+        "feature_branch": {"const": "codex/ugas-wo-0255-v1-post-merge-canonical-state-promotion"},
+        "production_routing": {"const": "BLOCKED"},
+        "production_approved": {"const": false},
+        "new_generation": {"const": 0},
+        "allowed_next_actions": {"const": ["external_review_post_merge_canonical_state_promotion_pr"]},
+        "next_capability_started": {"const": false},
+        "production_readiness_workstream": {"const": "NOT_STARTED_REQUIRED_SEPARATELY"}
+      }
+    }
+  }
+}

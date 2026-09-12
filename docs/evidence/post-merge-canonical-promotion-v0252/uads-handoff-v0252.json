@@ -1,0 +1,28 @@
+{
+  "handoff": {
+    "dispatch_status": "DISPATCHED",
+    "execution_mode": "GLOBAL_FIRST",
+    "project_footprint": "ZERO",
+    "repo_local_material": "ABSENT",
+    "route_status": "SELECTED",
+    "run_or_dispatch_id": "er_2b6a8b0f3d5eceff",
+    "sanitized": true,
+    "selected_profile_id": "codex-global-strong-v1",
+    "work_order_id": "wo_7ef9f2eb5a29a6b4"
+  },
+  "schema_version": "0.25.2",
+  "source": "UADS global kernel state read after plan and dispatch; no UADS files are stored in the repository",
+  "status": "PASS",
+  "validation": {
+    "checks": [
+      "execution_mode",
+      "project_footprint",
+      "identifiers",
+      "repo_local_material",
+      "sanitization"
+    ],
+    "status": "PASS"
+  },
+  "version": "0.25.2",
+  "work_order": "UGAS-WO-0255"
+}

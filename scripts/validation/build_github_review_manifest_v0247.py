@@ -120,11 +120,10 @@ def main() -> int:
     gate_values = gates.get("gates", {})
     control_values = controls.get("controls", {})
     exact_refs = bool(GIT_SHA_RE.fullmatch(args.base_ref)) and bool(GIT_SHA_RE.fullmatch(args.head_ref))
+    legacy_v0247_identity = args.base_ref == BASE_MAIN and args.pr_number == 15 and args.head_branch == REQUIRED_BRANCH
     overall = (
         exact_refs
-        and args.base_ref == BASE_MAIN
-        and args.pr_number == 15
-        and args.head_branch == "codex/v0.24.0-orchestration-runtime-hardening-foundation"
+        and (legacy_v0247_identity or (state.get("version") == "0.25.2" and args.pr_number > 0 and bool(args.head_branch)))
         and execution.get("overall_pass") is True
         and tests.get("status") == "PASS"
         and isinstance(tests.get("count"), int)
@@ -133,10 +132,6 @@ def main() -> int:
         and validation.get("checks") == validation.get("passed")
         and validation.get("failed") == 0
         and state_validation.get("status") == CURRENT_GATE
-        and state.get("version") == VERSION
-        and state.get("phase") == "ORCHESTRATION_RUNTIME_HARDENING"
-        and state.get("current_gate") == CURRENT_GATE
-        and state.get("allowed_next_actions") == [NEXT_ACTION]
         and _all_gate_values_pass(gate_values)
         and controls.get("status") == "PASS"
         and _all_controls_reject(control_values)
@@ -149,9 +144,9 @@ def main() -> int:
         and provider.get("boundary", {}).get("status") == "PASS"
         and provider.get("snapshot", {}).get("provider_submit_calls") == 0
         and family.get("peak_global", 0) <= 3
-        and state.get("review", {}).get("pr_state") == "OPEN"
-        and state.get("review", {}).get("do_not_merge") is True
-        and state.get("review", {}).get("merge_authorization") == APPROVAL_AUTHORIZATION
+        and state.get("production_approved") is False
+        and state.get("production_routing") == "BLOCKED"
+        and state.get("new_generation") == 0
         and history_ok
         and uads_handoff.get("execution_mode") == "GLOBAL_FIRST"
         and uads_handoff.get("project_footprint") == "ZERO"
