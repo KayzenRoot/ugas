@@ -1,0 +1,149 @@
+{
+  "schema_version": "0.25.1",
+  "version": "0.25.1",
+  "status": "PASS",
+  "work_order": "UGAS-WO-0253",
+  "minimum_required": 17,
+  "control_count": 17,
+  "controls": {
+    "NEG-0253-01-STALE-PENDING-MERGE": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "current_gate_invalid",
+      "observed_rejection_class": "current_gate_invalid",
+      "failing_key": "current_gate",
+      "observed_failure_count": 1,
+      "auxiliary_observed_rejection_class": "MISSING"
+    },
+    "NEG-0253-02-MERGE-SHA-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "v1_closure:merge_main_sha",
+      "observed_rejection_class": "v1_closure:merge_main_sha",
+      "failing_key": "v1_closure.merge_main_sha",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-03-RUN-ID-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "v1_closure:post_merge_ci_run",
+      "observed_rejection_class": "v1_closure:post_merge_ci_run",
+      "failing_key": "v1_closure.post_merge_ci_run",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-04-UNIT-JOB-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "v1_closure:unit_job",
+      "observed_rejection_class": "v1_closure:unit_job",
+      "failing_key": "v1_closure.unit_job",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-05-DOCKER-JOB-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "v1_closure:docker_job",
+      "observed_rejection_class": "v1_closure:docker_job",
+      "failing_key": "v1_closure.docker_job",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-06-CLOSURE-COMMENT-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "v1_closure:closure_comment_id",
+      "observed_rejection_class": "v1_closure:closure_comment_id",
+      "failing_key": "v1_closure.closure_comment_id",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-07-AUDIT-VERDICT-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "v1_closure:audit_verdict",
+      "observed_rejection_class": "v1_closure:audit_verdict",
+      "failing_key": "v1_closure.audit_verdict",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-08-PRODUCTION-APPROVED-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "production_approved_invalid",
+      "observed_rejection_class": "production_approved_invalid",
+      "failing_key": "production_approved",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-09-PRODUCTION-ROUTING-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "production_routing_invalid",
+      "observed_rejection_class": "production_routing_invalid",
+      "failing_key": "production_routing",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-10-NEW-GENERATION-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "new_generation_invalid",
+      "observed_rejection_class": "new_generation_invalid",
+      "failing_key": "new_generation",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-11-PROVIDER-SUBMIT-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "provider_submit_calls_invalid",
+      "observed_rejection_class": "provider_submit_calls_invalid",
+      "failing_key": "provider_submit_calls",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-12-REAL-ASSET-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "real_asset_generation_invalid",
+      "observed_rejection_class": "real_asset_generation_invalid",
+      "failing_key": "real_asset_generation",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-13-HARD-GATE-COUNT-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "HARD_GATE_COUNT_MISMATCH",
+      "observed_rejection_class": "HARD_GATE_COUNT_MISMATCH",
+      "failing_key": "docs/definition-of-done.md:hard_gate_count",
+      "declared_count": 28,
+      "accepted_count": 30
+    },
+    "NEG-0253-14-NEXT-CANDIDATE-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "next_candidate_invalid",
+      "observed_rejection_class": "next_candidate_invalid",
+      "failing_key": "next_candidate",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-15-STALE-CURRENT-HEAD-CLAIM": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "head_sha_invalid",
+      "observed_rejection_class": "head_sha_invalid",
+      "failing_key": "review.head_sha",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-16-MISLABELLED-HEAD-SOURCE": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "head_sha_source_invalid",
+      "observed_rejection_class": "head_sha_source_invalid",
+      "failing_key": "review.head_sha_source",
+      "observed_failure_count": 1
+    },
+    "NEG-0253-17-EXACT-HEAD-AUTHORITY-DRIFT": {
+      "status": "PASS",
+      "result": "REJECT",
+      "expected_rejection_class": "current_exact_head_authority_invalid",
+      "observed_rejection_class": "current_exact_head_authority_invalid",
+      "failing_key": "review.current_exact_head_authority",
+      "observed_failure_count": 1
+    }
+  },
+  "method": "each control mutates a deep copy of the active tracked state (or the Definition of Done text) and executes the real fail-closed validator path"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.25.1",
+  "version": "0.25.1",
+  "status": "PASS",
+  "work_order": "UGAS-WO-0253",
+  "issue": 17,
+  "source": "GitHub LIVE PR #16 metadata, post-merge workflow run and GitHub closure/audit comments resolved by the executor before generation",
+  "binding": {
+    "semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
+    "bookkeeping_head": "5046b3ed8c626540fa8258d25afc9a2abbf0a182",
+    "merge_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "merged_at": "2026-09-11T14:29:05Z",
+    "merge_parents": [
+      "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+      "5046b3ed8c626540fa8258d25afc9a2abbf0a182"
+    ],
+    "post_merge_ci_run": 34610394648,
+    "run_attempt": 1,
+    "unit_job": 103299136405,
+    "docker_job": 103299136059,
+    "closure_comment_id": 5636295417,
+    "audit_comment_id": 5637818972,
+    "audit_verdict": "APPROVED",
+    "unit_tests": "848/848",
+    "unit_tests_skipped": 2,
+    "official_validation": "3229/3229",
+    "official_validation_failed": 0,
+    "no_git_validation": "3223/3223"
+  },
+  "v0250_state_snapshot": {
+    "path": "docs/evidence/canonical-state-reconciliation-v0251/v0250-state-snapshot.json",
+    "source_commit": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "sha256": "f843e21c378dbc7bd6eca02fb580bb3a995d1513ed126f897ebeff7fc99ad1a9",
+    "bytes": 11463,
+    "snapshot_version": "0.25.0",
+    "snapshot_gate": "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE"
+  },
+  "tracked_state_binding": "PASS",
+  "historical_evidence_unchanged": true,
+  "determinism": {
+    "status": "PASS",
+    "run_1": "415685e3b774eb0ae73eba7fb78c047fb28bbcd128aba63ba04ec6824c18bada",
+    "run_2": "415685e3b774eb0ae73eba7fb78c047fb28bbcd128aba63ba04ec6824c18bada",
+    "run_3": "415685e3b774eb0ae73eba7fb78c047fb28bbcd128aba63ba04ec6824c18bada"
+  }
+}

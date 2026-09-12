@@ -1,0 +1,220 @@
+{
+  "schema_version": "0.25.1",
+  "version": "0.25.1",
+  "status": "PASS",
+  "work_order": "UGAS-WO-0253",
+  "git_guarded": true,
+  "frozen_roots": {
+    "docs/evidence/v1-final-acceptance/": {
+      "status": "UNCHANGED",
+      "file_count": 14,
+      "files": [
+        {
+          "path": "docs/evidence/v1-final-acceptance/architecture-audit.json",
+          "sha256": "d992e28fbda88de80e07be702c3852e7a864cc20685e84155d0ab22c1a830ef6",
+          "bytes": 697
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/capability-matrix-audit.json",
+          "sha256": "cff6c01ef09b633bc8be44cee47728445a7c865e4d261e6eb0e9a1bc2a3f6669",
+          "bytes": 12787
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/capability-matrix-validation-v0250.json",
+          "sha256": "54e3f5393a1a03f0b72429d5a91060370be15f041f18f4c0a6117fdfaf780ec4",
+          "bytes": 797
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/final-acceptance-summary.json",
+          "sha256": "708186c08fcd4880ad1a7f3cd2bf0091d211a0805d435f91949de71509724173",
+          "bytes": 14213
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/hard-gates.json",
+          "sha256": "70be2ba18fbfc3f0293b5e00e9354f32f87959d28ac8f2746bffc86de7819566",
+          "bytes": 9164
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/negative-controls.json",
+          "sha256": "5c5e70886fa2c5f95372637f1814ae632c7ebd319d771ecda8ada1829181e8ed",
+          "bytes": 26123
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/production-boundary.json",
+          "sha256": "b4214cc0fc129503e315d81637c16800316ea4f484462f4a27a749b6db21fd42",
+          "bytes": 521
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/reproducibility-audit.json",
+          "sha256": "55d92d2429ecacc6265cb0ee4dc7804c08062fedc31cddd09b4d984bbd34549b",
+          "bytes": 983
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/schema-validation-v0250.json",
+          "sha256": "1698d95cf74ace7507ce5e5e10f4d91fb682d41e7b3a4b7f3bb34668cf26ee4f",
+          "bytes": 998
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/security-audit.json",
+          "sha256": "1928f9aa61a3d06b6474793f4dc2670edbf68dce0ca527454c8cc4737e260212",
+          "bytes": 321
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/sol-external-approval-v0251.json",
+          "sha256": "1033e928deb991a9aff3d89baec216a24190565accffa9c35f7b09a90f3f94c9",
+          "bytes": 4052
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/state-consistency-audit.json",
+          "sha256": "5311c5d2a93c97a90daedfcaebcbf83272d8a28c9e30aa0ef8daf2654202866c",
+          "bytes": 596
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/test-summary.json",
+          "sha256": "9b4a2ba7e5a4baac491dfe77b7ca1f84f9aa40354a61bf02ccaa5f2adfa73a23",
+          "bytes": 2830
+        },
+        {
+          "path": "docs/evidence/v1-final-acceptance/uads-handoff.json",
+          "sha256": "86474ba402e6cb4c018d89270d0fb1cba5e277e462746574a8074890de62cec7",
+          "bytes": 725
+        }
+      ],
+      "git_diff_empty": true,
+      "git_status_clean": true,
+      "baseline_tree_sha": "e341d2ee51010b1b8b3a6ea799c9ed611b455f47",
+      "baseline_commit": "02fa44f2173aca46b4484209abccf218fe688a63"
+    },
+    "docs/evidence/orchestration-runtime-v0247/": {
+      "status": "UNCHANGED",
+      "file_count": 24,
+      "files": [
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/capability-matrix-validation-v0247.json",
+          "sha256": "25d981f715590d99aaa32dd230e903b3dcfed2e4c8370f9f5138b1899c99700c",
+          "bytes": 797
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/checkpoint-resume-v0247.json",
+          "sha256": "751006da736af78b38b032a7e0bb37a9f009ba7a7f07ef4395aad769a41eb523",
+          "bytes": 27932
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/circuit-breaker-runtime-v0247.json",
+          "sha256": "476430475af2039ec3e82e6314dbbb143df42f5306135241439ef3841399b9ff",
+          "bytes": 11930
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/correction-history-v0247.json",
+          "sha256": "0a061fd3323bda59075cac09670c1b20b016bde62d6d627d674ce48c019b2725",
+          "bytes": 773
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/dag-scheduler-v0247.json",
+          "sha256": "e212a88fe0cc1f44ff4fd0f76642146a710a2336c7bc4cbaf53859d60de04bf8",
+          "bytes": 2518
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/deadline-timeout-v0247.json",
+          "sha256": "15d98e0be27dce9ad93f5fe7a2664bc190751f2fb515d8c14f28aa28c4d9fd80",
+          "bytes": 21006
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/dependency-authority-v0247.json",
+          "sha256": "655a7ed1108976ca99926bb709f2f4f2dd6e10ab3ace4456bccc988cbdf78dee",
+          "bytes": 10691
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/execution-evidence-v0247.json",
+          "sha256": "e9c41ac53f9a8d1309e43e2bf8e6537147f7003d17070d44cd8a9141ab17f1f7",
+          "bytes": 200662
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/execution-state-v0247.json",
+          "sha256": "320e346709651ac366efbaa08cb30c80eb2b4e490353bcb44b1373368897ba1e",
+          "bytes": 7978
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/family-concurrency-v0247.json",
+          "sha256": "a690d1a81809cab5b03ab3c47b1f6607479be3173416380a9e16ff7543662777",
+          "bytes": 320
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/frozen-v0241-fingerprint-v0247.json",
+          "sha256": "055ea7180575a77556cb0ff5b14245a45872f00f97931139ba04daea26e5ad46",
+          "bytes": 3336
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/full-slice-two-run-determinism-v0247.json",
+          "sha256": "f00bdba01dc73357e85a5f2b05f2dc7f4af3b24518c455f515509c501471d72a",
+          "bytes": 17059
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/hard-gates-v0247.json",
+          "sha256": "33665e8e5327e1d4523064b8811a6cd293c1153da15587a8477ae46f958b5a72",
+          "bytes": 16843
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/historical-immutability-v0247.json",
+          "sha256": "34f1d627fb1357ffd12606476e686c6acdaa25ca152f664c7cefc63dcbb2fad8",
+          "bytes": 7039
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/idempotency-coordinator-v0247.json",
+          "sha256": "37a6e46c93044c7596e46bbb1e53715afa3c4d43aee9f3e3ffbde628fb4c6b95",
+          "bytes": 39880
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/matrix-snapshot-v0247.json",
+          "sha256": "93d01c93a26c091b3105c02316981f485eca87db0f3224915298f1f535a1f38d",
+          "bytes": 2680
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/negative-controls-v0247.json",
+          "sha256": "9993be8e9b6da244d91d82046c2b4ac8cba0aafd303f86d8d01f0d91f71db2fb",
+          "bytes": 32968
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/production-boundary-v0247.json",
+          "sha256": "a569ef9ba825d583b80adaefdfafbd4a4a28d26f62b71db5e93f68ee1f0af5ad",
+          "bytes": 194
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/provider-boundary-v0247.json",
+          "sha256": "5feecb8bbfdc68114cf1c339df263ab9f73ead8321fc97977d207d2cc59d8636",
+          "bytes": 8953
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/request-contract-v0247.json",
+          "sha256": "92726d4516d47f8d1623b1f8f2bc2552bdcc126970065a1250eabdef60ae57c4",
+          "bytes": 3182
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/schema-validation-v0247.json",
+          "sha256": "7b9cbe4cd7d8214735d7fdb36709b32846930966eecd68bc8ab07015cff9d444",
+          "bytes": 232
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/state-snapshot-v0247.json",
+          "sha256": "5ce5015d7b9b5530287ed4d519c0f4aaea9675ad4f0883630e99d32689c5420b",
+          "bytes": 9866
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/tracked-docs-snapshot-v0247.json",
+          "sha256": "43f260155b7d37ba394d378dd19746dec51f70b1a2076f2af491f07e912f70d9",
+          "bytes": 112412
+        },
+        {
+          "path": "docs/evidence/orchestration-runtime-v0247/uads-handoff-v0247.json",
+          "sha256": "7417afaeaca78b8c973966856b1f77155ed4d5cf22a0689056e02f991ef68e68",
+          "bytes": 385
+        }
+      ],
+      "git_diff_empty": true,
+      "git_status_clean": true,
+      "baseline_tree_sha": "a7da236c1262738760646658c262529056b52bcd",
+      "baseline_commit": "02fa44f2173aca46b4484209abccf218fe688a63"
+    }
+  },
+  "method": "per-root exact file inventory (sha256 plus byte size) cross-checked against git diff and git status at the verified baseline commit"
+}

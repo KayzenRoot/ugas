@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.25.1",
+  "version": "0.25.1",
+  "status": "PASS",
+  "work_order": "UGAS-WO-0253",
+  "source": "UADS kernel workspace state files read by the executor at generation time (workspace b07de045b899aac7)",
+  "handoff": {
+    "execution_mode": "GLOBAL_FIRST",
+    "project_footprint": "ZERO",
+    "work_order_id": "wo_1bd6e7e0666d0bc1",
+    "run_or_dispatch_id": "er_3905524e9e8e2e38",
+    "route_status": "SELECTED",
+    "selected_profile_id": "codex-global-strong-v1",
+    "selected_profile_digest_unavailable_reason": "UADS model execution plan does not expose a profile digest",
+    "dispatch_status": "DISPATCHED",
+    "host_dispatch_bundle_id": "hdb_54ad7dd435c165b4",
+    "host_dispatch_bundle_status": "PREPARED",
+    "specialist_selection_plan_id": "sp_ce66cbffd498eed9",
+    "baseline_git_head": "02fa44f2173aca46b4484209abccf218fe688a63",
+    "repo_local_material": "ABSENT",
+    "sanitized": true
+  },
+  "validation": {
+    "status": "PASS",
+    "checks": [
+      "execution_mode",
+      "project_footprint",
+      "work_order_id",
+      "run_or_dispatch_id",
+      "route_status",
+      "repo_local_material",
+      "sanitization"
+    ]
+  }
+}

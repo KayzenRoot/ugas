@@ -11,7 +11,7 @@ approval.
 
 - The V1 capability matrix audits all 16 capability ids against repository bytes:
   every evidence pointer and every test pointer must resolve.
-- Hard gates are observed, never assumed: each of the 28 hard gates is recorded
+- Hard gates are observed, never assumed: each of the 30 hard gates is recorded
   as a strict boolean together with its proof source.
 - Negative controls prove that the acceptance guardrails reject injected defects.
 - Two independent executions of the acceptance core produce one canonical digest.

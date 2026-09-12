@@ -1,25 +1,13 @@
 {
-  "schema_version": "0.25.1",
-  "version": "0.25.1",
+  "schema_version": "0.25.0",
+  "version": "0.25.0",
   "phase": "V1_FINAL_ACCEPTANCE",
-  "baseline_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
-  "v1_closure": {
-    "semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
-    "bookkeeping_head": "5046b3ed8c626540fa8258d25afc9a2abbf0a182",
-    "merge_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
-    "post_merge_ci_run": 34610394648,
-    "unit_job": 103299136405,
-    "docker_job": 103299136059,
-    "closure_comment_id": 5636295417,
-    "audit_comment_id": 5637818972,
-    "audit_verdict": "APPROVED",
-    "tracked_state_binding": "PASS"
-  },
+  "baseline_main_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
   "previous_release": {
-    "version": "0.25.0",
+    "version": "0.24.7",
     "status": "MERGED_CLOSED",
-    "merge_commit": "02fa44f2173aca46b4484209abccf218fe688a63",
-    "evidence": "docs/evidence/v1-final-acceptance/"
+    "merge_commit": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+    "evidence": "docs/evidence/orchestration-runtime-v0247/"
   },
   "orchestration_closure": {
     "semantic_head": "6b1af57ec5f488d71bafafa17a892467adf1d1c1",
@@ -183,19 +171,6 @@
       "docker_job": 103026362968,
       "closure_comment_id": 5625161567,
       "historical_evidence_unchanged": true
-    },
-    "v0.25.0": {
-      "status": "MERGED_CLOSED",
-      "semantic_head": "66db255fdb2483da4bae08e418c904f24d215ebb",
-      "bookkeeping_head": "5046b3ed8c626540fa8258d25afc9a2abbf0a182",
-      "merge_commit": "02fa44f2173aca46b4484209abccf218fe688a63",
-      "post_merge_ci_run": 34610394648,
-      "unit_job": 103299136405,
-      "docker_job": 103299136059,
-      "closure_comment_id": 5636295417,
-      "audit_comment_id": 5637818972,
-      "audit_verdict": "APPROVED",
-      "historical_evidence_unchanged": true
     }
   },
   "observability": {
@@ -211,12 +186,12 @@
     "historical_sources_rewritten": false,
     "production_approved": false
   },
-  "current_gate": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
-  "stop_reason": "V1_TECHNICAL_BASELINE_CLOSED_PRODUCTION_READINESS_NOT_STARTED",
-  "acceptance_verdict": "V1_TECHNICAL_BASELINE_ACCEPTED",
-  "next_candidate": "PRODUCTION_READINESS",
+  "current_gate": "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE",
+  "stop_reason": "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_AWAITING_GOVERNED_MERGE",
+  "acceptance_verdict": "V1_ACCEPTANCE_CANDIDATE",
+  "next_candidate": "V1_FINAL_ACCEPTANCE",
   "allowed_next_actions": [
-    "define_and_review_production_readiness_work_order"
+    "external_review_v1_final_acceptance_pr"
   ],
   "forbidden_actions": [
     "direct_main_push",
@@ -228,9 +203,7 @@
     "start_production_readiness",
     "real_asset_generation",
     "provider_network",
-    "start_ugas_v2",
-    "self_merge_canonical_state_reconciliation_pr",
-    "merge_canonical_state_reconciliation_pr"
+    "start_ugas_v2"
   ],
   "production_approved": false,
   "production_routing": "BLOCKED",
@@ -250,15 +223,16 @@
   "synthetic_fixture": "TEST_ONLY",
   "review": {
     "repository": "KayzenRoot/ugas",
-    "base_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
-    "feature_branch": "codex/ugas-wo-0253-v1-canonical-state-reconciliation",
-    "pr_title": "UGAS WO-0253 V1 canonical-state reconciliation",
+    "base_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+    "feature_branch": "codex/v1-final-acceptance",
+    "pr_title": "UGAS V1 Final Acceptance",
     "execution_mode": "GITHUB_PR_FIRST",
     "merge_policy": "NO_SELF_MERGE_UNTIL_EXTERNAL_REVIEW",
-    "pr_number": 18,
+    "pr_number": 16,
     "pr_number_source": "GitHub LIVE PR metadata",
     "pr_state": "OPEN",
-    "current_exact_head_authority": "GITHUB_LIVE_ONLY",
+    "head_sha": "66db255fdb2483da4bae08e418c904f24d215ebb",
+    "head_sha_source": "GitHub LIVE exact-head metadata",
     "external_review_required": true,
     "merge_authorization": "GOVERNED_MERGE_ONLY_AFTER_EXACT_HEAD_BOOKKEEPING_REVIEW",
     "do_not_merge": true,
@@ -297,17 +271,17 @@
     "production_scope": "EXCLUDED"
   },
   "state_consistency": {
-    "status": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
-    "version": "0.25.1",
+    "status": "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE",
+    "version": "0.25.0",
     "phase": "V1_FINAL_ACCEPTANCE",
-    "current_gate": "V1_TECHNICAL_BASELINE_MERGED_CLOSED",
-    "baseline_main_sha": "02fa44f2173aca46b4484209abccf218fe688a63",
-    "feature_branch": "codex/ugas-wo-0253-v1-canonical-state-reconciliation",
+    "current_gate": "V1_TECHNICAL_BASELINE_EXTERNALLY_APPROVED_PENDING_GOVERNED_MERGE",
+    "baseline_main_sha": "6c6d53dab5a95226bf9578a6099d755d51327d8e",
+    "feature_branch": "codex/v1-final-acceptance",
     "production_routing": "BLOCKED",
     "production_approved": false,
     "new_generation": 0,
     "allowed_next_actions": [
-      "define_and_review_production_readiness_work_order"
+      "external_review_v1_final_acceptance_pr"
     ],
     "next_capability_started": false,
     "orchestration_lifecycle": "MERGED_CLOSED"

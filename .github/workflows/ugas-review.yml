@@ -112,6 +112,32 @@ jobs:
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/workflow.exit"
           exit "$code"
+      - name: Detect active canonical state version
+        id: canonical-state-version
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          version=$(python -c "import json, pathlib; print(json.loads(pathlib.Path('docs/evidence/current-state.json').read_text(encoding='utf-8')).get('version', 'unknown'))" 2>&1)
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            echo "$version"
+            exit "$code"
+          fi
+          printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"
+          echo "Active canonical state version: $version"
+      - name: Validate reconciled canonical state v0.25.1
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.1'
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/validation/validate_state_consistency_v0251.py 2>&1 | tee "$RUNNER_TEMP/state-validation-v0251.json"
+      - name: Validate V1 closure evidence v0.25.1
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.1'
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/validation/validate_v1_closure_v0251.py --output "$RUNNER_TEMP/closure-validation-v0251.json" 2>&1 | tee "$RUNNER_TEMP/closure-validation-v0251.log"
       - name: Record v0.24.7 results
         if: always()
         continue-on-error: true
@@ -243,13 +269,13 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit "$code"
       - name: Prepare bounded V1 final acceptance evidence directories
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         run: |
           mkdir -p "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact/logs" "$RUNNER_TEMP/ugas-v1-final-acceptance-evidence"
           : > "$RUNNER_TEMP/v1-final-acceptance.log"
           for file in acceptance state-v0250 schema-v0250; do printf '%s\n' 99 > "$RUNNER_TEMP/$file.exit"; done
       - name: Run V1 final acceptance slice v0.25.0 and capture evidence
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         shell: bash
         run: |
@@ -259,7 +285,7 @@ jobs:
           printf '%s\n' "$code" > "$RUNNER_TEMP/acceptance.exit"
           exit "$code"
       - name: Validate V1 final acceptance state consistency v0.25.0
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         shell: bash
         run: |
@@ -269,7 +295,7 @@ jobs:
           printf '%s\n' "$code" > "$RUNNER_TEMP/state-v0250.exit"
           exit "$code"
       - name: Validate V1 final acceptance schema v0.25.0
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         shell: bash
         run: |
@@ -279,12 +305,12 @@ jobs:
           printf '%s\n' "$code" > "$RUNNER_TEMP/schema-v0250.exit"
           exit "$code"
       - name: Record v0.25.0 final acceptance results
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         run: |
           python scripts/validation/record_v1_acceptance_results_v0250.py --output-dir "$RUNNER_TEMP/ugas-v1-final-acceptance-evidence" --tests-log "$RUNNER_TEMP/ugas-tests.log" --validation-log "$RUNNER_TEMP/ugas-validation.log" --tests-exit "$(cat "$RUNNER_TEMP/ugas-tests.exit")" --validation-exit "$(cat "$RUNNER_TEMP/ugas-validation.exit")" --state-exit "$(cat "$RUNNER_TEMP/state-v0250.exit")" --matrix-exit "$(cat "$RUNNER_TEMP/matrix.exit")" --orchestration-exit "$(cat "$RUNNER_TEMP/orchestration.exit")" --workflow-exit "$(cat "$RUNNER_TEMP/workflow.exit")" --schema-exit "$(cat "$RUNNER_TEMP/schema-v0250.exit")"
       - name: Assemble bounded V1 final acceptance artifact
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         shell: bash
         run: |
@@ -319,16 +345,16 @@ jobs:
                   (logs / name).write_text(sanitize_exported_text(source.read_text(encoding="utf-8", errors="replace")), encoding="utf-8")
           PY
       - name: Build v0.25.0 exact-head final acceptance manifest
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         run: |
           python scripts/validation/build_github_review_manifest_v0250.py --output-dir "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact" --repository-root . --base-ref "$BASE_REF" --head-ref "$HEAD_REF" --head-branch "$HEAD_BRANCH" --pr-number "$PR_NUMBER" --tests-json "$RUNNER_TEMP/ugas-v1-final-acceptance-evidence/test-results-v0250.json" --validation-json "$RUNNER_TEMP/ugas-v1-final-acceptance-evidence/validation-results-v0250.json" --state-validation-json "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact/state-validation-v0250.json" --summary-json docs/evidence/v1-final-acceptance/final-acceptance-summary.json --gates-json docs/evidence/v1-final-acceptance/hard-gates.json --controls-json docs/evidence/v1-final-acceptance/negative-controls.json --uads-json docs/evidence/v1-final-acceptance/uads-handoff.json
       - name: Validate v0.25.0 exact-head final acceptance manifest
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         run: python scripts/validation/validate_github_review_manifest_v0250.py "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact/github-review-manifest-v0250.json" --result-output "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact/manifest-validation-results-v0250.json"
       - name: Write V1 final acceptance artifact identity preflight into bounded artifact
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         shell: bash
         run: |
@@ -342,7 +368,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit "$code"
       - name: Sanitize bounded V1 final acceptance artifact export paths
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         shell: bash
         run: |
@@ -364,11 +390,11 @@ jobs:
                   path.write_text(sanitized, encoding="utf-8")
           PY
       - name: Validate bounded V1 final acceptance artifact security
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         run: python scripts/validation/validate_github_review_security_v0250.py --artifact-dir "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact" --manifest "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact/github-review-manifest-v0250.json" --output "$RUNNER_TEMP/ugas-v1-final-acceptance-artifact/security-results-v0250.json"
       - name: Verify V1 final acceptance inventory and security before upload
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         continue-on-error: true
         shell: bash
         run: |
@@ -377,7 +403,7 @@ jobs:
           code=$?
           exit "$code"
       - name: Write V1 final acceptance GitHub Step Summary
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         run: |
           {
             echo '## UGAS GitHub-native v0.25.0 V1 final acceptance evidence'
@@ -390,7 +416,7 @@ jobs:
             echo '- Stop: PR remains OPEN/unmerged for external Sol review; V1 technical baseline acceptance is not production approval.'
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload bounded V1 final acceptance artifact
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ugas-v1-final-acceptance-evidence-pr-${{ github.event.pull_request.number || 'manual' }}-${{ github.event.pull_request.head.sha || github.sha }}
@@ -398,7 +424,7 @@ jobs:
           if-no-files-found: error
           retention-days: 21
       - name: Enforce final V1 final acceptance result after artifact upload (v0.25.0)
-        if: github.event.pull_request.number
+        if: github.event.pull_request.number && steps.canonical-state-version.outputs.version == '0.25.0'
         shell: bash
         run: |
           set +e
