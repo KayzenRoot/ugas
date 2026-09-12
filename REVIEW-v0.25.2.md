@@ -2,11 +2,11 @@
 
 **STATUS:** `REVIEW_READY_PENDING_SOL`
 **WORK_ORDER:** `UGAS-WO-0255`
-**ISSUE:** `#19`
+**ISSUE:** `#19` (WO tracking issue)
 **BASE_SHA:** `38606625d5b59b09c407f9cc903bd748d91e6b35`
 **HEAD_SHA:** resolved from GitHub LIVE after push
 **CONTEXT_LOCK:** main `38606625d5b59b09c407f9cc903bd748d91e6b35`; PR #18 `MERGED`; source reviewed head `5f4a56bf019cc10994ee2974430c3ffca3090a50`
-**PR_NUMBER:** `19` (GitHub LIVE PR metadata)
+**PR_NUMBER:** `20` (GitHub LIVE PR metadata)
 
 ## Active-state promotion
 
@@ -40,4 +40,4 @@ See `docs/evidence/post-merge-canonical-promotion-v0252/proposed-checkpoint-delt
 
 ## Stop condition
 
-Keep PR #19 OPEN and unmerged after the exact-head required contexts and bounded evidence artifact are green. Return to Sol for independent external review. Do not merge and do not begin Production Readiness.
+Keep PR #20 OPEN and unmerged after the exact-head required contexts and bounded evidence artifact are green. Return to Sol for independent external review. Do not merge and do not begin Production Readiness.
