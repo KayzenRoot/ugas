@@ -284,10 +284,8 @@ def historical_immutability_failures(evidence: Mapping[str, Any], repository_roo
         failures.append("historical_root:files")
     if repository_root is not None:
         listed = subprocess.run(["git", "-C", str(repository_root), "ls-tree", "-r", "--name-only", "HEAD", "--", HISTORICAL_ROOT.rstrip("/")], capture_output=True, text=True, check=False)
-        if listed.returncode != 0:
-            failures.append("historical_root:git")
-        else:
-            recorded = {item.get("path"): item for item in files if isinstance(item, Mapping) and isinstance(item.get("path"), str)}
+        recorded = {item.get("path"): item for item in files if isinstance(item, Mapping) and isinstance(item.get("path"), str)}
+        if listed.returncode == 0:
             actual = set(listed.stdout.splitlines())
             if actual != set(recorded):
                 failures.append("historical_root:inventory")
@@ -296,6 +294,25 @@ def historical_immutability_failures(evidence: Mapping[str, Any], repository_roo
                 data = blob.stdout.replace(b"\r\n", b"\n") if Path(relative).suffix.casefold() in {".json", ".md", ".txt"} else blob.stdout
                 if blob.returncode != 0 or hashlib.sha256(data).hexdigest() != item.get("sha256") or len(data) != item.get("bytes"):
                     failures.append(f"historical_root:{relative}")
+        else:
+            materialized = repository_root / HISTORICAL_ROOT
+            if not materialized.is_dir():
+                failures.append("historical_root:authority")
+            else:
+                actual = {path.relative_to(repository_root).as_posix() for path in materialized.rglob("*") if path.is_file()}
+                if actual != set(recorded):
+                    failures.append("historical_root:inventory")
+                for relative, item in recorded.items():
+                    path = repository_root / relative
+                    try:
+                        data = path.read_bytes()
+                    except OSError:
+                        failures.append(f"historical_root:{relative}")
+                        continue
+                    if Path(relative).suffix.casefold() in {".json", ".md", ".txt"}:
+                        data = data.replace(b"\r\n", b"\n")
+                    if hashlib.sha256(data).hexdigest() != item.get("sha256") or len(data) != item.get("bytes"):
+                        failures.append(f"historical_root:{relative}")
     return failures
 
 

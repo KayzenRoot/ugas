@@ -5,7 +5,9 @@ from __future__ import annotations
 import copy
 import importlib.util
 import json
+import shutil
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -16,6 +18,7 @@ from ugas.schema_validation import validate_instance, validate_schema_document  
 from ugas.state_consistency_v0252 import (  # noqa: E402
     BASELINE_MAIN_SHA,
     CURRENT_GATE,
+    HISTORICAL_ROOT,
     NEGATIVE_CONTROL_IDS,
     PROMOTION_BINDING,
     PROMOTION_IMMUTABILITY,
@@ -105,6 +108,17 @@ class PostMergeCanonicalPromotionV0252Tests(unittest.TestCase):
         for item in generated["controls"].values():
             self.assertEqual(item["result"], "REJECT")
             self.assertGreater(item["actual_failure_count"], 0)
+
+    def test_historical_root_validates_from_materialized_snapshot_without_git(self) -> None:
+        evidence = read_json(PROMOTION_IMMUTABILITY)
+        with tempfile.TemporaryDirectory() as directory:
+            snapshot = Path(directory)
+            shutil.copytree(ROOT / HISTORICAL_ROOT, snapshot / HISTORICAL_ROOT)
+            self.assertEqual(historical_immutability_failures(evidence, snapshot), [])
+            relative = evidence["historical_root"]["files"][0]["path"]
+            candidate = snapshot / relative
+            candidate.write_bytes(candidate.read_bytes() + b"mutation")
+            self.assertIn(f"historical_root:{relative}", historical_immutability_failures(evidence, snapshot))
 
     def test_review_has_no_self_referential_head(self) -> None:
         self.assertNotIn("head_sha", self.state["review"])
